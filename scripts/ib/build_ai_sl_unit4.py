@@ -1,0 +1,4118 @@
+#!/usr/bin/env python3
+"""IB Mathematics: Applications & Interpretation SL — Unit 4 (Topic 4: Statistics & Probability).
+
+Builds data/genmath/ib-ai-sl/statistics-and-probability.json: eleven lessons,
+one per official subtopic code AI SL 4.1-4.11, same anatomy as Units 1-3
+(syllabus cards, booklet flags, M/A/R markscheme + narrative solutions,
+interactive widgets, sympy check[] everywhere). Banks tagged ib-ai-sl-4.x.
+
+The largest topic on the course — roughly 30% of the assessment — and the one
+that separates AI from Analysis & Approaches most sharply. Two of its codes
+exist only here: 4.10 (Spearman's rank correlation) and 4.11 (the chi-squared
+and t tests), which give AI students formal hypothesis testing that AA SL
+never meets.
+
+Every distribution calculation is a GDC calculation. The lessons name the
+menus and the arguments; the marks are for choosing the right distribution and
+saying what the answer means.
+
+Run: python3 scripts/ib/build_ai_sl_unit4.py   (then npm run verify:genmath)
+"""
+import json
+import os
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OUT = os.path.join(ROOT, "data", "genmath", "ib-ai-sl", "statistics-and-probability.json")
+
+
+# ===========================================================================
+# Lesson 1 — AI SL 4.1: populations, samples, sampling techniques
+# ===========================================================================
+def lesson_sampling():
+    return {
+        "slug": "sampling-and-data",
+        "title": "Populations, Samples and How to Choose One",
+        "concreteComparison": (
+            "A cook tastes one spoonful and judges the whole pot — but only after stirring. "
+            "Unstirred, the spoonful comes from the top and says nothing about the bottom. Every "
+            "sampling method in this lesson is an argument about how to stir."
+        ),
+        "objective": (
+            "Distinguish population from sample and discrete from continuous data, name and "
+            "evaluate the five sampling techniques, and identify bias and outliers."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.1.** Concepts of population, sample, random sample, "
+            "discrete and continuous data; reliability of data sources and bias in sampling; "
+            "interpretation of outliers; sampling techniques and their effectiveness. **Papers 1 "
+            "and 2.** A words-and-judgement code — the marks are for naming and justifying.",
+            "The POPULATION is everyone or everything you want to know about; the SAMPLE is the "
+            "part you actually measure. DISCRETE data comes from counting and lands on separate "
+            "values (goals scored, children in a family); CONTINUOUS data comes from measuring "
+            "and can take any value in a range (height, time, mass). Shoe size is the classic "
+            "trap: it is measured but recorded on a discrete scale.",
+            "Five techniques, five one-line descriptions. SIMPLE RANDOM: every member equally "
+            "likely, names from a hat. CONVENIENCE: whoever is easiest to reach. SYSTEMATIC: "
+            "every $k$th member from an ordered list. QUOTA: fill fixed numbers from each group, "
+            "chosen non-randomly. STRATIFIED: split the population into groups and sample each "
+            "group at random, in proportion to its size.",
+            "Evaluating them is where the marks are. Simple random and stratified are unbiased; "
+            "stratified additionally guarantees each subgroup is represented. Convenience is "
+            "cheap and badly biased. Systematic is easy but fails if the list has a repeating "
+            "pattern with period $k$. Quota controls the composition but the choosing within "
+            "each quota is not random, so bias survives.",
+            "An OUTLIER is a value far from the rest. It is not automatically an error — a "
+            "record-breaking time or a data-entry typo look identical in the numbers. The "
+            "assessed skill is to identify it, suggest a plausible cause, and say what removing "
+            "it would do: the mean moves, the median barely does."
+        ],
+        "keyIdea": (
+            "A sample is only as good as the argument that it represents the population. Name "
+            "the technique, state its bias, and say who was left out."
+        ),
+        "facts": [
+            {
+                "title": "Stratified sample size",
+                "latex": "n_{\\text{group}} = \\frac{\\text{group size}}{\\text{population size}} \\times n",
+                "explanation": "Not in the booklet. Sample each stratum in proportion to its share.",
+            },
+            {
+                "title": "Discrete or continuous",
+                "latex": "\\text{counted} \\Rightarrow \\text{discrete} \\qquad \\text{measured} \\Rightarrow \\text{continuous}",
+                "explanation": "The test is how the value arose, not how many decimal places it has.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-41-we1",
+                "statement": (
+                    "A school has $480$ students: $200$ in the junior years, $180$ in the middle "
+                    "years and $100$ in the senior years. A stratified sample of $60$ is "
+                    "required.  \n"
+                    "**(a)** Find how many students should be taken from each group. **[3]**  \n"
+                    "**(b)** Explain one advantage of stratified over simple random sampling "
+                    "here. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** The sampling fraction is $\\dfrac{60}{480} = \\dfrac{1}{8}$ "
+                    "*(M1)*. Junior: $200 \\div 8 = 25$; middle: $180 \\div 8 = 22.5 \\to 23$; "
+                    "senior: $100 \\div 8 = 12.5 \\to 12$ *(A1)*, giving "
+                    "$25 + 23 + 12 = 60$ *(A1)*.  \n"
+                    "**(b)** Stratified guarantees all three year groups appear in proportion "
+                    "*(A1)*; a simple random sample of $60$ could by chance contain very few "
+                    "seniors, and senior opinion would then be under-represented *(R1)*.  \n"
+                    "**Narrative:** the two halves that do not divide exactly must be rounded so "
+                    "the total still comes to $60$ — rounding both up gives $61$, which is not a "
+                    "sample of the requested size. Stating the sampling fraction first makes the "
+                    "arithmetic transparent and earns the method mark even if the rounding slips."
+                ),
+                "check": [
+                    "Rational(60, 480) == Rational(1, 8)",
+                    "Rational(200, 8) == 25",
+                    "Rational(180, 8) == Rational(45, 2)",
+                    "Rational(100, 8) == Rational(25, 2)",
+                    "25 + 23 + 12 == 60",
+                ],
+            },
+            {
+                "id": "aisl-41-we2",
+                "statement": (
+                    "A researcher stands outside a gym at 7 a.m. and asks the first $50$ people "
+                    "who enter how many hours of exercise they do each week.  \n"
+                    "**(a)** Name this sampling technique. **[1]**  \n"
+                    "**(b)** State two reasons why the sample is unlikely to represent the "
+                    "town's adults. **[2]**  \n"
+                    "**(c)** The responses include one value of $60$ hours. Comment on it. "
+                    "**[2]**"
+                ),
+                "solution": (
+                    "**(a)** Convenience sampling *(A1)*.  \n"
+                    "**(b)** Everyone asked is already a gym user, so people who do no exercise "
+                    "cannot appear *(A1)*; and 7 a.m. selects early risers, likely to be more "
+                    "committed than average *(A1)*.  \n"
+                    "**(c)** $60$ hours a week is about $8.5$ hours a day, so it is an outlier "
+                    "*(A1)*. It may be a genuine professional athlete or a misunderstanding of "
+                    "the question — it should be investigated rather than deleted, and its "
+                    "effect on the MEAN will be large while the median is barely moved *(R1)*.  \n"
+                    "**Narrative:** part (b) wants two DIFFERENT reasons, and 'the sample is "
+                    "biased' repeated twice earns one mark. Name the group excluded and the "
+                    "mechanism that excluded them — that is the shape of a full-mark answer on "
+                    "this code."
+                ),
+                "check": [
+                    "Abs(Rational(60, 7) - Rational(857, 100)) < Rational(1, 100)",
+                    "60 > 7*3",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Calling systematic sampling random.",
+                "correction": "Only the starting point is random. If the ordered list repeats with the same period as the step, systematic sampling reproduces the pattern exactly.",
+                "authored": True,
+            },
+            {
+                "text": "Answering 'the sample is biased' with no mechanism.",
+                "correction": "Name who is excluded and why. 'People without phones cannot be reached, so poorer households are under-represented' is the answer; 'it is biased' is not.",
+                "authored": True,
+            },
+            {
+                "text": "Deleting an outlier because it is large.",
+                "correction": "Investigate it. An outlier can be a genuine extreme value; the assessed answer says what caused it and what removing it would change.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-41-t1",
+                "statement": (
+                    "A factory of $1200$ workers has $720$ on the day shift and $480$ on the "
+                    "night shift. Find the stratified sample sizes for a total sample of $75$. "
+                    "**[3]**"
+                ),
+                "solution": (
+                    "Sampling fraction $\\dfrac{75}{1200} = \\dfrac{1}{16}$ *(M1)*.  \n"
+                    "Day: $720 \\div 16 = 45$ *(A1)*. Night: $480 \\div 16 = 30$ *(A1)*. "
+                    "Check: $45 + 30 = 75$ ✓."
+                ),
+                "check": [
+                    "Rational(75, 1200) == Rational(1, 16)",
+                    "Rational(720, 16) == 45",
+                    "Rational(480, 16) == 30",
+                    "45 + 30 == 75",
+                ],
+            },
+            {
+                "id": "aisl-41-t2",
+                "statement": (
+                    "Classify each as discrete or continuous: (i) the number of text messages "
+                    "sent in a day; (ii) the time taken to run 100 m; (iii) the mass of a "
+                    "parcel. **[3]**"
+                ),
+                "solution": (
+                    "(i) Discrete — it is counted, and cannot be $12.4$ messages *(A1)*.  \n"
+                    "(ii) Continuous — measured, and any time in a range is possible *(A1)*.  \n"
+                    "(iii) Continuous — measured *(A1)*.  \n"
+                    "Recording a time to the nearest hundredth does not make it discrete; the "
+                    "underlying quantity is what is classified."
+                ),
+                "check": [
+                    "floor(Rational(124, 10)) != Rational(124, 10)",
+                    "Rational(1041, 100) > Rational(104, 10)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.1 · Papers 1 & 2",
+                    "title": "Who did you leave out?",
+                    "body": (
+                        "Every sampling question on this course is that one question in "
+                        "disguise. A method is good if the people it cannot reach are no "
+                        "different from the people it can — and bad exactly when they are."
+                    ),
+                },
+                {
+                    "kind": "samplingWobble",
+                    "eyebrow": "Play",
+                    "title": "Bigger samples, tighter answers",
+                    "teach": (
+                        "The true proportion is fixed; each sample lands somewhere near it. "
+                        "Raise the sample size and the pile narrows — that is why a sample of "
+                        "$400$ is trusted where a sample of $25$ is not, and it is why the "
+                        "margin of error shrinks like $1/\\sqrt{n}$ rather than like $1/n$."
+                    ),
+                    "config": {
+                        "p": 0.6,
+                        "pLabel": "60%",
+                        "statLabel": "sample % who say yes",
+                        "nChoices": [25, 100, 400],
+                        "showMoe": True,
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "The five techniques, in one line each",
+                    "beats": [
+                        "Simple random: every member equally likely — unbiased, needs a full list.",
+                        "Convenience: whoever is easiest — cheap, badly biased.",
+                        "Systematic: every $k$th from an ordered list — fails on periodic lists.",
+                        "Quota: fixed numbers per group, chosen non-randomly — composition right, selection biased.",
+                        "Stratified: random within each group, in proportion — unbiased AND representative.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A stratified sample, group by group",
+                    "problemId": "aisl-41-we1",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Name the technique",
+                    "title": "Every twentieth name",
+                    "prompt": (
+                        "A manager lists all $800$ employees alphabetically and picks every "
+                        "$20$th one. This is"
+                    ),
+                    "options": [
+                        "systematic sampling",
+                        "simple random sampling",
+                        "stratified sampling",
+                        "quota sampling",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Every $k$th from an ordered list is systematic. It gives $40$ "
+                        "employees, and it is only as fair as the ordering — an alphabetical "
+                        "list is harmless, a list ordered by shift pattern would not be."
+                    ),
+                    "check": [
+                        "Rational(800, 20) == 40",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A biased sample, named and explained",
+                    "problemId": "aisl-41-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Discrete or continuous",
+                    "title": "Counted or measured?",
+                    "prompt": "The number of cars passing a checkpoint each hour is",
+                    "options": [
+                        "discrete, because it is counted",
+                        "continuous, because time is involved",
+                        "continuous, because it can be very large",
+                        "discrete, because it has an upper limit",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "You count cars, so the values are whole numbers with gaps between "
+                        "them — discrete. The hour is continuous, but the hour is not what is "
+                        "being recorded."
+                    ),
+                    "check": [
+                        "floor(Rational(37, 2)) != Rational(37, 2)",
+                    ],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Two reasons means two mechanisms",
+                    "body": (
+                        "When a question asks for two reasons a sample is unrepresentative, "
+                        "write two different exclusions — not one exclusion twice. 'Only gym "
+                        "members' and 'only early risers' are two marks; 'biased' and 'not "
+                        "random' are one."
+                    ),
+                },
+                {"kind": "tryIt", "problemId": "aisl-41-t1"},
+                {"kind": "tryIt", "problemId": "aisl-41-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Sampling, compressed",
+                    "points": [
+                        "Population is who you care about; sample is who you measured.",
+                        "Counted → discrete; measured → continuous.",
+                        "Five techniques, each with a named strength and a named bias.",
+                        "Outliers get investigated, not deleted — and they move the mean, not the median.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 2 — AI SL 4.2: presenting data
+# ===========================================================================
+def lesson_presenting_data():
+    return {
+        "slug": "presenting-data",
+        "title": "Histograms, Cumulative Frequency and Box Plots",
+        "concreteComparison": (
+            "A list of two hundred exam marks tells you nothing at a glance. The same marks as a "
+            "histogram tell you the shape in a second, and as a box plot they tell you the "
+            "spread and the stragglers. Presentation is not decoration — it is the analysis."
+        ),
+        "objective": (
+            "Build frequency tables and histograms, read medians, quartiles and percentiles off "
+            "a cumulative frequency graph, and produce and interpret box-and-whisker diagrams."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.2.** Presentation of data, discrete and continuous: "
+            "frequency distributions (tables); histograms; cumulative frequency and cumulative "
+            "frequency graphs, used to find the median, quartiles, percentiles, range and "
+            "interquartile range; production and understanding of box-and-whisker diagrams. "
+            "**Papers 1 and 2.**",
+            "A CUMULATIVE frequency table adds as it goes: each entry is the number of values at "
+            "or below that boundary. Plot cumulative frequency against the UPPER boundary of "
+            "each class — not the midpoint — and join with a smooth curve. Plotting at midpoints "
+            "is the standard error and shifts every reading.",
+            "Reading the graph is mechanical once it is drawn. For $n$ values, the median is at "
+            "height $\\frac{n}{2}$, the lower quartile at $\\frac{n}{4}$, the upper quartile at "
+            "$\\frac{3n}{4}$, and the $p$th percentile at $\\frac{pn}{100}$. Go across from the "
+            "height, down to the axis, and read the value.",
+            "A BOX PLOT draws the five-number summary: minimum, $Q_1$, median, $Q_3$, maximum. "
+            "The box spans the middle half of the data, so its width IS the interquartile range. "
+            "Comparing two box plots is a stock question, and a full-mark answer compares both "
+            "CENTRE (medians) and SPREAD (IQRs) in context.",
+            "OUTLIERS have a definition here: a value is an outlier if it lies more than "
+            "$1.5 \\times \\text{IQR}$ beyond a quartile. When a box plot marks outliers, the "
+            "whiskers stop at the most extreme values still inside the fences, and the outliers "
+            "are drawn as separate points."
+        ],
+        "keyIdea": (
+            "Cumulative frequency answers 'how many below this value'; read positions off it by "
+            "height. A box plot is the five-number summary drawn to scale."
+        ),
+        "facts": [
+            {
+                "title": "Positions on a cumulative frequency graph",
+                "latex": "Q_1 \\text{ at } \\frac{n}{4}, \\quad \\text{median at } \\frac{n}{2}, \\quad Q_3 \\text{ at } \\frac{3n}{4}",
+                "explanation": "Heights, not values. Read across then down.",
+            },
+            {
+                "title": "Interquartile range",
+                "latex": "\\text{IQR} = Q_3 - Q_1",
+                "explanation": "Booklet (AI SL 4.3). The width of the box on a box plot.",
+            },
+            {
+                "title": "The outlier fences",
+                "latex": "Q_1 - 1.5\\,\\text{IQR} \\quad\\text{and}\\quad Q_3 + 1.5\\,\\text{IQR}",
+                "explanation": "Beyond these, a value is flagged as an outlier.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-42-we1",
+                "statement": (
+                    "The times, in minutes, of $80$ commuters are summarised by the cumulative "
+                    "frequencies: at $20$ min, $8$; at $30$ min, $26$; at $40$ min, $54$; at "
+                    "$50$ min, $72$; at $60$ min, $80$.  \n"
+                    "**(a)** Find the median, to the nearest minute. **[2]**  \n"
+                    "**(b)** Find the interquartile range. **[3]**  \n"
+                    "**(c)** Estimate how many commuters take longer than $45$ minutes. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** The median is at height $\\dfrac{80}{2} = 40$ *(M1)*. Between "
+                    "$30$ and $40$ minutes the cumulative frequency runs from $26$ to $54$, so "
+                    "$40$ sits $\\frac{14}{28}$ of the way: the median is $35$ minutes "
+                    "*(A1)*.  \n"
+                    "**(b)** $Q_1$ is at height $20$, between $20$ and $30$ minutes: "
+                    "$20 + \\frac{12}{18}(10) = 26.7$ *(M1)*. $Q_3$ is at height $60$, between "
+                    "$40$ and $50$: $40 + \\frac{6}{18}(10) = 43.3$ *(A1)*. "
+                    "$\\text{IQR} = 16.7$ minutes *(A1)*.  \n"
+                    "**(c)** At $45$ minutes the cumulative frequency is about "
+                    "$54 + \\frac{5}{10}(18) = 63$ *(M1)*, so about $80 - 63 = 17$ commuters "
+                    "take longer *(A1)*.  \n"
+                    "**Narrative:** every reading here is a linear interpolation inside a class, "
+                    "which is exactly what reading a smooth curve does by eye — the arithmetic "
+                    "just makes it reproducible. Part (c) is the reverse direction: go UP from "
+                    "the value to the curve, across to the frequency axis, and subtract from the "
+                    "total when the question says 'longer than'."
+                ),
+                "check": [
+                    "Rational(80, 2) == 40",
+                    "30 + Rational(40 - 26, 54 - 26)*10 == 35",
+                    "Abs(20 + Rational(20 - 8, 26 - 8)*10 - Rational(267, 10)) < Rational(5, 100)",
+                    "Abs(40 + Rational(60 - 54, 72 - 54)*10 - Rational(433, 10)) < Rational(5, 100)",
+                    "Abs(Rational(433, 10) - Rational(267, 10) - Rational(166, 10)) < Rational(5, 100)",
+                    "54 + Rational(5, 10)*18 == 63",
+                    "80 - 63 == 17",
+                ],
+            },
+            {
+                "id": "aisl-42-we2",
+                "statement": (
+                    "A dataset has minimum $12$, $Q_1 = 18$, median $21$, $Q_3 = 27$ and "
+                    "maximum $48$.  \n"
+                    "**(a)** Find the range and the interquartile range. **[2]**  \n"
+                    "**(b)** Determine whether $48$ is an outlier. **[3]**  \n"
+                    "**(c)** Describe the shape of the distribution. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** Range $= 48 - 12 = 36$; $\\text{IQR} = 27 - 18 = 9$ *(A1 A1)*.  \n"
+                    "**(b)** The upper fence is $Q_3 + 1.5 \\times \\text{IQR} = "
+                    "27 + 13.5 = 40.5$ *(M1 A1)*. Since $48 > 40.5$, it IS an outlier "
+                    "*(A1)*.  \n"
+                    "**(c)** The median $21$ sits closer to $Q_1$ than to $Q_3$, and the upper "
+                    "whisker is far longer than the lower one *(A1)*, so the distribution is "
+                    "positively skewed *(A1)*.  \n"
+                    "**Narrative:** the enormous range against a small IQR is the signature of a "
+                    "single extreme value: the middle half of the data occupies only $9$ units "
+                    "while the whole spans $36$. Part (c) reads skew from the ASYMMETRY of the "
+                    "box plot, and mentioning both the median's position and the whisker lengths "
+                    "covers both available marks."
+                ),
+                "check": [
+                    "48 - 12 == 36",
+                    "27 - 18 == 9",
+                    "27 + Rational(3, 2)*9 == Rational(81, 2)",
+                    "48 > Rational(81, 2)",
+                    "21 - 18 < 27 - 21",
+                    "48 - 27 > 18 - 12",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Plotting cumulative frequency at class midpoints.",
+                "correction": "Plot at the UPPER boundary — the cumulative total is only complete once the whole class is included.",
+                "authored": True,
+            },
+            {
+                "text": "Reading the median at the middle of the horizontal axis.",
+                "correction": "The median is found at HEIGHT $n/2$ on the vertical axis, then read across to the curve and down.",
+                "authored": True,
+            },
+            {
+                "text": "Comparing two box plots by centre only.",
+                "correction": "Compare centre AND spread, both in context: 'Group B's median is higher and its IQR is smaller, so B is both faster and more consistent.'",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-42-t1",
+                "statement": (
+                    "For the data $4, 7, 8, 11, 13, 14, 18, 21$, find the five-number summary "
+                    "and the IQR. **[4]**"
+                ),
+                "solution": (
+                    "Minimum $4$, maximum $21$ *(A1)*. With $8$ values the median is the average "
+                    "of the 4th and 5th: $\\dfrac{11 + 13}{2} = 12$ *(A1)*.  \n"
+                    "$Q_1$ is the median of the lower four: $\\dfrac{7 + 8}{2} = 7.5$; $Q_3$ is "
+                    "the median of the upper four: $\\dfrac{14 + 18}{2} = 16$ *(A1)*.  \n"
+                    "$\\text{IQR} = 16 - 7.5 = 8.5$ *(A1)*."
+                ),
+                "check": [
+                    "Rational(11 + 13, 2) == 12",
+                    "Rational(7 + 8, 2) == Rational(15, 2)",
+                    "Rational(14 + 18, 2) == 16",
+                    "16 - Rational(15, 2) == Rational(17, 2)",
+                ],
+            },
+            {
+                "id": "aisl-42-t2",
+                "statement": (
+                    "A box plot has $Q_1 = 30$ and $Q_3 = 42$. Determine whether a value of "
+                    "$62$ is an outlier. **[3]**"
+                ),
+                "solution": (
+                    "$\\text{IQR} = 42 - 30 = 12$ *(A1)*.  \n"
+                    "Upper fence $= 42 + 1.5(12) = 60$ *(M1)*.  \n"
+                    "Since $62 > 60$, the value is an outlier *(A1)*."
+                ),
+                "check": [
+                    "42 - 30 == 12",
+                    "42 + Rational(3, 2)*12 == 60",
+                    "62 > 60",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.2 · Papers 1 & 2",
+                    "title": "The picture is the argument",
+                    "body": (
+                        "Three displays, three jobs. A histogram shows SHAPE. A cumulative "
+                        "frequency curve answers 'how many below?' and hands you the quartiles. "
+                        "A box plot compresses everything into five numbers you can compare "
+                        "against another dataset at a glance."
+                    ),
+                },
+                {
+                    "kind": "histogramBins",
+                    "eyebrow": "Play",
+                    "title": "Same data, different bins",
+                    "teach": (
+                        "One dataset, several bin widths. Too wide and the shape flattens into a "
+                        "block; too narrow and it shatters into noise. The histogram you draw is "
+                        "a choice, and a badly chosen bin width can hide a second peak entirely."
+                    ),
+                    "config": {
+                        "data": [12, 15, 17, 18, 21, 22, 23, 23, 25, 26, 28, 29, 31, 33, 34, 36, 38, 41, 44, 47],
+                        "min": 10,
+                        "max": 50,
+                        "widths": [5, 10, 20],
+                        "xLabel": "minutes",
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "Reading a cumulative frequency graph",
+                    "beats": [
+                        "Plot cumulative totals against UPPER class boundaries; join smoothly.",
+                        "Median: height $n/2$, across to the curve, down to the value.",
+                        "$Q_1$ at $n/4$, $Q_3$ at $3n/4$, the $p$th percentile at $pn/100$.",
+                        "'How many above $x$?' — read up from $x$, then subtract from $n$.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Quartiles from cumulative frequencies",
+                    "problemId": "aisl-42-we1",
+                },
+                {
+                    "kind": "boxPlot",
+                    "eyebrow": "See the fences",
+                    "title": "Where the whiskers stop",
+                    "teach": (
+                        "The box holds the middle half of the data, so its width is the IQR. "
+                        "Turn on the fences and watch which points fall outside "
+                        "$1.5 \\times \\text{IQR}$ beyond a quartile — those are the outliers, "
+                        "and the whiskers retreat to the last value inside."
+                    ),
+                    "config": {
+                        "data": [12, 15, 18, 19, 21, 23, 24, 25, 27, 29, 48],
+                        "xLabel": "value",
+                        "showFences": True,
+                    },
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A five-number summary, tested for outliers",
+                    "problemId": "aisl-42-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Read the box",
+                    "title": "What the box's width shows",
+                    "prompt": "On a box-and-whisker diagram, the width of the box is",
+                    "options": [
+                        "the interquartile range",
+                        "the range",
+                        "the standard deviation",
+                        "twice the median",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "The box runs from $Q_1$ to $Q_3$, so its width is $Q_3 - Q_1$ — the "
+                        "IQR, holding the middle $50\\%$ of the data. The RANGE is the distance "
+                        "from whisker tip to whisker tip."
+                    ),
+                    "check": [
+                        "42 - 30 == 12",
+                    ],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Compare in context, both ways",
+                    "body": (
+                        "'Compare the two distributions' is worth two marks and wants one "
+                        "sentence on centre and one on spread, each naming the variable: "
+                        "'Class B's median mark is higher, and its smaller IQR means B's marks "
+                        "are more consistent.'"
+                    ),
+                },
+                {"kind": "tryIt", "problemId": "aisl-42-t1"},
+                {"kind": "tryIt", "problemId": "aisl-42-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Presenting data, compressed",
+                    "points": [
+                        "Cumulative frequency plots at UPPER boundaries.",
+                        "Median at height $n/2$; quartiles at $n/4$ and $3n/4$.",
+                        "Box width is the IQR; whiskers stop inside the $1.5\\,$IQR fences.",
+                        "Comparisons need centre AND spread, in context.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 3 — AI SL 4.3: centre and spread
+# ===========================================================================
+def lesson_centre_and_spread():
+    return {
+        "slug": "centre-and-spread",
+        "title": "Mean, Median, Mode and Standard Deviation",
+        "concreteComparison": (
+            "Two classes both average $70\\%$. In one, every mark is between $66$ and $74$; in "
+            "the other, half the class scored $40$ and half scored $100$. The average is "
+            "identical and the situations are nothing alike — which is the entire reason "
+            "statistics reports spread as well as centre."
+        ),
+        "objective": (
+            "Compute and choose between the three measures of centre, estimate a mean from "
+            "grouped data, find the standard deviation and variance, and predict the effect of "
+            "changing every value."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.3.** Measures of central tendency (mean, median, mode); "
+            "estimation of the mean from grouped data; modal class; measures of dispersion "
+            "(interquartile range, standard deviation, variance); effect of constant changes on "
+            "the original data; quartiles of discrete data. **Papers 1 and 2.**",
+            "Which centre? The MEAN uses every value and is the default — but it is dragged by "
+            "outliers. The MEDIAN ignores extremes, so it is the honest choice for skewed data "
+            "like house prices or incomes. The MODE is the only one that works for categories, "
+            "and it is the only one that can be non-unique or absent.",
+            "GROUPED data has lost its individual values, so the mean can only be ESTIMATED: "
+            "take each class midpoint as a stand-in and compute "
+            "$\\bar{x} = \\frac{\\sum fx}{\\sum f}$. Saying 'estimate' is not modesty — the true "
+            "mean is unrecoverable from the table. The MODAL CLASS is the class with the highest "
+            "frequency, and it is a class, not a number.",
+            "Standard deviation measures the typical distance from the mean, in the data's own "
+            "units. Variance is its square. On a GDC both come from one-variable statistics — "
+            "and AI always wants the POPULATION standard deviation $\\sigma$, the one the "
+            "calculator labels $\\sigma_x$, not the sample version $s_x$.",
+            "Changing every value has predictable effects, and this is examined directly. ADDING "
+            "a constant $k$ shifts the mean, median and mode by $k$ and leaves the standard "
+            "deviation, variance, range and IQR completely unchanged. MULTIPLYING by $k$ "
+            "multiplies the mean, median, mode, standard deviation, range and IQR by $k$ — and "
+            "multiplies the VARIANCE by $k^2$."
+        ],
+        "keyIdea": (
+            "Centre says where; spread says how much they differ. Adding a constant moves the "
+            "centre and leaves the spread alone; multiplying scales both."
+        ),
+        "facts": [
+            {
+                "title": "Mean, from a list or a frequency table",
+                "latex": "\\bar{x} = \\frac{\\sum_{i=1}^{k} f_i x_i}{n}, \\qquad n = \\sum f_i",
+                "explanation": "Booklet (AI SL 4.3). For grouped data $x_i$ is the class midpoint.",
+            },
+            {
+                "title": "Standard deviation and variance",
+                "latex": "\\sigma = \\sqrt{\\frac{\\sum f_i (x_i - \\bar{x})^2}{n}}, \\qquad \\sigma^2 = \\text{variance}",
+                "explanation": "Booklet. In practice read $\\sigma_x$ off the GDC's 1-Var Stats.",
+            },
+            {
+                "title": "Effect of a linear change",
+                "latex": "y = ax + b \\;\\Rightarrow\\; \\bar{y} = a\\bar{x} + b, \\quad \\sigma_y = |a|\\sigma_x, \\quad \\sigma_y^2 = a^2\\sigma_x^2",
+                "explanation": "The $b$ never touches the spread. Examined almost every session.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-43-we1",
+                "statement": (
+                    "The masses of $40$ apples, in grams, are grouped as: "
+                    "$100 \\le m < 120$, frequency $6$; $120 \\le m < 140$, frequency $14$; "
+                    "$140 \\le m < 160$, frequency $12$; $160 \\le m < 180$, frequency $8$.  \n"
+                    "**(a)** Write down the modal class. **[1]**  \n"
+                    "**(b)** Estimate the mean mass. **[3]**  \n"
+                    "**(c)** Explain why your answer to **(b)** is an estimate. **[1]**"
+                ),
+                "solution": (
+                    "**(a)** $120 \\le m < 140$, with the highest frequency $14$ *(A1)*.  \n"
+                    "**(b)** Midpoints $110, 130, 150, 170$ *(M1)*. "
+                    "$\\sum fx = 6(110) + 14(130) + 12(150) + 8(170) = 5640$ *(A1)*, so "
+                    "$\\bar{m} = \\dfrac{5640}{40} = 141$ g *(A1)*.  \n"
+                    "**(c)** The individual masses are unknown, so every apple in a class is "
+                    "treated as sitting at the midpoint *(A1)*.  \n"
+                    "**Narrative:** the modal class is a CLASS, and writing '$14$' answers a "
+                    "different question. In (b), the midpoint stand-in is exactly why (c) is "
+                    "worth a mark — the estimate would be exact only if the values within each "
+                    "class were symmetric about its midpoint, which nothing guarantees."
+                ),
+                "check": [
+                    "Rational(100 + 120, 2) == 110",
+                    "6*110 + 14*130 + 12*150 + 8*170 == 5640",
+                    "6 + 14 + 12 + 8 == 40",
+                    "Rational(5640, 40) == 141",
+                    "14 > 12",
+                ],
+            },
+            {
+                "id": "aisl-43-we2",
+                "statement": (
+                    "A set of $30$ temperatures in degrees Celsius has mean $18$ and standard "
+                    "deviation $4$. The temperatures are converted to Fahrenheit using "
+                    "$F = 1.8C + 32$.  \n"
+                    "**(a)** Find the mean in Fahrenheit. **[2]**  \n"
+                    "**(b)** Find the standard deviation in Fahrenheit. **[2]**  \n"
+                    "**(c)** Find the variance in Fahrenheit. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $\\bar{F} = 1.8(18) + 32$ *(M1)* $= 64.4$ *(A1)*.  \n"
+                    "**(b)** $\\sigma_F = 1.8 \\times 4$ *(M1)* $= 7.2$ *(A1)*. The $+32$ has "
+                    "no effect on spread.  \n"
+                    "**(c)** $\\sigma_F^{2} = 7.2^{2} = 51.84$ *(M1 A1)*, which is also "
+                    "$1.8^{2} \\times 4^{2} = 3.24 \\times 16$.  \n"
+                    "**Narrative:** this is the whole of the 'effect of constant changes' bullet "
+                    "in one question. Adding $32$ moves every temperature up the scale together, "
+                    "so the distances between them — which is all a standard deviation "
+                    "measures — are untouched. Multiplying by $1.8$ stretches those distances by "
+                    "$1.8$, and stretches the SQUARED distances by $1.8^{2}$."
+                ),
+                "check": [
+                    "Rational(18, 10)*18 + 32 == Rational(644, 10)",
+                    "Rational(18, 10)*4 == Rational(72, 10)",
+                    "Rational(72, 10)**2 == Rational(5184, 100)",
+                    "Rational(18, 10)**2 * 4**2 == Rational(5184, 100)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Giving a frequency as the modal class.",
+                "correction": "The modal class is the CLASS interval with the highest frequency — '$120 \\le m < 140$', not '$14$'.",
+                "authored": True,
+            },
+            {
+                "text": "Reading $s_x$ from the calculator instead of $\\sigma_x$.",
+                "correction": "AI wants the population standard deviation, $\\sigma_x$. The two differ, and on small datasets they differ visibly.",
+                "authored": True,
+            },
+            {
+                "text": "Changing the standard deviation when a constant is added.",
+                "correction": "Adding shifts everything equally, so distances from the mean are unchanged. Only multiplying scales the spread.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-43-t1",
+                "statement": (
+                    "Find the mean and the median of $3, 7, 7, 9, 12, 14, 20$. Which better "
+                    "represents the data, and why? **[4]**"
+                ),
+                "solution": (
+                    "Mean $= \\dfrac{72}{7} = 10.3$ (3 s.f.) *(M1 A1)*; median $= 9$ (the 4th of "
+                    "$7$ values) *(A1)*.  \n"
+                    "The value $20$ pulls the mean above most of the data, so the median is the "
+                    "better summary here *(R1)*."
+                ),
+                "check": [
+                    "3 + 7 + 7 + 9 + 12 + 14 + 20 == 72",
+                    "Abs(Rational(72, 7) - Rational(103, 10)) < Rational(5, 100)",
+                    "Rational(72, 7) > 9",
+                ],
+            },
+            {
+                "id": "aisl-43-t2",
+                "statement": (
+                    "A dataset has mean $50$ and variance $36$. Every value is multiplied by "
+                    "$3$ and then $10$ is subtracted. Find the new mean, standard deviation and "
+                    "variance. **[4]**"
+                ),
+                "solution": (
+                    "New mean $= 3(50) - 10 = 140$ *(M1 A1)*.  \n"
+                    "Old $\\sigma = \\sqrt{36} = 6$, so new $\\sigma = 3 \\times 6 = 18$ "
+                    "*(A1)*.  \n"
+                    "New variance $= 18^{2} = 324 = 3^{2} \\times 36$ *(A1)*."
+                ),
+                "check": [
+                    "3*50 - 10 == 140",
+                    "sqrt(36) == 6",
+                    "3*6 == 18",
+                    "18**2 == 9*36",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.3 · Papers 1 & 2",
+                    "title": "Two numbers, not one",
+                    "body": (
+                        "A centre without a spread is half a description. This code asks you to "
+                        "compute both, choose the right centre for the shape of the data, and "
+                        "predict what happens to each when every value changes."
+                    ),
+                },
+                {
+                    "kind": "dotPlot",
+                    "eyebrow": "Play",
+                    "title": "Drag the outlier, watch the mean chase",
+                    "teach": (
+                        "Move the largest value away and watch the mean follow while the median "
+                        "sits perfectly still. That difference is the whole argument for "
+                        "reporting median house prices rather than mean ones."
+                    ),
+                    "config": {
+                        "mode": "meanMedian",
+                        "data": [3, 5, 6, 6, 7, 9],
+                        "min": 0,
+                        "max": 20,
+                        "xLabel": "value",
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "Estimating a mean from a table",
+                    "beats": [
+                        "Midpoint of each class: average its two boundaries.",
+                        "Multiply each midpoint by its frequency and total: $\\sum fx$.",
+                        "Divide by $n = \\sum f$.",
+                        "Call it an estimate, and say why if asked.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Grouped data, modal class and mean",
+                    "problemId": "aisl-43-we1",
+                },
+                {
+                    "kind": "dotPlot",
+                    "eyebrow": "See the spread",
+                    "title": "Distances from the mean",
+                    "teach": (
+                        "Each stick is one value's distance from the mean. The standard "
+                        "deviation is, roughly, the typical stick length — which is why it comes "
+                        "out in the same units as the data, and why a dataset with long sticks "
+                        "has a large $\\sigma$ no matter where its centre sits."
+                    ),
+                    "config": {
+                        "mode": "deviations",
+                        "data": [4, 6, 7, 9, 14],
+                        "min": 0,
+                        "max": 16,
+                        "xLabel": "value",
+                    },
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Celsius to Fahrenheit, mean and spread",
+                    "problemId": "aisl-43-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Add a constant",
+                    "title": "What survives a shift?",
+                    "prompt": (
+                        "Every value in a dataset is increased by $7$. Which quantity is "
+                        "unchanged?"
+                    ),
+                    "options": [
+                        "the standard deviation",
+                        "the mean",
+                        "the median",
+                        "the maximum",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Shifting moves every value the same distance, so the gaps between them "
+                        "— and therefore the standard deviation, variance, range and IQR — are "
+                        "untouched. The mean, median, mode, minimum and maximum all rise by $7$."
+                    ),
+                    "check": [
+                        "Eq(Rational(1, 3)*((1 - 3)**2 + (3 - 3)**2 + (5 - 3)**2), Rational(1, 3)*((8 - 10)**2 + (10 - 10)**2 + (12 - 10)**2))",
+                        "Rational(1 + 3 + 5, 3) + 7 == Rational(8 + 10 + 12, 3)",
+                    ],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Choose the centre",
+                    "title": "Which average for house prices?",
+                    "prompt": (
+                        "House prices in a town are strongly skewed by a few mansions. The best "
+                        "summary of a typical price is"
+                    ),
+                    "options": [
+                        "the median",
+                        "the mean",
+                        "the mode",
+                        "the range",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "The mean is dragged upwards by the mansions and would overstate what a "
+                        "typical buyer pays. The median ignores how extreme the extremes are. "
+                        "(The range is not a centre at all.)"
+                    ),
+                    "check": [
+                        "Rational(2 + 3 + 4 + 5 + 200, 5) > 4",
+                        "Rational(2 + 3 + 4 + 5 + 6, 5) == 4",
+                    ],
+                },
+                {"kind": "tryIt", "problemId": "aisl-43-t1"},
+                {"kind": "tryIt", "problemId": "aisl-43-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Centre and spread, compressed",
+                    "points": [
+                        "Mean uses everything; median resists outliers; mode handles categories.",
+                        "Grouped mean is an ESTIMATE from class midpoints; the modal class is a class.",
+                        "Use $\\sigma_x$, the population standard deviation, on the GDC.",
+                        "$+k$ moves the centre only; $\\times k$ scales spread, and $k^2$ the variance.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 4 — AI SL 4.4: correlation and regression
+# ===========================================================================
+def lesson_correlation_regression():
+    return {
+        "slug": "correlation-and-regression",
+        "title": "Correlation, Regression and What They Do Not Prove",
+        "concreteComparison": (
+            "Shoe size and reading ability correlate almost perfectly in a primary school. "
+            "Bigger feet do not make better readers — older children have both. Every "
+            "correlation question on this course is one step away from that trap."
+        ),
+        "objective": (
+            "Draw and read scatter diagrams, compute and interpret Pearson's $r$, find the "
+            "regression line of $y$ on $x$, and use it for prediction while stating its limits."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.4.** Linear correlation of bivariate data; Pearson's "
+            "product-moment correlation coefficient $r$; scatter diagrams and lines of best fit "
+            "by eye passing through the mean point; the equation of the regression line of $y$ "
+            "on $x$, its use for prediction, and interpretation of the parameters $a$ and $b$ in "
+            "$y = ax + b$. **Papers 1 and 2.**",
+            "$r$ measures LINEAR association only, on a scale from $-1$ to $1$. Roughly: "
+            "$|r| > 0.9$ strong, $0.5$ to $0.9$ moderate, below $0.5$ weak. The SIGN says the "
+            "direction. A perfect parabola can have $r$ near zero — that is not a failure of "
+            "the data, it is $r$ answering the only question it knows.",
+            "The regression line of $y$ on $x$ minimises the vertical gaps, which is why it "
+            "predicts $y$ FROM $x$ and not the other way round. It always passes through the "
+            "mean point $(\\bar{x}, \\bar{y})$ — a fact worth using as a check, and the anchor "
+            "for a line of best fit drawn by eye.",
+            "Interpreting $a$ and $b$ in context is a standing exam item. In $y = ax + b$, the "
+            "gradient $a$ is the change in $y$ for each ONE-unit increase in $x$, stated with "
+            "units; the intercept $b$ is the predicted $y$ when $x = 0$, and it is often "
+            "meaningless in context — a shoe-size model predicting reading age at foot length "
+            "zero is not a claim about anything.",
+            "Two warnings carry marks every session. Correlation is not causation: a lurking "
+            "variable can drive both. And prediction is only supported INSIDE the range of the "
+            "data — extrapolating far outside it is unreliable no matter how strong $r$ is."
+        ],
+        "keyIdea": (
+            "$r$ scores the straightness; the regression line does the predicting. Both are "
+            "silent about cause, and both stop being trustworthy outside the data's range."
+        ),
+        "facts": [
+            {
+                "title": "The regression line of $y$ on $x$",
+                "latex": "y - \\bar{y} = a(x - \\bar{x}), \\qquad y = ax + b",
+                "explanation": "Booklet (AI SL 4.4). It always passes through $(\\bar{x}, \\bar{y})$.",
+            },
+            {
+                "title": "Reading $r$",
+                "latex": "-1 \\le r \\le 1, \\qquad |r| \\to 1 \\;\\Rightarrow\\; \\text{strong LINEAR fit}",
+                "explanation": "Sign gives direction, size gives strength — and neither gives cause.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-44-we1",
+                "statement": (
+                    "For five plots of land, $x$ is the fertiliser applied in kg and $y$ the "
+                    "yield in kg:  \n"
+                    "$x$: $2, 4, 5, 7, 9$  \n"
+                    "$y$: $15, 20, 24, 29, 36$  \n"
+                    "**(a)** Find Pearson's $r$ and describe the correlation. **[3]**  \n"
+                    "**(b)** Find the regression line of $y$ on $x$. **[3]**  \n"
+                    "**(c)** Show that the line passes through the mean point. **[2]**  \n"
+                    "**(d)** Estimate the yield for $6$ kg of fertiliser. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** From the GDC, $r = 0.998$ *(M1 A1)* — a very strong positive "
+                    "linear correlation *(A1)*.  \n"
+                    "**(b)** $y = 2.99x + 8.64$ (3 s.f.) *(M1 A1 A1)*.  \n"
+                    "**(c)** $\\bar{x} = \\dfrac{27}{5} = 5.4$ and "
+                    "$\\bar{y} = \\dfrac{124}{5} = 24.8$ *(M1)*. Substituting: "
+                    "$2.993(5.4) + 8.637 = 24.8$ ✓ *(A1)*.  \n"
+                    "**(d)** $y = 2.993(6) + 8.637 = 26.6$ kg *(M1 A1)*.  \n"
+                    "**Narrative:** part (c) is not busywork — it is the check that catches a "
+                    "mistyped data point, because a regression line that misses the mean point "
+                    "cannot be the regression line for that data. Part (d) is interpolation: "
+                    "$6$ sits inside $2 \\le x \\le 9$, so the prediction is supported. Asking "
+                    "for the yield at $40$ kg would not be."
+                ),
+                "check": [
+                    "(5*757 - 27*124)/(5*175 - 27**2) == Rational(437, 146)",
+                    "(124 - Rational(437, 146)*27)/5 == Rational(1261, 146)",
+                    "Abs(Rational(437, 146) - Rational(299, 100)) < Rational(5, 1000)",
+                    "Abs(Rational(1261, 146) - Rational(864, 100)) < Rational(5, 1000)",
+                    "Rational(437, 146)*Rational(27, 5) + Rational(1261, 146) == Rational(124, 5)",
+                    "Abs(Rational(437, 146)*6 + Rational(1261, 146) - Rational(266, 10)) < Rational(5, 100)",
+                    "Abs(Rational(874, 10)/sqrt(Rational(292, 10)*Rational(2628, 10)) - Rational(998, 1000)) < Rational(1, 1000)",
+                ],
+            },
+            {
+                "id": "aisl-44-we2",
+                "statement": (
+                    "A company finds that monthly sales $S$ (thousands of dollars) and "
+                    "advertising spend $A$ (thousands of dollars) satisfy $S = 4.7A + 32$, with "
+                    "$r = 0.86$, for data covering $1 \\le A \\le 10$.  \n"
+                    "**(a)** Interpret the value $4.7$ in context. **[2]**  \n"
+                    "**(b)** Interpret the value $32$ in context, and comment on it. **[2]**  \n"
+                    "**(c)** Predict the sales for a spend of $\\$8000$. **[2]**  \n"
+                    "**(d)** The director concludes that advertising CAUSES higher sales. "
+                    "Comment. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** Each extra $\\$1000$ of advertising is associated with an extra "
+                    "$\\$4700$ of sales *(A1 A1)*.  \n"
+                    "**(b)** With no advertising the model predicts $\\$32\\,000$ of sales "
+                    "*(A1)*. That is an extrapolation — $A = 0$ lies outside the data range "
+                    "$1 \\le A \\le 10$ — so it should be treated with caution *(A1)*.  \n"
+                    "**(c)** $S = 4.7(8) + 32 = 69.6$, i.e. $\\$69\\,600$ *(M1 A1)*.  \n"
+                    "**(d)** A correlation of $0.86$ shows a strong association but not cause "
+                    "*(A1)*; a third factor such as the season, or a new product launch, could "
+                    "raise both spend and sales *(R1)*.  \n"
+                    "**Narrative:** notice the shape of the marks. Interpretation questions want "
+                    "a NUMBER and a UNIT and a direction — 'each extra thousand dollars spent is "
+                    "associated with $4.7$ thousand more in sales'. The word 'associated' is "
+                    "doing deliberate work; 'causes' would lose the mark that (d) then asks about "
+                    "directly."
+                ),
+                "check": [
+                    "Rational(47, 10)*8 + 32 == Rational(696, 10)",
+                    "Rational(47, 10)*0 + 32 == 32",
+                    "Rational(86, 100) < 1",
+                    "0 < 1",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Reading a strong $r$ as proof of cause.",
+                "correction": "$r$ measures association. Name a plausible lurking variable — that is what the reasoning mark is for.",
+                "authored": True,
+            },
+            {
+                "text": "Concluding 'no relationship' from $r \\approx 0$.",
+                "correction": "$r$ measures LINEAR relationship only. A clear curve can give $r$ near zero — look at the scatter diagram before concluding anything.",
+                "authored": True,
+            },
+            {
+                "text": "Interpreting the intercept without checking it is inside the data.",
+                "correction": "If $x = 0$ lies outside the range sampled, say so. The number exists; the claim it makes does not.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-44-t1",
+                "statement": (
+                    "Describe the correlation each value indicates: (i) $r = -0.89$; "
+                    "(ii) $r = 0.12$; (iii) $r = 0.97$. **[3]**"
+                ),
+                "solution": (
+                    "(i) Strong negative linear correlation *(A1)*.  \n"
+                    "(ii) Very weak (essentially no) linear correlation *(A1)*.  \n"
+                    "(iii) Very strong positive linear correlation *(A1)*.  \n"
+                    "The sign is the direction and the size is the strength — say both."
+                ),
+                "check": [
+                    "Rational(-89, 100) < Rational(-8, 10)",
+                    "Abs(Rational(12, 100)) < Rational(3, 10)",
+                    "Rational(97, 100) > Rational(9, 10)",
+                ],
+            },
+            {
+                "id": "aisl-44-t2",
+                "statement": (
+                    "A regression line is $y = -2.3x + 47$ and the mean point is $(10, 24)$.  \n"
+                    "**(a)** Verify the line passes through the mean point. **[2]**  \n"
+                    "**(b)** Predict $y$ when $x = 14$. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $-2.3(10) + 47 = -23 + 47 = 24$ ✓ *(M1 A1)*.  \n"
+                    "**(b)** $-2.3(14) + 47 = -32.2 + 47 = 14.8$ *(M1 A1)*."
+                ),
+                "check": [
+                    "Rational(-23, 10)*10 + 47 == 24",
+                    "Rational(-23, 10)*14 + 47 == Rational(148, 10)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.4 · Papers 1 & 2",
+                    "title": "One number for straightness",
+                    "body": (
+                        "Pearson's $r$ compresses a whole scatter of points into a single score "
+                        "for how well a straight line describes them. It is enormously useful "
+                        "and routinely over-read — the exam tests both halves of that sentence."
+                    ),
+                },
+                {
+                    "kind": "scatterPlot",
+                    "eyebrow": "Play",
+                    "title": "Clouds at every strength",
+                    "teach": (
+                        "Swap between a positive cloud, a negative one and no pattern at all, "
+                        "and watch $r$ move. Notice that a tight cloud on a gentle slope still "
+                        "scores near $1$ — $r$ measures how CLOSE the points are to a line, not "
+                        "how steep that line is."
+                    ),
+                    "config": {
+                        "mode": "correlation",
+                        "xLabel": "fertiliser (kg)",
+                        "yLabel": "yield (kg)",
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "The regression routine",
+                    "beats": [
+                        "Enter both lists, run linear regression on the GDC.",
+                        "Report $r$ with a description: direction AND strength.",
+                        "Write $y = ax + b$ to 3 s.f. unless the values are exact.",
+                        "Predict only inside the data range; interpret $a$ and $b$ with units.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Fertiliser and yield, end to end",
+                    "problemId": "aisl-44-we1",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "The mean point",
+                    "title": "Which point is always on the line?",
+                    "prompt": "The regression line of $y$ on $x$ always passes through",
+                    "options": [
+                        "$(\\bar{x}, \\bar{y})$",
+                        "the origin",
+                        "the largest data point",
+                        "the median point",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "The mean point, always — which makes it both a free check on your "
+                        "regression equation and the pivot for drawing a line of best fit by eye."
+                    ),
+                    "check": [
+                        "Rational(437, 146)*Rational(27, 5) + Rational(1261, 146) == Rational(124, 5)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Reading the parameters in context",
+                    "problemId": "aisl-44-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "What $r$ cannot see",
+                    "title": "A perfect curve",
+                    "prompt": (
+                        "Points lie exactly on the parabola $y = x^{2}$ for $x = -3, -2, \\ldots, 3$. "
+                        "Pearson's $r$ is"
+                    ),
+                    "options": [
+                        "$0$, because there is no LINEAR relationship",
+                        "$1$, because the fit is perfect",
+                        "$-1$, because half the curve falls",
+                        "undefined",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "The relationship is perfect but not linear, and the symmetry about "
+                        "$x = 0$ makes $r$ exactly zero. This is the standard demonstration that "
+                        "'$r = 0$' means 'no straight-line trend', not 'no relationship'."
+                    ),
+                    "check": [
+                        "(-3)**3 + (-2)**3 + (-1)**3 + 0**3 + 1**3 + 2**3 + 3**3 == 0",
+                        "(-3) + (-2) + (-1) + 0 + 1 + 2 + 3 == 0",
+                    ],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Say 'associated with', not 'causes'",
+                    "body": (
+                        "Every interpretation mark on this code is safer in the language of "
+                        "association. 'Each extra hour of study is associated with $3.2$ more "
+                        "marks' is full credit; 'each extra hour gives $3.2$ more marks' invites "
+                        "the examiner to withhold it."
+                    ),
+                },
+                {"kind": "tryIt", "problemId": "aisl-44-t1"},
+                {"kind": "tryIt", "problemId": "aisl-44-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Correlation and regression, compressed",
+                    "points": [
+                        "$r$: sign for direction, size for strength, LINEAR only.",
+                        "The regression line predicts $y$ from $x$ and passes through the mean point.",
+                        "$a$ is the change in $y$ per unit of $x$; $b$ is $y$ at $x = 0$.",
+                        "No causation, and no prediction outside the data range.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 5 — AI SL 4.5: probability foundations
+# ===========================================================================
+def lesson_probability_basics():
+    return {
+        "slug": "probability-foundations",
+        "title": "Outcomes, Events and Expected Occurrences",
+        "concreteComparison": (
+            "Roll a die sixty times and you will not get exactly ten sixes. Roll it six thousand "
+            "times and the proportion of sixes will be very close to one in six. Probability is "
+            "a statement about the long run, and the expected number is the bridge between the "
+            "fraction and the count."
+        ),
+        "objective": (
+            "Use sample spaces to compute probabilities of events and their complements, and "
+            "find the expected number of occurrences in a given number of trials."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.5.** Concepts of trial, outcome, equally likely outcomes, "
+            "relative frequency, sample space $U$ and event; the probability of an event $A$; "
+            "complementary events $A$ and $A'$; expected number of occurrences. **Papers 1 and "
+            "2.**",
+            "For equally likely outcomes, $P(A) = \\dfrac{n(A)}{n(U)}$ — count the outcomes in "
+            "the event, divide by the total. The work is almost always in the COUNTING, so a "
+            "sample-space diagram or a table of outcomes is worth drawing even when it feels "
+            "like overkill.",
+            "The complement is the escape hatch. $P(A') = 1 - P(A)$, and phrases like 'at least "
+            "one' are nearly always faster the complementary way: $P(\\text{at least one}) = "
+            "1 - P(\\text{none})$. Counting 'at least one' directly means adding several cases; "
+            "counting 'none' means one.",
+            "RELATIVE FREQUENCY estimates a probability from data: the proportion of trials in "
+            "which the event happened. It is an estimate, and it improves as the number of "
+            "trials grows — which is the experimental version of the definition above.",
+            "The EXPECTED NUMBER of occurrences in $n$ trials is $n \\times P(A)$. It is a "
+            "long-run average, so it need not be a whole number: expecting $12.5$ heads in $25$ "
+            "tosses is a correct statement about averages, not a claim that half a head will "
+            "appear."
+        ],
+        "keyIdea": (
+            "Count the outcomes, divide by the total. Use the complement whenever the phrase is "
+            "'at least'. Expected number is $n \\times P$."
+        ),
+        "facts": [
+            {
+                "title": "Probability of an event",
+                "latex": "P(A) = \\frac{n(A)}{n(U)}",
+                "explanation": "Booklet (AI SL 4.5). Requires equally likely outcomes.",
+            },
+            {
+                "title": "The complement",
+                "latex": "P(A') = 1 - P(A)",
+                "explanation": "Booklet. The fast route to any 'at least one' question.",
+            },
+            {
+                "title": "Expected number of occurrences",
+                "latex": "E = n \\times P(A)",
+                "explanation": "A long-run average — it need not be a whole number.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-45-we1",
+                "statement": (
+                    "A bag holds $5$ red, $7$ blue and $8$ green marbles. One marble is drawn at "
+                    "random.  \n"
+                    "**(a)** Find $P(\\text{red})$. **[2]**  \n"
+                    "**(b)** Find $P(\\text{not green})$. **[2]**  \n"
+                    "**(c)** The marble is replaced and the experiment repeated $60$ times. Find "
+                    "the expected number of blue marbles drawn. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** There are $20$ marbles, so "
+                    "$P(\\text{red}) = \\dfrac{5}{20} = \\dfrac{1}{4}$ *(M1 A1)*.  \n"
+                    "**(b)** $P(\\text{green}) = \\dfrac{8}{20} = \\dfrac{2}{5}$, so "
+                    "$P(\\text{not green}) = 1 - \\dfrac{2}{5} = \\dfrac{3}{5}$ *(M1 A1)*.  \n"
+                    "**(c)** $E = 60 \\times \\dfrac{7}{20}$ *(M1)* $= 21$ *(A1)*.  \n"
+                    "**Narrative:** in (b) the complement is quicker than adding red and blue, "
+                    "and it generalises — with four colours the direct route means three "
+                    "additions and the complement still means one subtraction. In (c) the "
+                    "replacement matters: without it the probabilities would change after every "
+                    "draw and $n \\times P$ would not apply."
+                ),
+                "check": [
+                    "5 + 7 + 8 == 20",
+                    "Rational(5, 20) == Rational(1, 4)",
+                    "1 - Rational(8, 20) == Rational(3, 5)",
+                    "Rational(5, 20) + Rational(7, 20) == Rational(3, 5)",
+                    "60*Rational(7, 20) == 21",
+                ],
+            },
+            {
+                "id": "aisl-45-we2",
+                "statement": (
+                    "Two fair six-sided dice are rolled and the scores are added.  \n"
+                    "**(a)** Write down the number of outcomes in the sample space. **[1]**  \n"
+                    "**(b)** Find $P(\\text{sum} = 7)$. **[2]**  \n"
+                    "**(c)** Find $P(\\text{sum} > 9)$. **[2]**  \n"
+                    "**(d)** Find the probability that at least one die shows a $4$. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $6 \\times 6 = 36$ *(A1)*.  \n"
+                    "**(b)** The sum is $7$ for $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$ — six "
+                    "outcomes *(M1)*, so $P = \\dfrac{6}{36} = \\dfrac{1}{6}$ *(A1)*.  \n"
+                    "**(c)** Sums of $10, 11, 12$ occur in $3 + 2 + 1 = 6$ ways *(M1)*, so "
+                    "$P = \\dfrac{1}{6}$ *(A1)*.  \n"
+                    "**(d)** Neither die shows a $4$ in $5 \\times 5 = 25$ ways *(M1)*, so "
+                    "$P(\\text{no } 4) = \\dfrac{25}{36}$ *(A1)* and "
+                    "$P(\\text{at least one } 4) = 1 - \\dfrac{25}{36} = \\dfrac{11}{36}$ "
+                    "*(A1)*.  \n"
+                    "**Narrative:** part (d) is the complement doing real work. Counting "
+                    "directly means the six outcomes with a $4$ first, plus the six with a $4$ "
+                    "second, minus the one counted twice — and that subtraction is exactly what "
+                    "gets forgotten. $1 - \\frac{25}{36}$ has no such trap."
+                ),
+                "check": [
+                    "6*6 == 36",
+                    "Rational(6, 36) == Rational(1, 6)",
+                    "3 + 2 + 1 == 6",
+                    "5*5 == 25",
+                    "1 - Rational(25, 36) == Rational(11, 36)",
+                    "6 + 6 - 1 == 11",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Counting 'at least one' by adding the cases and double-counting the overlap.",
+                "correction": "Use the complement: $1 - P(\\text{none})$. One subtraction, no overlap to remember.",
+                "authored": True,
+            },
+            {
+                "text": "Rounding an expected number to a whole number without being asked.",
+                "correction": "$E = nP$ is an average and may be fractional. $12.5$ heads in $25$ tosses is a correct answer.",
+                "authored": True,
+            },
+            {
+                "text": "Treating the sums $2$ to $12$ as equally likely.",
+                "correction": "The sample space is the $36$ ORDERED pairs, not the $11$ totals. A sum of $7$ happens six times as often as a sum of $2$.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-45-t1",
+                "statement": (
+                    "A spinner wins with probability $0.15$.  \n"
+                    "**(a)** Find the probability of not winning on one spin. **[1]**  \n"
+                    "**(b)** Find the expected number of wins in $200$ spins. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $1 - 0.15 = 0.85$ *(A1)*.  \n"
+                    "**(b)** $E = 200 \\times 0.15$ *(M1)* $= 30$ wins *(A1)*."
+                ),
+                "check": [
+                    "1 - Rational(15, 100) == Rational(85, 100)",
+                    "200*Rational(15, 100) == 30",
+                ],
+            },
+            {
+                "id": "aisl-45-t2",
+                "statement": (
+                    "A drawing pin lands point-up $34$ times in $80$ drops.  \n"
+                    "**(a)** Estimate the probability that it lands point-up. **[2]**  \n"
+                    "**(b)** Find the expected number of point-up landings in $300$ drops. "
+                    "**[2]**"
+                ),
+                "solution": (
+                    "**(a)** Relative frequency $= \\dfrac{34}{80} = 0.425$ *(M1 A1)*.  \n"
+                    "**(b)** $E = 300 \\times 0.425$ *(M1)* $= 127.5$ *(A1)*.  \n"
+                    "The answer is an average over many sets of $300$ drops, so a fractional "
+                    "value is expected and correct."
+                ),
+                "check": [
+                    "Rational(34, 80) == Rational(425, 1000)",
+                    "300*Rational(34, 80) == Rational(255, 2)",
+                    "Rational(255, 2) == Rational(1275, 10)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.5 · Papers 1 & 2",
+                    "title": "Counting, mostly",
+                    "body": (
+                        "With equally likely outcomes, probability is a fraction: how many "
+                        "outcomes are in the event, over how many there are altogether. Almost "
+                        "every mistake on this code is a counting mistake, which is why the "
+                        "diagram comes first."
+                    ),
+                },
+                {
+                    "kind": "longRunFrequency",
+                    "eyebrow": "Play",
+                    "title": "Watch the proportion settle",
+                    "teach": (
+                        "Roll in batches and watch the running proportion of sixes wobble wildly "
+                        "at first, then close in on $\\frac{1}{6}$. Probability makes no promise "
+                        "about the next roll and a very strong one about the ten-thousandth."
+                    ),
+                    "config": {
+                        "p": 0.16666666666666666,
+                        "pLabel": "1/6",
+                        "eventLabel": "roll a 6",
+                        "actionLabel": "roll",
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "The routine",
+                    "beats": [
+                        "List or tabulate the sample space; count $n(U)$.",
+                        "Count $n(A)$ — the outcomes that satisfy the event.",
+                        "'At least one'? Compute the complement instead.",
+                        "Expected number in $n$ trials: multiply by $n$.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Marbles, complements and expectation",
+                    "problemId": "aisl-45-we1",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Use the complement",
+                    "title": "At least one head",
+                    "prompt": "Three fair coins are tossed. $P(\\text{at least one head})$ is",
+                    "options": [
+                        "$\\frac{7}{8}$",
+                        "$\\frac{3}{8}$",
+                        "$\\frac{1}{8}$",
+                        "$\\frac{1}{2}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Only TTT has no head, so $P(\\text{no head}) = \\frac{1}{8}$ and the "
+                        "answer is $1 - \\frac{1}{8} = \\frac{7}{8}$. Counting the cases with "
+                        "one, two or three heads gives $\\frac{3+3+1}{8}$ — the same answer, "
+                        "three times the work."
+                    ),
+                    "check": [
+                        "1 - Rational(1, 8) == Rational(7, 8)",
+                        "Rational(3 + 3 + 1, 8) == Rational(7, 8)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Two dice, four questions",
+                    "problemId": "aisl-45-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Expected number",
+                    "title": "Fractional is fine",
+                    "prompt": (
+                        "A test is passed with probability $0.7$. In $25$ attempts, the expected "
+                        "number of passes is"
+                    ),
+                    "options": ["$17.5$", "$18$", "$17$", "$7$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$E = 25 \\times 0.7 = 17.5$. It is a long-run average, so it does not "
+                        "have to be a whole number and should not be rounded unless the question "
+                        "asks."
+                    ),
+                    "check": [
+                        "25*Rational(7, 10) == Rational(35, 2)",
+                    ],
+                },
+                {"kind": "tryIt", "problemId": "aisl-45-t1"},
+                {"kind": "tryIt", "problemId": "aisl-45-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Probability foundations, compressed",
+                    "points": [
+                        "$P(A) = n(A)/n(U)$ — the work is the counting.",
+                        "$P(A') = 1 - P(A)$, and 'at least one' means use it.",
+                        "Relative frequency estimates a probability from data.",
+                        "Expected number is $n \\times P$, and may be fractional.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 6 — AI SL 4.6: combined events
+# ===========================================================================
+def lesson_combined_events():
+    return {
+        "slug": "combined-events",
+        "title": "Combined Events: Venn Diagrams, Trees and Conditions",
+        "concreteComparison": (
+            "'What fraction of students play football?' and 'what fraction of the footballers "
+            "are in Year 12?' are different questions with different denominators. Conditional "
+            "probability is nothing more than changing which group you are dividing by."
+        ),
+        "objective": (
+            "Use Venn diagrams, tree diagrams and tables of outcomes to compute probabilities of "
+            "combined events, and test for mutual exclusivity and independence."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.6.** Use of Venn diagrams, tree diagrams, sample space "
+            "diagrams and tables of outcomes to calculate probabilities; combined events with "
+            "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$; mutually exclusive events; conditional "
+            "probability; independent events. **Papers 1 and 2.**",
+            "The addition rule subtracts the overlap because adding $P(A)$ and $P(B)$ counts it "
+            "twice. When the events are MUTUALLY EXCLUSIVE the overlap is empty, "
+            "$P(A \\cap B) = 0$, and the rule collapses to plain addition — that is the only "
+            "thing 'mutually exclusive' buys you.",
+            "CONDITIONAL probability restricts the world: $P(A \\mid B) = "
+            "\\dfrac{P(A \\cap B)}{P(B)}$ asks for the proportion of $B$ that is also $A$. On a "
+            "Venn diagram it is the overlap over the whole of $B$'s circle; in a two-way table "
+            "it is a cell over a ROW or COLUMN total rather than the grand total.",
+            "INDEPENDENT means knowing one tells you nothing about the other: "
+            "$P(A \\cap B) = P(A)P(B)$, equivalently $P(A \\mid B) = P(A)$. To TEST "
+            "independence, compute both sides and compare — a sentence of assertion earns "
+            "nothing. Independent and mutually exclusive are opposites in practice: mutually "
+            "exclusive events with non-zero probabilities are never independent, because one "
+            "happening rules the other out entirely.",
+            "TREE diagrams handle sequences. Multiply ALONG the branches, add ACROSS the "
+            "completed paths. Whether the second stage's probabilities change tells you at once "
+            "whether the draws are with replacement (they do not change) or without (they do)."
+        ],
+        "keyIdea": (
+            "Union subtracts the overlap; conditional divides by the new world; independence is "
+            "a product you must check, not assume."
+        ),
+        "facts": [
+            {
+                "title": "The addition rule",
+                "latex": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+                "explanation": "Booklet (AI SL 4.6). The subtraction fixes the double count.",
+            },
+            {
+                "title": "Conditional probability",
+                "latex": "P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}",
+                "explanation": "Booklet. The denominator is the event you are conditioning ON.",
+            },
+            {
+                "title": "Independence",
+                "latex": "P(A \\cap B) = P(A)\\,P(B)",
+                "explanation": "Booklet. A test to perform, not a property to assume.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-46-we1",
+                "statement": (
+                    "Of $200$ students, $120$ study Spanish, $90$ study Art and $50$ study "
+                    "both.  \n"
+                    "**(a)** Find the number who study neither. **[3]**  \n"
+                    "**(b)** Find $P(\\text{Spanish or Art})$. **[2]**  \n"
+                    "**(c)** Find $P(\\text{Art} \\mid \\text{Spanish})$. **[2]**  \n"
+                    "**(d)** Determine whether studying Spanish and studying Art are "
+                    "independent. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** Spanish only $= 120 - 50 = 70$; Art only $= 90 - 50 = 40$ *(M1)*. "
+                    "Total in at least one $= 70 + 50 + 40 = 160$ *(A1)*, so "
+                    "$200 - 160 = 40$ study neither *(A1)*.  \n"
+                    "**(b)** $P = \\dfrac{160}{200} = 0.8$ *(M1 A1)*.  \n"
+                    "**(c)** $P(A \\mid S) = \\dfrac{50/200}{120/200} = \\dfrac{50}{120} = "
+                    "\\dfrac{5}{12}$ *(M1 A1)*.  \n"
+                    "**(d)** $P(S)P(A) = 0.6 \\times 0.45 = 0.27$, while "
+                    "$P(S \\cap A) = \\dfrac{50}{200} = 0.25$ *(M1 A1)*. These differ, so the "
+                    "events are NOT independent *(A1)*.  \n"
+                    "**Narrative:** part (c) shows conditional probability's true shape — the "
+                    "$200$s cancel, so it is just 'how many of the Spanish students also do "
+                    "Art'. Part (d) must be a computation: $0.27$ against $0.25$ is close enough "
+                    "that no amount of staring at the Venn diagram would settle it."
+                ),
+                "check": [
+                    "120 - 50 == 70",
+                    "90 - 50 == 40",
+                    "70 + 50 + 40 == 160",
+                    "200 - 160 == 40",
+                    "Rational(160, 200) == Rational(8, 10)",
+                    "Rational(50, 120) == Rational(5, 12)",
+                    "Rational(120, 200)*Rational(90, 200) == Rational(27, 100)",
+                    "Rational(50, 200) == Rational(25, 100)",
+                    "Rational(27, 100) != Rational(25, 100)",
+                ],
+            },
+            {
+                "id": "aisl-46-we2",
+                "statement": (
+                    "A box contains $4$ red and $6$ green counters. Two are drawn WITHOUT "
+                    "replacement.  \n"
+                    "**(a)** Find the probability that both are red. **[3]**  \n"
+                    "**(b)** Find the probability that the counters are different colours. "
+                    "**[3]**  \n"
+                    "**(c)** Given that the second counter is green, find the probability that "
+                    "the first was red. **[4]**"
+                ),
+                "solution": (
+                    "**(a)** $\\dfrac{4}{10} \\times \\dfrac{3}{9}$ *(M1 A1)* "
+                    "$= \\dfrac{2}{15}$ *(A1)*.  \n"
+                    "**(b)** $P(RG) + P(GR) = \\dfrac{4}{10}\\cdot\\dfrac{6}{9} + "
+                    "\\dfrac{6}{10}\\cdot\\dfrac{4}{9}$ *(M1 A1)* $= \\dfrac{8}{15}$ *(A1)*.  \n"
+                    "**(c)** $P(\\text{2nd green}) = \\dfrac{4}{10}\\cdot\\dfrac{6}{9} + "
+                    "\\dfrac{6}{10}\\cdot\\dfrac{5}{9} = \\dfrac{54}{90} = \\dfrac{3}{5}$ "
+                    "*(M1 A1)*. Then "
+                    "$P(\\text{1st red} \\mid \\text{2nd green}) = "
+                    "\\dfrac{24/90}{54/90} = \\dfrac{4}{9}$ *(M1 A1)*.  \n"
+                    "**Narrative:** the denominators drop from $10$ to $9$ because a counter has "
+                    "left the box — that changing second stage is the visible signature of "
+                    "'without replacement'. Part (c) reads the tree BACKWARDS: the condition is "
+                    "about the second draw and the question is about the first, so the "
+                    "denominator is the total probability of a green second counter, gathered "
+                    "from both paths."
+                ),
+                "check": [
+                    "Rational(4, 10)*Rational(3, 9) == Rational(2, 15)",
+                    "Rational(4, 10)*Rational(6, 9) + Rational(6, 10)*Rational(4, 9) == Rational(8, 15)",
+                    "Rational(4, 10)*Rational(6, 9) + Rational(6, 10)*Rational(5, 9) == Rational(3, 5)",
+                    "Rational(4, 10)*Rational(6, 9) == Rational(24, 90)",
+                    "Rational(24, 90)/Rational(54, 90) == Rational(4, 9)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Adding $P(A)$ and $P(B)$ without subtracting the overlap.",
+                "correction": "Only valid when the events are mutually exclusive. Otherwise the overlap is counted twice — subtract $P(A \\cap B)$.",
+                "authored": True,
+            },
+            {
+                "text": "Dividing by the grand total when computing a conditional probability.",
+                "correction": "The denominator is the probability of the CONDITION. In a two-way table that is a row or column total, not the overall total.",
+                "authored": True,
+            },
+            {
+                "text": "Asserting independence because the events 'seem unrelated'.",
+                "correction": "Compute $P(A)P(B)$ and $P(A \\cap B)$ and compare. The comparison is the mark.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-46-t1",
+                "statement": (
+                    "$P(A) = 0.5$, $P(B) = 0.4$ and $P(A \\cap B) = 0.2$.  \n"
+                    "**(a)** Find $P(A \\cup B)$. **[2]**  \n"
+                    "**(b)** Determine whether $A$ and $B$ are independent. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $0.5 + 0.4 - 0.2 = 0.7$ *(M1 A1)*.  \n"
+                    "**(b)** $P(A)P(B) = 0.5 \\times 0.4 = 0.2 = P(A \\cap B)$ *(M1)*, so they "
+                    "ARE independent *(A1)*."
+                ),
+                "check": [
+                    "Rational(5, 10) + Rational(4, 10) - Rational(2, 10) == Rational(7, 10)",
+                    "Rational(5, 10)*Rational(4, 10) == Rational(2, 10)",
+                ],
+            },
+            {
+                "id": "aisl-46-t2",
+                "statement": (
+                    "In a survey, $70$ of $250$ people own a cat, $95$ own a dog and $30$ own "
+                    "both. Find the probability that a randomly chosen person owns a dog given "
+                    "that they own a cat. **[3]**"
+                ),
+                "solution": (
+                    "$P(D \\mid C) = \\dfrac{P(D \\cap C)}{P(C)} = \\dfrac{30/250}{70/250}$ "
+                    "*(M1 A1)*.  \n"
+                    "$= \\dfrac{30}{70} = \\dfrac{3}{7}$ *(A1)*.  \n"
+                    "The $250$s cancel — the question is simply what fraction of the cat owners "
+                    "also own a dog."
+                ),
+                "check": [
+                    "Rational(30, 250)/Rational(70, 250) == Rational(3, 7)",
+                    "Rational(30, 70) == Rational(3, 7)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.6 · Papers 1 & 2",
+                    "title": "Pick the right diagram",
+                    "body": (
+                        "Two overlapping categories: Venn. A sequence of stages: tree. Two "
+                        "variables crossed: table. Choosing the picture that matches the "
+                        "situation does most of the work, and every one of them is a legitimate "
+                        "method on this paper."
+                    ),
+                },
+                {
+                    "kind": "vennCounts",
+                    "eyebrow": "Play",
+                    "title": "Four regions, one survey",
+                    "teach": (
+                        "These are the counts from the worked example: $70$ take Spanish only, "
+                        "$50$ take both, $40$ take Art only, $40$ take neither. Tap each region "
+                        "and watch how 'Spanish' means the whole left circle — overlap "
+                        "included — which is exactly why the union rule has to subtract "
+                        "something."
+                    ),
+                    "config": {
+                        "mode": "regions",
+                        "labelA": "Spanish",
+                        "labelB": "Art",
+                        "onlyA": 70,
+                        "both": 50,
+                        "onlyB": 40,
+                        "neither": 40,
+                        "countNoun": "students",
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "The three rules and when they apply",
+                    "beats": [
+                        "Union: add, then subtract the overlap.",
+                        "Mutually exclusive: the overlap is zero, so plain addition works.",
+                        "Conditional: overlap divided by the condition's probability.",
+                        "Independent: check $P(A \\cap B) = P(A)P(B)$ by computing both.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A survey, four questions deep",
+                    "problemId": "aisl-46-we1",
+                },
+                {
+                    "kind": "treeDiagram",
+                    "eyebrow": "See the stages",
+                    "title": "Two draws, without replacement",
+                    "teach": (
+                        "Multiply along a branch, add across the paths. Watch the second stage: "
+                        "the denominators are $9$, not $10$, because a counter has already been "
+                        "removed — and which branch you took changes the numerators too."
+                    ),
+                    "config": {
+                        "mode": "prob",
+                        "caption": "Two counters drawn from 4 red and 6 green, without replacement",
+                        "stages": [
+                            {
+                                "name": "first counter",
+                                "options": [
+                                    {"label": "R", "p": 0.4, "pLabel": "4/10"},
+                                    {"label": "G", "p": 0.6, "pLabel": "6/10"},
+                                ],
+                            },
+                            {
+                                "name": "second counter",
+                                "byPath": {
+                                    "R": [
+                                        {"label": "R", "p": 0.3333333333333333, "pLabel": "3/9"},
+                                        {"label": "G", "p": 0.6666666666666666, "pLabel": "6/9"},
+                                    ],
+                                    "G": [
+                                        {"label": "R", "p": 0.4444444444444444, "pLabel": "4/9"},
+                                        {"label": "G", "p": 0.5555555555555556, "pLabel": "5/9"},
+                                    ],
+                                },
+                            },
+                        ],
+                    },
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Reading a tree forwards and backwards",
+                    "problemId": "aisl-46-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Which denominator?",
+                    "title": "Conditioning changes the world",
+                    "prompt": (
+                        "Of $80$ people, $30$ cycle and $12$ of those $30$ also swim. "
+                        "$P(\\text{swims} \\mid \\text{cycles})$ is"
+                    ),
+                    "options": [
+                        "$\\frac{12}{30}$",
+                        "$\\frac{12}{80}$",
+                        "$\\frac{30}{80}$",
+                        "$\\frac{18}{30}$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "'Given that they cycle' shrinks the population to the $30$ cyclists, so "
+                        "that is the denominator. $\\frac{12}{80}$ answers 'what fraction of "
+                        "everyone both cycles and swims' — a different question."
+                    ),
+                    "check": [
+                        "Rational(12, 30) == Rational(2, 5)",
+                        "Rational(12, 80) == Rational(3, 20)",
+                    ],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Two words, opposite meanings",
+                    "title": "Exclusive or independent?",
+                    "prompt": (
+                        "$A$ and $B$ are mutually exclusive with $P(A) = 0.3$ and "
+                        "$P(B) = 0.4$. They are"
+                    ),
+                    "options": [
+                        "not independent, since $P(A \\cap B) = 0 \\ne 0.12$",
+                        "independent, since they do not affect each other",
+                        "independent, since $P(A \\cap B) = 0$",
+                        "impossible — probabilities cannot behave this way",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Mutually exclusive means $A$ happening rules $B$ out completely, which "
+                        "is the strongest possible influence. The test confirms it: "
+                        "$P(A)P(B) = 0.12$ but $P(A \\cap B) = 0$."
+                    ),
+                    "check": [
+                        "Rational(3, 10)*Rational(4, 10) == Rational(12, 100)",
+                        "Rational(12, 100) != 0",
+                    ],
+                },
+                {"kind": "tryIt", "problemId": "aisl-46-t1"},
+                {"kind": "tryIt", "problemId": "aisl-46-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Combined events, compressed",
+                    "points": [
+                        "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$; the overlap is zero only if exclusive.",
+                        "Conditional divides by the condition, not by the total.",
+                        "Independence is a check: compare $P(A \\cap B)$ with $P(A)P(B)$.",
+                        "Trees: multiply along, add across; changing denominators mean no replacement.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 7 — AI SL 4.7: discrete random variables
+# ===========================================================================
+def lesson_discrete_random_variables():
+    return {
+        "slug": "discrete-random-variables",
+        "title": "Discrete Random Variables and Expected Value",
+        "concreteComparison": (
+            "A lottery ticket costs $\\$2$ and pays $\\$1000$ with probability one in a "
+            "thousand. Its expected value is $\\$1$ — so on average every ticket loses a dollar, "
+            "which is precisely how the lottery is designed and precisely what an expected value "
+            "is for."
+        ),
+        "objective": (
+            "Write a probability distribution, verify it sums to one, and compute and interpret "
+            "the expected value of a discrete random variable."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.7.** Concept of discrete random variables and their "
+            "probability distributions; expected value (mean) for discrete data; applications. "
+            "**Papers 1 and 2.**",
+            "A discrete random variable $X$ takes separate values, each with a probability. The "
+            "whole distribution is usually a table: the values across the top, the probabilities "
+            "underneath. The one universal constraint is $\\sum P(X = x) = 1$, and questions use "
+            "it constantly to find a missing probability.",
+            "The EXPECTED VALUE is the long-run average: "
+            "$E(X) = \\sum x \\, P(X = x)$ — every value weighted by how often it happens. It "
+            "need not be one of the possible values, and often is not: an expected family size "
+            "of $2.3$ children is a perfectly good statement about averages.",
+            "In a GAME, $E(X)$ decides fairness. If $X$ is the player's net gain, the game is "
+            "FAIR when $E(X) = 0$, favours the player when $E(X) > 0$, and favours the organiser "
+            "when $E(X) < 0$. Watch the sign convention: net gain subtracts the stake, so a "
+            "$\\$5$ prize on a $\\$2$ ticket is a gain of $\\$3$, not $\\$5$.",
+            "'Find the value of $k$ that makes the game fair' is the standard hard part. Write "
+            "$E(X)$ as an expression in $k$, set it equal to zero, and solve — the algebra is "
+            "easy once the table is right, and the table is where the marks are lost."
+        ],
+        "keyIdea": (
+            "Probabilities sum to one; the expected value is the probability-weighted average. "
+            "For games, expected NET gain zero means fair."
+        ),
+        "facts": [
+            {
+                "title": "A probability distribution",
+                "latex": "\\sum_{x} P(X = x) = 1",
+                "explanation": "The constraint that finds missing probabilities.",
+            },
+            {
+                "title": "Expected value",
+                "latex": "E(X) = \\sum_{x} x\\,P(X = x)",
+                "explanation": "Booklet (AI SL 4.7). The long-run mean of $X$.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-47-we1",
+                "statement": (
+                    "A discrete random variable $X$ has the distribution  \n"
+                    "$P(X = 1) = 0.2$, $P(X = 2) = 0.35$, $P(X = 3) = k$, $P(X = 4) = 0.15$.  \n"
+                    "**(a)** Find $k$. **[2]**  \n"
+                    "**(b)** Find $E(X)$. **[3]**  \n"
+                    "**(c)** Find $P(X \\ge 3)$. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $0.2 + 0.35 + k + 0.15 = 1$ *(M1)*, so $k = 0.3$ *(A1)*.  \n"
+                    "**(b)** $E(X) = 1(0.2) + 2(0.35) + 3(0.3) + 4(0.15)$ *(M1 A1)* "
+                    "$= 0.2 + 0.7 + 0.9 + 0.6 = 2.4$ *(A1)*.  \n"
+                    "**(c)** $P(X \\ge 3) = 0.3 + 0.15 = 0.45$ *(M1 A1)*.  \n"
+                    "**Narrative:** the expected value $2.4$ is not a value $X$ can take, and "
+                    "that is normal — it is the balance point of the distribution, the place a "
+                    "ruler holding these four weights would sit level. Note also that $2.4$ lies "
+                    "between the smallest and largest values; an answer outside $[1, 4]$ would "
+                    "be arithmetically impossible and is worth checking for."
+                ),
+                "check": [
+                    "Rational(2, 10) + Rational(35, 100) + Rational(3, 10) + Rational(15, 100) == 1",
+                    "1*Rational(2, 10) + 2*Rational(35, 100) + 3*Rational(3, 10) + 4*Rational(15, 100) == Rational(24, 10)",
+                    "Rational(3, 10) + Rational(15, 100) == Rational(45, 100)",
+                    "(1 < Rational(24, 10)) & (Rational(24, 10) < 4)",
+                ],
+            },
+            {
+                "id": "aisl-47-we2",
+                "statement": (
+                    "A game costs $\\$3$ to play. A player rolls a fair six-sided die and wins "
+                    "$\\$12$ for a six, $\\$3$ for a five, and nothing otherwise.  \n"
+                    "**(a)** Write down the probability distribution of the player's net gain "
+                    "$G$. **[3]**  \n"
+                    "**(b)** Find $E(G)$ and state whether the game is fair. **[3]**  \n"
+                    "**(c)** Find the prize for a six that would make the game fair, keeping "
+                    "everything else the same. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** Net gain is prize minus the $\\$3$ stake: $G = 9$ with probability "
+                    "$\\frac{1}{6}$, $G = 0$ with probability $\\frac{1}{6}$, $G = -3$ with "
+                    "probability $\\frac{4}{6}$ *(A1 A1 A1)*.  \n"
+                    "**(b)** $E(G) = 9\\left(\\frac{1}{6}\\right) + 0\\left(\\frac{1}{6}\\right) "
+                    "+ (-3)\\left(\\frac{4}{6}\\right)$ *(M1)* "
+                    "$= \\frac{9}{6} - \\frac{12}{6} = -\\frac{1}{2}$ *(A1)*. The game is not "
+                    "fair — the player loses $\\$0.50$ per game on average *(A1)*.  \n"
+                    "**(c)** With a prize $p$ for a six, "
+                    "$E(G) = (p - 3)\\frac{1}{6} + 0 - 2 = 0$ *(M1)*, so $p - 3 = 12$ *(A1)* "
+                    "and $p = \\$15$ *(A1)*.  \n"
+                    "**Narrative:** the trap is in (a). A $\\$3$ prize on a $\\$3$ stake is a "
+                    "net gain of ZERO, not $\\$3$, and a roll of $1$ to $4$ is a net gain of "
+                    "$-\\$3$. Building the table in net gains rather than prizes makes (b) and "
+                    "(c) mechanical — and makes 'fair' mean exactly $E(G) = 0$."
+                ),
+                "check": [
+                    "12 - 3 == 9",
+                    "3 - 3 == 0",
+                    "0 - 3 == -3",
+                    "9*Rational(1, 6) + 0*Rational(1, 6) + (-3)*Rational(4, 6) == Rational(-1, 2)",
+                    "Rational(-1, 2) < 0",
+                    "(15 - 3)*Rational(1, 6) + 0*Rational(1, 6) + (-3)*Rational(4, 6) == 0",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Using prizes instead of net gains in a game's distribution.",
+                "correction": "Net gain subtracts the stake. A $\\$3$ prize on a $\\$3$ ticket is a gain of $0$, and losing rolls are negative.",
+                "authored": True,
+            },
+            {
+                "text": "Rejecting an expected value because $X$ cannot equal it.",
+                "correction": "$E(X)$ is an average over many repetitions and rarely equals an achievable value. $2.4$ is a fine answer for a variable taking $1, 2, 3, 4$.",
+                "authored": True,
+            },
+            {
+                "text": "Forgetting to check that the probabilities sum to one.",
+                "correction": "It is the first line of most of these questions and often the only route to a missing value.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-47-t1",
+                "statement": (
+                    "$X$ has $P(X = 0) = 0.1$, $P(X = 1) = 0.4$, $P(X = 2) = 0.3$ and "
+                    "$P(X = 3) = a$. Find $a$ and $E(X)$. **[4]**"
+                ),
+                "solution": (
+                    "$0.1 + 0.4 + 0.3 + a = 1$ *(M1)*, so $a = 0.2$ *(A1)*.  \n"
+                    "$E(X) = 0(0.1) + 1(0.4) + 2(0.3) + 3(0.2)$ *(M1)* $= 1.6$ *(A1)*."
+                ),
+                "check": [
+                    "Rational(1, 10) + Rational(4, 10) + Rational(3, 10) + Rational(2, 10) == 1",
+                    "0*Rational(1, 10) + 1*Rational(4, 10) + 2*Rational(3, 10) + 3*Rational(2, 10) == Rational(16, 10)",
+                ],
+            },
+            {
+                "id": "aisl-47-t2",
+                "statement": (
+                    "A raffle ticket costs $\\$5$. One ticket in $400$ wins $\\$1000$; all "
+                    "others win nothing. Find the expected net gain per ticket. **[3]**"
+                ),
+                "solution": (
+                    "Net gains: $+995$ with probability $\\frac{1}{400}$, $-5$ with probability "
+                    "$\\frac{399}{400}$ *(M1)*.  \n"
+                    "$E = 995\\left(\\frac{1}{400}\\right) - 5\\left(\\frac{399}{400}\\right)$ "
+                    "*(A1)* $= \\dfrac{995 - 1995}{400} = -\\$2.50$ *(A1)*."
+                ),
+                "check": [
+                    "1000 - 5 == 995",
+                    "995*Rational(1, 400) - 5*Rational(399, 400) == Rational(-5, 2)",
+                    "Rational(-5, 2) == Rational(-250, 100)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.7 · Papers 1 & 2",
+                    "title": "A table and a weighted average",
+                    "body": (
+                        "The whole code is two ideas. A distribution is a table whose "
+                        "probabilities add to one. An expected value is the average of the "
+                        "values, weighted by those probabilities. Everything else is a context "
+                        "wrapped around them."
+                    ),
+                },
+                {
+                    "kind": "distributionBars",
+                    "eyebrow": "Play",
+                    "title": "The balance point",
+                    "teach": (
+                        "Each bar is a value with its probability as height. Tap a bar for its "
+                        "contribution $x \\cdot P(x)$, and watch the mean marker sit where the "
+                        "whole arrangement would balance. That balance point is $E(X)$ — and "
+                        "notice it need not sit on a bar."
+                    ),
+                    "config": {
+                        "values": [1, 2, 3, 4],
+                        "probs": [0.2, 0.35, 0.3, 0.15],
+                        "pLabels": ["0.2", "0.35", "0.3", "0.15"],
+                        "xLabel": "value of X",
+                        "showMean": True,
+                    },
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "The routine",
+                    "beats": [
+                        "Build the table; use $\\sum P = 1$ for any missing probability.",
+                        "For a game, convert prizes to NET gains first.",
+                        "$E(X) = \\sum x P(x)$ — one product per column, then add.",
+                        "Interpret: fair means $E(\\text{net gain}) = 0$.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "A missing probability and a mean",
+                    "problemId": "aisl-47-we1",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Sum to one",
+                    "title": "Find the missing probability",
+                    "prompt": (
+                        "$X$ takes values $0, 1, 2$ with probabilities $0.45$, $c$ and $0.2$. "
+                        "Then $c$ is"
+                    ),
+                    "options": ["$0.35$", "$0.65$", "$0.25$", "$0.55$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$0.45 + c + 0.2 = 1$, so $c = 0.35$. Every discrete distribution's "
+                        "probabilities total exactly one — no exceptions, and it is usually the "
+                        "first mark."
+                    ),
+                    "check": [
+                        "Rational(45, 100) + Rational(35, 100) + Rational(20, 100) == 1",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Is the game fair?",
+                    "problemId": "aisl-47-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Net, not gross",
+                    "title": "What counts as a gain?",
+                    "prompt": (
+                        "A game costs $\\$4$ and pays $\\$4$ for a win. A player's net gain on a "
+                        "win is"
+                    ),
+                    "options": ["$\\$0$", "$\\$4$", "$\\$8$", "$-\\$4$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "They paid $\\$4$ and received $\\$4$, so they are exactly where they "
+                        "started. Entering $\\$4$ in the table would make the game look "
+                        "generous when it merely returns the stake."
+                    ),
+                    "check": [
+                        "4 - 4 == 0",
+                    ],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Sanity-check the mean's range",
+                    "body": (
+                        "$E(X)$ always lies between the smallest and largest values of $X$. If "
+                        "your variable runs from $1$ to $4$ and you compute $5.2$, you have a "
+                        "arithmetic slip — usually a probability used twice."
+                    ),
+                },
+                {"kind": "tryIt", "problemId": "aisl-47-t1"},
+                {"kind": "tryIt", "problemId": "aisl-47-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Discrete random variables, compressed",
+                    "points": [
+                        "$\\sum P(X = x) = 1$ — the first line and the missing-value finder.",
+                        "$E(X) = \\sum x P(x)$, the probability-weighted average.",
+                        "$E(X)$ need not be an achievable value, but must lie in the range.",
+                        "Games: build the table in NET gains; fair means $E = 0$.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 8 — AI SL 4.8: the binomial distribution
+# ===========================================================================
+def lesson_binomial():
+    return {
+        "slug": "the-binomial-distribution",
+        "title": "The Binomial Distribution",
+        "concreteComparison": (
+            "A factory line, a free-throw streak, a multiple-choice paper answered by guessing — "
+            "same experiment repeated, same chance each time, and you count the successes. One "
+            "distribution covers all three, and the calculator does the arithmetic."
+        ),
+        "objective": (
+            "Recognise a binomial situation, compute exact and cumulative binomial "
+            "probabilities with technology, and use the mean and variance."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.8.** Binomial distribution; mean and variance of the "
+            "binomial distribution. **Papers 1 and 2.** The formulas are in the booklet; the "
+            "probabilities come from the GDC.",
+            "Four conditions must all hold for $X \\sim B(n, p)$: a FIXED number of trials $n$; "
+            "each trial has just two outcomes; the probability of success $p$ is the SAME every "
+            "trial; and the trials are INDEPENDENT. Drawing without replacement fails the third "
+            "and fourth conditions at once, which is the most common reason a situation is not "
+            "binomial.",
+            "Two calculator functions do everything. Binomial PDF gives $P(X = k)$ exactly; "
+            "binomial CDF gives $P(X \\le k)$. Everything else is arithmetic on those: "
+            "$P(X < k) = P(X \\le k-1)$, $P(X \\ge k) = 1 - P(X \\le k-1)$, and "
+            "$P(a \\le X \\le b) = P(X \\le b) - P(X \\le a-1)$. Getting the boundary right is "
+            "the single most examined detail here.",
+            "The mean is $E(X) = np$ and the variance is $\\text{Var}(X) = np(1-p)$, so the "
+            "standard deviation is $\\sqrt{np(1-p)}$. These are quotable one-liners — no "
+            "summation required — and questions ask for them alongside a probability so that a "
+            "calculator failure does not cost every mark."
+        ],
+        "keyIdea": (
+            "Fixed $n$, two outcomes, constant $p$, independent trials. Then PDF for exactly, "
+            "CDF for at most, and $np$ for the mean."
+        ),
+        "facts": [
+            {
+                "title": "The binomial probability",
+                "latex": "P(X = r) = \\binom{n}{r} p^{r}(1-p)^{n-r}, \\quad r = 0, 1, \\ldots, n",
+                "explanation": "Booklet (AI SL 4.8). In practice: binomial PDF on the GDC.",
+            },
+            {
+                "title": "Mean and variance",
+                "latex": "E(X) = np, \\qquad \\text{Var}(X) = np(1-p)",
+                "explanation": "Booklet. Standard deviation is the square root of the variance.",
+            },
+            {
+                "title": "Boundary translations",
+                "latex": "P(X \\ge k) = 1 - P(X \\le k-1), \\qquad P(X < k) = P(X \\le k-1)",
+                "explanation": "Not in the booklet — the arithmetic that turns a CDF into any range.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-48-we1",
+                "statement": (
+                    "A component fails with probability $0.15$, independently of others. A batch "
+                    "of $12$ is tested. Let $X$ be the number that fail.  \n"
+                    "**(a)** State the distribution of $X$. **[1]**  \n"
+                    "**(b)** Find $P(X = 2)$, to 3 s.f. **[2]**  \n"
+                    "**(c)** Find $P(X \\le 1)$, to 3 s.f. **[2]**  \n"
+                    "**(d)** Find the mean and variance of $X$. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $X \\sim B(12, 0.15)$ *(A1)*.  \n"
+                    "**(b)** Binomial PDF with $n = 12$, $p = 0.15$, $r = 2$ *(M1)*: "
+                    "$P(X = 2) = 0.292$ *(A1)*.  \n"
+                    "**(c)** Binomial CDF up to $1$ *(M1)*: $P(X \\le 1) = 0.443$ *(A1)*.  \n"
+                    "**(d)** $E(X) = 12 \\times 0.15 = 1.8$; "
+                    "$\\text{Var}(X) = 12 \\times 0.15 \\times 0.85 = 1.53$ *(A1 A1)*.  \n"
+                    "**Narrative:** part (a) is a free mark that students routinely skip — "
+                    "writing $X \\sim B(12, 0.15)$ states $n$ and $p$ and shows you have "
+                    "identified the distribution, which is the thing being assessed. The mean "
+                    "$1.8$ is a useful sanity check on (b) and (c): with fewer than two failures "
+                    "expected on average, a probability of $0.443$ for 'at most one' is exactly "
+                    "the right size."
+                ),
+                "check": [
+                    "Abs(binomial(12, 2)*Rational(15, 100)**2*Rational(85, 100)**10 - Rational(292, 1000)) < Rational(1, 1000)",
+                    "Abs(Rational(85, 100)**12 + 12*Rational(15, 100)*Rational(85, 100)**11 - Rational(443, 1000)) < Rational(1, 1000)",
+                    "12*Rational(15, 100) == Rational(18, 10)",
+                    "12*Rational(15, 100)*Rational(85, 100) == Rational(153, 100)",
+                ],
+            },
+            {
+                "id": "aisl-48-we2",
+                "statement": (
+                    "A quiz has $20$ multiple-choice questions, each with $4$ options. A student "
+                    "guesses every answer. Let $X$ be the number correct.  \n"
+                    "**(a)** State the distribution of $X$ and find its mean. **[2]**  \n"
+                    "**(b)** Find $P(X = 5)$, to 3 s.f. **[2]**  \n"
+                    "**(c)** The pass mark is $8$. Find the probability of passing by guessing, "
+                    "to 3 s.f. **[3]**  \n"
+                    "**(d)** Find the standard deviation of $X$, to 3 s.f. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** $X \\sim B(20, 0.25)$ *(A1)*, with "
+                    "$E(X) = 20 \\times 0.25 = 5$ *(A1)*.  \n"
+                    "**(b)** Binomial PDF *(M1)*: $P(X = 5) = 0.202$ *(A1)*.  \n"
+                    "**(c)** Passing means $X \\ge 8$, so "
+                    "$P(X \\ge 8) = 1 - P(X \\le 7)$ *(M1 A1)* $= 0.102$ *(A1)*.  \n"
+                    "**(d)** $\\text{Var}(X) = 20(0.25)(0.75) = 3.75$, so "
+                    "$\\sigma = \\sqrt{3.75} = 1.94$ *(M1 A1)*.  \n"
+                    "**Narrative:** part (c) is the boundary trap in its purest form. 'At least "
+                    "$8$' is $1 - P(X \\le 7)$, not $1 - P(X \\le 8)$ — subtracting the wrong "
+                    "cumulative removes $P(X = 8)$ from the answer and costs both the accuracy "
+                    "marks. Writing the translation line explicitly, before touching the "
+                    "calculator, is how you stop it happening."
+                ),
+                "check": [
+                    "20*Rational(1, 4) == 5",
+                    "Abs(binomial(20, 5)*Rational(1, 4)**5*Rational(3, 4)**15 - Rational(202, 1000)) < Rational(1, 1000)",
+                    "Abs(1 - Sum(binomial(20, k)*Rational(1, 4)**k*Rational(3, 4)**(20 - k), (k, 0, 7)).doit() - Rational(102, 1000)) < Rational(1, 1000)",
+                    "20*Rational(1, 4)*Rational(3, 4) == Rational(15, 4)",
+                    "Abs(sqrt(Rational(15, 4)) - Rational(194, 100)) < Rational(5, 1000)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Computing $P(X \\ge 8)$ as $1 - P(X \\le 8)$.",
+                "correction": "'At least $8$' includes $8$, so subtract $P(X \\le 7)$. Write the translation down before reaching for the calculator.",
+                "authored": True,
+            },
+            {
+                "text": "Using the binomial for draws without replacement.",
+                "correction": "Removing an item changes $p$ for the next trial, so the trials are neither identical nor independent. Use a tree instead.",
+                "authored": True,
+            },
+            {
+                "text": "Giving the variance when the question asks for the standard deviation.",
+                "correction": "$np(1-p)$ is the VARIANCE; take its square root for $\\sigma$. Read which one the question named.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-48-t1",
+                "statement": (
+                    "$X \\sim B(10, 0.3)$. Find $P(X = 3)$ and $P(X \\le 2)$, to 3 s.f. **[4]**"
+                ),
+                "solution": (
+                    "$P(X = 3) = \\binom{10}{3}(0.3)^{3}(0.7)^{7}$ *(M1)* $= 0.267$ *(A1)*.  \n"
+                    "$P(X \\le 2) = 0.383$ from the binomial CDF *(M1 A1)*."
+                ),
+                "check": [
+                    "Abs(binomial(10, 3)*Rational(3, 10)**3*Rational(7, 10)**7 - Rational(267, 1000)) < Rational(1, 1000)",
+                    "Abs(Sum(binomial(10, k)*Rational(3, 10)**k*Rational(7, 10)**(10 - k), (k, 0, 2)).doit() - Rational(383, 1000)) < Rational(1, 1000)",
+                ],
+            },
+            {
+                "id": "aisl-48-t2",
+                "statement": (
+                    "A basketball player scores each free throw with probability $0.8$, "
+                    "independently. She takes $15$ throws. Find the mean number scored and the "
+                    "probability that she scores at least $13$, to 3 s.f. **[4]**"
+                ),
+                "solution": (
+                    "$X \\sim B(15, 0.8)$, so $E(X) = 15 \\times 0.8 = 12$ *(A1)*.  \n"
+                    "$P(X \\ge 13) = 1 - P(X \\le 12)$ *(M1 A1)* $= 0.398$ *(A1)*."
+                ),
+                "check": [
+                    "15*Rational(8, 10) == 12",
+                    "Abs(1 - Sum(binomial(15, k)*Rational(8, 10)**k*Rational(2, 10)**(15 - k), (k, 0, 12)).doit() - Rational(398, 1000)) < Rational(1, 1000)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.8 · Papers 1 & 2",
+                    "title": "Count the successes",
+                    "body": (
+                        "Whenever the same trial repeats a fixed number of times with the same "
+                        "chance each time, and you are counting how often it succeeds, the "
+                        "answer is binomial. Recognising that — and stating $n$ and $p$ — is "
+                        "most of the assessed skill."
+                    ),
+                },
+                {
+                    "kind": "binomialBars",
+                    "eyebrow": "Play",
+                    "title": "Move $n$ and $p$, watch the shape",
+                    "teach": (
+                        "Step $p$ and the pile slides: below $0.5$ it leans left, above it leans "
+                        "right, and at exactly $0.5$ it is symmetric. Step $n$ and the whole "
+                        "thing widens and flattens while the mean marker tracks $np$. Tap any "
+                        "bar to see the $\\binom{n}{r}p^{r}q^{n-r}$ behind it."
+                    ),
+                    "config": {"n0": 12, "p0": 0.25, "nMax": 20, "showMuSigma": True},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "From words to a calculator entry",
+                    "beats": [
+                        "Check the four conditions; state $X \\sim B(n, p)$.",
+                        "'Exactly $k$' → binomial PDF. 'At most $k$' → binomial CDF.",
+                        "'At least $k$' → $1 - P(X \\le k-1)$. Write the translation first.",
+                        "Mean $np$, variance $np(1-p)$ — quotable, no calculator needed.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Failures in a batch",
+                    "problemId": "aisl-48-we1",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "The boundary",
+                    "title": "At least, translated",
+                    "prompt": "For $X \\sim B(20, 0.3)$, $P(X \\ge 6)$ equals",
+                    "options": [
+                        "$1 - P(X \\le 5)$",
+                        "$1 - P(X \\le 6)$",
+                        "$P(X \\le 6)$",
+                        "$1 - P(X < 5)$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "'At least $6$' includes $6$, so the complement is 'at most $5$'. "
+                        "Subtracting $P(X \\le 6)$ instead throws away $P(X = 6)$ — here about "
+                        "$0.19$, which is not a rounding error."
+                    ),
+                    "check": [
+                        "Abs(binomial(20, 6)*Rational(3, 10)**6*Rational(7, 10)**14 - Rational(192, 1000)) < Rational(1, 1000)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Passing a quiz by guessing",
+                    "problemId": "aisl-48-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Is it binomial?",
+                    "title": "Check the four conditions",
+                    "prompt": (
+                        "Three cards are drawn from a deck WITHOUT replacement and the number of "
+                        "hearts is counted. This is"
+                    ),
+                    "options": [
+                        "not binomial — $p$ changes after each draw",
+                        "binomial with $n = 3$, $p = 0.25$",
+                        "binomial with $n = 52$, $p = 0.25$",
+                        "binomial with $n = 3$, $p = 13/52$ only if the first card is a heart",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "After a heart is removed, the next draw has $12$ hearts in $51$ cards, "
+                        "not $13$ in $52$. The trials are neither identical nor independent, so "
+                        "the binomial does not apply — a tree diagram does."
+                    ),
+                    "check": [
+                        "Rational(13, 52) != Rational(12, 51)",
+                    ],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "State the distribution, always",
+                    "body": (
+                        "'$X \\sim B(25, 0.4)$' is often an explicit mark and always shows the "
+                        "examiner your parameters. If the calculator work then goes wrong, the "
+                        "method mark survives — and if you mislabel $n$ and $p$, writing them "
+                        "down is how you notice."
+                    ),
+                },
+                {"kind": "tryIt", "problemId": "aisl-48-t1"},
+                {"kind": "tryIt", "problemId": "aisl-48-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Binomial, compressed",
+                    "points": [
+                        "Fixed $n$, two outcomes, constant $p$, independent trials.",
+                        "PDF for exactly; CDF for at most; $1 - P(X \\le k-1)$ for at least.",
+                        "$E(X) = np$, $\\text{Var}(X) = np(1-p)$.",
+                        "Without replacement is never binomial.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 9 — AI SL 4.9: the normal distribution
+# ===========================================================================
+def lesson_normal():
+    return {
+        "slug": "the-normal-distribution",
+        "title": "The Normal Distribution and Inverse Normal",
+        "concreteComparison": (
+            "Heights, birth weights, measurement errors, the time a bus actually takes — measure "
+            "enough of almost anything shaped by many small independent influences and you get "
+            "the same bell. The normal distribution is the shape the world keeps producing."
+        ),
+        "objective": (
+            "Use the normal distribution to find probabilities from values, and — running the "
+            "same machine backwards — values from probabilities."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.9.** The normal distribution and curve; its properties; "
+            "diagrammatic representation; normal probability calculations; inverse normal "
+            "calculations. **Papers 1 and 2.**",
+            "The curve is symmetric about the mean $\\mu$, bell-shaped, and its total area is "
+            "$1$. The standard deviation $\\sigma$ sets the width: about $68\\%$ of the data "
+            "lies within one $\\sigma$ of the mean, $95\\%$ within two, and $99.7\\%$ within "
+            "three. Those three numbers answer a surprising share of exam parts on their own.",
+            "FORWARD calculations go from values to probability: normal CDF with a lower bound, "
+            "an upper bound, $\\mu$ and $\\sigma$. For a one-sided region use a very large "
+            "artificial bound — $-10^{99}$ below or $10^{99}$ above — rather than leaving the "
+            "field blank.",
+            "INVERSE calculations go from probability to value: inverse normal takes an area to "
+            "the LEFT and returns the cut-off. When a question gives a top percentage — 'the "
+            "mark exceeded by the top $10\\%$' — convert first: the area to the left is "
+            "$0.90$. Feeding $0.10$ straight in returns the bottom cut-off instead, and it is "
+            "the most common error on this code.",
+            "Sketch the curve, shade the region, and label $\\mu$ before computing. Every "
+            "boundary decision — which tail, which side, whether to subtract from $1$ — becomes "
+            "obvious on a picture and guesswork without one."
+        ],
+        "keyIdea": (
+            "Values in, probability out: normal CDF. Probability in, value out: inverse normal, "
+            "always fed the area to the LEFT."
+        ),
+        "facts": [
+            {
+                "title": "Notation",
+                "latex": "X \\sim N(\\mu, \\sigma^{2})",
+                "explanation": "The second parameter is the VARIANCE — $N(170, 64)$ means $\\sigma = 8$.",
+            },
+            {
+                "title": "The empirical rule",
+                "latex": "68\\% \\text{ within } \\mu \\pm \\sigma, \\quad 95\\% \\text{ within } \\mu \\pm 2\\sigma, \\quad 99.7\\% \\text{ within } \\mu \\pm 3\\sigma",
+                "explanation": "Not in the booklet — but it answers many parts without a calculator.",
+            },
+            {
+                "title": "Inverse normal",
+                "latex": "P(X < k) = p \\;\\Rightarrow\\; k = \\text{invNorm}(p, \\mu, \\sigma)",
+                "explanation": "The argument is the area to the LEFT. Convert 'top $10\\%$' to $0.90$ first.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-49-we1",
+                "statement": (
+                    "The heights of adult men in a population are normally distributed with mean "
+                    "$170$ cm and standard deviation $8$ cm.  \n"
+                    "**(a)** Find the probability that a man is shorter than $180$ cm, to "
+                    "3 s.f. **[2]**  \n"
+                    "**(b)** Find the probability that a man's height is between $165$ cm and "
+                    "$178$ cm, to 3 s.f. **[2]**  \n"
+                    "**(c)** Find the height exceeded by the tallest $10\\%$, to 3 s.f. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** Normal CDF from $-10^{99}$ to $180$ with $\\mu = 170$, "
+                    "$\\sigma = 8$ *(M1)*: $P = 0.894$ *(A1)*.  \n"
+                    "**(b)** Normal CDF from $165$ to $178$ *(M1)*: $P = 0.575$ *(A1)*.  \n"
+                    "**(c)** The tallest $10\\%$ leaves $90\\%$ below, so use inverse normal "
+                    "with area $0.90$ *(M1 A1)*: the height is $180$ cm *(A1)*.  \n"
+                    "**Narrative:** part (c) is the conversion the whole code turns on. The "
+                    "question says $10\\%$; the calculator wants $0.90$. Entering $0.10$ returns "
+                    "$159.7$ cm — the height that only the SHORTEST tenth fall below, an answer "
+                    "that is wrong in a way a sketch would catch instantly. Notice too that (a) "
+                    "and (c) agree: about $89\\%$ are below $180$, so $180$ is very close to the "
+                    "$90$th percentile."
+                ),
+                "check": [
+                    "Abs(Rational(1, 2)*(1 + erf((180 - 170)/(8*sqrt(2)))) - Rational(894, 1000)) < Rational(1, 1000)",
+                    "Abs(Rational(1, 2)*(erf((178 - 170)/(8*sqrt(2))) - erf((165 - 170)/(8*sqrt(2)))) - Rational(575, 1000)) < Rational(1, 1000)",
+                    "Abs(170 + 8*sqrt(2)*erfinv(2*Rational(9, 10) - 1) - 180) < Rational(3, 10)",
+                    "Rational(894, 1000) < Rational(9, 10)",
+                ],
+            },
+            {
+                "id": "aisl-49-we2",
+                "statement": (
+                    "The masses of apples are normally distributed with mean $150$ g and "
+                    "standard deviation $20$ g.  \n"
+                    "**(a)** Use the empirical rule to state the interval containing about "
+                    "$95\\%$ of the apples. **[2]**  \n"
+                    "**(b)** Find the probability that an apple weighs more than $175$ g, to "
+                    "3 s.f. **[2]**  \n"
+                    "**(c)** In a crate of $200$ apples, find the expected number over $175$ g. "
+                    "**[2]**  \n"
+                    "**(d)** Apples below the $5$th percentile are rejected. Find the rejection "
+                    "mass, to 3 s.f. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $\\mu \\pm 2\\sigma = 150 \\pm 40$, so $110$ g to $190$ g "
+                    "*(M1 A1)*.  \n"
+                    "**(b)** Normal CDF from $175$ to $10^{99}$ *(M1)*: $P = 0.106$ *(A1)*.  \n"
+                    "**(c)** $200 \\times 0.10565 = 21.1$, so about $21$ apples *(M1 A1)*.  \n"
+                    "**(d)** Inverse normal with area $0.05$ *(M1 A1)*: the rejection mass is "
+                    "$117$ g *(A1)*.  \n"
+                    "**Narrative:** part (d) needs no conversion — the $5$th percentile already "
+                    "IS an area to the left, so $0.05$ goes straight in. Compare that with (c) "
+                    "of the previous example and the rule becomes clear: percentiles and 'below' "
+                    "go in as they are; 'top', 'above' and 'exceeded by' must be subtracted from "
+                    "$1$ first."
+                ),
+                "check": [
+                    "150 - 2*20 == 110",
+                    "150 + 2*20 == 190",
+                    "Abs(Rational(1, 2)*(1 - erf((175 - 150)/(20*sqrt(2)))) - Rational(106, 1000)) < Rational(1, 1000)",
+                    "Abs(200*Rational(1, 2)*(1 - erf((175 - 150)/(20*sqrt(2)))) - Rational(211, 10)) < Rational(1, 10)",
+                    "Abs(150 + 20*sqrt(2)*erfinv(2*Rational(5, 100) - 1) - 117) < Rational(3, 10)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Feeding the top percentage straight into inverse normal.",
+                "correction": "Inverse normal wants the area to the LEFT. 'Top $10\\%$' becomes $0.90$; 'top $5\\%$' becomes $0.95$.",
+                "authored": True,
+            },
+            {
+                "text": "Reading $N(170, 64)$ as $\\sigma = 64$.",
+                "correction": "The second parameter is the VARIANCE, so $\\sigma = \\sqrt{64} = 8$. Check which the question has given before entering it.",
+                "authored": True,
+            },
+            {
+                "text": "Leaving one bound blank on a one-sided normal CDF.",
+                "correction": "Use $-10^{99}$ or $10^{99}$ as the artificial bound. A blank field is read as zero on most calculators and quietly changes the region.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-49-t1",
+                "statement": (
+                    "$X \\sim N(60, 5^{2})$. Find $P(X > 68)$ and $P(55 < X < 65)$, to 3 s.f. "
+                    "**[4]**"
+                ),
+                "solution": (
+                    "$P(X > 68) = 0.0548$ *(M1 A1)*.  \n"
+                    "$P(55 < X < 65) = 0.683$ *(M1 A1)* — one standard deviation either side of "
+                    "the mean, which is the empirical rule's $68\\%$."
+                ),
+                "check": [
+                    "Abs(Rational(1, 2)*(1 - erf((68 - 60)/(5*sqrt(2)))) - Rational(548, 10000)) < Rational(1, 10000)",
+                    "Abs(Rational(1, 2)*(erf((65 - 60)/(5*sqrt(2))) - erf((55 - 60)/(5*sqrt(2)))) - Rational(683, 1000)) < Rational(1, 1000)",
+                ],
+            },
+            {
+                "id": "aisl-49-t2",
+                "statement": (
+                    "Exam marks are $N(58, 12^{2})$. The top $15\\%$ receive a distinction. Find "
+                    "the minimum mark for a distinction, to 3 s.f. **[3]**"
+                ),
+                "solution": (
+                    "The top $15\\%$ leaves $85\\%$ below, so the area for inverse normal is "
+                    "$0.85$ *(M1)*.  \n"
+                    "Inverse normal with $\\mu = 58$, $\\sigma = 12$ *(A1)* gives $70.4$ "
+                    "*(A1)*."
+                ),
+                "check": [
+                    "1 - Rational(15, 100) == Rational(85, 100)",
+                    "Abs(58 + 12*sqrt(2)*erfinv(2*Rational(85, 100) - 1) - Rational(704, 10)) < Rational(1, 10)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.9 · Papers 1 & 2",
+                    "title": "One shape, two directions",
+                    "body": (
+                        "Everything on this code is the same curve read one way or the other. "
+                        "Given values, find an area. Given an area, find the value. The "
+                        "calculator has one function for each, and the marks are for choosing "
+                        "correctly and converting the wording."
+                    ),
+                },
+                {
+                    "kind": "normalCurve",
+                    "eyebrow": "Play",
+                    "title": "The 68–95–99.7 bands",
+                    "teach": (
+                        "Tap one, two and three standard deviations and watch the shaded area "
+                        "grow. With $\\mu = 170$ and $\\sigma = 8$, almost every man is between "
+                        "$146$ and $194$ cm — three $\\sigma$ either side captures all but three "
+                        "people in a thousand."
+                    ),
+                    "config": {"mode": "empirical", "mu": 170, "sigma": 8, "xLabel": "height (cm)"},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "Sketch, shade, then compute",
+                    "beats": [
+                        "Draw the bell, mark $\\mu$, shade the region the words describe.",
+                        "Values known → normal CDF, with $\\pm 10^{99}$ for an open end.",
+                        "Probability known → inverse normal, fed the area to the LEFT.",
+                        "'Top $p\\%$' or 'more than' → use $1 - p$ before entering.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Heights, forwards and backwards",
+                    "problemId": "aisl-49-we1",
+                },
+                {
+                    "kind": "normalCurve",
+                    "eyebrow": "See the distance",
+                    "title": "How many $\\sigma$ from the mean?",
+                    "teach": (
+                        "Walk $x$ along the axis and watch $z = \\frac{x - \\mu}{\\sigma}$ "
+                        "change. A $z$ of $2$ says 'two standard deviations above average' "
+                        "whatever the units were — which is how a height and an exam mark can be "
+                        "compared at all."
+                    ),
+                    "config": {"mode": "zscore", "mu": 170, "sigma": 8, "x0": 180, "xLabel": "height (cm)"},
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Apples, percentiles and a crate",
+                    "problemId": "aisl-49-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "The conversion",
+                    "title": "Top 20%, entered how?",
+                    "prompt": (
+                        "To find the value exceeded by the top $20\\%$, the area given to "
+                        "inverse normal is"
+                    ),
+                    "options": ["$0.80$", "$0.20$", "$0.40$", "$0.60$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Inverse normal always takes the area BELOW the cut-off. If $20\\%$ are "
+                        "above, $80\\%$ are below. Entering $0.20$ returns the value only the "
+                        "bottom fifth fall under — a completely different number."
+                    ),
+                    "check": [
+                        "1 - Rational(20, 100) == Rational(80, 100)",
+                    ],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Read the notation",
+                    "title": "What is $\\sigma$?",
+                    "prompt": "If $X \\sim N(50, 36)$, the standard deviation is",
+                    "options": ["$6$", "$36$", "$50$", "$\\sqrt{50}$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "The second parameter in $N(\\mu, \\sigma^{2})$ is the VARIANCE, so "
+                        "$\\sigma = \\sqrt{36} = 6$. Entering $36$ as the standard deviation "
+                        "makes the distribution six times too wide."
+                    ),
+                    "check": [
+                        "sqrt(36) == 6",
+                    ],
+                },
+                {"kind": "tryIt", "problemId": "aisl-49-t1"},
+                {"kind": "tryIt", "problemId": "aisl-49-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Normal distribution, compressed",
+                    "points": [
+                        "$N(\\mu, \\sigma^{2})$ — the second entry is the variance.",
+                        "$68$–$95$–$99.7$ within one, two and three $\\sigma$.",
+                        "Normal CDF for probabilities; use $\\pm 10^{99}$ for open ends.",
+                        "Inverse normal takes the area to the LEFT — convert 'top $p\\%$' first.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 10 — AI SL 4.10: Spearman's rank correlation
+# ===========================================================================
+def lesson_spearman():
+    return {
+        "slug": "spearmans-rank-correlation",
+        "title": "Spearman's Rank Correlation",
+        "concreteComparison": (
+            "Two judges score the same ten gymnasts. One is generous, one is harsh, so their "
+            "marks never agree — but they place the gymnasts in almost the same ORDER. Pearson "
+            "sees disagreement; Spearman sees near-perfect agreement, and Spearman is the one "
+            "answering the question that matters."
+        ),
+        "objective": (
+            "Compute and interpret Spearman's rank correlation coefficient, and choose between "
+            "it and Pearson's according to the data."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.10.** Spearman's rank correlation coefficient $r_s$; "
+            "awareness of the appropriateness and limitations of Pearson's and Spearman's, and "
+            "the effect of outliers on each. **Papers 1 and 2.** This code has no counterpart in "
+            "Analysis & Approaches.",
+            "Spearman's $r_s$ is simply Pearson's $r$ applied to the RANKS instead of the "
+            "values. Rank each variable separately — $1$ for the smallest (or largest, so long "
+            "as you are consistent for both) — then run linear regression on the two rank lists. "
+            "The result still runs from $-1$ to $1$ and is read the same way.",
+            "When there are no tied ranks the shortcut "
+            "$r_s = 1 - \\dfrac{6\\sum d^{2}}{n(n^{2}-1)}$ gives the same answer, where $d$ is "
+            "the difference between a pair of ranks. Tied values take the AVERAGE of the ranks "
+            "they would have occupied — two values tied for 3rd and 4th both get rank $3.5$ — "
+            "and with ties present the shortcut is only approximate, so rank-and-Pearson is the "
+            "safer route.",
+            "Choosing between them is the assessed judgement. Pearson answers 'how close to a "
+            "STRAIGHT LINE?'; Spearman answers 'how consistently does one rise with the other?'. "
+            "For a relationship that is strongly increasing but curved, Spearman can be $1$ "
+            "while Pearson is well below it — and Spearman is then the honest summary.",
+            "Outliers hit them very differently. One extreme point can drag Pearson's $r$ a long "
+            "way, because it enters the calculation at full size. In the ranks it is just the "
+            "next number along, so Spearman barely moves — which makes $r_s$ the more ROBUST "
+            "measure and is the standard reason to prefer it."
+        ],
+        "keyIdea": (
+            "Rank both variables, then correlate the ranks. Spearman measures ORDER agreement, "
+            "survives curves, and shrugs off outliers."
+        ),
+        "facts": [
+            {
+                "title": "Spearman's coefficient",
+                "latex": "r_s = \\text{Pearson's } r \\text{ computed on the RANKS}",
+                "explanation": "The definition. Enter the two rank lists and run linear regression.",
+            },
+            {
+                "title": "The no-ties shortcut",
+                "latex": "r_s = 1 - \\frac{6\\sum d^{2}}{n(n^{2}-1)}",
+                "explanation": "Exact only when no ranks are tied; $d$ is the rank difference for a pair.",
+            },
+            {
+                "title": "Which to use",
+                "latex": "\\text{linear} \\Rightarrow r \\qquad \\text{monotonic or outliers present} \\Rightarrow r_s",
+                "explanation": "The judgement the exam actually assesses.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-410-we1",
+                "statement": (
+                    "Five students' scores on two tests:  \n"
+                    "$x$: $12, 15, 19, 22, 30$  \n"
+                    "$y$: $40, 55, 48, 70, 65$  \n"
+                    "**(a)** Rank each variable, smallest as $1$. **[2]**  \n"
+                    "**(b)** Find $\\sum d^{2}$ and hence $r_s$. **[4]**  \n"
+                    "**(c)** Pearson's $r$ for this data is $0.760$. Comment on the difference. "
+                    "**[2]**"
+                ),
+                "solution": (
+                    "**(a)** $x$ is already increasing, so its ranks are $1, 2, 3, 4, 5$ "
+                    "*(A1)*. For $y$: $40 \\to 1$, $48 \\to 2$, $55 \\to 3$, $65 \\to 4$, "
+                    "$70 \\to 5$, so in the given order the $y$-ranks are $1, 3, 2, 5, 4$ "
+                    "*(A1)*.  \n"
+                    "**(b)** The differences are $0, -1, 1, -1, 1$ *(M1)*, so "
+                    "$\\sum d^{2} = 4$ *(A1)*. Then "
+                    "$r_s = 1 - \\dfrac{6(4)}{5(24)} = 1 - 0.2$ *(M1)* $= 0.8$ *(A1)*.  \n"
+                    "**(c)** $r_s = 0.8$ exceeds $r = 0.760$ *(A1)*: the ORDER agrees better "
+                    "than the values do, which happens when the relationship is increasing but "
+                    "not quite straight *(R1)*.  \n"
+                    "**Narrative:** the two middle students are the whole story — the third "
+                    "highest $x$ produced only the second highest $y$, so exactly two pairs are "
+                    "swapped, twice. Every unit of $\\sum d^{2}$ is one such swap, which is why "
+                    "$r_s$ is so easy to interpret: it counts disagreements in order, and "
+                    "nothing else."
+                ),
+                "check": [
+                    "0**2 + (-1)**2 + 1**2 + (-1)**2 + 1**2 == 4",
+                    "1 - Rational(6*4, 5*(5**2 - 1)) == Rational(8, 10)",
+                    "Abs(Rational(2582, 10)/sqrt(Rational(1932, 10)*Rational(5972, 10)) - Rational(760, 1000)) < Rational(1, 1000)",
+                    "Rational(8, 10) > Rational(760, 1000)",
+                ],
+            },
+            {
+                "id": "aisl-410-we2",
+                "statement": (
+                    "A bacterial count $y$ is recorded after $x$ hours:  \n"
+                    "$x$: $1, 2, 3, 4, 5$  \n"
+                    "$y$: $2, 4, 8, 16, 32$  \n"
+                    "**(a)** Find $r_s$. **[3]**  \n"
+                    "**(b)** Pearson's $r$ is $0.933$. Explain why $r_s$ is larger. **[2]**  \n"
+                    "**(c)** State which coefficient better describes this relationship, with a "
+                    "reason. **[2]**"
+                ),
+                "solution": (
+                    "**(a)** Both variables increase together, so both rank lists are "
+                    "$1, 2, 3, 4, 5$ *(M1)*. Every $d = 0$, so $\\sum d^{2} = 0$ *(A1)* and "
+                    "$r_s = 1$ *(A1)*.  \n"
+                    "**(b)** The relationship is perfectly increasing, so the ranks agree "
+                    "exactly and $r_s$ hits its maximum *(A1)*. It is not a straight line — the "
+                    "$y$ values double each hour — so Pearson, which measures straightness, "
+                    "falls short of $1$ *(R1)*.  \n"
+                    "**(c)** $r_s$, because the relationship is monotonic but curved *(A1 R1)*: "
+                    "Pearson would understate a relationship that is in fact perfect in the only "
+                    "sense that matters here.  \n"
+                    "**Narrative:** this is the cleanest possible demonstration of the "
+                    "difference. Doubling every hour is about as strong as a relationship gets, "
+                    "and Pearson still reports $0.933$ — not because the data is noisy, but "
+                    "because it is curved. Spearman sees only the order and returns a flawless "
+                    "$1$."
+                ),
+                "check": [
+                    "1 - Rational(6*0, 5*(5**2 - 1)) == 1",
+                    "Abs(72/sqrt(10*Rational(5952, 10)) - Rational(933, 1000)) < Rational(1, 1000)",
+                    "Rational(933, 1000) < 1",
+                    "2*2**4 == 32",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Ranking one variable ascending and the other descending.",
+                "correction": "Rank both the same way. Reversing one flips the sign of $r_s$ and reports a negative relationship where there is a positive one.",
+                "authored": True,
+            },
+            {
+                "text": "Giving tied values consecutive ranks.",
+                "correction": "Tied values share the AVERAGE of the ranks they occupy — two tied for 3rd and 4th both get $3.5$.",
+                "authored": True,
+            },
+            {
+                "text": "Concluding a relationship is linear because $r_s = 1$.",
+                "correction": "$r_s = 1$ means perfectly INCREASING, not perfectly straight. Only Pearson speaks to linearity.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-410-t1",
+                "statement": (
+                    "Two judges rank six divers. The rank differences are "
+                    "$d = 1, -1, 0, 2, -1, -1$. Find $r_s$. **[3]**"
+                ),
+                "solution": (
+                    "$\\sum d^{2} = 1 + 1 + 0 + 4 + 1 + 1 = 8$ *(M1 A1)*.  \n"
+                    "$r_s = 1 - \\dfrac{6(8)}{6(35)} = 1 - \\dfrac{48}{210} = 0.771$ (3 s.f.) "
+                    "*(A1)*."
+                ),
+                "check": [
+                    "1 + 1 + 0 + 4 + 1 + 1 == 8",
+                    "6*(6**2 - 1) == 210",
+                    "Abs(1 - Rational(48, 210) - Rational(771, 1000)) < Rational(1, 1000)",
+                ],
+            },
+            {
+                "id": "aisl-410-t2",
+                "statement": (
+                    "A dataset of house sizes and prices includes one mansion far larger and "
+                    "more expensive than the rest. State, with a reason, which of $r$ and $r_s$ "
+                    "is less affected by it. **[2]**"
+                ),
+                "solution": (
+                    "$r_s$ is less affected *(A1)*.  \n"
+                    "In the ranks the mansion is simply the largest — rank $n$ — however extreme "
+                    "its actual values are, whereas Pearson's $r$ uses the raw sizes and prices, "
+                    "so an extreme point exerts a large pull *(R1)*."
+                ),
+                "check": [
+                    "Rational(6, 6) == 1",
+                    "1000000 > 6",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.10 · Papers 1 & 2",
+                    "title": "Correlate the order, not the values",
+                    "body": (
+                        "Replace every number by its position in the list and correlate those. "
+                        "You lose the magnitudes and gain immunity to curves and outliers — a "
+                        "trade that is exactly right whenever the question is about agreement in "
+                        "ranking."
+                    ),
+                },
+                {
+                    "kind": "scatterPlot",
+                    "eyebrow": "Play",
+                    "title": "Where Pearson struggles",
+                    "teach": (
+                        "Drag the stray point and watch the fitted line swing towards it. That "
+                        "leverage is what Pearson's $r$ feels and Spearman's does not — in the "
+                        "ranks, a point ten times too far away is still just 'the last one'."
+                    ),
+                    "config": {"mode": "outlier", "xLabel": "size", "yLabel": "price"},
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "Ranking, then correlating",
+                    "beats": [
+                        "Rank each variable separately, both in the same direction.",
+                        "Ties share the average of the ranks they occupy.",
+                        "Run linear regression on the two RANK lists — that is $r_s$.",
+                        "No ties? The $1 - 6\\sum d^2 / (n(n^2-1))$ shortcut agrees exactly.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Ranks, $\\sum d^{2}$, and a comparison",
+                    "problemId": "aisl-410-we1",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Ties",
+                    "title": "Two values are equal",
+                    "prompt": (
+                        "In a list, two values tie for the 4th and 5th smallest. Their ranks are"
+                    ),
+                    "options": [
+                        "$4.5$ and $4.5$",
+                        "$4$ and $5$",
+                        "$4$ and $4$",
+                        "$5$ and $5$",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Tied values take the average of the positions they occupy: "
+                        "$\\frac{4+5}{2} = 4.5$ each. Giving them $4$ and $5$ would claim an "
+                        "order the data does not have."
+                    ),
+                    "check": [
+                        "Rational(4 + 5, 2) == Rational(9, 2)",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Perfect order, imperfect line",
+                    "problemId": "aisl-410-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Which coefficient?",
+                    "title": "Curved but always rising",
+                    "prompt": (
+                        "A relationship is strictly increasing but clearly curved. The better "
+                        "summary is"
+                    ),
+                    "options": [
+                        "Spearman's $r_s$, because the relationship is monotonic",
+                        "Pearson's $r$, because it uses the actual values",
+                        "Pearson's $r$, because $r_s$ only works for straight lines",
+                        "neither — correlation cannot describe curves",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "Spearman measures whether one variable rises consistently with the "
+                        "other, which is exactly what 'strictly increasing' means. Pearson would "
+                        "report the curve as a weakened straight line and understate the "
+                        "relationship."
+                    ),
+                    "check": [
+                        "1 > Rational(933, 1000)",
+                    ],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "Show the rank table",
+                    "body": (
+                        "Write the two rank rows and the $d$ row before computing anything. It "
+                        "is where the method marks live, it makes a mis-ranking visible, and it "
+                        "gives the examiner something to award when the final arithmetic slips."
+                    ),
+                },
+                {"kind": "tryIt", "problemId": "aisl-410-t1"},
+                {"kind": "tryIt", "problemId": "aisl-410-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Spearman, compressed",
+                    "points": [
+                        "$r_s$ is Pearson's $r$ on the ranks.",
+                        "Ties take the average rank; then the $d^2$ shortcut is only approximate.",
+                        "Spearman measures monotonic agreement, Pearson measures straightness.",
+                        "Outliers move $r$ a lot and $r_s$ hardly at all.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Lesson 11 — AI SL 4.11: hypothesis testing
+# ===========================================================================
+def lesson_hypothesis_tests():
+    return {
+        "slug": "hypothesis-testing",
+        "title": "Hypothesis Tests: $\\chi^2$ and $t$",
+        "concreteComparison": (
+            "A coin lands heads seven times in ten. Suspicious, or ordinary luck? A hypothesis "
+            "test answers exactly that: it assumes nothing is going on, works out how surprising "
+            "the data would then be, and rejects the assumption only when the surprise is large "
+            "enough."
+        ),
+        "objective": (
+            "State hypotheses, run a $\\chi^2$ test for independence, a $\\chi^2$ goodness-of-fit "
+            "test and a $t$-test on technology, and write the conclusion in context."
+        ),
+        "concept": [
+            "**Syllabus card — AI SL 4.11.** Formulation of null and alternative hypotheses; "
+            "significance levels; $p$-values; expected and observed frequencies; the $\\chi^2$ "
+            "test for independence with contingency tables, degrees of freedom and critical "
+            "values; the $\\chi^2$ goodness-of-fit test; the $t$-test. **Papers 1 and 2.** The "
+            "second code with no counterpart in Analysis & Approaches.",
+            "Every test has the same skeleton. $H_0$ says nothing is going on — the variables "
+            "are independent, the data fits the model, the means are equal. $H_1$ says something "
+            "is. You compute a test statistic and its $p$-value, compare with the significance "
+            "level, and conclude. The DECISION rule never changes: $p < $ significance level "
+            "means REJECT $H_0$.",
+            "For a $\\chi^2$ test of INDEPENDENCE, the expected frequency in a cell is "
+            "$\\dfrac{\\text{row total} \\times \\text{column total}}{\\text{grand total}}$, and "
+            "the degrees of freedom are $(r-1)(c-1)$ for an $r \\times c$ table. The statistic "
+            "$\\chi^2 = \\sum \\dfrac{(f_o - f_e)^2}{f_e}$ grows as observation departs from "
+            "expectation, so a LARGE $\\chi^2$ argues against independence.",
+            "For GOODNESS OF FIT, $H_0$ names a claimed distribution (a fair die, an equal "
+            "split, a stated set of proportions), the expected frequencies come from it, and the "
+            "degrees of freedom are $k - 1$ for $k$ categories — one fewer because the total is "
+            "fixed. The statistic and the decision rule are otherwise identical.",
+            "The $t$-TEST compares MEANS rather than frequencies, for data that is "
+            "approximately normal. $H_0$ says the two population means are equal; $H_1$ says "
+            "they differ, or that one is larger — and a one-tailed alternative must be justified "
+            "by the context, not chosen after seeing the data.",
+            "The conclusion sentence is worth its own mark and has a fixed shape: compare, "
+            "decide, interpret. 'Since $p = 0.013 < 0.05$ we reject $H_0$; there is significant "
+            "evidence that preference depends on gender.' Never write 'accept $H_0$' — failing "
+            "to find evidence is not proof of no effect."
+        ],
+        "keyIdea": (
+            "$H_0$ is the boring explanation. Compute $p$, compare with the significance level, "
+            "and reject only if $p$ is smaller — then say what that means in context."
+        ),
+        "facts": [
+            {
+                "title": "Expected frequency in a contingency table",
+                "latex": "f_e = \\frac{\\text{row total} \\times \\text{column total}}{\\text{grand total}}",
+                "explanation": "Booklet (AI SL 4.11). What independence would predict.",
+            },
+            {
+                "title": "The chi-squared statistic",
+                "latex": "\\chi^2_{\\text{calc}} = \\sum \\frac{(f_o - f_e)^2}{f_e}",
+                "explanation": "Booklet. Large values argue against $H_0$.",
+            },
+            {
+                "title": "Degrees of freedom",
+                "latex": "\\text{independence: } (r-1)(c-1) \\qquad \\text{goodness of fit: } k-1",
+                "explanation": "Needed to look up the critical value — and easy marks when stated.",
+            },
+        ],
+        "workedExamples": [
+            {
+                "id": "aisl-411-we1",
+                "statement": (
+                    "A survey of $200$ people records gender against preferred product:  \n"
+                    "Male: A $30$, B $45$, C $25$ (total $100$)  \n"
+                    "Female: A $50$, B $35$, C $15$ (total $100$)  \n"
+                    "A $\\chi^2$ test for independence is performed at the $5\\%$ level.  \n"
+                    "**(a)** State the hypotheses. **[2]**  \n"
+                    "**(b)** Find the expected frequency for male–A. **[2]**  \n"
+                    "**(c)** Given $\\chi^2_{\\text{calc}} = 8.75$, state the degrees of freedom "
+                    "and the $p$-value, and give the conclusion. **[5]**"
+                ),
+                "solution": (
+                    "**(a)** $H_0$: gender and product preference are independent; $H_1$: they "
+                    "are not independent *(A1 A1)*.  \n"
+                    "**(b)** Column A total is $30 + 50 = 80$, so "
+                    "$f_e = \\dfrac{100 \\times 80}{200}$ *(M1)* $= 40$ *(A1)*.  \n"
+                    "**(c)** $\\nu = (2-1)(3-1) = 2$ *(A1)*. From the GDC, "
+                    "$p = 0.0126$ *(A1)*. Since $0.0126 < 0.05$ *(M1)* we REJECT $H_0$ *(A1)*: "
+                    "there is significant evidence that product preference depends on gender "
+                    "*(A1)*.  \n"
+                    "**Narrative:** the expected table here is $40, 40, 20$ in both rows, "
+                    "because the two row totals are equal — so every departure from those "
+                    "numbers is visible by eye, and the men's preference for B against the "
+                    "women's for A is what drives $\\chi^2$ up. The critical value at $5\\%$ "
+                    "with $\\nu = 2$ is $5.991$, and $8.75$ exceeds it: the critical-value route "
+                    "and the $p$-value route always agree, and quoting either earns the mark."
+                ),
+                "check": [
+                    "30 + 50 == 80",
+                    "Rational(100*80, 200) == 40",
+                    "Rational(100*80, 200) == 40",
+                    "Rational(100*40, 200) == 20",
+                    "(2 - 1)*(3 - 1) == 2",
+                    "Rational(10**2, 40) + Rational(5**2, 40) + Rational(5**2, 20) + Rational(10**2, 40) + Rational(5**2, 40) + Rational(5**2, 20) == Rational(875, 100)",
+                    "Abs(exp(-Rational(875, 200)) - Rational(126, 10000)) < Rational(1, 10000)",
+                    "Rational(126, 10000) < Rational(5, 100)",
+                ],
+            },
+            {
+                "id": "aisl-411-we2",
+                "statement": (
+                    "A die is rolled $60$ times, giving: $1$: eight, $2$: twelve, $3$: nine, "
+                    "$4$: fourteen, $5$: six, $6$: eleven. A goodness-of-fit test at the $5\\%$ "
+                    "level is used to test whether the die is fair.  \n"
+                    "**(a)** State the hypotheses and the expected frequency for each face. "
+                    "**[3]**  \n"
+                    "**(b)** Show that $\\chi^2_{\\text{calc}} = 4.2$. **[3]**  \n"
+                    "**(c)** State the degrees of freedom and give the conclusion, using the "
+                    "critical value $11.070$. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $H_0$: the die is fair (all six faces equally likely); $H_1$: the "
+                    "die is not fair *(A1 A1)*. Each expected frequency is "
+                    "$\\dfrac{60}{6} = 10$ *(A1)*.  \n"
+                    "**(b)** $\\chi^2 = \\dfrac{(8-10)^2 + (12-10)^2 + (9-10)^2 + (14-10)^2 + "
+                    "(6-10)^2 + (11-10)^2}{10}$ *(M1 A1)* "
+                    "$= \\dfrac{4 + 4 + 1 + 16 + 16 + 1}{10} = \\dfrac{42}{10} = 4.2$ "
+                    "*(AG)*.  \n"
+                    "**(c)** $\\nu = 6 - 1 = 5$ *(A1)*. Since $4.2 < 11.070$ *(M1)* we do NOT "
+                    "reject $H_0$: there is insufficient evidence that the die is unfair "
+                    "*(A1)*.  \n"
+                    "**Narrative:** the shared denominator is what makes (b) tidy — every "
+                    "expected frequency is $10$, so the whole statistic is one sum of squared "
+                    "differences over $10$. The conclusion is deliberately cautious: $4.2$ is a "
+                    "long way below the critical value, but 'we have not shown the die is "
+                    "unfair' is a different claim from 'the die is fair', and only the first is "
+                    "supported."
+                ),
+                "check": [
+                    "Rational(60, 6) == 10",
+                    "(8 - 10)**2 + (12 - 10)**2 + (9 - 10)**2 + (14 - 10)**2 + (6 - 10)**2 + (11 - 10)**2 == 42",
+                    "Rational(42, 10) == Rational(21, 5)",
+                    "6 - 1 == 5",
+                    "Rational(42, 10) < Rational(11070, 1000)",
+                    "8 + 12 + 9 + 14 + 6 + 11 == 60",
+                    "Abs(uppergamma(Rational(5, 2), Rational(42, 20))/gamma(Rational(5, 2)) - Rational(521, 1000)) < Rational(1, 1000)",
+                ],
+            },
+        ],
+        "commonMistakes": [
+            {
+                "text": "Writing 'accept $H_0$'.",
+                "correction": "Failing to find evidence is not proof of no effect. Write 'do not reject $H_0$; there is insufficient evidence that…'.",
+                "authored": True,
+            },
+            {
+                "text": "Rejecting $H_0$ because $p$ is large.",
+                "correction": "The rule is one way round: reject only when $p <$ the significance level. A large $p$ means the data is unsurprising under $H_0$.",
+                "authored": True,
+            },
+            {
+                "text": "Using $rc$ or $n - 1$ for the degrees of freedom of a contingency table.",
+                "correction": "$(r-1)(c-1)$. A $2 \\times 3$ table has $\\nu = 2$, not $6$ and not $5$ — and the wrong $\\nu$ gives the wrong critical value.",
+                "authored": True,
+            },
+        ],
+        "tryIt": [
+            {
+                "id": "aisl-411-t1",
+                "statement": (
+                    "A $\\chi^2$ test for independence uses a $4 \\times 3$ contingency table.  \n"
+                    "**(a)** State the degrees of freedom. **[2]**  \n"
+                    "**(b)** The test gives $p = 0.032$. State the conclusion at the $5\\%$ "
+                    "level and at the $1\\%$ level. **[3]**"
+                ),
+                "solution": (
+                    "**(a)** $\\nu = (4-1)(3-1) = 6$ *(M1 A1)*.  \n"
+                    "**(b)** At $5\\%$: $0.032 < 0.05$, so reject $H_0$ *(A1)*. At $1\\%$: "
+                    "$0.032 > 0.01$, so do not reject $H_0$ *(A1)*. The same data supports "
+                    "different conclusions at different significance levels, which is why the "
+                    "level must be stated *(R1)*."
+                ),
+                "check": [
+                    "(4 - 1)*(3 - 1) == 6",
+                    "Rational(32, 1000) < Rational(5, 100)",
+                    "Rational(32, 1000) > Rational(1, 100)",
+                ],
+            },
+            {
+                "id": "aisl-411-t2",
+                "statement": (
+                    "A $t$-test compares the mean yields of two fertilisers, giving "
+                    "$p = 0.18$. State the hypotheses and the conclusion at the $5\\%$ level. "
+                    "**[3]**"
+                ),
+                "solution": (
+                    "$H_0$: the two population mean yields are equal; $H_1$: they are not equal "
+                    "*(A1 A1)*.  \n"
+                    "Since $0.18 > 0.05$ we do not reject $H_0$: there is insufficient evidence "
+                    "of a difference in mean yield between the fertilisers *(A1)*."
+                ),
+                "check": [
+                    "Rational(18, 100) > Rational(5, 100)",
+                ],
+            },
+        ],
+        "interactive": {
+            "steps": [
+                {
+                    "kind": "teach",
+                    "eyebrow": "AI SL 4.11 · Papers 1 & 2",
+                    "title": "How surprised should we be?",
+                    "body": (
+                        "A hypothesis test starts by assuming nothing interesting is happening, "
+                        "then measures how unlikely the observed data would be under that "
+                        "assumption. The $p$-value IS that unlikeliness, and the significance "
+                        "level is how unlikely you insist on before changing your mind."
+                    ),
+                },
+                {
+                    "kind": "teach",
+                    "eyebrow": "Method",
+                    "title": "Every test, same five steps",
+                    "beats": [
+                        "State $H_0$ and $H_1$ in context.",
+                        "Name the test and the significance level.",
+                        "Compute the statistic and the $p$-value (and the degrees of freedom).",
+                        "Compare: reject $H_0$ only if $p <$ the level.",
+                        "Write the conclusion as a sentence about the situation.",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Independence, from table to conclusion",
+                    "problemId": "aisl-411-we1",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Degrees of freedom",
+                    "title": "A $3 \\times 4$ table",
+                    "prompt": (
+                        "For a $\\chi^2$ test of independence on a $3 \\times 4$ contingency "
+                        "table, $\\nu$ is"
+                    ),
+                    "options": ["$6$", "$12$", "$11$", "$7$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$(3-1)(4-1) = 2 \\times 3 = 6$. The row and column totals are fixed, "
+                        "so once six cells are known the rest follow — that is what the degrees "
+                        "of freedom count."
+                    ),
+                    "check": [
+                        "(3 - 1)*(4 - 1) == 6",
+                    ],
+                },
+                {
+                    "kind": "worked",
+                    "eyebrow": "Exam format",
+                    "title": "Goodness of fit for a die",
+                    "problemId": "aisl-411-we2",
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "The decision rule",
+                    "title": "Which way round?",
+                    "prompt": (
+                        "A test at the $5\\%$ level returns $p = 0.07$. The correct conclusion is"
+                    ),
+                    "options": [
+                        "do not reject $H_0$",
+                        "reject $H_0$",
+                        "accept $H_0$",
+                        "the test is invalid",
+                    ],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$0.07 > 0.05$, so the data is not surprising enough under $H_0$ to "
+                        "reject it. 'Accept $H_0$' is never written: the test has failed to find "
+                        "evidence, which is not the same as finding evidence of no effect."
+                    ),
+                    "check": [
+                        "Rational(7, 100) > Rational(5, 100)",
+                    ],
+                },
+                {
+                    "kind": "tapQuestion",
+                    "eyebrow": "Expected frequency",
+                    "title": "Row times column, over total",
+                    "prompt": (
+                        "In a contingency table with grand total $150$, a cell's row total is "
+                        "$60$ and its column total is $50$. Its expected frequency is"
+                    ),
+                    "options": ["$20$", "$110$", "$30$", "$25$"],
+                    "correctIndex": 0,
+                    "explanation": (
+                        "$\\dfrac{60 \\times 50}{150} = 20$. This is the count independence "
+                        "would predict: $\\frac{60}{150}$ of the column's $50$."
+                    ),
+                    "check": [
+                        "Rational(60*50, 150) == 20",
+                        "Rational(60, 150)*50 == 20",
+                    ],
+                },
+                {
+                    "kind": "tip",
+                    "eyebrow": "Exam craft",
+                    "title": "The conclusion has three parts",
+                    "body": (
+                        "Compare, decide, interpret — in that order and in one sentence. 'Since "
+                        "$p = 0.0126 < 0.05$, reject $H_0$: there is significant evidence that "
+                        "preference depends on gender.' A decision with no comparison, or with "
+                        "no context, drops marks that cost nothing to earn."
+                    ),
+                },
+                {"kind": "tryIt", "problemId": "aisl-411-t1"},
+                {"kind": "tryIt", "problemId": "aisl-411-t2"},
+                {
+                    "kind": "recap",
+                    "title": "Hypothesis testing, compressed",
+                    "points": [
+                        "$H_0$ is the boring explanation; $H_1$ is the interesting one.",
+                        "$f_e = \\frac{\\text{row} \\times \\text{column}}{\\text{total}}$; $\\nu = (r-1)(c-1)$, or $k-1$ for goodness of fit.",
+                        "Reject $H_0$ only when $p <$ the significance level.",
+                        "Never 'accept $H_0$' — say 'insufficient evidence'.",
+                    ],
+                },
+            ]
+        },
+    }
+
+
+# ===========================================================================
+# Unit banks
+# ===========================================================================
+def practice_bank():
+    return [
+        {
+            "id": "aisl-sp-p01",
+            "statement": (
+                "A population of $900$ contains $540$ women and $360$ men. Find the stratified "
+                "sample sizes for a total sample of $150$. **[3]**"
+            ),
+            "solution": (
+                "Sampling fraction $\\dfrac{150}{900} = \\dfrac{1}{6}$ *(M1)*.  \n"
+                "Women: $540 \\div 6 = 90$; men: $360 \\div 6 = 60$ *(A1 A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.1", "mono": True}, {"text": "P1"}],
+            "check": [
+                "Rational(150, 900) == Rational(1, 6)",
+                "Rational(540, 6) == 90",
+                "Rational(360, 6) == 60",
+                "90 + 60 == 150",
+            ],
+        },
+        {
+            "id": "aisl-sp-p02",
+            "statement": (
+                "A club of $250$ members is sampled by taking every $5$th name from an "
+                "alphabetical list. Name the technique and state the sample size. **[2]**"
+            ),
+            "solution": (
+                "Systematic sampling *(A1)*.  \n"
+                "Sample size $= \\dfrac{250}{5} = 50$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.1", "mono": True}, {"text": "P1"}],
+            "check": ["Rational(250, 5) == 50"],
+        },
+        {
+            "id": "aisl-sp-p03",
+            "statement": (
+                "For the data $5, 8, 9, 12, 15, 15, 20, 24$, find the five-number summary and "
+                "the interquartile range. **[4]**"
+            ),
+            "solution": (
+                "Minimum $5$, maximum $24$ *(A1)*. Median $= \\dfrac{12 + 15}{2} = 13.5$ "
+                "*(A1)*.  \n"
+                "$Q_1 = \\dfrac{8 + 9}{2} = 8.5$ and $Q_3 = \\dfrac{15 + 20}{2} = 17.5$ "
+                "*(A1)*, so $\\text{IQR} = 9$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.2", "mono": True}, {"text": "P1"}],
+            "check": [
+                "Rational(12 + 15, 2) == Rational(27, 2)",
+                "Rational(8 + 9, 2) == Rational(17, 2)",
+                "Rational(15 + 20, 2) == Rational(35, 2)",
+                "Rational(35, 2) - Rational(17, 2) == 9",
+            ],
+        },
+        {
+            "id": "aisl-sp-p04",
+            "statement": (
+                "A dataset has $Q_1 = 22$ and $Q_3 = 34$. Determine whether $55$ is an outlier. "
+                "**[3]**"
+            ),
+            "solution": (
+                "$\\text{IQR} = 34 - 22 = 12$ *(A1)*.  \n"
+                "Upper fence $= 34 + 1.5(12) = 52$ *(M1)*.  \n"
+                "Since $55 > 52$, it is an outlier *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.2", "mono": True}, {"text": "P1"}],
+            "check": [
+                "34 - 22 == 12",
+                "34 + Rational(3, 2)*12 == 52",
+                "55 > 52",
+            ],
+        },
+        {
+            "id": "aisl-sp-p05",
+            "statement": (
+                "Estimate the mean of the grouped data: $0 \\le x < 10$, $f = 5$; "
+                "$10 \\le x < 20$, $f = 12$; $20 \\le x < 30$, $f = 8$; $30 \\le x < 40$, "
+                "$f = 5$. **[3]**"
+            ),
+            "solution": (
+                "Midpoints $5, 15, 25, 35$ *(M1)*.  \n"
+                "$\\sum fx = 25 + 180 + 200 + 175 = 580$ and $\\sum f = 30$ *(A1)*, so "
+                "$\\bar{x} = \\dfrac{580}{30} = 19.3$ (3 s.f.) *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.3", "mono": True}, {"text": "P2"}],
+            "check": [
+                "5*5 + 12*15 + 8*25 + 5*35 == 580",
+                "5 + 12 + 8 + 5 == 30",
+                "Abs(Rational(580, 30) - Rational(193, 10)) < Rational(5, 100)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p06",
+            "statement": (
+                "A dataset has mean $40$ and standard deviation $6$. Every value is doubled and "
+                "then increased by $5$. Find the new mean, standard deviation and variance. "
+                "**[3]**"
+            ),
+            "solution": (
+                "New mean $= 2(40) + 5 = 85$ *(A1)*.  \n"
+                "New standard deviation $= 2 \\times 6 = 12$ — the $+5$ has no effect *(A1)*.  \n"
+                "New variance $= 12^{2} = 144$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.3", "mono": True}, {"text": "P1"}],
+            "check": [
+                "2*40 + 5 == 85",
+                "2*6 == 12",
+                "12**2 == 144",
+                "2**2*6**2 == 144",
+            ],
+        },
+        {
+            "id": "aisl-sp-p07",
+            "statement": (
+                "A regression line is $y = 0.45x + 12$, where $x$ is minutes of daily exercise "
+                "and $y$ is a fitness score. Interpret the gradient, and predict the score for "
+                "$40$ minutes. **[3]**"
+            ),
+            "solution": (
+                "Each additional minute of daily exercise is associated with a $0.45$ increase "
+                "in fitness score *(A1 A1)*.  \n"
+                "At $x = 40$: $y = 0.45(40) + 12 = 30$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.4", "mono": True}, {"text": "P2"}],
+            "check": [
+                "Rational(45, 100)*40 + 12 == 30",
+                "Rational(45, 100)*41 + 12 - (Rational(45, 100)*40 + 12) == Rational(45, 100)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p08",
+            "statement": (
+                "A study reports $r = -0.94$. Describe the correlation, and state whether this "
+                "shows that $x$ causes $y$. **[2]**"
+            ),
+            "solution": (
+                "A strong negative linear correlation *(A1)*.  \n"
+                "It does not show causation — a third variable may influence both *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.4", "mono": True}, {"text": "P1"}],
+            "check": [
+                "Rational(-94, 100) < Rational(-9, 10)",
+                "Abs(Rational(-94, 100)) < 1",
+            ],
+        },
+        {
+            "id": "aisl-sp-p09",
+            "statement": (
+                "A fair six-sided die is rolled.  \n"
+                "**(a)** Find the probability of a prime number. **[2]**  \n"
+                "**(b)** Find the expected number of primes in $120$ rolls. **[2]**"
+            ),
+            "solution": (
+                "**(a)** The primes are $2, 3, 5$, so $P = \\dfrac{3}{6} = \\dfrac{1}{2}$ "
+                "*(M1 A1)*.  \n"
+                "**(b)** $E = 120 \\times \\dfrac{1}{2} = 60$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.5", "mono": True}, {"text": "P1"}],
+            "check": [
+                "Rational(3, 6) == Rational(1, 2)",
+                "120*Rational(1, 2) == 60",
+            ],
+        },
+        {
+            "id": "aisl-sp-p10",
+            "statement": (
+                "Two fair dice are rolled. Find the probability that at least one shows a $6$. "
+                "**[3]**"
+            ),
+            "solution": (
+                "Neither shows a $6$ in $5 \\times 5 = 25$ of the $36$ outcomes *(M1 A1)*.  \n"
+                "$P(\\text{at least one } 6) = 1 - \\dfrac{25}{36} = \\dfrac{11}{36}$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.5", "mono": True}, {"text": "P1"}],
+            "check": [
+                "5*5 == 25",
+                "1 - Rational(25, 36) == Rational(11, 36)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p11",
+            "statement": (
+                "$A$ and $B$ are independent with $P(A) = 0.6$ and $P(B) = 0.3$. Find "
+                "$P(A \\cap B)$ and $P(A \\cup B)$. **[4]**"
+            ),
+            "solution": (
+                "$P(A \\cap B) = 0.6 \\times 0.3 = 0.18$ *(M1 A1)*.  \n"
+                "$P(A \\cup B) = 0.6 + 0.3 - 0.18 = 0.72$ *(M1 A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.6", "mono": True}, {"text": "P1"}],
+            "check": [
+                "Rational(6, 10)*Rational(3, 10) == Rational(18, 100)",
+                "Rational(6, 10) + Rational(3, 10) - Rational(18, 100) == Rational(72, 100)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p12",
+            "statement": (
+                "Of $100$ students, $40$ wear glasses and $25$ of those $40$ are female. Find "
+                "the probability that a student is female given that they wear glasses. **[3]**"
+            ),
+            "solution": (
+                "$P(F \\mid G) = \\dfrac{P(F \\cap G)}{P(G)} = \\dfrac{25/100}{40/100}$ "
+                "*(M1 A1)*.  \n"
+                "$= \\dfrac{25}{40} = \\dfrac{5}{8}$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.6", "mono": True}, {"text": "P2"}],
+            "check": [
+                "Rational(25, 100)/Rational(40, 100) == Rational(5, 8)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p13",
+            "statement": (
+                "$X$ takes the values $0, 1, 2, 3$ with probabilities $0.4, 0.3, 0.2, 0.1$. "
+                "Find $E(X)$. **[3]**"
+            ),
+            "solution": (
+                "$E(X) = 0(0.4) + 1(0.3) + 2(0.2) + 3(0.1)$ *(M1 A1)* "
+                "$= 0.3 + 0.4 + 0.3 = 1$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.7", "mono": True}, {"text": "P1"}],
+            "check": [
+                "Rational(4, 10) + Rational(3, 10) + Rational(2, 10) + Rational(1, 10) == 1",
+                "0*Rational(4, 10) + 1*Rational(3, 10) + 2*Rational(2, 10) + 3*Rational(1, 10) == 1",
+            ],
+        },
+        {
+            "id": "aisl-sp-p14",
+            "statement": (
+                "$X \\sim B(8, 0.4)$. Find $P(X = 3)$, to 3 s.f., and the mean of $X$. **[3]**"
+            ),
+            "solution": (
+                "$P(X = 3) = \\binom{8}{3}(0.4)^{3}(0.6)^{5}$ *(M1)* $= 0.279$ *(A1)*.  \n"
+                "$E(X) = 8 \\times 0.4 = 3.2$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.8", "mono": True}, {"text": "P2"}],
+            "check": [
+                "Abs(binomial(8, 3)*Rational(4, 10)**3*Rational(6, 10)**5 - Rational(279, 1000)) < Rational(1, 1000)",
+                "8*Rational(4, 10) == Rational(32, 10)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p15",
+            "statement": (
+                "$X \\sim B(25, 0.6)$. Find the mean, the variance and the standard deviation "
+                "of $X$, to 3 s.f. where necessary. **[3]**"
+            ),
+            "solution": (
+                "$E(X) = 25 \\times 0.6 = 15$ *(A1)*.  \n"
+                "$\\text{Var}(X) = 25(0.6)(0.4) = 6$ *(A1)*.  \n"
+                "$\\sigma = \\sqrt{6} = 2.45$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.8", "mono": True}, {"text": "P1"}],
+            "check": [
+                "25*Rational(6, 10) == 15",
+                "25*Rational(6, 10)*Rational(4, 10) == 6",
+                "Abs(sqrt(6) - Rational(245, 100)) < Rational(5, 1000)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p16",
+            "statement": (
+                "$X \\sim N(100, 15^{2})$. Find $P(X > 120)$, to 3 s.f. **[2]**"
+            ),
+            "solution": (
+                "Normal CDF from $120$ to $10^{99}$ with $\\mu = 100$, $\\sigma = 15$ *(M1)*: "
+                "$P = 0.0912$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.9", "mono": True}, {"text": "P2"}],
+            "check": [
+                "Abs(Rational(1, 2)*(1 - erf((120 - 100)/(15*sqrt(2)))) - Rational(912, 10000)) < Rational(1, 10000)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p17",
+            "statement": (
+                "$X \\sim N(500, 80^{2})$. Find the $25$th percentile, to 3 s.f. **[3]**"
+            ),
+            "solution": (
+                "The area to the left is $0.25$, so inverse normal is used directly *(M1 A1)*: "
+                "the value is $446$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.9", "mono": True}, {"text": "P2"}],
+            "check": [
+                "Abs(500 + 80*sqrt(2)*erfinv(2*Rational(25, 100) - 1) - 446) < Rational(1, 10)",
+            ],
+        },
+        {
+            "id": "aisl-sp-p18",
+            "statement": (
+                "State the degrees of freedom for (a) a $\\chi^2$ test of independence on a "
+                "$2 \\times 5$ contingency table, and (b) a $\\chi^2$ goodness-of-fit test with "
+                "$8$ categories. **[2]**"
+            ),
+            "solution": (
+                "**(a)** $\\nu = (2-1)(5-1) = 4$ *(A1)*.  \n"
+                "**(b)** $\\nu = 8 - 1 = 7$ *(A1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.11", "mono": True}, {"text": "P1"}],
+            "check": [
+                "(2 - 1)*(5 - 1) == 4",
+                "8 - 1 == 7",
+            ],
+        },
+    ]
+
+
+def test_bank():
+    return [
+        {
+            "id": "aisl-sp-x01",
+            "statement": (
+                "Journey times, in minutes, for $60$ commuters: "
+                "$0 \\le t < 10$, $f = 8$; $10 \\le t < 20$, $f = 15$; "
+                "$20 \\le t < 30$, $f = 22$; $30 \\le t < 40$, $f = 10$; "
+                "$40 \\le t < 50$, $f = 5$.  \n"
+                "**(a)** Write down the modal class. **[1]**  \n"
+                "**(b)** Estimate the mean journey time, to 3 s.f. **[3]**  \n"
+                "**(c)** Build the cumulative frequencies and estimate the median. **[4]**  \n"
+                "**(d)** Estimate the interquartile range. **[4]**"
+            ),
+            "solution": (
+                "**(a)** $20 \\le t < 30$, with the highest frequency $22$ *(A1)*.  \n"
+                "**(b)** Midpoints $5, 15, 25, 35, 45$; "
+                "$\\sum ft = 40 + 225 + 550 + 350 + 225 = 1390$ *(M1 A1)*, so "
+                "$\\bar{t} = \\dfrac{1390}{60} = 23.2$ minutes *(A1)*.  \n"
+                "**(c)** Cumulative: $8, 23, 45, 55, 60$ *(A1)*. The median is at height "
+                "$30$ *(M1)*, inside $20 \\le t < 30$: "
+                "$20 + \\dfrac{30 - 23}{22}(10)$ *(A1)* $= 23.2$ minutes *(A1)*.  \n"
+                "**(d)** $Q_1$ at height $15$: $10 + \\dfrac{15 - 8}{15}(10) = 14.7$ "
+                "*(M1 A1)*. $Q_3$ at height $45$ falls exactly at the boundary $30$ *(A1)*. "
+                "$\\text{IQR} = 30 - 14.7 = 15.3$ minutes *(A1)*.  \n"
+                "The estimated mean and median agree to 3 s.f. here — a near-symmetric "
+                "distribution, which the frequencies confirm."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.2", "mono": True}, {"text": "P2"}],
+            "check": [
+                "8*5 + 15*15 + 22*25 + 10*35 + 5*45 == 1390",
+                "8 + 15 + 22 + 10 + 5 == 60",
+                "Abs(Rational(1390, 60) - Rational(232, 10)) < Rational(5, 100)",
+                "8 + 15 == 23",
+                "8 + 15 + 22 == 45",
+                "Abs(20 + Rational(30 - 23, 22)*10 - Rational(232, 10)) < Rational(5, 100)",
+                "Abs(10 + Rational(15 - 8, 15)*10 - Rational(147, 10)) < Rational(5, 100)",
+                "Abs(30 - (10 + Rational(15 - 8, 15)*10) - Rational(153, 10)) < Rational(5, 100)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x02",
+            "statement": (
+                "Two machines produce components. Sample lengths in mm are  \n"
+                "$A$: $12, 14, 15, 16, 18$  \n"
+                "$B$: $5, 10, 15, 20, 25$  \n"
+                "**(a)** Find the mean of each sample. **[2]**  \n"
+                "**(b)** Find the population standard deviation of each, to 3 s.f. **[4]**  \n"
+                "**(c)** Which machine is more consistent? Justify. **[2]**"
+            ),
+            "solution": (
+                "**(a)** Both means are $\\dfrac{75}{5} = 15$ mm *(A1 A1)*.  \n"
+                "**(b)** For $A$ the squared deviations are $9, 1, 0, 1, 9$, totalling $20$, so "
+                "$\\sigma_A = \\sqrt{\\dfrac{20}{5}} = 2$ *(M1 A1)*. For $B$ they are "
+                "$100, 25, 0, 25, 100$, totalling $250$, so "
+                "$\\sigma_B = \\sqrt{50} = 7.07$ *(M1 A1)*.  \n"
+                "**(c)** Machine $A$ *(A1)* — the means are identical, but $A$'s standard "
+                "deviation is much smaller, so its lengths cluster far more tightly about the "
+                "target *(R1)*.  \n"
+                "Equal means with unequal spreads is the standard demonstration that a centre "
+                "alone cannot describe a dataset."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.3", "mono": True}, {"text": "P2"}],
+            "check": [
+                "12 + 14 + 15 + 16 + 18 == 75",
+                "5 + 10 + 15 + 20 + 25 == 75",
+                "Rational(75, 5) == 15",
+                "9 + 1 + 0 + 1 + 9 == 20",
+                "sqrt(Rational(20, 5)) == 2",
+                "100 + 25 + 0 + 25 + 100 == 250",
+                "Abs(sqrt(Rational(250, 5)) - Rational(707, 100)) < Rational(5, 1000)",
+                "2 < sqrt(50)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x03",
+            "statement": (
+                "Hours revised $x$ and marks $y$ for five students:  \n"
+                "$x$: $1, 3, 5, 7, 9$  \n"
+                "$y$: $6, 11, 13, 18, 22$  \n"
+                "**(a)** Find $r$ and describe the correlation. **[3]**  \n"
+                "**(b)** Find the regression line of $y$ on $x$. **[3]**  \n"
+                "**(c)** Show that it passes through the mean point. **[2]**  \n"
+                "**(d)** Estimate the mark for $6$ hours, and comment on the reliability. "
+                "**[3]**"
+            ),
+            "solution": (
+                "**(a)** $r = 0.994$ *(M1 A1)* — a very strong positive linear correlation "
+                "*(A1)*.  \n"
+                "**(b)** $y = 1.95x + 4.25$ *(M1 A1 A1)*.  \n"
+                "**(c)** $\\bar{x} = 5$, $\\bar{y} = 14$ *(M1)*; "
+                "$1.95(5) + 4.25 = 9.75 + 4.25 = 14$ ✓ *(A1)*.  \n"
+                "**(d)** $y = 1.95(6) + 4.25 = 16.0$ (3 s.f.) *(M1 A1)*. Since $x = 6$ is "
+                "inside the data range $1 \\le x \\le 9$ and $r$ is very strong, the estimate is "
+                "reliable *(R1)*."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.4", "mono": True}, {"text": "P2"}],
+            "check": [
+                "(5*428 - 25*70)/(5*165 - 25**2) == Rational(39, 20)",
+                "(70 - Rational(39, 20)*25)/5 == Rational(17, 4)",
+                "Rational(39, 20)*5 + Rational(17, 4) == 14",
+                "Rational(25, 5) == 5",
+                "Rational(70, 5) == 14",
+                "Abs(Rational(39, 20)*6 + Rational(17, 4) - Rational(1595, 100)) < Rational(1, 100)",
+                "Abs(78/sqrt(40*154) - Rational(994, 1000)) < Rational(1, 1000)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x04",
+            "statement": (
+                "A box holds $10$ light bulbs, of which $3$ are faulty. Two are chosen at "
+                "random without replacement.  \n"
+                "**(a)** Find the probability that both are faulty. **[3]**  \n"
+                "**(b)** Find the probability that exactly one is faulty. **[3]**  \n"
+                "**(c)** Find the probability that at least one is faulty. **[3]**  \n"
+                "**(d)** Given that at least one is faulty, find the probability that both are. "
+                "**[3]**"
+            ),
+            "solution": (
+                "**(a)** $\\dfrac{3}{10} \\times \\dfrac{2}{9} = \\dfrac{1}{15}$ "
+                "*(M1 A1 A1)*.  \n"
+                "**(b)** $\\dfrac{3}{10}\\cdot\\dfrac{7}{9} + \\dfrac{7}{10}\\cdot\\dfrac{3}{9}$ "
+                "*(M1 A1)* $= \\dfrac{7}{15}$ *(A1)*.  \n"
+                "**(c)** $1 - \\dfrac{7}{10}\\cdot\\dfrac{6}{9} = 1 - \\dfrac{7}{15}$ *(M1 A1)* "
+                "$= \\dfrac{8}{15}$ *(A1)*.  \n"
+                "**(d)** $P(\\text{both} \\mid \\text{at least one}) = "
+                "\\dfrac{1/15}{8/15}$ *(M1 A1)* $= \\dfrac{1}{8}$ *(A1)*.  \n"
+                "Note the coincidence in (b) and (c): $P(\\text{exactly one})$ and "
+                "$P(\\text{none})$ both come to $\\frac{7}{15}$ here, which is a useful "
+                "arithmetic check rather than a general rule."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.6", "mono": True}, {"text": "P2"}],
+            "check": [
+                "Rational(3, 10)*Rational(2, 9) == Rational(1, 15)",
+                "Rational(3, 10)*Rational(7, 9) + Rational(7, 10)*Rational(3, 9) == Rational(7, 15)",
+                "Rational(7, 10)*Rational(6, 9) == Rational(7, 15)",
+                "1 - Rational(7, 15) == Rational(8, 15)",
+                "Rational(1, 15)/Rational(8, 15) == Rational(1, 8)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x05",
+            "statement": (
+                "A stall charges $\\$2$ to draw one ball from a bag holding $2$ gold, $3$ "
+                "silver and $15$ plain balls. Gold pays $\\$10$, silver pays $\\$4$, plain pays "
+                "nothing.  \n"
+                "**(a)** Write down the probability distribution of the net gain $G$. **[3]**  \n"
+                "**(b)** Find $E(G)$ and state who the game favours. **[3]**  \n"
+                "**(c)** Find the gold prize that would make the game fair. **[4]**"
+            ),
+            "solution": (
+                "**(a)** There are $20$ balls. Net gains: $G = 8$ with probability "
+                "$\\frac{2}{20}$, $G = 2$ with probability $\\frac{3}{20}$, $G = -2$ with "
+                "probability $\\frac{15}{20}$ *(A1 A1 A1)*.  \n"
+                "**(b)** $E(G) = 8\\left(\\frac{2}{20}\\right) + 2\\left(\\frac{3}{20}\\right) "
+                "- 2\\left(\\frac{15}{20}\\right)$ *(M1)* "
+                "$= \\dfrac{16 + 6 - 30}{20} = -\\dfrac{2}{5} = -\\$0.40$ *(A1)*. The game "
+                "favours the stall — the player loses $40$ cents per go on average *(A1)*.  \n"
+                "**(c)** With a gold prize $p$: "
+                "$(p - 2)\\dfrac{2}{20} + 2\\left(\\dfrac{3}{20}\\right) - "
+                "2\\left(\\dfrac{15}{20}\\right) = 0$ *(M1 A1)*, so "
+                "$2(p - 2) = 24$ *(A1)* and $p = \\$14$ *(A1)*.  \n"
+                "The stall's edge of $40$ cents on a $\\$2$ stake is a $20\\%$ house margin — "
+                "steep for a fairground, modest for a lottery."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.7", "mono": True}, {"text": "P2"}],
+            "check": [
+                "2 + 3 + 15 == 20",
+                "10 - 2 == 8",
+                "4 - 2 == 2",
+                "8*Rational(2, 20) + 2*Rational(3, 20) - 2*Rational(15, 20) == Rational(-2, 5)",
+                "(14 - 2)*Rational(2, 20) + 2*Rational(3, 20) - 2*Rational(15, 20) == 0",
+                "Rational(2, 5)/2 == Rational(1, 5)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x06",
+            "statement": (
+                "A seed germinates with probability $0.2$, independently of others. A tray of "
+                "$30$ seeds is planted. Let $X$ be the number that germinate.  \n"
+                "**(a)** State the distribution of $X$, and find its mean and standard "
+                "deviation, to 3 s.f. **[3]**  \n"
+                "**(b)** Find $P(X = 6)$, to 3 s.f. **[2]**  \n"
+                "**(c)** Find $P(X \\le 4)$, to 3 s.f. **[2]**  \n"
+                "**(d)** Find $P(X \\ge 9)$, to 3 s.f. **[3]**"
+            ),
+            "solution": (
+                "**(a)** $X \\sim B(30, 0.2)$ *(A1)*; $E(X) = 6$ and "
+                "$\\sigma = \\sqrt{30(0.2)(0.8)} = \\sqrt{4.8} = 2.19$ *(A1 A1)*.  \n"
+                "**(b)** Binomial PDF *(M1)*: $P(X = 6) = 0.179$ *(A1)*.  \n"
+                "**(c)** Binomial CDF up to $4$ *(M1)*: $P(X \\le 4) = 0.255$ *(A1)*.  \n"
+                "**(d)** $P(X \\ge 9) = 1 - P(X \\le 8)$ *(M1 A1)* $= 0.129$ *(A1)*.  \n"
+                "The mean of $6$ makes the answers easy to sanity-check: $P(X = 6)$ is the "
+                "largest single probability, and the tails on either side are much smaller."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.8", "mono": True}, {"text": "P2"}],
+            "check": [
+                "30*Rational(2, 10) == 6",
+                "30*Rational(2, 10)*Rational(8, 10) == Rational(24, 5)",
+                "Abs(sqrt(Rational(24, 5)) - Rational(219, 100)) < Rational(5, 1000)",
+                "Abs(binomial(30, 6)*Rational(2, 10)**6*Rational(8, 10)**24 - Rational(179, 1000)) < Rational(1, 1000)",
+                "Abs(Sum(binomial(30, k)*Rational(2, 10)**k*Rational(8, 10)**(30 - k), (k, 0, 4)).doit() - Rational(255, 1000)) < Rational(1, 1000)",
+                "Abs(1 - Sum(binomial(30, k)*Rational(2, 10)**k*Rational(8, 10)**(30 - k), (k, 0, 8)).doit() - Rational(129, 1000)) < Rational(1, 1000)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x07",
+            "statement": (
+                "A machine fills bottles with a volume that is normally distributed with mean "
+                "$2.5$ litres and standard deviation $0.4$ litres.  \n"
+                "**(a)** Find the probability that a bottle holds less than $2$ litres, to "
+                "3 s.f. **[2]**  \n"
+                "**(b)** Find the probability that a bottle holds between $2.2$ and $2.8$ "
+                "litres, to 3 s.f. **[2]**  \n"
+                "**(c)** In a batch of $500$ bottles, find the expected number under $2$ "
+                "litres. **[2]**  \n"
+                "**(d)** Find the volume exceeded by only $5\\%$ of bottles, to 3 s.f. **[3]**"
+            ),
+            "solution": (
+                "**(a)** Normal CDF from $-10^{99}$ to $2$ *(M1)*: $P = 0.106$ *(A1)*.  \n"
+                "**(b)** Normal CDF from $2.2$ to $2.8$ *(M1)*: $P = 0.547$ *(A1)*.  \n"
+                "**(c)** $500 \\times 0.10565 = 52.8$, so about $53$ bottles *(M1 A1)*.  \n"
+                "**(d)** Only $5\\%$ are above, so $95\\%$ are below: inverse normal with area "
+                "$0.95$ *(M1 A1)* gives $3.16$ litres *(A1)*.  \n"
+                "Part (b) is close to the empirical rule's $68\\%$ but lower, because "
+                "$2.2$ to $2.8$ is only $\\pm 0.75\\sigma$ rather than a full standard "
+                "deviation either side."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.9", "mono": True}, {"text": "P2"}],
+            "check": [
+                "Abs(Rational(1, 2)*(1 + erf((2 - Rational(25, 10))/(Rational(4, 10)*sqrt(2)))) - Rational(106, 1000)) < Rational(1, 1000)",
+                "Abs(Rational(1, 2)*(erf((Rational(28, 10) - Rational(25, 10))/(Rational(4, 10)*sqrt(2))) - erf((Rational(22, 10) - Rational(25, 10))/(Rational(4, 10)*sqrt(2)))) - Rational(547, 1000)) < Rational(1, 1000)",
+                "Abs(500*Rational(1, 2)*(1 + erf((2 - Rational(25, 10))/(Rational(4, 10)*sqrt(2)))) - Rational(528, 10)) < Rational(2, 10)",
+                "Abs(Rational(25, 10) + Rational(4, 10)*sqrt(2)*erfinv(2*Rational(95, 100) - 1) - Rational(316, 100)) < Rational(1, 100)",
+                "Abs(Rational(3, 10)/Rational(4, 10) - Rational(75, 100)) < Rational(1, 1000)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x08",
+            "statement": (
+                "Two judges rank the same six entries. Their rank differences are "
+                "$d = -1, 2, 0, -1, 1, -1$.  \n"
+                "**(a)** Find $\\sum d^{2}$. **[2]**  \n"
+                "**(b)** Find Spearman's $r_s$, to 3 s.f. **[3]**  \n"
+                "**(c)** Explain why Spearman's coefficient rather than Pearson's is "
+                "appropriate for ranked judgements. **[2]**  \n"
+                "**(d)** One entry is a huge outlier on both judges' raw scores. State the "
+                "effect on $r$ and on $r_s$. **[2]**"
+            ),
+            "solution": (
+                "**(a)** $1 + 4 + 0 + 1 + 1 + 1 = 8$ *(M1 A1)*.  \n"
+                "**(b)** $r_s = 1 - \\dfrac{6(8)}{6(6^{2}-1)} = 1 - \\dfrac{48}{210}$ *(M1 A1)* "
+                "$= 0.771$ *(A1)*.  \n"
+                "**(c)** The data ARE ranks — positions, not measurements — so there are no raw "
+                "values for Pearson to correlate *(A1)*, and the question of interest is whether "
+                "the judges agree on ORDER *(R1)*.  \n"
+                "**(d)** Pearson's $r$ would be pulled substantially by the outlier's raw "
+                "values *(A1)*; $r_s$ would barely change, since in the ranks the outlier is "
+                "just the top entry *(A1)*.  \n"
+                "$r_s = 0.771$ says the judges broadly agree — the one pair separated by two "
+                "places is what keeps it below $0.9$."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.10", "mono": True}, {"text": "P2"}],
+            "check": [
+                "(-1)**2 + 2**2 + 0**2 + (-1)**2 + 1**2 + (-1)**2 == 8",
+                "6*(6**2 - 1) == 210",
+                "Abs(1 - Rational(48, 210) - Rational(771, 1000)) < Rational(1, 1000)",
+                "Rational(771, 1000) < Rational(9, 10)",
+            ],
+        },
+        {
+            "id": "aisl-sp-x09",
+            "statement": (
+                "A trial records recovery against treatment:  \n"
+                "Treated: recovered $45$, not recovered $15$ (total $60$)  \n"
+                "Control: recovered $30$, not recovered $30$ (total $60$)  \n"
+                "A $\\chi^2$ test for independence is carried out at the $5\\%$ level.  \n"
+                "**(a)** State the hypotheses. **[2]**  \n"
+                "**(b)** Find the expected frequencies. **[3]**  \n"
+                "**(c)** Show that $\\chi^2_{\\text{calc}} = 8$. **[3]**  \n"
+                "**(d)** State the degrees of freedom and give the conclusion, using "
+                "$p = 0.00468$. **[4]**"
+            ),
+            "solution": (
+                "**(a)** $H_0$: recovery is independent of treatment; $H_1$: recovery is not "
+                "independent of treatment *(A1 A1)*.  \n"
+                "**(b)** Column totals are $75$ and $45$; the grand total is $120$ *(M1)*. Each "
+                "recovered cell expects $\\dfrac{60 \\times 75}{120} = 37.5$ and each "
+                "not-recovered cell $\\dfrac{60 \\times 45}{120} = 22.5$ *(A1 A1)*.  \n"
+                "**(c)** $\\chi^2 = \\dfrac{7.5^{2}}{37.5} + \\dfrac{7.5^{2}}{22.5} + "
+                "\\dfrac{7.5^{2}}{37.5} + \\dfrac{7.5^{2}}{22.5}$ *(M1 A1)* "
+                "$= 1.5 + 2.5 + 1.5 + 2.5 = 8$ *(AG)*.  \n"
+                "**(d)** $\\nu = (2-1)(2-1) = 1$ *(A1)*. Since $0.00468 < 0.05$ *(M1)* we reject "
+                "$H_0$ *(A1)*: there is significant evidence that recovery depends on treatment "
+                "*(A1)*.  \n"
+                "Every cell is off by the same $7.5$, which is forced in a $2 \\times 2$ table — "
+                "once one cell is fixed, the row and column totals determine the rest. That is "
+                "exactly what $\\nu = 1$ means."
+            ),
+            "badges": [{"text": "ib-ai-sl-4.11", "mono": True}, {"text": "P2"}],
+            "check": [
+                "45 + 30 == 75",
+                "15 + 30 == 45",
+                "Rational(60*75, 120) == Rational(75, 2)",
+                "Rational(60*45, 120) == Rational(45, 2)",
+                "45 - Rational(75, 2) == Rational(15, 2)",
+                "Rational(15, 2)**2/Rational(75, 2) + Rational(15, 2)**2/Rational(45, 2) + Rational(15, 2)**2/Rational(75, 2) + Rational(15, 2)**2/Rational(45, 2) == 8",
+                "(2 - 1)*(2 - 1) == 1",
+                "Abs(erfc(sqrt(8)/sqrt(2)) - Rational(468, 100000)) < Rational(1, 100000)",
+                "Rational(468, 100000) < Rational(5, 100)",
+            ],
+        },
+    ]
+
+
+# ===========================================================================
+# Assembly
+# ===========================================================================
+def build():
+    lessons = [
+        lesson_sampling(),
+        lesson_presenting_data(),
+        lesson_centre_and_spread(),
+        lesson_correlation_regression(),
+        lesson_probability_basics(),
+        lesson_combined_events(),
+        lesson_discrete_random_variables(),
+        lesson_binomial(),
+        lesson_normal(),
+        lesson_spearman(),
+        lesson_hypothesis_tests(),
+    ]
+    return {
+        "slug": "statistics-and-probability",
+        "title": "Statistics & Probability",
+        "unit": 4,
+        "status": "published",
+        "blurb": (
+            "AI Topic 4, complete: sampling and bias, histograms, cumulative frequency and box "
+            "plots, centre and spread, correlation and regression, probability and its laws, "
+            "discrete random variables, the binomial and normal distributions, Spearman's rank "
+            "correlation, and the chi-squared and t tests — AI SL 4.1 to 4.11, taught to "
+            "markscheme standard."
+        ),
+        "buildsOn": (
+            "Topic 2's regression and modelling process. The largest topic on the course, and "
+            "the home of the two codes Analysis & Approaches has no counterpart for: Spearman's "
+            "rank correlation and formal hypothesis testing."
+        ),
+        "lessons": lessons,
+        "practice": practice_bank(),
+        "testYourself": test_bank(),
+    }
+
+
+def selfcheck(unit):
+    from sympy import sympify
+    n_checks = 0
+    problems = []
+    for les in unit["lessons"]:
+        problems += les["workedExamples"] + les["tryIt"]
+        ids = {p["id"] for p in les["workedExamples"] + les["tryIt"]}
+        for step in les["interactive"]["steps"]:
+            if step["kind"] in ("worked", "tryIt"):
+                assert step["problemId"] in ids, f"{les['slug']}: dangling problemId {step['problemId']}"
+            if step["kind"] == "tapQuestion":
+                assert len(step["options"]) == len(set(step["options"])), f"{les['slug']}: dup options"
+                for c in step["check"]:
+                    assert bool(sympify(c)) is True, f"{les['slug']} tapQ: {c}"
+                    n_checks += 1
+    problems += unit["practice"] + unit["testYourself"]
+    ids = [p["id"] for p in problems]
+    assert len(ids) == len(set(ids)), "duplicate problem ids"
+    for p in problems:
+        for c in p["check"]:
+            assert bool(sympify(c)) is True, f"{p['id']}: NOT TRUE: {c}"
+            n_checks += 1
+    return len(problems), n_checks
+
+
+def main():
+    unit = build()
+    n_problems, n_checks = selfcheck(unit)
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w") as fh:
+        json.dump(unit, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    n_steps = sum(len(l["interactive"]["steps"]) for l in unit["lessons"])
+    print(f"wrote {os.path.relpath(OUT, ROOT)}: {len(unit['lessons'])} lessons, "
+          f"{n_steps} interactive steps, {n_problems} problems, {n_checks} sympy checks OK")
+
+
+if __name__ == "__main__":
+    main()

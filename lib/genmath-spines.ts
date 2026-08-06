@@ -1446,9 +1446,9 @@ export const IB_AI_SL_SPINE: GeometrySpineEntry[] = [
     unit: 4,
     slug: "statistics-and-probability",
     title: "Statistics & Probability",
-    blurb: "Sampling and data, summary statistics, correlation and regression, probability and its laws, discrete and normal distributions, Spearman's rank, and χ² and t-tests — AI SL 4.1 to 4.11.",
+    blurb: "Sampling and bias, histograms and box plots, centre and spread, correlation and regression, probability, discrete random variables, the binomial and normal distributions, Spearman's rank, and the χ² and t tests — AI SL 4.1 to 4.11.",
     buildsOn: "Topic 2's regression and modelling process — the largest topic on the course.",
-    live: false,
+    live: true,
   },
   {
     unit: 5,
