@@ -165,6 +165,15 @@ def run_checks(label, checks):
         except Exception as e:  # noqa: BLE001
             failures.append(f"{label}: check did not sympify: {expr!r} ({e})")
             continue
+        # The result must BE a boolean, not merely be truthy. A stray trailing
+        # comma turns "Eq(1, 2)," into the 1-tuple (False,), which is truthy —
+        # a check that asserts nothing while looking like it passed.
+        if isinstance(result, (tuple, list, set, dict, str)):
+            failures.append(
+                f"{label}: check is a {type(result).__name__}, not a true/false claim "
+                f"(a stray comma does this): {expr!r} -> {result!r}"
+            )
+            continue
         try:
             ok = bool(result) is True
         except TypeError:

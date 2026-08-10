@@ -14,6 +14,7 @@ a broken problem crashes at authoring time, before it can reach a JSON file.
 import json
 import os
 import re
+import sys
 
 from sympy import sympify  # noqa: F401  (re-exported for builders)
 
@@ -63,82 +64,49 @@ def find_unrenderable_math(text):
     return bad
 
 
-# Required keys for every interactive widget kind used by the IM builders,
-# transcribed from the config interfaces in lib/genmath-interactive.ts. A widget
-# whose config is missing a required key still type-checks (the JSON is imported
-# and cast, so tsc never sees it) and still renders — it just silently falls
-# back to a default and shows the wrong thing. That failure mode is invisible to
-# every other gate in the chain, which is why it is checked here.
-# Each entry is (required keys, every legal key). Unknown keys matter as much as
-# missing ones: a config of {"r": 13, "chord": 24} has no required key missing
-# and is still completely inert, because the component reads neither name.
-WIDGET_CONFIG_KEYS = {
-    "absoluteValue": ([], ["min", "max", "start", "color"]),
-    "algebraTiles": (["x", "units"], ["x", "units", "mode", "maxX", "maxUnits", "color"]),
-    "arcSector": ([], ["start", "radius", "color"]),
-    "balanceScale": (["mode"], ["mode", "b", "rhs", "color"]),
-    "boxPlot": (["data"], ["data", "xLabel", "showFences", "color"]),
-    "circleAngle": (["mode"], ["mode", "start", "color"]),
-    "circleFigure": ([], ["radius", "points", "objects", "angles", "arcs", "external", "showCenter", "caption"]),
-    "congruentTriangles": ([], ["sides", "angles", "answer", "caption", "color"]),
-    "conjectureTest": (["conjecture", "items"], ["conjecture", "items"]),
-    "coordGeo": (["mode"], ["mode", "a", "b", "m", "yint", "center", "r", "min", "max", "color"]),
-    "coordinateGrid": (["mode"], ["mode", "min", "max", "points", "color"]),
-    "dotPlot": (["data"], ["mode", "data", "min", "max", "xLabel", "color"]),
-    "evaluator": (["a", "b"], ["a", "b", "varName", "min", "max", "start", "color"]),
-    "expGraph": (["mode"], ["mode", "a", "b", "m", "p", "r", "years", "interactive"]),
-    "exponentBuilder": (["base", "exp"], ["base", "exp", "minBase", "maxBase", "minExp", "maxExp", "color"]),
-    "factorTree": (["n"], ["n", "color"]),
-    "histogramBins": (["data"], ["data", "min", "max", "widths", "start", "xLabel", "color"]),
-    "integerLine": ([], ["min", "max", "start", "color"]),
-    "orderOfOps": (["stages"], ["stages", "color"]),
-    "parabolaGraph": (["mode"], ["mode", "a", "h", "k", "b", "c", "v0", "interactive", "min", "max"]),
-    "patternGrow": (["pattern"], ["pattern", "maxSteps"]),
-    "polyGraph": (["mode"], ["mode", "n", "negative", "color"]),
-    "rateMeter": ([], ["topLabel", "topUnit", "top", "topMax", "topStep", "bottomLabel",
-                       "bottomUnit", "bottom", "bottomMax", "bottomStep", "rateUnit", "color"]),
-    "scatterPlot": (["mode"], ["mode", "dataset", "xLabel", "yLabel", "color"]),
-    "stepProof": (["given", "prove", "rows"], ["given", "prove", "rows", "color"]),
-    "systemGraph": (["m1", "b1", "m2", "b2"], ["m1", "b1", "m2", "b2", "interactive", "min", "max", "color"]),
-    "tangentCircle": ([], ["color"]),
-    "treeDiagram": (["mode", "stages"], ["mode", "stages", "caption"]),
-    "transformPlane": (["transform"], ["transform", "shape", "dx", "dy", "deg", "k", "min", "max", "color"]),
-    "vennCounts": (["mode", "labelA", "labelB", "onlyA", "both", "onlyB"],
-                    ["mode", "labelA", "labelB", "onlyA", "both", "onlyB", "neither", "countNoun"]),
-}
+# The interactive-widget config contract lives in scripts/widget_contract.py,
+# DERIVED by parsing lib/genmath-interactive.ts rather than transcribed here.
+# A widget whose config is missing a required key still type-checks (the JSON
+# is imported and cast, so tsc never sees it) and still renders — it just
+# silently falls back to a default and shows the wrong thing. That failure mode
+# is invisible to every other gate in the chain, which is why it is checked at
+# build time as well as at gate time.
+#
+# This used to be a hand-written allowlist, and it had drifted: it rejected
+# `coef` on balanceScale (declared on the interface since the component was
+# written) and knew nothing of about half the widget kinds, which meant an
+# author reaching for a new widget hit a spurious "unknown widget kind" error.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from widget_contract import config_problems, load_widget_contract  # noqa: E402
 
-# Steps that carry no `config` at all — prose and problem references.
+WIDGET_CONTRACT = load_widget_contract()
+
+# Step kinds that carry no `config` at all — prose, problem references and
+# tapQuestion (which carries its options inline, not in a config object).
 WIDGET_EXEMPT_KINDS = {"teach", "tip", "funFact", "recap", "worked", "tryIt", "tapQuestion"}
+
+# Every config-carrying kind the components know about, straight from the
+# discriminated union. A kind that is neither exempt nor here is a typo.
+KNOWN_WIDGET_KINDS = set(WIDGET_CONTRACT) | WIDGET_EXEMPT_KINDS | {
+    "concept", "workedSet", "tryItSet",
+}
 
 
 def check_widget_configs(lessons):
-    """Missing required config keys, reported all at once."""
+    """Every widget-config defect in the unit, reported in one pass."""
     problems = []
     for les in lessons:
         for i, step in enumerate(les["interactive"]["steps"]):
             kind = step["kind"]
-            if kind in WIDGET_EXEMPT_KINDS:
-                continue
-            if kind not in WIDGET_CONFIG_KEYS:
+            where = f"{les['slug']}.steps[{i}]"
+            if kind not in KNOWN_WIDGET_KINDS:
                 problems.append(
-                    f"{les['slug']}.steps[{i}]: unknown widget kind {kind!r} — add it to "
-                    f"WIDGET_CONFIG_KEYS after checking lib/genmath-interactive.ts"
+                    f"{where}: unknown step kind {kind!r} — check the discriminated "
+                    f"union at the bottom of lib/genmath-interactive.ts"
                 )
                 continue
-            required, allowed = WIDGET_CONFIG_KEYS[kind]
-            config = step.get("config", {})
-            missing = [key for key in required if key not in config]
-            unknown = [key for key in sorted(config) if key not in allowed]
-            if missing:
-                problems.append(
-                    f"{les['slug']}.steps[{i}] ({kind}): config missing {missing} "
-                    f"(has {sorted(config)})"
-                )
-            if unknown:
-                problems.append(
-                    f"{les['slug']}.steps[{i}] ({kind}): config has unknown key(s) {unknown} "
-                    f"— the component ignores them, so the widget silently uses defaults"
-                )
+            for msg in config_problems(WIDGET_CONTRACT, kind, step.get("config")):
+                problems.append(f"{where} ({kind}): {msg}")
     return problems
 
 
@@ -169,6 +137,15 @@ def assert_checks(where, checks):
             raise SystemExit(f"{where}: check does not sympify: {expr!r} ({exc})")
         # Mirror scripts/verify-genmath.py exactly: sympy returns BooleanTrue,
         # not Python True, and an undecidable relational raises on bool().
+        #
+        # The result must BE a boolean, not merely be truthy. A stray trailing
+        # comma turns "Eq(1, 2)," into the 1-tuple (False,), which is truthy
+        # and would otherwise sail through — a check that verifies nothing.
+        if isinstance(value, (tuple, list, set, dict, str)):
+            raise SystemExit(
+                f"{where}: check is a {type(value).__name__}, not a true/false "
+                f"claim (a stray comma does this): {expr!r} -> {value!r}"
+            )
         try:
             ok = bool(value) is True
         except TypeError:

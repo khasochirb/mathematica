@@ -438,7 +438,7 @@ def lesson_operations():
                 "$x \\ne -1$. Check at $x = 1$: $2 + \\frac{3}{2} = \\frac{7}{2}$ and "
                 "$\\frac{7}{2} $ ✓",
                 [
-                    "Eq(expand(2*(x + 1) + 3*x), 5*x + 2),",
+                    "Eq(expand(2*(x + 1) + 3*x), 5*x + 2)",
                     "Eq(Rational(2,1) + Rational(3,2), Rational(7,2))",
                     "Eq(Rational(5*1 + 2, 1*(1 + 1)), Rational(7,2))",
                 ],
