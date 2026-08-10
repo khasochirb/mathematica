@@ -23,6 +23,9 @@ import satLinearFunctions from "@/data/genmath/sat/linear-functions.json";
 import satSystemsLinear from "@/data/genmath/sat/systems-of-linear-equations.json";
 import satLinearInequalities from "@/data/genmath/sat/linear-inequalities.json";
 import satEquivalentExpressions from "@/data/genmath/sat/equivalent-expressions.json";
+import satNonlinearEqOneVar from "@/data/genmath/sat/nonlinear-equations-one-variable.json";
+import satNonlinearSystems from "@/data/genmath/sat/systems-nonlinear-two-variables.json";
+import satNonlinearFunctions from "@/data/genmath/sat/nonlinear-functions.json";
 
 const satUnits: CourseUnit[] = [
   satLinearEqOneVar as unknown as CourseUnit,
@@ -31,6 +34,9 @@ const satUnits: CourseUnit[] = [
   satSystemsLinear as unknown as CourseUnit,
   satLinearInequalities as unknown as CourseUnit,
   satEquivalentExpressions as unknown as CourseUnit,
+  satNonlinearEqOneVar as unknown as CourseUnit,
+  satNonlinearSystems as unknown as CourseUnit,
+  satNonlinearFunctions as unknown as CourseUnit,
 ];
 
 /** Every authored SAT unit, in registry order. */

@@ -92,24 +92,9 @@ export const SAT_COURSES: SatDomainCourse[] = [
       "Everything nonlinear, and the same share of the test as Algebra. Rewriting expressions into equivalent forms, solving nonlinear equations, systems where a line meets a curve, and the quadratic, exponential, polynomial and rational functions behind them.",
     units: [
       live(1, "equivalent-expressions"),
-      planned(
-        2,
-        "nonlinear-equations-one-variable",
-        "Nonlinear Equations in One Variable",
-        "Quadratics by factoring, square roots and the formula; radical and rational equations and their extraneous solutions; exponential and absolute-value equations.",
-      ),
-      planned(
-        3,
-        "systems-nonlinear-two-variables",
-        "Systems of Equations in Two Variables",
-        "A line meeting a parabola or a circle: substitution into a curve, and what the discriminant says about how many times they cross.",
-      ),
-      planned(
-        4,
-        "nonlinear-functions",
-        "Nonlinear Functions",
-        "Quadratic functions in all three forms, exponential growth and decay, polynomial and rational graphs, and the transformations that move any of them.",
-      ),
+      live(2, "nonlinear-equations-one-variable", "Factoring from Unit 1 — every quadratic route starts there."),
+      live(3, "systems-nonlinear-two-variables", "Quadratics from Unit 2, and linear systems from the Algebra course."),
+      live(4, "nonlinear-functions", "Quadratics from Unit 2 and the equivalent forms of Unit 1."),
     ],
   },
   {

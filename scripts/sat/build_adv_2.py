@@ -1,0 +1,1080 @@
+#!/usr/bin/env python3
+"""SAT Math — Advanced Math, Unit 2: Nonlinear equations in one variable.
+
+Builds data/genmath/sat/nonlinear-equations-one-variable.json. Three lessons:
+quadratics by every route the test uses, radical and rational equations with
+their extraneous solutions, and exponential and absolute-value equations.
+
+Run: python3 scripts/sat/build_adv_2.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "im"))
+
+from imbuild import fact, lesson, mistake, problem, write_unit  # noqa: E402
+
+COURSE = "sat"
+UNIT_SLUG = "nonlinear-equations-one-variable"
+TAG = {"text": "sat-nonlinear-eq-one-var", "mono": True}
+
+
+def _b(level):
+    return [TAG, {"text": level}]
+
+
+# ===========================================================================
+# Lesson 1 — quadratics
+# ===========================================================================
+
+def lesson_quadratics():
+    worked = [
+        problem(
+            "sat-nq1-w1",
+            "What is the sum of the solutions to $x^{2} - 7x + 12 = 0$?",
+            "**Answer.** $7$.  \n"
+            "Factor: two numbers multiplying to $12$ and adding to $-7$ are $-3$ and $-4$.\n"
+            "$$(x - 3)(x - 4) = 0$$\n"
+            "A product is zero only when one of its factors is zero, so $x = 3$ or $x = 4$, "
+            "and the sum is $7$.  \n"
+            "There is a shortcut worth knowing. For $ax^{2} + bx + c = 0$ the solutions always "
+            "sum to $-\\frac{b}{a}$ and multiply to $\\frac{c}{a}$. Here that is "
+            "$-\\frac{-7}{1} = 7$ and $\\frac{12}{1} = 12$ — and $3 + 4 = 7$, $3 \\times 4 = "
+            "12$ confirm both.  \n"
+            "When the SAT asks for a SUM or a PRODUCT of solutions rather than the solutions "
+            "themselves, that shortcut answers the question without factoring at all.",
+            [
+                "Eq(expand((x - 3)*(x - 4)), x**2 - 7*x + 12)",
+                "Eq(3 + 4, 7)",
+                "Eq(3*4, 12)",
+                "Eq(sum(solve(Eq(x**2 - 7*x + 12, 0), x)), 7)",
+            ],
+        ),
+        problem(
+            "sat-nq1-w2",
+            "$$2(x - 5)^{2} = 72$$\n"
+            "What are the solutions to the equation above?",
+            "**Answer.** $x = 11$ and $x = -1$.  \n"
+            "The variable appears only inside a square, so there is no need for factoring or "
+            "the formula — isolate the square and take roots.\n"
+            "$$(x - 5)^{2} = 36$$\n"
+            "Now take the square root of both sides, remembering BOTH signs:\n"
+            "$$x - 5 = \\pm 6$$\n"
+            "$$x = 5 + 6 = 11 \\qquad \\text{or} \\qquad x = 5 - 6 = -1$$\n"
+            "Check: $2(11 - 5)^{2} = 2 \\cdot 36 = 72$, and $2(-1 - 5)^{2} = 2 \\cdot 36 = "
+            "72$.  \n"
+            "Dropping the negative root is the single commonest error on this pattern, and it "
+            "loses exactly one of the two answers. $\\sqrt{36}$ is $6$, but the EQUATION "
+            "$t^{2} = 36$ has two solutions.",
+            [
+                "Eq(2*(11 - 5)**2, 72)",
+                "Eq(2*(-1 - 5)**2, 72)",
+                "Eq(FiniteSet(*solve(Eq(2*(x - 5)**2, 72), x)), FiniteSet(11, -1))",
+            ],
+        ),
+        problem(
+            "sat-nq1-w3",
+            "$$3x^{2} + 5x - 1 = 0$$\n"
+            "What is the positive solution to the equation above?",
+            "**Answer.** $\\dfrac{-5 + \\sqrt{37}}{6}$.  \n"
+            "The left side does not factor over the integers — no pair multiplies to "
+            "$3 \\times (-1) = -3$ and adds to $5$ — so use the quadratic formula with "
+            "$a = 3$, $b = 5$, $c = -1$:\n"
+            "$$x = \\frac{-b \\pm \\sqrt{b^{2} - 4ac}}{2a}$$\n"
+            "$$= \\frac{-5 \\pm \\sqrt{25 - 4(3)(-1)}}{6}$$\n"
+            "The discriminant is $25 + 12 = 37$ — note that $-4ac$ with a negative $c$ ADDS:\n"
+            "$$x = \\frac{-5 \\pm \\sqrt{37}}{6}$$\n"
+            "Since $\\sqrt{37} \\approx 6.08$, the two solutions are about $0.18$ and "
+            "$-1.85$, so the positive one is $\\frac{-5 + \\sqrt{37}}{6}$.  \n"
+            "The sign slip inside the discriminant is where this question is lost: reading "
+            "$25 - 12 = 13$ produces an option that is on every version of this item.",
+            [
+                "Eq(5**2 - 4*3*(-1), 37)",
+                "Eq(simplify(3*((-5 + sqrt(37))/6)**2 + 5*((-5 + sqrt(37))/6) - 1), 0)",
+                "(-5 + sqrt(37))/6 > 0",
+            ],
+        ),
+    ]
+
+    try_it = [
+        problem(
+            "sat-nq1-t1",
+            "What are the solutions to $x^{2} + 2x - 15 = 0$?",
+            "**Answer.** $x = 3$ and $x = -5$. Two numbers multiplying to $-15$ and adding to "
+            "$2$ are $5$ and $-3$, so $(x + 5)(x - 3) = 0$.",
+            [
+                "Eq(expand((x + 5)*(x - 3)), x**2 + 2*x - 15)",
+                "Eq(FiniteSet(*solve(Eq(x**2 + 2*x - 15, 0), x)), FiniteSet(3, -5))",
+            ],
+        ),
+        problem(
+            "sat-nq1-t2",
+            "$$(x + 4)^{2} = 49$$\n"
+            "What is the sum of the solutions?",
+            "**Answer.** $-8$. Taking both roots gives $x + 4 = \\pm 7$, so $x = 3$ or "
+            "$x = -11$, summing to $-8$. Expanding into $x^{2} + 8x - 33 = 0$ confirms it: "
+            "the sum of solutions is $-\\frac{8}{1} = -8$.",
+            [
+                "Eq(FiniteSet(*solve(Eq((x + 4)**2, 49), x)), FiniteSet(3, -11))",
+                "Eq(3 + (-11), -8)",
+                "Eq(expand((x + 4)**2 - 49), x**2 + 8*x - 33)",
+            ],
+        ),
+        problem(
+            "sat-nq1-t3",
+            "What is the product of the solutions to $2x^{2} - 9x + 4 = 0$?",
+            "**Answer.** $2$. The product of the solutions of $ax^{2} + bx + c = 0$ is "
+            "$\\frac{c}{a} = \\frac{4}{2} = 2$. Factoring confirms it: "
+            "$(2x - 1)(x - 4) = 0$ gives $x = \\frac{1}{2}$ and $x = 4$, whose product is $2$.",
+            [
+                "Eq(expand((2*x - 1)*(x - 4)), 2*x**2 - 9*x + 4)",
+                "Eq(Rational(1,2)*4, 2)",
+                "Eq(Rational(4,2), 2)",
+            ],
+        ),
+        problem(
+            "sat-nq1-t4",
+            "$$x^{2} - 6x + 2 = 0$$\n"
+            "What are the solutions?",
+            "**Answer.** $x = 3 \\pm \\sqrt{7}$. The formula gives "
+            "$x = \\frac{6 \\pm \\sqrt{36 - 8}}{2} = \\frac{6 \\pm \\sqrt{28}}{2}$, and "
+            "$\\sqrt{28} = 2\\sqrt{7}$, so $x = 3 \\pm \\sqrt{7}$. Leaving it as "
+            "$\\frac{6 \\pm \\sqrt{28}}{2}$ is correct but will not match the option list.",
+            [
+                "Eq(6**2 - 4*1*2, 28)",
+                "Eq(simplify(sqrt(28) - 2*sqrt(7)), 0)",
+                "Eq(simplify((3 + sqrt(7))**2 - 6*(3 + sqrt(7)) + 2), 0)",
+            ],
+        ),
+    ]
+
+    steps = [
+        {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Nonlinear equations in one variable",
+            "beats": [
+                "Domain: Advanced Math — 13 to 15 of the 44 questions on the Math section.",
+                "Quadratics alone are 2 to 3 questions a test.",
+                "Prerequisite: factoring, from the Equivalent Expressions unit.",
+                "Three routes, and the equation tells you which one it wants.",
+            ],
+        },
+        {
+            "kind": "teach",
+            "title": "Three routes, and how to pick",
+            "beats": [
+                "Factors easily → factor and use the zero-product rule.",
+                "Variable only inside a square → isolate and take BOTH roots.",
+                "Neither → the quadratic formula, which always works.",
+                "Options are decimals and the algebra is ugly → graph it in Desmos.",
+            ],
+        },
+        {
+            "kind": "parabolaGraph",
+            "title": "Solutions are where the curve meets the axis",
+            "teach": "Drag the roots and watch the equation change. Solving a quadratic is "
+                     "asking where the parabola crosses the horizontal axis — two crossings, "
+                     "one, or none, which is exactly what the discriminant counts.",
+            "config": {"mode": "roots", "h": 3, "k": -4, "interactive": True, "min": -6, "max": 8},
+        },
+        {"kind": "worked", "title": "Factoring, and the sum shortcut", "problemId": "sat-nq1-w1"},
+        {
+            "kind": "tapQuestion",
+            "title": "How many solutions?",
+            "prompt": "How many real solutions does $x^{2} + 4x + 9 = 0$ have?",
+            "options": ["None", "One", "Two", "Infinitely many"],
+            "correctIndex": 0,
+            "explanation": "The discriminant is $b^{2} - 4ac = 16 - 36 = -20$, which is "
+                           "negative — the square root of a negative number is not real, so "
+                           "the parabola never reaches the axis. A negative discriminant means "
+                           "no real solutions; zero means exactly one; positive means two.",
+            "check": ["Eq(4**2 - 4*1*9, -20)", "-20 < 0"],
+        },
+        {"kind": "worked", "title": "Taking both square roots", "problemId": "sat-nq1-w2"},
+        {
+            "kind": "tip",
+            "title": "The sum and product shortcut",
+            "body": "For $ax^{2} + bx + c = 0$ the two solutions always sum to $-\\frac{b}{a}$ "
+                    "and multiply to $\\frac{c}{a}$. When the question asks for the sum or the "
+                    "product of the solutions — and it often does, precisely to reward this — "
+                    "you can answer without finding either solution.",
+        },
+        {"kind": "worked", "title": "When nothing factors", "problemId": "sat-nq1-w3"},
+        {"kind": "tryIt", "title": "Your turn: factor it", "problemId": "sat-nq1-t1"},
+        {"kind": "tryIt", "title": "Your turn: both roots", "problemId": "sat-nq1-t2"},
+        {"kind": "tryIt", "title": "Your turn: product of solutions", "problemId": "sat-nq1-t3"},
+        {"kind": "tryIt", "title": "Your turn: the formula", "problemId": "sat-nq1-t4"},
+        {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+                "A product is zero only when a factor is zero — that is why factoring solves.",
+                "Isolating a square gives TWO roots; dropping the negative one loses an answer.",
+                "The discriminant counts real solutions: positive two, zero one, negative none.",
+                "Watch the sign of −4ac; a negative c makes the discriminant grow, not shrink.",
+                "Solutions sum to −b/a and multiply to c/a — answer sum-or-product items directly.",
+            ],
+        },
+    ]
+
+    return lesson(
+        slug="quadratic-equations",
+        title="Solving Quadratic Equations",
+        concrete=(
+            "A ball thrown upward is at height $h = 20t - 5t^{2}$ metres after $t$ seconds. "
+            "Asking when it is $15$ metres up is asking for the solutions of a quadratic — and "
+            "there are two of them, because the ball passes that height on the way up and "
+            "again on the way down."
+        ),
+        objective=(
+            "Solve a quadratic by factoring, by taking square roots, or by the formula, choose "
+            "the route the equation is asking for, and use the discriminant and the sum and "
+            "product of the solutions."
+        ),
+        concept=[
+            "**Skill card.** The College Board calls this *Nonlinear equations in one "
+            "variable*, in the **Advanced Math** domain. Quadratics alone are two or three "
+            "questions a test, spread across all difficulties.",
+            "Three routes, and the equation announces which one it wants. If the quadratic "
+            "factors easily, factor it — a product is zero only when one factor is zero. If "
+            "the variable appears only inside a square, isolate the square and take BOTH "
+            "roots. If neither works, the quadratic formula always does.",
+            "The discriminant $b^{2} - 4ac$ counts the real solutions before you find any: "
+            "positive gives two, zero gives one, negative gives none. On the SAT it appears "
+            "both as a question in its own right and as a warning that you have made a sign "
+            "error, since a discriminant is rarely designed to be ugly.",
+            "**The test's angle.** Two habits earn points here. First, the SAT loves asking "
+            "for the SUM or the PRODUCT of the solutions rather than the solutions themselves "
+            "— and those are $-\\frac{b}{a}$ and $\\frac{c}{a}$, available without solving. "
+            "Second, when the variable sits inside a square, taking only the positive root "
+            "loses exactly one answer, and that half-answer is always an option.",
+        ],
+        key_idea=(
+            "Factor when it factors, take both roots when the variable is inside a square, and "
+            "use the formula otherwise. The discriminant counts the solutions and the "
+            "coefficients give their sum and product for free."
+        ),
+        facts=[
+            fact(
+                "Zero-product rule",
+                "AB = 0 \\iff A = 0 \\text{ or } B = 0",
+                "The reason factoring solves anything. It works only against ZERO — "
+                "$(x-2)(x-3) = 6$ tells you nothing directly.",
+            ),
+            fact(
+                "The quadratic formula",
+                "x = \\frac{-b \\pm \\sqrt{b^{2} - 4ac}}{2a}",
+                "Always works. Given on the SAT's reference sheet, so it is worth using "
+                "whenever factoring stalls.",
+            ),
+            fact(
+                "Discriminant and root count",
+                "b^{2} - 4ac > 0 \\;(\\text{two}), \\quad = 0 \\;(\\text{one}), \\quad < 0 \\;(\\text{none})",
+                "Counts real solutions without finding them.",
+            ),
+            fact(
+                "Sum and product of solutions",
+                "x_1 + x_2 = -\\frac{b}{a}, \\qquad x_1 x_2 = \\frac{c}{a}",
+                "Answers 'what is the sum of the solutions' in one step.",
+            ),
+        ],
+        worked=worked,
+        mistakes=[
+            mistake(
+                "Taking only the positive square root.",
+                "$(x - 5)^{2} = 36$ gives $x - 5 = \\pm 6$, so there are two solutions. Only "
+                "the positive root is an incomplete answer.",
+            ),
+            mistake(
+                "Losing the sign inside the discriminant when $c$ is negative.",
+                "$-4ac$ with $c = -1$ and $a = 3$ is $+12$, so the discriminant GROWS. "
+                "$25 - 12$ is a listed distractor for a reason.",
+            ),
+            mistake(
+                "Applying the zero-product rule to a non-zero right-hand side.",
+                "$(x-2)(x-3) = 6$ does not mean $x - 2 = 6$. Expand, move everything to one "
+                "side, and factor again.",
+            ),
+            mistake(
+                "Leaving the radical unsimplified.",
+                "$\\frac{6 \\pm \\sqrt{28}}{2}$ is correct but will not match the options. "
+                "$\\sqrt{28} = 2\\sqrt{7}$, so it becomes $3 \\pm \\sqrt{7}$.",
+            ),
+        ],
+        try_it=try_it,
+        steps=steps,
+    )
+
+
+# ===========================================================================
+# Lesson 2 — radical and rational equations
+# ===========================================================================
+
+def lesson_radical():
+    worked = [
+        problem(
+            "sat-nq2-w1",
+            "$$\\sqrt{2x + 3} = x$$\n"
+            "What is the solution to the equation above?",
+            "**Answer.** $x = 3$.  \n"
+            "Square both sides to clear the radical:\n"
+            "$$2x + 3 = x^{2}$$\n"
+            "$$x^{2} - 2x - 3 = 0$$\n"
+            "$$(x - 3)(x + 1) = 0$$\n"
+            "so the CANDIDATES are $x = 3$ and $x = -1$.  \n"
+            "Squaring can create solutions that were never there, so both must go back into "
+            "the ORIGINAL equation.\n"
+            "$$x = 3: \\quad \\sqrt{9} = 3 \\;\\checkmark$$\n"
+            "$$x = -1: \\quad \\sqrt{1} = 1, \\text{ but the right side is } -1 \\;\\times$$\n"
+            "So $x = -1$ is extraneous and the only solution is $x = 3$.  \n"
+            "The reason: the square-root symbol means the NON-NEGATIVE root, so "
+            "$\\sqrt{\\text{anything}}$ can never equal $-1$. Squaring both sides erased that "
+            "restriction, and checking put it back.",
+            [
+                "Eq(sqrt(2*3 + 3), 3)",
+                "Eq(sqrt(2*(-1) + 3), 1)",
+                "Ne(1, -1)",
+                "Eq(expand((x - 3)*(x + 1)), x**2 - 2*x - 3)",
+            ],
+        ),
+        problem(
+            "sat-nq2-w2",
+            "$$\\frac{6}{x} + \\frac{6}{x + 5} = 1$$\n"
+            "What is the positive solution to the equation above?",
+            "**Answer.** $x = 10$.  \n"
+            "Clear the fractions by multiplying every term by $x(x + 5)$:\n"
+            "$$6(x + 5) + 6x = x(x + 5)$$\n"
+            "$$6x + 30 + 6x = x^{2} + 5x$$\n"
+            "$$12x + 30 = x^{2} + 5x$$\n"
+            "$$0 = x^{2} - 7x - 30$$\n"
+            "$$0 = (x - 10)(x + 3)$$\n"
+            "so $x = 10$ or $x = -3$, and the question asks for the positive one.  \n"
+            "Check $x = 10$: $\\frac{6}{10} + \\frac{6}{15} = 0.6 + 0.4 = 1$.  \n"
+            "Both candidates are legitimate here — neither makes a denominator zero, since the "
+            "excluded values are $x = 0$ and $x = -5$. But that check is not optional: had a "
+            "candidate hit one of those, it would be extraneous no matter how cleanly the "
+            "algebra produced it.",
+            [
+                "Eq(Rational(6,10) + Rational(6,15), 1)",
+                "Eq(expand((x - 10)*(x + 3)), x**2 - 7*x - 30)",
+                "Eq(Rational(6,-3) + Rational(6,2), 1)",
+            ],
+        ),
+        problem(
+            "sat-nq2-w3",
+            "$$\\sqrt{x + 7} = x - 5$$\n"
+            "What is the solution to the equation above?",
+            "**Answer.** $x = 9$.  \n"
+            "Square both sides:\n"
+            "$$x + 7 = (x - 5)^{2} = x^{2} - 10x + 25$$\n"
+            "$$0 = x^{2} - 11x + 18$$\n"
+            "$$0 = (x - 9)(x - 2)$$\n"
+            "Candidates $x = 9$ and $x = 2$. Test both in the original:\n"
+            "$$x = 9: \\quad \\sqrt{16} = 4 \\text{ and } 9 - 5 = 4 \\;\\checkmark$$\n"
+            "$$x = 2: \\quad \\sqrt{9} = 3 \\text{ but } 2 - 5 = -3 \\;\\times$$\n"
+            "So $x = 9$ is the only solution.  \n"
+            "Both extraneous solutions in this lesson failed the same way: they made the "
+            "right-hand side negative while a square root, which is never negative, sat on the "
+            "left. That is the pattern to look for — you can often spot the extraneous "
+            "candidate before checking it.",
+            [
+                "Eq(sqrt(9 + 7), 9 - 5)",
+                "Eq(sqrt(2 + 7), 3)",
+                "Ne(3, 2 - 5)",
+                "Eq(expand((x - 9)*(x - 2)), x**2 - 11*x + 18)",
+            ],
+        ),
+    ]
+
+    try_it = [
+        problem(
+            "sat-nq2-t1",
+            "$$\\sqrt{3x + 1} = 4$$\n"
+            "What is the solution?",
+            "**Answer.** $x = 5$. Squaring gives $3x + 1 = 16$, so $3x = 15$ and $x = 5$. "
+            "Check: $\\sqrt{16} = 4$. No extraneous solution arises here because the right "
+            "side was already positive.",
+            ["Eq(sqrt(3*5 + 1), 4)"],
+        ),
+        problem(
+            "sat-nq2-t2",
+            "$$\\frac{12}{x} = x - 4$$\n"
+            "What is the positive solution?",
+            "**Answer.** $x = 6$. Multiplying by $x$: $12 = x^{2} - 4x$, so "
+            "$x^{2} - 4x - 12 = 0$ and $(x - 6)(x + 2) = 0$. The positive solution is $6$; "
+            "check: $\\frac{12}{6} = 2$ and $6 - 4 = 2$.",
+            [
+                "Eq(Rational(12,6), 6 - 4)",
+                "Eq(expand((x - 6)*(x + 2)), x**2 - 4*x - 12)",
+            ],
+        ),
+        problem(
+            "sat-nq2-t3",
+            "$$\\sqrt{2x + 6} = x + 1$$\n"
+            "What is the solution?",
+            "**Answer.** $x = \\sqrt{5}$. Squaring both sides gives "
+            "$2x + 6 = x^{2} + 2x + 1$. The $2x$ terms cancel, leaving $x^{2} = 5$, so the "
+            "candidates are $x = \\sqrt{5}$ and $x = -\\sqrt{5}$. Test both: at "
+            "$x = \\sqrt{5} \\approx 2.24$ the right side is about $3.24$, which is "
+            "positive and matches the radical; at $x = -\\sqrt{5}$ the right side is "
+            "$1 - \\sqrt{5} \\approx -1.24$, and a square root is never negative. So only "
+            "$x = \\sqrt{5}$ survives.",
+            [
+                "Eq(simplify(sqrt(2*sqrt(5) + 6) - (sqrt(5) + 1)), 0)",
+                "Eq(simplify((sqrt(5) + 1)**2 - (2*sqrt(5) + 6)), 0)",
+                "(1 - sqrt(5)) < 0",
+            ],
+        ),
+    ]
+
+    steps = [
+        {
+            "kind": "teach",
+            "title": "Clearing a radical or a fraction is not reversible",
+            "body": "Squaring both sides and multiplying by a denominator both do something "
+                    "the other moves in algebra do not: they can turn a FALSE statement into a "
+                    "true one. $-1 = 1$ is false, but squaring both sides gives $1 = 1$. So an "
+                    "equation solved this way produces CANDIDATES, and every candidate has to "
+                    "go back into the original before it counts as a solution.",
+        },
+        {
+            "kind": "teach",
+            "title": "The method",
+            "beats": [
+                "Isolate the radical, or multiply through by the common denominator.",
+                "Square, or expand — and solve the equation that results.",
+                "Substitute every candidate back into the ORIGINAL equation.",
+                "Discard anything that fails. It is not a mistake; it is the method working.",
+            ],
+        },
+        {"kind": "worked", "title": "An extraneous solution appears", "problemId": "sat-nq2-w1"},
+        {
+            "kind": "tapQuestion",
+            "title": "Why can it fail?",
+            "prompt": "Why is $x = -1$ not a solution of $\\sqrt{2x + 3} = x$, even though it "
+                      "satisfies the squared equation?",
+            "options": [
+                "A square root is never negative, so it cannot equal $-1$",
+                "Because $2(-1) + 3$ is negative",
+                "Because squaring is not allowed on both sides",
+                "Because $-1$ is not an integer solution",
+            ],
+            "correctIndex": 0,
+            "explanation": "$2(-1) + 3 = 1$ is perfectly positive and $\\sqrt{1} = 1$ — the "
+                           "problem is that the RIGHT side is $-1$, and the radical symbol "
+                           "always means the non-negative root. Squaring is legal; it just "
+                           "erases sign information, which is why you check.",
+            "check": ["Eq(2*(-1) + 3, 1)", "Eq(sqrt(1), 1)", "Ne(1, -1)"],
+        },
+        {"kind": "worked", "title": "A rational equation", "problemId": "sat-nq2-w2"},
+        {
+            "kind": "tip",
+            "title": "Spot the extraneous one before checking",
+            "body": "With a radical alone on the left, any candidate that makes the RIGHT side "
+                    "negative is extraneous — no checking needed. With a rational equation, "
+                    "any candidate that makes a denominator zero is extraneous. Writing down "
+                    "those excluded values before you solve turns the check into a glance.",
+        },
+        {"kind": "worked", "title": "Two candidates, one survivor", "problemId": "sat-nq2-w3"},
+        {"kind": "tryIt", "title": "Your turn: a clean radical", "problemId": "sat-nq2-t1"},
+        {"kind": "tryIt", "title": "Your turn: clear the fraction", "problemId": "sat-nq2-t2"},
+        {"kind": "tryIt", "title": "Your turn: check both candidates", "problemId": "sat-nq2-t3"},
+        {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+                "Squaring and clearing denominators can invent solutions that were never there.",
+                "Every candidate goes back into the ORIGINAL equation, without exception.",
+                "A radical is never negative, so a negative other side rules a candidate out.",
+                "A value making any denominator zero is excluded before you even solve.",
+                "Discarding a candidate is the method working, not a sign you erred.",
+            ],
+        },
+    ]
+
+    return lesson(
+        slug="radical-and-rational-equations",
+        title="Radical and Rational Equations, and Extraneous Solutions",
+        concrete=(
+            "Two numbers, $3$ and $-3$, have the same square. That is harmless until you solve "
+            "an equation by squaring both sides — because then the equation you are solving "
+            "has stopped being able to tell them apart, and it may hand you back an answer the "
+            "original never accepted."
+        ),
+        objective=(
+            "Solve equations containing a radical or a rational expression, and identify and "
+            "discard extraneous solutions by checking every candidate in the original equation."
+        ),
+        concept=[
+            "**Skill card.** Still *Nonlinear equations in one variable*, in the **Advanced "
+            "Math** domain. This is the half where a correct calculation still scores zero, "
+            "because the last step was skipped.",
+            "Most algebraic moves are reversible: adding $3$ to both sides can be undone by "
+            "subtracting it. Squaring is not. $-1 = 1$ is false, but squaring both sides gives "
+            "$1 = 1$, which is true. Multiplying by a denominator has the same problem — it "
+            "can rescue a value that made the original undefined.",
+            "So the method has four steps, and the fourth is not optional. Isolate the radical "
+            "or multiply through by the common denominator. Solve the equation that results. "
+            "Substitute EVERY candidate back into the original. Discard whatever fails.",
+            "**The test's angle.** You can usually spot the extraneous candidate without "
+            "checking. The radical symbol means the NON-NEGATIVE root, so with a radical alone "
+            "on one side, any candidate making the other side negative is out. For a rational "
+            "equation, any candidate making a denominator zero is out. Writing those excluded "
+            "values down before solving turns the check into a glance.",
+        ],
+        key_idea=(
+            "Squaring and clearing denominators can create solutions the original equation "
+            "never had. Every candidate goes back into the ORIGINAL before it counts."
+        ),
+        facts=[
+            fact(
+                "Squaring is not reversible",
+                "a = b \\;\\Longrightarrow\\; a^{2} = b^{2}, \\text{ but not conversely}",
+                "The arrow only points one way, which is exactly where extraneous solutions "
+                "come from.",
+            ),
+            fact(
+                "The radical is non-negative",
+                "\\sqrt{u} \\ge 0 \\text{ for every } u \\ge 0",
+                "So $\\sqrt{u} = v$ requires $v \\ge 0$. A negative right-hand side rules a "
+                "candidate out immediately.",
+            ),
+            fact(
+                "Excluded values",
+                "\\frac{N(x)}{D(x)} \\text{ requires } D(x) \\ne 0",
+                "List the zeros of every denominator before solving; any candidate among them "
+                "is extraneous.",
+            ),
+        ],
+        worked=worked,
+        mistakes=[
+            mistake(
+                "Skipping the check after squaring.",
+                "The extraneous candidate is always one of the options. Substituting both "
+                "candidates takes ten seconds.",
+            ),
+            mistake(
+                "Reading $\\sqrt{9}$ as $\\pm 3$.",
+                "The symbol means the non-negative root, so $\\sqrt{9} = 3$. It is the "
+                "EQUATION $x^{2} = 9$ that has two solutions, not the symbol.",
+            ),
+            mistake(
+                "Squaring term by term instead of side by side.",
+                "$(x - 5)^{2}$ is $x^{2} - 10x + 25$, not $x^{2} + 25$. Square the whole side "
+                "as one object.",
+            ),
+            mistake(
+                "Treating a discarded candidate as a mistake.",
+                "Extraneous solutions are produced by a legal method. Finding one and "
+                "discarding it is the correct outcome.",
+            ),
+        ],
+        try_it=try_it,
+        steps=steps,
+    )
+
+
+# ===========================================================================
+# Lesson 3 — exponential and absolute-value equations
+# ===========================================================================
+
+def lesson_exp_abs():
+    worked = [
+        problem(
+            "sat-nq3-w1",
+            "$$2^{3x - 1} = 32$$\n"
+            "What is the value of $x$?",
+            "**Answer.** $x = 2$.  \n"
+            "The trick with exponential equations on the SAT is to write both sides as powers "
+            "of the SAME base. Here $32 = 2^{5}$:\n"
+            "$$2^{3x - 1} = 2^{5}$$\n"
+            "Two powers of the same base are equal only when their exponents are equal:\n"
+            "$$3x - 1 = 5$$\n"
+            "$$3x = 6$$\n"
+            "$$x = 2$$\n"
+            "Check: $2^{3(2) - 1} = 2^{5} = 32$.  \n"
+            "No logarithms are needed and none are expected — every exponential equation the "
+            "SAT sets can be matched to a common base, usually $2$, $3$, $5$ or $10$.",
+            ["Eq(2**(3*2 - 1), 32)", "Eq(2**5, 32)"],
+        ),
+        problem(
+            "sat-nq3-w2",
+            "$$|2x - 7| = 11$$\n"
+            "What is the sum of the solutions?",
+            "**Answer.** $7$.  \n"
+            "An absolute value measures distance from zero, and two different numbers are $11$ "
+            "away from zero: $11$ and $-11$. So the equation splits into two:\n"
+            "$$2x - 7 = 11 \\qquad \\text{or} \\qquad 2x - 7 = -11$$\n"
+            "$$2x = 18 \\qquad \\text{or} \\qquad 2x = -4$$\n"
+            "$$x = 9 \\qquad \\text{or} \\qquad x = -2$$\n"
+            "The sum is $9 + (-2) = 7$.  \n"
+            "Check both: $|2(9) - 7| = |11| = 11$ and $|2(-2) - 7| = |-11| = 11$.  \n"
+            "Solving only the positive branch is the standard error and loses one of the two "
+            "solutions. Note also that $|2x - 7| = -11$ would have NO solutions at all, since "
+            "an absolute value is never negative.",
+            [
+                "Eq(Abs(2*9 - 7), 11)",
+                "Eq(Abs(2*(-2) - 7), 11)",
+                "Eq(9 + (-2), 7)",
+            ],
+        ),
+        problem(
+            "sat-nq3-w3",
+            "$$3^{x + 2} = 9^{x - 1}$$\n"
+            "What is the value of $x$?",
+            "**Answer.** $x = 4$.  \n"
+            "The bases differ, but $9$ is itself a power of $3$: $9 = 3^{2}$. Rewrite the "
+            "right side, remembering that a power of a power multiplies the exponents:\n"
+            "$$9^{x - 1} = (3^{2})^{x - 1} = 3^{2(x - 1)} = 3^{2x - 2}$$\n"
+            "Now both sides are powers of $3$, so the exponents must match:\n"
+            "$$x + 2 = 2x - 2$$\n"
+            "$$4 = x$$\n"
+            "Check: $3^{6} = 729$ and $9^{3} = 729$.  \n"
+            "The step people fumble is distributing the $2$ across $(x - 1)$: writing "
+            "$3^{2x - 1}$ instead of $3^{2x - 2}$ gives $x = 3$, which is on the option list.",
+            [
+                "Eq(3**(4 + 2), 9**(4 - 1))",
+                "Eq(3**6, 729)",
+                "Eq(9**3, 729)",
+            ],
+        ),
+    ]
+
+    try_it = [
+        problem(
+            "sat-nq3-t1",
+            "$$5^{2x} = 125$$\n"
+            "What is the value of $x$?",
+            "**Answer.** $x = \\dfrac{3}{2}$. Since $125 = 5^{3}$, the exponents match: "
+            "$2x = 3$, so $x = 1.5$. Check: $5^{3} = 125$.",
+            ["Eq(5**(2*Rational(3,2)), 125)", "Eq(5**3, 125)"],
+        ),
+        problem(
+            "sat-nq3-t2",
+            "$$|x + 4| = 6$$\n"
+            "What are the solutions?",
+            "**Answer.** $x = 2$ and $x = -10$. The two branches are $x + 4 = 6$ and "
+            "$x + 4 = -6$. Check: $|6| = 6$ and $|-6| = 6$.",
+            ["Eq(Abs(2 + 4), 6)", "Eq(Abs(-10 + 4), 6)"],
+        ),
+        problem(
+            "sat-nq3-t3",
+            "$$2^{x} \\cdot 8 = 64$$\n"
+            "What is the value of $x$?",
+            "**Answer.** $x = 3$. Since $8 = 2^{3}$ and $64 = 2^{6}$, the left side is "
+            "$2^{x + 3}$, so $x + 3 = 6$ and $x = 3$. Check: $2^{3} \\cdot 8 = 64$.",
+            ["Eq(2**3 * 8, 64)", "Eq(2**6, 64)"],
+        ),
+        problem(
+            "sat-nq3-t4",
+            "How many solutions does $|3x - 5| = -2$ have?",
+            "**Answer.** None. An absolute value is a distance and can never be negative, so "
+            "no value of $x$ makes the left side equal $-2$. Splitting into two branches here "
+            "would produce two candidates, both of which fail the original.",
+            ["Abs(3*0 - 5) >= 0", "Not(Abs(3*4 - 5) < 0)"],
+        ),
+    ]
+
+    steps = [
+        {
+            "kind": "teach",
+            "title": "Exponentials: match the base",
+            "body": "The SAT never needs a logarithm here. Every exponential equation it sets "
+                    "can be rewritten with the SAME base on both sides — and once the bases "
+                    "match, the exponents must be equal. $32$ is $2^{5}$, $9$ is $3^{2}$, "
+                    "$125$ is $5^{3}$: knowing the small powers of $2$, $3$ and $5$ by sight is "
+                    "most of this skill.",
+        },
+        {
+            "kind": "expGraph",
+            "title": "One crossing, always",
+            "teach": "An exponential curve climbs without ever levelling off, so a horizontal "
+                     "line crosses it exactly once. That is why these equations have a single "
+                     "solution — unlike quadratics, which can have two, one or none.",
+            "config": {"mode": "growth", "a": 1, "b": 2, "interactive": True},
+        },
+        {"kind": "worked", "title": "Rewriting to a common base", "problemId": "sat-nq3-w1"},
+        {
+            "kind": "tapQuestion",
+            "title": "Same base",
+            "prompt": "Rewriting $4^{x}$ as a power of $2$ gives which expression?",
+            "options": ["$2^{2x}$", "$2^{x + 2}$", "$2^{x/2}$", "$2^{x^{2}}$"],
+            "correctIndex": 0,
+            "explanation": "$4 = 2^{2}$, so $4^{x} = (2^{2})^{x} = 2^{2x}$ — a power of a "
+                           "power multiplies the exponents. Check with $x = 3$: $4^{3} = 64$ "
+                           "and $2^{6} = 64$.",
+            "check": ["Eq(4**3, 64)", "Eq(2**(2*3), 64)"],
+        },
+        {"kind": "worked", "title": "Two branches of an absolute value", "problemId": "sat-nq3-w2"},
+        {
+            "kind": "teach",
+            "title": "Absolute value: two branches, and one impossible case",
+            "beats": [
+                "|A| = k with k positive splits into A = k and A = −k — two solutions.",
+                "|A| = 0 has exactly one solution, where A itself is zero.",
+                "|A| = k with k NEGATIVE has no solutions at all; a distance is never negative.",
+                "Solving only the positive branch is the standard way to lose half the answer.",
+            ],
+        },
+        {"kind": "worked", "title": "A power hidden inside another base", "problemId": "sat-nq3-w3"},
+        {
+            "kind": "tip",
+            "title": "Know the small powers by sight",
+            "body": "Powers of 2 up to $2^{10} = 1024$, powers of 3 up to $3^{5} = 243$, and "
+                    "powers of 5 up to $5^{4} = 625$ cover essentially every exponential "
+                    "equation the SAT sets. Recognising $64$ as both $2^{6}$ and $4^{3}$ and "
+                    "$8^{2}$ is what turns these into one-line questions.",
+        },
+        {"kind": "tryIt", "title": "Your turn: match the base", "problemId": "sat-nq3-t1"},
+        {"kind": "tryIt", "title": "Your turn: both branches", "problemId": "sat-nq3-t2"},
+        {"kind": "tryIt", "title": "Your turn: combine the powers", "problemId": "sat-nq3-t3"},
+        {"kind": "tryIt", "title": "Your turn: the impossible case", "problemId": "sat-nq3-t4"},
+        {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+                "Write both sides with the same base, then set the exponents equal.",
+                "A power of a power multiplies — distribute over the whole exponent.",
+                "An absolute-value equation splits into a positive and a negative branch.",
+                "An absolute value equal to a negative number has no solutions.",
+                "The small powers of 2, 3 and 5 are worth knowing by sight.",
+            ],
+        },
+    ]
+
+    return lesson(
+        slug="exponential-and-absolute-value-equations",
+        title="Exponential and Absolute-Value Equations",
+        concrete=(
+            "A colony doubles every hour and is $32$ times its original size. You do not need "
+            "a logarithm to know that took five hours — you need to notice that $32$ is $2^{5}$. "
+            "Every exponential equation on the SAT is built to be solved that way."
+        ),
+        objective=(
+            "Solve an exponential equation by rewriting both sides to a common base, and solve "
+            "an absolute-value equation by splitting it into its two branches."
+        ),
+        concept=[
+            "**Skill card.** Still *Nonlinear equations in one variable*, in the **Advanced "
+            "Math** domain. These are usually the quickest questions in the subtopic — one "
+            "line each, once you see the move.",
+            "For an exponential equation, rewrite both sides as powers of the SAME base. Two "
+            "powers of one base are equal only when their exponents are equal, so the equation "
+            "collapses to a linear one. No logarithms are needed and none are expected: "
+            "recognising $32 = 2^{5}$, $9 = 3^{2}$ and $125 = 5^{3}$ is most of the skill.",
+            "When the bases differ, one is usually a power of the other. $9^{x-1}$ becomes "
+            "$(3^{2})^{x-1} = 3^{2x-2}$, and the place to be careful is distributing the outer "
+            "exponent across the WHOLE bracket — $3^{2x-1}$ is a different equation with a "
+            "different answer.",
+            "**The test's angle.** An absolute value is a distance from zero, so $|A| = k$ "
+            "with $k$ positive splits into two equations, $A = k$ and $A = -k$, and has two "
+            "solutions. Solving only the first branch loses half the answer. And $|A| = k$ "
+            "with $k$ NEGATIVE has no solutions at all — the SAT sets that case specifically "
+            "to catch students who split it mechanically.",
+        ],
+        key_idea=(
+            "Match the bases and the exponents must match. An absolute value splits into two "
+            "branches — unless it is set equal to a negative number, in which case there is "
+            "nothing to split."
+        ),
+        facts=[
+            fact(
+                "Equal bases, equal exponents",
+                "b^{m} = b^{n} \\iff m = n \\quad (b > 0,\\; b \\ne 1)",
+                "The whole method for exponential equations on this test.",
+            ),
+            fact(
+                "Rebasing",
+                "\\left(b^{k}\\right)^{u} = b^{ku}",
+                "Distribute the outer exponent across the entire bracket, not just its first "
+                "term.",
+            ),
+            fact(
+                "Absolute value splits",
+                "|A| = k \\;(k > 0) \\iff A = k \\text{ or } A = -k",
+                "For $k = 0$ there is one solution; for $k < 0$ there are none.",
+            ),
+        ],
+        worked=worked,
+        mistakes=[
+            mistake(
+                "Solving only the positive branch of an absolute-value equation.",
+                "$|2x - 7| = 11$ has two solutions, $9$ and $-2$. The negative branch is not "
+                "optional.",
+            ),
+            mistake(
+                "Splitting $|A| = k$ when $k$ is negative.",
+                "There are no solutions at all. Splitting produces two candidates and both "
+                "fail the original.",
+            ),
+            mistake(
+                "Failing to distribute a rebased exponent across the whole bracket.",
+                "$(3^{2})^{x-1}$ is $3^{2x-2}$, not $3^{2x-1}$. The difference changes the "
+                "answer.",
+            ),
+            mistake(
+                "Reaching for logarithms.",
+                "Every SAT exponential equation matches to a common base. If you find yourself "
+                "needing a log, look again for the rebase.",
+            ),
+        ],
+        try_it=try_it,
+        steps=steps,
+    )
+
+
+# ===========================================================================
+# Unit assembly
+# ===========================================================================
+
+PRACTICE = [
+    problem(
+        "sat-nq-p01",
+        "What are the solutions to $x^{2} - 9x + 20 = 0$?",
+        "**Answer.** $x = 4$ and $x = 5$. Two numbers multiplying to $20$ and adding to $-9$ "
+        "are $-4$ and $-5$.",
+        [
+            "Eq(expand((x - 4)*(x - 5)), x**2 - 9*x + 20)",
+            "Eq(FiniteSet(*solve(Eq(x**2 - 9*x + 20, 0), x)), FiniteSet(4, 5))",
+        ],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nq-p02",
+        "$$(x - 2)^{2} = 25$$\n"
+        "What are the solutions?",
+        "**Answer.** $x = 7$ and $x = -3$. Taking both roots gives $x - 2 = \\pm 5$.",
+        ["Eq(FiniteSet(*solve(Eq((x - 2)**2, 25), x)), FiniteSet(7, -3))"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nq-p03",
+        "$$2^{x + 3} = 64$$\n"
+        "What is the value of $x$?",
+        "**Answer.** $3$. Since $64 = 2^{6}$, the exponents match: $x + 3 = 6$.",
+        ["Eq(2**(3 + 3), 64)"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nq-p04",
+        "$$|x - 6| = 4$$\n"
+        "What is the sum of the solutions?",
+        "**Answer.** $12$. The branches give $x = 10$ and $x = 2$, summing to $12$. Note the "
+        "sum is twice the number inside — the two solutions sit symmetrically about $6$.",
+        ["Eq(Abs(10 - 6), 4)", "Eq(Abs(2 - 6), 4)", "Eq(10 + 2, 12)"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nq-p05",
+        "What is the sum of the solutions to $2x^{2} - 10x + 3 = 0$?",
+        "**Answer.** $5$. The solutions sum to $-\\frac{b}{a} = \\frac{10}{2} = 5$, with no "
+        "need to solve. (The discriminant is $100 - 24 = 76$, so both solutions are real and "
+        "irrational.)",
+        ["Eq(Rational(10,2), 5)", "Eq((-10)**2 - 4*2*3, 76)", "Eq(sum(solve(Eq(2*x**2 - 10*x + 3, 0), x)), 5)"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nq-p06",
+        "$$\\sqrt{x + 5} = x - 1$$\n"
+        "What is the solution?",
+        "**Answer.** $x = 4$. Squaring gives $x + 5 = x^{2} - 2x + 1$, so "
+        "$x^{2} - 3x - 4 = 0$ and $(x - 4)(x + 1) = 0$. The candidate $x = -1$ makes the "
+        "right side $-2$, and a square root is never negative, so it is extraneous. Check "
+        "$x = 4$: $\\sqrt{9} = 3$ and $4 - 1 = 3$.",
+        [
+            "Eq(sqrt(4 + 5), 4 - 1)",
+            "Eq(expand((x - 4)*(x + 1)), x**2 - 3*x - 4)",
+            "(-1) - 1 < 0",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nq-p07",
+        "How many real solutions does $2x^{2} - 4x + 5 = 0$ have?",
+        "**Answer.** None. The discriminant is $16 - 40 = -24$, which is negative, so the "
+        "parabola never meets the horizontal axis.",
+        ["Eq((-4)**2 - 4*2*5, -24)", "-24 < 0"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nq-p08",
+        "$$\\frac{20}{x} = x + 1$$\n"
+        "What is the positive solution?",
+        "**Answer.** $4$. Multiplying by $x$ gives $20 = x^{2} + x$, so "
+        "$x^{2} + x - 20 = 0$ and $(x + 5)(x - 4) = 0$. The positive solution is $4$; check: "
+        "$\\frac{20}{4} = 5$ and $4 + 1 = 5$.",
+        ["Eq(Rational(20,4), 4 + 1)", "Eq(expand((x + 5)*(x - 4)), x**2 + x - 20)"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nq-p09",
+        "$$9^{x} = 27^{x - 1}$$\n"
+        "What is the value of $x$?",
+        "**Answer.** $3$. Both bases are powers of $3$: $9^{x} = 3^{2x}$ and "
+        "$27^{x-1} = 3^{3x - 3}$. Setting exponents equal gives $2x = 3x - 3$, so $x = 3$. "
+        "Check: $9^{3} = 729$ and $27^{2} = 729$.",
+        ["Eq(9**3, 729)", "Eq(27**2, 729)"],
+        badges=_b("Hard"),
+    ),
+    problem(
+        "sat-nq-p10",
+        "$$x^{2} + 6x + 4 = 0$$\n"
+        "What are the solutions?",
+        "**Answer.** $x = -3 \\pm \\sqrt{5}$. The formula gives "
+        "$x = \\frac{-6 \\pm \\sqrt{36 - 16}}{2} = \\frac{-6 \\pm \\sqrt{20}}{2}$, and "
+        "$\\sqrt{20} = 2\\sqrt{5}$, so $x = -3 \\pm \\sqrt{5}$.",
+        [
+            "Eq(6**2 - 4*1*4, 20)",
+            "Eq(simplify(sqrt(20) - 2*sqrt(5)), 0)",
+            "Eq(simplify((-3 + sqrt(5))**2 + 6*(-3 + sqrt(5)) + 4), 0)",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nq-p11",
+        "For what value of $k$ does $x^{2} + kx + 16 = 0$ have exactly one real solution, "
+        "with $k > 0$?",
+        "**Answer.** $8$. Exactly one solution means the discriminant is zero: "
+        "$k^{2} - 64 = 0$, so $k = \\pm 8$, and the positive value is $8$. Then the equation "
+        "is $(x + 4)^{2} = 0$, whose only solution is $x = -4$.",
+        [
+            "Eq(8**2 - 4*1*16, 0)",
+            "Eq(expand((x + 4)**2), x**2 + 8*x + 16)",
+        ],
+        badges=_b("Hard"),
+    ),
+    problem(
+        "sat-nq-p12",
+        "$$|4x + 3| = 9$$\n"
+        "What is the product of the solutions?",
+        "**Answer.** $-4.5$. The branches give $4x = 6$ and $4x = -12$, so $x = 1.5$ and "
+        "$x = -3$, whose product is $-4.5$. Grid it as $-9/2$.",
+        [
+            "Eq(Abs(4*Rational(3,2) + 3), 9)",
+            "Eq(Abs(4*(-3) + 3), 9)",
+            "Eq(Rational(3,2)*(-3), Rational(-9,2))",
+        ],
+        badges=_b("Medium"),
+    ),
+]
+
+TEST = [
+    problem(
+        "sat-nq-x01",
+        "What are the solutions to $x^{2} - x - 12 = 0$?",
+        "**Answer.** $x = 4$ and $x = -3$. Two numbers multiplying to $-12$ and adding to "
+        "$-1$ are $-4$ and $3$.",
+        [
+            "Eq(expand((x - 4)*(x + 3)), x**2 - x - 12)",
+            "Eq(FiniteSet(*solve(Eq(x**2 - x - 12, 0), x)), FiniteSet(4, -3))",
+        ],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nq-x02",
+        "$$3(x + 1)^{2} = 48$$\n"
+        "What are the solutions?",
+        "**Answer.** $x = 3$ and $x = -5$. Dividing by $3$ gives $(x + 1)^{2} = 16$, so "
+        "$x + 1 = \\pm 4$.",
+        ["Eq(3*(3 + 1)**2, 48)", "Eq(3*(-5 + 1)**2, 48)"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nq-x03",
+        "$$4^{x - 1} = 16$$\n"
+        "What is the value of $x$?",
+        "**Answer.** $3$. Since $16 = 4^{2}$, the exponents match: $x - 1 = 2$.",
+        ["Eq(4**(3 - 1), 16)"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nq-x04",
+        "What is the product of the solutions to $3x^{2} + 7x - 6 = 0$?",
+        "**Answer.** $-2$. The product is $\\frac{c}{a} = \\frac{-6}{3} = -2$. Factoring "
+        "confirms it: $(3x - 2)(x + 3) = 0$ gives $\\frac{2}{3}$ and $-3$, whose product is "
+        "$-2$.",
+        [
+            "Eq(expand((3*x - 2)*(x + 3)), 3*x**2 + 7*x - 6)",
+            "Eq(Rational(2,3)*(-3), -2)",
+            "Eq(Rational(-6,3), -2)",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nq-x05",
+        "$$\\sqrt{4x + 1} = x - 1$$\n"
+        "What is the solution?",
+        "**Answer.** $x = 6$. Squaring gives $4x + 1 = x^{2} - 2x + 1$, so "
+        "$x^{2} - 6x = 0$ and $x(x - 6) = 0$. The candidate $x = 0$ makes the right side "
+        "$-1$, which a square root can never equal, so it is extraneous. Check $x = 6$: "
+        "$\\sqrt{25} = 5$ and $6 - 1 = 5$.",
+        [
+            "Eq(sqrt(4*6 + 1), 6 - 1)",
+            "Eq(sqrt(4*0 + 1), 1)",
+            "Ne(1, 0 - 1)",
+        ],
+        badges=_b("Hard"),
+    ),
+    problem(
+        "sat-nq-x06",
+        "For what values of $c$ does $x^{2} - 8x + c = 0$ have no real solutions?",
+        "**Answer.** $c > 16$. No real solutions means a negative discriminant: "
+        "$64 - 4c < 0$, so $c > 16$. At $c = 16$ the discriminant is exactly zero and there "
+        "is one solution, $x = 4$.",
+        [
+            "Eq(64 - 4*16, 0)",
+            "64 - 4*20 < 0",
+            "64 - 4*10 > 0",
+        ],
+        badges=_b("Hard"),
+    ),
+    problem(
+        "sat-nq-x07",
+        "$$|5 - 2x| = 13$$\n"
+        "What are the solutions?",
+        "**Answer.** $x = -4$ and $x = 9$. The branches are $5 - 2x = 13$, giving $x = -4$, "
+        "and $5 - 2x = -13$, giving $x = 9$. Check: $|5 + 8| = 13$ and $|5 - 18| = 13$.",
+        ["Eq(Abs(5 - 2*(-4)), 13)", "Eq(Abs(5 - 2*9), 13)"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nq-x08",
+        "$$\\frac{1}{x - 2} + \\frac{1}{x + 2} = \\frac{4}{x^{2} - 4}$$\n"
+        "What is the solution?",
+        "**Answer.** There is no solution. The denominator $x^{2} - 4$ factors as "
+        "$(x-2)(x+2)$, so multiplying every term by it gives\n"
+        "$$(x + 2) + (x - 2) = 4$$\n"
+        "$$2x = 4 \\;\\Longrightarrow\\; x = 2$$\n"
+        "But $x = 2$ makes two of the original denominators zero, so it is excluded — the "
+        "single candidate is extraneous and the equation has no solution. Listing the excluded "
+        "values $x = 2$ and $x = -2$ before solving makes this visible immediately.",
+        [
+            "Eq(2**2 - 4, 0)",
+            "Eq(expand((x - 2)*(x + 2)), x**2 - 4)",
+            "Eq((2 + 2) + (2 - 2), 4)",
+        ],
+        badges=_b("Hard"),
+    ),
+]
+
+
+def main():
+    lessons = [lesson_quadratics(), lesson_radical(), lesson_exp_abs()]
+    write_unit(
+        COURSE,
+        UNIT_SLUG,
+        "Nonlinear Equations in One Variable",
+        2,
+        "Quadratics by factoring, by square roots and by the formula; radical and rational "
+        "equations and the extraneous solutions they invent; exponential equations solved by "
+        "matching bases; and absolute-value equations with their two branches.",
+        "Factoring from Unit 1 — every quadratic route starts there.",
+        lessons,
+        PRACTICE,
+        TEST,
+    )
+
+
+if __name__ == "__main__":
+    main()

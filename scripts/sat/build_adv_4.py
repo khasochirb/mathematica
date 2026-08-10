@@ -1,0 +1,1131 @@
+#!/usr/bin/env python3
+"""SAT Math — Advanced Math, Unit 4: Nonlinear functions.
+
+Builds data/genmath/sat/nonlinear-functions.json. Three lessons: quadratic
+functions in all three forms, exponential growth and decay, and polynomial
+and rational graphs together with the transformations that move any of them.
+
+Run: python3 scripts/sat/build_adv_4.py   (then npm run verify:genmath)
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "im"))
+
+from imbuild import fact, lesson, mistake, problem, write_unit  # noqa: E402
+
+COURSE = "sat"
+UNIT_SLUG = "nonlinear-functions"
+TAG = {"text": "sat-nonlinear-functions", "mono": True}
+
+
+def _b(level):
+    return [TAG, {"text": level}]
+
+
+# ===========================================================================
+# Lesson 1 — quadratic functions in three forms
+# ===========================================================================
+
+def lesson_quadratic_forms():
+    worked = [
+        problem(
+            "sat-nf1-w1",
+            "The function $f$ is defined by $f(x) = (x - 3)(x + 7)$. What is the "
+            "$x$-coordinate of the vertex of the graph of $f$?",
+            "**Answer.** $-2$.  \n"
+            "The factored form gives the two $x$-intercepts immediately: $f(x) = 0$ when "
+            "$x = 3$ or $x = -7$.  \n"
+            "A parabola is symmetric about a vertical line through its vertex, so the vertex "
+            "sits exactly HALFWAY between the two intercepts:\n"
+            "$$x = \\frac{3 + (-7)}{2} = \\frac{-4}{2} = -2$$\n"
+            "Check by expanding to standard form: $f(x) = x^{2} + 4x - 21$, and the axis of "
+            "symmetry is $x = -\\frac{b}{2a} = -\\frac{4}{2} = -2$. Both routes agree.  \n"
+            "The vertex's height follows if it is wanted: $f(-2) = (-5)(5) = -25$, so the "
+            "vertex is $(-2, -25)$.  \n"
+            "This midpoint trick is the fastest route on the test, and it works whenever the "
+            "quadratic is given in factored form.",
+            [
+                "Eq(expand((x - 3)*(x + 7)), x**2 + 4*x - 21)",
+                "Eq(Rational(3 + (-7), 2), -2)",
+                "Eq(-Rational(4, 2*1), -2)",
+                "Eq((-2 - 3)*(-2 + 7), -25)",
+            ],
+        ),
+        problem(
+            "sat-nf1-w2",
+            "The function $g$ is defined by $g(x) = 2(x - 4)^{2} + 5$. What is the minimum "
+            "value of $g$?",
+            "**Answer.** $5$.  \n"
+            "This is vertex form, $a(x - h)^{2} + k$, and it hands you the vertex directly: "
+            "$(h, k) = (4, 5)$.  \n"
+            "The squared term $(x - 4)^{2}$ is never negative, so $2(x - 4)^{2}$ is never "
+            "negative either, and the smallest it can be is ZERO — which happens exactly at "
+            "$x = 4$. At that point $g(4) = 0 + 5 = 5$, and everywhere else $g$ is larger.  \n"
+            "Since $a = 2$ is positive the parabola opens upward, so $5$ is a MINIMUM. Had "
+            "$a$ been negative it would have been a maximum instead.  \n"
+            "Two sign traps live in vertex form. The $h$ is the OPPOSITE of the number in the "
+            "bracket — $(x - 4)$ means $h = 4$ — and the question asks for the minimum VALUE, "
+            "which is $k = 5$, not the $x$ where it occurs, which is $4$. Both numbers will be "
+            "on the option list.",
+            [
+                "Eq(2*(4 - 4)**2 + 5, 5)",
+                "2*(0 - 4)**2 + 5 > 5",
+                "2*(9 - 4)**2 + 5 > 5",
+                "Eq(expand(2*(x - 4)**2 + 5), 2*x**2 - 16*x + 37)",
+            ],
+        ),
+        problem(
+            "sat-nf1-w3",
+            "The function $h$ is defined by $h(x) = x^{2} - 10x + 21$. Which form of $h$ "
+            "displays the coordinates of the vertex as constants?",
+            "**Answer.** $h(x) = (x - 5)^{2} - 4$.  \n"
+            "Complete the square. Take half the coefficient of $x$ — half of $-10$ is $-5$ — "
+            "and square it to get $25$:\n"
+            "$$h(x) = (x^{2} - 10x + 25) - 25 + 21$$\n"
+            "The $-25$ is subtracted back so nothing has changed:\n"
+            "$$h(x) = (x - 5)^{2} - 4$$\n"
+            "The vertex is $(5, -4)$.  \n"
+            "Check by expanding: $(x - 5)^{2} - 4 = x^{2} - 10x + 25 - 4 = x^{2} - 10x + 21$. "
+            "And $h(5) = 25 - 50 + 21 = -4$ confirms the vertex height.  \n"
+            "The SAT phrases this family of questions as 'which form displays the X as "
+            "constants'. Vertex form displays the vertex; factored form displays the "
+            "$x$-intercepts; standard form displays the $y$-intercept, which is just the "
+            "constant term. Match the form to what is being asked about.",
+            [
+                "Eq(expand((x - 5)**2 - 4), x**2 - 10*x + 21)",
+                "Eq(5**2 - 10*5 + 21, -4)",
+                "Eq(expand((x - 3)*(x - 7)), x**2 - 10*x + 21)",
+            ],
+        ),
+    ]
+
+    try_it = [
+        problem(
+            "sat-nf1-t1",
+            "The function $f$ is defined by $f(x) = (x + 2)(x - 8)$. What is the "
+            "$x$-coordinate of the vertex?",
+            "**Answer.** $3$. The intercepts are $-2$ and $8$, and the vertex sits halfway "
+            "between them: $\\frac{-2 + 8}{2} = 3$.",
+            [
+                "Eq(Rational(-2 + 8, 2), 3)",
+                "Eq(expand((x + 2)*(x - 8)), x**2 - 6*x - 16)",
+                "Eq(-Rational(-6, 2), 3)",
+            ],
+        ),
+        problem(
+            "sat-nf1-t2",
+            "The function $g$ is defined by $g(x) = -3(x + 1)^{2} + 12$. What is the maximum "
+            "value of $g$?",
+            "**Answer.** $12$. The vertex is $(-1, 12)$, and since $a = -3$ is negative the "
+            "parabola opens downward, making $12$ a maximum. Answering $-1$ gives the "
+            "$x$-coordinate, not the value.",
+            ["Eq(-3*(-1 + 1)**2 + 12, 12)", "-3*(2 + 1)**2 + 12 < 12"],
+        ),
+        problem(
+            "sat-nf1-t3",
+            "What is the $y$-intercept of the graph of $f(x) = 2x^{2} - 7x + 4$?",
+            "**Answer.** $(0, 4)$. The $y$-intercept is $f(0)$, and every term with an $x$ "
+            "vanishes, leaving the constant term $4$. Standard form always displays the "
+            "$y$-intercept this way.",
+            ["Eq(2*0**2 - 7*0 + 4, 4)"],
+        ),
+        problem(
+            "sat-nf1-t4",
+            "Write $f(x) = x^{2} + 6x + 5$ in vertex form.",
+            "**Answer.** $f(x) = (x + 3)^{2} - 4$. Half of $6$ is $3$, and $3^{2} = 9$, so "
+            "$f(x) = (x^{2} + 6x + 9) - 9 + 5 = (x + 3)^{2} - 4$. The vertex is $(-3, -4)$.",
+            ["Eq(expand((x + 3)**2 - 4), x**2 + 6*x + 5)", "Eq((-3)**2 + 6*(-3) + 5, -4)"],
+        ),
+    ]
+
+    steps = [
+        {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Nonlinear functions",
+            "beats": [
+                "Domain: Advanced Math — 13 to 15 of the 44 questions on the Math section.",
+                "The biggest subtopic in the domain: 3 or 4 questions a test.",
+                "Prerequisites: factoring, and solving quadratics.",
+                "The recurring question is 'which FORM shows this feature' — so learn all three.",
+            ],
+        },
+        {
+            "kind": "teach",
+            "title": "Three forms, three different gifts",
+            "beats": [
+                "Standard, ax² + bx + c — the constant IS the y-intercept.",
+                "Factored, a(x − p)(x − q) — p and q ARE the x-intercepts.",
+                "Vertex, a(x − h)² + k — (h, k) IS the vertex.",
+                "The sign of a decides which way it opens, in every form.",
+            ],
+        },
+        {
+            "kind": "parabolaGraph",
+            "title": "Drag the vertex",
+            "teach": "Move h and k and watch the whole parabola slide without changing shape. "
+                     "That is what vertex form encodes — a is the shape, h and k are the "
+                     "position.",
+            "config": {"mode": "vertex", "a": 1, "h": 2, "k": -3, "interactive": True, "min": -6, "max": 8},
+        },
+        {"kind": "worked", "title": "Vertex from the intercepts", "problemId": "sat-nf1-w1"},
+        {
+            "kind": "tapQuestion",
+            "title": "Which form answers it?",
+            "prompt": "Which form of a quadratic shows the $x$-intercepts of its graph as "
+                      "constants?",
+            "options": [
+                "Factored form",
+                "Vertex form",
+                "Standard form",
+                "All three show them equally",
+            ],
+            "correctIndex": 0,
+            "explanation": "In $a(x - p)(x - q)$ the function is zero exactly at $x = p$ and "
+                           "$x = q$, so the intercepts are visible without any work. Vertex "
+                           "form shows the vertex; standard form shows the $y$-intercept.",
+            "check": ["Eq((3 - 3)*(3 + 7), 0)", "Eq((-7 - 3)*(-7 + 7), 0)"],
+        },
+        {"kind": "worked", "title": "Reading a minimum off vertex form", "problemId": "sat-nf1-w2"},
+        {
+            "kind": "tip",
+            "title": "Halfway between the roots",
+            "body": "A parabola is symmetric, so its vertex sits exactly midway between its "
+                    "two $x$-intercepts. Given factored form, average the two roots and you "
+                    "have the axis of symmetry in one step — faster than "
+                    "$-\\frac{b}{2a}$ and much faster than completing the square.",
+        },
+        {"kind": "worked", "title": "Completing the square", "problemId": "sat-nf1-w3"},
+        {"kind": "tryIt", "title": "Your turn: average the roots", "problemId": "sat-nf1-t1"},
+        {"kind": "tryIt", "title": "Your turn: maximum value", "problemId": "sat-nf1-t2"},
+        {"kind": "tryIt", "title": "Your turn: the y-intercept", "problemId": "sat-nf1-t3"},
+        {"kind": "tryIt", "title": "Your turn: complete the square", "problemId": "sat-nf1-t4"},
+        {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+                "Factored form shows the x-intercepts; vertex form shows the vertex; standard shows the y-intercept.",
+                "The vertex sits halfway between the two x-intercepts.",
+                "In a(x − h)² + k the h is the OPPOSITE of the number in the bracket.",
+                "A positive a opens upward and gives a minimum; a negative a gives a maximum.",
+                "'Minimum value' means k, not the x where it happens — both are listed options.",
+            ],
+        },
+    ]
+
+    return lesson(
+        slug="quadratic-functions",
+        title="Quadratic Functions in Three Forms",
+        concrete=(
+            "A jet of water leaves a fountain, arcs, and lands. Three questions get asked "
+            "about that arc — where it lands, how high it gets, and where it started — and "
+            "each one is answered instantly by a DIFFERENT way of writing the same equation."
+        ),
+        objective=(
+            "Move between the standard, factored and vertex forms of a quadratic function, and "
+            "read the intercepts, vertex and direction of opening off whichever form is given."
+        ),
+        concept=[
+            "**Skill card.** The College Board calls this *Nonlinear functions*, in the "
+            "**Advanced Math** domain — the biggest subtopic there, at three or four questions "
+            "a test. Quadratics carry most of it.",
+            "The same parabola can be written three ways, and each one displays a different "
+            "feature for free. Standard form $ax^{2} + bx + c$ shows the $y$-intercept: it is "
+            "$c$, because every other term vanishes at $x = 0$. Factored form "
+            "$a(x - p)(x - q)$ shows the $x$-intercepts, $p$ and $q$. Vertex form "
+            "$a(x - h)^{2} + k$ shows the vertex, $(h, k)$.",
+            "Converting between them is ordinary algebra: expand to go toward standard form, "
+            "factor to go toward factored form, complete the square to reach vertex form. And "
+            "one shortcut beats all of it — because a parabola is symmetric, the vertex sits "
+            "exactly halfway between the two $x$-intercepts, so averaging the roots gives the "
+            "axis of symmetry in a single step.",
+            "**The test's angle.** The recurring stem is 'which of the following displays the "
+            "X as constants'. It is not asking you to compute anything — it is asking whether "
+            "you know which form shows which feature. The other regular trap is answering with "
+            "the $x$-coordinate when the question asked for the minimum VALUE: in "
+            "$2(x - 4)^{2} + 5$ the minimum value is $5$, occurring at $x = 4$, and both "
+            "numbers are options.",
+        ],
+        key_idea=(
+            "Three forms of one parabola, each displaying a different feature: standard shows "
+            "the $y$-intercept, factored shows the $x$-intercepts, vertex shows the vertex. "
+            "Pick the form the question is asking about."
+        ),
+        facts=[
+            fact(
+                "The three forms",
+                "ax^{2} + bx + c, \\qquad a(x - p)(x - q), \\qquad a(x - h)^{2} + k",
+                "$c$ is the $y$-intercept; $p$ and $q$ are the $x$-intercepts; $(h,k)$ is the "
+                "vertex.",
+            ),
+            fact(
+                "Axis of symmetry",
+                "x = -\\frac{b}{2a} = \\frac{p + q}{2}",
+                "Two routes to the same line. Averaging the roots is faster when you have them.",
+            ),
+            fact(
+                "Completing the square",
+                "x^{2} + bx = \\left(x + \\frac{b}{2}\\right)^{2} - \\frac{b^{2}}{4}",
+                "Half the coefficient of $x$, squared, added and subtracted. The subtraction "
+                "is what keeps the function unchanged.",
+            ),
+        ],
+        worked=worked,
+        mistakes=[
+            mistake(
+                "Reading $h$ straight out of the bracket in vertex form.",
+                "In $a(x - h)^{2} + k$ the vertex is at $x = h$, so $(x + 3)^{2}$ has vertex "
+                "$x = -3$. The sign flips.",
+            ),
+            mistake(
+                "Answering with the $x$-coordinate when asked for the minimum value.",
+                "The minimum VALUE is $k$; the $x$ where it occurs is $h$. Both appear in the "
+                "options.",
+            ),
+            mistake(
+                "Forgetting to subtract back when completing the square.",
+                "Adding $25$ inside changes the function unless $25$ is also subtracted "
+                "outside.",
+            ),
+            mistake(
+                "Assuming every parabola has a minimum.",
+                "A negative leading coefficient opens the parabola downward, so its vertex is "
+                "a MAXIMUM and it has no minimum at all.",
+            ),
+        ],
+        try_it=try_it,
+        steps=steps,
+    )
+
+
+# ===========================================================================
+# Lesson 2 — exponential functions
+# ===========================================================================
+
+def lesson_exponential():
+    worked = [
+        problem(
+            "sat-nf2-w1",
+            "A culture starts with $400$ bacteria and the population doubles every $3$ hours. "
+            "Which function gives the population $P$ after $t$ hours?",
+            "**Answer.** $P(t) = 400 \\cdot 2^{t/3}$.  \n"
+            "Exponential models have the shape $P(t) = P_{0} \\cdot b^{t/T}$, where $P_{0}$ is "
+            "the starting amount, $b$ is the growth factor, and $T$ is the time it takes for "
+            "one whole multiplication to happen.  \n"
+            "Here $P_{0} = 400$, the factor is $2$ because the population doubles, and one "
+            "doubling takes $3$ hours, so the exponent is $\\frac{t}{3}$:\n"
+            "$$P(t) = 400 \\cdot 2^{t/3}$$\n"
+            "Check the timing: after $3$ hours, $P(3) = 400 \\cdot 2^{1} = 800$ — one doubling. "
+            "After $6$ hours, $P(6) = 400 \\cdot 2^{2} = 1600$ — two doublings.  \n"
+            "Writing $400 \\cdot 2^{3t}$ instead is the trap, and it is very wrong: it would "
+            "double every twenty minutes, giving $25{,}600$ after three hours. When the period "
+            "is not one time unit, it goes in the DENOMINATOR of the exponent.",
+            [
+                "Eq(400*2**Rational(3,3), 800)",
+                "Eq(400*2**Rational(6,3), 1600)",
+                "Eq(400*2**(3*3), 204800)",
+            ],
+        ),
+        problem(
+            "sat-nf2-w2",
+            "The value of a machine is modelled by $V(t) = 24000(0.85)^{t}$, where $t$ is the "
+            "number of years since purchase. What does $0.85$ indicate about the machine's "
+            "value?",
+            "**Answer.** It loses $15\\%$ of its value each year.  \n"
+            "In $P_{0} \\cdot b^{t}$ the base $b$ is the factor the quantity is multiplied by "
+            "each period. A base BELOW $1$ means decay:\n"
+            "$$b = 0.85 = 1 - 0.15$$\n"
+            "so each year the machine keeps $85\\%$ of its value, which is the same as losing "
+            "$15\\%$.  \n"
+            "Check: $V(0) = 24000$ and $V(1) = 20400$, a drop of $3600$ — and "
+            "$\\frac{3600}{24000} = 0.15$, exactly $15\\%$.  \n"
+            "The trap is reading $0.85$ as '$85\\%$ lost'. It is the fraction KEPT. A base of "
+            "$1.15$ would mean $15\\%$ gained; a base of $0.15$ would mean losing $85\\%$.",
+            [
+                "Eq(24000*Rational(85,100)**0, 24000)",
+                "Eq(24000*Rational(85,100)**1, 20400)",
+                "Eq(Rational(24000 - 20400, 24000), Rational(15,100))",
+            ],
+        ),
+        problem(
+            "sat-nf2-w3",
+            "The table shows the value of a function $f$ at four inputs.\n\n"
+            "| $x$ | $f(x)$ |\n| --- | --- |\n| $0$ | $5$ |\n| $1$ | $15$ |\n| $2$ | $45$ |\n"
+            "| $3$ | $135$ |\n\n"
+            "Which type of function is $f$, and what is its equation?",
+            "**Answer.** Exponential, $f(x) = 5 \\cdot 3^{x}$.  \n"
+            "Test for linear first: the DIFFERENCES between consecutive outputs are $10$, $30$ "
+            "and $90$. They are not constant, so $f$ is not linear.  \n"
+            "Now test the RATIOS:\n"
+            "$$\\frac{15}{5} = 3, \\qquad \\frac{45}{15} = 3, \\qquad \\frac{135}{45} = 3$$\n"
+            "Constant ratio, so the function is exponential with growth factor $3$. The "
+            "starting value is $f(0) = 5$:\n"
+            "$$f(x) = 5 \\cdot 3^{x}$$\n"
+            "Check: $f(3) = 5 \\cdot 27 = 135$.  \n"
+            "That is the whole test, and it is worth doing in that order. Equal DIFFERENCES "
+            "mean linear — add the same amount each step. Equal RATIOS mean exponential — "
+            "multiply by the same factor each step.",
+            [
+                "Eq(Rational(15,5), 3)",
+                "Eq(Rational(45,15), 3)",
+                "Eq(Rational(135,45), 3)",
+                "Eq(5*3**3, 135)",
+                "Ne(15 - 5, 45 - 15)",
+            ],
+        ),
+    ]
+
+    try_it = [
+        problem(
+            "sat-nf2-t1",
+            "A population of $600$ grows by $8\\%$ per year. Which function gives the "
+            "population after $t$ years?",
+            "**Answer.** $P(t) = 600(1.08)^{t}$. An $8\\%$ increase multiplies by "
+            "$1 + 0.08 = 1.08$ each year. Check: after one year, $600 \\times 1.08 = 648$, "
+            "which is $600$ plus $8\\%$ of $600$.",
+            [
+                "Eq(600*Rational(108,100), 648)",
+                "Eq(600 + Rational(8,100)*600, 648)",
+            ],
+        ),
+        problem(
+            "sat-nf2-t2",
+            "$$A(t) = 5000(0.6)^{t}$$\n"
+            "What percentage of the amount is lost each period?",
+            "**Answer.** $40\\%$. The base $0.6$ is the fraction KEPT, so the fraction lost is "
+            "$1 - 0.6 = 0.4$, that is $40\\%$. Check: $A(0) = 5000$ and $A(1) = 3000$, a drop "
+            "of $2000$, which is $40\\%$ of $5000$.",
+            [
+                "Eq(5000*Rational(6,10), 3000)",
+                "Eq(Rational(5000 - 3000, 5000), Rational(40,100))",
+            ],
+        ),
+        problem(
+            "sat-nf2-t3",
+            "A substance halves every $12$ years. Starting from $80$ grams, which function "
+            "gives the mass after $t$ years?",
+            "**Answer.** $m(t) = 80\\left(\\frac{1}{2}\\right)^{t/12}$. The factor is "
+            "$\\frac{1}{2}$ and one halving takes $12$ years, so the period goes in the "
+            "denominator of the exponent. Check: after $12$ years, "
+            "$80 \\times \\frac{1}{2} = 40$ grams; after $24$ years, $20$ grams.",
+            [
+                "Eq(80*Rational(1,2)**Rational(12,12), 40)",
+                "Eq(80*Rational(1,2)**Rational(24,12), 20)",
+            ],
+        ),
+        problem(
+            "sat-nf2-t4",
+            "A table shows $f(0) = 7$, $f(1) = 11$, $f(2) = 15$, $f(3) = 19$. Is $f$ linear or "
+            "exponential?",
+            "**Answer.** Linear, $f(x) = 4x + 7$. The differences are $4$, $4$, $4$ — "
+            "constant — so it is linear. The ratios would be $\\frac{11}{7}$ and "
+            "$\\frac{15}{11}$, which are not equal, ruling out exponential.",
+            [
+                "Eq(11 - 7, 4)",
+                "Eq(15 - 11, 4)",
+                "Eq(4*3 + 7, 19)",
+                "Ne(Rational(11,7), Rational(15,11))",
+            ],
+        ),
+    ]
+
+    steps = [
+        {
+            "kind": "teach",
+            "title": "Repeated multiplication, not repeated addition",
+            "body": "A linear function ADDS the same amount each step; an exponential function "
+                    "MULTIPLIES by the same factor. That single difference is what makes "
+                    "exponentials overtake any line eventually, however slowly they start, and "
+                    "it is what the SAT's 'linear or exponential' questions are testing.",
+        },
+        {
+            "kind": "expGraph",
+            "title": "The line and the curve",
+            "teach": "Race a straight line against an exponential. The line can lead for a long "
+                     "time, but a constant multiplication always wins in the end — that "
+                     "crossing point is what growth questions are really about.",
+            "config": {"mode": "race", "b": 2, "m": 5, "interactive": True},
+        },
+        {
+            "kind": "teach",
+            "title": "Reading the base",
+            "beats": [
+                "b greater than 1 is growth; b between 0 and 1 is decay.",
+                "b = 1.08 means an 8% increase per period.",
+                "b = 0.85 means 85% is KEPT — a 15% decrease, not an 85% one.",
+                "The base is always the factor per ONE period, whatever that period is.",
+            ],
+        },
+        {"kind": "worked", "title": "A doubling period that is not one unit", "problemId": "sat-nf2-w1"},
+        {
+            "kind": "tapQuestion",
+            "title": "Growth or decay, and by how much?",
+            "prompt": "In $A(t) = 900(1.06)^{t}$, what does the base tell you?",
+            "options": [
+                "The amount grows by $6\\%$ each period",
+                "The amount grows by $106\\%$ each period",
+                "The amount shrinks by $6\\%$ each period",
+                "The amount grows by $1.06$ units each period",
+            ],
+            "correctIndex": 0,
+            "explanation": "A base of $1.06$ is $1 + 0.06$, so each period multiplies by "
+                           "$1.06$ — a $6\\%$ increase. Check: $A(0) = 900$ and $A(1) = 954$, "
+                           "a rise of $54$, and $\\frac{54}{900} = 0.06$. Growth is a "
+                           "percentage, not a fixed number of units.",
+            "check": [
+                "Eq(900*Rational(106,100), 954)",
+                "Eq(Rational(954 - 900, 900), Rational(6,100))",
+            ],
+        },
+        {"kind": "worked", "title": "What the base means", "problemId": "sat-nf2-w2"},
+        {
+            "kind": "tip",
+            "title": "Differences for linear, ratios for exponential",
+            "body": "Given a table with evenly spaced inputs, subtract consecutive outputs. If "
+                    "the differences are constant, the function is linear. If they are not, "
+                    "DIVIDE consecutive outputs instead: a constant ratio means exponential. "
+                    "Two lines of arithmetic settle a question that looks like it needs a "
+                    "graph.",
+        },
+        {"kind": "worked", "title": "Linear or exponential?", "problemId": "sat-nf2-w3"},
+        {"kind": "tryIt", "title": "Your turn: percentage growth", "problemId": "sat-nf2-t1"},
+        {"kind": "tryIt", "title": "Your turn: read the decay", "problemId": "sat-nf2-t2"},
+        {"kind": "tryIt", "title": "Your turn: a half-life", "problemId": "sat-nf2-t3"},
+        {"kind": "tryIt", "title": "Your turn: which family?", "problemId": "sat-nf2-t4"},
+        {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+                "Linear adds a constant; exponential multiplies by a constant.",
+                "A base above 1 grows, a base below 1 decays — and the base is the fraction KEPT.",
+                "1.08 means +8%; 0.85 means −15%, not −85%.",
+                "When one doubling or halving takes T periods, the exponent is t divided by T.",
+                "Constant differences mean linear; constant ratios mean exponential.",
+            ],
+        },
+    ]
+
+    return lesson(
+        slug="exponential-functions",
+        title="Exponential Growth and Decay",
+        concrete=(
+            "A rumour told to two people, each of whom tells two more, reaches everyone in a "
+            "school within a day. Nothing about the story is bigger than a linear one — the "
+            "difference is that it MULTIPLIES rather than adds, and that difference is the "
+            "whole of exponential growth."
+        ),
+        objective=(
+            "Build an exponential model from a described situation, interpret the base as a "
+            "percentage change, handle growth periods longer than one time unit, and tell "
+            "linear from exponential given a table."
+        ),
+        concept=[
+            "**Skill card.** Still *Nonlinear functions*, in the **Advanced Math** domain. "
+            "Exponential modelling is one or two questions a test, and it shows up on the "
+            "Problem-Solving side of the paper too.",
+            "An exponential model is $P(t) = P_{0} \\cdot b^{t}$: a starting amount multiplied "
+            "by the same factor $b$ every period. A base above $1$ grows; a base between $0$ "
+            "and $1$ decays. And the base is always the fraction KEPT — $0.85$ means $85\\%$ "
+            "remains, which is a $15\\%$ loss, not an $85\\%$ one.",
+            "When one whole doubling or halving takes longer than a single time unit, the "
+            "period goes into the DENOMINATOR of the exponent: doubling every three hours is "
+            "$2^{t/3}$, not $2^{3t}$. The difference is enormous — $2^{3t}$ would double every "
+            "twenty minutes — and it is a listed option every time.",
+            "**The test's angle.** Given a table with evenly spaced inputs, the SAT asks "
+            "whether the relationship is linear or exponential. Subtract consecutive outputs: "
+            "constant differences mean linear. If they are not constant, divide instead: a "
+            "constant RATIO means exponential. Two lines of arithmetic answer a question that "
+            "looks like it needs a graph.",
+        ],
+        key_idea=(
+            "Exponential means multiplying by the same factor each period. The base is the "
+            "fraction kept, and when one full change takes $T$ periods the exponent is "
+            "$\\frac{t}{T}$."
+        ),
+        facts=[
+            fact(
+                "The exponential model",
+                "P(t) = P_{0} \\cdot b^{t/T}",
+                "$P_{0}$ starting amount, $b$ the factor per full change, $T$ how long one "
+                "full change takes.",
+            ),
+            fact(
+                "Base as a percentage",
+                "b = 1 + r \\;(\\text{growth}), \\qquad b = 1 - r \\;(\\text{decay})",
+                "$1.06$ is $+6\\%$; $0.85$ is $-15\\%$. The base is what remains, not what is "
+                "lost.",
+            ),
+            fact(
+                "Telling the families apart",
+                "\\text{constant differences} \\Rightarrow \\text{linear}, \\qquad \\text{constant ratios} \\Rightarrow \\text{exponential}",
+                "Requires evenly spaced inputs. Check differences first, then ratios.",
+            ),
+        ],
+        worked=worked,
+        mistakes=[
+            mistake(
+                "Reading a base of $0.85$ as an $85\\%$ decrease.",
+                "It is the fraction KEPT, so the decrease is $15\\%$. A base of $0.15$ would "
+                "be the $85\\%$ loss.",
+            ),
+            mistake(
+                "Multiplying the exponent by the period instead of dividing.",
+                "Doubling every $3$ hours is $2^{t/3}$. $2^{3t}$ doubles every twenty minutes.",
+            ),
+            mistake(
+                "Testing only differences and concluding 'not linear, so nothing'.",
+                "If the differences are not constant, check the ratios. A constant ratio makes "
+                "it exponential.",
+            ),
+            mistake(
+                "Treating a percentage increase as a fixed amount added.",
+                "$8\\%$ growth on $600$ is $48$; on $6000$ it is $480$. The multiplier is what "
+                "is constant, not the increment.",
+            ),
+        ],
+        try_it=try_it,
+        steps=steps,
+    )
+
+
+# ===========================================================================
+# Lesson 3 — polynomial and rational graphs, and transformations
+# ===========================================================================
+
+def lesson_graphs():
+    worked = [
+        problem(
+            "sat-nf3-w1",
+            "The function $p$ is defined by $p(x) = (x + 2)(x - 1)^{2}(x - 4)$. At how many "
+            "distinct points does the graph of $p$ cross or touch the $x$-axis, and what "
+            "happens at $x = 1$?",
+            "**Answer.** Three points; at $x = 1$ the graph TOUCHES the axis and turns back "
+            "without crossing.  \n"
+            "The zeros are the values making each factor zero: $x = -2$, $x = 1$ and $x = 4$ "
+            "— three distinct points.  \n"
+            "What happens at each one depends on the MULTIPLICITY, that is, the power on the "
+            "factor. The factor $(x - 1)$ appears squared, so $x = 1$ is a zero of "
+            "multiplicity two.\n"
+            "$$\\text{odd multiplicity} \\Rightarrow \\text{crosses}, \\qquad \\text{even multiplicity} \\Rightarrow \\text{touches and turns}$$\n"
+            "So the graph crosses at $-2$ and at $4$, and merely touches at $1$.  \n"
+            "Check the sign either side of $x = 1$: $p(0) = (2)(1)(-4) = -8$ and "
+            "$p(2) = (4)(1)(-2) = -8$. Negative on both sides — the graph came down to the "
+            "axis and went back down, exactly as a squared factor demands.  \n"
+            "Counting the $(x-1)^{2}$ as two separate intercepts is the standard error: it is "
+            "ONE point on the axis.",
+            [
+                "Eq((0 + 2)*(0 - 1)**2*(0 - 4), -8)",
+                "Eq((2 + 2)*(2 - 1)**2*(2 - 4), -8)",
+                "Eq((1 + 2)*(1 - 1)**2*(1 - 4), 0)",
+                "Eq((-2 + 2)*(-2 - 1)**2*(-2 - 4), 0)",
+            ],
+        ),
+        problem(
+            "sat-nf3-w2",
+            "The function $f$ is defined by $f(x) = \\dfrac{2x - 6}{x + 4}$. What is the "
+            "vertical asymptote of the graph of $f$, and what is its $x$-intercept?",
+            "**Answer.** Vertical asymptote $x = -4$; $x$-intercept $(3, 0)$.  \n"
+            "A rational function blows up where its DENOMINATOR is zero, provided the "
+            "numerator is not also zero there:\n"
+            "$$x + 4 = 0 \\;\\Longrightarrow\\; x = -4$$\n"
+            "That is the vertical asymptote — the graph runs off to infinity beside it and "
+            "never touches it.  \n"
+            "The graph meets the $x$-axis where the FUNCTION is zero, and a fraction is zero "
+            "exactly when its numerator is:\n"
+            "$$2x - 6 = 0 \\;\\Longrightarrow\\; x = 3$$\n"
+            "Check: $f(3) = \\frac{0}{7} = 0$, and $f(-4)$ is undefined because the "
+            "denominator vanishes.  \n"
+            "Numerator for zeros, denominator for asymptotes. Swapping the two is the single "
+            "error this question is built to catch, and it produces exactly the option pair "
+            "$x = 3$ and $(-4, 0)$.",
+            [
+                "Eq(Rational(2*3 - 6, 3 + 4), 0)",
+                "Eq(2*3 - 6, 0)",
+                "Eq(-4 + 4, 0)",
+                "Eq(Rational(2*0 - 6, 0 + 4), Rational(-3,2))",
+            ],
+        ),
+        problem(
+            "sat-nf3-w3",
+            "The graph of $y = f(x)$ has a minimum at $(2, -5)$. The function $g$ is defined "
+            "by $g(x) = f(x - 3) + 8$. What are the coordinates of the corresponding minimum "
+            "of $g$?",
+            "**Answer.** $(5, 3)$.  \n"
+            "Two transformations are applied and they act on different coordinates.  \n"
+            "The $-3$ is INSIDE the function, so it changes the input. To get the same output "
+            "as $f$ had at $2$, the new input must be $3$ larger: $x - 3 = 2$ gives $x = 5$. "
+            "Subtracting inside shifts the graph RIGHT, which is the opposite of what the sign "
+            "suggests.\n"
+            "$$2 + 3 = 5$$\n"
+            "The $+8$ is OUTSIDE, so it acts on the output directly, lifting every point by "
+            "eight:\n"
+            "$$-5 + 8 = 3$$\n"
+            "So the minimum moves to $(5, 3)$.  \n"
+            "The rule to keep: inside the brackets acts on $x$ and does the OPPOSITE of what "
+            "it looks like; outside acts on $y$ and does exactly what it looks like.",
+            [
+                "Eq(2 + 3, 5)",
+                "Eq(-5 + 8, 3)",
+                "Eq(5 - 3, 2)",
+            ],
+        ),
+    ]
+
+    try_it = [
+        problem(
+            "sat-nf3-t1",
+            "How many distinct $x$-intercepts does the graph of "
+            "$q(x) = x(x + 5)^{2}(x - 2)$ have?",
+            "**Answer.** Three: $x = 0$, $x = -5$ and $x = 2$. The squared factor gives ONE "
+            "intercept at $-5$, where the graph touches and turns rather than crossing.",
+            [
+                "Eq(0*(0 + 5)**2*(0 - 2), 0)",
+                "Eq((-5)*(-5 + 5)**2*(-5 - 2), 0)",
+                "Eq(2*(2 + 5)**2*(2 - 2), 0)",
+            ],
+        ),
+        problem(
+            "sat-nf3-t2",
+            "For $f(x) = \\dfrac{x + 1}{x - 6}$, what is the vertical asymptote?",
+            "**Answer.** $x = 6$. The denominator is zero there and the numerator is not "
+            "($6 + 1 = 7$), so the function blows up. The $x$-intercept is at $x = -1$, where "
+            "the numerator vanishes.",
+            [
+                "Eq(6 - 6, 0)",
+                "Ne(6 + 1, 0)",
+                "Eq(Rational(-1 + 1, -1 - 6), 0)",
+            ],
+        ),
+        problem(
+            "sat-nf3-t3",
+            "The graph of $y = f(x)$ passes through $(4, 7)$. Through which point does the "
+            "graph of $y = f(x + 2) - 3$ pass?",
+            "**Answer.** $(2, 4)$. The $+2$ inside shifts the graph LEFT by two, so the input "
+            "giving the same output is $4 - 2 = 2$; the $-3$ outside lowers the output to "
+            "$7 - 3 = 4$.",
+            ["Eq(4 - 2, 2)", "Eq(7 - 3, 4)", "Eq(2 + 2, 4)"],
+        ),
+        problem(
+            "sat-nf3-t4",
+            "The graph of $y = f(x)$ has a maximum at $(-1, 10)$. Where is the maximum of "
+            "$y = 2f(x)$?",
+            "**Answer.** $(-1, 20)$. Multiplying the whole function by $2$ doubles every "
+            "output but leaves the inputs untouched, so the $x$-coordinate does not move and "
+            "the height doubles.",
+            ["Eq(2*10, 20)", "Eq(-1, -1)"],
+        ),
+    ]
+
+    steps = [
+        {
+            "kind": "teach",
+            "title": "Zeros, and what the graph does at each one",
+            "body": "A polynomial in factored form wears its zeros on its sleeve: set each "
+                    "factor to zero. What the graph DOES at each zero depends on the power on "
+                    "that factor. An odd power means the graph crosses the axis; an even power "
+                    "means it touches and turns back without crossing. A squared factor is "
+                    "still ONE point on the axis, not two.",
+        },
+        {
+            "kind": "polyGraph",
+            "title": "Crossing and touching",
+            "teach": "Raise the multiplicity at a root and watch the graph stop crossing and "
+                     "start bouncing. Odd powers pass through; even powers turn around.",
+            "config": {"mode": "multiplicity", "m": 2},
+        },
+        {"kind": "worked", "title": "Reading a factored polynomial", "problemId": "sat-nf3-w1"},
+        {
+            "kind": "teach",
+            "title": "Rational functions: two different questions",
+            "beats": [
+                "Zeros come from the NUMERATOR — a fraction is zero when its top is.",
+                "Vertical asymptotes come from the DENOMINATOR — where it is zero and the top is not.",
+                "If both vanish at the same value, that factor cancels and leaves a hole, not an asymptote.",
+                "Swapping numerator and denominator is the error the questions are built on.",
+            ],
+        },
+        {"kind": "worked", "title": "Asymptote and intercept", "problemId": "sat-nf3-w2"},
+        {
+            "kind": "tapQuestion",
+            "title": "Inside or outside?",
+            "prompt": "The graph of $y = f(x)$ is shifted to produce $y = f(x - 5)$. Which way "
+                      "does it move?",
+            "options": [
+                "Right by $5$",
+                "Left by $5$",
+                "Up by $5$",
+                "Down by $5$",
+            ],
+            "correctIndex": 0,
+            "explanation": "The change is INSIDE the brackets, so it acts on the input — and "
+                           "it does the opposite of what it looks like. To make $x - 5$ equal "
+                           "the old input, $x$ must be $5$ larger, so every point moves RIGHT. "
+                           "A change outside the brackets would move it up or down instead.",
+            "check": ["Eq(7 - 5, 2)", "Eq(2 + 5, 7)"],
+        },
+        {
+            "kind": "teach",
+            "title": "The transformation rules",
+            "beats": [
+                "f(x) + k moves the graph UP by k — outside, and exactly as it looks.",
+                "f(x − h) moves it RIGHT by h — inside, and OPPOSITE to how it looks.",
+                "a·f(x) stretches vertically by a; a negative a flips it upside down.",
+                "Inside acts on x and reverses; outside acts on y and does not.",
+            ],
+        },
+        {"kind": "worked", "title": "Moving a minimum", "problemId": "sat-nf3-w3"},
+        {"kind": "tryIt", "title": "Your turn: count the intercepts", "problemId": "sat-nf3-t1"},
+        {"kind": "tryIt", "title": "Your turn: find the asymptote", "problemId": "sat-nf3-t2"},
+        {"kind": "tryIt", "title": "Your turn: two shifts at once", "problemId": "sat-nf3-t3"},
+        {"kind": "tryIt", "title": "Your turn: a vertical stretch", "problemId": "sat-nf3-t4"},
+        {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+                "Set each factor to zero for the x-intercepts; a squared factor is still one point.",
+                "Odd multiplicity crosses the axis; even multiplicity touches and turns.",
+                "A rational function is zero where its NUMERATOR is zero.",
+                "Its vertical asymptotes are where the DENOMINATOR is zero and the numerator is not.",
+                "Inside the brackets acts on x and reverses; outside acts on y and does not.",
+            ],
+        },
+    ]
+
+    return lesson(
+        slug="polynomial-rational-graphs-and-transformations",
+        title="Polynomial and Rational Graphs, and Transformations",
+        concrete=(
+            "Two roads meet the coastline differently: one crosses it and carries on inland, "
+            "the other just touches the water's edge and turns back. A graph does the same "
+            "thing at its zeros, and which behaviour you get is decided by a single exponent."
+        ),
+        objective=(
+            "Find the zeros of a factored polynomial and decide whether the graph crosses or "
+            "touches at each, locate the zeros and vertical asymptotes of a rational function, "
+            "and apply shifts and stretches to a graph."
+        ),
+        concept=[
+            "**Skill card.** Still *Nonlinear functions*, in the **Advanced Math** domain. "
+            "This lesson covers the non-quadratic half of the subtopic, and transformations "
+            "appear on graphs of every family, not just these.",
+            "A factored polynomial shows its zeros directly — set each factor to zero. What "
+            "the graph DOES at each zero depends on the power on that factor: an odd power "
+            "means it crosses the axis, an even power means it touches and turns back. A "
+            "squared factor still gives ONE point on the axis, not two.",
+            "For a rational function the two questions have two different answers. The graph "
+            "is zero where the NUMERATOR is zero, because that is when the fraction equals "
+            "zero. It has a vertical asymptote where the DENOMINATOR is zero and the numerator "
+            "is not. If both vanish at the same value, that factor cancels and leaves a hole "
+            "rather than an asymptote.",
+            "**The test's angle.** Transformations, and the sign that goes the wrong way. A "
+            "change OUTSIDE the function acts on the output and does exactly what it looks "
+            "like: $f(x) + 8$ lifts the graph eight. A change INSIDE acts on the input and "
+            "does the OPPOSITE: $f(x - 3)$ shifts the graph three to the RIGHT. Getting that "
+            "backwards is the most common single error on graph questions across the whole "
+            "test.",
+        ],
+        key_idea=(
+            "Zeros come from factors; odd powers cross and even powers touch. For fractions, "
+            "the numerator gives zeros and the denominator gives asymptotes. Inside the "
+            "brackets reverses; outside does not."
+        ),
+        facts=[
+            fact(
+                "Multiplicity",
+                "(x - r)^{n}: \\; n \\text{ odd} \\Rightarrow \\text{crosses}, \\quad n \\text{ even} \\Rightarrow \\text{touches}",
+                "The zero is at $x = r$ either way; the power decides the behaviour there.",
+            ),
+            fact(
+                "Rational zeros and asymptotes",
+                "\\frac{N(x)}{D(x)}: \\; N(x) = 0 \\Rightarrow \\text{zero}, \\quad D(x) = 0 \\Rightarrow \\text{asymptote}",
+                "Provided the two do not vanish together — that case is a hole.",
+            ),
+            fact(
+                "Transformations",
+                "f(x) + k \\;(\\text{up } k), \\qquad f(x - h) \\;(\\text{right } h), \\qquad a f(x) \\;(\\text{stretch by } a)",
+                "Outside acts on the output as written; inside acts on the input and reverses.",
+            ),
+        ],
+        worked=worked,
+        mistakes=[
+            mistake(
+                "Counting a squared factor as two $x$-intercepts.",
+                "$(x - 1)^{2}$ gives ONE point on the axis, at $x = 1$. The power tells you "
+                "the graph touches there, not that there are two crossings.",
+            ),
+            mistake(
+                "Using the denominator to find where a rational function is zero.",
+                "A fraction is zero when its NUMERATOR is zero. The denominator gives "
+                "asymptotes.",
+            ),
+            mistake(
+                "Reading $f(x - 3)$ as a shift to the left.",
+                "Inside the brackets, the shift is opposite to the sign: $f(x-3)$ moves the "
+                "graph RIGHT by three.",
+            ),
+            mistake(
+                "Letting a vertical stretch move the $x$-coordinate.",
+                "$2f(x)$ doubles every output. Inputs are untouched, so a maximum stays at the "
+                "same $x$ and only its height changes.",
+            ),
+        ],
+        try_it=try_it,
+        steps=steps,
+    )
+
+
+# ===========================================================================
+# Unit assembly
+# ===========================================================================
+
+PRACTICE = [
+    problem(
+        "sat-nf-p01",
+        "What is the $y$-intercept of the graph of $f(x) = 3x^{2} - 5x + 8$?",
+        "**Answer.** $(0, 8)$. Every term with an $x$ vanishes at $x = 0$, leaving the "
+        "constant term.",
+        ["Eq(3*0**2 - 5*0 + 8, 8)"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nf-p02",
+        "The function $f$ is defined by $f(x) = (x - 6)(x + 2)$. What are the "
+        "$x$-intercepts of its graph?",
+        "**Answer.** $(6, 0)$ and $(-2, 0)$. Factored form displays them directly.",
+        ["Eq((6 - 6)*(6 + 2), 0)", "Eq((-2 - 6)*(-2 + 2), 0)"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nf-p03",
+        "The function $g$ is defined by $g(x) = (x + 1)^{2} - 9$. What is the minimum value "
+        "of $g$?",
+        "**Answer.** $-9$. Vertex form gives the vertex $(-1, -9)$, and the leading "
+        "coefficient is positive, so $-9$ is the minimum value. The $x$-coordinate $-1$ is "
+        "the standard distractor.",
+        ["Eq((-1 + 1)**2 - 9, -9)", "(2 + 1)**2 - 9 > -9"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nf-p04",
+        "A population of $2{,}000$ decreases by $12\\%$ per year. Which function gives the "
+        "population after $t$ years?",
+        "**Answer.** $P(t) = 2000(0.88)^{t}$. A $12\\%$ decrease keeps $88\\%$, so the base "
+        "is $0.88$. Check: after one year, $2000 \\times 0.88 = 1760$, which is $2000$ minus "
+        "$12\\%$ of $2000$.",
+        [
+            "Eq(2000*Rational(88,100), 1760)",
+            "Eq(2000 - Rational(12,100)*2000, 1760)",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-p05",
+        "The function $f$ is defined by $f(x) = x^{2} - 8x + 3$. What is the $x$-coordinate "
+        "of the vertex?",
+        "**Answer.** $4$. The axis of symmetry is $x = -\\frac{b}{2a} = \\frac{8}{2} = 4$. "
+        "Completing the square agrees: $f(x) = (x - 4)^{2} - 13$.",
+        [
+            "Eq(-Rational(-8, 2*1), 4)",
+            "Eq(expand((x - 4)**2 - 13), x**2 - 8*x + 3)",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-p06",
+        "For $f(x) = \\dfrac{3x - 12}{x + 5}$, what is the $x$-intercept of the graph?",
+        "**Answer.** $(4, 0)$. A fraction is zero when its numerator is: $3x - 12 = 0$ gives "
+        "$x = 4$. The value $x = -5$ is the vertical asymptote, not an intercept.",
+        [
+            "Eq(Rational(3*4 - 12, 4 + 5), 0)",
+            "Eq(-5 + 5, 0)",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-p07",
+        "How many distinct $x$-intercepts does the graph of $p(x) = (x - 3)^{2}(x + 1)$ have?",
+        "**Answer.** Two: $x = 3$ and $x = -1$. The squared factor gives one intercept, where "
+        "the graph touches the axis and turns; the graph crosses at $-1$.",
+        ["Eq((3 - 3)**2*(3 + 1), 0)", "Eq((-1 - 3)**2*(-1 + 1), 0)"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-p08",
+        "A quantity triples every $5$ years, starting at $12$. Which function gives the "
+        "quantity after $t$ years?",
+        "**Answer.** $Q(t) = 12 \\cdot 3^{t/5}$. One tripling takes five years, so the period "
+        "goes in the denominator of the exponent. Check: $Q(5) = 36$ and $Q(10) = 108$.",
+        ["Eq(12*3**Rational(5,5), 36)", "Eq(12*3**Rational(10,5), 108)"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-p09",
+        "The graph of $y = f(x)$ passes through $(1, 6)$. Through which point does "
+        "$y = f(x - 4) + 2$ pass?",
+        "**Answer.** $(5, 8)$. The $-4$ inside shifts the graph right by four, so the input "
+        "becomes $1 + 4 = 5$; the $+2$ outside raises the output to $8$.",
+        ["Eq(1 + 4, 5)", "Eq(6 + 2, 8)", "Eq(5 - 4, 1)"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-p10",
+        "The table gives values of a function.\n\n"
+        "| $x$ | $f(x)$ |\n| --- | --- |\n| $0$ | $8$ |\n| $1$ | $4$ |\n| $2$ | $2$ |\n"
+        "| $3$ | $1$ |\n\n"
+        "What kind of function is $f$?",
+        "**Answer.** Exponential, $f(x) = 8\\left(\\frac{1}{2}\\right)^{x}$. The differences "
+        "are $-4$, $-2$, $-1$ — not constant — but the ratios are all $\\frac{1}{2}$. The "
+        "starting value is $8$.",
+        [
+            "Eq(Rational(4,8), Rational(1,2))",
+            "Eq(Rational(2,4), Rational(1,2))",
+            "Eq(8*Rational(1,2)**3, 1)",
+            "Ne(4 - 8, 2 - 4)",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-p11",
+        "Which form of $f(x) = x^{2} + 12x + 27$ displays the coordinates of the vertex as "
+        "constants?",
+        "**Answer.** $f(x) = (x + 6)^{2} - 9$, giving the vertex $(-6, -9)$. Half of $12$ is "
+        "$6$, and $6^{2} = 36$, so $f(x) = (x^{2} + 12x + 36) - 36 + 27$.",
+        [
+            "Eq(expand((x + 6)**2 - 9), x**2 + 12*x + 27)",
+            "Eq((-6)**2 + 12*(-6) + 27, -9)",
+        ],
+        badges=_b("Hard"),
+    ),
+    problem(
+        "sat-nf-p12",
+        "The graph of $y = f(x)$ has a minimum at $(3, -2)$. Where is the minimum of "
+        "$y = -f(x)$?",
+        "**Answer.** There is no minimum — $(3, 2)$ is now a MAXIMUM. Multiplying by $-1$ "
+        "reflects the graph in the horizontal axis, so every output changes sign and the "
+        "lowest point becomes the highest. The $x$-coordinate does not move.",
+        ["Eq(-(-2), 2)", "Eq(3, 3)"],
+        badges=_b("Hard"),
+    ),
+]
+
+TEST = [
+    problem(
+        "sat-nf-x01",
+        "The function $f$ is defined by $f(x) = (x + 4)(x - 10)$. What is the $x$-coordinate "
+        "of the vertex?",
+        "**Answer.** $3$. The intercepts are $-4$ and $10$, and the vertex is halfway "
+        "between: $\\frac{-4 + 10}{2} = 3$.",
+        ["Eq(Rational(-4 + 10, 2), 3)", "Eq(expand((x + 4)*(x - 10)), x**2 - 6*x - 40)"],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nf-x02",
+        "$$V(t) = 18000(0.9)^{t}$$\n"
+        "What does the base $0.9$ indicate?",
+        "**Answer.** The value falls by $10\\%$ each period. The base is the fraction kept, "
+        "so $1 - 0.9 = 0.1$ is lost. Check: $V(0) = 18000$ and $V(1) = 16200$, a drop of "
+        "$1800$, which is $10\\%$.",
+        [
+            "Eq(18000*Rational(9,10), 16200)",
+            "Eq(Rational(18000 - 16200, 18000), Rational(10,100))",
+        ],
+        badges=_b("Easy"),
+    ),
+    problem(
+        "sat-nf-x03",
+        "The function $g$ is defined by $g(x) = -2(x - 7)^{2} + 15$. What is the maximum "
+        "value of $g$, and where does it occur?",
+        "**Answer.** The maximum value is $15$, at $x = 7$. Vertex form gives the vertex "
+        "$(7, 15)$, and the negative leading coefficient opens the parabola downward, making "
+        "that a maximum.",
+        ["Eq(-2*(7 - 7)**2 + 15, 15)", "-2*(10 - 7)**2 + 15 < 15"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-x04",
+        "For $f(x) = \\dfrac{x - 2}{x^{2} - 9}$, what are the vertical asymptotes?",
+        "**Answer.** $x = 3$ and $x = -3$. The denominator factors as $(x - 3)(x + 3)$, and "
+        "the numerator is non-zero at both values ($1$ and $-5$), so both give asymptotes. "
+        "The $x$-intercept is at $x = 2$, where the numerator vanishes.",
+        [
+            "Eq(3**2 - 9, 0)",
+            "Eq((-3)**2 - 9, 0)",
+            "Ne(3 - 2, 0)",
+            "Eq(Rational(2 - 2, 2**2 - 9), 0)",
+        ],
+        badges=_b("Hard"),
+    ),
+    problem(
+        "sat-nf-x05",
+        "A sample of $150$ grams halves every $8$ days. Which function gives the mass after "
+        "$d$ days?",
+        "**Answer.** $m(d) = 150\\left(\\frac{1}{2}\\right)^{d/8}$. Check: after $8$ days, "
+        "$75$ grams; after $16$ days, $37.5$ grams.",
+        [
+            "Eq(150*Rational(1,2)**Rational(8,8), 75)",
+            "Eq(150*Rational(1,2)**Rational(16,8), Rational(75,2))",
+        ],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-x06",
+        "The graph of $y = f(x)$ has an $x$-intercept at $(6, 0)$. What is the corresponding "
+        "$x$-intercept of $y = f(x + 2)$?",
+        "**Answer.** $(4, 0)$. The $+2$ inside shifts the graph LEFT by two, so the intercept "
+        "moves from $6$ to $4$. Check: $f(4 + 2) = f(6) = 0$.",
+        ["Eq(4 + 2, 6)", "Eq(6 - 2, 4)"],
+        badges=_b("Medium"),
+    ),
+    problem(
+        "sat-nf-x07",
+        "At how many distinct points does the graph of "
+        "$p(x) = (x + 1)^{3}(x - 2)^{2}$ meet the $x$-axis, and at which does it cross?",
+        "**Answer.** Two points; it crosses at $x = -1$ and touches at $x = 2$. The cube is "
+        "an odd multiplicity, so the graph passes through at $-1$; the square is even, so it "
+        "touches and turns at $2$. Check the sign either side of $2$: $p(1) = 8$ and "
+        "$p(3) = 64$, both positive.",
+        [
+            "Eq((1 + 1)**3*(1 - 2)**2, 8)",
+            "Eq((3 + 1)**3*(3 - 2)**2, 64)",
+            "Eq((-1 + 1)**3*(-1 - 2)**2, 0)",
+            "Eq((2 + 1)**3*(2 - 2)**2, 0)",
+        ],
+        badges=_b("Hard"),
+    ),
+    problem(
+        "sat-nf-x08",
+        "The function $f$ is defined by $f(x) = 2x^{2} + 12x + 23$. Which form displays the "
+        "minimum value of $f$ as a constant?",
+        "**Answer.** $f(x) = 2(x + 3)^{2} + 5$, so the minimum value is $5$. Factor the $2$ "
+        "out of the first two terms first: $2(x^{2} + 6x) + 23 = 2\\left((x+3)^{2} - 9\\right) "
+        "+ 23 = 2(x+3)^{2} - 18 + 23$. Forgetting that the $-9$ is multiplied by the $2$ is "
+        "the standard error.",
+        [
+            "Eq(expand(2*(x + 3)**2 + 5), 2*x**2 + 12*x + 23)",
+            "Eq(2*(-3)**2 + 12*(-3) + 23, 5)",
+        ],
+        badges=_b("Hard"),
+    ),
+]
+
+
+def main():
+    lessons = [lesson_quadratic_forms(), lesson_exponential(), lesson_graphs()]
+    write_unit(
+        COURSE,
+        UNIT_SLUG,
+        "Nonlinear Functions",
+        4,
+        "Quadratic functions in all three forms and which one answers which question; "
+        "exponential growth and decay and what the base really means; and polynomial and "
+        "rational graphs, plus the transformations that move any graph on the test.",
+        "Quadratics from Unit 2 and the equivalent forms from Unit 1.",
+        lessons,
+        PRACTICE,
+        TEST,
+    )
+
+
+if __name__ == "__main__":
+    main()
