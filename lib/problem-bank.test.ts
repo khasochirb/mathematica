@@ -67,15 +67,30 @@ describe("problem bank data", () => {
   it("keeps the SAT hub's bank out of the course-ladder list, in SAT taxonomy", () => {
     const sat = getSatBankTopic();
     expect(sat.slug).toBe("sat");
-    // the hub's OWN taxonomy: the four Digital SAT domains, in test order
-    expect(sat.units.map((u) => u.id)).toEqual([
-      "algebra",
-      "advanced-math",
-      "problem-solving-data",
-      "geometry-trig",
+    // The hub's OWN taxonomy: the College Board's twenty official subtopics,
+    // in the Board's order. The bank used to be cut by DOMAIN — four units —
+    // which was coarser than both the course and the Board's list, so a
+    // student told they were weak at conditional probability was sent to a
+    // hundred-question Problem-Solving unit. lib/sat-course.test.ts asserts
+    // the other half of this: that these ids equal the course's subtopics.
+    expect(sat.units).toHaveLength(20);
+    expect(sat.units.map((u) => u.id).slice(0, 5)).toEqual([
+      "linear-equations-one-variable",
+      "linear-equations-two-variables",
+      "linear-functions",
+      "systems-of-linear-equations",
+      "linear-inequalities",
     ]);
     for (const u of sat.units) {
-      expect(unitForms(sat, u.id).length, u.id).toBeGreaterThanOrEqual(6);
+      expect(unitForms(sat, u.id).length, u.id).toBeGreaterThanOrEqual(3);
+      const problems = unitForms(sat, u.id).reduce((n, f) => n + f.variants.length, 0);
+      expect(problems, `${u.id} problems`).toBeGreaterThanOrEqual(24);
+      // Every subtopic spans all three exam tiers. The unit page renders a
+      // level filter, so a subtopic missing a tier used to offer a student
+      // who picked "Level 3 · Exam" a chip that wasn't there — seven of the
+      // twenty were in that state when the bank was first re-cut.
+      const levels = new Set(unitForms(sat, u.id).map((f) => f.level));
+      expect(levels, `${u.id} levels`).toEqual(new Set([1, 2, 3]));
     }
     for (const f of sat.forms) {
       expect(f.variants.length, f.id).toBeGreaterThanOrEqual(4);

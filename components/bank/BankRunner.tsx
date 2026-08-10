@@ -232,7 +232,7 @@ function Setup({ unit, forms, onStart }: { unit: BankUnit; forms: ReturnType<typ
           .map((lv) => (
             <button key={lv} type="button" onClick={() => onStart(lv as BankLevel)} className="card-edit gm-press p-4 text-left">
               <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{LEVEL_LABELS[lv]}</div>
-              <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{counts[lv - 1]} forms at this level.</div>
+              <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{counts[lv - 1]} form{counts[lv - 1] === 1 ? "" : "s"} at this level.</div>
             </button>
           ))}
       </div>

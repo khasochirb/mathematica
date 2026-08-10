@@ -5527,147 +5527,382 @@
     "titleMn": "SAT Math",
     "blurb": "Topic-focused practice across the four Digital SAT domains — Algebra, Advanced Math, Problem-Solving & Data Analysis, and Geometry & Trigonometry — at the exam's three difficulty tiers.",
     "courseLadder": false,
-    "unitCount": 4,
-    "problemCount": 966,
+    "unitCount": 20,
+    "problemCount": 2595,
     "forms": [
       {
         "id": "sat-alg-linear-solve",
-        "unit": "algebra",
+        "unit": "linear-equations-one-variable",
         "level": 1
       },
       {
         "id": "sat-alg-slope-meaning",
-        "unit": "algebra",
+        "unit": "linear-functions",
         "level": 1
       },
       {
         "id": "sat-alg-systems",
-        "unit": "algebra",
+        "unit": "systems-of-linear-equations",
         "level": 2
       },
       {
         "id": "sat-alg-two-points",
-        "unit": "algebra",
+        "unit": "linear-equations-two-variables",
         "level": 2
       },
       {
         "id": "sat-alg-inequality",
-        "unit": "algebra",
+        "unit": "linear-inequalities",
         "level": 2
       },
       {
         "id": "sat-alg-no-solution",
-        "unit": "algebra",
+        "unit": "systems-of-linear-equations",
         "level": 3
       },
       {
         "id": "sat-alg-linear-function",
-        "unit": "algebra",
+        "unit": "linear-functions",
         "level": 3
       },
       {
         "id": "sat-adv-vieta",
-        "unit": "advanced-math",
+        "unit": "nonlinear-equations-one-variable",
         "level": 1
       },
       {
         "id": "sat-adv-exponents",
-        "unit": "advanced-math",
+        "unit": "equivalent-expressions",
         "level": 1
       },
       {
         "id": "sat-adv-vertex",
-        "unit": "advanced-math",
+        "unit": "nonlinear-functions",
         "level": 2
       },
       {
         "id": "sat-adv-evaluate",
-        "unit": "advanced-math",
+        "unit": "nonlinear-functions",
         "level": 2
       },
       {
         "id": "sat-adv-factored-form",
-        "unit": "advanced-math",
+        "unit": "equivalent-expressions",
         "level": 2
       },
       {
         "id": "sat-adv-one-solution",
-        "unit": "advanced-math",
+        "unit": "nonlinear-equations-one-variable",
         "level": 3
       },
       {
         "id": "sat-adv-exponential",
-        "unit": "advanced-math",
+        "unit": "nonlinear-functions",
         "level": 3
       },
       {
         "id": "sat-psd-percent",
-        "unit": "problem-solving-data",
+        "unit": "percentages",
         "level": 1
       },
       {
         "id": "sat-psd-ratio",
-        "unit": "problem-solving-data",
+        "unit": "ratios-rates-proportions-units",
         "level": 1
       },
       {
         "id": "sat-psd-new-mean",
-        "unit": "problem-solving-data",
+        "unit": "one-variable-data",
         "level": 2
       },
       {
         "id": "sat-psd-rate",
-        "unit": "problem-solving-data",
+        "unit": "ratios-rates-proportions-units",
         "level": 2
       },
       {
         "id": "sat-psd-outlier",
-        "unit": "problem-solving-data",
+        "unit": "one-variable-data",
         "level": 2
       },
       {
         "id": "sat-psd-weighted-mean",
-        "unit": "problem-solving-data",
+        "unit": "one-variable-data",
         "level": 3
       },
       {
         "id": "sat-psd-conditional",
-        "unit": "problem-solving-data",
+        "unit": "probability-and-conditional-probability",
         "level": 3
       },
       {
         "id": "sat-geo-angles",
-        "unit": "geometry-trig",
+        "unit": "lines-angles-and-triangles",
         "level": 1
       },
       {
         "id": "sat-geo-area",
-        "unit": "geometry-trig",
+        "unit": "area-and-volume",
         "level": 1
       },
       {
         "id": "sat-geo-pythagorean",
-        "unit": "geometry-trig",
+        "unit": "right-triangles-and-trigonometry",
         "level": 2
       },
       {
         "id": "sat-geo-circle",
-        "unit": "geometry-trig",
+        "unit": "circles",
         "level": 2
       },
       {
         "id": "sat-geo-volume",
-        "unit": "geometry-trig",
+        "unit": "area-and-volume",
         "level": 2
       },
       {
         "id": "sat-geo-cofunction",
-        "unit": "geometry-trig",
+        "unit": "right-triangles-and-trigonometry",
         "level": 3
       },
       {
         "id": "sat-geo-similar",
-        "unit": "geometry-trig",
+        "unit": "lines-angles-and-triangles",
+        "level": 3
+      },
+      {
+        "id": "sat-lin1-fractions",
+        "unit": "linear-equations-one-variable",
+        "level": 2
+      },
+      {
+        "id": "sat-lin1-fee",
+        "unit": "linear-equations-one-variable",
+        "level": 2
+      },
+      {
+        "id": "sat-lin2-intercept",
+        "unit": "linear-equations-two-variables",
+        "level": 1
+      },
+      {
+        "id": "sat-lin2-point-slope",
+        "unit": "linear-equations-two-variables",
+        "level": 2
+      },
+      {
+        "id": "sat-linf-evaluate",
+        "unit": "linear-functions",
+        "level": 1
+      },
+      {
+        "id": "sat-linf-solve",
+        "unit": "linear-functions",
+        "level": 2
+      },
+      {
+        "id": "sat-sys-word",
+        "unit": "systems-of-linear-equations",
+        "level": 2
+      },
+      {
+        "id": "sat-ineq-flip",
+        "unit": "linear-inequalities",
+        "level": 2
+      },
+      {
+        "id": "sat-ineq-budget",
+        "unit": "linear-inequalities",
+        "level": 2
+      },
+      {
+        "id": "sat-eq-expand",
+        "unit": "equivalent-expressions",
+        "level": 1
+      },
+      {
+        "id": "sat-nleq-roots",
+        "unit": "nonlinear-equations-one-variable",
+        "level": 2
+      },
+      {
+        "id": "sat-nlsys-parabola",
+        "unit": "systems-nonlinear-two-variables",
+        "level": 2
+      },
+      {
+        "id": "sat-nlsys-tangent",
+        "unit": "systems-nonlinear-two-variables",
+        "level": 3
+      },
+      {
+        "id": "sat-nlsys-circle",
+        "unit": "systems-nonlinear-two-variables",
+        "level": 2
+      },
+      {
+        "id": "sat-ratio-three",
+        "unit": "ratios-rates-proportions-units",
+        "level": 2
+      },
+      {
+        "id": "sat-pct-reverse",
+        "unit": "percentages",
+        "level": 2
+      },
+      {
+        "id": "sat-pct-successive",
+        "unit": "percentages",
+        "level": 3
+      },
+      {
+        "id": "sat-2var-predict",
+        "unit": "two-variable-data",
+        "level": 1
+      },
+      {
+        "id": "sat-2var-residual",
+        "unit": "two-variable-data",
+        "level": 2
+      },
+      {
+        "id": "sat-2var-slope",
+        "unit": "two-variable-data",
+        "level": 2
+      },
+      {
+        "id": "sat-prob-table",
+        "unit": "probability-and-conditional-probability",
+        "level": 1
+      },
+      {
+        "id": "sat-prob-conditional-table",
+        "unit": "probability-and-conditional-probability",
+        "level": 3
+      },
+      {
+        "id": "sat-inf-interval",
+        "unit": "inference-and-margin-of-error",
+        "level": 1
+      },
+      {
+        "id": "sat-inf-sample-size",
+        "unit": "inference-and-margin-of-error",
+        "level": 3
+      },
+      {
+        "id": "sat-inf-claim",
+        "unit": "inference-and-margin-of-error",
+        "level": 2
+      },
+      {
+        "id": "sat-claim-generalise",
+        "unit": "evaluating-statistical-claims",
+        "level": 1
+      },
+      {
+        "id": "sat-claim-causation",
+        "unit": "evaluating-statistical-claims",
+        "level": 2
+      },
+      {
+        "id": "sat-claim-design",
+        "unit": "evaluating-statistical-claims",
+        "level": 3
+      },
+      {
+        "id": "sat-av-scaling",
+        "unit": "area-and-volume",
+        "level": 3
+      },
+      {
+        "id": "sat-lat-exterior",
+        "unit": "lines-angles-and-triangles",
+        "level": 2
+      },
+      {
+        "id": "sat-rt-special",
+        "unit": "right-triangles-and-trigonometry",
+        "level": 2
+      },
+      {
+        "id": "sat-cir-radius",
+        "unit": "circles",
+        "level": 1
+      },
+      {
+        "id": "sat-cir-arc-sector",
+        "unit": "circles",
+        "level": 2
+      },
+      {
+        "id": "sat-lin1-no-solution",
+        "unit": "linear-equations-one-variable",
+        "level": 3
+      },
+      {
+        "id": "sat-lin2-perpendicular",
+        "unit": "linear-equations-two-variables",
+        "level": 3
+      },
+      {
+        "id": "sat-sys-easy",
+        "unit": "systems-of-linear-equations",
+        "level": 1
+      },
+      {
+        "id": "sat-ineq-easy",
+        "unit": "linear-inequalities",
+        "level": 1
+      },
+      {
+        "id": "sat-ineq-compound",
+        "unit": "linear-inequalities",
+        "level": 3
+      },
+      {
+        "id": "sat-eq-rational",
+        "unit": "equivalent-expressions",
+        "level": 3
+      },
+      {
+        "id": "sat-nlsys-easy",
+        "unit": "systems-nonlinear-two-variables",
+        "level": 1
+      },
+      {
+        "id": "sat-nlf-vertex-form",
+        "unit": "nonlinear-functions",
+        "level": 1
+      },
+      {
+        "id": "sat-ratio-constraint",
+        "unit": "ratios-rates-proportions-units",
+        "level": 3
+      },
+      {
+        "id": "sat-1var-median",
+        "unit": "one-variable-data",
+        "level": 1
+      },
+      {
+        "id": "sat-2var-overestimate",
+        "unit": "two-variable-data",
+        "level": 3
+      },
+      {
+        "id": "sat-prob-union",
+        "unit": "probability-and-conditional-probability",
+        "level": 2
+      },
+      {
+        "id": "sat-rt-ratio",
+        "unit": "right-triangles-and-trigonometry",
+        "level": 1
+      },
+      {
+        "id": "sat-cir-complete-square",
+        "unit": "circles",
         "level": 3
       }
     ]

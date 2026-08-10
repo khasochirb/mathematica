@@ -2,10 +2,16 @@
 """SAT Math problem bank — topic-focused practice for /practice/sat.
 
 Blueprint (memory/resource-blueprint.md): every hub offers topic-focused
-practice in ITS OWN taxonomy. For the Digital SAT that taxonomy is the four
-official domains — Algebra, Advanced Math, Problem-Solving & Data Analysis,
-Geometry & Trigonometry — with the exam's real weighting reflected in form
-counts, not just labels.
+practice in ITS OWN taxonomy. For the Digital SAT that taxonomy is the
+College Board's twenty official SUBTOPICS, grouped under the four domains —
+the same cut the course uses (lib/sat-course.ts), so a weak subtopic in a
+student's dashboard names a bank unit they can open directly.
+
+Until 2026-08 the bank had four units, one per domain, seven forms each.
+That was coarser than the course and coarser than the Board's own list: a
+student told they were weak at conditional probability was sent to a
+hundred-question Problem-Solving unit. Generators for the subtopics the old
+cut never isolated live in scripts/pb/sat_extra.py.
 
 All content is 100% self-authored (locked decision, expansion-vision §4.3):
 these emulate the SAT's format, register and difficulty tiers, never actual
@@ -23,6 +29,8 @@ from imbank import (
     mk_num, mk_txt, form,
     P, seg, ang, closed, figure,
 )
+import sat_extra as ex
+import sat_levels as lv
 
 
 # ===========================================================================
@@ -395,23 +403,29 @@ def _g_exponential_value():
 # ===========================================================================
 
 def _g_percent_of():
-    contexts = ["students at a school", "seats in a theater",
-                "books in a library", "employees of a company"]
+    # (noun, where, what is true of them) — a real predicate, so the complement
+    # distractor is a sentence a student can actually mis-answer.
+    contexts = [
+        ("students", "at a school", "walk to school"),
+        ("seats", "in a theater", "were sold before opening night"),
+        ("books", "in a library", "are non-fiction"),
+        ("employees", "of a company", "work remotely on Fridays"),
+    ]
     raws = []
-    for ctx in contexts:
+    for (noun, where, pred) in contexts:
         for p in (15, 20, 25, 35, 40, 45, 55, 60, 65, 75, 85):
             for n in (240, 360, 400, 480, 600):
                 v = n * p // 100
                 if n * p % 100:
                     continue
                 raws.append({
-                    "statement": "Exactly $%d\\%%$ of the $%d$ %s satisfy a condition. "
-                                 "How many is that?" % (p, n, ctx),
+                    "statement": "Exactly $%d\\%%$ of the $%d$ %s %s %s. "
+                                 "How many %s is that?" % (p, n, noun, where, pred, noun),
                     "correct": v,
                     "dvals": [n - v, v + n // 100, n * p // 10 if n * p // 10 != v else v + 1],
                     "explanation": "$%d\\%%$ of $%d$ is $\\dfrac{%d}{100} \\cdot %d = %d$. "
-                                   "The complement, $%d$, answers a different question "
-                                   "('how many do NOT')." % (p, n, p, n, v, n - v),
+                                   "The complement, $%d$, counts the %s that do NOT — "
+                                   "a different question." % (p, n, p, n, v, n - v, noun),
                     "check": ["Eq(Rational(%d, 100)*%d, %d)" % (p, n, v)],
                 })
     return raws
@@ -824,96 +838,258 @@ def _g_similar_triangles():
 def build():
     forms = [
         # --- Algebra ------------------------------------------------------
-        form("sat-alg-linear-solve", "Solving linear equations", 1, "algebra",
+        form("sat-alg-linear-solve", "Solving linear equations", 1, "linear-equations-one-variable",
              "Distribute, collect, divide — with the signs intact.",
              mk_num("SAT-ALG1", _g_linear_solve())),
-        form("sat-alg-slope-meaning", "Interpreting the slope", 1, "algebra",
+        form("sat-alg-slope-meaning", "Interpreting the slope", 1, "linear-functions",
              "In C(x) = mx + b, m is the per-unit rate and b the one-time part.",
              mk_txt("SAT-ALG2", _g_slope_meaning())),
-        form("sat-alg-systems", "Systems of two equations", 2, "algebra",
+        form("sat-alg-systems", "Systems of two equations", 2, "systems-of-linear-equations",
              "Substitute or eliminate; the answer is a coordinate, not a guess.",
              mk_num("SAT-ALG3", _g_system_solve())),
-        form("sat-alg-two-points", "Slope through two points", 2, "algebra",
+        form("sat-alg-two-points", "Slope through two points", 2, "linear-equations-two-variables",
              "Rise over run, subtracting in the SAME order top and bottom.",
              mk_num("SAT-ALG4", _g_line_two_points())),
-        form("sat-alg-inequality", "Linear inequalities", 2, "algebra",
+        form("sat-alg-inequality", "Linear inequalities", 2, "linear-inequalities",
              "Dividing by a negative flips the inequality — every time.",
              mk_num("SAT-ALG5", _g_inequality_greatest())),
-        form("sat-alg-no-solution", "Systems with no solution", 3, "algebra",
+        form("sat-alg-no-solution", "Systems with no solution", 3, "systems-of-linear-equations",
              "Parallel slopes, mismatched constants — proportion the coefficients.",
              mk_num("SAT-ALG6", _g_no_solution_k())),
-        form("sat-alg-linear-function", "Linear functions from two values", 3, "algebra",
+        form("sat-alg-linear-function", "Linear functions from two values", 3, "linear-functions",
              "Two values fix a linear function; the slope carries you to any third.",
              mk_num("SAT-ALG7", _g_linear_function_value())),
 
         # --- Advanced Math ------------------------------------------------
-        form("sat-adv-vieta", "Sum of the solutions", 1, "advanced-math",
+        form("sat-adv-vieta", "Sum of the solutions", 1, "nonlinear-equations-one-variable",
              "Factor, or read the sum straight off the coefficients (Vieta).",
              mk_num("SAT-ADV1", _g_vieta_sum())),
-        form("sat-adv-exponents", "Exponent rules", 1, "advanced-math",
+        form("sat-adv-exponents", "Exponent rules", 1, "equivalent-expressions",
              "Multiply inside: add. Power: multiply. Divide: subtract.",
              mk_num("SAT-ADV2", _g_exponent_rules())),
-        form("sat-adv-vertex", "Vertex of a parabola", 2, "advanced-math",
+        form("sat-adv-vertex", "Vertex of a parabola", 2, "nonlinear-functions",
              "x = -b/(2a), minus sign included; the y-value is a separate question.",
              mk_num("SAT-ADV3", _g_vertex())),
-        form("sat-adv-evaluate", "Evaluating functions", 2, "advanced-math",
+        form("sat-adv-evaluate", "Evaluating functions", 2, "nonlinear-functions",
              "Substitute with parentheses — (-3)^2 is 9, and the middle term keeps its sign.",
              mk_num("SAT-ADV4", _g_evaluate_f())),
-        form("sat-adv-factored-form", "Equivalent factored forms", 2, "advanced-math",
+        form("sat-adv-factored-form", "Equivalent factored forms", 2, "equivalent-expressions",
              "Product and sum identify the bracket numbers; expand to verify.",
              mk_txt("SAT-ADV5", _g_equivalent_factored())),
-        form("sat-adv-one-solution", "Exactly one solution", 3, "advanced-math",
+        form("sat-adv-one-solution", "Exactly one solution", 3, "nonlinear-equations-one-variable",
              "One solution means discriminant zero: k^2 = 4ac.",
              mk_num("SAT-ADV6", _g_one_solution_k())),
-        form("sat-adv-exponential", "Exponential growth", 3, "advanced-math",
+        form("sat-adv-exponential", "Exponential growth", 3, "nonlinear-functions",
              "Repeated multiplication, not repeated addition: A·b^t.",
              mk_num("SAT-ADV7", _g_exponential_value())),
 
         # --- Problem-Solving & Data Analysis ------------------------------
-        form("sat-psd-percent", "Percent of a quantity", 1, "problem-solving-data",
+        form("sat-psd-percent", "Percent of a quantity", 1, "percentages",
              "p% is p/100 — and watch whether the question asks the part or the rest.",
              mk_num("SAT-PSD1", _g_percent_of())),
-        form("sat-psd-ratio", "Ratios and totals", 1, "problem-solving-data",
+        form("sat-psd-ratio", "Ratios and totals", 1, "ratios-rates-proportions-units",
              "A ratio splits the total into equal parts; find the part size first.",
              mk_num("SAT-PSD2", _g_ratio_share())),
-        form("sat-psd-new-mean", "Changing the mean", 2, "problem-solving-data",
+        form("sat-psd-new-mean", "Changing the mean", 2, "one-variable-data",
              "Means hide sums — convert to totals before and after.",
              mk_num("SAT-PSD3", _g_new_mean())),
-        form("sat-psd-rate", "Rates with unit conversion", 2, "problem-solving-data",
+        form("sat-psd-rate", "Rates with unit conversion", 2, "ratios-rates-proportions-units",
              "Minutes are not hours: convert before multiplying.",
              mk_num("SAT-PSD4", _g_rate_minutes())),
-        form("sat-psd-outlier", "Outliers, mean and median", 2, "problem-solving-data",
+        form("sat-psd-outlier", "Outliers, mean and median", 2, "one-variable-data",
              "Outliers drag the mean; the median barely notices them.",
              mk_txt("SAT-PSD5", _g_outlier_effect())),
-        form("sat-psd-weighted-mean", "Combined means", 3, "problem-solving-data",
+        form("sat-psd-weighted-mean", "Combined means", 3, "one-variable-data",
              "Different group sizes mean the combined mean is weighted, not averaged.",
              mk_num("SAT-PSD6", _g_weighted_mean())),
-        form("sat-psd-conditional", "Conditional probability", 3, "problem-solving-data",
+        form("sat-psd-conditional", "Conditional probability", 3, "probability-and-conditional-probability",
              "The condition shrinks the world — divide within the given group.",
              mk_num("SAT-PSD7", _g_conditional_from_survey())),
 
         # --- Geometry & Trigonometry --------------------------------------
-        form("sat-geo-angles", "Angles in a triangle", 1, "geometry-trig",
+        form("sat-geo-angles", "Angles in a triangle", 1, "lines-angles-and-triangles",
              "The three angles always total 180°.",
              mk_num("SAT-GEO1", _g_triangle_angles())),
-        form("sat-geo-area", "Area with a missing side", 1, "geometry-trig",
+        form("sat-geo-area", "Area with a missing side", 1, "area-and-volume",
              "Run the area formula backwards — and keep the triangle's 1/2.",
              mk_num("SAT-GEO2", _g_area_missing_side())),
-        form("sat-geo-pythagorean", "The Pythagorean theorem", 2, "geometry-trig",
+        form("sat-geo-pythagorean", "The Pythagorean theorem", 2, "right-triangles-and-trigonometry",
              "Square, add (or subtract), then root — never add bare lengths.",
              mk_num("SAT-GEO3", _g_pythagorean())),
-        form("sat-geo-circle", "Equation of a circle", 2, "geometry-trig",
+        form("sat-geo-circle", "Equation of a circle", 2, "circles",
              "The standard form shows r^2 on the right, not r.",
              mk_num("SAT-GEO4", _g_circle_equation())),
-        form("sat-geo-volume", "Volume, solved backwards", 2, "geometry-trig",
+        form("sat-geo-volume", "Volume, solved backwards", 2, "area-and-volume",
              "V = πr²h — divide by r squared, not by r.",
              mk_num("SAT-GEO5", _g_volume_solve())),
-        form("sat-geo-cofunction", "Sine and cosine of complements", 3, "geometry-trig",
+        form("sat-geo-cofunction", "Sine and cosine of complements", 3, "right-triangles-and-trigonometry",
              "sin A = cos(90° − A): complementary angles trade sine for cosine.",
              mk_num("SAT-GEO6", _g_cofunction())),
-        form("sat-geo-similar", "Similar triangles", 3, "geometry-trig",
+        form("sat-geo-similar", "Similar triangles", 3, "lines-angles-and-triangles",
              "Similarity multiplies every side by the SAME ratio — never adds.",
              mk_num("SAT-GEO7", _g_similar_triangles())),
+
+        # === Forms closing the gaps the old four-unit cut left ============
+        # (generators in scripts/pb/sat_extra.py)
+
+        # --- Algebra ------------------------------------------------------
+        form("sat-lin1-fractions", "Clearing fractions", 2, "linear-equations-one-variable",
+             "Multiply EVERY term by the common denominator, including the whole numbers.",
+             mk_num("SAT-LIN1A", ex.g_lin_fractions())),
+        form("sat-lin1-fee", "A fee plus a rate", 2, "linear-equations-one-variable",
+             "Take the one-time charge off first, then divide by the per-unit rate.",
+             mk_num("SAT-LIN1B", ex.g_lin_fee_rate())),
+        form("sat-lin2-intercept", "Intercepts from standard form", 1, "linear-equations-two-variables",
+             "Set the OTHER variable to zero — that is what being on an axis means.",
+             mk_num("SAT-LIN2A", ex.g_intercept_standard())),
+        form("sat-lin2-point-slope", "A line from a point and a slope", 2, "linear-equations-two-variables",
+             "Distribute the slope across BOTH terms of the bracket.",
+             mk_num("SAT-LIN2B", ex.g_point_slope())),
+        form("sat-linf-evaluate", "Evaluating a linear function", 1, "linear-functions",
+             "Replace every x with the input — a negative times a negative is positive.",
+             mk_num("SAT-LINFA", ex.g_func_evaluate())),
+        form("sat-linf-solve", "Running the function backwards", 2, "linear-functions",
+             "The OUTPUT is given, so set the rule equal to it and solve.",
+             mk_num("SAT-LINFB", ex.g_func_solve_input())),
+        form("sat-sys-word", "Systems inside a word problem", 2, "systems-of-linear-equations",
+             "One equation counts the things, the other weights them by price.",
+             mk_num("SAT-SYSA", ex.g_system_word())),
+        form("sat-ineq-flip", "The sign that flips", 2, "linear-inequalities",
+             "Dividing by a negative reverses the inequality — nothing else does.",
+             mk_num("SAT-INEQA", ex.g_inequality_flip())),
+        form("sat-ineq-budget", "Budgets and rounding down", 2, "linear-inequalities",
+             "A whole-object count under an 'at most' cap always rounds DOWN.",
+             mk_num("SAT-INEQB", ex.g_inequality_budget())),
+
+        # --- Advanced Math ------------------------------------------------
+        form("sat-eq-expand", "Expanding two brackets", 1, "equivalent-expressions",
+             "Every term meets every term, and the two middle products combine.",
+             mk_txt("SAT-EQA", ex.g_expand_binomials())),
+        form("sat-nleq-roots", "Solutions of a quadratic", 2, "nonlinear-equations-one-variable",
+             "The roots are the OPPOSITES of the numbers inside the brackets.",
+             mk_txt("SAT-NLEQA", ex.g_quad_roots_text())),
+        form("sat-nlsys-parabola", "A line meeting a parabola", 2, "systems-nonlinear-two-variables",
+             "Substitute, collect into a quadratic, then read what the question wants off it.",
+             mk_num("SAT-NLSYSA", ex.g_line_parabola_sum())),
+        form("sat-nlsys-tangent", "The constant that makes it tangent", 3, "systems-nonlinear-two-variables",
+             "Tangent means exactly one solution, which means a zero discriminant.",
+             mk_num("SAT-NLSYSB", ex.g_tangent_constant())),
+        form("sat-nlsys-circle", "A line meeting a circle", 2, "systems-nonlinear-two-variables",
+             "Compare the line's height with the radius before doing any algebra.",
+             mk_num("SAT-NLSYSC", ex.g_line_circle_count())),
+
+        # --- Problem-Solving and Data Analysis ----------------------------
+        form("sat-ratio-three", "Three-part ratios", 2, "ratios-rates-proportions-units",
+             "Divide the total by the SUM of the parts, never by one side.",
+             mk_num("SAT-RATA", ex.g_ratio_three_part())),
+        form("sat-pct-reverse", "Working back to the original price", 2, "percentages",
+             "Undo a percentage change by DIVIDING by the multiplier.",
+             mk_num("SAT-PCTA", ex.g_percent_reverse())),
+        form("sat-pct-successive", "Two changes in a row", 3, "percentages",
+             "Percentages never add — the multipliers multiply.",
+             mk_num("SAT-PCTB", ex.g_percent_successive())),
+        form("sat-2var-predict", "Predicting from a line of best fit", 1, "two-variable-data",
+             "Substitute into the model — and do not drop the intercept.",
+             mk_num("SAT-2VARA", ex.g_bestfit_predict())),
+        form("sat-2var-residual", "Residuals and their sign", 2, "two-variable-data",
+             "Residual is OBSERVED minus PREDICTED, in that order.",
+             mk_num("SAT-2VARB", ex.g_residual())),
+        form("sat-2var-slope", "What a fitted slope means", 2, "two-variable-data",
+             "The slope is a rate, in the y-unit per one x-unit.",
+             mk_txt("SAT-2VARC", ex.g_slope_interpret())),
+        form("sat-prob-table", "Probability from a two-way table", 1, "probability-and-conditional-probability",
+             "Selecting at random from everyone puts the GRAND total below the line.",
+             mk_num("SAT-PROBA", ex.g_two_way_basic())),
+        form("sat-prob-conditional-table", "The condition names the denominator", 3, "probability-and-conditional-probability",
+             "A conditional probability lives inside one row or one column.",
+             mk_num("SAT-PROBB", ex.g_two_way_conditional())),
+        form("sat-inf-interval", "From estimate to interval", 1, "inference-and-margin-of-error",
+             "The margin of error turns one number into a range of plausible values.",
+             mk_num("SAT-INFA", ex.g_margin_interval())),
+        form("sat-inf-sample-size", "Why precision is expensive", 3, "inference-and-margin-of-error",
+             "The margin shrinks with the SQUARE ROOT of the sample size.",
+             mk_num("SAT-INFB", ex.g_margin_sample_size())),
+        form("sat-inf-claim", "What the interval supports", 2, "inference-and-margin-of-error",
+             "A claim needs the WHOLE interval on one side of the threshold.",
+             mk_txt("SAT-INFC", ex.g_margin_claim())),
+        form("sat-claim-generalise", "Does it generalise?", 1, "evaluating-statistical-claims",
+             "Random SELECTION is what licenses extending a finding to a population.",
+             mk_txt("SAT-CLMA", ex.g_claim_generalise())),
+        form("sat-claim-causation", "Does it show cause?", 2, "evaluating-statistical-claims",
+             "Random ASSIGNMENT is what licenses the word 'causes'.",
+             mk_txt("SAT-CLMB", ex.g_claim_causation())),
+        form("sat-claim-design", "Designing for both claims", 3, "evaluating-statistical-claims",
+             "Selection buys generalisation, assignment buys causation — you need both.",
+             mk_txt("SAT-CLMC", ex.g_claim_design())),
+
+        # --- Geometry and Trigonometry ------------------------------------
+        form("sat-av-scaling", "Scaling area and volume", 3, "area-and-volume",
+             "Lengths by k means area by k squared and volume by k cubed.",
+             mk_num("SAT-AVA", ex.g_scaling_volume())),
+        form("sat-lat-exterior", "The exterior-angle shortcut", 2, "lines-angles-and-triangles",
+             "An exterior angle equals the sum of the two non-adjacent interior angles.",
+             mk_num("SAT-LATA", ex.g_exterior_angle())),
+        form("sat-rt-special", "The two special triangles", 2, "right-triangles-and-trigonometry",
+             "The root-3 side faces the 60-degree angle, not the 30.",
+             mk_txt("SAT-RTA", ex.g_special_triangle())),
+        form("sat-cir-radius", "Radius from the equation", 1, "circles",
+             "The right-hand side is r SQUARED, and the centre's signs flip.",
+             mk_num("SAT-CIRA", ex.g_circle_radius())),
+        form("sat-cir-arc-sector", "Arcs and sectors", 2, "circles",
+             "One fraction of the circle, applied to the circumference or to the area.",
+             mk_num("SAT-CIRB", ex.g_arc_sector())),
+
+        # --- Completing each subtopic's Level 1-2-3 ladder ----------------
+        # The unit page offers a level filter, so a subtopic missing a tier
+        # left a student who picked it with nothing. Generators in
+        # scripts/pb/sat_levels.py; see that module's docstring.
+        form("sat-lin1-no-solution", "The value that kills the solution", 3,
+             "linear-equations-one-variable",
+             "Matching the x coefficients cancels x — then the constants decide.",
+             mk_num("SAT-L1NS", lv.g_lin1_no_solution())),
+        form("sat-lin2-perpendicular", "The perpendicular through a point", 3,
+             "linear-equations-two-variables",
+             "Negative reciprocal, substitute the point, then read the intercept.",
+             mk_num("SAT-L2PP", lv.g_lin2_perpendicular())),
+        form("sat-sys-easy", "One substitution", 1, "systems-of-linear-equations",
+             "When one equation already gives y, the system is a single line of algebra.",
+             mk_num("SAT-SYSE", lv.g_sys_easy_substitute())),
+        form("sat-ineq-easy", "Solving without flipping", 1, "linear-inequalities",
+             "A positive coefficient means the sign stays exactly where it is.",
+             mk_txt("SAT-INQE", lv.g_ineq_easy_solve())),
+        form("sat-ineq-compound", "Counting the integers between", 3, "linear-inequalities",
+             "Solve both sides at once, then remember that strict bounds are excluded.",
+             mk_num("SAT-INQC", lv.g_ineq_compound_count())),
+        form("sat-eq-rational", "Factor, then cancel", 3, "equivalent-expressions",
+             "Only whole factors cancel — never term by term.",
+             mk_txt("SAT-EQRC", lv.g_eq_rational_cancel())),
+        form("sat-nlsys-easy", "A parabola and a horizontal line", 1,
+             "systems-nonlinear-two-variables",
+             "x squared equals a positive number gives TWO x values, not one.",
+             mk_txt("SAT-NLSE", lv.g_nlsys_easy_intersect())),
+        form("sat-nlf-vertex-form", "Reading the vertex off", 1, "nonlinear-functions",
+             "In a(x - h)^2 + k the sign inside the bracket is the opposite of h.",
+             mk_txt("SAT-NLFV", lv.g_nlf_vertex_form())),
+        form("sat-ratio-constraint", "Which ingredient runs out first", 3,
+             "ratios-rates-proportions-units",
+             "Convert, test both supplies against the ratio, scale by the smaller.",
+             mk_num("SAT-RATC", lv.g_ratio_constraint())),
+        form("sat-1var-median", "Median of a short list", 1, "one-variable-data",
+             "Sort first — the median is the middle of the ORDERED list.",
+             mk_num("SAT-1VME", lv.g_1var_median())),
+        form("sat-2var-overestimate", "Where the model runs high", 3, "two-variable-data",
+             "Overestimating means the prediction sits ABOVE the observed point.",
+             mk_num("SAT-2VOE", lv.g_2var_overestimate())),
+        form("sat-prob-union", "Two groups that overlap", 2,
+             "probability-and-conditional-probability",
+             "'Or' adds the two counts and subtracts the overlap once.",
+             mk_num("SAT-PRBU", lv.g_prob_union())),
+        form("sat-rt-ratio", "Naming the sides", 1, "right-triangles-and-trigonometry",
+             "Sine is opposite over hypotenuse — from the angle you are asked about.",
+             mk_num("SAT-RTRA", lv.g_rt_easy_ratio())),
+        form("sat-cir-complete-square", "Completing the square twice", 3, "circles",
+             "Group x with x and y with y, then remember the right side is r SQUARED.",
+             mk_num("SAT-CIRC", lv.g_cir_complete_square())),
     ]
 
     return {
@@ -923,19 +1099,75 @@ def build():
         "blurb": "Topic-focused practice across the four Digital SAT domains — Algebra, "
                  "Advanced Math, Problem-Solving & Data Analysis, and Geometry & "
                  "Trigonometry — at the exam's three difficulty tiers.",
+        # Twenty units, in the College Board's own order, matching
+        # lib/sat-course.ts exactly — one taxonomy per hub (blueprint rule).
         "units": [
-            {"id": "algebra", "title": "Algebra",
-             "blurb": "Linear equations and inequalities, systems, and linear models — "
-                      "about a third of every SAT Math section."},
-            {"id": "advanced-math", "title": "Advanced Math",
-             "blurb": "Quadratics, exponents, function notation and exponential growth — "
-                      "the section that separates 600s from 700s."},
-            {"id": "problem-solving-data", "title": "Problem-Solving & Data Analysis",
-             "blurb": "Percents, ratios, rates, means and probability — every question is "
-                      "a real-world sentence hiding one computation."},
-            {"id": "geometry-trig", "title": "Geometry & Trigonometry",
-             "blurb": "Angles, areas, the Pythagorean theorem, circles and right-triangle "
-                      "trig — the domain with the shortest formulas and the most traps."},
+            # --- Algebra (13-15 of the 44 questions) ----------------------
+            {"id": "linear-equations-one-variable", "title": "Linear Equations in One Variable",
+             "blurb": "Clearing fractions and decimals, distributing without losing a sign, "
+                      "and the word problems that hide one equation in a paragraph."},
+            {"id": "linear-equations-two-variables", "title": "Linear Equations in Two Variables",
+             "blurb": "Slope as a rate, both intercepts, and building a line from a point."},
+            {"id": "linear-functions", "title": "Linear Functions",
+             "blurb": "Function notation forwards and backwards, and what a coefficient MEANS "
+                      "in context."},
+            {"id": "systems-of-linear-equations", "title": "Systems of Two Linear Equations",
+             "blurb": "Substitution, elimination, and deciding whether two lines cross once, "
+                      "never, or everywhere."},
+            {"id": "linear-inequalities", "title": "Linear Inequalities",
+             "blurb": "The one rule that flips the sign, and the budget questions where a "
+                      "whole-object answer rounds DOWN."},
+
+            # --- Advanced Math (13-15) ------------------------------------
+            {"id": "equivalent-expressions", "title": "Equivalent Expressions",
+             "blurb": "Exponent and radical rules, expanding and factoring — this domain's "
+                      "commonest stem is 'which of the following is equivalent to'."},
+            {"id": "nonlinear-equations-one-variable", "title": "Nonlinear Equations in One Variable",
+             "blurb": "Quadratics by every route the test uses, plus the discriminant that "
+                      "counts the solutions before you find them."},
+            {"id": "systems-nonlinear-two-variables", "title": "Systems of Equations in Two Variables",
+             "blurb": "A line meeting a parabola or a circle, and the constant that makes it "
+                      "tangent."},
+            {"id": "nonlinear-functions", "title": "Nonlinear Functions",
+             "blurb": "Quadratics in all three forms, exponential growth and decay, and the "
+                      "form that displays the feature you were asked about."},
+
+            # --- Problem-Solving and Data Analysis (5-7) ------------------
+            {"id": "ratios-rates-proportions-units", "title": "Ratios, Rates, Proportional Relationships and Units",
+             "blurb": "Splitting a total by a ratio, using a rate across a unit change, and "
+                      "the conversions that cost more points than the mathematics does."},
+            {"id": "percentages", "title": "Percentages",
+             "blurb": "Percent change as a multiplier, reversing one, and successive changes "
+                      "that multiply rather than add."},
+            {"id": "one-variable-data", "title": "One-Variable Data",
+             "blurb": "Mean against median, which one an outlier moves, and spread compared "
+                      "rather than computed."},
+            {"id": "two-variable-data", "title": "Two-Variable Data",
+             "blurb": "Reading a line of best fit in the context's own units, and residuals "
+                      "whose sign says which way the model missed."},
+            {"id": "probability-and-conditional-probability", "title": "Probability and Conditional Probability",
+             "blurb": "Two-way tables, the addition rule that subtracts the overlap, and the "
+                      "condition that shrinks the denominator to one row."},
+            {"id": "inference-and-margin-of-error", "title": "Inference and Margin of Error",
+             "blurb": "Turning an estimate into an interval, deciding what it supports, and "
+                      "the square-root law that makes precision expensive."},
+            {"id": "evaluating-statistical-claims", "title": "Evaluating Statistical Claims",
+             "blurb": "Random selection buys generalisation, random assignment buys "
+                      "causation — and neither substitutes for the other."},
+
+            # --- Geometry and Trigonometry (5-7) -------------------------
+            {"id": "area-and-volume", "title": "Area and Volume Formulas",
+             "blurb": "Radius against diameter, height against slant, and the scaling rule "
+                      "that multiplies area by k squared and volume by k cubed."},
+            {"id": "lines-angles-and-triangles", "title": "Lines, Angles and Triangles",
+             "blurb": "Two angle sizes across a transversal, the exterior-angle shortcut, and "
+                      "similarity where areas scale by the square."},
+            {"id": "right-triangles-and-trigonometry", "title": "Right Triangles and Trigonometry",
+             "blurb": "Pythagoras and the triples worth recognising, the two special "
+                      "triangles, and the complementary identity."},
+            {"id": "circles", "title": "Circles",
+             "blurb": "The equation of a circle, and arcs and sectors as one fraction of the "
+                      "whole applied to two different totals."},
         ],
         "forms": forms,
     }

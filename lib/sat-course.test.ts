@@ -18,11 +18,23 @@ import {
 } from "./perf-context";
 
 describe("SAT course registry", () => {
-  it("covers the four College Board domains, in the bank's taxonomy", () => {
-    // One taxonomy per hub (blueprint rule): the course's domain slugs must
-    // equal the SAT bank's unit ids so course, practice and analytics agree.
+  it("covers the four College Board domains", () => {
+    expect(SAT_COURSES.map((c) => c.domain)).toEqual([
+      "algebra",
+      "advanced-math",
+      "problem-solving-data",
+      "geometry-trig",
+    ]);
+  });
+
+  it("shares one taxonomy with the SAT bank, subtopic for subtopic", () => {
+    // One taxonomy per hub (blueprint rule). The course's SUBTOPIC slugs and
+    // the bank's unit ids must be the same list in the same order, so a weak
+    // subtopic on a student's dashboard names a bank unit they can open and a
+    // course unit they can study — the same name in all three places.
     const bankUnits = getSatBankTopic().units.map((u) => u.id);
-    expect(SAT_COURSES.map((c) => c.domain)).toEqual(bankUnits);
+    const courseSubtopics = allSatSubtopics().map(({ entry }) => entry.slug);
+    expect(courseSubtopics).toEqual(bankUnits);
   });
 
   it("numbers units 1..n in order, with unique slugs inside a domain", () => {
