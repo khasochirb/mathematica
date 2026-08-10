@@ -1,0 +1,732 @@
+{
+  "slug": "right-triangles-and-trigonometry",
+  "title": "Right Triangles and Trigonometry",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Pythagoras and the triples worth recognising, the two special triangles from the reference sheet, the three trigonometric ratios and how to pick one — and the complementary identity the test asks about directly.",
+  "buildsOn": "Similarity from Unit 2 — equal ratios in similar right triangles are exactly why trigonometry works.",
+  "lessons": [
+    {
+      "slug": "pythagoras-and-special-triangles",
+      "title": "Pythagoras and the Two Special Triangles",
+      "concreteComparison": "A ladder against a wall, a diagonal across a screen, the straight-line distance between two street corners: all the same question. Two sides at right angles are given and the third is wanted, and one relationship answers every version of it.",
+      "objective": "Use Pythagoras to find any side of a right triangle, recognise the common Pythagorean triples, and apply the $45$-$45$-$90$ and $30$-$60$-$90$ side ratios.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Right triangles and trigonometry*, in the **Geometry and Trigonometry** domain. It is one or two questions, and both special triangles are printed on the reference sheet — so this is recognition more than recall.",
+        "Pythagoras says $a^{2} + b^{2} = c^{2}$, where $c$ is always the HYPOTENUSE: the side opposite the right angle, and the longest of the three. Given two legs you add the squares; given the hypotenuse and one leg you SUBTRACT. Putting a leg in the $c$ position is the commonest error, and it always produces an impossible triangle.",
+        "Certain side lengths recur so often they are worth knowing on sight: $3$-$4$-$5$, $5$-$12$-$13$, $8$-$15$-$17$, $7$-$24$-$25$, and every multiple of each. Spotting that $9$, $12$ is $3$-$4$-$5$ tripled gives the hypotenuse $15$ with no squaring at all.",
+        "**The test's angle.** The two special triangles. A $45$-$45$-$90$ has sides in the ratio $1 : 1 : \\sqrt{2}$; a $30$-$60$-$90$ has $1 : \\sqrt{3} : 2$. What gets misremembered is which side faces which angle: the side opposite the SMALLEST angle is the shortest, so in a $30$-$60$-$90$ the $\\sqrt{3}$ side sits opposite the $60^\\circ$ angle and the hypotenuse is exactly twice the shortest side."
+      ],
+      "keyIdea": "The hypotenuse is the longest side and sits alone on one side of the equation. Add the squares to find it, subtract to find a leg — and check the answer against 'the hypotenuse is longest'.",
+      "facts": [
+        {
+          "title": "Pythagoras",
+          "latex": "a^{2} + b^{2} = c^{2}",
+          "explanation": "$c$ is the hypotenuse, opposite the right angle and longest."
+        },
+        {
+          "title": "45-45-90",
+          "latex": "x : x : x\\sqrt{2}",
+          "explanation": "An isosceles right triangle. The hypotenuse is a leg times $\\sqrt{2}$."
+        },
+        {
+          "title": "30-60-90",
+          "latex": "x : x\\sqrt{3} : 2x",
+          "explanation": "The shortest side faces $30^\\circ$, the $\\sqrt{3}$ side faces $60^\\circ$, and the hypotenuse is twice the shortest."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-rt1-w1",
+          "statement": "A right triangle has legs of length $9$ and $12$. What is the length of its hypotenuse?",
+          "solution": "**Answer.** $15$.  \nPythagoras relates the two legs to the hypotenuse:\n$$a^{2} + b^{2} = c^{2}$$\n$$9^{2} + 12^{2} = 81 + 144 = 225$$\n$$c = \\sqrt{225} = 15$$\nThis is the $3$-$4$-$5$ triangle scaled by $3$, which is worth spotting: $9 = 3 \\times 3$, $12 = 3 \\times 4$, so the hypotenuse is $3 \\times 5 = 15$ with no squaring at all.  \nThe letter $c$ is always the HYPOTENUSE — the side opposite the right angle, and the longest one. Putting a leg there is the single commonest Pythagoras error, and it produces an answer smaller than one of the given sides, which is a useful self-check: the hypotenuse must exceed both legs.",
+          "check": [
+            "Eq(9**2 + 12**2, 225)",
+            "Eq(sqrt(225), 15)",
+            "Eq(3*3, 9)",
+            "Eq(3*5, 15)",
+            "15 > 12"
+          ]
+        },
+        {
+          "id": "sat-rt1-w2",
+          "statement": "A right triangle has a hypotenuse of $26$ and one leg of $10$. What is the other leg?",
+          "solution": "**Answer.** $24$.  \nThe hypotenuse is given, so it goes in the $c$ position and the unknown leg is found by SUBTRACTING:\n$$10^{2} + b^{2} = 26^{2}$$\n$$100 + b^{2} = 676$$\n$$b^{2} = 576$$\n$$b = 24$$\nCheck: $10^{2} + 24^{2} = 100 + 576 = 676 = 26^{2}$.  \nThis is the $5$-$12$-$13$ triangle doubled. Knowing $3$-$4$-$5$, $5$-$12$-$13$ and $8$-$15$-$17$ and their multiples turns most SAT right-triangle questions into recognition rather than arithmetic.  \nAdding instead of subtracting gives $\\sqrt{776} \\approx 27.9$, which is longer than the hypotenuse — impossible, and again a self-check that catches the error.",
+          "check": [
+            "Eq(26**2 - 10**2, 576)",
+            "Eq(sqrt(576), 24)",
+            "Eq(10**2 + 24**2, 26**2)",
+            "Eq(2*13, 26)",
+            "Eq(2*12, 24)"
+          ]
+        },
+        {
+          "id": "sat-rt1-w3",
+          "statement": "In a $30$-$60$-$90$ triangle the shorter leg has length $7$. What are the other two sides?",
+          "solution": "**Answer.** The longer leg is $7\\sqrt{3}$ and the hypotenuse is $14$.  \nThe $30$-$60$-$90$ triangle always has sides in the ratio\n$$1 : \\sqrt{3} : 2$$\nwith the shortest side opposite the $30^\\circ$ angle, the middle side opposite the $60^\\circ$, and the hypotenuse opposite the right angle. Multiplying the ratio through by $7$:\n$$7 : 7\\sqrt{3} : 14$$\nCheck with Pythagoras: $7^{2} + (7\\sqrt{3})^{2} = 49 + 147 = 196 = 14^{2}$.  \nThe ordering is what gets misremembered. The side opposite the SMALLEST angle is the shortest, so the $\\sqrt{3}$ side sits opposite $60^\\circ$, not opposite $30^\\circ$. Swapping them gives $\\frac{7}{\\sqrt{3}}$ and $\\frac{14}{\\sqrt{3}}$, both listed.  \nBoth special triangles are printed on the SAT's reference sheet, so this is recognition rather than recall — but only if you read which angle faces which side.",
+          "check": [
+            "Eq(7**2 + (7*sqrt(3))**2, 196)",
+            "Eq(14**2, 196)",
+            "Eq(simplify((7*sqrt(3))**2), 147)",
+            "7*sqrt(3) > 7",
+            "14 > 7*sqrt(3)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the squares when the hypotenuse was given.",
+          "correction": "That produces a leg longer than the hypotenuse. Subtract instead.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting the side lengths rather than their squares.",
+          "correction": "$25 - 7 = 18$ is not a side of this triangle. Square first, subtract, then take the root.",
+          "authored": true
+        },
+        {
+          "text": "Putting the $\\sqrt{3}$ opposite the $30^\\circ$ angle.",
+          "correction": "The shortest side faces the smallest angle. The $\\sqrt{3}$ side faces $60^\\circ$.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting to take the square root at the end.",
+          "correction": "$b^{2} = 576$ means $b = 24$. Reporting $576$ is a listed option.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-rt1-t1",
+          "statement": "A right triangle has legs $5$ and $12$. What is the hypotenuse?",
+          "solution": "**Answer.** $13$. $25 + 144 = 169$, and $\\sqrt{169} = 13$ — the $5$-$12$-$13$ triangle.",
+          "check": [
+            "Eq(5**2 + 12**2, 169)",
+            "Eq(sqrt(169), 13)"
+          ]
+        },
+        {
+          "id": "sat-rt1-t2",
+          "statement": "A right triangle has hypotenuse $17$ and one leg $8$. What is the other leg?",
+          "solution": "**Answer.** $15$. $289 - 64 = 225$, and $\\sqrt{225} = 15$ — the $8$-$15$-$17$ triangle.",
+          "check": [
+            "Eq(17**2 - 8**2, 225)",
+            "Eq(sqrt(225), 15)",
+            "Eq(8**2 + 15**2, 17**2)"
+          ]
+        },
+        {
+          "id": "sat-rt1-t3",
+          "statement": "In a $45$-$45$-$90$ triangle each leg has length $6$. What is the hypotenuse?",
+          "solution": "**Answer.** $6\\sqrt{2}$. The ratio is $1 : 1 : \\sqrt{2}$, so the hypotenuse is the leg times $\\sqrt{2}$. Check: $36 + 36 = 72 = (6\\sqrt{2})^{2}$.",
+          "check": [
+            "Eq(6**2 + 6**2, 72)",
+            "Eq(simplify((6*sqrt(2))**2), 72)"
+          ]
+        },
+        {
+          "id": "sat-rt1-t4",
+          "statement": "In a $30$-$60$-$90$ triangle the hypotenuse is $18$. What is the shorter leg?",
+          "solution": "**Answer.** $9$. The hypotenuse is twice the shorter leg in this triangle, so the shorter leg is $\\frac{18}{2} = 9$, and the longer leg is $9\\sqrt{3}$.",
+          "check": [
+            "Eq(Rational(18,2), 9)",
+            "Eq(9**2 + (9*sqrt(3))**2, 18**2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Right triangles and trigonometry",
+            "beats": [
+              "Domain: Geometry and Trigonometry — 5 to 7 of the 44 questions.",
+              "Usually 1 or 2, and the special triangles are on the reference sheet.",
+              "Prerequisites: squaring and square roots; similarity from Unit 2.",
+              "Recognising a 3-4-5 or 5-12-13 turns arithmetic into recall."
+            ]
+          },
+          {
+            "kind": "pythagoreanSquares",
+            "title": "Why the squares add",
+            "teach": "Squares built on the two legs, and a square built on the hypotenuse. Drag the legs: the two smaller areas always total the larger one exactly. That equality IS Pythagoras.",
+            "config": {
+              "a": 9,
+              "b": 12
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Finding a hypotenuse",
+            "problemId": "sat-rt1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Add or subtract?",
+            "prompt": "A right triangle has hypotenuse $25$ and one leg $7$. What is the other leg?",
+            "options": [
+              "$24$",
+              "$\\sqrt{674}$",
+              "$32$",
+              "$18$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The hypotenuse is given, so subtract: $625 - 49 = 576$ and $\\sqrt{576} = 24$. Option B adds the squares, which would make a leg longer than the hypotenuse — impossible. Option D subtracts the lengths themselves rather than their squares.",
+            "check": [
+              "Eq(25**2 - 7**2, 576)",
+              "Eq(sqrt(576), 24)",
+              "Eq(7**2 + 24**2, 25**2)",
+              "sqrt(674) > 25"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "The triples worth recognising",
+            "beats": [
+              "3-4-5 and its multiples: 6-8-10, 9-12-15, 30-40-50.",
+              "5-12-13 and its multiples: 10-24-26, 15-36-39.",
+              "8-15-17 and 7-24-25 turn up too.",
+              "Spotting one skips the squaring entirely."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Finding a missing leg",
+            "problemId": "sat-rt1-w2"
+          },
+          {
+            "kind": "specialTriangle",
+            "title": "The two special triangles",
+            "teach": "Slide the base length and watch every side scale together. The ratios never change — that is what makes these two triangles worth knowing, and why they sit on the reference sheet.",
+            "config": {
+              "type": "30-60-90",
+              "start": 7
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A 30-60-90 triangle",
+            "problemId": "sat-rt1-w3"
+          },
+          {
+            "kind": "tip",
+            "title": "The hypotenuse is always the longest side",
+            "body": "Before writing an answer down, check it against that fact. If your hypotenuse came out shorter than a leg, or your missing leg came out longer than the hypotenuse, you added where you should have subtracted. It is a two-second check that catches the commonest error on this skill."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a familiar triple",
+            "problemId": "sat-rt1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: subtract this time",
+            "problemId": "sat-rt1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: 45-45-90",
+            "problemId": "sat-rt1-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: work backwards",
+            "problemId": "sat-rt1-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "The hypotenuse goes in the c position and is always the longest side.",
+              "Given two legs, add the squares; given the hypotenuse, subtract.",
+              "Recognise 3-4-5, 5-12-13, 8-15-17 and their multiples.",
+              "45-45-90 has sides in the ratio 1 : 1 : root 2.",
+              "30-60-90 has sides 1 : root 3 : 2, with root 3 opposite the 60-degree angle."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "trigonometric-ratios",
+      "title": "Sine, Cosine and Tangent in Right Triangles",
+      "concreteComparison": "Two right triangles with the same angles have different sizes but identical side RATIOS — that is what similarity guarantees. So a ratio depends only on the angle, which means it can be looked up. That single observation is the whole of trigonometry.",
+      "objective": "Compute sine, cosine and tangent from a right triangle, choose the right ratio to solve for a missing side, and apply the complementary-angle identity.",
+      "concept": [
+        "**Skill card.** Still *Right triangles and trigonometry*, in the **Geometry and Trigonometry** domain. Trigonometry on the SAT stays inside right triangles — there is no law of sines or cosines, and radians appear only in the circles subtopic.",
+        "Three ratios, remembered as SOH-CAH-TOA: sine is opposite over hypotenuse, cosine is adjacent over hypotenuse, tangent is opposite over adjacent. Every one of those labels is relative to the angle you are working from — the side 'opposite' angle $A$ is 'adjacent' to angle $B$.",
+        "Why the ratios are worth anything: similar right triangles have equal ratios, so the value depends on the ANGLE alone and not on the triangle's size. That is the connection back to Unit 2, and it is why a single table of values works for every right triangle in existence.",
+        "**The test's angle.** The complementary identity. The two acute angles of a right triangle add to $90^\\circ$, and swapping between them exchanges 'opposite' and 'adjacent' — so $\\sin \\theta = \\cos(90^\\circ - \\theta)$. The SAT asks this in almost exactly that form, and the answer is always the value you were handed. The other regular loss is choosing the wrong ratio and computing the horizontal distance when the height was wanted; labelling the diagram first prevents it."
+      ],
+      "keyIdea": "Sine, cosine and tangent are side ratios measured from a chosen angle, and they depend on the angle alone. Label opposite, adjacent and hypotenuse first, then pick the ratio joining what you know to what you want.",
+      "facts": [
+        {
+          "title": "The three ratios",
+          "latex": "\\sin\\theta = \\frac{\\text{opp}}{\\text{hyp}}, \\quad \\cos\\theta = \\frac{\\text{adj}}{\\text{hyp}}, \\quad \\tan\\theta = \\frac{\\text{opp}}{\\text{adj}}",
+          "explanation": "All three are relative to the angle $\\theta$."
+        },
+        {
+          "title": "Complementary angles",
+          "latex": "\\sin\\theta = \\cos(90^\\circ - \\theta)",
+          "explanation": "The two acute angles swap opposite and adjacent, so they swap sine and cosine."
+        },
+        {
+          "title": "Solving for a side",
+          "latex": "\\text{opp} = \\text{hyp}\\,\\sin\\theta, \\qquad \\text{adj} = \\text{hyp}\\,\\cos\\theta",
+          "explanation": "Pick the ratio that contains the side you know and the side you want."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-rt2-w1",
+          "statement": "In right triangle $ABC$, the right angle is at $C$, $AB = 13$ and $BC = 5$. What is the value of $\\sin A$?",
+          "solution": "**Answer.** $\\dfrac{5}{13}$.  \nSOH-CAH-TOA names the three ratios, and every one of them is measured FROM a particular angle:\n$$\\sin = \\frac{\\text{opposite}}{\\text{hypotenuse}}, \\quad \\cos = \\frac{\\text{adjacent}}{\\text{hypotenuse}}, \\quad \\tan = \\frac{\\text{opposite}}{\\text{adjacent}}$$\nThe right angle is at $C$, so $AB$ is the hypotenuse: $13$. Working from angle $A$, the opposite side is the one not touching $A$, which is $BC = 5$.\n$$\\sin A = \\frac{5}{13}$$\nThe third side is $AC = 12$, from the $5$-$12$-$13$ triple, so $\\cos A = \\frac{12}{13}$ and $\\tan A = \\frac{5}{12}$.  \nEverything depends on which angle you are standing at. From angle $B$ the same triangle gives $\\sin B = \\frac{12}{13}$ — the sides have not moved, but 'opposite' now means something different.",
+          "check": [
+            "Eq(13**2 - 5**2, 144)",
+            "Eq(sqrt(144), 12)",
+            "Eq(Rational(5,13), Rational(5,13))",
+            "Eq(Rational(12,13) + 0, Rational(12,13))"
+          ]
+        },
+        {
+          "id": "sat-rt2-w2",
+          "statement": "In a right triangle, $\\sin x^\\circ = \\dfrac{3}{5}$. What is $\\cos(90 - x)^\\circ$?",
+          "solution": "**Answer.** $\\dfrac{3}{5}$.  \nThe two non-right angles of a right triangle add to $90^\\circ$, so they are COMPLEMENTARY. And swapping between them swaps 'opposite' and 'adjacent' — which is exactly the difference between sine and cosine:\n$$\\sin \\theta = \\cos(90^\\circ - \\theta)$$\nSo $\\cos(90 - x)^\\circ = \\sin x^\\circ = \\frac{3}{5}$.  \nConcretely: in a $3$-$4$-$5$ triangle with $\\sin x = \\frac{3}{5}$, the other acute angle is $90 - x$, and the side opposite $x$ is the side ADJACENT to $90 - x$. Same side, same hypotenuse, same ratio — different name.  \nThis identity is tested directly on the SAT, usually in exactly this phrasing, and the answer is always just the given value.",
+          "check": [
+            "Eq(Rational(3,5), Rational(3,5))",
+            "Eq(3**2 + 4**2, 5**2)",
+            "Eq(Rational(4,5)**2 + Rational(3,5)**2, 1)"
+          ]
+        },
+        {
+          "id": "sat-rt2-w3",
+          "statement": "A ramp rises at an angle of $12^\\circ$ to the horizontal and is $30$ metres long. How high does it rise, to the nearest tenth of a metre?",
+          "solution": "**Answer.** About $6.2$ metres.  \nDraw the right triangle: the ramp is the hypotenuse, the rise is the side opposite the $12^\\circ$ angle, and the horizontal distance is adjacent.  \nOpposite and hypotenuse means SINE:\n$$\\sin 12^\\circ = \\frac{h}{30}$$\n$$h = 30 \\sin 12^\\circ \\approx 30 \\times 0.2079 \\approx 6.24$$\nso the rise is about $6.2$ metres.  \nThe choice of ratio is the whole question. Label the three sides relative to the given angle first — opposite, adjacent, hypotenuse — then pick the ratio that uses the one you know and the one you want. Using cosine here would give the horizontal distance, about $29.3$ metres, which is also a listed option.  \nMake sure the calculator is in DEGREE mode. In radians, $\\sin 12$ is about $-0.54$, which would give a negative height.",
+          "check": [
+            "Abs(30*sin(pi*12/180) - 6.24) < 0.05",
+            "Abs(30*cos(pi*12/180) - 29.3) < 0.05",
+            "sin(pi*12/180) < cos(pi*12/180)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using 'opposite' and 'adjacent' relative to the wrong angle.",
+          "correction": "The labels move when the angle does. Mark them on the diagram for the angle the question names.",
+          "authored": true
+        },
+        {
+          "text": "Inverting a ratio.",
+          "correction": "Tangent is opposite over adjacent. Writing adjacent over opposite gives the reciprocal, which is a listed option.",
+          "authored": true
+        },
+        {
+          "text": "Choosing the ratio before labelling the sides.",
+          "correction": "That is how the horizontal distance gets computed when the height was asked for. Label first.",
+          "authored": true
+        },
+        {
+          "text": "Leaving the calculator in radian mode.",
+          "correction": "$\\sin 12$ in radians is negative. Degree mode unless the question says otherwise.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-rt2-t1",
+          "statement": "In a right triangle the side opposite angle $\\theta$ is $8$ and the hypotenuse is $17$. What is $\\sin \\theta$?",
+          "solution": "**Answer.** $\\dfrac{8}{17}$. Opposite over hypotenuse. The adjacent side is $15$, so $\\cos \\theta = \\frac{15}{17}$.",
+          "check": [
+            "Eq(17**2 - 8**2, 225)",
+            "Eq(sqrt(225), 15)",
+            "Eq(8**2 + 15**2, 17**2)"
+          ]
+        },
+        {
+          "id": "sat-rt2-t2",
+          "statement": "In a right triangle the leg adjacent to angle $\\theta$ is $9$ and the opposite leg is $12$. What is $\\tan \\theta$?",
+          "solution": "**Answer.** $\\dfrac{4}{3}$. Tangent is opposite over adjacent: $\\frac{12}{9} = \\frac{4}{3}$. Inverting gives $\\frac{3}{4}$, a listed option.",
+          "check": [
+            "Eq(Rational(12,9), Rational(4,3))",
+            "Eq(9**2 + 12**2, 15**2)"
+          ]
+        },
+        {
+          "id": "sat-rt2-t3",
+          "statement": "If $\\cos y^\\circ = \\dfrac{7}{25}$, what is $\\sin(90 - y)^\\circ$?",
+          "solution": "**Answer.** $\\dfrac{7}{25}$. Sine and cosine swap under complementary angles, so the value is unchanged.",
+          "check": [
+            "Eq(Rational(7,25), Rational(7,25))",
+            "Eq(7**2 + 24**2, 25**2)"
+          ]
+        },
+        {
+          "id": "sat-rt2-t4",
+          "statement": "A kite string $40$ metres long makes an angle of $55^\\circ$ with the ground. How high is the kite, to the nearest metre?",
+          "solution": "**Answer.** About $33$ metres. The height is opposite the angle and the string is the hypotenuse, so $h = 40 \\sin 55^\\circ \\approx 32.8$.",
+          "check": [
+            "Abs(40*sin(pi*55/180) - 32.8) < 0.1",
+            "Abs(40*cos(pi*55/180) - 22.9) < 0.1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "Three ratios, all measured from an angle",
+            "body": "In a right triangle, sine is opposite over hypotenuse, cosine is adjacent over hypotenuse, and tangent is opposite over adjacent — SOH-CAH-TOA. Every one of those words is relative to the angle you are working from. Move to the other acute angle and 'opposite' and 'adjacent' swap, so the sine and cosine swap too."
+          },
+          {
+            "kind": "trigRatios",
+            "title": "The ratios do not depend on size",
+            "teach": "Change the angle and watch all three ratios move. Then note what does NOT change them: scaling the triangle. Similar triangles have equal ratios, which is exactly why these three numbers depend on the angle alone — and why trigonometry exists at all.",
+            "config": {
+              "start": 35
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Reading a ratio from a triangle",
+            "problemId": "sat-rt2-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which ratio?",
+            "prompt": "You know an angle and the hypotenuse, and you want the side ADJACENT to that angle. Which ratio do you use?",
+            "options": [
+              "Cosine",
+              "Sine",
+              "Tangent",
+              "Pythagoras"
+            ],
+            "correctIndex": 0,
+            "explanation": "Cosine relates the adjacent side to the hypotenuse. Sine would give the opposite side; tangent needs two legs and involves no hypotenuse at all. Label the sides relative to the angle first, then pick the ratio joining what you have to what you want.",
+            "check": [
+              "Abs(10*cos(pi*60/180) - 5) < 0.001",
+              "Abs(10*sin(pi*60/180) - 8.66) < 0.01"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "The complementary-angle identity",
+            "beats": [
+              "The two acute angles of a right triangle add to 90 degrees.",
+              "Moving between them swaps opposite and adjacent.",
+              "So sin θ = cos(90 − θ), and cos θ = sin(90 − θ).",
+              "The SAT tests this directly, and the answer is always the value you were given."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Sine and cosine swapping",
+            "problemId": "sat-rt2-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Label the sides before choosing a ratio",
+            "body": "Write 'opp', 'adj' and 'hyp' on the diagram relative to the GIVEN angle. Then look at which side you know and which you want, and pick the ratio that joins them. Choosing the ratio first and labelling afterwards is how students end up computing the horizontal distance when the question asked for the height — and both are on the option list."
+          },
+          {
+            "kind": "worked",
+            "title": "A ramp, and degree mode",
+            "problemId": "sat-rt2-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: read a sine",
+            "problemId": "sat-rt2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a tangent",
+            "problemId": "sat-rt2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: complementary angles",
+            "problemId": "sat-rt2-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a kite string",
+            "problemId": "sat-rt2-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "SOH-CAH-TOA — and every word in it is relative to the angle you are using.",
+              "Label opp, adj and hyp on the diagram before choosing a ratio.",
+              "sin θ = cos(90 − θ): the complementary identity is tested directly.",
+              "The ratios depend on the angle alone, not on the triangle's size.",
+              "Keep the calculator in degree mode unless the question uses radians."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-rt-p01",
+      "statement": "A right triangle has legs $6$ and $8$. What is the hypotenuse?",
+      "solution": "**Answer.** $10$. The $3$-$4$-$5$ triangle doubled.",
+      "check": [
+        "Eq(6**2 + 8**2, 100)",
+        "Eq(sqrt(100), 10)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-p02",
+      "statement": "A right triangle has hypotenuse $15$ and one leg $9$. What is the other leg?",
+      "solution": "**Answer.** $12$. $225 - 81 = 144$, so the leg is $12$ — the $3$-$4$-$5$ triangle tripled.",
+      "check": [
+        "Eq(15**2 - 9**2, 144)",
+        "Eq(sqrt(144), 12)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-p03",
+      "statement": "In a right triangle, the side opposite $\\theta$ is $7$ and the hypotenuse is $25$. What is $\\sin\\theta$?",
+      "solution": "**Answer.** $\\dfrac{7}{25}$. Opposite over hypotenuse.",
+      "check": [
+        "Eq(25**2 - 7**2, 576)",
+        "Eq(sqrt(576), 24)",
+        "Eq(7**2 + 24**2, 25**2)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-p04",
+      "statement": "In a $45$-$45$-$90$ triangle the hypotenuse is $10\\sqrt{2}$. What is the length of each leg?",
+      "solution": "**Answer.** $10$. The hypotenuse is a leg times $\\sqrt{2}$, so the leg is $\\frac{10\\sqrt{2}}{\\sqrt{2}} = 10$.",
+      "check": [
+        "Eq(simplify(10*sqrt(2)/sqrt(2)), 10)",
+        "Eq(10**2 + 10**2, simplify((10*sqrt(2))**2))"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-p05",
+      "statement": "If $\\sin a^\\circ = \\dfrac{9}{41}$, what is $\\cos(90 - a)^\\circ$?",
+      "solution": "**Answer.** $\\dfrac{9}{41}$. Complementary angles swap sine and cosine, leaving the value unchanged.",
+      "check": [
+        "Eq(9**2 + 40**2, 41**2)",
+        "Eq(Rational(9,41), Rational(9,41))"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-p06",
+      "statement": "A ladder $8$ metres long leans against a wall at $70^\\circ$ to the ground. How far up the wall does it reach, to the nearest tenth of a metre?",
+      "solution": "**Answer.** About $7.5$ metres. The height is opposite the angle and the ladder is the hypotenuse: $8\\sin 70^\\circ \\approx 7.52$. Using cosine gives the distance from the wall, about $2.7$ metres.",
+      "check": [
+        "Abs(8*sin(pi*70/180) - 7.52) < 0.02",
+        "Abs(8*cos(pi*70/180) - 2.74) < 0.02"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-p07",
+      "statement": "In a $30$-$60$-$90$ triangle the longer leg is $12\\sqrt{3}$. What is the hypotenuse?",
+      "solution": "**Answer.** $24$. The longer leg is the shorter leg times $\\sqrt{3}$, so the shorter leg is $12$; the hypotenuse is twice that.",
+      "check": [
+        "Eq(simplify(12*sqrt(3)/sqrt(3)), 12)",
+        "Eq(2*12, 24)",
+        "Eq(simplify(12**2 + (12*sqrt(3))**2), 576)",
+        "Eq(24**2, 576)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-p08",
+      "statement": "In right triangle $PQR$ with the right angle at $Q$, $\\tan P = \\dfrac{3}{4}$ and $PQ = 8$. What is $QR$?",
+      "solution": "**Answer.** $6$. Tangent is opposite over adjacent, and from angle $P$ the adjacent leg is $PQ = 8$ while the opposite leg is $QR$. So $\\frac{QR}{8} = \\frac{3}{4}$, giving $QR = 6$. The hypotenuse is then $10$ — the $3$-$4$-$5$ triangle doubled.",
+      "check": [
+        "Eq(Rational(6,8), Rational(3,4))",
+        "Eq(6**2 + 8**2, 100)",
+        "Eq(sqrt(100), 10)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-rt-x01",
+      "statement": "A right triangle has legs $12$ and $16$. What is the hypotenuse?",
+      "solution": "**Answer.** $20$. The $3$-$4$-$5$ triangle scaled by $4$.",
+      "check": [
+        "Eq(12**2 + 16**2, 400)",
+        "Eq(sqrt(400), 20)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-x02",
+      "statement": "In a right triangle the legs are $5$ and $5$. What is the hypotenuse?",
+      "solution": "**Answer.** $5\\sqrt{2}$. Equal legs make a $45$-$45$-$90$ triangle, so the hypotenuse is a leg times $\\sqrt{2}$.",
+      "check": [
+        "Eq(5**2 + 5**2, 50)",
+        "Eq(simplify((5*sqrt(2))**2), 50)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-x03",
+      "statement": "In a right triangle, the leg adjacent to $\\theta$ is $24$ and the hypotenuse is $26$. What is $\\cos\\theta$?",
+      "solution": "**Answer.** $\\dfrac{12}{13}$. Adjacent over hypotenuse is $\\frac{24}{26}$, which reduces to $\\frac{12}{13}$.",
+      "check": [
+        "Eq(Rational(24,26), Rational(12,13))",
+        "Eq(26**2 - 24**2, 100)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-x04",
+      "statement": "If $\\cos b^\\circ = 0.6$, what is $\\sin(90 - b)^\\circ$?",
+      "solution": "**Answer.** $0.6$. The complementary identity leaves the value unchanged.",
+      "check": [
+        "Eq(Rational(6,10), Rational(3,5))",
+        "Eq(Rational(3,5)**2 + Rational(4,5)**2, 1)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-x05",
+      "statement": "A guy wire runs from the top of a $24$-metre mast to a point on the ground $7$ metres from its base. How long is the wire?",
+      "solution": "**Answer.** $25$ metres. The mast and the ground distance are the legs: $576 + 49 = 625$, and $\\sqrt{625} = 25$ — the $7$-$24$-$25$ triple.",
+      "check": [
+        "Eq(24**2 + 7**2, 625)",
+        "Eq(sqrt(625), 25)"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-rt-x06",
+      "statement": "A slide makes an angle of $38^\\circ$ with the ground and its top is $3$ metres above the ground. How long is the slide, to the nearest tenth of a metre?",
+      "solution": "**Answer.** About $4.9$ metres. The height is opposite the angle and the slide is the hypotenuse, so $\\sin 38^\\circ = \\frac{3}{L}$ and $L = \\frac{3}{\\sin 38^\\circ} \\approx 4.87$. Multiplying instead of dividing gives $1.85$, which would be shorter than the height — impossible for a hypotenuse.",
+      "check": [
+        "Abs(3/sin(pi*38/180) - 4.87) < 0.02",
+        "3/sin(pi*38/180) > 3",
+        "Abs(3*sin(pi*38/180) - 1.85) < 0.02"
+      ],
+      "badges": [
+        {
+          "text": "sat-right-triangle-trig",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ]
+}

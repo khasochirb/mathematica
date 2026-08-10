@@ -33,6 +33,10 @@ import satTwoVarData from "@/data/genmath/sat/two-variable-data.json";
 import satProbability from "@/data/genmath/sat/probability-and-conditional-probability.json";
 import satInference from "@/data/genmath/sat/inference-and-margin-of-error.json";
 import satClaims from "@/data/genmath/sat/evaluating-statistical-claims.json";
+import satAreaVolume from "@/data/genmath/sat/area-and-volume.json";
+import satLinesAnglesTriangles from "@/data/genmath/sat/lines-angles-and-triangles.json";
+import satRightTriangles from "@/data/genmath/sat/right-triangles-and-trigonometry.json";
+import satCircles from "@/data/genmath/sat/circles.json";
 
 const satUnits: CourseUnit[] = [
   satLinearEqOneVar as unknown as CourseUnit,
@@ -51,6 +55,10 @@ const satUnits: CourseUnit[] = [
   satProbability as unknown as CourseUnit,
   satInference as unknown as CourseUnit,
   satClaims as unknown as CourseUnit,
+  satAreaVolume as unknown as CourseUnit,
+  satLinesAnglesTriangles as unknown as CourseUnit,
+  satRightTriangles as unknown as CourseUnit,
+  satCircles as unknown as CourseUnit,
 ];
 
 /** Every authored SAT unit, in registry order. */

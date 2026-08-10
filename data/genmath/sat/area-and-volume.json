@@ -1,0 +1,712 @@
+{
+  "slug": "area-and-volume",
+  "title": "Area and Volume Formulas",
+  "unit": 1,
+  "status": "published",
+  "blurb": "Choosing the right formula off the reference sheet, telling a radius from a diameter and a height from a slant, composite shapes — and the scaling rule that multiplies area by k squared and volume by k cubed.",
+  "buildsOn": null,
+  "lessons": [
+    {
+      "slug": "area-and-volume-formulas",
+      "title": "Area, Volume and What Scaling Does",
+      "concreteComparison": "A pizza twice the diameter of another is not twice the pizza — it is four times the pizza, for rather less than twice the price. Area grows with the square of the scaling, and noticing that is worth more on this test than any formula.",
+      "objective": "Choose and apply the right area or volume formula, distinguish radius from diameter and height from slant, and predict how area and volume change when dimensions are scaled.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Area and volume formulas*, in the **Geometry and Trigonometry** domain — the smallest domain, at 5 to 7 of the 44 questions. The reference sheet supplies the formulas, so nothing here needs memorising; what it does not supply is which formula matches the solid in front of you.",
+        "Three habits prevent most of the lost marks. Formulas take the RADIUS, so halve any diameter before substituting. A height is always perpendicular — the perpendicular distance between a trapezoid's parallel sides, or from a cone's apex straight down to its base — and never a slanted edge, which SAT diagrams helpfully label as well. And square before you multiply: $\\pi r^{2}h$ squares only the $r$.",
+        "Every prism and cylinder shares one rule: volume is the area of the base times the height. Cones and pyramids are a third of the prism or cylinder they fit inside, which is why their formulas carry a $\\frac{1}{3}$.",
+        "**The test's angle.** Scaling. Multiply every length of a figure by $k$ and its area multiplies by $k^{2}$, because area is a product of two lengths; volume multiplies by $k^{3}$. Doubling a box's dimensions gives EIGHT times the volume. The linear answer — 'twice' — is on every version of this question, and it is the one most students choose."
+      ],
+      "keyIdea": "Pick the formula, substitute the radius rather than the diameter and the perpendicular height rather than a slant, and remember that scaling lengths by $k$ scales area by $k^{2}$ and volume by $k^{3}$.",
+      "facts": [
+        {
+          "title": "Trapezoid",
+          "latex": "A = \\frac{b_1 + b_2}{2} \\cdot h",
+          "explanation": "Average the parallel sides, multiply by the perpendicular height."
+        },
+        {
+          "title": "Prisms and cylinders",
+          "latex": "V = (\\text{base area}) \\times h, \\qquad V_{\\text{cylinder}} = \\pi r^{2} h",
+          "explanation": "Cones and pyramids are a third of the solid they fit inside."
+        },
+        {
+          "title": "Scaling",
+          "latex": "\\text{lengths} \\times k \\;\\Longrightarrow\\; \\text{area} \\times k^{2}, \\;\\; \\text{volume} \\times k^{3}",
+          "explanation": "Two lengths make an area, three make a volume — the exponents are just the count."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-av1-w1",
+          "statement": "A trapezoid has parallel sides of length $8$ and $14$ and a height of $6$. What is its area?",
+          "solution": "**Answer.** $66$.  \nThe trapezoid formula averages the two parallel sides and multiplies by the height:\n$$A = \\frac{b_1 + b_2}{2} \\cdot h = \\frac{8 + 14}{2} \\cdot 6 = 11 \\cdot 6 = 66$$\nThe averaging is what makes it work. A trapezoid is a rectangle of width $11$ — the average of the two bases — with a triangle shaved off one end and pasted onto the other.  \nNote the HEIGHT is the perpendicular distance between the parallel sides, not the length of a slanted side. SAT diagrams routinely label a slanted side as well, specifically so that using it gives a listed wrong answer.",
+          "check": [
+            "Eq(Rational(8 + 14, 2)*6, 66)",
+            "Eq(Rational(8 + 14, 2), 11)"
+          ]
+        },
+        {
+          "id": "sat-av1-w2",
+          "statement": "A cylinder has radius $3$ and height $10$. What is its volume, in terms of $\\pi$?",
+          "solution": "**Answer.** $90\\pi$.  \nEvery prism and cylinder has the same volume rule: the area of the base times the height.\n$$V = \\pi r^{2} h = \\pi(3)^{2}(10) = 90\\pi$$\nThe step that costs points is squaring the radius BEFORE multiplying: $3^{2} = 9$, then $9 \\times 10 = 90$. Multiplying $3 \\times 10$ first and then squaring gives $900\\pi$, which is on the option list.  \nThis formula is on the SAT's reference sheet, along with the volumes of a cone, a sphere and a pyramid. There is nothing to memorise — but you do have to know which sheet entry matches the solid in front of you, and that the sheet gives $r$, not the diameter.",
+          "check": [
+            "Eq(3**2*10, 90)",
+            "Ne(3*10, 90)",
+            "Eq((3*10)**2, 900)"
+          ]
+        },
+        {
+          "id": "sat-av1-w3",
+          "statement": "A rectangular box has dimensions $4$ by $5$ by $6$. Each dimension is doubled. By what factor does the volume increase?",
+          "solution": "**Answer.** $8$.  \nThe original volume is $4 \\times 5 \\times 6 = 120$. Doubling every dimension gives $8 \\times 10 \\times 12 = 960$, and\n$$\\frac{960}{120} = 8$$\nThe reason is structural, not arithmetic: volume is a product of THREE lengths, so doubling each one multiplies the result by $2 \\times 2 \\times 2 = 8$.  \nThe same logic covers every scaling question. Area is a product of two lengths, so scaling by $k$ multiplies area by $k^{2}$; volume scales by $k^{3}$. Tripling the dimensions of a solid multiplies its volume by $27$, not by $3$ — and $3$ is always an option.",
+          "check": [
+            "Eq(4*5*6, 120)",
+            "Eq(8*10*12, 960)",
+            "Eq(Rational(960,120), 8)",
+            "Eq(2**3, 8)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Substituting the diameter where the formula wants the radius.",
+          "correction": "$\\pi d^{2}$ is four times the true area. Halve first.",
+          "authored": true
+        },
+        {
+          "text": "Using a slanted side as the height.",
+          "correction": "Height is the perpendicular distance. The slant is given for surface area, not volume.",
+          "authored": true
+        },
+        {
+          "text": "Assuming doubling the dimensions doubles the volume.",
+          "correction": "It multiplies it by $2^{3} = 8$. Area would go up by $4$.",
+          "authored": true
+        },
+        {
+          "text": "Dropping the $\\frac{1}{3}$ from a cone or pyramid.",
+          "correction": "Without it you have computed the cylinder or prism the solid sits inside.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-av1-t1",
+          "statement": "A triangle has base $12$ and height $7$. What is its area?",
+          "solution": "**Answer.** $42$. $A = \\frac{1}{2}bh = \\frac{1}{2}(12)(7) = 42$. Forgetting the half gives $84$, a listed option.",
+          "check": [
+            "Eq(Rational(1,2)*12*7, 42)",
+            "Eq(12*7, 84)"
+          ]
+        },
+        {
+          "id": "sat-av1-t2",
+          "statement": "A circle has diameter $10$. What is its area, in terms of $\\pi$?",
+          "solution": "**Answer.** $25\\pi$. The radius is half the diameter, so $r = 5$ and $A = \\pi r^{2} = 25\\pi$. Using the diameter in place of the radius gives $100\\pi$ — the single most common error in circle questions.",
+          "check": [
+            "Eq(Rational(10,2), 5)",
+            "Eq(5**2, 25)",
+            "Eq(10**2, 100)"
+          ]
+        },
+        {
+          "id": "sat-av1-t3",
+          "statement": "A cone has radius $6$ and height $5$. What is its volume, in terms of $\\pi$?",
+          "solution": "**Answer.** $60\\pi$. The reference sheet gives $V = \\frac{1}{3}\\pi r^{2}h$, so $\\frac{1}{3}\\pi(36)(5) = 60\\pi$. Dropping the third gives $180\\pi$ — the volume of the cylinder the cone sits inside.",
+          "check": [
+            "Eq(Rational(1,3)*6**2*5, 60)",
+            "Eq(6**2*5, 180)"
+          ]
+        },
+        {
+          "id": "sat-av1-t4",
+          "statement": "The side length of a square is multiplied by $5$. By what factor does its area increase?",
+          "solution": "**Answer.** $25$. Area is a product of two lengths, so scaling each by $5$ multiplies the area by $5^{2} = 25$. A square of side $2$ has area $4$; of side $10$, area $100$.",
+          "check": [
+            "Eq(5**2, 25)",
+            "Eq(Rational(10**2, 2**2), 25)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Area and volume formulas",
+            "beats": [
+              "Domain: Geometry and Trigonometry — 5 to 7 of the 44 questions.",
+              "The reference sheet gives you the formulas; it does not tell you which to use.",
+              "Prerequisite: solving a linear equation, and squaring.",
+              "The scaling rule — area by k², volume by k³ — is the reliably hard part."
+            ]
+          },
+          {
+            "kind": "areaShape",
+            "title": "Why a trapezoid averages its bases",
+            "teach": "Drag the top base. When it matches the bottom you have a rectangle; when it shrinks to nothing you have a triangle. The formula — average the two bases, multiply by the height — gives the right answer at both extremes and everywhere between.",
+            "config": {
+              "shape": "trapezoid",
+              "base": 14,
+              "base2": 8,
+              "height": 6
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A trapezoid, and which length is the height",
+            "problemId": "sat-av1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Radius or diameter?",
+            "prompt": "A circle has diameter $14$. What is its area, in terms of $\\pi$?",
+            "options": [
+              "$49\\pi$",
+              "$196\\pi$",
+              "$14\\pi$",
+              "$28\\pi$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The radius is $7$, so the area is $\\pi(7)^{2} = 49\\pi$. Option B squares the diameter instead — the commonest circle error on the test. Option D is the circumference, $\\pi d$.",
+            "check": [
+              "Eq(Rational(14,2), 7)",
+              "Eq(7**2, 49)",
+              "Eq(14**2, 196)"
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "title": "Base area, times height",
+            "teach": "Every prism and cylinder works the same way: find the area of the base, then multiply by how tall it is. Rotate the solid and change its dimensions to see which measurement plays which role.",
+            "config": {
+              "solid": "cylinder",
+              "r": 3,
+              "h": 10
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A cylinder from the reference sheet",
+            "problemId": "sat-av1-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Scaling: squared for area, cubed for volume",
+            "body": "Multiply every length of a figure by $k$ and its area multiplies by $k^{2}$, because area is two lengths multiplied together. Volume multiplies by $k^{3}$. Doubling a box's dimensions gives eight times the volume, not twice — and 'twice' is always an option."
+          },
+          {
+            "kind": "worked",
+            "title": "What doubling really does",
+            "problemId": "sat-av1-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: mind the half",
+            "problemId": "sat-av1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: diameter given",
+            "problemId": "sat-av1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a cone",
+            "problemId": "sat-av1-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: scale a square",
+            "problemId": "sat-av1-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "The reference sheet has the formulas — your job is picking the right one.",
+              "Formulas use the RADIUS; halve any diameter before substituting.",
+              "A trapezoid's height is perpendicular to the parallel sides, not a slanted edge.",
+              "Prism and cylinder volume is base area times height, every time.",
+              "Scale every length by k: area goes up by k², volume by k³."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composite-figures-and-volume-in-context",
+      "title": "Composite Figures and Volume in Context",
+      "concreteComparison": "A running track is a rectangle with a half-circle stuck on each end. Nobody has a formula for that shape, and nobody needs one — it is two shapes that do have formulas, added together.",
+      "objective": "Find areas and volumes of composite figures by splitting them into known shapes, and combine a volume with a rate to answer a question about time.",
+      "concept": [
+        "**Skill card.** Still *Area and volume formulas*, in the **Geometry and Trigonometry** domain. Composite figures are how the harder items in this subtopic are written, because they test whether you can read a diagram rather than recall a formula.",
+        "The method never changes: split the figure into shapes you already have formulas for, compute each separately, and add — or, when something has been removed, subtract. Drawing the dividing line on the diagram is the first move.",
+        "The difficulty is always in the dimensions rather than the formulas. A semicircle attached to a side has that side as its DIAMETER, so the radius is half of it. Squares cut from the corners of a sheet remove two lengths from every dimension, not one, because there is a corner at each end.",
+        "**The test's angle.** Volume combined with a rate. Find the volume, then divide by the filling or draining rate, and let the units confirm the direction: cubic metres divided by cubic metres per minute leaves minutes. Multiplying instead produces a number in the wrong unit entirely — and that number is on the option list."
+      ],
+      "keyIdea": "Composite figures are known shapes added or subtracted. The formulas are easy; the dimensions each piece actually has are what the question is testing.",
+      "facts": [
+        {
+          "title": "Composite area",
+          "latex": "A_{\\text{total}} = A_1 + A_2 - A_{\\text{removed}}",
+          "explanation": "Split, compute, combine. Nothing new is needed beyond the basic formulas."
+        },
+        {
+          "title": "A semicircle on a side",
+          "latex": "\\text{side} = \\text{diameter} \\;\\Longrightarrow\\; r = \\tfrac{1}{2}\\text{side}",
+          "explanation": "Using the side as the radius makes the piece four times too large."
+        },
+        {
+          "title": "Volume and a rate",
+          "latex": "t = \\frac{V}{\\text{rate}}",
+          "explanation": "The units cancel to leave time. If they do not, the division is inverted."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-av2-w1",
+          "statement": "A running track is made of a rectangle $80$ metres long and $40$ metres wide with a semicircle attached to each of the two shorter ends. What is the total area, in terms of $\\pi$?",
+          "solution": "**Answer.** $3200 + 400\\pi$ square metres.  \nBreak the shape into pieces whose formulas you know, compute each, and add.  \nThe rectangle:\n$$80 \\times 40 = 3200$$\nThe two semicircles are attached to the $40$-metre ends, so each has DIAMETER $40$ and therefore radius $20$. Two semicircles make one whole circle:\n$$\\pi(20)^{2} = 400\\pi$$\n$$\\text{total} = 3200 + 400\\pi$$\nTwo things decide this question. The semicircles sit on the SHORTER sides, so $40$ is the diameter and $20$ is the radius — using $40$ as the radius gives $1600\\pi$, four times too much. And two halves make one whole, so there is no factor of $\\frac{1}{2}$ left anywhere.",
+          "check": [
+            "Eq(80*40, 3200)",
+            "Eq(Rational(40,2), 20)",
+            "Eq(20**2, 400)",
+            "Eq(2*Rational(1,2), 1)",
+            "Eq(40**2, 1600)"
+          ]
+        },
+        {
+          "id": "sat-av2-w2",
+          "statement": "A rectangular sheet of card measures $30$ by $20$ centimetres. A square of side $4$ is cut from each corner and the flaps are folded up to make an open box. What is the volume of the box?",
+          "solution": "**Answer.** $1{,}056$ cubic centimetres.  \nThe folded height is the size of the cut square:\n$$h = 4$$\nEach base dimension loses TWO squares — one at each end:\n$$\\text{length} = 30 - 2(4) = 22, \\qquad \\text{width} = 20 - 2(4) = 12$$\n$$V = 22 \\times 12 \\times 4 = 1056$$\nSubtracting only one square from each dimension gives $26 \\times 16 \\times 4 = 1664$, which is a listed option. The corners are cut from both ends of every side, so the loss is doubled.  \nThis is the SAT's standard composite-solid item: the difficulty is the geometry of what was removed, not the volume formula.",
+          "check": [
+            "Eq(30 - 2*4, 22)",
+            "Eq(20 - 2*4, 12)",
+            "Eq(22*12*4, 1056)",
+            "Eq((30 - 4)*(20 - 4)*4, 1664)"
+          ]
+        },
+        {
+          "id": "sat-av2-w3",
+          "statement": "A cylindrical tank of radius $2$ metres and height $5$ metres is being filled at $3$ cubic metres per minute. How long does it take to fill, to the nearest minute?",
+          "solution": "**Answer.** About $21$ minutes.  \nFind the volume, then divide by the rate:\n$$V = \\pi r^{2} h = \\pi(4)(5) = 20\\pi \\approx 62.83 \\text{ m}^{3}$$\n$$t = \\frac{62.83}{3} \\approx 20.9 \\text{ minutes}$$\nso about $21$ minutes.  \nThe units are the check. Cubic metres divided by cubic metres per minute leaves minutes, which is what was asked for. If a rate question ever produces the wrong unit, the division is the wrong way round — multiplying here would give $188$, a number with no meaning.  \nNote also that the answer is left as a decimal rather than in terms of $\\pi$, because the question asked for a number of minutes.",
+          "check": [
+            "Eq(2**2*5, 20)",
+            "Abs(20*pi - 62.83) < 0.01",
+            "Abs(20*pi/3 - 20.94) < 0.01"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the side a semicircle sits on as its radius.",
+          "correction": "That side is the diameter. Halve it first, or the area comes out four times too big.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting one corner square from each dimension instead of two.",
+          "correction": "Corners are cut from both ends of every side, so each dimension loses twice the cut length.",
+          "authored": true
+        },
+        {
+          "text": "Leaving a half in place after combining two semicircles.",
+          "correction": "Two semicircles of equal radius make one whole circle, with no fraction left.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying a volume by a rate instead of dividing.",
+          "correction": "The units give it away: the result would be cubic metres squared per minute, which is not a time.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-av2-t1",
+          "statement": "A shape is made of a $10$ by $6$ rectangle with a semicircle of diameter $6$ attached to one short side. What is its area, in terms of $\\pi$?",
+          "solution": "**Answer.** $60 + 4.5\\pi$. The rectangle is $60$; the semicircle has radius $3$, so its area is $\\frac{1}{2}\\pi(9) = 4.5\\pi$.",
+          "check": [
+            "Eq(10*6, 60)",
+            "Eq(Rational(6,2), 3)",
+            "Eq(Rational(1,2)*3**2, Rational(9,2))"
+          ]
+        },
+        {
+          "id": "sat-av2-t2",
+          "statement": "A square of side $12$ has a circle of radius $4$ cut out of its centre. What area remains, in terms of $\\pi$?",
+          "solution": "**Answer.** $144 - 16\\pi$. Subtract the removed piece from the whole: $12^{2} - \\pi(4)^{2}$.",
+          "check": [
+            "Eq(12**2, 144)",
+            "Eq(4**2, 16)"
+          ]
+        },
+        {
+          "id": "sat-av2-t3",
+          "statement": "A rectangular pool $8$ by $5$ metres is $1.5$ metres deep and is filled at $2$ cubic metres per minute. How long does filling take?",
+          "solution": "**Answer.** $30$ minutes. The volume is $8 \\times 5 \\times 1.5 = 60$ cubic metres, and $\\frac{60}{2} = 30$.",
+          "check": [
+            "Eq(8*5*Rational(15,10), 60)",
+            "Eq(Rational(60,2), 30)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "Split it, compute it, combine it",
+            "body": "A composite figure is not a new formula — it is two or three shapes you already know, added together or subtracted from each other. Draw the dividing line, name each piece, compute each area or volume separately, and then add or subtract. The only real work is deciding which dimensions each piece actually has."
+          },
+          {
+            "kind": "compositeArea",
+            "title": "One shape, two pieces",
+            "teach": "The figure splits into a rectangle and a triangle. Compute each piece with its own formula and add — and notice that the pieces do not share all their dimensions, which is where composite questions get their difficulty.",
+            "config": {
+              "width": 10,
+              "height": 6,
+              "parts": [
+                {
+                  "kind": "rect",
+                  "x": 0,
+                  "y": 0,
+                  "w": 10,
+                  "h": 4,
+                  "label": "rectangle"
+                },
+                {
+                  "kind": "tri",
+                  "x": 0,
+                  "y": 4,
+                  "w": 10,
+                  "h": 2,
+                  "label": "triangle"
+                }
+              ],
+              "total": "40 + 10 = 50",
+              "caption": "A rectangle with a triangular roof."
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A track: rectangle plus circle",
+            "problemId": "sat-av2-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which dimension is the radius?",
+            "prompt": "A semicircle is attached to the $12$-metre side of a rectangle. What is the semicircle's radius?",
+            "options": [
+              "$6$",
+              "$12$",
+              "$24$",
+              "$\\pi \\cdot 12$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The side it sits on is the DIAMETER, so the radius is half of it: $6$. Using $12$ as the radius makes the semicircle four times too large, and that is the standard error on composite-shape questions.",
+            "check": [
+              "Eq(Rational(12,2), 6)",
+              "Eq(6**2*4, 12**2)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A box folded from a sheet",
+            "problemId": "sat-av2-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Let the units check the arithmetic",
+            "body": "When a volume question ends in a rate, divide and watch the units cancel: cubic metres divided by cubic metres per minute leaves minutes. If your answer comes out in the wrong unit, the division was the wrong way round — and the wrong-way answer is always on the option list."
+          },
+          {
+            "kind": "worked",
+            "title": "Volume, then a rate",
+            "problemId": "sat-av2-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: rectangle plus semicircle",
+            "problemId": "sat-av2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: subtract the hole",
+            "problemId": "sat-av2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: fill a pool",
+            "problemId": "sat-av2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Split a composite figure into shapes you know, then add or subtract.",
+              "A semicircle sitting on a side has that side as its DIAMETER.",
+              "Cutting corners from a sheet removes two lengths from every dimension.",
+              "Two semicircles of equal radius make one whole circle.",
+              "Divide a volume by a rate and check that the units leave you with time."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-av-p01",
+      "statement": "A rectangle has length $9$ and width $4$. What is its area?",
+      "solution": "**Answer.** $36$.",
+      "check": [
+        "Eq(9*4, 36)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-p02",
+      "statement": "A circle has radius $8$. What is its circumference, in terms of $\\pi$?",
+      "solution": "**Answer.** $16\\pi$. Circumference is $2\\pi r$. The area would be $64\\pi$, and confusing the two is the standard slip.",
+      "check": [
+        "Eq(2*8, 16)",
+        "Eq(8**2, 64)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-p03",
+      "statement": "A triangle has area $54$ and base $12$. What is its height?",
+      "solution": "**Answer.** $9$. From $54 = \\frac{1}{2}(12)h$ we get $54 = 6h$, so $h = 9$.",
+      "check": [
+        "Eq(Rational(1,2)*12*9, 54)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-p04",
+      "statement": "A rectangular prism has volume $180$ and a base measuring $5$ by $6$. What is its height?",
+      "solution": "**Answer.** $6$. The base area is $30$, and $\\frac{180}{30} = 6$.",
+      "check": [
+        "Eq(5*6, 30)",
+        "Eq(Rational(180,30), 6)",
+        "Eq(5*6*6, 180)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-p05",
+      "statement": "A sphere has radius $3$. What is its volume, in terms of $\\pi$?",
+      "solution": "**Answer.** $36\\pi$. The reference sheet gives $V = \\frac{4}{3}\\pi r^{3}$, so $\\frac{4}{3}\\pi(27) = 36\\pi$.",
+      "check": [
+        "Eq(Rational(4,3)*3**3, 36)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-p06",
+      "statement": "The dimensions of a cylinder are all tripled. By what factor does its volume increase?",
+      "solution": "**Answer.** $27$. Volume scales by the cube of the linear factor: $3^{3} = 27$. Check with $r = 1$, $h = 1$ against $r = 3$, $h = 3$: $\\pi$ against $27\\pi$.",
+      "check": [
+        "Eq(3**3, 27)",
+        "Eq(Rational(3**2*3, 1**2*1), 27)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-p07",
+      "statement": "A trapezoid has parallel sides $5$ and $11$ and area $48$. What is its height?",
+      "solution": "**Answer.** $6$. The average base is $8$, so $8h = 48$ and $h = 6$.",
+      "check": [
+        "Eq(Rational(5 + 11, 2), 8)",
+        "Eq(8*6, 48)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-p08",
+      "statement": "A square garden of side $20$ metres has a path $2$ metres wide running around the inside of its border. What is the area of the path?",
+      "solution": "**Answer.** $144$ square metres. The inner region is a square of side $20 - 2(2) = 16$, so the path is $20^{2} - 16^{2} = 400 - 256 = 144$. Subtracting only one path width from each side — giving an inner side of $18$ — is the standard error, because the path runs along BOTH opposite edges.",
+      "check": [
+        "Eq(20 - 2*2, 16)",
+        "Eq(20**2 - 16**2, 144)",
+        "Ne(20**2 - 18**2, 144)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-av-x01",
+      "statement": "A circle has radius $6$. What is its area, in terms of $\\pi$?",
+      "solution": "**Answer.** $36\\pi$.",
+      "check": [
+        "Eq(6**2, 36)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-x02",
+      "statement": "A cylinder has diameter $8$ and height $7$. What is its volume, in terms of $\\pi$?",
+      "solution": "**Answer.** $112\\pi$. The radius is $4$, so $V = \\pi(16)(7) = 112\\pi$. Using the diameter gives $448\\pi$.",
+      "check": [
+        "Eq(Rational(8,2), 4)",
+        "Eq(4**2*7, 112)",
+        "Eq(8**2*7, 448)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-x03",
+      "statement": "A pyramid has a square base of side $6$ and height $10$. What is its volume?",
+      "solution": "**Answer.** $120$. The base area is $36$, and $V = \\frac{1}{3}(36)(10) = 120$.",
+      "check": [
+        "Eq(6**2, 36)",
+        "Eq(Rational(1,3)*36*10, 120)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-x04",
+      "statement": "Two similar rectangles have corresponding sides in the ratio $2 : 5$. What is the ratio of their areas?",
+      "solution": "**Answer.** $4 : 25$. Area scales by the square of the linear ratio. Answering $2 : 5$ is the standard error.",
+      "check": [
+        "Eq(2**2, 4)",
+        "Eq(5**2, 25)",
+        "Eq(Rational(4,25), Rational(2,5)**2)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-x05",
+      "statement": "A rectangular tank measures $3$ by $4$ by $2$ metres and is half full. How many cubic metres of water does it hold?",
+      "solution": "**Answer.** $12$. The full volume is $24$ cubic metres, and half of that is $12$.",
+      "check": [
+        "Eq(3*4*2, 24)",
+        "Eq(Rational(24,2), 12)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-av-x06",
+      "statement": "A cone and a cylinder have the same radius and the same height. The cylinder's volume is $150$. What is the cone's?",
+      "solution": "**Answer.** $50$. A cone is exactly one third of the cylinder it fits inside, whatever the radius and height are, so no dimensions are needed.",
+      "check": [
+        "Eq(Rational(150,3), 50)",
+        "Eq(Rational(1,3)*150, 50)"
+      ],
+      "badges": [
+        {
+          "text": "sat-area-volume",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    }
+  ]
+}

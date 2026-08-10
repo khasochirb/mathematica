@@ -16,7 +16,7 @@
 // school year's, not the exam's, so the hub could not be lined up against the
 // Board's list. The units now come from data/genmath/sat/, written for this
 // exam: one unit per subtopic, SAT register, traps named, Desmos routes given
-// where they beat algebra.
+// where they beat algebra. All twenty are written and open.
 //
 // Subtopic slugs are globally unique, so `resolveSatSource` is a flat lookup
 // and the domain grouping below is the only place order and weighting live.
@@ -60,13 +60,6 @@ function live(unit: number, slug: string, buildsOn?: string): SatUnitEntry {
   const data = resolveSatSource(source);
   if (!data) throw new Error(`sat-course: source "${source}" did not resolve`);
   return { unit, slug, title: data.title, blurb: data.blurb, buildsOn, live: true, source };
-}
-
-/** A subtopic on the official list whose unit is not written yet. It is listed
- *  — the Board's structure is the point, and a student should see the whole
- *  map — but it does not link anywhere. */
-function planned(unit: number, slug: string, title: string, blurb: string): SatUnitEntry {
-  return { unit, slug, title, blurb, live: false, source: "authored" };
 }
 
 export const SAT_COURSES: SatDomainCourse[] = [
@@ -120,30 +113,10 @@ export const SAT_COURSES: SatDomainCourse[] = [
     intro:
       "The smallest domain and the most formula-driven — and the reference sheet gives you most of the formulas. Area and volume, angle and triangle relationships, right-triangle trigonometry, and circles in both their geometric and coordinate forms.",
     units: [
-      planned(
-        1,
-        "area-and-volume",
-        "Area and Volume Formulas",
-        "Areas of plane figures and volumes of the solids on the reference sheet, composite shapes, and what happens to area and volume when a dimension is scaled.",
-      ),
-      planned(
-        2,
-        "lines-angles-and-triangles",
-        "Lines, Angles, and Triangles",
-        "Angles on parallel lines, the triangle angle sum and exterior angle, congruence and similarity, and the two-step chains the SAT builds from them.",
-      ),
-      planned(
-        3,
-        "right-triangles-and-trigonometry",
-        "Right Triangles and Trigonometry",
-        "Pythagoras, the special right triangles, the three trigonometric ratios, the complementary-angle identity, and radians where the test uses them.",
-      ),
-      planned(
-        4,
-        "circles",
-        "Circles",
-        "The equation of a circle and completing the square to find it, plus arcs, sectors, central and inscribed angles, and radian measure.",
-      ),
+      live(1, "area-and-volume"),
+      live(2, "lines-angles-and-triangles", "Unit 1's scaling rule, seen through similar figures."),
+      live(3, "right-triangles-and-trigonometry", "Similarity from Unit 2 — equal ratios in similar right triangles are why trigonometry works."),
+      live(4, "circles", "Pythagoras from Unit 3 — the circle equation is the distance formula squared."),
     ],
   },
 ];

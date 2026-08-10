@@ -1,0 +1,713 @@
+{
+  "slug": "circles",
+  "title": "Circles",
+  "unit": 4,
+  "status": "published",
+  "blurb": "The equation of a circle and the completing-the-square work to reach it, arcs and sectors as fractions of the whole, inscribed angles at half the central angle, and the radians that make arc length a single multiplication.",
+  "buildsOn": "Pythagoras from Unit 3 — the circle equation is the distance formula squared.",
+  "lessons": [
+    {
+      "slug": "circles-in-the-coordinate-plane",
+      "title": "The Equation of a Circle",
+      "concreteComparison": "A radio mast reaches every house within twelve kilometres. That boundary is a circle, and writing it down is nothing more than Pythagoras: the horizontal and vertical distances from the mast are the legs of a right triangle whose hypotenuse is always twelve.",
+      "objective": "Read the centre and radius from a circle's equation, complete the square to get there from expanded form, and build the equation from a centre and a point.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Circles*, in the **Geometry and Trigonometry** domain. It is usually one question, split between coordinate circles and the arcs-and-sectors work in the next lesson.",
+        "A circle is the set of points at a fixed distance from a centre. Since the distance from $(x, y)$ to $(h, k)$ is $\\sqrt{(x-h)^{2} + (y-k)^{2}}$, setting that equal to $r$ and squaring gives the standard form $(x-h)^{2} + (y-k)^{2} = r^{2}$. The equation is Pythagoras, applied to the horizontal and vertical gaps.",
+        "Two signs to watch. The centre's coordinates are the OPPOSITE of the numbers in the brackets: $(x + 2)^{2}$ means $h = -2$. And the right-hand side is $r^{2}$, not $r$, so a $49$ there means a radius of $7$.",
+        "**The test's angle.** Expanded form. When the equation arrives as $x^{2} + y^{2} - 6x + 8y = 0$, complete the square in $x$ and in $y$ separately — half the coefficient, squared, added to BOTH sides. Adding the constants only on the left is the standard error and produces a smaller radius, which is on the option list."
+      ],
+      "keyIdea": "$(x-h)^{2} + (y-k)^{2} = r^{2}$: centre $(h, k)$ with the signs flipped, and the right-hand side is the radius SQUARED.",
+      "facts": [
+        {
+          "title": "Standard form",
+          "latex": "(x - h)^{2} + (y - k)^{2} = r^{2}",
+          "explanation": "Centre $(h, k)$, radius $r$. The bracket signs are opposite to the centre's coordinates."
+        },
+        {
+          "title": "Distance between two points",
+          "latex": "d = \\sqrt{(x_2 - x_1)^{2} + (y_2 - y_1)^{2}}",
+          "explanation": "Pythagoras on the horizontal and vertical gaps. This is where the circle equation comes from."
+        },
+        {
+          "title": "Completing the square",
+          "latex": "x^{2} + bx \\;\\longrightarrow\\; \\left(x + \\tfrac{b}{2}\\right)^{2}, \\text{ adding } \\tfrac{b^{2}}{4} \\text{ to both sides}",
+          "explanation": "Do it separately for $x$ and for $y$, and balance the right-hand side each time."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-ci1-w1",
+          "statement": "What are the centre and radius of the circle $(x - 3)^{2} + (y + 5)^{2} = 49$?",
+          "solution": "**Answer.** Centre $(3, -5)$, radius $7$.  \nThe standard form of a circle is\n$$(x - h)^{2} + (y - k)^{2} = r^{2}$$\nwith centre $(h, k)$ and radius $r$. Match it term by term.  \nThe $x$ part is $(x - 3)^{2}$, so $h = 3$. The $y$ part is written $(y + 5)^{2}$, which is $(y - (-5))^{2}$, so $k = -5$: the sign FLIPS, exactly as it does in the vertex form of a parabola.  \nThe right-hand side is $r^{2}$, not $r$. So $r^{2} = 49$ gives $r = 7$.  \nTwo traps, both on every version of this question. Reading the centre as $(3, 5)$ misses the sign flip, and reporting the radius as $49$ forgets the square root.",
+          "check": [
+            "Eq(expand((3 - 3)**2 + (-5 + 5)**2), 0)",
+            "Eq(sqrt(49), 7)",
+            "Eq((3 + 7 - 3)**2 + (-5 + 5)**2, 49)"
+          ]
+        },
+        {
+          "id": "sat-ci1-w2",
+          "statement": "The equation of a circle is $x^{2} + y^{2} - 6x + 8y = 0$. What is its radius?",
+          "solution": "**Answer.** $5$.  \nThe equation is in expanded form, so complete the square in $x$ and in $y$ separately.  \nFor $x$: half of $-6$ is $-3$, and $(-3)^{2} = 9$.  \nFor $y$: half of $8$ is $4$, and $4^{2} = 16$.  \nAdd both to each side:\n$$(x^{2} - 6x + 9) + (y^{2} + 8y + 16) = 0 + 9 + 16$$\n$$(x - 3)^{2} + (y + 4)^{2} = 25$$\nSo the centre is $(3, -4)$ and the radius is $\\sqrt{25} = 5$.  \nCheck that the centre is right: the origin satisfies the original equation, and its distance from $(3, -4)$ is $\\sqrt{9 + 16} = 5$, matching the radius exactly as it should.  \nThe step people skip is adding the completing constants to the RIGHT side too. Adding $9$ and $16$ only on the left changes the circle.",
+          "check": [
+            "Eq(expand((x - 3)**2 + (y + 4)**2 - 25), x**2 + y**2 - 6*x + 8*y)",
+            "Eq(sqrt(25), 5)",
+            "Eq(3**2 + (-4)**2, 25)"
+          ]
+        },
+        {
+          "id": "sat-ci1-w3",
+          "statement": "A circle has centre $(2, -1)$ and passes through the point $(6, 2)$. What is its equation?",
+          "solution": "**Answer.** $(x - 2)^{2} + (y + 1)^{2} = 25$.  \nThe radius is the distance from the centre to any point on the circle:\n$$r = \\sqrt{(6 - 2)^{2} + (2 - (-1))^{2}} = \\sqrt{16 + 9} = \\sqrt{25} = 5$$\nNow substitute the centre and $r^{2} = 25$ into the standard form:\n$$(x - 2)^{2} + (y + 1)^{2} = 25$$\nNote that $r^{2}$, not $r$, goes on the right — and that the $-1$ in the centre becomes $+1$ in the equation.  \nCheck: substituting $(6, 2)$ gives $16 + 9 = 25$, so the point does lie on the circle.  \nThe distance formula here is Pythagoras in disguise: the horizontal and vertical gaps between the two points are the legs of a right triangle whose hypotenuse is the radius.",
+          "check": [
+            "Eq((6 - 2)**2 + (2 + 1)**2, 25)",
+            "Eq(sqrt(25), 5)",
+            "Eq(4**2 + 3**2, 5**2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading the centre straight out of the brackets.",
+          "correction": "$(x + 4)^{2}$ means the centre's $x$-coordinate is $-4$. The sign flips.",
+          "authored": true
+        },
+        {
+          "text": "Reporting the right-hand side as the radius.",
+          "correction": "It is $r^{2}$. A $36$ there means a radius of $6$.",
+          "authored": true
+        },
+        {
+          "text": "Completing the square without balancing the other side.",
+          "correction": "Every constant added on the left must be added on the right, or the circle changes.",
+          "authored": true
+        },
+        {
+          "text": "Leaving an irrational radius unsimplified.",
+          "correction": "$\\sqrt{20}$ is $2\\sqrt{5}$, and the option list will use the simplified form.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-ci1-t1",
+          "statement": "What is the centre of the circle $(x + 4)^{2} + (y - 7)^{2} = 36$?",
+          "solution": "**Answer.** $(-4, 7)$. Both signs flip relative to the equation, and the radius is $6$.",
+          "check": [
+            "Eq((-4 + 4)**2 + (7 - 7)**2, 0)",
+            "Eq(sqrt(36), 6)"
+          ]
+        },
+        {
+          "id": "sat-ci1-t2",
+          "statement": "What is the radius of the circle $(x - 1)^{2} + (y + 3)^{2} = 20$?",
+          "solution": "**Answer.** $2\\sqrt{5}$. The radius is $\\sqrt{20}$, which simplifies to $2\\sqrt{5} \\approx 4.47$. Reporting $20$ forgets the square root.",
+          "check": [
+            "Eq(simplify(sqrt(20) - 2*sqrt(5)), 0)",
+            "Eq(simplify((2*sqrt(5))**2), 20)"
+          ]
+        },
+        {
+          "id": "sat-ci1-t3",
+          "statement": "A circle has centre $(0, 0)$ and passes through $(5, 12)$. What is its equation?",
+          "solution": "**Answer.** $x^{2} + y^{2} = 169$. The radius is $\\sqrt{25 + 144} = 13$, and $r^{2} = 169$.",
+          "check": [
+            "Eq(5**2 + 12**2, 169)",
+            "Eq(sqrt(169), 13)"
+          ]
+        },
+        {
+          "id": "sat-ci1-t4",
+          "statement": "Find the centre of the circle $x^{2} + y^{2} + 10x - 4y = 7$.",
+          "solution": "**Answer.** $(-5, 2)$. Completing the square gives $(x + 5)^{2} + (y - 2)^{2} = 7 + 25 + 4 = 36$, so the centre is $(-5, 2)$ and the radius is $6$.",
+          "check": [
+            "Eq(expand((x + 5)**2 + (y - 2)**2 - 36), x**2 + y**2 + 10*x - 4*y - 7)",
+            "Eq(sqrt(36), 6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Circles",
+            "beats": [
+              "Domain: Geometry and Trigonometry — 5 to 7 of the 44 questions.",
+              "Usually 1 question, split between coordinate circles and arcs and sectors.",
+              "Prerequisites: completing the square, and Pythagoras.",
+              "The equation of a circle IS the distance formula, rearranged."
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Why the equation looks like that",
+            "body": "A circle is every point at a fixed distance from a centre. The distance from $(x, y)$ to $(h, k)$ is $\\sqrt{(x-h)^{2} + (y-k)^{2}}$, so demanding that this equal $r$ and squaring both sides gives $(x-h)^{2} + (y-k)^{2} = r^{2}$. The equation is Pythagoras applied to the horizontal and vertical gaps."
+          },
+          {
+            "kind": "coordGeo",
+            "title": "Centre, radius, equation",
+            "teach": "Move the centre and change the radius, and watch the equation rewrite itself. Notice the signs: a centre at negative four shows up as a plus four in the bracket.",
+            "config": {
+              "mode": "circle",
+              "center": {
+                "x": 3,
+                "y": -5
+              },
+              "r": 7,
+              "min": -8,
+              "max": 12
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Reading centre and radius",
+            "problemId": "sat-ci1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Mind the signs and the square",
+            "prompt": "What are the centre and radius of $(x + 2)^{2} + (y - 6)^{2} = 16$?",
+            "options": [
+              "Centre $(-2, 6)$, radius $4$",
+              "Centre $(2, -6)$, radius $4$",
+              "Centre $(-2, 6)$, radius $16$",
+              "Centre $(2, -6)$, radius $16$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The signs flip: $(x + 2)$ means $h = -2$, and $(y - 6)$ means $k = 6$. The right-hand side is $r^{2}$, so $r = \\sqrt{16} = 4$. Options C and D forget the square root; B and D miss the sign flip.",
+            "check": [
+              "Eq((-2 + 2)**2 + (6 - 6)**2, 0)",
+              "Eq(sqrt(16), 4)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Completing the square",
+            "problemId": "sat-ci1-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Add to both sides when completing the square",
+            "body": "Completing the square in $x$ and in $y$ means adding two constants to the left-hand side, and both must be added to the RIGHT as well. Skipping that changes the circle and gives a wrong radius — usually a smaller one, which is on the option list."
+          },
+          {
+            "kind": "worked",
+            "title": "Building the equation from a point",
+            "problemId": "sat-ci1-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: flip the signs",
+            "problemId": "sat-ci1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: an irrational radius",
+            "problemId": "sat-ci1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: from a point",
+            "problemId": "sat-ci1-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: complete both squares",
+            "problemId": "sat-ci1-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Standard form is (x − h)² + (y − k)² = r², with centre (h, k).",
+              "The signs in the brackets are the OPPOSITE of the centre's coordinates.",
+              "The right-hand side is r squared — take the root for the radius.",
+              "Expanded form needs completing the square, in x and in y separately.",
+              "Whatever you add on the left to complete a square, add on the right too."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "arcs-sectors-and-angles",
+      "title": "Arcs, Sectors, Inscribed Angles and Radians",
+      "concreteComparison": "A slice of pizza is a sector. Its crust is an arc. Both are the same fraction of the whole pizza — the fraction the angle at the point represents — and knowing that fraction answers every question about either one.",
+      "objective": "Find arc lengths and sector areas from a central angle, use the inscribed-angle relationship, and convert between degrees and radians.",
+      "concept": [
+        "**Skill card.** Still *Circles*, in the **Geometry and Trigonometry** domain. This is where radians appear on the SAT — the only place they do.",
+        "A sector is a fraction of the circle, and the fraction is the central angle over $360^\\circ$. Take that fraction of the CIRCUMFERENCE for an arc length, and the same fraction of the AREA for a sector's area. Using the wrong total is the main error: an arc is a length, a sector is an area.",
+        "An inscribed angle — vertex on the circle — is exactly HALF the central angle intercepting the same arc. One case is worth memorising: an angle inscribed in a semicircle intercepts a $180^\\circ$ arc and is therefore a right angle, so any triangle with a diameter as one side and its third vertex on the circle is right-angled.",
+        "**The test's angle.** Radians. $180^\\circ$ is $\\pi$ radians, so multiply by $\\frac{\\pi}{180}$ going in and $\\frac{180}{\\pi}$ coming back. Radians exist because they make the arc-length formula trivial: $s = r\\theta$, with no $360$ and no $\\pi$ conversion. Sector area is $\\frac{1}{2}r^{2}\\theta$ for the same reason."
+      ],
+      "keyIdea": "The central angle over $360^\\circ$ is the fraction of the circle. Multiply that fraction by the circumference for an arc and by the area for a sector — and an inscribed angle is half the central one.",
+      "facts": [
+        {
+          "title": "Arc and sector in degrees",
+          "latex": "s = \\frac{\\theta}{360} \\cdot 2\\pi r, \\qquad A = \\frac{\\theta}{360} \\cdot \\pi r^{2}",
+          "explanation": "The same fraction, applied to the circumference and to the area."
+        },
+        {
+          "title": "Inscribed angle",
+          "latex": "\\text{inscribed} = \\tfrac{1}{2} \\times \\text{central on the same arc}",
+          "explanation": "An angle inscribed in a semicircle is a right angle."
+        },
+        {
+          "title": "Radians",
+          "latex": "180^\\circ = \\pi \\text{ rad}, \\qquad s = r\\theta, \\qquad A = \\tfrac{1}{2}r^{2}\\theta",
+          "explanation": "The last two hold only in radians, which is why radians are used at all."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-ci2-w1",
+          "statement": "A circle has radius $9$. A sector has a central angle of $80^\\circ$. What are the arc length and the sector area, in terms of $\\pi$?",
+          "solution": "**Answer.** Arc $4\\pi$, area $18\\pi$.  \nA sector is a FRACTION of the whole circle, and the fraction is the same for both quantities:\n$$\\frac{80}{360} = \\frac{2}{9}$$\nThe whole circumference is $2\\pi(9) = 18\\pi$, so the arc is\n$$\\frac{2}{9} \\times 18\\pi = 4\\pi$$\nThe whole area is $\\pi(9)^{2} = 81\\pi$, so the sector is\n$$\\frac{2}{9} \\times 81\\pi = 18\\pi$$\nThat is the entire method: work out what fraction of the circle you have, then take that fraction of whichever total the question wants.  \nUsing the same total for both is the error to avoid — an arc is a LENGTH and comes from the circumference; a sector is an AREA and comes from the area.",
+          "check": [
+            "Eq(Rational(80,360), Rational(2,9))",
+            "Eq(2*9, 18)",
+            "Eq(Rational(2,9)*18, 4)",
+            "Eq(9**2, 81)",
+            "Eq(Rational(2,9)*81, 18)"
+          ]
+        },
+        {
+          "id": "sat-ci2-w2",
+          "statement": "In a circle, a central angle and an inscribed angle both intercept the same arc. The central angle measures $70^\\circ$. What does the inscribed angle measure?",
+          "solution": "**Answer.** $35^\\circ$.  \nAn inscribed angle — one whose vertex sits ON the circle — is always exactly HALF the central angle intercepting the same arc:\n$$\\frac{70^\\circ}{2} = 35^\\circ$$\nThe central angle, with its vertex at the centre, equals the arc's measure. So the inscribed angle is half the arc too.  \nOne consequence appears constantly on the SAT: an angle inscribed in a SEMICIRCLE — where the intercepted arc is $180^\\circ$ — measures $90^\\circ$. So any triangle drawn with one side as a diameter and its third vertex on the circle is right-angled, which quietly connects this subtopic to Pythagoras.  \nDoubling instead of halving gives $140^\\circ$, which is a listed option.",
+          "check": [
+            "Eq(Rational(70,2), 35)",
+            "Eq(Rational(180,2), 90)",
+            "Eq(2*35, 70)"
+          ]
+        },
+        {
+          "id": "sat-ci2-w3",
+          "statement": "A circle has radius $6$. An arc of the circle has length $4\\pi$. What is the central angle, in radians?",
+          "solution": "**Answer.** $\\dfrac{2\\pi}{3}$.  \nIn radians the arc-length relationship is as simple as it gets:\n$$s = r\\theta$$\nso\n$$4\\pi = 6\\theta \\;\\Longrightarrow\\; \\theta = \\frac{2\\pi}{3}$$\nThat formula is the REASON radians exist: measuring an angle by the arc it cuts off, in units of the radius, removes every conversion factor.  \nIn degrees the same angle is\n$$\\frac{2\\pi}{3} \\times \\frac{180}{\\pi} = 120^\\circ$$\nand the fraction check confirms it: $\\frac{120}{360} = \\frac{1}{3}$, and a third of the circumference $12\\pi$ is indeed $4\\pi$.  \nConverting between the two is one multiplication: $180^\\circ$ is $\\pi$ radians, so multiply by $\\frac{\\pi}{180}$ to go into radians and by $\\frac{180}{\\pi}$ to come back.",
+          "check": [
+            "Eq(6*Rational(2,3)*pi, 4*pi)",
+            "Eq(Rational(2,3)*pi*Rational(180,1)/pi, 120)",
+            "Eq(Rational(120,360), Rational(1,3))",
+            "Eq(Rational(1,3)*12, 4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the area when computing an arc length.",
+          "correction": "An arc is a fraction of the CIRCUMFERENCE. The sector's area is a fraction of the area.",
+          "authored": true
+        },
+        {
+          "text": "Doubling instead of halving for an inscribed angle.",
+          "correction": "The inscribed angle is half the central angle. Doubling gives a listed wrong option.",
+          "authored": true
+        },
+        {
+          "text": "Using $s = r\\theta$ with $\\theta$ in degrees.",
+          "correction": "That formula requires radians. In degrees, use the fraction over $360$.",
+          "authored": true
+        },
+        {
+          "text": "Inverting the degree-radian conversion.",
+          "correction": "Degrees to radians multiplies by $\\frac{\\pi}{180}$. Going the other way multiplies by $\\frac{180}{\\pi}$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-ci2-t1",
+          "statement": "A circle has radius $10$. What is the length of an arc with central angle $36^\\circ$, in terms of $\\pi$?",
+          "solution": "**Answer.** $2\\pi$. The fraction is $\\frac{36}{360} = \\frac{1}{10}$, and the circumference is $20\\pi$.",
+          "check": [
+            "Eq(Rational(36,360), Rational(1,10))",
+            "Eq(Rational(1,10)*20, 2)"
+          ]
+        },
+        {
+          "id": "sat-ci2-t2",
+          "statement": "A circle has radius $4$. What is the area of a sector with central angle $135^\\circ$, in terms of $\\pi$?",
+          "solution": "**Answer.** $6\\pi$. The fraction is $\\frac{135}{360} = \\frac{3}{8}$, and the full area is $16\\pi$, so the sector is $\\frac{3}{8} \\times 16\\pi = 6\\pi$.",
+          "check": [
+            "Eq(Rational(135,360), Rational(3,8))",
+            "Eq(Rational(3,8)*16, 6)"
+          ]
+        },
+        {
+          "id": "sat-ci2-t3",
+          "statement": "An inscribed angle measures $48^\\circ$. What is the measure of the arc it intercepts?",
+          "solution": "**Answer.** $96^\\circ$. The arc equals the central angle, which is twice the inscribed angle.",
+          "check": [
+            "Eq(2*48, 96)"
+          ]
+        },
+        {
+          "id": "sat-ci2-t4",
+          "statement": "Convert $150^\\circ$ to radians.",
+          "solution": "**Answer.** $\\dfrac{5\\pi}{6}$. Multiply by $\\frac{\\pi}{180}$: $150 \\times \\frac{\\pi}{180} = \\frac{5\\pi}{6}$.",
+          "check": [
+            "Eq(150*pi/180, 5*pi/6)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "A sector is a fraction of the circle",
+            "body": "Every arc-and-sector question is the same two steps. Find what fraction of the full circle the central angle represents — that is the angle over $360$ — then take that fraction of whichever total you need. An arc is a fraction of the CIRCUMFERENCE; a sector is the same fraction of the AREA."
+          },
+          {
+            "kind": "arcSector",
+            "title": "One fraction, two answers",
+            "teach": "Sweep the central angle and watch both readouts move together. The fraction of the circle is the same for the arc and for the sector — only the total it multiplies changes.",
+            "config": {
+              "start": 80,
+              "radius": 9
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Arc and sector at once",
+            "problemId": "sat-ci2-w1"
+          },
+          {
+            "kind": "circleAngle",
+            "title": "Central and inscribed",
+            "teach": "Two angles standing on the same arc: one with its vertex at the centre, one on the circle itself. Drag them and the inscribed angle stays exactly half the central one, wherever on the circle its vertex sits.",
+            "config": {
+              "mode": "inscribed",
+              "start": 70
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Half or double?",
+            "prompt": "A central angle intercepting an arc measures $100^\\circ$. What does an inscribed angle on the same arc measure?",
+            "options": [
+              "$50^\\circ$",
+              "$200^\\circ$",
+              "$100^\\circ$",
+              "$80^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "An inscribed angle is half the central angle on the same arc, so $\\frac{100}{2} = 50$. Option B doubles instead of halving — the standard reversal — and C forgets the relationship entirely.",
+            "check": [
+              "Eq(Rational(100,2), 50)",
+              "Eq(2*50, 100)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Inscribed angles, and the semicircle",
+            "problemId": "sat-ci2-w2"
+          },
+          {
+            "kind": "teach",
+            "title": "Radians, and why they simplify things",
+            "beats": [
+              "180 degrees is π radians — that one fact drives every conversion.",
+              "Degrees to radians: multiply by π/180. Back again: multiply by 180/π.",
+              "In radians, arc length is simply s = rθ.",
+              "And sector area is A = ½r²θ — no 360 anywhere."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Working in radians",
+            "problemId": "sat-ci2-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: an arc",
+            "problemId": "sat-ci2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a sector",
+            "problemId": "sat-ci2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: inscribed to arc",
+            "problemId": "sat-ci2-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: convert to radians",
+            "problemId": "sat-ci2-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "The central angle over 360 gives the fraction of the circle you have.",
+              "Arc length is that fraction of the circumference; sector area is that fraction of the area.",
+              "An inscribed angle is HALF the central angle on the same arc.",
+              "An angle inscribed in a semicircle is a right angle.",
+              "180 degrees is π radians, and in radians arc length is just s = rθ."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-ci-p01",
+      "statement": "What is the radius of the circle $(x - 2)^{2} + (y - 5)^{2} = 64$?",
+      "solution": "**Answer.** $8$. The right-hand side is $r^{2}$.",
+      "check": [
+        "Eq(sqrt(64), 8)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-p02",
+      "statement": "What is the centre of the circle $(x + 7)^{2} + (y - 1)^{2} = 9$?",
+      "solution": "**Answer.** $(-7, 1)$. The signs in the brackets are opposite to the centre's coordinates.",
+      "check": [
+        "Eq((-7 + 7)**2 + (1 - 1)**2, 0)",
+        "Eq(sqrt(9), 3)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-p03",
+      "statement": "A circle has radius $12$. What is the length of an arc with central angle $60^\\circ$, in terms of $\\pi$?",
+      "solution": "**Answer.** $4\\pi$. The fraction is $\\frac{1}{6}$ and the circumference is $24\\pi$.",
+      "check": [
+        "Eq(Rational(60,360), Rational(1,6))",
+        "Eq(Rational(1,6)*24, 4)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-p04",
+      "statement": "An inscribed angle intercepts an arc of $110^\\circ$. What is the inscribed angle?",
+      "solution": "**Answer.** $55^\\circ$. The arc equals the central angle, and the inscribed angle is half of it.",
+      "check": [
+        "Eq(Rational(110,2), 55)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-p05",
+      "statement": "A circle has centre $(1, -2)$ and radius $\\sqrt{10}$. What is its equation?",
+      "solution": "**Answer.** $(x - 1)^{2} + (y + 2)^{2} = 10$. The right-hand side is $r^{2} = 10$, not $\\sqrt{10}$.",
+      "check": [
+        "Eq(simplify(sqrt(10)**2), 10)",
+        "Eq((1 - 1)**2 + (-2 + 2)**2, 0)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-p06",
+      "statement": "Convert $\\dfrac{3\\pi}{4}$ radians to degrees.",
+      "solution": "**Answer.** $135^\\circ$. Multiply by $\\frac{180}{\\pi}$.",
+      "check": [
+        "Eq(3*pi/4*180/pi, 135)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-p07",
+      "statement": "Find the centre and radius of the circle $x^{2} + y^{2} - 4x + 6y - 12 = 0$.",
+      "solution": "**Answer.** Centre $(2, -3)$, radius $5$. Completing both squares gives $(x - 2)^{2} + (y + 3)^{2} = 12 + 4 + 9 = 25$.",
+      "check": [
+        "Eq(expand((x - 2)**2 + (y + 3)**2 - 25), x**2 + y**2 - 4*x + 6*y - 12)",
+        "Eq(sqrt(25), 5)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-p08",
+      "statement": "A circle has radius $5$ and a sector has area $\\dfrac{25\\pi}{4}$. What is the central angle, in degrees?",
+      "solution": "**Answer.** $90^\\circ$. The full area is $25\\pi$, so the sector is a quarter of the circle, and a quarter of $360^\\circ$ is $90^\\circ$.",
+      "check": [
+        "Eq(5**2, 25)",
+        "Eq(Rational(25,4)/25, Rational(1,4))",
+        "Eq(Rational(1,4)*360, 90)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-ci-x01",
+      "statement": "What is the centre of the circle $(x - 6)^{2} + (y + 3)^{2} = 100$?",
+      "solution": "**Answer.** $(6, -3)$, with radius $10$.",
+      "check": [
+        "Eq((6 - 6)**2 + (-3 + 3)**2, 0)",
+        "Eq(sqrt(100), 10)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-x02",
+      "statement": "A circle has radius $8$. What is the area of a sector with central angle $45^\\circ$, in terms of $\\pi$?",
+      "solution": "**Answer.** $8\\pi$. The fraction is $\\frac{1}{8}$ and the full area is $64\\pi$.",
+      "check": [
+        "Eq(Rational(45,360), Rational(1,8))",
+        "Eq(Rational(1,8)*64, 8)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-x03",
+      "statement": "A triangle is inscribed in a circle with one side as a diameter. What is the measure of the angle opposite that side?",
+      "solution": "**Answer.** $90^\\circ$. The diameter cuts off a $180^\\circ$ arc, and the inscribed angle is half of it. Every triangle drawn this way is right-angled.",
+      "check": [
+        "Eq(Rational(180,2), 90)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-x04",
+      "statement": "A circle has centre $(-3, 4)$ and passes through the origin. What is its equation?",
+      "solution": "**Answer.** $(x + 3)^{2} + (y - 4)^{2} = 25$. The radius is the distance from $(-3, 4)$ to $(0, 0)$, which is $\\sqrt{9 + 16} = 5$.",
+      "check": [
+        "Eq((-3)**2 + 4**2, 25)",
+        "Eq(sqrt(25), 5)",
+        "Eq((0 + 3)**2 + (0 - 4)**2, 25)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-x05",
+      "statement": "A circle has radius $7$ and an arc subtends a central angle of $\\dfrac{\\pi}{2}$ radians. What is the arc length?",
+      "solution": "**Answer.** $\\dfrac{7\\pi}{2}$. In radians, $s = r\\theta = 7 \\times \\frac{\\pi}{2}$.",
+      "check": [
+        "Eq(7*pi/2, 7*pi/2)",
+        "Eq(pi/2*180/pi, 90)",
+        "Eq(Rational(90,360)*14, Rational(7,2))"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-ci-x06",
+      "statement": "Find the radius of the circle $x^{2} + y^{2} + 8x - 2y + 8 = 0$.",
+      "solution": "**Answer.** $3$. Completing both squares gives $(x + 4)^{2} + (y - 1)^{2} = -8 + 16 + 1 = 9$, so the radius is $3$. Forgetting to move the $8$ across gives a different, wrong radius.",
+      "check": [
+        "Eq(expand((x + 4)**2 + (y - 1)**2 - 9), x**2 + y**2 + 8*x - 2*y + 8)",
+        "Eq(sqrt(9), 3)"
+      ],
+      "badges": [
+        {
+          "text": "sat-circles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ]
+}

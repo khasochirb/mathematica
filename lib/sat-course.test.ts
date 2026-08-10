@@ -89,9 +89,9 @@ describe("SAT course registry", () => {
         }
       }
     }
-    // Authoring floor: raise this as each domain lands, so a registry
-    // regression that silently un-wires a unit trips the gate.
-    expect(liveTotal).toBeGreaterThanOrEqual(5);
+    // All twenty official subtopics are authored. If this ever drops, a
+    // registry regression has silently un-wired a unit.
+    expect(liveTotal).toBe(20);
     // and unknown lookups resolve to nothing, not a crash
     expect(getSatDomainCourse("nope")).toBeNull();
     expect(getSatUnit("algebra", "not-a-unit")).toBeNull();

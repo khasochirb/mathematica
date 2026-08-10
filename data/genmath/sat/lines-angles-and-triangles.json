@@ -1,0 +1,704 @@
+{
+  "slug": "lines-angles-and-triangles",
+  "title": "Lines, Angles, and Triangles",
+  "unit": 2,
+  "status": "published",
+  "blurb": "Two angle sizes across a transversal, the triangle angle sum and the exterior-angle shortcut, isosceles triangles and which angles are the equal pair, and similarity — where lengths scale by k and areas by k squared.",
+  "buildsOn": "The scaling rule from Unit 1, which is the same idea seen through similar figures.",
+  "lessons": [
+    {
+      "slug": "angles-and-triangles",
+      "title": "Parallel Lines, Angle Sums and Isosceles Triangles",
+      "concreteComparison": "Two railway lines and a level crossing. However the crossing is angled, only two different angles appear anywhere in the picture — and they add to a straight line. Almost every angle question on the SAT is that one fact, used twice.",
+      "objective": "Find unknown angles using parallel-line relationships, the triangle angle sum, the exterior-angle rule and the isosceles-triangle property.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Lines, angles, and triangles*, in the **Geometry and Trigonometry** domain. It is one or two questions, and they characteristically chain two facts rather than test one.",
+        "A transversal crossing two parallel lines makes eight angles — and only TWO different sizes among them, which add to $180^\\circ$. Every named relationship follows from that. Corresponding, alternate interior, alternate exterior and vertical angles are the equal pairs; same-side interior angles and linear pairs are the supplementary ones. On the test, recognising 'this one looks the same size, so it is' beats recalling the names.",
+        "The angles of a triangle total $180^\\circ$. An exterior angle, formed by extending one side, equals the SUM of the two non-adjacent interior angles — which is a one-step shortcut past computing the third angle first.",
+        "**The test's angle.** Isosceles triangles, and which angles are the equal pair. The equal angles are OPPOSITE the equal sides, not adjacent to them. If $AB = AC$, the two equal sides meet at $A$, so $A$ is the odd angle out and the base angles at $B$ and $C$ are the pair. Assuming the given angle is one of the equal pair when it is actually the apex produces a plausible, listed, wrong answer."
+      ],
+      "keyIdea": "Parallel lines make only two angle sizes and they sum to $180^\\circ$; so do the three angles of a triangle. Everything else here is those two facts chained together.",
+      "facts": [
+        {
+          "title": "Parallel lines",
+          "latex": "\\text{eight angles, two sizes}, \\qquad \\text{size}_1 + \\text{size}_2 = 180^\\circ",
+          "explanation": "Equal pairs: corresponding, alternate interior and exterior, vertical. Supplementary: same-side interior, linear pair."
+        },
+        {
+          "title": "Triangle angle sum",
+          "latex": "\\alpha + \\beta + \\gamma = 180^\\circ",
+          "explanation": "True for every triangle, however it is drawn."
+        },
+        {
+          "title": "Exterior angle",
+          "latex": "\\text{exterior} = \\text{sum of the two non-adjacent interior angles}",
+          "explanation": "A one-step alternative to finding the third interior angle first."
+        },
+        {
+          "title": "Isosceles",
+          "latex": "AB = AC \\;\\Longleftrightarrow\\; \\angle B = \\angle C",
+          "explanation": "Equal sides face equal angles. The angle where the equal sides MEET is the odd one."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-la1-w1",
+          "statement": "Two parallel lines are cut by a transversal. One of the angles measures $68^\\circ$. What are the possible measures of the other angles formed?",
+          "solution": "**Answer.** $68^\\circ$ and $112^\\circ$.  \nWhen a transversal crosses two parallel lines it makes eight angles, and there are only ever TWO different sizes among them. Every angle is either equal to $68^\\circ$ or supplementary to it:\n$$180^\\circ - 68^\\circ = 112^\\circ$$\nWhich angles are which is easy to see rather than memorise: angles that look the same size ARE the same size, and any two that together form a straight line add to $180^\\circ$.  \nThe formal names — corresponding, alternate interior, alternate exterior, vertical — all describe pairs that are equal. Same-side interior angles and linear pairs are the supplementary ones. But on the test the two-sizes fact is faster and cannot be misremembered.",
+          "check": [
+            "Eq(180 - 68, 112)",
+            "Eq(68 + 112, 180)"
+          ]
+        },
+        {
+          "id": "sat-la1-w2",
+          "statement": "In a triangle, one angle measures $43^\\circ$ and another measures $71^\\circ$. What is the measure of the exterior angle at the third vertex?",
+          "solution": "**Answer.** $114^\\circ$.  \nThe third interior angle follows from the angle sum:\n$$180^\\circ - 43^\\circ - 71^\\circ = 66^\\circ$$\nAn exterior angle sits on a straight line with its interior angle, so\n$$180^\\circ - 66^\\circ = 114^\\circ$$\nThere is a one-step route. An exterior angle always equals the sum of the two NON-adjacent interior angles:\n$$43^\\circ + 71^\\circ = 114^\\circ$$\nThat shortcut is worth knowing — it skips the third angle entirely, and it follows directly from the two facts above, since both routes subtract the same third angle from $180^\\circ$.  \nThe trap is answering $66^\\circ$, the interior angle, which the first route computes on the way past.",
+          "check": [
+            "Eq(180 - 43 - 71, 66)",
+            "Eq(180 - 66, 114)",
+            "Eq(43 + 71, 114)"
+          ]
+        },
+        {
+          "id": "sat-la1-w3",
+          "statement": "Triangle $ABC$ is isosceles with $AB = AC$, and the angle at $A$ measures $40^\\circ$. What is the measure of the angle at $B$?",
+          "solution": "**Answer.** $70^\\circ$.  \nIn an isosceles triangle the angles OPPOSITE the equal sides are equal. Sides $AB$ and $AC$ are equal, so the angles opposite them — at $C$ and at $B$ — are equal to each other. Call each of them $x$:\n$$40 + x + x = 180$$\n$$2x = 140$$\n$$x = 70$$\nSo both base angles measure $70^\\circ$.  \nGetting the pairing right is the whole difficulty. The equal angles are not adjacent to the equal sides — they are opposite them. Here the equal sides both meet at $A$, so $A$ is the ODD angle out and the two base angles are the equal pair. Assuming the $40^\\circ$ is one of the equal pair gives $100^\\circ$, a listed option.",
+          "check": [
+            "Eq(40 + 70 + 70, 180)",
+            "Eq(Rational(180 - 40, 2), 70)",
+            "Eq(180 - 40 - 40, 100)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Pairing an isosceles triangle's equal angles with the wrong sides.",
+          "correction": "The equal angles are opposite the equal sides. If the equal sides meet at the apex, the base angles are the equal pair.",
+          "authored": true
+        },
+        {
+          "text": "Answering with the interior angle when the exterior one was asked for.",
+          "correction": "They are supplementary. The exterior angle is $180^\\circ$ minus the interior one — or, faster, the sum of the other two interior angles.",
+          "authored": true
+        },
+        {
+          "text": "Assuming angles are equal when the lines are not marked parallel.",
+          "correction": "The whole two-sizes picture depends on parallelism. Without it, nothing follows.",
+          "authored": true
+        },
+        {
+          "text": "Reading a diagram's apparent angles as exact.",
+          "correction": "SAT diagrams are not to scale unless stated. Use the marked values and the rules, never the appearance.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-la1-t1",
+          "statement": "Two angles form a linear pair and one measures $37^\\circ$. What is the other?",
+          "solution": "**Answer.** $143^\\circ$. A linear pair lies along a straight line, so the two add to $180^\\circ$.",
+          "check": [
+            "Eq(180 - 37, 143)"
+          ]
+        },
+        {
+          "id": "sat-la1-t2",
+          "statement": "A triangle has angles measuring $x$, $2x$ and $3x$ degrees. What is the largest angle?",
+          "solution": "**Answer.** $90^\\circ$. The angles sum to $180$, so $6x = 180$ and $x = 30$; the largest is $3x = 90^\\circ$. The triangle is right-angled.",
+          "check": [
+            "Eq(6*30, 180)",
+            "Eq(3*30, 90)",
+            "Eq(30 + 60 + 90, 180)"
+          ]
+        },
+        {
+          "id": "sat-la1-t3",
+          "statement": "Parallel lines are cut by a transversal, and two same-side interior angles are $(3x)^\\circ$ and $(2x + 20)^\\circ$. What is $x$?",
+          "solution": "**Answer.** $32$. Same-side interior angles are supplementary: $3x + 2x + 20 = 180$, so $5x = 160$ and $x = 32$. The two angles are $96^\\circ$ and $84^\\circ$, which do sum to $180^\\circ$.",
+          "check": [
+            "Eq(5*32 + 20, 180)",
+            "Eq(3*32, 96)",
+            "Eq(2*32 + 20, 84)",
+            "Eq(96 + 84, 180)"
+          ]
+        },
+        {
+          "id": "sat-la1-t4",
+          "statement": "An isosceles triangle has a base angle of $55^\\circ$. What is the apex angle?",
+          "solution": "**Answer.** $70^\\circ$. Both base angles measure $55^\\circ$, so the apex is $180 - 55 - 55 = 70^\\circ$.",
+          "check": [
+            "Eq(180 - 55 - 55, 70)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Lines, angles and triangles",
+            "beats": [
+              "Domain: Geometry and Trigonometry — 5 to 7 of the 44 questions.",
+              "Usually 1 or 2, and they chain two facts rather than testing one.",
+              "Prerequisite: solving a linear equation.",
+              "Almost every fact here reduces to 180 degrees appearing somewhere."
+            ]
+          },
+          {
+            "kind": "transversal",
+            "title": "Only two sizes",
+            "teach": "Tilt the transversal and watch every angle change together. Across all eight angles there are only ever two different measures, and they add to 180 degrees. Break the parallelism and that collapses — which is why the parallel marks matter.",
+            "config": {
+              "acute": 68,
+              "interactive": true,
+              "showParallelToggle": true,
+              "startParallel": true,
+              "showMeasures": true
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Two sizes, and nothing else",
+            "problemId": "sat-la1-w1"
+          },
+          {
+            "kind": "triangleAngles",
+            "title": "The angle sum, and the exterior angle",
+            "teach": "Drag the vertices. The three interior angles always total 180 degrees, and the exterior angle at any vertex always equals the two interior angles it is not touching.",
+            "config": {
+              "beta": 43,
+              "gamma": 71,
+              "exterior": true
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Chain two facts",
+            "prompt": "A triangle has angles $50^\\circ$ and $60^\\circ$. What is the exterior angle at the remaining vertex?",
+            "options": [
+              "$110^\\circ$",
+              "$70^\\circ$",
+              "$120^\\circ$",
+              "$130^\\circ$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The exterior angle equals the sum of the two non-adjacent interior angles: $50 + 60 = 110$. The long route agrees — the third interior angle is $70^\\circ$, and $180 - 70 = 110$. Option B is that interior angle, which the long route computes on the way.",
+            "check": [
+              "Eq(50 + 60, 110)",
+              "Eq(180 - 50 - 60, 70)",
+              "Eq(180 - 70, 110)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Interior and exterior together",
+            "problemId": "sat-la1-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Equal sides face equal angles",
+            "body": "In an isosceles triangle the equal angles are OPPOSITE the equal sides, not next to them. If the two equal sides meet at the apex, then the apex is the odd angle out and the two BASE angles are the equal pair. Getting that pairing backwards is the commonest isosceles error, and it produces a listed answer every time."
+          },
+          {
+            "kind": "worked",
+            "title": "An isosceles triangle",
+            "problemId": "sat-la1-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a linear pair",
+            "problemId": "sat-la1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: angles in a ratio",
+            "problemId": "sat-la1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: same-side interior",
+            "problemId": "sat-la1-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: from base to apex",
+            "problemId": "sat-la1-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "A transversal across parallel lines makes only two different angle sizes.",
+              "Those two sizes add to 180 degrees.",
+              "The three angles of a triangle add to 180 degrees.",
+              "An exterior angle equals the sum of the two non-adjacent interior angles.",
+              "In an isosceles triangle the equal angles are opposite the equal sides."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "similarity-and-proportions",
+      "title": "Similar Triangles and What Scales",
+      "concreteComparison": "You can measure a tree without climbing it. Stand a metre stick next to it, compare the two shadows, and the ratio does the rest — because the sun makes the same angle with both, and that is all similarity needs.",
+      "objective": "Identify corresponding sides in similar figures, find and apply a scale factor, and use the fact that areas scale by the square of that factor.",
+      "concept": [
+        "**Skill card.** Still *Lines, angles, and triangles*, in the **Geometry and Trigonometry** domain. Similarity is where the domain's harder items live, and it reappears inside right-triangle trigonometry — the trig ratios exist precisely because similar right triangles have matching side ratios.",
+        "Two figures are similar when one is an enlargement of the other: identical angles, and every pair of corresponding sides in the same ratio. That ratio is the scale factor. Find it from the pair of sides you know, then apply it to the side you want.",
+        "Correspondence comes from the naming. In 'triangle $ABC$ is similar to triangle $DEF$' the letters are given in matching order, so $A$ pairs with $D$ and side $BC$ pairs with side $EF$. Pairing the wrong sides is the main way these questions are lost, and reading the statement carefully is the whole fix.",
+        "**The test's angle.** Areas. Lengths and perimeters scale by the factor $k$, but areas scale by $k^{2}$ and volumes of similar solids by $k^{3}$. Sides in the ratio $3 : 4$ means areas in the ratio $9 : 16$. Applying the factor once to an area is the standard wrong answer, and it appears on every version of the question."
+      ],
+      "keyIdea": "Similarity is one scale factor applied everywhere. Lengths scale by $k$, areas by $k^{2}$, volumes by $k^{3}$ — and angles not at all.",
+      "facts": [
+        {
+          "title": "Similar figures",
+          "latex": "\\frac{a_1}{a_2} = \\frac{b_1}{b_2} = \\frac{c_1}{c_2} = k",
+          "explanation": "One factor across every pair of corresponding sides. Angles are unchanged."
+        },
+        {
+          "title": "How measurements scale",
+          "latex": "\\text{length} \\times k, \\qquad \\text{area} \\times k^{2}, \\qquad \\text{volume} \\times k^{3}",
+          "explanation": "The exponent counts how many lengths are multiplied together."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-la2-w1",
+          "statement": "Triangle $ABC$ is similar to triangle $DEF$, with $AB = 6$, $BC = 9$ and $DE = 10$. What is the length of $EF$?",
+          "solution": "**Answer.** $15$.  \nSimilar triangles have the same shape at different sizes, so every pair of corresponding sides shares one scale factor. Find it from the pair you know:\n$$k = \\frac{DE}{AB} = \\frac{10}{6} = \\frac{5}{3}$$\nThen apply it to the side you want. $EF$ corresponds to $BC$:\n$$EF = \\frac{5}{3} \\times 9 = 15$$\nCheck the ratios agree: $\\frac{10}{6} = \\frac{15}{9}$, both $\\frac{5}{3}$.  \nThe naming carries the correspondence. In '$ABC$ similar to $DEF$' the letters line up in order, so $A$ matches $D$, $B$ matches $E$, $C$ matches $F$ — and side $BC$ therefore matches side $EF$. Pairing the wrong sides is the main error, and the letter order is what prevents it.",
+          "check": [
+            "Eq(Rational(10,6), Rational(5,3))",
+            "Eq(Rational(5,3)*9, 15)",
+            "Eq(Rational(15,9), Rational(5,3))"
+          ]
+        },
+        {
+          "id": "sat-la2-w2",
+          "statement": "A vertical pole $2$ metres tall casts a shadow $3$ metres long. At the same moment a tree casts a shadow $21$ metres long. How tall is the tree?",
+          "solution": "**Answer.** $14$ metres.  \nThe sun's rays arrive at the same angle for both objects, so the pole with its shadow and the tree with its shadow form SIMILAR right triangles. Corresponding sides are in the same ratio:\n$$\\frac{\\text{height}}{\\text{shadow}}: \\quad \\frac{2}{3} = \\frac{h}{21}$$\n$$3h = 42 \\;\\Longrightarrow\\; h = 14$$\nCheck: the tree's shadow is seven times the pole's, so the tree should be seven times as tall — $7 \\times 2 = 14$. Both routes agree.  \nThe set-up rule is the one that matters: keep the same quantity on top on both sides. Height over shadow on the left demands height over shadow on the right. Mixing them gives $\\frac{2}{3} = \\frac{21}{h}$ and the wrong answer $31.5$.",
+          "check": [
+            "Eq(3*14, 2*21)",
+            "Eq(Rational(2,3), Rational(14,21))",
+            "Eq(Rational(21,3), 7)",
+            "Eq(7*2, 14)"
+          ]
+        },
+        {
+          "id": "sat-la2-w3",
+          "statement": "Two similar triangles have corresponding sides in the ratio $3 : 4$. The smaller has area $18$. What is the area of the larger?",
+          "solution": "**Answer.** $32$.  \nAreas of similar figures scale by the SQUARE of the side ratio, not by the ratio itself:\n$$\\left(\\frac{4}{3}\\right)^{2} = \\frac{16}{9}$$\n$$18 \\times \\frac{16}{9} = 32$$\nThe reason is the same one behind every scaling question: an area is a product of two lengths, so scaling both by $\\frac{4}{3}$ scales the area by $\\frac{4}{3} \\times \\frac{4}{3}$.  \nApplying the ratio once instead gives $18 \\times \\frac{4}{3} = 24$, which is on the option list. For similar SOLIDS the same logic gives a cube: volumes would scale by $\\left(\\frac{4}{3}\\right)^{3}$.",
+          "check": [
+            "Eq(Rational(4,3)**2, Rational(16,9))",
+            "Eq(18*Rational(16,9), 32)",
+            "Eq(18*Rational(4,3), 24)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Pairing sides that do not correspond.",
+          "correction": "The letter order in the similarity statement gives the pairing. $BC$ matches $EF$, not $DE$.",
+          "authored": true
+        },
+        {
+          "text": "Scaling an area by the side ratio instead of its square.",
+          "correction": "Sides in ratio $3 : 4$ means areas in ratio $9 : 16$.",
+          "authored": true
+        },
+        {
+          "text": "Inverting a proportion by putting different quantities on top.",
+          "correction": "Height over shadow on one side needs height over shadow on the other.",
+          "authored": true
+        },
+        {
+          "text": "Expecting angles to change with the scale factor.",
+          "correction": "Similar figures have identical angles. Only lengths, areas and volumes change.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-la2-t1",
+          "statement": "Triangle $PQR$ is similar to triangle $STU$, with $PQ = 4$, $ST = 12$ and $QR = 7$. What is $TU$?",
+          "solution": "**Answer.** $21$. The scale factor is $\\frac{12}{4} = 3$, and $TU$ corresponds to $QR$, so $TU = 3 \\times 7 = 21$.",
+          "check": [
+            "Eq(Rational(12,4), 3)",
+            "Eq(3*7, 21)"
+          ]
+        },
+        {
+          "id": "sat-la2-t2",
+          "statement": "A $1.5$-metre person casts a $2$-metre shadow. A flagpole casts a $16$-metre shadow at the same time. How tall is the flagpole?",
+          "solution": "**Answer.** $12$ metres. The shadow is eight times as long, so the pole is eight times as tall: $8 \\times 1.5 = 12$. Or by proportion: $\\frac{1.5}{2} = \\frac{h}{16}$ gives $2h = 24$.",
+          "check": [
+            "Eq(Rational(16,2), 8)",
+            "Eq(8*Rational(15,10), 12)",
+            "Eq(2*12, Rational(15,10)*16)"
+          ]
+        },
+        {
+          "id": "sat-la2-t3",
+          "statement": "Two similar rectangles have sides in the ratio $2 : 5$. The smaller has area $12$. What is the larger's area?",
+          "solution": "**Answer.** $75$. Areas scale by $\\left(\\frac{5}{2}\\right)^{2} = \\frac{25}{4}$, and $12 \\times \\frac{25}{4} = 75$.",
+          "check": [
+            "Eq(Rational(5,2)**2, Rational(25,4))",
+            "Eq(12*Rational(25,4), 75)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "Similar means one scale factor everywhere",
+            "body": "Two figures are similar when one is an enlargement of the other: equal angles, and every pair of corresponding sides in the same ratio. That single ratio — the scale factor — is what you find first, from the pair of sides you know, and then apply to whatever you want."
+          },
+          {
+            "kind": "similarFigures",
+            "title": "One factor, two consequences",
+            "teach": "Slide the scale factor and watch the side lengths, the perimeter and the area. Perimeter follows the factor; area follows its SQUARE — which is the single most tested fact about similarity.",
+            "config": {
+              "start": 2,
+              "show": "measures"
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Finding and applying the factor",
+            "problemId": "sat-la2-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which sides correspond?",
+            "prompt": "If triangle $ABC$ is similar to triangle $XYZ$, which side corresponds to $AC$?",
+            "options": [
+              "$XZ$",
+              "$XY$",
+              "$YZ$",
+              "It cannot be determined"
+            ],
+            "correctIndex": 0,
+            "explanation": "The letter order carries the correspondence: $A$ matches $X$, $B$ matches $Y$, $C$ matches $Z$. So $AC$ matches $XZ$. Reading the similarity statement carefully is what stops you pairing the wrong sides.",
+            "check": [
+              "Eq(1, 1)",
+              "Eq(3, 3)"
+            ]
+          },
+          {
+            "kind": "tip",
+            "title": "Shadows and mirrors are similar triangles",
+            "body": "Whenever two objects are measured under the same conditions — the same sunlight, the same sight line, the same mirror — their heights and their shadows form similar right triangles. Set up the proportion with the same quantity on top on both sides: height over shadow equals height over shadow."
+          },
+          {
+            "kind": "worked",
+            "title": "The shadow problem",
+            "problemId": "sat-la2-w2"
+          },
+          {
+            "kind": "teach",
+            "title": "What scales, and by how much",
+            "beats": [
+              "Corresponding lengths and perimeters scale by the factor k.",
+              "Areas scale by k².",
+              "Volumes of similar solids scale by k³.",
+              "Angles do not scale at all — similar figures have identical angles."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Areas scale by the square",
+            "problemId": "sat-la2-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: apply the factor",
+            "problemId": "sat-la2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a flagpole",
+            "problemId": "sat-la2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: scale an area",
+            "problemId": "sat-la2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Similar figures share every angle and one scale factor across all sides.",
+              "The letter order in 'ABC similar to DEF' tells you which sides correspond.",
+              "Find the factor from the known pair, then apply it to the unknown.",
+              "Lengths scale by k, areas by k², volumes by k³.",
+              "Keep the same quantity on top on both sides of a proportion."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-la-p01",
+      "statement": "Two angles of a triangle measure $35^\\circ$ and $85^\\circ$. What is the third?",
+      "solution": "**Answer.** $60^\\circ$. The three angles total $180^\\circ$.",
+      "check": [
+        "Eq(180 - 35 - 85, 60)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-p02",
+      "statement": "Parallel lines are cut by a transversal. One angle is $115^\\circ$. What is its corresponding angle?",
+      "solution": "**Answer.** $115^\\circ$. Corresponding angles are equal. The supplementary size in the figure is $65^\\circ$.",
+      "check": [
+        "Eq(180 - 115, 65)",
+        "Eq(115, 115)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-p03",
+      "statement": "An isosceles triangle has an apex angle of $80^\\circ$. What is each base angle?",
+      "solution": "**Answer.** $50^\\circ$. The two base angles are equal and share the remaining $100^\\circ$.",
+      "check": [
+        "Eq(Rational(180 - 80, 2), 50)",
+        "Eq(80 + 50 + 50, 180)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-p04",
+      "statement": "Triangle $ABC$ is similar to triangle $DEF$ with $AB = 8$, $DE = 20$ and $AC = 6$. What is $DF$?",
+      "solution": "**Answer.** $15$. The factor is $\\frac{20}{8} = 2.5$, and $DF$ corresponds to $AC$: $2.5 \\times 6 = 15$.",
+      "check": [
+        "Eq(Rational(20,8), Rational(5,2))",
+        "Eq(Rational(5,2)*6, 15)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-p05",
+      "statement": "A triangle has an exterior angle of $130^\\circ$ at one vertex. One of the non-adjacent interior angles is $45^\\circ$. What is the other?",
+      "solution": "**Answer.** $85^\\circ$. The exterior angle equals the sum of the two non-adjacent interior angles, so the other is $130 - 45 = 85$.",
+      "check": [
+        "Eq(130 - 45, 85)",
+        "Eq(45 + 85, 130)",
+        "Eq(180 - 130, 50)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-p06",
+      "statement": "Two similar triangles have sides in the ratio $5 : 8$. The larger has area $128$. What is the smaller's area?",
+      "solution": "**Answer.** $50$. Areas scale by $\\left(\\frac{5}{8}\\right)^{2} = \\frac{25}{64}$, and $128 \\times \\frac{25}{64} = 50$.",
+      "check": [
+        "Eq(Rational(5,8)**2, Rational(25,64))",
+        "Eq(128*Rational(25,64), 50)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-p07",
+      "statement": "In a triangle the angles are in the ratio $2 : 3 : 4$. What is the largest angle?",
+      "solution": "**Answer.** $80^\\circ$. The parts total $9$, so each part is $20^\\circ$, and the largest takes four parts.",
+      "check": [
+        "Eq(2 + 3 + 4, 9)",
+        "Eq(Rational(180,9), 20)",
+        "Eq(4*20, 80)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-p08",
+      "statement": "A $1.8$-metre person standing $4$ metres from a streetlight casts a shadow $2$ metres long. How tall is the streetlight?",
+      "solution": "**Answer.** $5.4$ metres. The person's shadow tip, the person and the light form similar triangles: the small one has height $1.8$ over base $2$, the large one has height $h$ over base $4 + 2 = 6$. So $\\frac{1.8}{2} = \\frac{h}{6}$, giving $h = 5.4$.",
+      "check": [
+        "Eq(2*Rational(54,10), Rational(18,10)*6)",
+        "Eq(4 + 2, 6)",
+        "Eq(Rational(18,10)/2, Rational(54,10)/6)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-la-x01",
+      "statement": "Two angles of a triangle measure $28^\\circ$ and $47^\\circ$. What is the third?",
+      "solution": "**Answer.** $105^\\circ$.",
+      "check": [
+        "Eq(180 - 28 - 47, 105)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-x02",
+      "statement": "Parallel lines are cut by a transversal, forming same-side interior angles of $(4x)^\\circ$ and $(5x + 27)^\\circ$. What is $x$?",
+      "solution": "**Answer.** $17$. They are supplementary: $9x + 27 = 180$, so $9x = 153$ and $x = 17$. The angles are $68^\\circ$ and $112^\\circ$.",
+      "check": [
+        "Eq(9*17 + 27, 180)",
+        "Eq(4*17, 68)",
+        "Eq(5*17 + 27, 112)",
+        "Eq(68 + 112, 180)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-x03",
+      "statement": "An isosceles triangle has two sides of length $9$ and one of length $5$. If the angle opposite the side of length $5$ is $32^\\circ$, what are the other two angles?",
+      "solution": "**Answer.** $74^\\circ$ each. The two sides of length $9$ are equal, so the angles opposite them are equal; they share the remaining $148^\\circ$.",
+      "check": [
+        "Eq(Rational(180 - 32, 2), 74)",
+        "Eq(32 + 74 + 74, 180)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-x04",
+      "statement": "Triangle $JKL$ is similar to triangle $MNP$ with $JK = 15$, $MN = 6$ and $KL = 20$. What is $NP$?",
+      "solution": "**Answer.** $8$. The factor from $JKL$ to $MNP$ is $\\frac{6}{15} = \\frac{2}{5}$, and $NP$ corresponds to $KL$: $\\frac{2}{5} \\times 20 = 8$.",
+      "check": [
+        "Eq(Rational(6,15), Rational(2,5))",
+        "Eq(Rational(2,5)*20, 8)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-x05",
+      "statement": "Two similar solids have corresponding edges in the ratio $2 : 3$. What is the ratio of their volumes?",
+      "solution": "**Answer.** $8 : 27$. Volumes scale by the cube of the linear ratio.",
+      "check": [
+        "Eq(2**3, 8)",
+        "Eq(3**3, 27)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-la-x06",
+      "statement": "In triangle $ABC$, the exterior angle at $C$ measures $118^\\circ$ and angle $A$ measures $53^\\circ$. What is angle $B$?",
+      "solution": "**Answer.** $65^\\circ$. The exterior angle at $C$ equals the sum of angles $A$ and $B$, so $B = 118 - 53 = 65$. The interior angle at $C$ is $62^\\circ$, and $53 + 65 + 62 = 180$ confirms it.",
+      "check": [
+        "Eq(118 - 53, 65)",
+        "Eq(180 - 118, 62)",
+        "Eq(53 + 65 + 62, 180)"
+      ],
+      "badges": [
+        {
+          "text": "sat-lines-angles-triangles",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ]
+}
