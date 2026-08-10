@@ -1,0 +1,684 @@
+{
+  "slug": "percentages",
+  "title": "Percentages",
+  "unit": 2,
+  "status": "published",
+  "blurb": "Percent change as a multiplier, reversing a change to find the original amount, successive changes that multiply rather than add, and the question behind every hard percentage item: a percentage of WHAT?",
+  "buildsOn": "Ratios and proportional reasoning from Unit 1 — a percentage is a ratio out of 100.",
+  "lessons": [
+    {
+      "slug": "percent-change",
+      "title": "Percent Change, and Working Backwards",
+      "concreteComparison": "A shop marks a coat up $25\\%$, then holds a $20\\%$-off sale. Customers expect to be $5\\%$ ahead. They are exactly level — because the two percentages are taken of different amounts, and percentages have never added.",
+      "objective": "Compute percent increases and decreases as single multipliers, reverse a percentage change to find an original amount, and combine successive changes correctly.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Percentages*, in the **Problem-Solving and Data Analysis** domain. Usually one question a test, and it is nearly always a percent CHANGE rather than a plain 'percent of'.",
+        "Turn every change into a multiplier. An increase of $r$ percent multiplies by $1 + \\frac{r}{100}$; a decrease multiplies by $1 - \\frac{r}{100}$. So a $35\\%$ rise is $\\times 1.35$ and a $30\\%$ discount is $\\times 0.70$. This is not just faster — it is the only practical way to handle the two-step questions.",
+        "Reversing a change is then obvious: DIVIDE by the multiplier. If a $20\\%$ discount leaves $\\$96$, the original was $\\frac{96}{0.8} = \\$120$. Adding $20\\%$ back to $\\$96$ gives $\\$115.20$, and it is wrong because $20\\%$ of the smaller number is a smaller amount.",
+        "**The test's angle.** Successive changes multiply. A $25\\%$ rise then a $20\\%$ fall is $1.25 \\times 0.80 = 1.00$ — completely unchanged, not $+5\\%$. Two $10\\%$ drops give $0.9 \\times 0.9 = 0.81$, a $19\\%$ decrease rather than $20\\%$. Adding the percentages is the wrong answer the question is designed around."
+      ],
+      "keyIdea": "Every percentage change is a multiplier. Multiply to apply one, divide to undo one, and multiply the multipliers together for two in a row — never add the percentages.",
+      "facts": [
+        {
+          "title": "Change as a multiplier",
+          "latex": "\\text{new} = \\left(1 \\pm \\frac{r}{100}\\right)\\text{old}",
+          "explanation": "Plus for an increase, minus for a decrease."
+        },
+        {
+          "title": "Reversing a change",
+          "latex": "\\text{old} = \\frac{\\text{new}}{1 \\pm \\frac{r}{100}}",
+          "explanation": "Divide by the multiplier. Applying the reverse percentage gives a different, wrong number."
+        },
+        {
+          "title": "Successive changes",
+          "latex": "\\text{overall multiplier} = m_1 \\times m_2",
+          "explanation": "$1.25 \\times 0.80 = 1.00$. Percentages multiply through their multipliers and never add."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-pc1-w1",
+          "statement": "A jacket priced at $\\$85$ is reduced by $30\\%$. What is the sale price?",
+          "solution": "**Answer.** $\\$59.50$.  \nThere are two routes and the second is faster.  \nThe long way: $30\\%$ of $85$ is $0.30 \\times 85 = 25.50$, so the sale price is $85 - 25.50 = 59.50$.  \nThe one-step way: a $30\\%$ discount leaves $70\\%$, so multiply once:\n$$0.70 \\times 85 = 59.50$$\nThat single multiplier is worth the habit. It halves the arithmetic, and — more importantly — it is the only practical way to handle two changes in a row, which the harder questions always involve.",
+          "check": [
+            "Eq(Rational(30,100)*85, Rational(255,10))",
+            "Eq(85 - Rational(255,10), Rational(595,10))",
+            "Eq(Rational(70,100)*85, Rational(595,10))"
+          ]
+        },
+        {
+          "id": "sat-pc1-w2",
+          "statement": "After a $20\\%$ discount, a coat costs $\\$96$. What was the original price?",
+          "solution": "**Answer.** $\\$120$.  \nThe discount was taken off the ORIGINAL price, which is what you are looking for. Call it $p$. A $20\\%$ discount multiplies by $0.80$:\n$$0.80p = 96$$\n$$p = \\frac{96}{0.80} = 120$$\nCheck: $20\\%$ of $120$ is $24$, and $120 - 24 = 96$.  \nThe trap is adding $20\\%$ back onto $\\$96$, which gives $\\$115.20$ — not $\\$120$. The reason it fails is that $20\\%$ of the SMALLER number is a smaller amount than $20\\%$ of the larger one. To undo a percentage change you DIVIDE by the multiplier; you never apply the reverse percentage.",
+          "check": [
+            "Eq(Rational(80,100)*120, 96)",
+            "Eq(120 - Rational(20,100)*120, 96)",
+            "Eq(96 + Rational(20,100)*96, Rational(1152,10))",
+            "Ne(Rational(1152,10), 120)"
+          ]
+        },
+        {
+          "id": "sat-pc1-w3",
+          "statement": "A share price rises by $25\\%$ and then falls by $20\\%$. What is the overall percentage change?",
+          "solution": "**Answer.** No change at all.  \nPercentages do not add. Each change is a MULTIPLIER, and successive changes multiply:\n$$1.25 \\times 0.80 = 1.00$$\nThe price ends exactly where it started, so the overall change is $0\\%$.  \nTrace it with a real number to see why. Starting at $\\$200$: a $25\\%$ rise adds $\\$50$, giving $\\$250$; a $20\\%$ fall on $\\$250$ subtracts $\\$50$, giving $\\$200$. The two percentages are of DIFFERENT amounts, which is exactly why $+25\\%$ and $-20\\%$ do not sum to $+5\\%$.  \nAdding them is the standard wrong answer, and it is wrong even in sign for many pairs.",
+          "check": [
+            "Eq(Rational(125,100)*Rational(80,100), 1)",
+            "Eq(200*Rational(125,100), 250)",
+            "Eq(250*Rational(80,100), 200)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Undoing a discount by adding the same percentage back.",
+          "correction": "Divide by the multiplier instead. Adding $20\\%$ to $\\$96$ gives $\\$115.20$, not the true original of $\\$120$.",
+          "authored": true
+        },
+        {
+          "text": "Adding two successive percentage changes.",
+          "correction": "They multiply. $+25\\%$ then $-20\\%$ is no change at all, not $+5\\%$.",
+          "authored": true
+        },
+        {
+          "text": "Losing track of what the percentage is OF.",
+          "correction": "A markup is a percentage of the cost; a discount is a percentage of the listed price. They are percentages of different numbers.",
+          "authored": true
+        },
+        {
+          "text": "Treating two $10\\%$ decreases as a $20\\%$ decrease.",
+          "correction": "The second is taken off an already smaller amount, so the total is $19\\%$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-pc1-t1",
+          "statement": "What is $15\\%$ of $240$?",
+          "solution": "**Answer.** $36$. $0.15 \\times 240 = 36$. A useful check: $10\\%$ is $24$ and $5\\%$ is half of that, $12$, and $24 + 12 = 36$.",
+          "check": [
+            "Eq(Rational(15,100)*240, 36)",
+            "Eq(24 + 12, 36)"
+          ]
+        },
+        {
+          "id": "sat-pc1-t2",
+          "statement": "A price of $\\$60$ increases by $35\\%$. What is the new price?",
+          "solution": "**Answer.** $\\$81$. Multiply by $1.35$: $60 \\times 1.35 = 81$.",
+          "check": [
+            "Eq(60*Rational(135,100), 81)",
+            "Eq(60 + Rational(35,100)*60, 81)"
+          ]
+        },
+        {
+          "id": "sat-pc1-t3",
+          "statement": "After a $40\\%$ increase, a population is $2{,}100$. What was it before?",
+          "solution": "**Answer.** $1{,}500$. A $40\\%$ increase multiplies by $1.4$, so the original is $\\frac{2100}{1.4} = 1500$. Check: $40\\%$ of $1500$ is $600$, and $1500 + 600 = 2100$.",
+          "check": [
+            "Eq(Rational(14,10)*1500, 2100)",
+            "Eq(1500 + Rational(40,100)*1500, 2100)"
+          ]
+        },
+        {
+          "id": "sat-pc1-t4",
+          "statement": "A value falls by $10\\%$ and then falls by a further $10\\%$. What is the total percentage decrease?",
+          "solution": "**Answer.** $19\\%$. The multipliers are $0.9$ and $0.9$, and $0.9 \\times 0.9 = 0.81$, so $81\\%$ remains and $19\\%$ has gone. Adding the two drops to get $20\\%$ is the standard error — the second $10\\%$ is taken off a smaller amount.",
+          "check": [
+            "Eq(Rational(9,10)*Rational(9,10), Rational(81,100))",
+            "Eq(1 - Rational(81,100), Rational(19,100))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Percentages",
+            "beats": [
+              "Domain: Problem-Solving and Data Analysis — 5 to 7 of the 44 questions.",
+              "Usually 1 question, and it is nearly always a percent CHANGE.",
+              "Prerequisite: solving a linear equation in one variable.",
+              "One habit carries the whole subtopic: turn every change into a multiplier."
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Every change is a multiplier",
+            "body": "An increase of $r$ percent multiplies by $1 + \\frac{r}{100}$; a decrease multiplies by $1 - \\frac{r}{100}$. So $+35\\%$ is $\\times 1.35$ and $-30\\%$ is $\\times 0.70$. Building that habit turns two-step problems into one multiplication and makes reversing a change obvious: you divide by the multiplier."
+          },
+          {
+            "kind": "percentChange",
+            "title": "Increase and decrease as one move",
+            "teach": "Slide the percentage and watch the bar move. Notice that the multiplier shown is what does the work — the amount added or removed is a consequence, not the method.",
+            "config": {
+              "original": 85,
+              "start": 30,
+              "mode": "discount"
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A discount in one step",
+            "problemId": "sat-pc1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Undo the change",
+            "prompt": "After a $25\\%$ increase a value is $\\$150$. What was it before?",
+            "options": [
+              "$\\$120$",
+              "$\\$112.50$",
+              "$\\$125$",
+              "$\\$187.50$"
+            ],
+            "correctIndex": 0,
+            "explanation": "A $25\\%$ increase multiplies by $1.25$, so the original is $\\frac{150}{1.25} = 120$. Check: $25\\%$ of $120$ is $30$, and $120 + 30 = 150$. Taking $25\\%$ OFF $150$ gives $112.50$ — the trap — because $25\\%$ of $150$ is bigger than $25\\%$ of $120$.",
+            "check": [
+              "Eq(Rational(125,100)*120, 150)",
+              "Eq(150 - Rational(25,100)*150, Rational(2250,20))",
+              "Ne(Rational(2250,20), 120)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Working backwards to the original",
+            "problemId": "sat-pc1-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Percentages never add",
+            "body": "Two changes in a row MULTIPLY their multipliers. A $25\\%$ rise followed by a $20\\%$ fall is $1.25 \\times 0.80 = 1.00$ — no change at all, not the $+5\\%$ that adding would suggest. The reason is that the second percentage is taken of a different amount from the first."
+          },
+          {
+            "kind": "worked",
+            "title": "Two changes in a row",
+            "problemId": "sat-pc1-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: percent of",
+            "problemId": "sat-pc1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: an increase",
+            "problemId": "sat-pc1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: reverse it",
+            "problemId": "sat-pc1-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: two drops",
+            "problemId": "sat-pc1-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "An increase of r% is a multiplier of 1 + r/100; a decrease is 1 − r/100.",
+              "To undo a percentage change, DIVIDE by the multiplier — never subtract it back.",
+              "Successive changes multiply; they never add.",
+              "A 10% drop followed by another 10% drop is 19%, not 20%.",
+              "A percentage is always OF something — check which amount it refers to."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "percentages-in-context",
+      "title": "Percentages of What? Bases and Subgroups",
+      "concreteComparison": "A shop makes $\\$12$ on a $\\$40$ item sold for $\\$52$. Is that a $30\\%$ profit or a $23\\%$ one? Both, depending on whether you divide by what it cost or by what it sold for — and the SAT will offer you both numbers.",
+      "objective": "Compute a percentage change from two amounts, apply a percentage to a subgroup, and identify which quantity a percentage is being taken of.",
+      "concept": [
+        "**Skill card.** Still *Percentages*, in the **Problem-Solving and Data Analysis** domain. This is the half where the arithmetic is easy and the reading is not.",
+        "A percentage change divides the CHANGE by the ORIGINAL amount. From $18{,}500$ to $21{,}090$ is a rise of $2{,}590$ on a base of $18{,}500$, that is $14\\%$. Dividing by the new figure gives about $12.3\\%$, which answers a question nobody asked — and is always among the options.",
+        "When a second percentage appears, read carefully which group it applies to. 'Of those' means the previous subgroup: $18\\%$ of $1{,}200$ cycle, and $25\\%$ of THOSE also walk, giving $0.18 \\times 0.25 = 4.5\\%$ of the whole. Applying the $25\\%$ to the full $1{,}200$ is the error the sentence is built to catch.",
+        "**The test's angle.** Naming the base. Profit as a percentage of cost and profit as a percentage of selling price are different numbers computed from the same two figures, and both look plausible. Underline the noun that follows 'percentage of' before dividing — that noun IS the denominator."
+      ],
+      "keyIdea": "Every percentage is OF something. For a change, that something is the original amount; for a subgroup, it is the group just named. Find the base before you divide.",
+      "facts": [
+        {
+          "title": "Percentage change",
+          "latex": "\\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100\\%",
+          "explanation": "The denominator is the ORIGINAL. Using the new value answers a different question."
+        },
+        {
+          "title": "Percentage of a percentage",
+          "latex": "r_1\\% \\text{ of } r_2\\% \\text{ of } N = \\frac{r_1}{100} \\cdot \\frac{r_2}{100} \\cdot N",
+          "explanation": "Two proportions in sequence multiply. $18\\%$ then $25\\%$ is $4.5\\%$ of the whole."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-pc2-w1",
+          "statement": "A town's population rose from $18{,}500$ to $21{,}090$. What was the percentage increase?",
+          "solution": "**Answer.** $14\\%$.  \nA percentage change is always the change divided by the ORIGINAL amount:\n$$\\text{percent change} = \\frac{\\text{new} - \\text{old}}{\\text{old}} \\times 100\\%$$\n$$= \\frac{21090 - 18500}{18500} \\times 100\\%$$\n$$= \\frac{2590}{18500} \\times 100\\% = 14\\%$$\nCheck: $14\\%$ of $18{,}500$ is $2{,}590$, and $18500 + 2590 = 21090$.  \nDividing by the NEW value instead gives $\\frac{2590}{21090} \\approx 12.3\\%$, which is a different quantity — it answers 'what fraction of the new population is the growth', which nobody asked.",
+          "check": [
+            "Eq(21090 - 18500, 2590)",
+            "Eq(Rational(2590, 18500), Rational(14, 100))",
+            "Eq(18500 + Rational(14,100)*18500, 21090)"
+          ]
+        },
+        {
+          "id": "sat-pc2-w2",
+          "statement": "In a survey of $1{,}200$ people, $18\\%$ said they cycle to work. Of those cyclists, $25\\%$ also walk some days. How many people both cycle and walk?",
+          "solution": "**Answer.** $54$.  \nThe second percentage is taken OF THE FIRST GROUP, not of the whole survey. Work outward one layer at a time.\n$$\\text{cyclists} = 0.18 \\times 1200 = 216$$\n$$\\text{both} = 0.25 \\times 216 = 54$$\nCheck as a single multiplication: $0.18 \\times 0.25 = 0.045$, and $0.045 \\times 1200 = 54$ — that is $4.5\\%$ of the whole survey.  \nApplying $25\\%$ to the full $1{,}200$ gives $300$, and adding the percentages to get $43\\%$ gives $516$. Both are listed. The phrase 'of those' is the signal that a percentage refers to a subgroup.",
+          "check": [
+            "Eq(Rational(18,100)*1200, 216)",
+            "Eq(Rational(25,100)*216, 54)",
+            "Eq(Rational(18,100)*Rational(25,100)*1200, 54)",
+            "Eq(Rational(25,100)*1200, 300)"
+          ]
+        },
+        {
+          "id": "sat-pc2-w3",
+          "statement": "A shop buys an item for $\\$40$ and sells it for $\\$52$. What is the percentage markup on the cost, and what is the profit as a percentage of the selling price?",
+          "solution": "**Answer.** Markup $30\\%$ of cost; profit is about $23.1\\%$ of the selling price.  \nThe profit is $52 - 40 = \\$12$ either way — but which number you divide by changes the answer entirely.  \nAs a percentage of COST:\n$$\\frac{12}{40} = 0.30 = 30\\%$$\nAs a percentage of the SELLING PRICE:\n$$\\frac{12}{52} = 0.2307\\ldots \\approx 23.1\\%$$\nBoth are correct answers to different questions, and both appear as options. The phrase 'markup' conventionally means a percentage of the COST; 'margin' means a percentage of the selling price. Whenever a percentage question feels ambiguous, the fix is to identify the base — the amount the percentage is OF — before dividing.",
+          "check": [
+            "Eq(52 - 40, 12)",
+            "Eq(Rational(12,40), Rational(30,100))",
+            "Eq(40*Rational(130,100), 52)",
+            "Eq(Rational(12,52), Rational(3,13))"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Dividing by the new amount when computing a percentage change.",
+          "correction": "The base is what you started with. Using the new figure always gives a smaller percentage, and it is an option.",
+          "authored": true
+        },
+        {
+          "text": "Applying a subgroup's percentage to the whole population.",
+          "correction": "'Of those' restricts it to the group just named. Compute that group first, then take the percentage of it.",
+          "authored": true
+        },
+        {
+          "text": "Adding two chained percentages.",
+          "correction": "$18\\%$ of the group, then $25\\%$ of those, is $4.5\\%$ overall — not $43\\%$.",
+          "authored": true
+        },
+        {
+          "text": "Dividing profit by the wrong base.",
+          "correction": "Markup is a percentage of COST; margin is a percentage of the SELLING PRICE. Read which one is wanted.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-pc2-t1",
+          "statement": "A price falls from $\\$80$ to $\\$68$. What is the percentage decrease?",
+          "solution": "**Answer.** $15\\%$. The change is $12$, and $\\frac{12}{80} = 0.15$.",
+          "check": [
+            "Eq(80 - 68, 12)",
+            "Eq(Rational(12,80), Rational(15,100))"
+          ]
+        },
+        {
+          "id": "sat-pc2-t2",
+          "statement": "Of $800$ students, $35\\%$ study a language. Of those, $40\\%$ study French. How many study French?",
+          "solution": "**Answer.** $112$. The language students number $0.35 \\times 800 = 280$, and $40\\%$ of $280$ is $112$. That is $14\\%$ of the whole school.",
+          "check": [
+            "Eq(Rational(35,100)*800, 280)",
+            "Eq(Rational(40,100)*280, 112)",
+            "Eq(Rational(112,800), Rational(14,100))"
+          ]
+        },
+        {
+          "id": "sat-pc2-t3",
+          "statement": "An item costing $\\$25$ is sold for $\\$32$. What is the markup as a percentage of the cost?",
+          "solution": "**Answer.** $28\\%$. The profit is $7$, and $\\frac{7}{25} = 0.28$. As a percentage of the selling price it would be $\\frac{7}{32} \\approx 21.9\\%$ — a different question.",
+          "check": [
+            "Eq(32 - 25, 7)",
+            "Eq(Rational(7,25), Rational(28,100))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "Percent change divides by the ORIGINAL",
+            "body": "The percentage change is the change divided by the amount you started with, never by the amount you ended with. Rising from $18{,}500$ to $21{,}090$ is a rise of $2{,}590$ on a base of $18{,}500$, which is $14\\%$. Dividing by the new figure answers a different question and gives a smaller number, which is always on the option list."
+          },
+          {
+            "kind": "percentChangeFinder",
+            "title": "Find the percentage from two amounts",
+            "teach": "Set a before and an after and watch the percentage change appear. Notice that swapping the two numbers does NOT just flip the sign — the base changes too, so the size of the percentage changes as well.",
+            "config": {
+              "original": 80,
+              "final": 68
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Percentage increase from two figures",
+            "problemId": "sat-pc2-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Percent of what?",
+            "prompt": "In a group of $500$ people, $40\\%$ own a bicycle. Of those owners, $30\\%$ cycle daily. How many cycle daily?",
+            "options": [
+              "$60$",
+              "$150$",
+              "$200$",
+              "$350$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Owners number $0.40 \\times 500 = 200$, and $30\\%$ of those is $60$. Option B applies the $30\\%$ to the whole group, C stops at the owners, and D adds the percentages. 'Of those' always means the previous subgroup.",
+            "check": [
+              "Eq(Rational(40,100)*500, 200)",
+              "Eq(Rational(30,100)*200, 60)",
+              "Eq(Rational(30,100)*500, 150)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A percentage of a percentage",
+            "problemId": "sat-pc2-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Name the base before you divide",
+            "body": "Every percentage is OF something, and the hard questions make you choose. Profit as a percentage of COST and profit as a percentage of the SELLING PRICE are different numbers from the same two figures, and both are options. Underline the noun after 'percentage of' before you compute."
+          },
+          {
+            "kind": "worked",
+            "title": "Two bases, two answers",
+            "problemId": "sat-pc2-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: percentage decrease",
+            "problemId": "sat-pc2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a subgroup",
+            "problemId": "sat-pc2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: markup on cost",
+            "problemId": "sat-pc2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Percent change is the change divided by the ORIGINAL amount.",
+              "'Of those' means the percentage applies to the previous subgroup, not the whole.",
+              "Two percentages applied in sequence multiply: 18% of 25% is 4.5% overall.",
+              "Identify the base — cost or selling price — before dividing.",
+              "Both bases give correct-looking answers, and both will be on the option list."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-pc-p01",
+      "statement": "What is $22\\%$ of $350$?",
+      "solution": "**Answer.** $77$. $0.22 \\times 350 = 77$.",
+      "check": [
+        "Eq(Rational(22,100)*350, 77)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-p02",
+      "statement": "A price of $\\$45$ rises by $20\\%$. What is the new price?",
+      "solution": "**Answer.** $\\$54$. Multiply by $1.2$.",
+      "check": [
+        "Eq(45*Rational(120,100), 54)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-p03",
+      "statement": "A quantity falls from $250$ to $200$. What is the percentage decrease?",
+      "solution": "**Answer.** $20\\%$. The change is $50$, and $\\frac{50}{250} = 0.2$. Dividing by $200$ instead gives $25\\%$, a listed option.",
+      "check": [
+        "Eq(Rational(50,250), Rational(20,100))",
+        "Eq(Rational(50,200), Rational(25,100))"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-p04",
+      "statement": "After a $15\\%$ discount an item costs $\\$68$. What was the original price?",
+      "solution": "**Answer.** $\\$80$. A $15\\%$ discount multiplies by $0.85$, so the original is $\\frac{68}{0.85} = 80$. Check: $15\\%$ of $80$ is $12$, and $80 - 12 = 68$.",
+      "check": [
+        "Eq(Rational(85,100)*80, 68)",
+        "Eq(80 - Rational(15,100)*80, 68)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-p05",
+      "statement": "A value increases by $50\\%$ and then decreases by $50\\%$. What is the overall percentage change?",
+      "solution": "**Answer.** A $25\\%$ decrease. The multipliers give $1.5 \\times 0.5 = 0.75$, so $75\\%$ remains. Starting from $100$: up to $150$, then down to $75$.",
+      "check": [
+        "Eq(Rational(150,100)*Rational(50,100), Rational(75,100))",
+        "Eq(100*Rational(150,100), 150)",
+        "Eq(150*Rational(50,100), 75)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-p06",
+      "statement": "Of $2{,}500$ visitors, $24\\%$ bought a ticket in advance. Of those, $15\\%$ requested a refund. How many requested a refund?",
+      "solution": "**Answer.** $90$. Advance buyers number $600$, and $15\\%$ of $600$ is $90$ — which is $3.6\\%$ of all visitors.",
+      "check": [
+        "Eq(Rational(24,100)*2500, 600)",
+        "Eq(Rational(15,100)*600, 90)",
+        "Eq(Rational(90,2500), Rational(36,1000))"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-p07",
+      "statement": "An item costs a shop $\\$60$ and is sold at a $45\\%$ markup. What is the selling price?",
+      "solution": "**Answer.** $\\$87$. A $45\\%$ markup on the COST multiplies by $1.45$: $60 \\times 1.45 = 87$.",
+      "check": [
+        "Eq(60*Rational(145,100), 87)",
+        "Eq(60 + Rational(45,100)*60, 87)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-p08",
+      "statement": "A salary of $\\$52{,}000$ rises by $6\\%$ and then by a further $4\\%$ the next year. What is the salary after both rises?",
+      "solution": "**Answer.** $\\$57{,}324.80$. The multipliers are $1.06$ and $1.04$, giving $1.06 \\times 1.04 = 1.1024$, so the salary is $52000 \\times 1.1024 = 57324.80$. Adding the percentages to get $10\\%$ gives $\\$57{,}200$ — close, but wrong, and the gap grows with bigger percentages.",
+      "check": [
+        "Eq(Rational(106,100)*Rational(104,100), Rational(11024,10000))",
+        "Eq(52000*Rational(11024,10000), Rational(573248,10))",
+        "Ne(Rational(573248,10), 57200)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-pc-x01",
+      "statement": "What is $8\\%$ of $650$?",
+      "solution": "**Answer.** $52$. $0.08 \\times 650 = 52$.",
+      "check": [
+        "Eq(Rational(8,100)*650, 52)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-x02",
+      "statement": "A population grows from $4{,}000$ to $4{,}600$. What is the percentage increase?",
+      "solution": "**Answer.** $15\\%$. The change is $600$, and $\\frac{600}{4000} = 0.15$.",
+      "check": [
+        "Eq(Rational(600,4000), Rational(15,100))"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-x03",
+      "statement": "After a $30\\%$ increase, a value is $\\$260$. What was it before?",
+      "solution": "**Answer.** $\\$200$. Divide by $1.3$: $\\frac{260}{1.3} = 200$. Taking $30\\%$ off $260$ gives $182$, the trap.",
+      "check": [
+        "Eq(Rational(130,100)*200, 260)",
+        "Eq(260 - Rational(30,100)*260, 182)",
+        "Ne(182, 200)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-x04",
+      "statement": "A price rises $10\\%$ and then falls $10\\%$. What is the overall change?",
+      "solution": "**Answer.** A $1\\%$ decrease. The multipliers give $1.1 \\times 0.9 = 0.99$. Starting from $\\$100$: up to $\\$110$, then down to $\\$99$. The two changes look symmetric but are taken of different amounts.",
+      "check": [
+        "Eq(Rational(110,100)*Rational(90,100), Rational(99,100))",
+        "Eq(100*Rational(110,100), 110)",
+        "Eq(110*Rational(90,100), 99)"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-x05",
+      "statement": "Of $1{,}500$ employees, $60\\%$ work full time. Of those, $25\\%$ work remotely. How many work full time and remotely?",
+      "solution": "**Answer.** $225$. Full-timers number $900$, and $25\\%$ of $900$ is $225$ — that is $15\\%$ of all employees.",
+      "check": [
+        "Eq(Rational(60,100)*1500, 900)",
+        "Eq(Rational(25,100)*900, 225)",
+        "Eq(Rational(225,1500), Rational(15,100))"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pc-x06",
+      "statement": "A shop buys a chair for $\\$120$ and sells it for $\\$150$. What is the profit as a percentage of the cost?",
+      "solution": "**Answer.** $25\\%$. The profit is $30$, and $\\frac{30}{120} = 0.25$. As a percentage of the selling price it would be $\\frac{30}{150} = 20\\%$ — also on the option list, answering a different question.",
+      "check": [
+        "Eq(150 - 120, 30)",
+        "Eq(Rational(30,120), Rational(25,100))",
+        "Eq(Rational(30,150), Rational(20,100))"
+      ],
+      "badges": [
+        {
+          "text": "sat-percentages",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ]
+}

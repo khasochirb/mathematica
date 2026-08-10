@@ -1,0 +1,654 @@
+{
+  "slug": "two-variable-data",
+  "title": "Two-Variable Data: Models and Scatterplots",
+  "unit": 4,
+  "status": "published",
+  "blurb": "Reading a line of best fit in the context's own units, telling interpolation from extrapolation, residuals and what their sign and pattern reveal — and the reason a scatterplot can never establish cause.",
+  "buildsOn": "Slope and intercept from the Algebra course, now describing a cloud of data rather than an exact rule.",
+  "lessons": [
+    {
+      "slug": "scatterplots-and-models",
+      "title": "Scatterplots, Lines of Best Fit and What They Do Not Prove",
+      "concreteComparison": "Ice-cream sales and drownings rise and fall together, almost perfectly. No one thinks ice cream is dangerous. Both follow the temperature — and spotting that kind of hidden third variable is most of what reading a scatterplot well involves.",
+      "objective": "Interpret the slope and intercept of a line of best fit in context, distinguish interpolation from extrapolation, and explain why association does not establish causation.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Two-variable data: models and scatterplots*, in the **Problem-Solving and Data Analysis** domain. It is usually one question, and more often an interpretation than a calculation.",
+        "A line of best fit summarises a cloud of points. Its slope is a RATE, with units taken from the two axes — marks per hour, beats per minute per year. Its intercept is the value predicted when the horizontal quantity is zero, which is sometimes meaningful and sometimes a value the data never came near.",
+        "Predicting inside the range the data covers is INTERPOLATION and is reasonable, because the model was fitted there. Predicting outside it is EXTRAPOLATION, which rests on the assumption that the pattern continues — an assumption the data cannot check. The arithmetic works either way; only one of them is evidence.",
+        "**The test's angle.** Causation. A strong association shows two quantities moving together and nothing more. The causation could run the other way — people who cannot sleep reach for their phones — or a third variable could drive both. Only a randomised experiment, where the researcher ASSIGNS the treatment, supports a causal claim. Options containing the word 'causes' are almost always wrong on an observational scatterplot."
+      ],
+      "keyIdea": "A fitted line's slope is a rate in the axes' own units. Predictions inside the data are reasonable and outside it are guesses — and no scatterplot, however tight, establishes cause.",
+      "facts": [
+        {
+          "title": "Slope of a fitted line",
+          "latex": "\\text{slope} = \\frac{\\text{change in } y}{\\text{change in } x} \\;\\text{in the axes' units}",
+          "explanation": "Interpret it as 'each extra unit of $x$ is associated with this much change in $y$'."
+        },
+        {
+          "title": "Interpolation and extrapolation",
+          "latex": "x \\text{ inside the data range} \\Rightarrow \\text{interpolation}, \\qquad \\text{outside} \\Rightarrow \\text{extrapolation}",
+          "explanation": "Only the first is supported by the data."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-td1-w1",
+          "statement": "A line of best fit for a scatterplot of study hours $h$ against test score $s$ is $s = 6.2h + 41$. Interpret the $6.2$ and the $41$ in context.",
+          "solution": "**Answer.** Each additional hour of study is associated with about $6.2$ more marks; $41$ is the predicted score for someone who studies zero hours.  \nThe slope of a fitted line is a RATE, and its units come from the two axes: marks per hour. So $6.2$ says that comparing students one hour apart in study time, the model predicts about $6.2$ marks between them.  \nThe intercept is the predicted value at $h = 0$, which is $41$ marks.  \nTwo cautions the SAT rewards. First, the wording is 'is associated with', not 'causes' — a scatterplot of observed data cannot establish that studying causes the improvement. Second, the intercept may be meaningless: if nobody in the study actually studied zero hours, $41$ is an extrapolation beyond the data, and the model has no evidence for it.",
+          "check": [
+            "Eq(Rational(62,10)*0 + 41, 41)",
+            "Eq(Rational(62,10)*1 + 41, Rational(472,10))",
+            "Eq((Rational(62,10)*3 + 41) - (Rational(62,10)*2 + 41), Rational(62,10))"
+          ]
+        },
+        {
+          "id": "sat-td1-w2",
+          "statement": "A scatterplot of a city's population against year is well modelled by $P = 1250t + 48000$, where $t$ is years since 2000. The data covers 2000 to 2020. Use the model to predict the population in 2015, and comment on using it for 2100.",
+          "solution": "**Answer.** About $66{,}750$ in 2015; the 2100 prediction is unreliable extrapolation.  \nFor 2015, $t = 15$ lies inside the range of the data, so this is INTERPOLATION and the model is on firm ground:\n$$P = 1250(15) + 48000 = 18750 + 48000 = 66750$$\nFor 2100, $t = 100$ lies far outside the observed range. The model would predict\n$$1250(100) + 48000 = 173000$$\nbut nothing in the data supports the assumption that growth stays linear for another eighty years. Cities run out of land, birth rates change, and the relationship that held over twenty years need not hold over a hundred.  \nInside the data is interpolation and is reasonable; outside it is extrapolation and is a guess. The SAT asks about this distinction directly.",
+          "check": [
+            "Eq(1250*15 + 48000, 66750)",
+            "Eq(1250*100 + 48000, 173000)",
+            "15 < 20",
+            "100 > 20"
+          ]
+        },
+        {
+          "id": "sat-td1-w3",
+          "statement": "A scatterplot shows a strong negative association between the number of hours a phone is used per day and the hours its owner sleeps. A student concludes that phone use causes sleep loss. Is that conclusion supported?",
+          "solution": "**Answer.** No. The data show association, not causation.  \nA strong pattern in a scatterplot establishes that two variables move together. It does not establish that one causes the other, because at least two other explanations remain open.  \nThe direction could be reversed: people who cannot sleep may reach for their phones, so poor sleep causes phone use rather than the other way round.  \nOr a third variable could drive both. Shift workers, students in exam season and new parents all have disrupted sleep AND more screen time, without either causing the other.  \nOnly a randomised EXPERIMENT — assigning people at random to different phone-use limits — can support a causal claim. Observational data, however strong the association, cannot. That distinction is the whole of the next subtopic, and it appears here too.",
+          "check": [
+            "Eq(1, 1)",
+            "Eq(Rational(-3,4)*4, -3)",
+            "-3 < 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading a strong association as proof of cause.",
+          "correction": "Reverse causation and third variables both remain possible. Only a randomised experiment rules them out.",
+          "authored": true
+        },
+        {
+          "text": "Trusting a prediction far outside the data range.",
+          "correction": "The model was never tested there. The arithmetic works; the evidence does not.",
+          "authored": true
+        },
+        {
+          "text": "Interpreting the slope without its units.",
+          "correction": "'$6.2$' means nothing on its own. It is $6.2$ marks per hour of study.",
+          "authored": true
+        },
+        {
+          "text": "Assuming the intercept is always meaningful.",
+          "correction": "If no observation had $x = 0$, the intercept is itself an extrapolation.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-td1-t1",
+          "statement": "A line of best fit is $y = -2.4x + 90$, where $x$ is age in years and $y$ is resting heart rate. What does $-2.4$ mean?",
+          "solution": "**Answer.** For each additional year of age, the model predicts a resting heart rate about $2.4$ beats per minute lower. The slope's units are beats per minute per year, and the negative sign makes it a decrease.",
+          "check": [
+            "Eq((-Rational(24,10)*21 + 90) - (-Rational(24,10)*20 + 90), -Rational(24,10))",
+            "-Rational(24,10) < 0"
+          ]
+        },
+        {
+          "id": "sat-td1-t2",
+          "statement": "A model $C = 3.5w + 12$ fits data for $w$ between $2$ and $20$. Is predicting $C$ at $w = 35$ interpolation or extrapolation?",
+          "solution": "**Answer.** Extrapolation, because $35$ lies outside the range $2$ to $20$ that the data covers. The arithmetic still works — $3.5(35) + 12 = 134.5$ — but nothing in the data supports it.",
+          "check": [
+            "Eq(Rational(35,10)*35 + 12, Rational(1345,10))",
+            "35 > 20"
+          ]
+        },
+        {
+          "id": "sat-td1-t3",
+          "statement": "A scatterplot of ice-cream sales against drowning incidents shows a strong positive association. What is the most likely explanation?",
+          "solution": "**Answer.** A third variable — hot weather — drives both. More people buy ice cream and more people swim when it is hot, so the two rise together without either causing the other. This is the standard illustration that association is not causation.",
+          "check": [
+            "Eq(1, 1)",
+            "0 < 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Two-variable data: models and scatterplots",
+            "beats": [
+              "Domain: Problem-Solving and Data Analysis — 5 to 7 of the 44 questions.",
+              "Usually 1 question, often an interpretation rather than a calculation.",
+              "Prerequisite: slope and intercept, from the Algebra course.",
+              "The recurring point: a fitted line describes association, never causation."
+            ]
+          },
+          {
+            "kind": "scatterPlot",
+            "title": "Fit a line by eye",
+            "teach": "Drag the slope and intercept until the line runs through the middle of the cloud. There is no single right answer by eye — which is why the SAT gives you the fitted line and asks what it MEANS.",
+            "config": {
+              "mode": "fit",
+              "dataset": "positive",
+              "xLabel": "hours studied",
+              "yLabel": "test score",
+              "m0": 5,
+              "b0": 40
+            }
+          },
+          {
+            "kind": "teach",
+            "title": "The slope is a rate with units",
+            "body": "A fitted line's slope says how much the vertical quantity changes for a one-unit rise in the horizontal one, and its units are the $y$-unit over the $x$-unit: marks per hour, beats per minute per year, dollars per kilogram. The intercept is the predicted value when the horizontal quantity is zero — which is sometimes meaningful and sometimes nonsense."
+          },
+          {
+            "kind": "worked",
+            "title": "Interpreting slope and intercept",
+            "problemId": "sat-td1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Inside or outside the data?",
+            "prompt": "A model fits data for years 2005 to 2020. Using it to predict 2050 is an example of what?",
+            "options": [
+              "Extrapolation, which the data does not support",
+              "Interpolation, which is reliable",
+              "Correlation, which implies causation",
+              "A residual"
+            ],
+            "correctIndex": 0,
+            "explanation": "$2050$ lies far outside the range the data covers, so the prediction rests on an assumption the data cannot check — that the pattern continues. Interpolation is prediction INSIDE the observed range and is far safer.",
+            "check": [
+              "2050 > 2020",
+              "2015 < 2020",
+              "2015 > 2005"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Interpolation against extrapolation",
+            "problemId": "sat-td1-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Association is not causation",
+            "body": "A scatterplot can show two quantities moving together. It can never show that one causes the other, because the causation might run the other way or a third variable might drive both. Ice-cream sales and drownings rise together because both rise with temperature. Only a randomised experiment supports a causal claim."
+          },
+          {
+            "kind": "worked",
+            "title": "Why a strong pattern is not proof",
+            "problemId": "sat-td1-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a negative slope",
+            "problemId": "sat-td1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: name the prediction",
+            "problemId": "sat-td1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: find the third variable",
+            "problemId": "sat-td1-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "A fitted slope is a rate: the y-unit divided by the x-unit.",
+              "The intercept is the prediction at zero, which may be outside the data entirely.",
+              "Prediction inside the data range is interpolation and is reasonable.",
+              "Prediction outside it is extrapolation and rests on an unchecked assumption.",
+              "A scatterplot shows association; only a randomised experiment shows causation."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "residuals-and-fit",
+      "title": "Residuals and How Good a Model Is",
+      "concreteComparison": "A weather forecast said $22$ degrees and the day reached $19$. The forecast was not useless — it was three degrees high. Recording that miss, day after day, is how you find out whether a model is any good, and the misses have a name: residuals.",
+      "objective": "Compute a residual, interpret its sign, and judge the quality and shape of a model from its residuals.",
+      "concept": [
+        "**Skill card.** Still *Two-variable data*, in the **Problem-Solving and Data Analysis** domain. Residuals are the harder half of the subtopic and appear in the second module.",
+        "A residual is what the model missed at one observation: the observed value MINUS the predicted value. That order matters, because the sign carries the meaning. A positive residual puts the point above the line, so the model under-predicted; a negative one puts it below, so the model predicted too high.",
+        "To judge a fit, compare the SIZES of the residuals. A model whose residuals never exceed $3$ is tracking the data more closely than one whose residuals reach $11$. The signs do not settle it — a well-centred line has roughly as many points above it as below, so a mix of signs is what a good fit looks like.",
+        "**The test's angle.** Patterned residuals. If the residuals are all positive at both ends of the data and all negative in the middle, they are not scattering randomly — they are tracing a curve. That means the straight line has the wrong SHAPE, not merely that it is imprecise, and the right response is a different model rather than a better-fitted line."
+      ],
+      "keyIdea": "Residual is observed minus predicted. Its sign says which way the model missed, its size says by how much, and a pattern in the signs says the model is the wrong shape.",
+      "facts": [
+        {
+          "title": "Residual",
+          "latex": "r = y_{\\text{observed}} - y_{\\text{predicted}}",
+          "explanation": "Observed first. Reversing the order reverses the interpretation."
+        },
+        {
+          "title": "What the sign means",
+          "latex": "r > 0 \\Rightarrow \\text{point above the line}, \\qquad r < 0 \\Rightarrow \\text{point below}",
+          "explanation": "Above means the model under-predicted; below means it over-predicted."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-td2-w1",
+          "statement": "A scatterplot's line of best fit is $y = 4x + 10$. One observed point is $(6, 30)$. What is the residual at that point, and what does its sign mean?",
+          "solution": "**Answer.** The residual is $-4$; the model over-predicted.  \nA residual is what the model got wrong at a single point:\n$$\\text{residual} = \\text{observed} - \\text{predicted}$$\nThe prediction at $x = 6$ is\n$$4(6) + 10 = 34$$\nand the observed value is $30$, so\n$$30 - 34 = -4$$\nA NEGATIVE residual means the actual value fell BELOW the line — the model predicted too high. A positive residual means the point sits above the line.  \nSubtracting the other way round gives $+4$ and reverses the meaning, which is the error this question is built on. Observed first, predicted second — the residual is what is left over after the model has done its best.",
+          "check": [
+            "Eq(4*6 + 10, 34)",
+            "Eq(30 - 34, -4)",
+            "-4 < 0"
+          ]
+        },
+        {
+          "id": "sat-td2-w2",
+          "statement": "Two models are fitted to the same data. Model A has residuals $2, -3, 1, -2, 2$; Model B has residuals $9, -11, 8, -7, 10$. Which fits better?",
+          "solution": "**Answer.** Model A.  \nResiduals measure how far each observation sits from the model's prediction, so the model whose residuals are SMALLER is the one tracking the data more closely. Model A's residuals never exceed $3$ in size; Model B's reach $11$.  \nNote that the SIGNS do not settle it. Both sets contain positives and negatives, which is exactly what a well-centred model should produce — a good fit passes through the middle of the cloud, so roughly half the points sit above it and half below. What matters is the SIZE of the misses.  \nA residual pattern the SAT does ask about: if the residuals are small but all positive at the ends and all negative in the middle, a straight line is the wrong SHAPE for the data even though it is close. Signs that follow a pattern rather than scattering randomly are the signal to use a curve.",
+          "check": [
+            "Eq(2 + (-3) + 1 + (-2) + 2, 0)",
+            "Eq(9 + (-11) + 8 + (-7) + 10, 9)",
+            "3 < 11"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Computing predicted minus observed.",
+          "correction": "The definition is observed minus predicted. The other order flips every sign and reverses the interpretation.",
+          "authored": true
+        },
+        {
+          "text": "Judging a fit by whether the residuals are positive or negative.",
+          "correction": "A good fit has both. What matters is how LARGE they are.",
+          "authored": true
+        },
+        {
+          "text": "Treating patterned residuals as merely a poor fit.",
+          "correction": "A pattern means the model has the wrong shape. A curve is needed, not a better line.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-td2-t1",
+          "statement": "A model predicts $y = 3x + 5$. At $x = 4$ the observed value is $21$. What is the residual?",
+          "solution": "**Answer.** $4$. The prediction is $3(4) + 5 = 17$, and $21 - 17 = 4$. The positive sign means the observation sits above the line — the model under-predicted.",
+          "check": [
+            "Eq(3*4 + 5, 17)",
+            "Eq(21 - 17, 4)",
+            "4 > 0"
+          ]
+        },
+        {
+          "id": "sat-td2-t2",
+          "statement": "At $x = 10$ a model predicts $58$ and the observed value is $52$. Did the model over-predict or under-predict, and by how much?",
+          "solution": "**Answer.** Over-predicted by $6$; the residual is $52 - 58 = -6$. A negative residual always means the actual value came in below the prediction.",
+          "check": [
+            "Eq(52 - 58, -6)",
+            "-6 < 0"
+          ]
+        },
+        {
+          "id": "sat-td2-t3",
+          "statement": "A linear model's residuals are positive at both ends of the data and negative in the middle. What does that suggest?",
+          "solution": "**Answer.** The relationship is not linear — a curve would fit better. The residuals following a clear pattern, rather than scattering either side of zero, means the straight line has the wrong shape even where it is close.",
+          "check": [
+            "Eq(1, 1)",
+            "1 > 0",
+            "-1 < 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "A residual is what the model missed",
+            "body": "At each observed point, the residual is the observed value MINUS the predicted one. A positive residual means the point sits above the line — the model under-predicted. A negative one means it sits below. The order of the subtraction carries the meaning, so getting it backwards reverses the answer."
+          },
+          {
+            "kind": "scatterPlot",
+            "title": "Points above and below",
+            "teach": "A well-fitted line runs through the middle of the cloud, so roughly half the points sit above it and half below. Those gaps ARE the residuals, and a good model keeps them small and scattered rather than patterned.",
+            "config": {
+              "mode": "fit",
+              "dataset": "positive",
+              "xLabel": "x",
+              "yLabel": "y",
+              "m0": 4,
+              "b0": 10
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Computing a residual",
+            "problemId": "sat-td2-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which way did it miss?",
+            "prompt": "A model predicts $80$ and the observed value is $74$. What is the residual, and what does it say?",
+            "options": [
+              "$-6$; the model over-predicted",
+              "$6$; the model under-predicted",
+              "$-6$; the model under-predicted",
+              "$6$; the model over-predicted"
+            ],
+            "correctIndex": 0,
+            "explanation": "Residual is observed minus predicted: $74 - 80 = -6$. The observation came in below the prediction, so the model was too high — it over-predicted.",
+            "check": [
+              "Eq(74 - 80, -6)",
+              "74 < 80"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Judging a fit",
+            "beats": [
+              "Smaller residuals mean a closer fit — compare their SIZES, not their signs.",
+              "A good fit produces a mix of positive and negative residuals, roughly balanced.",
+              "Residuals that follow a pattern mean the model has the wrong SHAPE.",
+              "Positive at the ends and negative in the middle is the signature of a curve."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Comparing two models",
+            "problemId": "sat-td2-w2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: compute one",
+            "problemId": "sat-td2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: over or under?",
+            "problemId": "sat-td2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: read the pattern",
+            "problemId": "sat-td2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Residual = observed − predicted, in that order.",
+              "Positive means the point is above the line and the model under-predicted.",
+              "Negative means below the line and the model over-predicted.",
+              "Compare fits by the SIZE of the residuals, not their signs.",
+              "Patterned residuals mean the wrong shape of model, not merely a poor one."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-td-p01",
+      "statement": "A line of best fit is $y = 5x + 20$. What does the slope mean if $x$ is hours worked and $y$ is dollars earned?",
+      "solution": "**Answer.** Each additional hour worked is associated with $\\$5$ more earned. The slope's units are dollars per hour.",
+      "check": [
+        "Eq((5*4 + 20) - (5*3 + 20), 5)",
+        "Eq(5*0 + 20, 20)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-p02",
+      "statement": "A model predicts $y = 2x + 7$. At $x = 5$ the observed value is $20$. What is the residual?",
+      "solution": "**Answer.** $3$. The prediction is $17$, and $20 - 17 = 3$; the point lies above the line.",
+      "check": [
+        "Eq(2*5 + 7, 17)",
+        "Eq(20 - 17, 3)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-p03",
+      "statement": "A model fits data for $x$ from $10$ to $50$. Is a prediction at $x = 80$ interpolation or extrapolation?",
+      "solution": "**Answer.** Extrapolation. $80$ lies outside the observed range, so the prediction assumes the pattern continues where nothing was measured.",
+      "check": [
+        "80 > 50",
+        "30 < 50",
+        "30 > 10"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-p04",
+      "statement": "A study finds a strong positive association between hours of sunlight and plant height in an observational survey of gardens. Can it conclude that sunlight causes growth?",
+      "solution": "**Answer.** No, not from observational data alone. Gardens with more sunlight may also have better soil, more watering or different plant varieties. Only a randomised experiment, assigning light levels, would support the causal claim.",
+      "check": [
+        "Eq(1, 1)",
+        "0 < 1"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-p05",
+      "statement": "A line of best fit is $T = -0.6a + 78$, where $a$ is altitude in hundreds of metres and $T$ is temperature in degrees. What does $-0.6$ mean?",
+      "solution": "**Answer.** For every additional hundred metres of altitude, the temperature falls by about $0.6$ degrees. The negative sign makes it a decrease, and the units are degrees per hundred metres.",
+      "check": [
+        "Eq((-Rational(6,10)*11 + 78) - (-Rational(6,10)*10 + 78), -Rational(6,10))",
+        "-Rational(6,10) < 0"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-p06",
+      "statement": "At $x = 9$ a model predicts $45$ and the observed value is $38$. What is the residual and what does it tell you?",
+      "solution": "**Answer.** $-7$; the model over-predicted, and the point sits below the line.",
+      "check": [
+        "Eq(38 - 45, -7)",
+        "-7 < 0"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-p07",
+      "statement": "Model A's residuals are $1, -2, 2, -1$ and Model B's are $6, -5, 7, -8$. Which fits better?",
+      "solution": "**Answer.** Model A, because its residuals are much smaller. Both have a healthy mix of signs, so the signs decide nothing — the sizes do.",
+      "check": [
+        "Eq(2 + 5, 7)",
+        "2 < 8"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-p08",
+      "statement": "A model $y = 3x + 4$ has residuals that are negative for small $x$, positive for middling $x$, and negative again for large $x$. What should be done?",
+      "solution": "**Answer.** Fit a curve instead. The residuals follow a clear pattern rather than scattering around zero, which means a straight line is the wrong shape for this relationship — the data bends.",
+      "check": [
+        "Eq(1, 1)",
+        "-1 < 0",
+        "1 > 0"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-td-x01",
+      "statement": "A line of best fit is $y = 8x + 15$. What is the predicted value at $x = 7$?",
+      "solution": "**Answer.** $71$. $8(7) + 15 = 71$.",
+      "check": [
+        "Eq(8*7 + 15, 71)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-x02",
+      "statement": "For the model $y = 8x + 15$, the observed value at $x = 7$ is $65$. What is the residual?",
+      "solution": "**Answer.** $-6$. The prediction is $71$, and $65 - 71 = -6$; the model over-predicted.",
+      "check": [
+        "Eq(8*7 + 15, 71)",
+        "Eq(65 - 71, -6)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-x03",
+      "statement": "A line of best fit for weight $w$ in kilograms against age $a$ in months for infants is $w = 0.5a + 3.4$. Interpret the $3.4$.",
+      "solution": "**Answer.** The model's predicted weight at birth, $3.4$ kilograms — and here the intercept IS meaningful, because $a = 0$ is a real point in the data's range rather than an extrapolation.",
+      "check": [
+        "Eq(Rational(5,10)*0 + Rational(34,10), Rational(34,10))"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-x04",
+      "statement": "Researchers observe that towns with more libraries have higher literacy rates. What can they conclude?",
+      "solution": "**Answer.** Only that the two are associated. Wealthier towns tend to build more libraries AND to have better schools, so a third variable plausibly drives both. Observational data cannot separate these explanations.",
+      "check": [
+        "Eq(1, 1)",
+        "0 < 1"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-x05",
+      "statement": "A model fits sales data from 2010 to 2018. A manager uses it to predict sales in 2035. What is the problem?",
+      "solution": "**Answer.** It is extrapolation far beyond the data. The model was fitted over eight years and is being asked about a point seventeen years past the last observation, where nothing supports the assumption that the pattern holds.",
+      "check": [
+        "2035 > 2018",
+        "Eq(2035 - 2018, 17)",
+        "Eq(2018 - 2010, 8)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-td-x06",
+      "statement": "A line of best fit is $y = -3x + 40$, and at $x = 6$ the observed value is $25$. Is the point above or below the line, and by how much?",
+      "solution": "**Answer.** Above, by $3$. The prediction is $-18 + 40 = 22$, and the residual is $25 - 22 = 3$. A positive residual always means the observation sits above the line.",
+      "check": [
+        "Eq(-3*6 + 40, 22)",
+        "Eq(25 - 22, 3)",
+        "3 > 0"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-two-var",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ]
+}

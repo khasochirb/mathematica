@@ -1,0 +1,662 @@
+{
+  "slug": "probability-and-conditional-probability",
+  "title": "Probability and Conditional Probability",
+  "unit": 5,
+  "status": "published",
+  "blurb": "Probability read off a two-way table, the addition rule that subtracts the overlap, and the conditional questions where the denominator shrinks to a single row or column — including why the two directions of a conditional are different numbers.",
+  "buildsOn": null,
+  "lessons": [
+    {
+      "slug": "probability-from-tables",
+      "title": "Probability from Two-Way Tables",
+      "concreteComparison": "A hundred students, sorted by whether they studied and whether they passed. Every probability question anyone can ask about that group is already sitting in the table — the only difficulty is deciding which two numbers to divide.",
+      "objective": "Compute probabilities from a two-way table, including 'and', 'or' and complement questions, choosing the correct denominator each time.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Probability and conditional probability*, in the **Problem-Solving and Data Analysis** domain. It is usually one question a test and it nearly always arrives as a two-way table.",
+        "A probability is the count of outcomes you want over the count available. Because the counts are handed to you in the table, the arithmetic is trivial — the question is entirely about which two numbers to use, and the sentence specifies both.",
+        "'And' means a single cell: the intersection of one row and one column. 'Or' means at least one of the two, which is the sum of the two groups MINUS their overlap, because adding them counts the overlap twice. 'Not' is the complement, $1$ minus the probability of the thing.",
+        "**The test's angle.** The denominator. 'Selected at random from all students' means the grand total; 'selected from those who studied' means a row total. Getting the numerator right and the denominator wrong is the commonest way to lose these questions, and both wrong denominators appear as options. One useful check: an 'or' probability greater than $1$ means the overlap was double-counted."
+      ],
+      "keyIdea": "Probability is wanted over available. The sentence names the numerator, and it names the denominator too — 'and' is one cell, 'or' subtracts the overlap, 'not' subtracts from one.",
+      "facts": [
+        {
+          "title": "Basic probability",
+          "latex": "P(A) = \\frac{\\text{count of } A}{\\text{total count}}",
+          "explanation": "On the SAT both counts come straight from a table."
+        },
+        {
+          "title": "Addition rule",
+          "latex": "P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)",
+          "explanation": "Subtract the overlap once. Skipping it can push a probability above $1$."
+        },
+        {
+          "title": "Complement",
+          "latex": "P(\\text{not } A) = 1 - P(A)",
+          "explanation": "Faster whenever the unwanted group is the easier one to count."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-pr1-w1",
+          "statement": "The table shows results for $100$ students.\n\n|  | Passed | Failed | Total |\n| --- | --- | --- | --- |\n| Studied | $48$ | $12$ | $60$ |\n| Did not study | $18$ | $22$ | $40$ |\n| Total | $66$ | $34$ | $100$ |\n\nIf a student is selected at random, what is the probability that the student passed?",
+          "solution": "**Answer.** $\\dfrac{66}{100} = 0.66$.  \nA probability is a count of the outcomes you want over a count of all the outcomes available. 'Selected at random' from the whole group means every one of the $100$ students is equally likely, so the denominator is the GRAND total:\n$$P(\\text{passed}) = \\frac{66}{100} = 0.66$$\nReading the count is the only real work. The $66$ is the column total for 'Passed' — it combines the $48$ who studied and passed with the $18$ who did not study and passed.  \nUsing $48$ alone gives $0.48$ and answers a narrower question: the probability of having both studied AND passed. Both numbers are on the option list, and the difference between them is exactly what the next lesson is about.",
+          "check": [
+            "Eq(48 + 18, 66)",
+            "Eq(12 + 22, 34)",
+            "Eq(66 + 34, 100)",
+            "Eq(Rational(66,100), Rational(33,50))"
+          ]
+        },
+        {
+          "id": "sat-pr1-w2",
+          "statement": "Using the same table, what is the probability that a randomly selected student studied OR passed?",
+          "solution": "**Answer.** $\\dfrac{78}{100} = 0.78$.  \n'Or' in probability means at least one of the two, so it includes students who did both. Adding the two groups directly double-counts them:\n$$60 + 66 = 126$$\nwhich is more than the $100$ students who exist. The $48$ who both studied and passed have been counted twice, so subtract them once:\n$$P(\\text{studied or passed}) = \\frac{60 + 66 - 48}{100} = \\frac{78}{100} = 0.78$$\nCheck by counting directly from the table. Everyone qualifies except the students who neither studied nor passed — that is the $22$ in the bottom-right cell — so $100 - 22 = 78$ students qualify. Both routes agree.  \nThe subtraction is the whole rule. Skipping it gives $1.26$, a probability greater than one, which is itself a signal that something has been counted twice.",
+          "check": [
+            "Eq(60 + 66 - 48, 78)",
+            "Eq(100 - 22, 78)",
+            "Eq(Rational(78,100), Rational(39,50))",
+            "Rational(60 + 66, 100) > 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using a cell count where a row or column total is needed.",
+          "correction": "'Passed' is the whole column, $66$ — not just the $48$ who also studied.",
+          "authored": true
+        },
+        {
+          "text": "Adding two groups for an 'or' question without removing the overlap.",
+          "correction": "The students in both groups get counted twice. Subtract the intersection once.",
+          "authored": true
+        },
+        {
+          "text": "Using a subgroup total as the denominator for an unconditional question.",
+          "correction": "'Selected at random' from the whole group means the grand total goes below the line.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-pr1-t1",
+          "statement": "Using the table above, what is the probability that a randomly selected student did not study?",
+          "solution": "**Answer.** $0.40$. The row total for 'Did not study' is $40$, out of $100$ students.",
+          "check": [
+            "Eq(18 + 22, 40)",
+            "Eq(Rational(40,100), Rational(2,5))"
+          ]
+        },
+        {
+          "id": "sat-pr1-t2",
+          "statement": "Using the table above, what is the probability that a randomly selected student both studied and failed?",
+          "solution": "**Answer.** $0.12$. That is a single cell — the intersection of the 'Studied' row and the 'Failed' column — over the grand total of $100$.",
+          "check": [
+            "Eq(Rational(12,100), Rational(3,25))"
+          ]
+        },
+        {
+          "id": "sat-pr1-t3",
+          "statement": "A bag holds $5$ red, $3$ blue and $12$ green counters. What is the probability of drawing a counter that is NOT green?",
+          "solution": "**Answer.** $0.4$. There are $20$ counters in total and $8$ are not green, giving $\\frac{8}{20} = 0.4$. Equivalently, $1 - \\frac{12}{20} = 0.4$ — the complement rule, which is faster when the unwanted group is the easier one to count.",
+          "check": [
+            "Eq(5 + 3 + 12, 20)",
+            "Eq(Rational(5 + 3, 20), Rational(2,5))",
+            "Eq(1 - Rational(12,20), Rational(2,5))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Probability and conditional probability",
+            "beats": [
+              "Domain: Problem-Solving and Data Analysis — 5 to 7 of the 44 questions.",
+              "Usually 1 question, and it nearly always arrives as a two-way table.",
+              "Prerequisite: fractions and percentages.",
+              "There is no formula to memorise — the work is choosing the right denominator."
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Wanted over available",
+            "body": "A probability is the number of outcomes you want divided by the number available. On the SAT the counts are almost always in a two-way table, so the arithmetic is trivial and the whole question is which two numbers to use. Read the sentence carefully: it tells you the numerator, and — less obviously — it tells you the denominator too."
+          },
+          {
+            "kind": "vennCounts",
+            "title": "Why 'or' subtracts the overlap",
+            "teach": "Two overlapping groups. Adding their sizes counts the overlap twice, so the total for 'in at least one group' is the sum minus the overlap. Drag the counts and watch the total refuse to exceed the whole.",
+            "config": {
+              "mode": "addition",
+              "labelA": "Studied",
+              "labelB": "Passed",
+              "onlyA": 12,
+              "both": 48,
+              "onlyB": 18,
+              "neither": 22,
+              "countNoun": "students"
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Reading a total off the table",
+            "problemId": "sat-pr1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which denominator?",
+            "prompt": "From the table of $100$ students, what is the probability that a randomly selected student studied?",
+            "options": [
+              "$\\dfrac{60}{100}$",
+              "$\\dfrac{48}{100}$",
+              "$\\dfrac{48}{60}$",
+              "$\\dfrac{60}{66}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The selection is from ALL $100$ students, so the denominator is $100$, and the number who studied is the row total $60$. Option B uses only those who studied and passed; C and D restrict the denominator to a subgroup, which answers a conditional question instead.",
+            "check": [
+              "Eq(48 + 12, 60)",
+              "Eq(Rational(60,100), Rational(3,5))"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "And, or, and not",
+            "beats": [
+              "'And' is a single cell — the intersection of one row and one column.",
+              "'Or' means at least one, so add the two groups and subtract the overlap once.",
+              "'Not' is the complement: one minus the probability of the thing.",
+              "If an 'or' answer exceeds 1, the overlap was counted twice."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "The overlap, counted once",
+            "problemId": "sat-pr1-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Count the complement when it is smaller",
+            "body": "'What is the probability of NOT green' with twelve green out of twenty is faster as $1 - \\frac{12}{20}$ than as $\\frac{5 + 3}{20}$ — and with more categories the saving grows. Whenever the unwanted group is easier to count than the wanted one, count it and subtract from $1$."
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a row total",
+            "problemId": "sat-pr1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a single cell",
+            "problemId": "sat-pr1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: the complement",
+            "problemId": "sat-pr1-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Probability is wanted over available — the sentence names both.",
+              "'And' is one cell; 'or' is the sum of two groups minus their overlap.",
+              "'Not' is 1 minus the probability, and is often the faster count.",
+              "A probability above 1 means the overlap was double-counted.",
+              "Read row totals and column totals off the table rather than re-adding cells."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "conditional-probability",
+      "title": "Conditional Probability and the Denominator",
+      "concreteComparison": "Eighty per cent of students who studied passed. Seventy-three per cent of students who passed had studied. Those are two different facts about the same hundred students, and telling them apart is the entire skill.",
+      "objective": "Compute conditional probabilities from a two-way table, recognise the wording that signals a condition, and distinguish the two directions of a conditional.",
+      "concept": [
+        "**Skill card.** Still *Probability and conditional probability*, in the **Problem-Solving and Data Analysis** domain. This is the half that carries the harder items, and almost all of them turn on one number: the denominator.",
+        "A condition changes who you are choosing FROM. 'Given that a student studied' restricts the population to the sixty students who studied, so sixty goes below the line. In a two-way table that means a conditional probability always lives inside a single row or a single column — never across the whole table.",
+        "The wording varies. 'Given that', 'of those', 'among the', 'for students who', and 'what percentage of the students who failed' all do the same job: they name a group, and that group's total is the denominator.",
+        "**The test's angle.** The two directions. $P(\\text{passed} \\mid \\text{studied})$ and $P(\\text{studied} \\mid \\text{passed})$ share the same numerator — the students who did both — but divide by different totals, so they are different numbers: $0.8$ and about $0.727$ from the same table. The SAT routinely sets both versions, and swapping them is the commonest error on this skill."
+      ],
+      "keyIdea": "The condition names the denominator. Find the phrase that restricts the group, put that group's total below the line, and remember that reversing the condition gives a different number.",
+      "facts": [
+        {
+          "title": "Conditional probability",
+          "latex": "P(A \\mid B) = \\frac{P(A \\text{ and } B)}{P(B)} = \\frac{\\text{count of both}}{\\text{count of } B}",
+          "explanation": "In a table, the count of $B$ is a row or column total."
+        },
+        {
+          "title": "The directions differ",
+          "latex": "P(A \\mid B) \\ne P(B \\mid A) \\text{ in general}",
+          "explanation": "Same numerator, different denominators."
+        },
+        {
+          "title": "Chained percentages",
+          "latex": "P(A \\text{ and } B) = P(B) \\times P(A \\mid B)",
+          "explanation": "'$60\\%$ of car owners' multiplies the car-owner percentage, it does not apply to everyone."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-pr2-w1",
+          "statement": "The table shows results for $100$ students.\n\n|  | Passed | Failed | Total |\n| --- | --- | --- | --- |\n| Studied | $48$ | $12$ | $60$ |\n| Did not study | $18$ | $22$ | $40$ |\n| Total | $66$ | $34$ | $100$ |\n\nGiven that a student studied, what is the probability that the student passed?",
+          "solution": "**Answer.** $\\dfrac{48}{60} = 0.8$.  \nThe phrase 'given that' resets the population. You are no longer choosing from all $100$ students — you are choosing from the $60$ who studied, and the denominator has to say so:\n$$P(\\text{passed} \\mid \\text{studied}) = \\frac{48}{60} = 0.8$$\nIn table terms: a conditional probability lives entirely inside ONE row or ONE column. Here the condition names a row, so the row total $60$ goes below the line and the matching cell $48$ goes above it.  \nCompare the unconditional version. $P(\\text{passed}) = \\frac{66}{100} = 0.66$, computed over everyone. The conditional probability is higher because studying helped — and both numbers are on the option list.",
+          "check": [
+            "Eq(Rational(48,60), Rational(4,5))",
+            "Eq(Rational(66,100), Rational(33,50))",
+            "Rational(48,60) > Rational(66,100)"
+          ]
+        },
+        {
+          "id": "sat-pr2-w2",
+          "statement": "Using the same table, given that a student passed, what is the probability that the student studied?",
+          "solution": "**Answer.** $\\dfrac{48}{66} \\approx 0.727$.  \nThe condition has switched. Now the population is the $66$ students who passed, so the denominator is the COLUMN total:\n$$P(\\text{studied} \\mid \\text{passed}) = \\frac{48}{66} = \\frac{8}{11} \\approx 0.727$$\nNote that this is a different number from the previous question's $0.8$, even though the numerator is the same $48$. The two conditional probabilities are NOT interchangeable:\n$$P(\\text{passed} \\mid \\text{studied}) = 0.8 \\qquad P(\\text{studied} \\mid \\text{passed}) \\approx 0.727$$\nSwapping them is the single most common error on this skill, and it is the reason the SAT sets both versions from the same table. The condition — the thing after 'given that' — always names the denominator.",
+          "check": [
+            "Eq(Rational(48,66), Rational(8,11))",
+            "Eq(Rational(48,60), Rational(4,5))",
+            "Ne(Rational(8,11), Rational(4,5))"
+          ]
+        },
+        {
+          "id": "sat-pr2-w3",
+          "statement": "Using the same table, what percentage of the students who failed had not studied?",
+          "solution": "**Answer.** About $64.7\\%$.  \n'Of the students who failed' is a condition in different words — it names the population just as 'given that' would. The failing students number $34$, and of those, $22$ had not studied:\n$$\\frac{22}{34} = \\frac{11}{17} \\approx 0.647 = 64.7\\%$$\nThe wording matters more than the mathematics here. 'What percentage of the students who failed' conditions on failing, so $34$ is the denominator. 'What percentage of the students both failed and had not studied' would condition on nothing and use $100$, giving $22\\%$. Both are listed.  \nThe reliable habit: find the phrase that restricts the group — 'of those', 'given that', 'among the', 'for students who' — and put THAT group's total under the line.",
+          "check": [
+            "Eq(12 + 22, 34)",
+            "Eq(Rational(22,34), Rational(11,17))",
+            "Eq(Rational(22,100), Rational(11,50))",
+            "Ne(Rational(11,17), Rational(11,50))"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the grand total when the question states a condition.",
+          "correction": "'Given that a student studied' means the denominator is the sixty who studied, not the hundred students.",
+          "authored": true
+        },
+        {
+          "text": "Swapping the two directions of a conditional.",
+          "correction": "$P(A \\mid B)$ and $P(B \\mid A)$ are different numbers. Read which group the condition names.",
+          "authored": true
+        },
+        {
+          "text": "Missing a condition written in plain words.",
+          "correction": "'Of those', 'among the' and 'what percentage of the students who...' are all conditions.",
+          "authored": true
+        },
+        {
+          "text": "Applying a conditional percentage to the whole population.",
+          "correction": "'$60\\%$ of car owners also own a bicycle' means $60\\%$ of the car owners, so the share of everyone is $0.30 \\times 0.60 = 18\\%$.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-pr2-t1",
+          "statement": "Using the table above, given that a student did not study, what is the probability that the student failed?",
+          "solution": "**Answer.** $0.55$. The condition names the 'Did not study' row, total $40$, and the matching cell is $22$: $\\frac{22}{40} = 0.55$.",
+          "check": [
+            "Eq(Rational(22,40), Rational(11,20))"
+          ]
+        },
+        {
+          "id": "sat-pr2-t2",
+          "statement": "Using the table above, given that a student failed, what is the probability that the student had studied?",
+          "solution": "**Answer.** $\\dfrac{12}{34} = \\dfrac{6}{17} \\approx 0.353$. The condition names the 'Failed' column, total $34$.",
+          "check": [
+            "Eq(12 + 22, 34)",
+            "Eq(Rational(12,34), Rational(6,17))"
+          ]
+        },
+        {
+          "id": "sat-pr2-t3",
+          "statement": "In a group, $30\\%$ own a car and $60\\%$ of car owners also own a bicycle. What percentage of the whole group owns both?",
+          "solution": "**Answer.** $18\\%$. The $60\\%$ is conditional on owning a car, so it applies to the $30\\%$: $0.30 \\times 0.60 = 0.18$. Reading the $60\\%$ as applying to everyone gives $60\\%$, and adding gives $90\\%$ — both wrong.",
+          "check": [
+            "Eq(Rational(30,100)*Rational(60,100), Rational(18,100))",
+            "Ne(Rational(18,100), Rational(60,100))"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "The condition names the denominator",
+            "body": "'Given that a student studied' does not change which students passed — it changes who you are choosing FROM. The population shrinks to the sixty who studied, and that sixty goes below the line. In a two-way table, a conditional probability always lives inside a single row or a single column."
+          },
+          {
+            "kind": "teach",
+            "title": "The phrases that condition",
+            "beats": [
+              "'Given that' — the classic marker.",
+              "'Of those' and 'among the' — the same thing in plainer words.",
+              "'For students who...' and 'What percentage of the X who Y' — also conditions.",
+              "Whatever group the phrase names, that group's total is the denominator."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Conditioning on a row",
+            "problemId": "sat-pr2-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which total goes below the line?",
+            "prompt": "From the table, given that a student passed, what is the probability the student did NOT study?",
+            "options": [
+              "$\\dfrac{18}{66}$",
+              "$\\dfrac{18}{100}$",
+              "$\\dfrac{18}{40}$",
+              "$\\dfrac{66}{100}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The condition is 'passed', so the denominator is the Passed column total, $66$. Of those, $18$ did not study. Option B ignores the condition entirely; C conditions on the wrong group — that would answer 'given that a student did not study, what is the probability they passed'.",
+            "check": [
+              "Eq(48 + 18, 66)",
+              "Eq(Rational(18,66), Rational(3,11))",
+              "Ne(Rational(18,66), Rational(18,40))"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Reversing the condition",
+            "problemId": "sat-pr2-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "The two directions are different numbers",
+            "body": "$P(A \\mid B)$ and $P(B \\mid A)$ share a numerator but have different denominators, so they are almost never equal. From the same table, $P(\\text{passed} \\mid \\text{studied}) = 0.8$ while $P(\\text{studied} \\mid \\text{passed}) \\approx 0.727$. The SAT sets both versions precisely because students swap them."
+          },
+          {
+            "kind": "worked",
+            "title": "A condition in different words",
+            "problemId": "sat-pr2-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: condition on a row",
+            "problemId": "sat-pr2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: condition on a column",
+            "problemId": "sat-pr2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: a chained percentage",
+            "problemId": "sat-pr2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "The group named after 'given that' or 'of those' is the denominator.",
+              "A conditional probability lives inside one row or one column of the table.",
+              "P(A given B) and P(B given A) share a numerator but differ — never swap them.",
+              "A percentage stated 'of car owners' applies to the car owners, not to everyone.",
+              "The unconditional answer is always on the option list too."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-pr-p01",
+      "statement": "A bag holds $4$ red and $6$ blue counters. What is the probability of drawing a red counter?",
+      "solution": "**Answer.** $0.4$. Four wanted out of ten available.",
+      "check": [
+        "Eq(Rational(4, 4 + 6), Rational(2,5))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-p02",
+      "statement": "Using the $100$-student table above, what is the probability that a randomly selected student failed?",
+      "solution": "**Answer.** $0.34$. The Failed column totals $34$, out of $100$.",
+      "check": [
+        "Eq(12 + 22, 34)",
+        "Eq(Rational(34,100), Rational(17,50))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-p03",
+      "statement": "Using the same table, given that a student studied, what is the probability the student failed?",
+      "solution": "**Answer.** $0.2$. The condition names the Studied row, total $60$, and the matching cell is $12$: $\\frac{12}{60} = 0.2$.",
+      "check": [
+        "Eq(Rational(12,60), Rational(1,5))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-p04",
+      "statement": "In a class of $30$, $18$ play football and $14$ play basketball, and $8$ play both. How many play neither?",
+      "solution": "**Answer.** $6$. Those playing at least one number $18 + 14 - 8 = 24$, so $30 - 24 = 6$ play neither. Skipping the subtraction gives $32$, more than the class.",
+      "check": [
+        "Eq(18 + 14 - 8, 24)",
+        "Eq(30 - 24, 6)",
+        "18 + 14 > 30"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-p05",
+      "statement": "A spinner has $8$ equal sectors numbered $1$ to $8$. What is the probability of landing on a number that is NOT a multiple of $3$?",
+      "solution": "**Answer.** $0.75$. The multiples of $3$ are $3$ and $6$, so two sectors are unwanted: $1 - \\frac{2}{8} = 0.75$.",
+      "check": [
+        "Eq(1 - Rational(2,8), Rational(3,4))",
+        "Eq(Rational(6,8), Rational(3,4))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-p06",
+      "statement": "Using the $100$-student table above, given that a student passed, what is the probability the student had studied?",
+      "solution": "**Answer.** $\\dfrac{48}{66} = \\dfrac{8}{11} \\approx 0.727$. The denominator is the Passed column total. This is NOT the same as the probability that a student who studied passed, which is $\\frac{48}{60} = 0.8$.",
+      "check": [
+        "Eq(Rational(48,66), Rational(8,11))",
+        "Ne(Rational(8,11), Rational(48,60))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-p07",
+      "statement": "In a survey, $45\\%$ of respondents own a pet, and $20\\%$ of pet owners own more than one. What percentage of all respondents own more than one pet?",
+      "solution": "**Answer.** $9\\%$. The $20\\%$ is conditional on owning a pet, so $0.45 \\times 0.20 = 0.09$.",
+      "check": [
+        "Eq(Rational(45,100)*Rational(20,100), Rational(9,100))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-p08",
+      "statement": "Using the $100$-student table above, what is the probability that a randomly selected student failed OR did not study?",
+      "solution": "**Answer.** $0.52$. Failing covers $34$ students and not studying covers $40$, with $22$ in both, so $34 + 40 - 22 = 52$ students qualify. Checking against the table: everyone except the $48$ who studied and passed, and $100 - 48 = 52$.",
+      "check": [
+        "Eq(34 + 40 - 22, 52)",
+        "Eq(100 - 48, 52)",
+        "Eq(Rational(52,100), Rational(13,25))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-pr-x01",
+      "statement": "A box holds $7$ green and $13$ yellow balls. What is the probability of drawing a yellow ball?",
+      "solution": "**Answer.** $0.65$. Thirteen out of twenty.",
+      "check": [
+        "Eq(Rational(13, 7 + 13), Rational(13,20))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-x02",
+      "statement": "Using the $100$-student table above, what is the probability that a randomly selected student studied and passed?",
+      "solution": "**Answer.** $0.48$. That is a single cell over the grand total.",
+      "check": [
+        "Eq(Rational(48,100), Rational(12,25))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-x03",
+      "statement": "Using the same table, given that a student did not study, what is the probability the student passed?",
+      "solution": "**Answer.** $0.45$. The condition names the 'Did not study' row, total $40$, and the matching cell is $18$: $\\frac{18}{40} = 0.45$.",
+      "check": [
+        "Eq(18 + 22, 40)",
+        "Eq(Rational(18,40), Rational(9,20))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-x04",
+      "statement": "Of $200$ people surveyed, $130$ read newspapers, $90$ listen to podcasts and $50$ do both. How many do neither?",
+      "solution": "**Answer.** $30$. At least one covers $130 + 90 - 50 = 170$ people, so $200 - 170 = 30$ do neither.",
+      "check": [
+        "Eq(130 + 90 - 50, 170)",
+        "Eq(200 - 170, 30)"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-x05",
+      "statement": "In a company, $70\\%$ of employees work in the main office, and $40\\%$ of those commute by train. What percentage of all employees work in the main office and commute by train?",
+      "solution": "**Answer.** $28\\%$. The $40\\%$ conditions on the main-office group: $0.70 \\times 0.40 = 0.28$. Reading the $40\\%$ as applying to everyone gives $40\\%$, a listed option.",
+      "check": [
+        "Eq(Rational(70,100)*Rational(40,100), Rational(28,100))"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-pr-x06",
+      "statement": "Using the $100$-student table above, compare the probability that a student who studied passed with the probability that a student who passed had studied.",
+      "solution": "**Answer.** $\\frac{48}{60} = 0.8$ against $\\frac{48}{66} \\approx 0.727$. Same numerator, different denominators — and the two answer genuinely different questions. The first asks how effective studying was; the second asks how many of the successes came from studiers.",
+      "check": [
+        "Eq(Rational(48,60), Rational(4,5))",
+        "Eq(Rational(48,66), Rational(8,11))",
+        "Rational(4,5) > Rational(8,11)"
+      ],
+      "badges": [
+        {
+          "text": "sat-probability",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ]
+}

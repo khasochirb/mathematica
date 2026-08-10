@@ -104,48 +104,13 @@ export const SAT_COURSES: SatDomainCourse[] = [
     intro:
       "The quantitative-reasoning sixth of the paper, and the widest set of skills per question. Ratios and units, percentages, one- and two-variable data, probability, margins of error, and the study-design questions almost nobody revises.",
     units: [
-      planned(
-        1,
-        "ratios-rates-proportions-units",
-        "Ratios, Rates, Proportional Relationships and Units",
-        "Scaling a ratio, reading a rate, converting units in one chain, and the proportional relationships that pass through the origin.",
-      ),
-      planned(
-        2,
-        "percentages",
-        "Percentages",
-        "Percent of, percent change, successive changes that do not add, and working backwards from a discounted price to the original.",
-      ),
-      planned(
-        3,
-        "one-variable-data",
-        "One-Variable Data: Distributions and Measures of Center and Spread",
-        "Mean and median and when they part company, range and standard deviation compared without computing either, and what an outlier does to each.",
-      ),
-      planned(
-        4,
-        "two-variable-data",
-        "Two-Variable Data: Models and Scatterplots",
-        "Reading a scatterplot, using a line or curve of best fit to predict, interpreting its slope in context, and knowing where the model stops being trustworthy.",
-      ),
-      planned(
-        5,
-        "probability-and-conditional-probability",
-        "Probability and Conditional Probability",
-        "Probability from two-way tables, and the conditional questions where the denominator is a row or a column rather than the whole table.",
-      ),
-      planned(
-        6,
-        "inference-and-margin-of-error",
-        "Inference from Sample Statistics and Margin of Error",
-        "What a sample can and cannot claim about a population, how a margin of error is read, and what makes an interval narrower.",
-      ),
-      planned(
-        7,
-        "evaluating-statistical-claims",
-        "Evaluating Statistical Claims: Observational Studies and Experiments",
-        "Random selection versus random assignment, and the single rule that decides whether a study may claim causation or only association.",
-      ),
+      live(1, "ratios-rates-proportions-units"),
+      live(2, "percentages", "Ratios from Unit 1 — a percentage is a ratio out of 100."),
+      live(3, "one-variable-data"),
+      live(4, "two-variable-data", "Unit 3's summaries, now across two quantities at once."),
+      live(5, "probability-and-conditional-probability"),
+      live(6, "inference-and-margin-of-error", "Unit 5's sampling ideas, and percentages from Unit 2."),
+      live(7, "evaluating-statistical-claims", "Unit 6's sampling, and the association-is-not-causation point from Unit 4."),
     ],
   },
   {

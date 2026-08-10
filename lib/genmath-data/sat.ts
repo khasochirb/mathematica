@@ -26,6 +26,13 @@ import satEquivalentExpressions from "@/data/genmath/sat/equivalent-expressions.
 import satNonlinearEqOneVar from "@/data/genmath/sat/nonlinear-equations-one-variable.json";
 import satNonlinearSystems from "@/data/genmath/sat/systems-nonlinear-two-variables.json";
 import satNonlinearFunctions from "@/data/genmath/sat/nonlinear-functions.json";
+import satRatiosRates from "@/data/genmath/sat/ratios-rates-proportions-units.json";
+import satPercentages from "@/data/genmath/sat/percentages.json";
+import satOneVarData from "@/data/genmath/sat/one-variable-data.json";
+import satTwoVarData from "@/data/genmath/sat/two-variable-data.json";
+import satProbability from "@/data/genmath/sat/probability-and-conditional-probability.json";
+import satInference from "@/data/genmath/sat/inference-and-margin-of-error.json";
+import satClaims from "@/data/genmath/sat/evaluating-statistical-claims.json";
 
 const satUnits: CourseUnit[] = [
   satLinearEqOneVar as unknown as CourseUnit,
@@ -37,6 +44,13 @@ const satUnits: CourseUnit[] = [
   satNonlinearEqOneVar as unknown as CourseUnit,
   satNonlinearSystems as unknown as CourseUnit,
   satNonlinearFunctions as unknown as CourseUnit,
+  satRatiosRates as unknown as CourseUnit,
+  satPercentages as unknown as CourseUnit,
+  satOneVarData as unknown as CourseUnit,
+  satTwoVarData as unknown as CourseUnit,
+  satProbability as unknown as CourseUnit,
+  satInference as unknown as CourseUnit,
+  satClaims as unknown as CourseUnit,
 ];
 
 /** Every authored SAT unit, in registry order. */

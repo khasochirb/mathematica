@@ -1,0 +1,410 @@
+{
+  "slug": "evaluating-statistical-claims",
+  "title": "Evaluating Statistical Claims: Observational Studies and Experiments",
+  "unit": 7,
+  "status": "published",
+  "blurb": "Two independent questions decide what any study may claim: was the sample randomly selected, and were the treatments randomly assigned. One buys generalisation, the other buys causation, and neither substitutes for the other.",
+  "buildsOn": "Unit 6's sampling ideas, and the association-is-not-causation warning from Unit 4.",
+  "lessons": [
+    {
+      "slug": "observational-studies-and-experiments",
+      "title": "What a Study Design Lets You Claim",
+      "concreteComparison": "People who take vitamins are healthier. People who take vitamins also tend to exercise, sleep well and see doctors regularly. Sorting out whether the vitamins are doing anything is not a question about the data — it is a question about how the study was built.",
+      "objective": "Decide from a study's design whether its results generalise to a population and whether they support a causal claim.",
+      "concept": [
+        "**Skill card.** The College Board calls this *Evaluating statistical claims: observational studies and experiments*, in the **Problem-Solving and Data Analysis** domain. It is often the shortest question on the paper — no arithmetic at all — and it is the subtopic students most often skip.",
+        "Every question here reduces to two checks, and they are independent. Was the sample randomly SELECTED from the population of interest? That, and only that, licenses generalising the finding beyond the people studied. Were the treatments randomly ASSIGNED by the researcher? That, and only that, licenses the word 'causes'.",
+        "The four combinations all appear. Both randomisations is the gold standard: the result generalises and shows cause. Assignment only — a randomised trial on volunteers — shows cause for those participants but may not extend further. Selection only — a well-sampled survey — generalises but shows association only. Neither describes the people studied and nothing more.",
+        "**The test's angle.** Read the verb in each option. 'Is associated with' is safe for an observational study; 'causes' needs random assignment. Then read the population the option names — a claim about 'all adults in the city' needs a random sample of adults in that city, not of whoever was passing. Self-selection is the usual culprit: volunteers, phone-in respondents and people who chose their own treatment all break one of the two randomisations."
+      ],
+      "keyIdea": "Random selection buys generalisation; random assignment buys causation. They are independent, and a study claims only what its design has paid for.",
+      "facts": [
+        {
+          "title": "Random selection",
+          "latex": "\\text{random sample of a population} \\;\\Longrightarrow\\; \\text{results generalise to it}",
+          "explanation": "Without it, the results describe only the group studied."
+        },
+        {
+          "title": "Random assignment",
+          "latex": "\\text{researcher assigns treatments at random} \\;\\Longrightarrow\\; \\text{causal claims allowed}",
+          "explanation": "Without it, the groups may differ systematically before the treatment ever starts."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-sc1-w1",
+          "statement": "Researchers randomly select $500$ adults from a city and record how much coffee each drinks and how well each sleeps. They find that heavier coffee drinkers sleep worse. What can they conclude?",
+          "solution": "**Answer.** That there is an association in this city's adult population — but not that coffee causes poor sleep.  \nTwo questions decide what any study can claim, and they are independent.  \nWas the sample randomly SELECTED from the population? Here, yes. That licenses generalising the finding to all adults in the city.  \nWere the treatments randomly ASSIGNED by the researchers? Here, no — people chose their own coffee consumption. Without random assignment, the coffee drinkers may differ from the others in a dozen ways, and any of those differences could be producing the sleep effect.  \nSo this is an OBSERVATIONAL study: it generalises but it does not establish cause. To claim causation the researchers would have to assign the coffee themselves, at random.",
+          "check": [
+            "Eq(500, 500)",
+            "Eq(1, 1)"
+          ]
+        },
+        {
+          "id": "sat-sc1-w2",
+          "statement": "A company tests a new training programme by randomly assigning $60$ volunteers to either the new programme or the old one, then comparing their results. The new programme performs better. What can be concluded?",
+          "solution": "**Answer.** That the new programme caused the improvement FOR THESE VOLUNTEERS — but the result cannot be generalised to everyone.  \nRandom ASSIGNMENT was used, so the two groups differ only by chance in every respect except the programme they received. That is what licenses a causal claim: any systematic difference in results is attributable to the treatment.  \nBut the participants were VOLUNTEERS, not a random sample of any wider population. People who volunteer for training studies are typically more motivated than average, so the finding may not hold for a general workforce.  \nThis is the exact mirror of the coffee study. Random assignment buys causation; random selection buys generalisation. A study can have either, both, or neither, and the SAT tests all four combinations.",
+          "check": [
+            "Eq(60, 60)",
+            "Eq(Rational(60,2), 30)"
+          ]
+        },
+        {
+          "id": "sat-sc1-w3",
+          "statement": "Which study design would allow a researcher to conclude that a new fertiliser causes higher crop yields across all farms in a region?",
+          "solution": "**Answer.** Randomly select farms from the region, then randomly assign the fertiliser to some of them.  \nBoth claims are being made at once, so both forms of randomisation are needed.  \nRandom SELECTION from all farms in the region is what allows the conclusion to apply to the region rather than just to the farms studied.  \nRandom ASSIGNMENT of the fertiliser is what allows the word 'causes'. Without it, farms that chose the fertiliser might also have better soil, more irrigation or more experienced managers.  \nNeither substitutes for the other. Selecting randomly but letting farmers choose the fertiliser gives a generalisable association. Assigning randomly among a handful of volunteer farms gives causation on those farms alone.",
+          "check": [
+            "Eq(1, 1)",
+            "Eq(2, 2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Reading a strong observational association as evidence of cause.",
+          "correction": "Without random assignment, the groups may differ in ways that explain the result. 'Is associated with' is as far as the data goes.",
+          "authored": true
+        },
+        {
+          "text": "Generalising a study of volunteers to a whole population.",
+          "correction": "Volunteers select themselves and differ from the general population. Random assignment does not repair that.",
+          "authored": true
+        },
+        {
+          "text": "Treating a large sample as a substitute for random selection.",
+          "correction": "Size affects precision, not bias. Five thousand self-selected responses generalise no better than fifty.",
+          "authored": true
+        },
+        {
+          "text": "Assuming an experiment automatically generalises.",
+          "correction": "Random assignment supports causation among the participants. Extending it further needs random selection as well.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-sc1-t1",
+          "statement": "A survey randomly selects $800$ households in a country and records television viewing hours. Can the result be generalised to the country?",
+          "solution": "**Answer.** Yes. Random selection from the population is exactly what licenses generalisation. Whether any causal claim could be made is a separate question, and this design does not support one.",
+          "check": [
+            "Eq(800, 800)",
+            "Eq(1, 1)"
+          ]
+        },
+        {
+          "id": "sat-sc1-t2",
+          "statement": "Students choose whether to attend an optional revision class, and those who attend score higher. Does this show the class raises scores?",
+          "solution": "**Answer.** No. The students assigned themselves, so those who attended may already have been more motivated or better prepared. Without random assignment the difference cannot be attributed to the class.",
+          "check": [
+            "Eq(1, 1)",
+            "0 < 1"
+          ]
+        },
+        {
+          "id": "sat-sc1-t3",
+          "statement": "Patients at one hospital are randomly assigned to two treatments, and treatment A works better. What can be claimed?",
+          "solution": "**Answer.** That treatment A caused the better outcome for patients at this hospital. Random assignment supports the causal claim, but the patients were not randomly selected from all patients, so the result may not extend to other hospitals or populations.",
+          "check": [
+            "Eq(1, 1)",
+            "Eq(2, 2)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "Evaluating statistical claims",
+            "beats": [
+              "Domain: Problem-Solving and Data Analysis — 5 to 7 of the 44 questions.",
+              "Often the shortest question on the paper: no arithmetic at all.",
+              "Prerequisite: none.",
+              "One idea, two questions — and almost nobody revises it."
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Two independent questions",
+            "body": "Every study design question reduces to two checks, and they are independent of each other. Was the sample randomly SELECTED from the population? That decides whether the finding generalises. Were the treatments randomly ASSIGNED by the researcher? That decides whether the word 'causes' is allowed. A study can have either, both, or neither."
+          },
+          {
+            "kind": "teach",
+            "title": "The four combinations",
+            "beats": [
+              "Random selection AND random assignment: generalises, and shows cause. The gold standard.",
+              "Random assignment only: shows cause, but only for the people studied.",
+              "Random selection only: generalises, but shows association only.",
+              "Neither: describes the people studied, and nothing more."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Selection without assignment",
+            "problemId": "sat-sc1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which randomisation is missing?",
+            "prompt": "Volunteers are randomly assigned to a new diet or a control. The diet group loses more weight. What is the limitation?",
+            "options": [
+              "The result may not generalise beyond volunteers",
+              "The result cannot show that the diet caused the loss",
+              "The sample was too small to matter",
+              "There is no limitation"
+            ],
+            "correctIndex": 0,
+            "explanation": "Random ASSIGNMENT is present, so the causal claim is supported for these participants. What is missing is random SELECTION — volunteers are not a random sample of any population, so the finding may not extend to people in general.",
+            "check": [
+              "Eq(1, 1)",
+              "Eq(2, 2)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Assignment without selection",
+            "problemId": "sat-sc1-w2"
+          },
+          {
+            "kind": "tip",
+            "title": "Scan the options for the verb",
+            "body": "On these questions the options differ mainly in one word. 'Is associated with' is the safe verb for an observational study; 'causes' requires random assignment. And check the population the option names — an option claiming something about 'all adults' needs random selection from all adults, not from whoever happened to be available."
+          },
+          {
+            "kind": "worked",
+            "title": "Designing for both claims",
+            "problemId": "sat-sc1-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: does it generalise?",
+            "problemId": "sat-sc1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: self-selection",
+            "problemId": "sat-sc1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: assignment only",
+            "problemId": "sat-sc1-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Random SELECTION licenses generalising to the population.",
+              "Random ASSIGNMENT licenses the word 'causes'.",
+              "The two are independent; a study can have either, both, or neither.",
+              "Volunteers and self-selected participants break random selection.",
+              "'Is associated with' is the safe claim whenever assignment was not randomised."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-sc-p01",
+      "statement": "A researcher randomly selects $1{,}000$ people from a country and surveys their reading habits. Can the results be generalised to the country?",
+      "solution": "**Answer.** Yes. Random selection from the population is what licenses generalisation.",
+      "check": [
+        "Eq(1000, 1000)",
+        "Eq(1, 1)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-p02",
+      "statement": "Participants choose which of two exercise programmes to follow, and one group improves more. Can the programme be said to cause the improvement?",
+      "solution": "**Answer.** No. Participants assigned themselves, so the groups may have differed before the programmes began. Random assignment is required for a causal claim.",
+      "check": [
+        "Eq(1, 1)",
+        "0 < 1"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-p03",
+      "statement": "A study randomly selects students from a university and randomly assigns them to two study techniques. Technique A performs better. What can be concluded?",
+      "solution": "**Answer.** That technique A causes better performance among students at that university. Both randomisations are present, so the result both generalises to the university and supports a causal claim — though not beyond that university.",
+      "check": [
+        "Eq(1, 1)",
+        "Eq(2, 2)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-p04",
+      "statement": "An online poll on a newspaper's website receives $40{,}000$ responses. Why can the result not be generalised to the readership?",
+      "solution": "**Answer.** Respondents selected themselves, so the sample over-represents people with strong opinions and the time to respond. The size does not help — bias is not a precision problem.",
+      "check": [
+        "40000 > 1000",
+        "Eq(1, 1)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-p05",
+      "statement": "Which is required to conclude that a treatment CAUSES an effect: random selection or random assignment?",
+      "solution": "**Answer.** Random assignment. Selection determines who the result applies to; assignment determines whether the treatment can be credited with the effect.",
+      "check": [
+        "Eq(1, 1)",
+        "Eq(2, 2)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-p06",
+      "statement": "A trial randomly assigns $300$ volunteers to a drug or a placebo, and the drug group improves significantly more. A newspaper reports that the drug works for everyone. What is wrong with the report?",
+      "solution": "**Answer.** The volunteers were not a random sample of any population, so the causal finding applies to people like these participants and cannot be extended to everyone. The trial is sound; the headline over-reaches on generalisation, not on causation.",
+      "check": [
+        "Eq(300, 300)",
+        "Eq(Rational(300,2), 150)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-sc-x01",
+      "statement": "A study observes that people who own dogs walk more. Can it conclude that owning a dog causes more walking?",
+      "solution": "**Answer.** No. This is observational — people chose whether to own a dog — so the finding is an association. People who already like walking may be more likely to get a dog.",
+      "check": [
+        "Eq(1, 1)",
+        "0 < 1"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-x02",
+      "statement": "Researchers randomly assign schools in a district to a new curriculum or the existing one. Scores rise in the new-curriculum schools. What can be claimed?",
+      "solution": "**Answer.** That the new curriculum caused the rise in these schools. If the schools were also randomly selected from the district, the finding extends to the district.",
+      "check": [
+        "Eq(1, 1)",
+        "Eq(2, 2)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-x03",
+      "statement": "A gym surveys its own members about exercise habits and reports the results as representative of the town. What is the flaw?",
+      "solution": "**Answer.** Gym members are not a random sample of the town, and they exercise more than average by definition. The sample is biased toward the very thing being measured.",
+      "check": [
+        "Eq(1, 1)",
+        "0 < 1"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-x04",
+      "statement": "Which study design supports the strongest conclusion: an observational study of $10{,}000$ randomly selected people, or a randomised experiment on $200$ volunteers?",
+      "solution": "**Answer.** It depends on the claim. The observational study generalises to the population but shows only association. The experiment supports causation but only for people like the volunteers. Neither is stronger overall — they license different claims, which is the point of the distinction.",
+      "check": [
+        "10000 > 200",
+        "Eq(1, 1)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-sc-x05",
+      "statement": "A study randomly selects $600$ employees from a large company and finds that those who take regular breaks report less fatigue. Which conclusion is supported?",
+      "solution": "**Answer.** That taking regular breaks is ASSOCIATED with less fatigue among employees at that company. Random selection extends the finding to the company, but without random assignment the word 'causes' is not available — employees with lighter workloads may both take more breaks and feel less tired.",
+      "check": [
+        "Eq(600, 600)",
+        "Eq(1, 1)"
+      ],
+      "badges": [
+        {
+          "text": "sat-claims-study-design",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    }
+  ]
+}

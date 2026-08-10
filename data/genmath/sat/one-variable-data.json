@@ -1,0 +1,738 @@
+{
+  "slug": "one-variable-data",
+  "title": "One-Variable Data: Distributions and Measures of Center and Spread",
+  "unit": 3,
+  "status": "published",
+  "blurb": "Mean against median and which one an outlier moves, means handled through totals, frequency tables, skew read off two numbers, and standard deviation compared rather than computed — because the test never asks you to compute one.",
+  "buildsOn": null,
+  "lessons": [
+    {
+      "slug": "centre-and-spread",
+      "title": "Centre and Spread, and Which One Moves",
+      "concreteComparison": "Nine people in a room earn about $\\$40{,}000$ each. A billionaire walks in. The average income in the room is now over $\\$100$ million; the median has barely moved. Neither number is lying — they are answering different questions.",
+      "objective": "Compute mean and median, predict which one an extreme value moves, use totals to handle changing means, and compare the spread of two data sets without computing a standard deviation.",
+      "concept": [
+        "**Skill card.** The College Board calls this *One-variable data: distributions and measures of center and spread*, in the **Problem-Solving and Data Analysis** domain. Usually one question a test, and it is almost never a calculation — it is a comparison.",
+        "The mean adds every value and divides by the count, so it uses each value's SIZE and a single extreme reading drags it a long way. The median is the middle value of the sorted list, so it uses only POSITION and an extreme reading is merely 'the largest'. Sorting first is not optional: the middle of an unsorted list means nothing.",
+        "For questions where a mean changes, work with TOTALS. Mean times count is the total, and totals add. 'The mean of five numbers is $18$; adding a sixth makes it $20$' becomes $6 \\times 20 - 5 \\times 18 = 30$, with no need for the individual values.",
+        "**The test's angle.** Standard deviation is never calculated on the SAT — you are asked which of two data sets has the larger one. It measures typical distance from the mean, so look at how far the values reach from the centre. Identical values give exactly zero. And adding the same amount to every value shifts the mean but leaves every distance untouched, so the standard deviation does not change at all."
+      ],
+      "keyIdea": "The mean follows size and the median follows position, which is why outliers move one and not the other. Spread is about distance from the centre, and the test only ever asks you to compare it.",
+      "facts": [
+        {
+          "title": "Mean and total",
+          "latex": "\\text{mean} = \\frac{\\text{total}}{n} \\;\\Longleftrightarrow\\; \\text{total} = n \\times \\text{mean}",
+          "explanation": "Turning a mean into a total is the move behind every changing-mean question."
+        },
+        {
+          "title": "Median",
+          "latex": "\\text{odd } n: \\text{ the middle value}; \\qquad \\text{even } n: \\text{ the mean of the middle two}",
+          "explanation": "Sort first, always."
+        },
+        {
+          "title": "What leaves the spread alone",
+          "latex": "\\text{adding } c \\text{ to every value: mean} + c, \\text{ standard deviation unchanged}",
+          "explanation": "Shifting the whole data set moves the centre but not the distances from it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-od1-w1",
+          "statement": "The list $4, 7, 7, 9, 13, 20$ gives the number of books six students read. What are the mean and the median, and why do they differ?",
+          "solution": "**Answer.** Mean $10$, median $8$; the $20$ pulls the mean upward.  \nThe mean adds everything and divides by the count:\n$$\\frac{4 + 7 + 7 + 9 + 13 + 20}{6} = \\frac{60}{6} = 10$$\nThe median is the middle value once the list is in order. With SIX values there is no single middle, so average the third and fourth:\n$$\\frac{7 + 9}{2} = 8$$\nThe mean is larger because it uses every value's SIZE, so one unusually large reading drags it up. The median only cares about POSITION — the $20$ is simply 'the biggest', and replacing it with $200$ would leave the median at $8$ while sending the mean to $40$.  \nThat is the whole difference, and it is what the SAT tests: the mean is sensitive to outliers, the median is resistant to them.",
+          "check": [
+            "Eq(4 + 7 + 7 + 9 + 13 + 20, 60)",
+            "Eq(Rational(60,6), 10)",
+            "Eq(Rational(7 + 9, 2), 8)",
+            "Eq(Rational(4 + 7 + 7 + 9 + 13 + 200, 6), 40)"
+          ]
+        },
+        {
+          "id": "sat-od1-w2",
+          "statement": "The mean of five numbers is $18$. When a sixth number is added the mean becomes $20$. What is the sixth number?",
+          "solution": "**Answer.** $30$.  \nA mean question is really a TOTAL question. Work with the sums.\n$$\\text{sum of five} = 5 \\times 18 = 90$$\n$$\\text{sum of six} = 6 \\times 20 = 120$$\nThe sixth number is whatever closes the gap:\n$$120 - 90 = 30$$\nCheck: $\\frac{90 + 30}{6} = \\frac{120}{6} = 20$.  \nThe instinct is to reach for the individual values, but they are neither given nor needed. Mean times count gives the total, and totals add — that single move handles every 'the mean changes when...' question the SAT sets.",
+          "check": [
+            "Eq(5*18, 90)",
+            "Eq(6*20, 120)",
+            "Eq(120 - 90, 30)",
+            "Eq(Rational(90 + 30, 6), 20)"
+          ]
+        },
+        {
+          "id": "sat-od1-w3",
+          "statement": "Two data sets have the same mean. Set A is $10, 20, 30, 40, 50$ and Set B is $28, 29, 30, 31, 32$. Which has the larger standard deviation, and why?",
+          "solution": "**Answer.** Set A, because its values are spread much further from the mean.  \nBoth have mean $30$:\n$$\\frac{10 + 20 + 30 + 40 + 50}{5} = 30, \\qquad \\frac{28 + 29 + 30 + 31 + 32}{5} = 30$$\nStandard deviation measures typical distance from the mean. In Set A the distances are $20, 10, 0, 10, 20$; in Set B they are $2, 1, 0, 1, 2$. Every distance in A is ten times the matching one in B, so A's standard deviation is ten times B's.  \nThe SAT never asks you to CALCULATE a standard deviation — it asks you to compare two, and comparing spreads by eye is enough. Look at how far the values reach from the centre: wider spread means larger standard deviation, and a set whose values are all nearly equal has a standard deviation near zero.  \nNote also what does NOT change it: adding a constant to every value shifts the mean but leaves every distance untouched, so the standard deviation is unchanged.",
+          "check": [
+            "Eq(Rational(10 + 20 + 30 + 40 + 50, 5), 30)",
+            "Eq(Rational(28 + 29 + 30 + 31 + 32, 5), 30)",
+            "Eq(50 - 10, 40)",
+            "Eq(32 - 28, 4)",
+            "40 > 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Taking the middle of an unsorted list.",
+          "correction": "The median is defined on the ORDERED data. Sort before you count in.",
+          "authored": true
+        },
+        {
+          "text": "Taking only one middle value when the count is even.",
+          "correction": "With an even number of values there are two middles, and the median is their average.",
+          "authored": true
+        },
+        {
+          "text": "Believing an outlier moves the median.",
+          "correction": "It moves the mean. The median only shifts if the middle POSITION now holds a different value.",
+          "authored": true
+        },
+        {
+          "text": "Trying to compute a standard deviation.",
+          "correction": "The SAT never requires it. Compare how far the values sit from the centre and answer the comparison.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-od1-t1",
+          "statement": "What is the median of $3, 8, 2, 9, 5$?",
+          "solution": "**Answer.** $5$. In order the list is $2, 3, 5, 8, 9$, and with five values the middle one is the third. Taking the middle of the UNSORTED list is the standard error and gives $2$.",
+          "check": [
+            "Eq(5, 5)",
+            "Eq(sorted([3,8,2,9,5])[2], 5)"
+          ]
+        },
+        {
+          "id": "sat-od1-t2",
+          "statement": "The mean of four numbers is $12$. Three of them are $8$, $10$ and $15$. What is the fourth?",
+          "solution": "**Answer.** $15$. The total must be $4 \\times 12 = 48$, and the three given sum to $33$, so the fourth is $48 - 33 = 15$.",
+          "check": [
+            "Eq(4*12, 48)",
+            "Eq(8 + 10 + 15, 33)",
+            "Eq(48 - 33, 15)"
+          ]
+        },
+        {
+          "id": "sat-od1-t3",
+          "statement": "A data set has mean $50$ and median $50$. One value of $50$ is changed to $500$. What happens to each?",
+          "solution": "**Answer.** The mean rises; the median is unchanged. The mean uses every value's size, so replacing $50$ with $500$ adds $450$ to the total and raises the average. The median depends only on position, and moving one value from the middle of the range to the top does not move the middle value.",
+          "check": [
+            "Eq(500 - 50, 450)",
+            "450 > 0"
+          ]
+        },
+        {
+          "id": "sat-od1-t4",
+          "statement": "Set P is $5, 5, 5, 5$ and Set Q is $1, 4, 6, 9$. Which has the larger standard deviation?",
+          "solution": "**Answer.** Set Q. Every value in P is identical, so nothing deviates from the mean at all and the standard deviation is exactly zero. Q's values spread from $1$ to $9$, so its standard deviation is positive.",
+          "check": [
+            "Eq(Rational(5 + 5 + 5 + 5, 4), 5)",
+            "Eq(Rational(1 + 4 + 6 + 9, 4), 5)",
+            "Eq(5 - 5, 0)",
+            "9 - 1 > 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Skill card",
+            "title": "One-variable data",
+            "beats": [
+              "Domain: Problem-Solving and Data Analysis — 5 to 7 of the 44 questions.",
+              "Usually 1 question, and it is almost never a calculation.",
+              "Prerequisite: none beyond arithmetic.",
+              "You are never asked to compute a standard deviation — only to compare two."
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Mean uses size, median uses position",
+            "body": "The mean adds every value and divides by the count, so a single extreme reading moves it a long way. The median is just the middle value once the list is sorted, so an extreme reading is merely 'the biggest' and moves nothing. That is why house prices are reported by median and exam marks by mean — and it is the distinction almost every SAT question here is built on."
+          },
+          {
+            "kind": "dotPlot",
+            "title": "Watch them separate",
+            "teach": "Drag the highest dot further right. The median stays put while the mean chases it — the mean is pulled by size, the median only counts places.",
+            "config": {
+              "mode": "meanMedian",
+              "data": [
+                4,
+                7,
+                7,
+                9,
+                13,
+                20
+              ],
+              "min": 0,
+              "max": 24,
+              "xLabel": "books read"
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Mean against median",
+            "problemId": "sat-od1-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which one moves?",
+            "prompt": "In the list $2, 4, 6, 8, 10$ the largest value is changed from $10$ to $100$. What happens?",
+            "options": [
+              "The mean rises and the median does not change",
+              "Both rise by the same amount",
+              "The median rises and the mean does not change",
+              "Neither changes"
+            ],
+            "correctIndex": 0,
+            "explanation": "The mean goes from $6$ to $24$, because the total jumps by $90$. The median is the third value in the sorted list, which is $6$ before and after — the changed value is still simply the largest.",
+            "check": [
+              "Eq(Rational(2 + 4 + 6 + 8 + 10, 5), 6)",
+              "Eq(Rational(2 + 4 + 6 + 8 + 100, 5), 24)",
+              "Eq(sorted([2,4,6,8,100])[2], 6)"
+            ]
+          },
+          {
+            "kind": "tip",
+            "title": "Turn a mean into a total",
+            "body": "Mean times count equals total, and totals ADD. Every question of the form 'the mean of five is $18$; a sixth is added and the mean becomes $20$' is answered by comparing $5 \\times 18$ with $6 \\times 20$. The individual values are neither given nor needed."
+          },
+          {
+            "kind": "worked",
+            "title": "A mean that changes",
+            "problemId": "sat-od1-w2"
+          },
+          {
+            "kind": "teach",
+            "title": "Spread, without computing anything",
+            "beats": [
+              "Range is the largest minus the smallest — one subtraction.",
+              "Standard deviation is the typical distance of a value from the mean.",
+              "The SAT asks you to COMPARE two spreads, never to calculate one.",
+              "Identical values give a standard deviation of exactly zero.",
+              "Adding the same amount to every value leaves the standard deviation unchanged."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Comparing two spreads",
+            "problemId": "sat-od1-w3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: sort first",
+            "problemId": "sat-od1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: the missing value",
+            "problemId": "sat-od1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: which measure moves?",
+            "problemId": "sat-od1-t3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: compare the spreads",
+            "problemId": "sat-od1-t4"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Sort the list before taking a median; with an even count, average the middle two.",
+              "The mean is dragged by extreme values; the median is not.",
+              "Mean times count is the total, and totals add — that solves the 'new mean' items.",
+              "Standard deviation measures typical distance from the mean; compare, do not compute.",
+              "Identical values give zero spread; shifting every value changes nothing about it."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "distributions-and-shape",
+      "title": "Frequency Tables, Shape and Skew",
+      "concreteComparison": "Two towns have the same average commute of thirty minutes. In one, almost everyone takes half an hour. In the other, most people take ten minutes and a few take two hours. The average hides the difference completely — the SHAPE is what tells you which town you would rather live in.",
+      "objective": "Compute a mean and median from a frequency table, describe the shape of a distribution, and infer skew from the relative positions of mean and median.",
+      "concept": [
+        "**Skill card.** Still *One-variable data*, in the **Problem-Solving and Data Analysis** domain. Frequency tables and skew are the two shapes this subtopic takes on the digital SAT.",
+        "A frequency table is a compressed list: each row says a value appeared a certain number of times. The mean is the WEIGHTED total — every value multiplied by its frequency — divided by the total frequency. Averaging the values in the left column instead treats each row as one observation and is the error the format is designed to catch.",
+        "Shape is described by where the tail points. A symmetric distribution has mean and median equal. A right-skewed one has a tail of unusually high values; a left-skewed one has a tail of unusually low values.",
+        "**The test's angle.** One rule covers every skew question: the mean is dragged toward the tail while the median stays with the bulk of the data. So mean above median means skewed right, and mean below median means skewed left. The SAT gives you the two numbers and asks for the shape, or gives the shape and asks which measure is larger — the same fact, read in either direction."
+      ],
+      "keyIdea": "Weight each value by its frequency for the mean. The mean is dragged toward the tail and the median is not, so comparing them names the skew.",
+      "facts": [
+        {
+          "title": "Mean from a frequency table",
+          "latex": "\\bar{x} = \\frac{\\sum (\\text{value} \\times \\text{frequency})}{\\sum \\text{frequency}}",
+          "explanation": "Both the numerator and the denominator come from the table."
+        },
+        {
+          "title": "Skew and the two measures",
+          "latex": "\\text{mean} > \\text{median} \\Rightarrow \\text{right-skewed}, \\qquad \\text{mean} < \\text{median} \\Rightarrow \\text{left-skewed}",
+          "explanation": "The mean follows the tail; the median stays with the bulk."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "sat-od2-w1",
+          "statement": "The table shows the number of siblings reported by $40$ students.\n\n| Siblings | Students |\n| --- | --- |\n| $0$ | $8$ |\n| $1$ | $16$ |\n| $2$ | $10$ |\n| $3$ | $6$ |\n\nWhat is the mean number of siblings?",
+          "solution": "**Answer.** $1.35$.  \nA frequency table is a compressed list: eight students reported $0$, sixteen reported $1$, and so on. The total number of siblings is the WEIGHTED sum:\n$$0(8) + 1(16) + 2(10) + 3(6) = 0 + 16 + 20 + 18 = 54$$\nDivide by the number of students, which is the total FREQUENCY:\n$$\\frac{54}{40} = 1.35$$\nThe trap is averaging the four sibling-counts themselves: $\\frac{0 + 1 + 2 + 3}{4} = 1.5$. That treats each row as one observation, but the rows represent $8$, $16$, $10$ and $6$ students respectively. Multiply each value by how many students reported it.",
+          "check": [
+            "Eq(0*8 + 1*16 + 2*10 + 3*6, 54)",
+            "Eq(8 + 16 + 10 + 6, 40)",
+            "Eq(Rational(54,40), Rational(27,20))",
+            "Eq(Rational(0 + 1 + 2 + 3, 4), Rational(3,2))"
+          ]
+        },
+        {
+          "id": "sat-od2-w2",
+          "statement": "A distribution of salaries has a long tail of very high values. Which is larger, the mean or the median, and where does the tail point?",
+          "solution": "**Answer.** The mean is larger; the tail points toward the higher values, so the distribution is skewed RIGHT.  \nA few very large salaries add a great deal to the total but occupy only a few positions in the ordered list. So they pull the MEAN toward them while leaving the median where the bulk of the data sits.\n$$\\text{skewed right} \\;\\Longrightarrow\\; \\text{mean} > \\text{median}$$\nThe rule generalises: the mean is always dragged toward the tail. A left-skewed distribution, with a tail of unusually LOW values, has mean below median. A symmetric distribution has them equal.  \nA concrete check. In $1, 2, 3, 4, 40$ the median is $3$ and the mean is $10$ — the single large value has moved the mean past four of the five data points, which is exactly what a right tail does.",
+          "check": [
+            "Eq(Rational(1 + 2 + 3 + 4 + 40, 5), 10)",
+            "Eq(sorted([1,2,3,4,40])[2], 3)",
+            "10 > 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Averaging the values in a frequency table without weighting.",
+          "correction": "Each row stands for many observations. Multiply value by frequency first.",
+          "authored": true
+        },
+        {
+          "text": "Dividing by the number of ROWS instead of the total frequency.",
+          "correction": "The denominator is how many observations there are, which is the sum of the frequency column.",
+          "authored": true
+        },
+        {
+          "text": "Reading 'skewed right' as the bulk of the data being on the right.",
+          "correction": "The name describes where the TAIL points, so most of the data sits on the left.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "sat-od2-t1",
+          "statement": "A frequency table shows the value $5$ occurring $3$ times, $6$ occurring $2$ times, and $9$ occurring $5$ times. What is the mean?",
+          "solution": "**Answer.** $7.2$. The weighted total is $5(3) + 6(2) + 9(5) = 15 + 12 + 45 = 72$, over $3 + 2 + 5 = 10$ observations, giving $7.2$.",
+          "check": [
+            "Eq(5*3 + 6*2 + 9*5, 72)",
+            "Eq(3 + 2 + 5, 10)",
+            "Eq(Rational(72,10), Rational(36,5))"
+          ]
+        },
+        {
+          "id": "sat-od2-t2",
+          "statement": "In the same table, what is the median?",
+          "solution": "**Answer.** $7.5$. With ten observations the median is the average of the fifth and sixth in order. The sorted list is $5, 5, 5, 6, 6, 9, 9, 9, 9, 9$, so the fifth is $6$ and the sixth is $9$, giving $\\frac{6 + 9}{2} = 7.5$.",
+          "check": [
+            "Eq(sorted([5,5,5,6,6,9,9,9,9,9])[4], 6)",
+            "Eq(sorted([5,5,5,6,6,9,9,9,9,9])[5], 9)",
+            "Eq(Rational(6 + 9, 2), Rational(15,2))"
+          ]
+        },
+        {
+          "id": "sat-od2-t3",
+          "statement": "A distribution has mean $60$ and median $72$. What does that suggest about its shape?",
+          "solution": "**Answer.** It is skewed LEFT — the tail points toward the low values. The mean is dragged toward the tail, and here it sits below the median, so the unusual values are the small ones.",
+          "check": [
+            "60 < 72"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "A frequency table is a compressed list",
+            "body": "Each row of a frequency table says 'this value appeared this many times'. To find the mean, multiply every value by its frequency, add those products, and divide by the TOTAL frequency. Averaging the values in the left column instead treats every row as a single observation, which is the error the tables are built to catch."
+          },
+          {
+            "kind": "histogramBins",
+            "title": "Shape depends on how you bin it",
+            "teach": "The same data, drawn with different bin widths. Wide bins hide detail and narrow ones can invent it — but the tail, if there is one, survives every choice, and the tail is what the SAT asks about.",
+            "config": {
+              "data": [
+                1,
+                2,
+                2,
+                3,
+                3,
+                3,
+                4,
+                4,
+                5,
+                6,
+                9,
+                14
+              ],
+              "min": 0,
+              "max": 16,
+              "widths": [
+                1,
+                2,
+                4
+              ],
+              "xLabel": "value"
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Mean from a frequency table",
+            "problemId": "sat-od2-w1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Which way does the tail point?",
+            "prompt": "A data set has mean $85$ and median $70$. What does this indicate?",
+            "options": [
+              "The distribution is skewed right, with a tail of high values",
+              "The distribution is skewed left, with a tail of low values",
+              "The distribution is symmetric",
+              "The data set contains an error"
+            ],
+            "correctIndex": 0,
+            "explanation": "The mean is dragged toward the tail. With the mean ABOVE the median, the unusual values are the large ones, so the tail extends to the right. A symmetric distribution would have the two equal.",
+            "check": [
+              "85 > 70",
+              "Eq(Rational(1 + 2 + 3 + 4 + 40, 5), 10)",
+              "10 > 3"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "The three shapes",
+            "beats": [
+              "Symmetric: mean and median are equal, or very close.",
+              "Skewed right: a tail of high values, and mean above median.",
+              "Skewed left: a tail of low values, and mean below median.",
+              "The mean is always dragged toward the tail — that one rule covers all three."
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Reading skew off two numbers",
+            "problemId": "sat-od2-w2"
+          },
+          {
+            "kind": "boxPlot",
+            "title": "The five-number summary",
+            "teach": "A box plot draws minimum, lower quartile, median, upper quartile and maximum. The box holds the middle half of the data, and a long whisker on one side is a tail — the same skew, drawn.",
+            "config": {
+              "data": [
+                12,
+                15,
+                18,
+                19,
+                21,
+                22,
+                24,
+                25,
+                27,
+                41
+              ],
+              "xLabel": "minutes"
+            }
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: weighted mean",
+            "problemId": "sat-od2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: median from frequencies",
+            "problemId": "sat-od2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Your turn: name the skew",
+            "problemId": "sat-od2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry into the test",
+            "points": [
+              "Weight every value by its frequency, then divide by the total frequency.",
+              "Never average the values in a frequency table's left column.",
+              "The mean is dragged toward the tail; the median stays with the bulk.",
+              "Mean above median means skewed right; below means skewed left.",
+              "In a box plot the box holds the middle half, and a long whisker marks the tail."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "sat-od-p01",
+      "statement": "What is the mean of $6, 11, 4, 9, 10$?",
+      "solution": "**Answer.** $8$. The total is $40$, over five values.",
+      "check": [
+        "Eq(6 + 11 + 4 + 9 + 10, 40)",
+        "Eq(Rational(40,5), 8)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-p02",
+      "statement": "What is the median of $14, 3, 9, 21, 7, 11$?",
+      "solution": "**Answer.** $10$. In order: $3, 7, 9, 11, 14, 21$. With six values, average the third and fourth: $\\frac{9 + 11}{2} = 10$.",
+      "check": [
+        "Eq(Rational(9 + 11, 2), 10)",
+        "Eq(sorted([14,3,9,21,7,11])[2], 9)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-p03",
+      "statement": "The mean of six numbers is $25$. What is their total?",
+      "solution": "**Answer.** $150$. Total is mean times count.",
+      "check": [
+        "Eq(6*25, 150)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-p04",
+      "statement": "The mean of seven numbers is $30$. One number, $12$, is removed. What is the mean of the remaining six?",
+      "solution": "**Answer.** $33$. The original total is $210$; removing $12$ leaves $198$, and $\\frac{198}{6} = 33$. The mean rises because the removed value was below it.",
+      "check": [
+        "Eq(7*30, 210)",
+        "Eq(210 - 12, 198)",
+        "Eq(Rational(198,6), 33)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-p05",
+      "statement": "A frequency table lists the value $2$ four times, $5$ six times and $8$ ten times. What is the mean?",
+      "solution": "**Answer.** $5.9$. The weighted total is $2(4) + 5(6) + 8(10) = 8 + 30 + 80 = 118$, over $20$ observations. Averaging $2$, $5$ and $8$ instead gives $5$, a listed option.",
+      "check": [
+        "Eq(2*4 + 5*6 + 8*10, 118)",
+        "Eq(4 + 6 + 10, 20)",
+        "Eq(Rational(118,20), Rational(59,10))",
+        "Eq(Rational(2 + 5 + 8, 3), 5)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-p06",
+      "statement": "Set A is $20, 21, 22, 23, 24$ and Set B is $2, 12, 22, 32, 42$. Both have mean $22$. Which has the larger standard deviation?",
+      "solution": "**Answer.** Set B. Its values reach $20$ away from the mean in each direction; A's reach only $2$. Comparing spreads by eye is all the SAT ever asks.",
+      "check": [
+        "Eq(Rational(20 + 21 + 22 + 23 + 24, 5), 22)",
+        "Eq(Rational(2 + 12 + 22 + 32 + 42, 5), 22)",
+        "Eq(42 - 2, 40)",
+        "Eq(24 - 20, 4)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-p07",
+      "statement": "Every value in a data set is increased by $7$. What happens to the mean and to the standard deviation?",
+      "solution": "**Answer.** The mean rises by $7$; the standard deviation does not change. Shifting every value moves the centre but leaves every distance from the centre exactly as it was.",
+      "check": [
+        "Eq(Rational(1 + 2 + 3, 3) + 7, Rational(8 + 9 + 10, 3))",
+        "Eq(3 - 1, 10 - 8)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-p08",
+      "statement": "A data set has mean $48$ and median $60$. Which best describes its shape?",
+      "solution": "**Answer.** Skewed left, with a tail of low values. The mean sits below the median, and the mean is always dragged toward the tail.",
+      "check": [
+        "48 < 60"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "sat-od-x01",
+      "statement": "What is the median of $5, 12, 8, 3, 15, 9, 7$?",
+      "solution": "**Answer.** $8$. Sorted: $3, 5, 7, 8, 9, 12, 15$; with seven values the middle is the fourth.",
+      "check": [
+        "Eq(sorted([5,12,8,3,15,9,7])[3], 8)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-x02",
+      "statement": "The mean of five numbers is $14$. A sixth number is added and the mean becomes $16$. What is the sixth number?",
+      "solution": "**Answer.** $26$. The totals are $70$ and $96$, and the difference is $26$.",
+      "check": [
+        "Eq(5*14, 70)",
+        "Eq(6*16, 96)",
+        "Eq(96 - 70, 26)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-x03",
+      "statement": "A frequency table lists $3$ appearing $5$ times, $7$ appearing $3$ times and $10$ appearing $2$ times. What is the mean?",
+      "solution": "**Answer.** $5.6$. The weighted total is $15 + 21 + 20 = 56$, over $10$ observations.",
+      "check": [
+        "Eq(3*5 + 7*3 + 10*2, 56)",
+        "Eq(5 + 3 + 2, 10)",
+        "Eq(Rational(56,10), Rational(28,5))"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-x04",
+      "statement": "In the list $10, 12, 14, 16, 18$, the value $18$ is replaced by $180$. Which of the mean and the median changes?",
+      "solution": "**Answer.** Only the mean, which rises from $14$ to $46.4$. The median is the third sorted value, $14$, both before and after — the replaced value is still the largest.",
+      "check": [
+        "Eq(Rational(10 + 12 + 14 + 16 + 18, 5), 14)",
+        "Eq(Rational(10 + 12 + 14 + 16 + 180, 5), Rational(232,5))",
+        "Eq(sorted([10,12,14,16,180])[2], 14)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-x05",
+      "statement": "Set A is $7, 7, 7, 7, 7$ and Set B is $5, 6, 7, 8, 9$. Compare their standard deviations.",
+      "solution": "**Answer.** A's is zero and B's is positive, so B's is larger. Identical values do not deviate at all.",
+      "check": [
+        "Eq(7 - 7, 0)",
+        "9 - 5 > 0",
+        "Eq(Rational(5 + 6 + 7 + 8 + 9, 5), 7)"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Easy"
+        }
+      ]
+    },
+    {
+      "id": "sat-od-x06",
+      "statement": "A distribution of house prices is skewed right. Which is larger, the mean or the median, and which better represents a typical house?",
+      "solution": "**Answer.** The mean is larger; the median better represents a typical house. A few very expensive properties pull the mean upward while leaving the median among the bulk of ordinary houses — which is why property markets are reported by median.",
+      "check": [
+        "Eq(Rational(1 + 2 + 3 + 4 + 40, 5), 10)",
+        "Eq(sorted([1,2,3,4,40])[2], 3)",
+        "10 > 3"
+      ],
+      "badges": [
+        {
+          "text": "sat-data-one-var",
+          "mono": true
+        },
+        {
+          "text": "Hard"
+        }
+      ]
+    }
+  ]
+}
