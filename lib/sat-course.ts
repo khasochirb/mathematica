@@ -1,23 +1,31 @@
-// SAT Math course — the taught curriculum inside the SAT hub (backlog #245,
-// resource-blueprint build-order item 4).
+// SAT Math course — the taught curriculum inside the SAT hub.
 //
-// Four domain courses mirror the College Board's own blueprint — Algebra and
-// Advanced Math carry ~35% of the test each, Problem-Solving & Data Analysis
-// and Geometry & Trigonometry ~15% each — and the domain slugs equal the SAT
-// bank's unit ids, so the hub's course, topic practice and analytics all
-// speak the same taxonomy (the blueprint's consistency rule).
+// STRUCTURE IS THE COLLEGE BOARD'S, EXACTLY. Four domain courses, and inside
+// each one the Board's own published subtopics, in the Board's own order and
+// under the Board's own names. A student holding the official topic outline
+// can read it straight down this hub, line for line.
 //
-// Same architecture as the ЭЕШ prep courses (lib/esh-course.ts): units are
-// CURATED from the sympy-verified English catalog through one registry, so
-// every lesson, practice set and test-yourself a student opens here is the
-// same verified content taught in /math — re-ordered for the exam, not for a
-// school year. English content is exam-realism policy in this hub
+//   Algebra                              5 subtopics   13–15 of the 44 questions
+//   Advanced Math                        4 subtopics   13–15
+//   Problem-Solving & Data Analysis      7 subtopics    5–7
+//   Geometry & Trigonometry              4 subtopics    5–7
+//
+// Until 2026-08 these four domains held units CURATED from the school catalog
+// — "algebra-1/linear-equations", "geometry/circles" and so on. The
+// mathematics was right and sympy-verified, but the unit boundaries were a
+// school year's, not the exam's, so the hub could not be lined up against the
+// Board's list. The units now come from data/genmath/sat/, written for this
+// exam: one unit per subtopic, SAT register, traps named, Desmos routes given
+// where they beat algebra.
+//
+// Subtopic slugs are globally unique, so `resolveSatSource` is a flat lookup
+// and the domain grouping below is the only place order and weighting live.
+//
+// English content is exam-realism policy in this hub
 // (memory/expansion-vision.md §4.7), not a stopgap.
 
-import {
-  resolveCatalogSource,
-  type EshUnitEntry as SatUnitEntry,
-} from "@/lib/esh-course";
+import { resolveCatalogSource, type EshUnitEntry as SatUnitEntry } from "@/lib/esh-course";
+import { getSatNativeUnit } from "@/lib/genmath-data/sat";
 import type { CourseUnit, GenMathLesson } from "@/lib/genmath-lessons";
 import type { CourseDef } from "@/components/course/CourseShell";
 
@@ -28,94 +36,205 @@ export interface SatDomainCourse {
   domain: string;
   /** The College Board's name for the domain. */
   title: string;
-  /** Approximate share of the Math section's questions. */
+  /** How many of the 44 Math questions this domain carries. */
   weight: string;
   intro: string;
   units: SatUnitEntry[];
 }
 
-function live(unit: number, slug: string, source: string, buildsOn?: string): SatUnitEntry {
-  const data = resolveCatalogSource(source);
-  if (!data) throw new Error(`sat-course: source "${source}" did not resolve for "${slug}"`);
+/**
+ * "sat/<subtopic>" resolves against the SAT-native corpus; anything else falls
+ * through to the shared school catalog, so a subtopic can still be backed by a
+ * curated unit while its native version is being written.
+ */
+function resolveSatSource(source: string): CourseUnit | null {
+  if (source.startsWith("sat/")) return getSatNativeUnit(source.slice(4));
+  return resolveCatalogSource(source);
+}
+
+/** A subtopic whose unit is written and open. Title and blurb come from the
+ *  unit's own data, so the hub can never describe something the student does
+ *  not then open. */
+function live(unit: number, slug: string, buildsOn?: string): SatUnitEntry {
+  const source = `sat/${slug}`;
+  const data = resolveSatSource(source);
+  if (!data) throw new Error(`sat-course: source "${source}" did not resolve`);
   return { unit, slug, title: data.title, blurb: data.blurb, buildsOn, live: true, source };
+}
+
+/** A subtopic on the official list whose unit is not written yet. It is listed
+ *  — the Board's structure is the point, and a student should see the whole
+ *  map — but it does not link anywhere. */
+function planned(unit: number, slug: string, title: string, blurb: string): SatUnitEntry {
+  return { unit, slug, title, blurb, live: false, source: "authored" };
 }
 
 export const SAT_COURSES: SatDomainCourse[] = [
   {
     domain: "algebra",
     title: "Algebra",
-    weight: "~35% of the test",
+    weight: "13–15 questions",
     intro:
-      "The heart of the SAT Math section: linear equations and functions read every way the test asks — solve, interpret, build from context — plus systems and inequalities. Master the line and a third of the paper is yours.",
+      "The largest domain on the test, and the one everything else leans on. Linear equations in one and two variables, linear functions, systems, and inequalities — five official skills that between them carry about a third of the Math section.",
     units: [
-      live(1, "linear-equations", "algebra-1/linear-equations"),
-      live(2, "linear-functions", "algebra-1/linear-functions"),
-      live(3, "systems-of-equations", "algebra-1/systems-of-equations"),
-      live(4, "inequalities", "algebra-1/inequalities"),
-      live(5, "linear-models-and-variation", "9/linear-models-and-variation",
-        "Linear functions from Unit 2 — the SAT's favorite dress for them."),
-      live(6, "inequalities-in-two-variables", "9/inequalities-in-two-variables",
-        "Inequalities from Unit 4, now as constraint systems in the plane."),
+      live(1, "linear-equations-one-variable"),
+      live(2, "linear-equations-two-variables", "Solving in one variable — every method in Unit 2 ends with one of those."),
+      live(3, "linear-functions", "Slope and intercepts from Unit 2, now in function notation."),
+      live(4, "systems-of-linear-equations", "Units 1 and 2 — a system is two lines and one crossing."),
+      live(5, "linear-inequalities", "Units 1 and 2 — an inequality is a line plus a side of it."),
     ],
   },
   {
     domain: "advanced-math",
     title: "Advanced Math",
-    weight: "~35% of the test",
+    weight: "13–15 questions",
     intro:
-      "Everything nonlinear: function notation, quadratics from every angle, exponents and radicals, exponential growth, rational expressions, transformations, and the nonlinear systems that close out the hard third of the section.",
+      "Everything nonlinear, and the same share of the test as Algebra. Rewriting expressions into equivalent forms, solving nonlinear equations, systems where a line meets a curve, and the quadratic, exponential, polynomial and rational functions behind them.",
     units: [
-      live(1, "introduction-to-functions", "9/introduction-to-functions"),
-      live(2, "polynomials-and-factoring", "algebra-1/polynomials-and-factoring"),
-      live(3, "quadratic-equations", "algebra-1/quadratic-equations",
-        "Factoring from Unit 2."),
-      live(4, "quadratic-functions", "10/quadratic-functions",
-        "Solving quadratics from Unit 3; here their graphs carry the questions."),
-      live(5, "radicals-and-rational-exponents", "algebra-2/radicals-and-rational-exponents"),
-      live(6, "exponential-functions", "10/exponential-functions"),
-      live(7, "rational-expressions", "10/rational-expressions"),
-      live(8, "functions-and-transformations", "algebra-2/functions-and-transformations",
-        "Function notation from Unit 1."),
-      live(9, "systems-and-nonlinear-models", "algebra-2/systems-and-nonlinear-models",
-        "Quadratics from Units 3–4 meeting the lines of the Algebra course."),
+      planned(
+        1,
+        "equivalent-expressions",
+        "Equivalent Expressions",
+        "Exponent and radical rules, expanding and factoring polynomials, and rewriting rational expressions — the SAT's favourite question is 'which of the following is equivalent to'.",
+      ),
+      planned(
+        2,
+        "nonlinear-equations-one-variable",
+        "Nonlinear Equations in One Variable",
+        "Quadratics by factoring, square roots and the formula; radical and rational equations and their extraneous solutions; exponential and absolute-value equations.",
+      ),
+      planned(
+        3,
+        "systems-nonlinear-two-variables",
+        "Systems of Equations in Two Variables",
+        "A line meeting a parabola or a circle: substitution into a curve, and what the discriminant says about how many times they cross.",
+      ),
+      planned(
+        4,
+        "nonlinear-functions",
+        "Nonlinear Functions",
+        "Quadratic functions in all three forms, exponential growth and decay, polynomial and rational graphs, and the transformations that move any of them.",
+      ),
     ],
   },
   {
     domain: "problem-solving-data",
-    title: "Problem-Solving & Data Analysis",
-    weight: "~15% of the test",
+    title: "Problem-Solving and Data Analysis",
+    weight: "5–7 questions",
     intro:
-      "The calculator-friendly sixth of the paper: ratios and rates, percentages, reading one- and two-variable data, probability from tables, and the study-design questions everyone forgets to prepare — every one of them answerable from a small set of moves.",
+      "The quantitative-reasoning sixth of the paper, and the widest set of skills per question. Ratios and units, percentages, one- and two-variable data, probability, margins of error, and the study-design questions almost nobody revises.",
     units: [
-      live(1, "proportional-relationships", "7/proportional-relationships"),
-      live(2, "percent-applications", "7/percent-applications"),
-      live(3, "describing-data", "prob-stats/describing-data"),
-      live(4, "two-variable-data", "prob-stats/two-variable-data",
-        "The one-variable summaries from Unit 3, now in scatterplots and fits."),
-      live(5, "probability-models", "prob-stats/probability-models"),
-      live(6, "inference-and-studies", "prob-stats/inference-and-studies",
-        "Sampling ideas from Unit 5 — margins of error and what a study can claim."),
+      planned(
+        1,
+        "ratios-rates-proportions-units",
+        "Ratios, Rates, Proportional Relationships and Units",
+        "Scaling a ratio, reading a rate, converting units in one chain, and the proportional relationships that pass through the origin.",
+      ),
+      planned(
+        2,
+        "percentages",
+        "Percentages",
+        "Percent of, percent change, successive changes that do not add, and working backwards from a discounted price to the original.",
+      ),
+      planned(
+        3,
+        "one-variable-data",
+        "One-Variable Data: Distributions and Measures of Center and Spread",
+        "Mean and median and when they part company, range and standard deviation compared without computing either, and what an outlier does to each.",
+      ),
+      planned(
+        4,
+        "two-variable-data",
+        "Two-Variable Data: Models and Scatterplots",
+        "Reading a scatterplot, using a line or curve of best fit to predict, interpreting its slope in context, and knowing where the model stops being trustworthy.",
+      ),
+      planned(
+        5,
+        "probability-and-conditional-probability",
+        "Probability and Conditional Probability",
+        "Probability from two-way tables, and the conditional questions where the denominator is a row or a column rather than the whole table.",
+      ),
+      planned(
+        6,
+        "inference-and-margin-of-error",
+        "Inference from Sample Statistics and Margin of Error",
+        "What a sample can and cannot claim about a population, how a margin of error is read, and what makes an interval narrower.",
+      ),
+      planned(
+        7,
+        "evaluating-statistical-claims",
+        "Evaluating Statistical Claims: Observational Studies and Experiments",
+        "Random selection versus random assignment, and the single rule that decides whether a study may claim causation or only association.",
+      ),
     ],
   },
   {
     domain: "geometry-trig",
-    title: "Geometry & Trigonometry",
-    weight: "~15% of the test",
+    title: "Geometry and Trigonometry",
+    weight: "5–7 questions",
     intro:
-      "Lines, angles and triangles, similarity, right-triangle trig with SOH-CAH-TOA and the special triangles, circles, and volume — SAT geometry chains two facts per problem, and these six units build exactly those chains.",
+      "The smallest domain and the most formula-driven — and the reference sheet gives you most of the formulas. Area and volume, angle and triangle relationships, right-triangle trigonometry, and circles in both their geometric and coordinate forms.",
     units: [
-      live(1, "triangles-and-congruence", "geometry/triangles-and-congruence"),
-      live(2, "similarity", "geometry/similarity",
-        "Congruence from Unit 1 — similarity is congruence with a scale factor."),
-      live(3, "right-triangles-and-trig", "geometry/right-triangles-and-trig",
-        "Similarity from Unit 2 is why the trig ratios exist at all."),
-      live(4, "area-and-perimeter", "geometry/area-and-perimeter"),
-      live(5, "circles", "geometry/circles"),
-      live(6, "surface-area-and-volume", "geometry/surface-area-and-volume",
-        "The areas of Unit 4, extruded into the volume formulas the SAT provides."),
+      planned(
+        1,
+        "area-and-volume",
+        "Area and Volume Formulas",
+        "Areas of plane figures and volumes of the solids on the reference sheet, composite shapes, and what happens to area and volume when a dimension is scaled.",
+      ),
+      planned(
+        2,
+        "lines-angles-and-triangles",
+        "Lines, Angles, and Triangles",
+        "Angles on parallel lines, the triangle angle sum and exterior angle, congruence and similarity, and the two-step chains the SAT builds from them.",
+      ),
+      planned(
+        3,
+        "right-triangles-and-trigonometry",
+        "Right Triangles and Trigonometry",
+        "Pythagoras, the special right triangles, the three trigonometric ratios, the complementary-angle identity, and radians where the test uses them.",
+      ),
+      planned(
+        4,
+        "circles",
+        "Circles",
+        "The equation of a circle and completing the square to find it, plus arcs, sectors, central and inscribed angles, and radian measure.",
+      ),
     ],
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Skill tags — one per official subtopic
+// ---------------------------------------------------------------------------
+
+/**
+ * The SAT skill-tag taxonomy, one tag per official College Board subtopic.
+ * Tags are what make gap detection and re-drill routing accurate
+ * (`skill-taxonomy`), so they are pinned to the Board's own skill boundaries
+ * rather than to any convenient grouping of our own.
+ */
+export const SAT_SKILL_TAGS: Record<string, string> = {
+  "linear-equations-one-variable": "sat-linear-eq-one-var",
+  "linear-equations-two-variables": "sat-linear-eq-two-var",
+  "linear-functions": "sat-linear-functions",
+  "systems-of-linear-equations": "sat-systems-linear",
+  "linear-inequalities": "sat-linear-inequalities",
+  "equivalent-expressions": "sat-equivalent-expressions",
+  "nonlinear-equations-one-variable": "sat-nonlinear-eq-one-var",
+  "systems-nonlinear-two-variables": "sat-nonlinear-systems",
+  "nonlinear-functions": "sat-nonlinear-functions",
+  "ratios-rates-proportions-units": "sat-ratios-rates",
+  percentages: "sat-percentages",
+  "one-variable-data": "sat-data-one-var",
+  "two-variable-data": "sat-data-two-var",
+  "probability-and-conditional-probability": "sat-probability",
+  "inference-and-margin-of-error": "sat-inference-margin-error",
+  "evaluating-statistical-claims": "sat-claims-study-design",
+  "area-and-volume": "sat-area-volume",
+  "lines-angles-and-triangles": "sat-lines-angles-triangles",
+  "right-triangles-and-trigonometry": "sat-right-triangle-trig",
+  circles: "sat-circles",
+};
 
 // ---------------------------------------------------------------------------
 // Lookups — same contract as lib/esh-course.ts
@@ -127,15 +246,20 @@ export function getSatDomainCourse(domain: string): SatDomainCourse | null {
   return SAT_COURSES.find((c) => c.domain === domain) ?? null;
 }
 
+/** Every subtopic across all four domains, in the Board's order. */
+export function allSatSubtopics(): { domain: string; entry: SatUnitEntry }[] {
+  return SAT_COURSES.flatMap((c) => c.units.map((entry) => ({ domain: c.domain, entry })));
+}
+
 export function getSatUnit(domain: string, unitSlug: string): CourseUnit | null {
   const course = getSatDomainCourse(domain);
   if (!course) return null;
   const entry = course.units.find((u) => u.slug === unitSlug);
   if (!entry || !entry.live) return null;
-  const data = resolveCatalogSource(entry.source);
+  const data = resolveSatSource(entry.source);
   if (!data) return null;
-  // Stamp the SAT position and REPLACE buildsOn: the data's buildsOn names
-  // unit numbers of its home course, which would be wrong on this spine.
+  // Stamp the SAT position and REPLACE buildsOn: a curated unit's own buildsOn
+  // names unit numbers of its home course, which would be wrong on this spine.
   return { ...data, unit: entry.unit, buildsOn: entry.buildsOn };
 }
 
