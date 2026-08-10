@@ -91,12 +91,7 @@ export const SAT_COURSES: SatDomainCourse[] = [
     intro:
       "Everything nonlinear, and the same share of the test as Algebra. Rewriting expressions into equivalent forms, solving nonlinear equations, systems where a line meets a curve, and the quadratic, exponential, polynomial and rational functions behind them.",
     units: [
-      planned(
-        1,
-        "equivalent-expressions",
-        "Equivalent Expressions",
-        "Exponent and radical rules, expanding and factoring polynomials, and rewriting rational expressions — the SAT's favourite question is 'which of the following is equivalent to'.",
-      ),
+      live(1, "equivalent-expressions"),
       planned(
         2,
         "nonlinear-equations-one-variable",
