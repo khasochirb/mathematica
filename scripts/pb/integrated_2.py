@@ -27,6 +27,7 @@ if PB not in sys.path:
 
 from imbank import (P, closed, figure, fmt, form, lin, mk_num, mk_txt,  # noqa: E402
                     on_circle, pt, quad, radical, seg, sgn, xpm)
+import integrated_2_more as more  # noqa: E402
 
 SLUG = "integrated-2"
 TITLE = "Integrated Math 2"
@@ -50,6 +51,11 @@ UNITS = [
      "blurb": "Sine, cosine and tangent as ratios similarity makes well defined, the special triangles, and complementary angles."},
     {"id": "circles", "title": "Circles",
      "blurb": "Central and inscribed angles, tangents and chords, arc length and sector area, and the equation of a circle."},
+    {"id": "geometric-measurement-and-modelling",
+     "title": "Geometric Measurement & Modelling",
+     "blurb": "Volume and surface area of every solid on the reference sheet, running the "
+              "formulas backwards, cross-sections and solids of revolution, and density "
+              "and design problems."},
     {"id": "probability", "title": "Probability",
      "blurb": "Sample spaces, unions and intersections, conditional probability and independence, and two-way tables."},
 ]
@@ -1263,6 +1269,222 @@ def build():
         form("im2-perm-vs-comb", "Ordered line-ups against committees", 2, U8,
              "Order matters or it does not — the factor between them is r!.",
              mk_num("im2-pvc", _g_perm_vs_comb())),
+    ]
+
+    # -----------------------------------------------------------------
+    # Second half of every unit, plus the whole of Unit 8 (Geometric
+    # Measurement & Modelling), which is new to the course. Six of the
+    # eight original units stopped at Level 2, so the level filter on
+    # the unit page offered a tier with nothing behind it.
+    # Generators in scripts/pb/integrated_2_more.py.
+    # -----------------------------------------------------------------
+    U1 = "rational-exponents-and-radicals"
+    U2 = "polynomials-and-factoring"
+    U3 = "quadratic-functions"
+    U4 = "solving-quadratic-equations"
+    U5 = "similarity-and-dilations"
+    U6 = "right-triangle-trigonometry"
+    U7 = "circles"
+    U8 = "geometric-measurement-and-modelling"
+    U9 = "probability"
+    forms += [
+        # --- Unit 1: rational exponents & radicals --------------------
+        form("im2-negative-exponent", "Negative exponents", 1, U1,
+             "A negative exponent is a reciprocal, never a negative number.",
+             mk_num("im2-nex", more.g_negative_exponent())),
+        form("im2-radical-to-exponent", "Radical into rational exponent", 2, U1,
+             "The index becomes the denominator; the inner power the numerator.",
+             mk_txt("im2-r2e", more.g_radical_to_exponent())),
+        form("im2-rationalise", "Clearing a radical from the bottom", 2, U1,
+             "Multiply top and bottom by the radical — that is multiplying by 1.",
+             mk_txt("im2-rat", more.g_rationalise_denominator())),
+        form("im2-power-of-power", "A perfect power under a fractional exponent", 3, U1,
+             "Rewrite the base as a power first; then the exponents cancel.",
+             mk_num("im2-pop", more.g_simplify_power_of_power())),
+        form("im2-extraneous-root", "The root that does not check out", 3, U1,
+             "Squaring can make a false statement true — so every root gets tested.",
+             mk_txt("im2-ext", more.g_radical_extraneous())),
+        form("im2-irrational-combination", "Forced to be irrational", 3, U1,
+             "Rational plus irrational cannot be rational — and the proof is one line.",
+             mk_txt("im2-irc", more.g_irrational_combination())),
+
+        # --- Unit 2: polynomials & factoring --------------------------
+        form("im2-add-polynomials", "Adding and subtracting polynomials", 1, U2,
+             "The minus sign distributes over EVERY term in the bracket.",
+             mk_txt("im2-adp", more.g_add_polynomials())),
+        form("im2-factor-grouping", "Factoring by grouping", 2, U2,
+             "Split the middle term into two whose product is ac and sum is b.",
+             mk_txt("im2-fgr", more.g_factor_by_grouping())),
+        form("im2-factor-a-not-one", "A leading coefficient that will not go quietly", 2, U2,
+             "Both brackets cannot start with x — decide which carries the coefficient.",
+             mk_txt("im2-fa1", more.g_factor_a_not_one())),
+        form("im2-factor-completely", "Common factor FIRST", 3, U2,
+             "Take out the common factor, then look again — 'completely' means completely.",
+             mk_txt("im2-fcm", more.g_factor_completely())),
+        form("im2-polynomial-identity", "Identities and expansions", 3, U2,
+             "The middle coefficients of a cube count the ways to choose a bracket.",
+             mk_txt("im2-pid", more.g_polynomial_identity())),
+        form("im2-polynomial-closure", "Which operation leaves the system", 3, U2,
+             "Polynomials are closed under +, - and x, but not under division.",
+             mk_txt("im2-pcl", more.g_polynomial_closure())),
+
+        # --- Unit 3: quadratic functions ------------------------------
+        form("im2-quad-y-intercept", "The y-intercept of a parabola", 1, U3,
+             "Setting x = 0 leaves the constant term, and nothing else.",
+             mk_txt("im2-qyi", more.g_quad_y_intercept())),
+        form("im2-parabola-direction", "Which way it opens", 1, U3,
+             "Only the leading coefficient decides up or down, maximum or minimum.",
+             mk_txt("im2-pdi", more.g_parabola_direction())),
+        form("im2-transform-parabola", "Naming the transformation", 2, U3,
+             "The sign inside the bracket is reversed; the one outside is not.",
+             mk_txt("im2-tpb", more.g_transform_parabola())),
+        form("im2-max-height", "The greatest height", 3, U3,
+             "The vertex is the maximum — and the question asks how high, not when.",
+             mk_num("im2-mxh", more.g_max_height_word())),
+        form("im2-average-rate", "Average rate of change", 3, U3,
+             "The slope of the joining line — different on every interval.",
+             mk_num("im2-avr", more.g_average_rate_quad())),
+        form("im2-compare-growth", "Quadratic against exponential", 3, U3,
+             "Exponential wins eventually, whatever head start the polynomial has.",
+             mk_txt("im2-cgr", more.g_compare_growth())),
+
+        # --- Unit 4: solving quadratic equations ----------------------
+        form("im2-square-root-method", "Taking the square root", 1, U4,
+             "Both signs, always — the plus-or-minus is half the answer.",
+             mk_txt("im2-srm", more.g_square_root_method())),
+        form("im2-zero-product", "The zero-product property", 1, U4,
+             "A product is zero exactly when one factor is.",
+             mk_txt("im2-zpr", more.g_zero_product())),
+        form("im2-factor-solve", "Solving by factoring", 1, U4,
+             "Two numbers multiplying to c and adding to b — then flip their signs.",
+             mk_txt("im2-fsv", more.g_factor_solve_simple())),
+        form("im2-complete-square-solve", "Completing the square to the roots", 2, U4,
+             "Half the middle coefficient, squared — then un-square with both signs.",
+             mk_txt("im2-css", more.g_complete_square_solve())),
+        form("im2-linear-quadratic", "Where a line meets a parabola", 2, U4,
+             "Substitute the line into the curve; one quadratic in x is left.",
+             mk_txt("im2-lqs", more.g_linear_quadratic_system())),
+        form("im2-quadratic-word", "Building the equation first", 3, U4,
+             "Set up, solve, then throw away the root the situation forbids.",
+             mk_num("im2-qwd", more.g_quadratic_word_setup())),
+
+        # --- Unit 5: similarity & dilations ---------------------------
+        form("im2-scale-from-sides", "The scale factor, in one division", 1, U5,
+             "Image over original — and the direction is part of the answer.",
+             mk_num("im2-sfs", more.g_scale_factor_from_sides())),
+        form("im2-similar-area-ratio", "Areas of similar figures", 2, U5,
+             "Lengths scale by k, areas by k squared.",
+             mk_num("im2-sar", more.g_similar_area_ratio())),
+        form("im2-aa-criterion", "Why they are similar", 2, U5,
+             "Two matching angles is already enough — the third is forced.",
+             mk_txt("im2-aac", more.g_aa_criterion())),
+        form("im2-indirect-measurement", "Measuring what you cannot reach", 3, U5,
+             "Same sun angle, similar triangles, one proportion.",
+             mk_num("im2-idm", more.g_indirect_measurement())),
+        form("im2-dilation-composition", "Two dilations in a row", 3, U5,
+             "Scale factors MULTIPLY; they never add.",
+             mk_num("im2-dcp", more.g_dilation_composition())),
+        form("im2-similar-volume", "Volumes of similar solids", 3, U5,
+             "The exponent matches the dimension: lengths k, areas k squared, volumes k cubed.",
+             mk_num("im2-svl", more.g_similar_volume())),
+
+        # --- Unit 6: right-triangle trigonometry ----------------------
+        form("im2-find-angle-inverse", "Which inverse ratio", 1, U6,
+             "Name the two sides you were given; that names the ratio.",
+             mk_txt("im2-fai", more.g_find_angle_inverse())),
+        form("im2-missing-leg", "Pythagoras, backwards to a leg", 2, U6,
+             "The SQUARES subtract — never the lengths themselves.",
+             mk_num("im2-mlg", more.g_missing_leg())),
+        form("im2-exact-angle-side", "A side from an exact-value angle", 2, U6,
+             "30, 45 and 60 degrees need no calculator at all.",
+             mk_txt("im2-eas", more.g_solve_right_triangle_side())),
+        form("im2-angle-elevation", "Angles of elevation", 2, U6,
+             "The slope length is the hypotenuse; the height is opposite the angle.",
+             mk_num("im2-ael", more.g_angle_elevation())),
+        form("im2-trig-from-one", "One ratio gives the others", 3, U6,
+             "Recover the third side with Pythagoras, then read off any ratio.",
+             mk_num("im2-tfo", more.g_trig_from_one_ratio())),
+        form("im2-two-step-trig", "Two triangles, one answer", 3, U6,
+             "Find which triangle actually carries the quantity you were asked for.",
+             mk_num("im2-tst", more.g_two_step_trig())),
+
+        # --- Unit 7: circles ------------------------------------------
+        form("im2-radius-diameter", "Circumference and area", 1, U7,
+             "Circumference is linear in r; area is quadratic. Different units, different formulas.",
+             mk_txt("im2-rdm", more.g_radius_diameter())),
+        form("im2-arc-central", "Central against inscribed", 1, U7,
+             "A central angle EQUALS its arc; an inscribed angle halves it.",
+             mk_num("im2-arcm", more.g_arc_measure_central())),
+        form("im2-cyclic-quad", "Cyclic quadrilaterals", 2, U7,
+             "Opposite angles are supplementary, because the two arcs make a full circle.",
+             mk_num("im2-cyq", more.g_cyclic_quadrilateral())),
+        form("im2-circle-complete-square", "Completing the square twice", 3, U7,
+             "Group x with x and y with y — and the right-hand side is r SQUARED.",
+             mk_num("im2-ccs", more.g_circle_complete_square())),
+        form("im2-two-chords", "Two chords crossing", 3, U7,
+             "The PRODUCTS of the pieces are equal — it is not a sum rule.",
+             mk_num("im2-2ch", more.g_two_chords())),
+        form("im2-sector-backwards", "From sector area to angle", 3, U7,
+             "The sector is the same fraction of the circle as the angle is of 360.",
+             mk_num("im2-scb", more.g_sector_backwards())),
+
+        # --- Unit 8: geometric measurement & modelling (all new) ------
+        form("im2-prism-volume", "Volume of a prism", 1, U8,
+             "Base area times height — and surface area is a different quantity.",
+             mk_num("im2-pvl", more.g_prism_volume())),
+        form("im2-cylinder-volume", "Volume of a cylinder", 1, U8,
+             "The same statement as a prism, with a round base.",
+             mk_txt("im2-cvl", more.g_cylinder_volume())),
+        form("im2-cone-volume", "Volume of a cone", 1, U8,
+             "Exactly one third of the cylinder that encloses it.",
+             mk_txt("im2-kvl", more.g_cone_volume())),
+        form("im2-sphere-volume", "Volume of a sphere", 1, U8,
+             "Four thirds pi r CUBED — a solid, so the exponent is 3.",
+             mk_txt("im2-svo", more.g_sphere_volume())),
+        form("im2-solve-height", "Backwards to a height", 2, U8,
+             "Knowing the volume turns the formula into an equation.",
+             mk_num("im2-shg", more.g_solve_for_height())),
+        form("im2-solve-radius", "Backwards to a radius", 2, U8,
+             "A square root appears, and only the positive one is a length.",
+             mk_num("im2-srd", more.g_solve_for_radius())),
+        form("im2-surface-area-cylinder", "Surface area of a cylinder", 2, U8,
+             "Two discs plus the side, unrolled into a rectangle.",
+             mk_txt("im2-sac", more.g_surface_area_cylinder())),
+        form("im2-capacity-units", "Cubic metres into litres", 2, U8,
+             "One cubic metre is a thousand litres — the factor is not 100.",
+             mk_num("im2-cpu", more.g_capacity_units())),
+        form("im2-cross-section", "The shape of the cut face", 2, U8,
+             "It depends on the cutting plane as much as on the solid.",
+             mk_txt("im2-crs", more.g_cross_section())),
+        form("im2-composite-solid", "Two solids joined", 3, U8,
+             "Volumes add cleanly; decide add or subtract before reaching for a formula.",
+             mk_txt("im2-cms", more.g_composite_solid())),
+        form("im2-density", "Density, by area and by volume", 3, U8,
+             "'Per' means divide, and the units say whether to use area or volume.",
+             mk_num("im2-dns", more.g_density_problem())),
+        form("im2-scaling-design", "Scaling a design up", 3, U8,
+             "Capacity grows like k cubed while the material grows only like k squared.",
+             mk_num("im2-scd", more.g_scaling_design())),
+
+        # --- Unit 9: probability ---------------------------------------
+        form("im2-prob-or-disjoint", "'Or' with no overlap", 1, U9,
+             "Mutually exclusive events simply add.",
+             mk_num("im2-por", more.g_prob_or_disjoint())),
+        form("im2-two-way-read", "One cell of a two-way table", 1, U9,
+             "Both conditions means one cell over the GRAND total.",
+             mk_num("im2-twr", more.g_two_way_read())),
+        form("im2-independence-test", "Testing independence", 2, U9,
+             "Independence is a calculation: does P(both) equal the product?",
+             mk_txt("im2-ind", more.g_independence_test())),
+        form("im2-at-least-one", "At least one", 3, U9,
+             "Count the opposite — every attempt failing — then subtract from 1.",
+             mk_num("im2-alo", more.g_at_least_one())),
+        form("im2-conditional-reverse", "Which condition names the denominator", 3, U9,
+             "P(A given B) and P(B given A) are different questions with different answers.",
+             mk_num("im2-cnr", more.g_conditional_reverse())),
+        form("im2-tree-two-stage", "Two draws, without replacement", 3, U9,
+             "The bag changes between draws, so both numbers move.",
+             mk_num("im2-tts", more.g_tree_two_stage())),
     ]
 
     return {"slug": SLUG, "title": TITLE, "titleMn": TITLE_MN, "blurb": BLURB,
