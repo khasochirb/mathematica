@@ -100,6 +100,25 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-11** — Probe after deploy `4a37fb8` (13 commits: the SAT hub
+  rebuilt on the College Board's 20 official subtopics, its bank re-cut to
+  match, the four CCSS coverage gaps closed in Integrated Math 1-3, and all
+  three IM banks doubled to twelve forms per unit): `anthropic_api_key:
+  configured`, `migration_009: applied`, `migration_008_student_profiles:
+  unknown` (FLAG-002 unchanged — still `unknown`, so read that flag's
+  "Reading a non-`applied` result" row before acting). FLAG-003 still
+  optional/unset. Content, build-scripts and course wiring only: no
+  migrations, auth, API, env or middleware files in the diff, so nothing
+  depended on either open flag. Prod verified: `/practice/sat/learn` serves
+  all four domains with the weightings and no SOON badges;
+  `/practice/sat/bank` serves all twenty subtopics with per-unit counts
+  matching the local build exactly (144, 144, 144, 144, 180, 144, 102, 133,
+  144, 135, 102, 133, 144, 144, 100, 88, 88, 108, 130, 144 = 2,595); and
+  `/math/integrated-2` serves nine units with the new Geometric Measurement
+  & Modelling at 08 and Probability moved to 09. Runtime errors clean over
+  the 1h window. Build 2m57s (166k lines of new content JSON — the
+  type-check phase dominates), alias immediate.
+
 - **2026-08-06** — Probe after deploys `3f1086a` and `fab8f8e` (the IB
   Applications & Interpretation SL course — 39 lessons across all five
   syllabus topics, 424 interactive steps, 291 problems and 1,163 sympy
