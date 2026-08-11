@@ -30,6 +30,7 @@ if PB not in sys.path:
     sys.path.insert(0, PB)
 
 from imbank import fmt, form, lin, mk_num, mk_txt, pt  # noqa: E402
+import integrated_3_more as more  # noqa: E402
 
 SLUG = "integrated-3"
 TITLE = "Integrated Math 3"
@@ -970,6 +971,162 @@ def build():
         form("im3-quadratic-from-vertex", "A parabola from vertex and point", 3, U8,
              "Vertex form hands you h and k; one more point pins a.",
              mk_num("im3-qfv", _g_quadratic_from_vertex())),
+    ]
+
+    # -----------------------------------------------------------------
+    # Bringing every unit to twelve forms. IM3 already had a Level 3
+    # everywhere, but the units were uneven — four sat at 120-170
+    # problems while others held 250+. Unit 4 also picks up the Law of
+    # Sines and Law of Cosines, added to the course in the same batch.
+    # Generators in scripts/pb/integrated_3_more.py.
+    # -----------------------------------------------------------------
+    N1 = "polynomial-functions"
+    N2 = "rational-and-radical-functions"
+    N3 = "exponential-and-logarithmic-functions"
+    N4 = "trigonometric-functions"
+    N5 = "function-families-and-inverses"
+    N6 = "sequences-series-and-the-binomial-theorem"
+    N7 = "statistical-inference"
+    N8 = "modelling-with-functions"
+    forms += [
+        # --- Unit 1: polynomial functions -----------------------------
+        form("im3-poly-evaluate", "Evaluating a cubic", 1, N1,
+             "The exponent applies to x alone — cube first, then multiply.",
+             mk_num("im3-pev", more.g_poly_evaluate())),
+        form("im3-poly-from-zeros", "Building a polynomial from its zeros", 2, N1,
+             "A zero at p means a factor (x - p) — the sign flips.",
+             mk_txt("im3-pfz", more.g_poly_from_zeros())),
+        form("im3-vieta-cubic", "The sum of a cubic's roots", 2, N1,
+             "Read it off the coefficients; no solving required.",
+             mk_num("im3-vic", more.g_vieta_cubic())),
+        form("im3-factor-theorem-k", "The constant that makes it a factor", 2, N1,
+             "(x - r) divides p exactly when p(r) = 0.",
+             mk_num("im3-ftk", more.g_factor_theorem_k())),
+        form("im3-poly-sign", "Where the polynomial is positive", 3, N1,
+             "The sign flips at each simple zero — test one point per interval.",
+             mk_txt("im3-psg", more.g_poly_sign())),
+        form("im3-equate-coefficients", "Equal for all x", 3, N1,
+             "Identical expressions must match coefficient by coefficient.",
+             mk_num("im3-eqc", more.g_equate_coefficients())),
+
+        # --- Unit 2: rational & radical functions ---------------------
+        form("im3-rational-domain", "What the denominator forbids", 1, N2,
+             "Excluded values come from the bottom; the top only makes it zero.",
+             mk_txt("im3-rdm", more.g_rational_domain())),
+        form("im3-multiply-rational", "Multiplying rational expressions", 1, N2,
+             "Straight across, then cancel — and watch which side keeps the x.",
+             mk_txt("im3-mrt", more.g_multiply_rational())),
+        form("im3-radical-domain", "Domain of a square root", 1, N2,
+             "What is inside must be at least zero.",
+             mk_txt("im3-rdd", more.g_radical_domain())),
+        form("im3-add-rational", "Unlike denominators", 2, N2,
+             "The common denominator is the PRODUCT — never the sum.",
+             mk_txt("im3-adr", more.g_add_rational())),
+        form("im3-rational-extraneous", "The root the domain forbids", 3, N2,
+             "Cancelling a factor hides a value that was never allowed.",
+             mk_txt("im3-rex", more.g_rational_equation_extraneous())),
+        form("im3-horizontal-asymptote", "Asymptotes by degree", 3, N2,
+             "Equal degrees give the coefficient ratio; a bigger bottom gives zero.",
+             mk_txt("im3-hza", more.g_horizontal_asymptote())),
+
+        # --- Unit 3: exponential & logarithmic functions --------------
+        form("im3-log-form-convert", "Exponential into logarithmic form", 1, N3,
+             "A logarithm answers 'what exponent?' — the base stays the base.",
+             mk_txt("im3-lfc", more.g_log_form_convert())),
+        form("im3-log-quotient-power", "The quotient and power rules", 2, N3,
+             "Subtracting logs divides; a coefficient out front is a power inside.",
+             mk_num("im3-lqp", more.g_log_quotient_power())),
+        form("im3-exp-solve-log", "Getting t out of the exponent", 2, N3,
+             "Divide out the coefficient first, then take a logarithm.",
+             mk_num("im3-esl", more.g_exp_solve_with_log())),
+        form("im3-log-domain", "Domain of a logarithm", 3, N3,
+             "Strictly positive — zero has no logarithm, so the boundary is excluded.",
+             mk_txt("im3-lgd", more.g_log_domain())),
+        form("im3-doubling-time", "How long to reach a level", 3, N3,
+             "The growth factor and the time are different quantities.",
+             mk_num("im3-dbt", more.g_doubling_time())),
+
+        # --- Unit 4: trigonometric functions & general triangles ------
+        form("im3-degree-radian", "Degrees into radians", 1, N4,
+             "A half turn is 180 degrees and pi radians — multiply by pi/180.",
+             mk_txt("im3-dgr", more.g_degree_radian())),
+        form("im3-quadrant-sign", "Signs by quadrant", 1, N4,
+             "Sine is the y-coordinate, cosine the x — the signs follow.",
+             mk_txt("im3-qsg", more.g_quadrant_sign())),
+        form("im3-law-of-sines", "The Law of Sines", 2, N4,
+             "It needs a side and the angle OPPOSITE it, both known.",
+             mk_txt("im3-los", more.g_law_of_sines_side())),
+        form("im3-triangle-area-sine", "Area from two sides and the angle", 2, N4,
+             "Half a b sin C — and C must be the INCLUDED angle.",
+             mk_num("im3-tas", more.g_triangle_area_sine())),
+        form("im3-law-of-cosines-side", "The Law of Cosines: SAS", 3, N4,
+             "Pythagoras plus a correction for the corner not being square.",
+             mk_num("im3-lcs", more.g_law_of_cosines_side())),
+        form("im3-law-of-cosines-angle", "The Law of Cosines: SSS", 3, N4,
+             "The numerator's sign classifies the angle before you divide.",
+             mk_num("im3-lca", more.g_law_of_cosines_angle())),
+
+        # --- Unit 5: function families & inverses ---------------------
+        form("im3-piecewise-evaluate", "Picking the branch", 1, N5,
+             "The input decides the rule before any arithmetic starts.",
+             mk_num("im3-pwe", more.g_piecewise_evaluate())),
+        form("im3-range-after-shift", "What a shift does to the range", 1, N5,
+             "A vertical shift moves the range and leaves the domain alone.",
+             mk_txt("im3-ras", more.g_domain_range_after_shift())),
+        form("im3-find-inverse", "Finding the inverse formula", 2, N5,
+             "Swap the letters, then solve — an inverse is not a reciprocal.",
+             mk_txt("im3-fiv", more.g_find_inverse_formula())),
+        form("im3-domain-composition", "Domain of a composition", 2, N5,
+             "The INNER function's output must be legal for the outer one.",
+             mk_txt("im3-dcm", more.g_domain_of_composition())),
+        form("im3-inverse-verify", "Which pair really undoes the other", 3, N5,
+             "Compose both ways and check you get x back.",
+             mk_txt("im3-ivf", more.g_inverse_verify())),
+        form("im3-transform-order", "Order of transformations", 3, N5,
+             "Stretch-then-shift and shift-then-stretch give different answers.",
+             mk_num("im3-tro", more.g_transform_order())),
+
+        # --- Unit 6: sequences, series & the binomial theorem ---------
+        form("im3-recursive-term", "Running a recursive rule forward", 1, N6,
+             "Each term needs the one before it — count the steps carefully.",
+             mk_num("im3-rct", more.g_recursive_term())),
+        form("im3-binomial-term", "One term of a binomial expansion", 2, N6,
+             "The coefficient AND the constant's power both matter.",
+             mk_num("im3-bnt", more.g_binomial_specific_term())),
+        form("im3-series-word", "A series inside a story", 3, N6,
+             "The total is a SERIES sum; the final term is just one term.",
+             mk_num("im3-swd", more.g_series_word())),
+
+        # --- Unit 7: statistical inference -----------------------------
+        form("im3-population-sample", "Population or sample?", 1, N7,
+             "The population is who the conclusion is about; the sample is who was measured.",
+             mk_txt("im3-pvs", more.g_population_vs_sample())),
+        form("im3-sample-mean", "The mean of a sample", 1, N7,
+             "Add, then divide by how many there are.",
+             mk_num("im3-smn", more.g_sample_mean())),
+        form("im3-confidence-interpret", "What the interval claims", 3, N7,
+             "Every value in the range is consistent — the midpoint is not the truth.",
+             mk_txt("im3-cfi", more.g_confidence_interpret())),
+        form("im3-simulation-surprise", "Is the result surprising?", 3, N7,
+             "A simulation measures how unusual the data would be if nothing were going on.",
+             mk_txt("im3-sms", more.g_simulation_surprise())),
+
+        # --- Unit 8: modelling with functions --------------------------
+        form("im3-read-model-value", "Reading a model", 1, N8,
+             "The constant is added once, never multiplied by the time.",
+             mk_num("im3-rmv", more.g_read_model_value())),
+        form("im3-choose-family", "Which family fits the story", 1, N8,
+             "Equal additions are linear; equal multiplications are exponential.",
+             mk_txt("im3-cfm", more.g_choose_family_context())),
+        form("im3-interpret-slope", "What the rate means here", 2, N8,
+             "The coefficient is a rate; the constant is a starting value.",
+             mk_txt("im3-isc", more.g_interpret_slope_context())),
+        form("im3-model-domain", "Where the model stops", 3, N8,
+             "Stating the domain is part of building the model.",
+             mk_txt("im3-mdr", more.g_model_domain_restriction())),
+        form("im3-compare-fit", "Which model fits better", 3, N8,
+             "Smaller residuals mean a closer fit, judged across ALL the points.",
+             mk_txt("im3-cfit", more.g_compare_model_fit())),
     ]
 
     return {"slug": SLUG, "title": TITLE, "titleMn": TITLE_MN, "blurb": BLURB,
