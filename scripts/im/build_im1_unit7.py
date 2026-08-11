@@ -1454,6 +1454,484 @@ def lesson_constructions():
 # ===========================================================================
 # Unit banks
 # ===========================================================================
+# Lesson 5 — G-CO.9: proving theorems about lines and angles
+# ===========================================================================
+def lesson_lines_and_angles():
+    return lesson(
+        slug="proving-angle-theorems",
+        title="Proving Theorems About Lines & Angles",
+        concrete=(
+            "Two straight roads cross. Stand at the junction and look at the four angles: the "
+            "two facing each other are equal, and you did not have to measure them to know it. "
+            "That certainty is what a proof buys — a reason that covers every crossing that "
+            "ever will be, not just the one in front of you."
+        ),
+        objective=(
+            "Prove and apply the vertical-angle theorem, the linear-pair relationship, and the "
+            "corresponding, alternate and co-interior angle relationships formed when a "
+            "transversal cuts parallel lines; and characterise the perpendicular bisector by "
+            "equal distances."
+        ),
+        concept=[
+            "**A proof is a chain of reasons, not a picture that looks right.** Measuring one "
+            "diagram shows what happens once; a proof shows what must happen always. Each step "
+            "names the fact it uses, and the last step is the thing you were asked to show.",
+
+            "**Angles on a straight line are supplementary.** Two angles that share a vertex and a "
+            "side, with their outer sides forming a straight line, are a LINEAR PAIR. A "
+            "straight line is a half turn, so a linear pair sums to $180°$ — this is the "
+            "starting fact almost every angle proof leans on.",
+
+            "**Vertical angles are equal, and here is why.** When two lines cross, angle $1$ "
+            "and angle $2$ form a linear pair, so $\\angle 1 + \\angle 2 = 180°$. Angle $3$ and "
+            "angle $2$ also form a linear pair, so $\\angle 3 + \\angle 2 = 180°$. Both equal "
+            "$180° - \\angle 2$, therefore $\\angle 1 = \\angle 3$. Two lines and one "
+            "subtraction — no measuring anywhere.",
+
+            "**A transversal cuts two lines and makes eight angles.** Name them by position: "
+            "CORRESPONDING angles sit in matching corners, ALTERNATE INTERIOR angles sit "
+            "between the lines on opposite sides of the transversal, and CO-INTERIOR angles "
+            "sit between the lines on the SAME side. The names describe where the angle is, "
+            "and nothing more.",
+
+            "**Parallel is exactly the condition that makes them behave.** If the two lines "
+            "are parallel, corresponding angles are equal, alternate interior angles are "
+            "equal, and co-interior angles sum to $180°$. Drop the parallel condition and all "
+            "three statements fail — so every time you use one, parallel must already be "
+            "known or given.",
+
+            "**The converses are the useful direction.** Each statement runs both ways: if a "
+            "pair of corresponding angles is equal, the lines MUST be parallel. That is how "
+            "parallelism gets proved rather than assumed, and it is the reason the "
+            "constructions in Lesson 4 actually produce a parallel line.",
+
+            "**The perpendicular bisector is a set of points, described by distance.** A "
+            "point lies on the perpendicular bisector of a segment exactly when it is the same "
+            "distance from both endpoints. One direction follows from congruent triangles "
+            "(SAS), the other from the isosceles triangle the two equal distances create — "
+            "and together they turn a construction into a characterisation.",
+        ],
+        key_idea=(
+            "A linear pair sums to $180°$; everything else in this lesson is a short chain of "
+            "reasons from there. Vertical angles are equal always; corresponding, alternate "
+            "and co-interior relationships need the lines to be PARALLEL."
+        ),
+        facts=[
+            fact("Linear pair", "\\angle 1 + \\angle 2 = 180^\\circ",
+                 "Two angles whose outer sides form a straight line."),
+            fact("Vertical angles", "\\angle 1 = \\angle 3",
+                 "Proved by subtracting a shared linear-pair partner."),
+            fact("Parallel lines cut by a transversal",
+                 "\\text{corresponding and alternate angles equal}",
+                 "Co-interior angles on the same side sum to 180°."),
+            fact("The perpendicular bisector",
+                 "PA = PB \\Leftrightarrow P \\text{ on the bisector}",
+                 "Equal distances to the endpoints characterise the whole line."),
+        ],
+        worked=[
+            problem(
+                "im1-u7-l5-we1",
+                "Two lines cross. One of the four angles measures $52°$. Find the other three, "
+                "giving a reason for each.",
+                "**Its linear-pair partner.** The angle beside it on the straight line makes a "
+                "linear pair: $180° - 52° = 128°$."
+                "**The angle facing it across the vertex.** Vertical angles are equal, so it is also "
+                "$52°$."
+                "**The remaining angle.** Vertical to the $128°$, so $128°$."
+                "**Check.** The four angles are $52°, 128°, 52°, 128°$, and they total "
+                "$360°$ — a full turn around the point, as they must.",
+                [
+                    "Eq(180 - 52, 128)",
+                    "Eq(52 + 128 + 52 + 128, 360)",
+                ],
+            ),
+            problem(
+                "im1-u7-l5-we2",
+                "Lines $m$ and $n$ are parallel and a transversal crosses both. One "
+                "co-interior angle measures $115°$. Find the other co-interior angle and the "
+                "angle alternate to the $115°$.",
+                "**Co-interior angles are supplementary when the lines are parallel.** So the "
+                "other one is $180° - 115° = 65°$."
+                "**Alternate interior angles are equal.** The angle alternate to the $115°$ is "
+                "also $115°$."
+                "**Sanity check against a second route.** The alternate angle and the $65°$ "
+                "co-interior angle sit on a straight line together: $115° + 65° = 180°$ ✓."
+                "**Where the parallel condition entered.** Both facts used it. Without "
+                "$m \\parallel n$ neither number is determined at all.",
+                [
+                    "Eq(180 - 115, 65)",
+                    "Eq(115 + 65, 180)",
+                ],
+            ),
+            problem(
+                "im1-u7-l5-we3",
+                "A transversal cuts two lines. One pair of corresponding angles measures "
+                "$3x + 10$ and $5x - 30$ degrees. Find $x$ if the lines are parallel, and "
+                "state the angle.",
+                "**Translate the geometry into an equation.** Parallel lines make "
+                "corresponding angles EQUAL, so $3x + 10 = 5x - 30$."
+                "**Solve.** $40 = 2x$, so $x = 20$."
+                "**Report the angle.** $3(20) + 10 = 70°$, and checking the other expression, "
+                "$5(20) - 30 = 70°$ ✓ — the same angle from both descriptions."
+                "**Note the logic.** The equality was not observed from a diagram; it was "
+                "GIVEN by the parallel condition. That is what let an algebra problem appear.",
+                [
+                    "Eq(3*20 + 10, 5*20 - 30)",
+                    "Eq(3*20 + 10, 70)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Using 'alternate angles are equal' without parallel lines.",
+                "For two lines that are not parallel, alternate interior angles are simply "
+                "different. The theorem's hypothesis is the parallel condition — check it is "
+                "given before you use the conclusion.",
+            ),
+            mistake(
+                "Confusing co-interior with alternate.",
+                "Alternate interior angles are on OPPOSITE sides of the transversal and are "
+                "equal. Co-interior angles are on the SAME side and add to 180°. Same-side "
+                "means supplementary, not equal.",
+            ),
+            mistake(
+                "Calling two angles vertical when they are not opposite.",
+                "Vertical angles must be formed by the SAME pair of crossing lines and face "
+                "each other across the vertex. Two angles that merely look similar in a "
+                "diagram are not vertical.",
+            ),
+            mistake(
+                "Proving something by measuring the diagram.",
+                "A diagram is one case, often drawn inaccurately on purpose. A proof cites "
+                "reasons — linear pair, vertical angles, parallel lines — that hold for every "
+                "case at once.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u7-l5-t1",
+                "Two lines cross and one angle is $77°$. What are the other three angles?",
+                "Its linear-pair partner is $180° - 77° = 103°$; the angle vertical to $77°$ "
+                "is $77°$; the last is $103°$. Total $360°$.",
+                [
+                    "Eq(180 - 77, 103)",
+                    "Eq(77 + 103 + 77 + 103, 360)",
+                ],
+            ),
+            problem(
+                "im1-u7-l5-t2",
+                "Parallel lines are cut by a transversal. One alternate interior angle is "
+                "$68°$. Find the co-interior angle on the same side of the transversal as it.",
+                "Alternate interior angles are equal, so the matching angle is $68°$; the "
+                "co-interior angle beside it sums to $180°$ with it, giving $112°$.",
+                [
+                    "Eq(180 - 68, 112)",
+                    "Eq(68 + 112, 180)",
+                ],
+            ),
+            problem(
+                "im1-u7-l5-t3",
+                "Point $P$ is $9$ cm from $A$ and $9$ cm from $B$. What can you conclude "
+                "about $P$?",
+                "Equal distances to the two endpoints put $P$ on the perpendicular bisector "
+                "of segment $AB$. (Every such point does, and only such points do.)",
+                ["Eq(9, 9)", "9 > 0"],
+            ),
+        ],
+        steps=[
+            {"kind": "teach", "title": "Straight lines are half turns",
+             "body": "Two angles that share a vertex and a side, with their outer sides in a straight line, are a LINEAR PAIR — and a straight line is a half turn, so they sum to $180°$. Almost every angle proof in this lesson starts by naming a linear pair.",
+             "beats": ["A straight line is $180°$", "Linear pairs share a vertex and a side", "This is the fact everything else leans on"]},
+            {"kind": "interactive", "title": "Crossing lines", "kindHint": "anglePairs"} if False else
+            {"kind": "anglePairs", "title": "Drag the crossing lines",
+             "body": "Move the lines and watch which angles stay equal and which stay supplementary. Vertical angles track each other exactly; a linear pair always totals $180°$.",
+             "config": {"mode": "crossing", "initial": 52}},
+            {"kind": "worked", "title": "Four angles from one", "problemId": "im1-u7-l5-we1"},
+            tap(
+                "Why vertical angles are equal",
+                "The proof that vertical angles are equal works by:",
+                ["subtracting a shared linear-pair partner from two $180°$ statements",
+                 "measuring both angles in a careful diagram",
+                 "assuming the lines are parallel",
+                 "using the triangle angle sum"],
+                0,
+                "$\\angle 1 + \\angle 2 = 180°$ and $\\angle 3 + \\angle 2 = 180°$, so both "
+                "$\\angle 1$ and $\\angle 3$ equal $180° - \\angle 2$.",
+                ["Eq(180 - 52, 128)", "Eq(180 - 128, 52)"],
+            ),
+            {"kind": "teach", "title": "A transversal, and eight angles with names",
+             "body": "CORRESPONDING angles sit in matching corners; ALTERNATE INTERIOR angles sit between the lines on opposite sides of the transversal; CO-INTERIOR angles sit between them on the same side. If — and only if — the lines are parallel, corresponding and alternate pairs are equal while co-interior pairs sum to $180°$.",
+             "beats": ["The names describe position", "Parallel makes them equal or supplementary", "No parallel, no theorem"]},
+            {"kind": "worked", "title": "Co-interior and alternate together", "problemId": "im1-u7-l5-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "Same side means supplementary",
+             "body": "Alternate angles are on OPPOSITE sides of the transversal and are equal. Co-interior angles are on the SAME side and add to $180°$. Mixing the two is the single commonest error in this topic — check which side of the transversal each angle is on before choosing the rule."},
+            tap(
+                "Which rule applies",
+                "Two parallel lines are cut by a transversal. Two angles sit between the lines "
+                "on the SAME side of the transversal. They are:",
+                ["supplementary — they sum to $180°$",
+                 "equal",
+                 "both right angles",
+                 "unrelated without more information"],
+                0,
+                "Same side and between the lines makes them co-interior, and co-interior "
+                "angles between parallel lines are supplementary.",
+                ["Eq(115 + 65, 180)"],
+            ),
+            {"kind": "worked", "title": "Parallel turns geometry into algebra", "problemId": "im1-u7-l5-we3"},
+            {"kind": "teach", "title": "The perpendicular bisector, described by distance",
+             "body": "A point sits on the perpendicular bisector of $AB$ exactly when it is equally far from $A$ and from $B$. Forwards: the bisector makes two congruent triangles by SAS, so the distances match. Backwards: two equal distances build an isosceles triangle whose apex lies on the bisector. Construction becomes characterisation.",
+             "beats": ["On the bisector $\\Rightarrow$ equal distances (SAS)", "Equal distances $\\Rightarrow$ on the bisector (isosceles)", "The two together define the line"]},
+            {"kind": "tryIt", "title": "Crossing lines", "problemId": "im1-u7-l5-t1"},
+            {"kind": "tryIt", "title": "Alternate then co-interior", "problemId": "im1-u7-l5-t2"},
+            {"kind": "tryIt", "title": "Equal distances", "problemId": "im1-u7-l5-t3"},
+            {"kind": "recap", "title": "What to carry forward",
+             "points": ["A linear pair sums to $180°$ — the starting fact",
+                        "Vertical angles are equal, and the proof is one subtraction",
+                        "Corresponding and alternate angles equal, co-interior supplementary — only if PARALLEL",
+                        "The converses prove parallelism instead of assuming it",
+                        "Equal distances to two points put you on the perpendicular bisector"]},
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 6 — G-CO.10/11: theorems about triangles and parallelograms
+# ===========================================================================
+def lesson_triangle_theorems():
+    return lesson(
+        slug="triangle-and-parallelogram-theorems",
+        title="Theorems About Triangles & Parallelograms",
+        concrete=(
+            "Tear the three corners off any paper triangle and lay them side by side: they "
+            "always form a straight line. That is not a coincidence about your triangle — it "
+            "is the angle-sum theorem, and the parallel-line facts from the last lesson turn "
+            "the paper trick into a proof."
+        ),
+        objective=(
+            "Prove and apply the triangle angle-sum and exterior-angle theorems, the isosceles "
+            "triangle theorem and its converse, the midsegment theorem, and the defining "
+            "properties of a parallelogram."
+        ),
+        concept=[
+            "**The angle sum, proved with a parallel line.** Draw a line through one vertex "
+            "parallel to the opposite side. The two outer angles at that vertex are alternate "
+            "interior angles with two of the triangle's angles, so they are equal to them; the "
+            "three angles at the vertex form a straight line. Therefore the triangle's angles "
+            "sum to $180°$ — the parallel-line facts doing the work.",
+
+            "**The exterior angle equals the two remote interior angles.** Extend one side. "
+            "The exterior angle and its neighbour form a linear pair summing to $180°$; the "
+            "three interior angles also sum to $180°$; subtract the shared angle and the "
+            "exterior angle equals the other two added together. It is a shortcut that saves "
+            "a step in almost every triangle problem.",
+
+            "**Isosceles triangles: equal sides face equal angles.** If two sides are equal, "
+            "the angles opposite them are equal. The proof is a congruence: the bisector of "
+            "the apex angle splits the triangle into two triangles congruent by SAS, so their "
+            "base angles correspond and match.",
+
+            "**The converse is equally true and often more useful.** If two ANGLES of a "
+            "triangle are equal, the sides opposite them are equal. This is how you prove a "
+            "triangle is isosceles from angle information alone, and it is why an equiangular "
+            "triangle must be equilateral.",
+
+            "**The midsegment theorem.** The segment joining the midpoints of two sides is "
+            "parallel to the third side and exactly HALF its length. Two facts for the price "
+            "of one, and the halving is the part students forget — the midsegment is never the "
+            "same length as the side it parallels.",
+
+            "**A parallelogram's properties all follow from one definition.** Define it as a "
+            "quadrilateral with both pairs of opposite sides parallel. Draw a diagonal: "
+            "alternate interior angles give two pairs of equal angles, the diagonal is shared, "
+            "and ASA makes the two triangles congruent. Out of that single congruence fall "
+            "opposite sides equal, opposite angles equal, and diagonals bisecting each other.",
+
+            "**The converses tell you when a quadrilateral IS a parallelogram.** Both pairs of "
+            "opposite sides equal, both pairs of opposite angles equal, one pair of sides both "
+            "parallel AND equal, or diagonals that bisect each other — any one of these is "
+            "enough. That last pair is the pair most often used in coordinate proofs.",
+        ],
+        key_idea=(
+            "The triangle angle sum is the parallel-line theorems applied once, and almost "
+            "everything else here is one congruence away from it. A parallelogram's whole "
+            "property list comes from drawing a single diagonal."
+        ),
+        facts=[
+            fact("Triangle angle sum", "\\angle A + \\angle B + \\angle C = 180^\\circ",
+                 "Proved by a line through one vertex parallel to the opposite side."),
+            fact("Exterior angle", "\\text{exterior} = \\text{sum of the two remote interior}",
+                 "Follows from the angle sum and a linear pair."),
+            fact("Isosceles triangle", "AB = AC \\Leftrightarrow \\angle B = \\angle C",
+                 "Equal sides face equal angles, and the converse holds too."),
+            fact("Midsegment", "\\text{midsegment} = \\tfrac{1}{2} \\times \\text{third side}",
+                 "And it is parallel to that side."),
+        ],
+        worked=[
+            problem(
+                "im1-u7-l6-we1",
+                "A triangle has angles $2x$, $3x$ and $4x$ degrees. Find all three angles and "
+                "classify the triangle.",
+                "**Use the angle sum.** $2x + 3x + 4x = 180$, so $9x = 180$ and $x = 20$."
+                "**Report the angles.** $40°$, $60°$ and $80°$."
+                "**Classify.** All three are under $90°$, so the triangle is acute; all three "
+                "differ, so it is scalene."
+                "**Check.** $40 + 60 + 80 = 180$ ✓.",
+                [
+                    "Eq(2*20 + 3*20 + 4*20, 180)",
+                    "Eq(40 + 60 + 80, 180)",
+                    "80 < 90",
+                ],
+            ),
+            problem(
+                "im1-u7-l6-we2",
+                "In triangle $ABC$, $AB = AC$ and $\\angle A = 44°$. Find $\\angle B$ and "
+                "$\\angle C$.",
+                "**Equal sides face equal angles.** $AB = AC$, and the angles opposite those "
+                "sides are $\\angle C$ and $\\angle B$ — so $\\angle B = \\angle C$."
+                "**Use the angle sum with the equality.** $44 + 2\\angle B = 180$, so "
+                "$2\\angle B = 136$ and $\\angle B = 68°$."
+                "**Both base angles.** $\\angle B = \\angle C = 68°$."
+                "**Check.** $44 + 68 + 68 = 180$ ✓.",
+                [
+                    "Eq(Rational(180 - 44, 2), 68)",
+                    "Eq(44 + 68 + 68, 180)",
+                ],
+            ),
+            problem(
+                "im1-u7-l6-we3",
+                "In parallelogram $PQRS$, $\\angle P = 3y + 15$ and the opposite angle "
+                "$\\angle R = 5y - 25$ degrees. Find $y$, then every angle of the "
+                "parallelogram.",
+                "**Opposite angles of a parallelogram are equal.** So $3y + 15 = 5y - 25$."
+                "**Solve.** $40 = 2y$, giving $y = 20$."
+                "**The pair of opposite angles.** $3(20) + 15 = 75°$, and $5(20) - 25 = 75°$ "
+                "✓ — so $\\angle P = \\angle R = 75°$."
+                "**The other pair.** Consecutive angles of a parallelogram are co-interior "
+                "between parallel sides, so they are supplementary: "
+                "$180° - 75° = 105°$. Therefore $\\angle Q = \\angle S = 105°$."
+                "**Check.** $75 + 105 + 75 + 105 = 360$ ✓, the angle sum of any "
+                "quadrilateral.",
+                [
+                    "Eq(3*20 + 15, 5*20 - 25)",
+                    "Eq(3*20 + 15, 75)",
+                    "Eq(180 - 75, 105)",
+                    "Eq(75 + 105 + 75 + 105, 360)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Making the midsegment equal to the side it is parallel to.",
+                "It is HALF that length. Joining the midpoints of two sides of a triangle with "
+                "third side 18 gives a midsegment of 9, not 18.",
+            ),
+            mistake(
+                "Adding the exterior angle to all three interior angles.",
+                "The exterior angle equals the two REMOTE interior angles — the two it does "
+                "not touch. It is a linear pair with the third one, not a sum including it.",
+            ),
+            mistake(
+                "Assuming a quadrilateral is a parallelogram because it looks like one.",
+                "You need a reason: both pairs of opposite sides parallel or equal, both pairs "
+                "of opposite angles equal, one pair both parallel and equal, or diagonals "
+                "bisecting each other. A drawing is not one of the options.",
+            ),
+            mistake(
+                "Pairing an isosceles triangle's equal sides with the angles beside them.",
+                "Equal sides face equal angles. In triangle ABC with AB = AC, the equal angles "
+                "are at B and C — the vertices those sides point AT, not the ones they touch.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im1-u7-l6-t1",
+                "Two angles of a triangle are $37°$ and $58°$. Find the third, and the "
+                "exterior angle at the third vertex.",
+                "Third angle: $180 - 37 - 58 = 85°$. The exterior angle there equals the two "
+                "remote interior angles, $37 + 58 = 95°$ — and indeed $180 - 85 = 95$ ✓.",
+                [
+                    "Eq(180 - 37 - 58, 85)",
+                    "Eq(37 + 58, 95)",
+                    "Eq(180 - 85, 95)",
+                ],
+            ),
+            problem(
+                "im1-u7-l6-t2",
+                "A triangle has two equal angles of $53°$ each. What is the third angle, and "
+                "what does the converse of the isosceles theorem tell you?",
+                "Third angle: $180 - 106 = 74°$. Two equal angles force the sides opposite "
+                "them to be equal, so the triangle is isosceles.",
+                [
+                    "Eq(180 - 2*53, 74)",
+                    "Eq(53 + 53 + 74, 180)",
+                ],
+            ),
+            problem(
+                "im1-u7-l6-t3",
+                "$M$ and $N$ are the midpoints of sides $AB$ and $AC$ of a triangle with "
+                "$BC = 22$. Find $MN$, and state its relationship to $BC$.",
+                "The midsegment theorem gives $MN = \\frac{1}{2}(22) = 11$, and $MN$ is "
+                "parallel to $BC$.",
+                [
+                    "Eq(Rational(22, 2), 11)",
+                    "Eq(2*11, 22)",
+                ],
+            ),
+        ],
+        steps=[
+            {"kind": "teach", "title": "The paper trick, made into a proof",
+             "body": "Draw a line through one vertex parallel to the opposite side. Two of the triangle's angles reappear at that vertex as alternate interior angles, and the three angles there lie on a straight line. So the triangle's angles sum to $180°$ — the parallel-line theorems from Lesson 5 doing all the work.",
+             "beats": ["A parallel through one vertex", "Alternate interior angles move two angles up", "Three angles on a straight line = $180°$"]},
+            {"kind": "triangleAngles", "title": "Drag the vertices",
+             "body": "Move any vertex and watch the three angles change while their total refuses to. Turn on the exterior angle to see it match the two remote interior angles at every position.",
+             "config": {"exterior": True}},
+            {"kind": "worked", "title": "Angles in a ratio", "problemId": "im1-u7-l6-we1"},
+            tap(
+                "The exterior angle",
+                "An exterior angle of a triangle equals:",
+                ["the sum of the two remote interior angles",
+                 "the sum of all three interior angles",
+                 "the interior angle beside it",
+                 "$90°$ minus the nearest interior angle"],
+                0,
+                "The exterior angle and its neighbour make $180°$; so do the three interior "
+                "angles. Subtracting the shared angle leaves the other two.",
+                ["Eq(37 + 58, 95)", "Eq(180 - 85, 95)"],
+            ),
+            {"kind": "teach", "title": "Equal sides, equal angles — and back again",
+             "body": "If two sides of a triangle are equal, the angles OPPOSITE them are equal: bisect the apex angle and SAS makes the two halves congruent. The converse also holds — two equal angles force the opposite sides to be equal — which is how a triangle gets proved isosceles from angles alone.",
+             "beats": ["Equal sides $\\Rightarrow$ equal opposite angles (SAS)", "Equal angles $\\Rightarrow$ equal opposite sides", "Equiangular therefore equilateral"]},
+            {"kind": "worked", "title": "An isosceles triangle from one angle", "problemId": "im1-u7-l6-we2"},
+            {"kind": "tip", "eyebrow": "Watch out", "title": "The midsegment is HALF",
+             "body": "Joining the midpoints of two sides gives a segment parallel to the third side and half its length. Both halves of that sentence get used; the halving is the one that gets forgotten."},
+            tap(
+                "Midsegment length",
+                "In a triangle with $BC = 18$, the segment joining the midpoints of $AB$ and "
+                "$AC$ has length:",
+                ["$9$", "$18$", "$36$", "$6$"],
+                0,
+                "The midsegment is half the side it is parallel to: $\\frac{1}{2}(18) = 9$.",
+                ["Eq(Rational(18, 2), 9)", "Eq(2*9, 18)"],
+            ),
+            {"kind": "teach", "title": "One diagonal proves the whole parallelogram",
+             "body": "Define a parallelogram by both pairs of opposite sides being parallel, then draw a diagonal. Alternate interior angles give two angle pairs, the diagonal is common, and ASA makes the triangles congruent. Opposite sides equal, opposite angles equal and bisecting diagonals all drop out of that one congruence.",
+             "beats": ["Draw a diagonal", "ASA congruence from alternate angles", "Every property follows at once"]},
+            {"kind": "worked", "title": "Angles of a parallelogram", "problemId": "im1-u7-l6-we3"},
+            {"kind": "tryIt", "title": "Third angle and exterior angle", "problemId": "im1-u7-l6-t1"},
+            {"kind": "tryIt", "title": "Two equal angles", "problemId": "im1-u7-l6-t2"},
+            {"kind": "tryIt", "title": "Half the third side", "problemId": "im1-u7-l6-t3"},
+            {"kind": "recap", "title": "What to carry forward",
+             "points": ["Angle sum $180°$, proved from a parallel through one vertex",
+                        "Exterior angle = the two REMOTE interior angles",
+                        "Equal sides face equal angles — and the converse holds",
+                        "A midsegment is parallel to the third side and HALF its length",
+                        "Every parallelogram property comes from one diagonal and ASA"]},
+        ],
+    )
+
+
+# ===========================================================================
 def practice_bank():
     return [
         problem(
@@ -1785,13 +2263,14 @@ def main():
     write_unit(
         course=COURSE,
         slug="transformations-and-congruence",
-        title="Transformations & Congruence",
+        title="Transformations, Congruence & Proof",
         unit_number=7,
         blurb=(
             "Translations, reflections and rotations as coordinate rules; sequences of them and "
             "the symmetry they reveal; congruence DEFINED by rigid motion with SSS, SAS and ASA "
-            "as consequences; and compass-and-straightedge constructions proved by congruent "
-            "triangles."
+            "as consequences; compass-and-straightedge constructions proved by congruent "
+            "triangles; and the line, angle, triangle and parallelogram theorems those tools "
+            "let you prove."
         ),
         builds_on=(
             "The coordinate plane from Unit 4 — every transformation here is written as a rule on "
@@ -1803,6 +2282,8 @@ def main():
             lesson_sequences(),
             lesson_congruence(),
             lesson_constructions(),
+            lesson_lines_and_angles(),
+            lesson_triangle_theorems(),
         ],
         practice=practice_bank(),
         test=test_bank(),

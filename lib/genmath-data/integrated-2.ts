@@ -13,6 +13,7 @@ import im2SolvingQuad from "@/data/genmath/integrated-2/solving-quadratic-equati
 import im2Similarity from "@/data/genmath/integrated-2/similarity-and-dilations.json";
 import im2Trig from "@/data/genmath/integrated-2/right-triangle-trigonometry.json";
 import im2Circles from "@/data/genmath/integrated-2/circles.json";
+import im2Measurement from "@/data/genmath/integrated-2/geometric-measurement-and-modelling.json";
 import im2Probability from "@/data/genmath/integrated-2/probability.json";
 
 const im2Units: CourseUnit[] = [
@@ -23,6 +24,7 @@ const im2Units: CourseUnit[] = [
   im2Similarity as unknown as CourseUnit,
   im2Trig as unknown as CourseUnit,
   im2Circles as unknown as CourseUnit,
+  im2Measurement as unknown as CourseUnit,
   im2Probability as unknown as CourseUnit,
 ];
 

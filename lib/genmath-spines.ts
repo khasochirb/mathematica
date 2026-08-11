@@ -871,9 +871,9 @@ export const IM1_SPINE: GeometrySpineEntry[] = [
   {
     unit: 7,
     slug: "transformations-and-congruence",
-    title: "Transformations & Congruence",
+    title: "Transformations, Congruence & Proof",
     blurb:
-      "Translations, reflections and rotations as rigid motions; congruence defined by a sequence of them; the triangle congruence criteria; and compass constructions.",
+      "Translations, reflections and rotations as rigid motions; congruence defined by a sequence of them; the triangle congruence criteria; compass constructions; and the line, angle, triangle and parallelogram theorems they let you prove.",
     buildsOn: "The coordinate plane from Unit 4 — transformations are described by coordinate rules.",
     live: true,
   },
@@ -963,6 +963,15 @@ export const IM2_SPINE: GeometrySpineEntry[] = [
   },
   {
     unit: 8,
+    slug: "geometric-measurement-and-modelling",
+    title: "Geometric Measurement & Modelling",
+    blurb:
+      "Where the volume formulas come from and why a leaning solid matches an upright one; solving forwards and backwards with volume and surface area; cross-sections and solids of revolution; and density and design problems.",
+    buildsOn: "Similarity from Unit 5 — the scale factor that squared for areas now cubes for volumes.",
+    live: true,
+  },
+  {
+    unit: 9,
     slug: "probability",
     title: "Probability",
     blurb:
@@ -1003,9 +1012,9 @@ export const IM3_SPINE: GeometrySpineEntry[] = [
   {
     unit: 4,
     slug: "trigonometric-functions",
-    title: "Trigonometric Functions",
+    title: "Trigonometric Functions & General Triangles",
     blurb:
-      "Radian measure and the unit circle, extending the ratios beyond acute angles, the graphs of sine and cosine with amplitude and period, and the Pythagorean identity.",
+      "Radian measure and the unit circle, extending the ratios beyond acute angles, the graphs of sine and cosine with amplitude and period, the Pythagorean identity, and the Laws of Sines and Cosines.",
     buildsOn: "Right-triangle trigonometry from IM2 Unit 6 and radians from IM2 Unit 7.",
     live: true,
   },

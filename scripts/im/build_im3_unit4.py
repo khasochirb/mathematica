@@ -930,6 +930,496 @@ def lesson_identity():
 
 
 # ===========================================================================
+# Lesson 5 — G-SRT.9/10/11: the Law of Sines (and the area formula)
+# ===========================================================================
+
+def lesson_law_of_sines():
+    return lesson(
+        slug="the-law-of-sines",
+        title="The Law of Sines",
+        concrete=(
+            "A surveyor cannot walk across a river to measure its width, but they can stand "
+            "at two points on THIS bank, measure the distance between them, and sight the "
+            "angle to a tree on the far side from each. Two angles and the side between "
+            "them — and the far distances drop out. Every ratio in a triangle turns out to "
+            "be the same ratio, and that is the whole tool."
+        ),
+        objective=(
+            "Derive the Law of Sines from an altitude, use it to solve triangles given two "
+            "angles and a side or two sides and a non-included angle, recognise the "
+            "ambiguous case, and compute a triangle's area from two sides and the angle "
+            "between them."
+        ),
+        concept=[
+            "**Right-triangle trigonometry only worked inside a right angle.** IM2's ratios "
+            "needed a $90°$ angle to point at. Most triangles do not have one, and until now "
+            "the only move was to manufacture one by dropping an altitude. The Law of Sines "
+            "is what you get when you do that ONCE, in general, and never have to do it "
+            "again.",
+
+            "**The derivation is one altitude, measured two ways.** In triangle $ABC$, drop "
+            "the altitude from $B$ to side $AC$ and call its length $h$. It sits in two "
+            "right triangles at once: in the left one $h = c\\sin A$, in the right one "
+            "$h = a\\sin C$. The same segment, so $c\\sin A = a\\sin C$, and dividing by "
+            "$\\sin A \\sin C$ gives $\\dfrac{a}{\\sin A} = \\dfrac{c}{\\sin C}$. Repeat with "
+            "a different altitude for the third ratio.",
+
+            "**Every side is proportional to the sine of the angle it faces.** That is what "
+            "$\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C}$ says, and it "
+            "matches intuition: the biggest angle stares across the longest side. Note which "
+            "letters pair — $a$ is opposite $A$, never adjacent to it.",
+
+            "**Use it when a side and its opposite angle are BOTH known.** That pair is the "
+            "key that unlocks the proportion. Two angles and any side (ASA or AAS) always "
+            "works, because the third angle comes free from the $180°$ sum. Two sides and a "
+            "non-included angle (SSA) also fits the equation — but SSA is where the trouble "
+            "lives.",
+
+            "**The ambiguous case.** Solving for $\\sin B$ can produce a value that two "
+            "different angles share, since $\\sin\\theta = \\sin(180° - \\theta)$. If that "
+            "obtuse partner still leaves the angle sum under $180°$, BOTH triangles are "
+            "real and the data does not determine one answer. If $\\sin B$ comes out greater "
+            "than $1$, no triangle exists at all — the side was too short to reach.",
+
+            "**The same altitude gives the area.** With $h = b\\sin C$ measured from the "
+            "vertex $B$ down to side $a$, the familiar $\\frac{1}{2} \\times$ base $\\times$ "
+            "height becomes $\\text{Area} = \\dfrac{1}{2}ab\\sin C$. Two sides and the angle "
+            "BETWEEN them, no height needed — and when $C = 90°$, $\\sin C = 1$ and it "
+            "collapses back to half base times height.",
+        ],
+        key_idea=(
+            "In any triangle $\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = "
+            "\\dfrac{c}{\\sin C}$. Use it whenever you know a side together with the angle "
+            "across from it — and check SSA for a second triangle."
+        ),
+        facts=[
+            fact("The Law of Sines",
+                 "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}",
+                 "Each side is proportional to the sine of the angle opposite it."),
+            fact("Area from two sides and the included angle",
+                 "\\text{Area} = \\frac{1}{2}ab\\sin C",
+                 "Half base times height, with the height written as b sin C."),
+            fact("Why sine cannot tell them apart",
+                 "\\sin\\theta = \\sin(180^\\circ - \\theta)",
+                 "The source of the ambiguous case: two angles share one sine."),
+            fact("No triangle at all",
+                 "\\sin B > 1 \\Rightarrow \\text{no solution}",
+                 "The given side was too short to reach the far ray."),
+        ],
+        worked=[
+            problem(
+                "im3-u4-l5-we1",
+                "In triangle $ABC$, $A = 45°$, $B = 60°$ and $a = 10$. Find $b$ exactly.",
+                "**Check the key.** Side $a$ and angle $A$ are a known opposite pair, so the "
+                "Law of Sines applies straight away."
+                "**Set up the proportion.** $\\dfrac{b}{\\sin 60°} = \\dfrac{10}{\\sin 45°}$."
+                "**Solve.** $b = 10 \\cdot \\dfrac{\\sin 60°}{\\sin 45°} = "
+                "10 \\cdot \\dfrac{\\sqrt{3}/2}{\\sqrt{2}/2} = 10\\sqrt{\\dfrac{3}{2}} = "
+                "5\\sqrt{6}$."
+                "**Sanity check.** $B$ is the larger angle, and $5\\sqrt{6} \\approx 12.2$ "
+                "is indeed longer than $a = 10$ — bigger angle, longer side across from it.",
+                [
+                    "Eq(simplify(10*sin(pi/3)/sin(pi/4) - 5*sqrt(6)), 0)",
+                    "Eq(simplify(sin(pi/3)/sin(pi/4) - sqrt(6)/2), 0)",
+                    "5*sqrt(6) > 10",
+                ],
+            ),
+            problem(
+                "im3-u4-l5-we2",
+                "A triangular plot has two sides of length $8$ m and $10$ m with an angle "
+                "of $30°$ between them. Find its area.",
+                "**Two sides and the angle between them is exactly the area formula's "
+                "input.** No height is needed and none should be hunted for."
+                "**Substitute.** $\\text{Area} = \\frac{1}{2}(8)(10)\\sin 30° = "
+                "40 \\cdot \\frac{1}{2} = 20$ square metres."
+                "**Why it works.** The height onto the $8$ m side is $10\\sin 30° = 5$, so "
+                "this is $\\frac{1}{2} \\cdot 8 \\cdot 5$ — the ordinary area formula with "
+                "the height computed for you.",
+                [
+                    "Eq(Rational(1, 2)*8*10*sin(pi/6), 20)",
+                    "Eq(10*sin(pi/6), 5)",
+                    "Eq(Rational(1, 2)*8*5, 20)",
+                ],
+            ),
+            problem(
+                "im3-u4-l5-we3",
+                "In triangle $ABC$, $a = 6$, $b = 10$ and $A = 30°$. How many triangles fit "
+                "this data?",
+                "**This is SSA — the ambiguous configuration.** Solve for the sine first and "
+                "ask questions afterwards."
+                "**Apply the law.** $\\dfrac{\\sin B}{10} = \\dfrac{\\sin 30°}{6}$, so "
+                "$\\sin B = \\dfrac{10 \\cdot \\frac{1}{2}}{6} = \\dfrac{5}{6}$."
+                "**Two angles share that sine.** $B \\approx 56.4°$ and its supplement "
+                "$B \\approx 123.6°$."
+                "**Test both against the angle sum.** With $A = 30°$: "
+                "$30 + 56.4 = 86.4 < 180$ ✓, and $30 + 123.6 = 153.6 < 180$ ✓. Both leave "
+                "room for a third angle, so TWO different triangles satisfy the data."
+                "**Answer.** Two triangles — the data is genuinely ambiguous.",
+                [
+                    "Eq(10*sin(pi/6)/6, Rational(5, 6))",
+                    "Rational(5, 6) < 1",
+                    "6 < 10",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Pairing a side with the angle next to it.",
+                "In a/sin A the letters must be OPPOSITE: side a faces angle A. Pairing a "
+                "side with an adjacent angle gives a proportion that is simply false.",
+            ),
+            mistake(
+                "Using the Law of Sines when no opposite pair is known.",
+                "Given two sides and the angle BETWEEN them (SAS), or all three sides (SSS), "
+                "every ratio has an unknown on top and bottom. That is the Law of Cosines' "
+                "job, not this one.",
+            ),
+            mistake(
+                "Taking the calculator's inverse sine as the only answer.",
+                "Inverse sine always returns the acute angle. In an SSA problem the obtuse "
+                "supplement may also work — check whether it still leaves the angle sum "
+                "under 180°.",
+            ),
+            mistake(
+                "Panicking when sin B comes out bigger than 1.",
+                "That is information, not an error: no angle has a sine above 1, so no "
+                "triangle has those measurements. State that as the answer.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im3-u4-l5-t1",
+                "In triangle $ABC$, $A = 30°$, $B = 105°$ and $a = 12$. Find $c$ exactly.",
+                "The angles sum to $180°$, so $C = 45°$. Then "
+                "$c = 12 \\cdot \\dfrac{\\sin 45°}{\\sin 30°} = "
+                "12 \\cdot \\dfrac{\\sqrt{2}/2}{1/2} = 12\\sqrt{2}$.",
+                [
+                    "Eq(180 - 30 - 105, 45)",
+                    "Eq(simplify(12*sin(pi/4)/sin(pi/6) - 12*sqrt(2)), 0)",
+                ],
+            ),
+            problem(
+                "im3-u4-l5-t2",
+                "Find the area of a triangle with sides $12$ and $9$ enclosing an angle of "
+                "$150°$.",
+                "$\\text{Area} = \\frac{1}{2}(12)(9)\\sin 150° = 54 \\cdot \\frac{1}{2} = "
+                "27$ square units. The angle being obtuse changes nothing — $\\sin 150°$ is "
+                "the same as $\\sin 30°$.",
+                [
+                    "Eq(Rational(1, 2)*12*9*sin(5*pi/6), 27)",
+                    "Eq(simplify(sin(5*pi/6) - sin(pi/6)), 0)",
+                ],
+            ),
+            problem(
+                "im3-u4-l5-t3",
+                "In triangle $ABC$, $a = 4$, $b = 9$ and $A = 30°$. How many triangles fit?",
+                "$\\sin B = \\dfrac{9\\sin 30°}{4} = \\dfrac{9}{8}$, which is greater than "
+                "$1$. No angle has such a sine, so NO triangle exists — side $a$ is too "
+                "short to reach the far side.",
+                [
+                    "Eq(9*sin(pi/6)/4, Rational(9, 8))",
+                    "Rational(9, 8) > 1",
+                ],
+            ),
+        ],
+        steps=[
+            {"kind": "teach", "title": "One altitude, measured twice",
+             "body": "Drop the altitude from $B$ onto $AC$ and call it $h$. It belongs to two right triangles at once: $h = c\\sin A$ on one side, $h = a\\sin C$ on the other. One segment cannot have two lengths, so $c\\sin A = a\\sin C$ — rearrange and the Law of Sines is already there.",
+             "beats": ["The altitude is shared by two right triangles",
+                       "$c\\sin A = a\\sin C$",
+                       "$\\dfrac{a}{\\sin A} = \\dfrac{c}{\\sin C}$"]},
+            {"kind": "worked", "title": "Two angles and a side", "problemId": "im3-u4-l5-we1"},
+            tap(
+                "Which letters pair up",
+                "In the Law of Sines, side $a$ is paired with:",
+                ["angle $A$, the angle OPPOSITE it",
+                 "angle $B$, one of the angles touching it",
+                 "the largest angle in the triangle",
+                 "whichever angle is known"],
+                0,
+                "Each side is proportional to the sine of the angle across from it. Pairing "
+                "a side with a neighbouring angle gives a false proportion.",
+                ["Eq(simplify(sin(pi/6)/Rational(1,2)), 1)"],
+            ),
+            {"kind": "tip", "eyebrow": "When to reach for it",
+             "title": "You need a matched pair",
+             "body": "The Law of Sines only moves if some side and the angle facing it are BOTH known. Two angles and any side gives you that pair for free. Two sides with the angle between them does NOT — that is the next lesson's problem."},
+            {"kind": "worked", "title": "Area without a height", "problemId": "im3-u4-l5-we2"},
+            tap(
+                "Reading the area formula",
+                "$\\text{Area} = \\frac{1}{2}ab\\sin C$ requires the angle $C$ to be:",
+                ["between the two sides $a$ and $b$",
+                 "opposite the side $a$",
+                 "the largest angle",
+                 "a right angle"],
+                0,
+                "The formula is half base times height with $h = b\\sin C$, and that "
+                "substitution is only valid when $C$ is the INCLUDED angle.",
+                ["Eq(Rational(1,2)*8*10*sin(pi/2), 40)"],
+            ),
+            {"kind": "worked", "title": "When the data fits two triangles", "problemId": "im3-u4-l5-we3"},
+            {"kind": "teach", "title": "Why SSA misbehaves",
+             "body": "Sine cannot distinguish an angle from its supplement: $\\sin 56.4° = \\sin 123.6°$. So an SSA problem hands back a sine and leaves you to decide which angle it meant. Test each candidate against the $180°$ sum — sometimes both survive (two triangles), sometimes only the acute one does, and if the sine exceeds $1$ neither does.",
+             "beats": ["Inverse sine returns only the acute angle",
+                       "Check the supplement against the angle sum",
+                       "$\\sin B > 1$ means no triangle exists"]},
+            {"kind": "tryIt", "title": "Find the third angle first", "problemId": "im3-u4-l5-t1"},
+            {"kind": "tryIt", "title": "An obtuse included angle", "problemId": "im3-u4-l5-t2"},
+            {"kind": "tryIt", "title": "Too short to reach", "problemId": "im3-u4-l5-t3"},
+            {"kind": "funFact", "title": "The ratio is not just equal — it is the diameter",
+             "body": "All three ratios equal $2R$, where $R$ is the radius of the circle through the triangle's three vertices. Set $A = 90°$ to see it: the side opposite a right angle is a diameter, and $\\sin 90° = 1$."},
+            {"kind": "recap", "title": "What to carry forward",
+             "points": ["$\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C}$ in every triangle",
+                        "Side and angle must be OPPOSITE, never adjacent",
+                        "Use it when a matched side-angle pair is known (ASA, AAS, SSA)",
+                        "SSA is ambiguous — always test the obtuse supplement too",
+                        "$\\text{Area} = \\frac{1}{2}ab\\sin C$ needs the INCLUDED angle"]},
+        ],
+    )
+
+
+# ===========================================================================
+# Lesson 6 — G-SRT.10/11: the Law of Cosines
+# ===========================================================================
+
+def lesson_law_of_cosines():
+    return lesson(
+        slug="the-law-of-cosines",
+        title="The Law of Cosines",
+        concrete=(
+            "Walk $5$ km east, turn through some angle, walk $8$ km. How far are you from "
+            "the start? If the turn were a right angle, Pythagoras would answer it. It "
+            "usually is not — and the Law of Cosines is Pythagoras with a correction term "
+            "that measures exactly how far from square the corner is."
+        ),
+        objective=(
+            "State and apply the Law of Cosines to solve triangles given two sides and the "
+            "included angle (SAS) or all three sides (SSS), and recognise it as a "
+            "generalisation of the Pythagorean theorem."
+        ),
+        concept=[
+            "**The Law of Sines has a blind spot.** Given two sides and the angle BETWEEN "
+            "them, no ratio in the Law of Sines has both of its parts known — every "
+            "equation contains two unknowns. Given all three sides, the same thing happens. "
+            "These two configurations need a different tool.",
+
+            "**The statement.** $c^2 = a^2 + b^2 - 2ab\\cos C$, where $C$ is the angle "
+            "between sides $a$ and $b$, and $c$ is the side across from it. Each letter "
+            "appears in the role you would expect: the two known sides, the angle they "
+            "enclose, the side that closes the triangle.",
+
+            "**It is Pythagoras plus a correction.** Set $C = 90°$: then $\\cos C = 0$, the "
+            "last term vanishes and the statement is exactly $c^2 = a^2 + b^2$. For an "
+            "ACUTE $C$ the cosine is positive, so $-2ab\\cos C$ is negative and $c$ comes "
+            "out SHORTER than the right-angled case — closing the corner pulls the far ends "
+            "together. For an obtuse $C$ the cosine is negative, the term adds, and $c$ is "
+            "longer. The formula measures the corner's deviation from square.",
+
+            "**Rearranged, it finds an angle from three sides.** Solving for the cosine "
+            "gives $\\cos C = \\dfrac{a^2 + b^2 - c^2}{2ab}$. This is the only elementary "
+            "route from SSS to an angle, and the sign of the numerator tells you the angle's "
+            "type before you compute anything: positive means acute, zero means right, "
+            "negative means obtuse.",
+
+            "**Choosing between the two laws.** Look at what you are given. SSS or SAS — "
+            "Law of Cosines, because no matched pair exists yet. ASA, AAS or SSA — Law of "
+            "Sines, because one does. A common efficient route is Law of Cosines once to "
+            "get the missing piece, then Law of Sines for the rest, since a proportion is "
+            "lighter work than a squared equation.",
+
+            "**Find the largest angle first when using SSS.** The largest angle sits "
+            "opposite the longest side and is the only one that could be obtuse. Pinning it "
+            "down with the cosine rule first means every remaining angle is guaranteed "
+            "acute, so the Law of Sines can finish the job with no ambiguity to worry about.",
+        ],
+        key_idea=(
+            "$c^2 = a^2 + b^2 - 2ab\\cos C$ is the Pythagorean theorem with a correction "
+            "term for the corner not being square. Use it for SAS and SSS — the two cases "
+            "the Law of Sines cannot start."
+        ),
+        facts=[
+            fact("The Law of Cosines", "c^2 = a^2 + b^2 - 2ab\\cos C",
+                 "C is the angle between a and b; c is the side opposite it."),
+            fact("Rearranged for an angle",
+                 "\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}",
+                 "The route from three sides to an angle."),
+            fact("Pythagoras is the special case",
+                 "C = 90^\\circ \\Rightarrow \\cos C = 0",
+                 "The correction term vanishes and c² = a² + b² remains."),
+            fact("The numerator's sign classifies the angle",
+                 "a^2 + b^2 - c^2 < 0 \\Rightarrow C \\text{ obtuse}",
+                 "Positive means acute, zero right, negative obtuse."),
+        ],
+        worked=[
+            problem(
+                "im3-u4-l6-we1",
+                "In triangle $ABC$, $a = 5$, $b = 8$ and the angle between them is "
+                "$C = 60°$. Find $c$.",
+                "**Identify the configuration.** Two sides and the angle between them — SAS, "
+                "so the Law of Cosines is the only starting move."
+                "**Substitute.** $c^2 = 5^2 + 8^2 - 2(5)(8)\\cos 60° = 25 + 64 - "
+                "80 \\cdot \\frac{1}{2} = 89 - 40 = 49$."
+                "**Take the root.** $c = 7$."
+                "**Sanity check.** A right angle would have given $\\sqrt{89} \\approx 9.4$; "
+                "closing the corner to $60°$ shortened the far side to $7$, exactly as the "
+                "negative correction term predicts.",
+                [
+                    "Eq(25 + 64 - 2*5*8*cos(pi/3), 49)",
+                    "Eq(sqrt(49), 7)",
+                    "49 < 89",
+                ],
+            ),
+            problem(
+                "im3-u4-l6-we2",
+                "A triangle has sides $7$, $8$ and $13$. Find its largest angle.",
+                "**The largest angle faces the longest side**, so it is the angle opposite "
+                "$13$; call it $C$ with $a = 7$ and $b = 8$."
+                "**Use the rearranged law.** $\\cos C = \\dfrac{7^2 + 8^2 - 13^2}{2(7)(8)} = "
+                "\\dfrac{49 + 64 - 169}{112} = \\dfrac{-56}{112} = -\\dfrac{1}{2}$."
+                "**Read the angle.** The cosine is $-\\frac{1}{2}$, so $C = 120°$."
+                "**The sign told you first.** $49 + 64 = 113$ is less than $169$, so the "
+                "numerator was negative before any dividing — the angle had to be obtuse.",
+                [
+                    "Eq(Rational(49 + 64 - 169, 2*7*8), Rational(-1, 2))",
+                    "Eq(acos(Rational(-1, 2)), 2*pi/3)",
+                    "49 + 64 < 169",
+                ],
+            ),
+            problem(
+                "im3-u4-l6-we3",
+                "Two roads leave a junction at an angle of $120°$. A cyclist rides $6$ km "
+                "along one and $10$ km along the other. How far apart are the two "
+                "endpoints?",
+                "**Draw it as a triangle.** The junction is the vertex, the two rides are "
+                "sides $6$ and $10$, and the angle between them is $120°$ — SAS again."
+                "**Substitute.** $d^2 = 6^2 + 10^2 - 2(6)(10)\\cos 120°$. Since "
+                "$\\cos 120° = -\\frac{1}{2}$, the last term is $-120 \\cdot "
+                "\\left(-\\frac{1}{2}\\right) = +60$."
+                "**Finish.** $d^2 = 36 + 100 + 60 = 196$, so $d = 14$ km."
+                "**Note the sign.** An obtuse corner made the correction term ADD, and the "
+                "endpoints ended up further apart than the right-angled $\\sqrt{136} "
+                "\\approx 11.7$ km would have been.",
+                [
+                    "Eq(36 + 100 - 2*6*10*cos(2*pi/3), 196)",
+                    "Eq(sqrt(196), 14)",
+                    "196 > 136",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Writing c² = a² + b² - 2ab cos C with C not the included angle.",
+                "The angle in the formula must be the one BETWEEN the two sides being "
+                "squared. Pair them wrongly and the equation describes a different triangle.",
+            ),
+            mistake(
+                "Computing 2ab cos C as (2ab cos)·C, or subtracting before multiplying.",
+                "The whole product 2ab·cos C is one quantity, subtracted last. With a = 5, "
+                "b = 8, C = 60°: 2·5·8·0.5 = 40, and 89 - 40 = 49. Order matters.",
+            ),
+            mistake(
+                "Forgetting that c² is the answer, not c.",
+                "The formula returns the SQUARE of the unknown side. c² = 49 means c = 7; "
+                "reporting 49 is reporting an area-sized number as a length.",
+            ),
+            mistake(
+                "Reaching for the Law of Cosines when a matched pair is already known.",
+                "If a side and its opposite angle are both known, the Law of Sines is one "
+                "proportion instead of a squared equation. Pick the lighter tool.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im3-u4-l6-t1",
+                "In triangle $ABC$, $a = 6$, $b = 10$ and $C = 120°$. Find $c$.",
+                "$c^2 = 36 + 100 - 2(6)(10)\\cos 120° = 136 + 60 = 196$, so $c = 14$. The "
+                "obtuse angle makes the correction term positive.",
+                [
+                    "Eq(36 + 100 - 2*6*10*cos(2*pi/3), 196)",
+                    "Eq(sqrt(196), 14)",
+                ],
+            ),
+            problem(
+                "im3-u4-l6-t2",
+                "A triangle has sides $4$, $5$ and $6$. Find $\\cos A$, where $A$ is the "
+                "angle opposite the side of length $4$.",
+                "$\\cos A = \\dfrac{5^2 + 6^2 - 4^2}{2(5)(6)} = \\dfrac{25 + 36 - 16}{60} = "
+                "\\dfrac{45}{60} = \\dfrac{3}{4}$. Positive, so $A$ is acute — as the "
+                "smallest side's angle must be.",
+                [
+                    "Eq(Rational(25 + 36 - 16, 2*5*6), Rational(3, 4))",
+                    "Rational(3, 4) > 0",
+                ],
+            ),
+            problem(
+                "im3-u4-l6-t3",
+                "You are given a triangle's three sides and asked for one of its angles. "
+                "Which law applies, and why?",
+                "The Law of Cosines. With SSS there is no side paired with a known opposite "
+                "angle, so every Law of Sines ratio would have two unknowns. The rearranged "
+                "cosine rule $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$ uses only the three "
+                "sides.",
+                [
+                    "Eq(Rational(9 + 16 - 25, 2*3*4), 0)",
+                    "Eq(acos(0), pi/2)",
+                ],
+            ),
+        ],
+        steps=[
+            {"kind": "teach", "title": "Where the Law of Sines stalls",
+             "body": "Given sides $a$ and $b$ with the angle $C$ between them, every Law of Sines ratio has an unknown on top AND bottom — there is no matched pair to start from. The same happens with three sides and no angles. Those two cases, SAS and SSS, are what the Law of Cosines exists for.",
+             "beats": ["SAS: two sides and the angle between them",
+                       "SSS: three sides, no angles",
+                       "Neither gives the Law of Sines a matched pair"]},
+            {"kind": "teach", "title": "Pythagoras, with a correction term",
+             "body": "$c^2 = a^2 + b^2 - 2ab\\cos C$. When $C = 90°$ the cosine is $0$ and the extra term disappears, leaving $c^2 = a^2 + b^2$. An acute corner makes the term subtract (the far side is shorter than square); an obtuse corner makes it add. The formula is measuring how far the corner is from a right angle.",
+             "beats": ["$C = 90°$ collapses to Pythagoras",
+                       "Acute $C$: shorter than the right-angled case",
+                       "Obtuse $C$: longer"]},
+            {"kind": "worked", "title": "SAS, straight down the formula", "problemId": "im3-u4-l6-we1"},
+            tap(
+                "Which angle goes in the formula",
+                "In $c^2 = a^2 + b^2 - 2ab\\cos C$, the angle $C$ must be:",
+                ["the angle BETWEEN sides $a$ and $b$",
+                 "the largest angle in the triangle",
+                 "an angle next to side $c$",
+                 "any known angle"],
+                0,
+                "The formula pairs the squared side $c$ with the angle opposite it, which is "
+                "the same as the angle enclosed by $a$ and $b$.",
+                ["Eq(25 + 64 - 2*5*8*cos(pi/2), 89)"],
+            ),
+            {"kind": "worked", "title": "Three sides to an angle", "problemId": "im3-u4-l6-we2"},
+            {"kind": "tip", "eyebrow": "Shortcut", "title": "The numerator classifies the angle",
+             "body": "Before dividing, look at $a^2 + b^2 - c^2$. Positive means the angle opposite $c$ is acute, zero means right, negative means obtuse. For sides $7, 8, 13$: $49 + 64 = 113 < 169$, so that angle is obtuse — known before any arithmetic."},
+            tap(
+                "Classifying without computing",
+                "A triangle has sides $6$, $7$ and $10$. The angle opposite the side of "
+                "length $10$ is:",
+                ["obtuse, because $36 + 49 < 100$",
+                 "right, because $36 + 49 = 100$",
+                 "acute, because $10$ is the longest side",
+                 "impossible to classify without a calculator"],
+                0,
+                "$6^2 + 7^2 = 85$, which is less than $10^2 = 100$, so the numerator of "
+                "$\\cos C$ is negative and the angle is obtuse.",
+                ["36 + 49 < 100", "Eq(Rational(36 + 49 - 100, 2*6*7), Rational(-5, 28))"],
+            ),
+            {"kind": "worked", "title": "Two roads from a junction", "problemId": "im3-u4-l6-we3"},
+            {"kind": "tryIt", "title": "An obtuse included angle", "problemId": "im3-u4-l6-t1"},
+            {"kind": "tryIt", "title": "SSS to a cosine", "problemId": "im3-u4-l6-t2"},
+            {"kind": "tryIt", "title": "Choosing the tool", "problemId": "im3-u4-l6-t3"},
+            {"kind": "recap", "title": "What to carry forward",
+             "points": ["$c^2 = a^2 + b^2 - 2ab\\cos C$, with $C$ the INCLUDED angle",
+                        "It is Pythagoras plus a correction for the corner",
+                        "SAS and SSS need this law; ASA, AAS and SSA need the Law of Sines",
+                        "$\\cos C = \\dfrac{a^2 + b^2 - c^2}{2ab}$ turns three sides into an angle",
+                        "With SSS, pin the largest angle first and the rest are acute"]},
+        ],
+    )
+
+
+# ===========================================================================
 # Practice bank
 # ===========================================================================
 
@@ -1070,6 +1560,71 @@ def practice_bank():
                 "Eq(simplify(sin(pi/5)**2 + cos(pi/5)**2), 1)",
             ],
         ),
+        problem(
+            "im3-u4-p13",
+            "In triangle $ABC$, $B = 45°$, $C = 60°$ and $b = 14$. Find $c$ exactly.",
+            "A matched pair ($b$ with $B$) is known, so the Law of Sines applies: "
+            "$c = 14 \\cdot \\dfrac{\\sin 60°}{\\sin 45°} = 7\\sqrt{6}$.",
+            [
+                "Eq(simplify(14*sin(pi/3)/sin(pi/4) - 7*sqrt(6)), 0)",
+                "7*sqrt(6) > 14",
+            ],
+        ),
+        problem(
+            "im3-u4-p14",
+            "Find the area of a triangle with sides $10$ and $14$ enclosing an angle of "
+            "$30°$.",
+            "$\\text{Area} = \\frac{1}{2}(10)(14)\\sin 30° = 70 \\cdot \\frac{1}{2} = 35$ "
+            "square units.",
+            ["Eq(Rational(1, 2)*10*14*sin(pi/6), 35)"],
+        ),
+        problem(
+            "im3-u4-p15",
+            "In triangle $ABC$, $a = 9$, $b = 7$ and $C = 60°$. Find $c$.",
+            "SAS, so the Law of Cosines: $c^2 = 81 + 49 - 2(9)(7)\\cos 60° = 130 - 63 = "
+            "67$, giving $c = \\sqrt{67}$.",
+            [
+                "Eq(81 + 49 - 2*9*7*cos(pi/3), 67)",
+                "67 < 130",
+            ],
+        ),
+        problem(
+            "im3-u4-p16",
+            "A triangle has sides $5$, $12$ and $13$. What is the angle opposite the side "
+            "of length $13$?",
+            "$\\cos C = \\dfrac{25 + 144 - 169}{2(5)(12)} = \\dfrac{0}{120} = 0$, so "
+            "$C = 90°$ — the cosine rule detects the right angle by itself.",
+            [
+                "Eq(Rational(25 + 144 - 169, 2*5*12), 0)",
+                "Eq(acos(0), pi/2)",
+            ],
+        ),
+        problem(
+            "im3-u4-p17",
+            "In triangle $ABC$, $a = 5$, $b = 9$ and $A = 30°$. How many triangles are "
+            "possible?",
+            "$\\sin B = \\dfrac{9\\sin 30°}{5} = \\dfrac{9}{10}$, which is under $1$, so "
+            "two candidate angles exist: about $64.2°$ and about $115.8°$. Both leave the "
+            "angle sum under $180°$ alongside $A = 30°$, so TWO triangles fit.",
+            [
+                "Eq(9*sin(pi/6)/5, Rational(9, 10))",
+                "Rational(9, 10) < 1",
+                "5 < 9",
+            ],
+        ),
+        problem(
+            "im3-u4-p18",
+            "Which law would you use to find the remaining side of a triangle with sides "
+            "$8$ and $11$ meeting at $75°$? Explain in one sentence.",
+            "The Law of Cosines: the known angle sits BETWEEN the two known sides, so no "
+            "side is paired with its opposite angle and the Law of Sines cannot start. "
+            "Checking with a right angle instead of $75°$ shows the formula reducing to "
+            "$8^2 + 11^2 = 185$.",
+            [
+                "Eq(64 + 121 - 2*8*11*cos(pi/2), 185)",
+                "Eq(64 + 121, 185)",
+            ],
+        ),
     ]
 
 
@@ -1188,6 +1743,37 @@ def test_bank():
                 "Eq(simplify(cos(29*pi/6) - cos(5*pi/6)), 0)",
             ],
         ),
+        problem(
+            "im3-u4-x9",
+            "In triangle $ABC$, $A = 30°$, $C = 105°$ and $c = 20$. Find $a$ exactly, then "
+            "the area of the triangle.",
+            "$B = 180° - 30° - 105° = 45°$. The Law of Sines gives "
+            "$a = 20 \\cdot \\dfrac{\\sin 30°}{\\sin 105°}$; using instead the matched "
+            "pair with $B$, $b = 20 \\cdot \\dfrac{\\sin 45°}{\\sin 105°}$. The area is "
+            "cleanest from $a$ and $b$ with the included angle $C$: "
+            "$\\text{Area} = \\frac{1}{2}ab\\sin 105°$. Substituting and simplifying gives "
+            "$\\text{Area} = 200\\dfrac{\\sin 30° \\sin 45°}{\\sin 105°}$, about "
+            "$73.2$ square units.",
+            [
+                "Eq(180 - 30 - 105, 45)",
+                "Eq(simplify(Rational(1,2)*(20*sin(pi/6)/sin(7*pi/12))*(20*sin(pi/4)/sin(7*pi/12))*sin(7*pi/12) - 200*sin(pi/6)*sin(pi/4)/sin(7*pi/12)), 0)",
+                "Abs(200*sin(pi/6)*sin(pi/4)/sin(7*pi/12) - 73.2) < 0.1",
+            ],
+        ),
+        problem(
+            "im3-u4-x10",
+            "A triangle has sides $6$, $10$ and $14$. Find its largest angle, and then its "
+            "area.",
+            "The largest angle faces $14$: $\\cos C = \\dfrac{36 + 100 - 196}{2(6)(10)} = "
+            "\\dfrac{-60}{120} = -\\dfrac{1}{2}$, so $C = 120°$. With the included angle "
+            "known, $\\text{Area} = \\frac{1}{2}(6)(10)\\sin 120° = 30 \\cdot "
+            "\\dfrac{\\sqrt{3}}{2} = 15\\sqrt{3}$ square units.",
+            [
+                "Eq(Rational(36 + 100 - 196, 2*6*10), Rational(-1, 2))",
+                "Eq(acos(Rational(-1, 2)), 2*pi/3)",
+                "Eq(simplify(Rational(1, 2)*6*10*sin(2*pi/3) - 15*sqrt(3)), 0)",
+            ],
+        ),
     ]
 
 
@@ -1195,23 +1781,27 @@ def main():
     write_unit(
         course=COURSE,
         slug="trigonometric-functions",
-        title="Trigonometric Functions",
+        title="Trigonometric Functions & General Triangles",
         unit_number=4,
         blurb=(
             "Radian measure and the unit circle, extending the ratios beyond acute "
-            "angles, the graphs of sine and cosine with amplitude and period, and the "
-            "Pythagorean identity."
+            "angles, the graphs of sine and cosine with amplitude and period, the "
+            "Pythagorean identity, and the Laws of Sines and Cosines for triangles with "
+            "no right angle."
         ),
         builds_on=(
             "Right-triangle trigonometry from IM2 Unit 6 and radians from IM2 Unit 7 — "
             "the triangle's ratios become coordinates on the unit circle, and suddenly "
-            "every angle has a sine and cosine."
+            "every angle has a sine and cosine, including the ones inside a triangle "
+            "that has no right angle at all."
         ),
         lessons=[
             lesson_unit_circle(),
             lesson_reference(),
             lesson_graphs(),
             lesson_identity(),
+            lesson_law_of_sines(),
+            lesson_law_of_cosines(),
         ],
         practice=practice_bank(),
         test=test_bank(),

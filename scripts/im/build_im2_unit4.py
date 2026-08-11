@@ -1434,6 +1434,238 @@ def lesson_complex_numbers():
 
 
 # ===========================================================================
+# Lesson 5 — A-REI.7: systems of a linear and a quadratic equation
+# ===========================================================================
+
+def lesson_linear_quadratic_systems():
+    return lesson(
+        slug="linear-and-quadratic-systems",
+        title="Where a Line Meets a Parabola",
+        concrete=(
+            "A ball is thrown and follows a parabola; a drone flies across the field in a "
+            "straight line at a steady climb. Do they collide? The question is not about "
+            "either path on its own — it is about the points that lie on BOTH, and there "
+            "can be two of them, one, or none. Solving the system tells you which, and the "
+            "discriminant tells you before you finish."
+        ),
+        objective=(
+            "Solve a system of one linear and one quadratic equation algebraically by "
+            "substitution, interpret the solutions as intersection points, and use the "
+            "discriminant to count them in advance — including the tangent case."
+        ),
+        concept=[
+            "**A solution of a system is a point on every curve at once.** IM1's systems "
+            "were two lines, so there was at most one crossing. Replace one line with a "
+            "parabola and the count can be $2$, $1$ or $0$ — a straight line can cut a "
+            "curve twice, graze it once, or miss it entirely.",
+
+            "**Substitution is the whole method.** The linear equation gives $y$ in terms "
+            "of $x$ with no work; put that expression wherever $y$ appears in the quadratic "
+            "and you are left with one quadratic equation in $x$ alone. Every technique "
+            "from this unit then applies — factoring, the square root, completing the "
+            "square, the formula.",
+
+            "**Do not stop at the x values.** Each $x$ you find is only half of a point. Substitute "
+            "it back into the LINEAR equation (it is the easier of the two) to recover the "
+            "matching $y$, and report ordered pairs. A pair of $x$ values with no $y$ values "
+            "is an unfinished answer.",
+
+            "**The discriminant counts the intersections.** After substituting you have "
+            "$ax^2 + bx + c = 0$, and $b^2 - 4ac$ decides everything: positive means two "
+            "crossings, zero means the line is TANGENT — touching at exactly one point — "
+            "and negative means the line and curve never meet in the real plane. This is "
+            "the same discriminant as before, now answering a geometric question.",
+
+            "**Tangency is a condition you can solve for.** 'Find the value of $k$ for "
+            "which $y = x + k$ touches the parabola' means 'find $k$ making the "
+            "discriminant zero'. Set $b^2 - 4ac = 0$ and solve for $k$ — a favourite exam "
+            "move, because it looks geometric and turns out to be algebra you already have.",
+
+            "**Two curves work the same way.** A line and a circle, a parabola and a "
+            "circle: substitute one equation into the other, reduce to a single-variable "
+            "equation, and let the discriminant count. Nothing about the method needed the "
+            "second curve to be a parabola.",
+        ],
+        key_idea=(
+            "Substitute the line into the curve to get one quadratic in $x$, then let the "
+            "discriminant count the intersections: positive two, zero tangent, negative "
+            "none. Finish by putting each $x$ back into the LINE to get its $y$."
+        ),
+        facts=[
+            fact("The method", "y = mx + c \\rightarrow \\text{substitute into the quadratic}",
+                 "One equation in x alone, solvable by every method in this unit."),
+            fact("Counting the crossings", "b^2 - 4ac > 0 \\Rightarrow \\text{two points}",
+                 "Zero gives a tangent, negative gives no real intersection."),
+            fact("The tangency condition", "b^2 - 4ac = 0",
+                 "Set this and solve for the unknown parameter."),
+            fact("Finishing the answer", "(x_1, y_1) \\text{ and } (x_2, y_2)",
+                 "Each x must be paired with its y — solutions are POINTS."),
+        ],
+        worked=[
+            problem(
+                "im2-u4-l5-we1",
+                "Solve the system $y = x^2 - 2x - 3$ and $y = x + 1$.",
+                "**Substitute the line into the curve.** Both right-hand sides equal $y$, "
+                "so set them equal: $x^2 - 2x - 3 = x + 1$."
+                "**Collect on one side.** $x^2 - 3x - 4 = 0$."
+                "**Factor.** $(x - 4)(x + 1) = 0$, so $x = 4$ or $x = -1$."
+                "**Recover each y from the LINE.** At $x = 4$: $y = 5$. At "
+                "$x = -1$: $y = 0$."
+                "**Answer.** The curves meet at $(4, 5)$ and $(-1, 0)$.",
+                [
+                    "Eq(expand((x - 4)*(x + 1)), x**2 - 3*x - 4)",
+                    "Eq(4**2 - 2*4 - 3, 4 + 1)",
+                    "Eq((-1)**2 - 2*(-1) - 3, -1 + 1)",
+                ],
+            ),
+            problem(
+                "im2-u4-l5-we2",
+                "Show that the line $y = 2x - 5$ is tangent to the parabola $y = x^2 - 4$, "
+                "and find the point of contact.",
+                "**Substitute.** $x^2 - 4 = 2x - 5$, so $x^2 - 2x + 1 = 0$."
+                "**Compute the discriminant.** $b^2 - 4ac = (-2)^2 - 4(1)(1) = 4 - 4 = 0$. "
+                "A zero discriminant means exactly one solution, which geometrically is a "
+                "single point of contact — the line is tangent."
+                "**Find it.** $x^2 - 2x + 1 = (x - 1)^2 = 0$ gives $x = 1$, and the line "
+                "gives $y = 2(1) - 5 = -3$."
+                "**Point of contact.** $(1, -3)$.",
+                [
+                    "Eq((-2)**2 - 4*1*1, 0)",
+                    "Eq(expand((x - 1)**2), x**2 - 2*x + 1)",
+                    "Eq(1**2 - 4, 2*1 - 5)",
+                ],
+            ),
+            problem(
+                "im2-u4-l5-we3",
+                "For which value of $k$ is the line $y = 4x + k$ tangent to the parabola "
+                "$y = x^2 + 2x + 7$?",
+                "**Substitute and collect.** $x^2 + 2x + 7 = 4x + k$ gives "
+                "$x^2 - 2x + (7 - k) = 0$."
+                "**Tangency means one solution, so the discriminant is zero.** "
+                "$(-2)^2 - 4(1)(7 - k) = 0$."
+                "**Solve for the constant.** $4 - 28 + 4k = 0$, so $4k = 24$ and $k = 6$."
+                "**Check.** With $k = 6$ the equation is $x^2 - 2x + 1 = 0$, a perfect "
+                "square with the single root $x = 1$ — one contact point, as required.",
+                [
+                    "Eq(4 - 4*(7 - 6), 0)",
+                    "Eq(expand(x**2 + 2*x + 7 - (4*x + 6)), x**2 - 2*x + 1)",
+                    "Eq(1**2 + 2*1 + 7, 4*1 + 6)",
+                ],
+            ),
+        ],
+        mistakes=[
+            mistake(
+                "Reporting the x values and stopping.",
+                "A system's solutions are POINTS. x = 4 and x = -1 is half an answer; the "
+                "points are (4, 5) and (-1, 0). Substitute each x back into the line.",
+            ),
+            mistake(
+                "Substituting back into the quadratic instead of the line.",
+                "It gives the same y, but with far more arithmetic and far more chances to "
+                "slip. The line was chosen as the substitution source for a reason — use it "
+                "again at the end.",
+            ),
+            mistake(
+                "Treating a zero discriminant as 'no solution'.",
+                "Zero means exactly ONE solution — the tangent case, where the line touches "
+                "the curve at a single point. Negative is the no-intersection case.",
+            ),
+            mistake(
+                "Solving the tangency condition by trial and error.",
+                "'Tangent' translates directly into b² - 4ac = 0. Set that equation up in "
+                "the unknown parameter and solve it — guessing values of k is slow and "
+                "rarely lands on the exact answer.",
+            ),
+        ],
+        try_it=[
+            problem(
+                "im2-u4-l5-t1",
+                "Solve the system $y = x^2 + 3x - 2$ and $y = 2x + 4$.",
+                "$x^2 + 3x - 2 = 2x + 4$ gives $x^2 + x - 6 = 0$, so $(x + 3)(x - 2) = 0$ "
+                "and $x = -3$ or $x = 2$. From the line, $y = -2$ and $y = 8$. The points "
+                "are $(-3, -2)$ and $(2, 8)$.",
+                [
+                    "Eq(expand((x + 3)*(x - 2)), x**2 + x - 6)",
+                    "Eq((-3)**2 + 3*(-3) - 2, 2*(-3) + 4)",
+                    "Eq(2**2 + 3*2 - 2, 2*2 + 4)",
+                ],
+            ),
+            problem(
+                "im2-u4-l5-t2",
+                "How many points does the line $y = x - 5$ share with the parabola "
+                "$y = x^2 + 1$?",
+                "$x^2 + 1 = x - 5$ gives $x^2 - x + 6 = 0$, whose discriminant is "
+                "$1 - 24 = -23$. Negative, so there are NO real intersection points — the "
+                "line passes entirely below the parabola.",
+                [
+                    "Eq(1 - 4*1*6, -23)",
+                    "-23 < 0",
+                ],
+            ),
+            problem(
+                "im2-u4-l5-t3",
+                "For which value of $k$ is $y = 6x + k$ tangent to $y = x^2 + 10x + 3$?",
+                "$x^2 + 10x + 3 = 6x + k$ gives $x^2 + 4x + (3 - k) = 0$. Tangency needs "
+                "$16 - 4(3 - k) = 0$, so $16 - 12 + 4k = 0$ and $k = -1$.",
+                [
+                    "Eq(16 - 4*(3 - (-1)), 0)",
+                    "Eq(expand(x**2 + 10*x + 3 - (6*x - 1)), x**2 + 4*x + 4)",
+                ],
+            ),
+        ],
+        steps=[
+            {"kind": "teach", "title": "Two lines could cross once. A line and a curve cannot be trusted to.",
+             "body": "A system asks for the points lying on BOTH graphs. With two lines there was one crossing at most. Swap one for a parabola and a straight line can cut it twice, touch it once, or miss it — so the first question is no longer 'where' but 'how many'.",
+             "beats": ["A solution is a point on both graphs", "Two, one or none", "The count comes before the coordinates"]},
+            {"kind": "teach", "title": "Substitute, then it is just a quadratic",
+             "body": "The linear equation already gives $y$ in terms of $x$. Put that expression into the quadratic and every $y$ disappears, leaving one quadratic equation in $x$ — solvable by factoring, square roots, completing the square, or the formula. Nothing new is needed.",
+             "beats": ["Replace $y$ using the line", "One equation, one variable", "Every method from this unit applies"]},
+            {"kind": "worked", "title": "Two crossings", "problemId": "im2-u4-l5-we1"},
+            tap(
+                "Finishing the answer",
+                "You have solved down to $x = 4$ and $x = -1$. The system's solution is:",
+                ["the points $(4, 5)$ and $(-1, 0)$, after substituting each $x$ into the line",
+                 "$x = 4$ and $x = -1$",
+                 "$y = 5$ and $y = 0$",
+                 "$x = 4$ only, because a system has one solution"],
+                0,
+                "A system of two equations in $x$ and $y$ is solved by POINTS. Each $x$ must "
+                "be paired with the $y$ that goes with it.",
+                ["Eq(4**2 - 2*4 - 3, 5)", "Eq((-1)**2 - 2*(-1) - 3, 0)"],
+            ),
+            {"kind": "tip", "eyebrow": "Save yourself work",
+             "title": "Go back to the line, not the curve",
+             "body": "Both equations give the same $y$, but the line is one multiplication and one addition while the parabola is a squaring as well. Substituting into the line is faster and safer — and it is the equation you already trusted enough to substitute FROM."},
+            {"kind": "worked", "title": "The tangent case", "problemId": "im2-u4-l5-we2"},
+            tap(
+                "What a zero discriminant means here",
+                "After substituting, the quadratic has discriminant $0$. Geometrically:",
+                ["the line is tangent — it touches the curve at exactly one point",
+                 "the line misses the curve entirely",
+                 "the line cuts the curve twice",
+                 "the line lies along the curve"],
+                0,
+                "Zero discriminant means one repeated root, so one shared point: the line "
+                "grazes the parabola rather than cutting it.",
+                ["Eq((-2)**2 - 4*1*1, 0)", "Eq(expand((x - 1)**2), x**2 - 2*x + 1)"],
+            ),
+            {"kind": "worked", "title": "Solving for the tangency condition", "problemId": "im2-u4-l5-we3"},
+            {"kind": "tryIt", "title": "Two points", "problemId": "im2-u4-l5-t1"},
+            {"kind": "tryIt", "title": "Counting without solving", "problemId": "im2-u4-l5-t2"},
+            {"kind": "tryIt", "title": "Find the tangent line", "problemId": "im2-u4-l5-t3"},
+            {"kind": "funFact", "title": "This is how tangents were found before calculus",
+             "body": "Descartes located tangents to curves by demanding a repeated root — exactly the discriminant-equals-zero move above — decades before derivatives existed. Calculus later made it general, but for a line meeting a parabola the algebraic route is still the shorter one."},
+            {"kind": "recap", "title": "What to carry forward",
+             "points": ["Substitute the line into the curve to get one quadratic in $x$",
+                        "$b^2 - 4ac$ counts the intersections: $+$ two, $0$ tangent, $-$ none",
+                        "Put each $x$ back into the LINE to get its $y$",
+                        "Solutions are POINTS, written as ordered pairs",
+                        "'Tangent' translates to $b^2 - 4ac = 0$ — solve it for the parameter"]},
+        ],
+    )
+
+
+# ===========================================================================
 # Practice and test banks
 # ===========================================================================
 def practice_bank():
@@ -1823,6 +2055,7 @@ def main():
             lesson_completing_the_square(),
             lesson_quadratic_formula(),
             lesson_complex_numbers(),
+            lesson_linear_quadratic_systems(),
         ],
         practice=practice_bank(),
         test=test_bank(),

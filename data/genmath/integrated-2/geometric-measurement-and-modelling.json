@@ -1,0 +1,1187 @@
+{
+  "slug": "geometric-measurement-and-modelling",
+  "title": "Geometric Measurement & Modelling",
+  "unit": 8,
+  "status": "published",
+  "blurb": "Where the volume formulas come from and why a leaning solid matches an upright one; solving forwards and backwards with volume and surface area; the cross-sections a plane leaves and the solids a spinning figure sweeps; and density and design problems that turn geometry into a decision.",
+  "buildsOn": "Similarity from Unit 5 — the scale factor that squared for areas now cubes for volumes — and the formula rearranging from IM1 Unit 1, which is what solving backwards for a radius or a height actually is.",
+  "lessons": [
+    {
+      "slug": "where-the-volume-formulas-come-from",
+      "title": "Where the Volume Formulas Come From",
+      "concreteComparison": "Stack sheets of paper into a neat block, then push the top of the stack sideways so it leans. Not one sheet has changed size, so the paper you are holding has not changed either — the leaning stack has exactly the volume of the upright one. That observation has a name, and it is the reason a whole page of volume formulas collapses into one idea.",
+      "objective": "Give informal arguments for the volume formulas of a prism, cylinder, pyramid, cone and sphere, and use Cavalieri's principle to explain why oblique solids match their upright versions.",
+      "concept": [
+        "**A prism is base area times height, and the argument is stacking.** Take the base, give it a thickness of one unit, and you have a slab holding exactly $B$ cubic units. Stack $h$ of those slabs and the volume is $Bh$. Nothing about the argument cared what SHAPE the base was — triangle, hexagon, blob.",
+        "**A cylinder is the same sentence with a round base.** $V = Bh = \\pi r^2 h$. The circle's area was itself argued by dissection in earlier years — cut the disc into thin wedges, alternate them, and they approach a rectangle of width $\\pi r$ and height $r$ — so the cylinder inherits an argument rather than a new rule.",
+        "**Cavalieri's principle: same heights, same cross-sections, same volume.** If two solids have equal heights and every horizontal slice of one has the same AREA as the matching slice of the other, the two solids have equal volume. The leaning stack of paper is the everyday version, and it is why an oblique cylinder has the same $\\pi r^2 h$ as an upright one.",
+        "**A pyramid is one third of its prism, and the third is real.** Three congruent oblique pyramids, each with the same base as a cube's face and the cube's height, fit together to fill the cube exactly. So each is $\\frac{1}{3}$ of it, giving $V = \\frac{1}{3}Bh$ — and Cavalieri's principle then transfers that answer to every other pyramid of the same base and height, leaning or not.",
+        "**A cone is a pyramid whose base went round.** $V = \\frac{1}{3}\\pi r^2 h$, and the $\\frac{1}{3}$ is the same $\\frac{1}{3}$. A cone and a pyramid of equal base area and height have identical volumes, which is exactly Cavalieri again: matching slices, matching total.",
+        "**The sphere is the odd one, and it is worth knowing why.** $V = \\frac{4}{3}\\pi r^3$ cannot be reached by stacking congruent slabs — every slice is a different circle. Archimedes got it by comparing a hemisphere against a cylinder with a cone removed: at every height the two cross-sections have equal area, so Cavalieri's principle finishes the job.",
+        "**Surface area is a different quantity with different units.** Volume fills, surface covers. Volume is measured in cubic units and surface area in square units, and no amount of algebra converts one into the other. A cylinder's surface is two discs plus a rolled-out rectangle: $2\\pi r^2 + 2\\pi r h$."
+      ],
+      "keyIdea": "Every volume in this unit is base area times height, taken whole for prisms and cylinders and divided by three for pyramids and cones. Cavalieri's principle is what lets a leaning solid borrow an upright one's answer.",
+      "facts": [
+        {
+          "title": "Prism and cylinder",
+          "latex": "V = Bh = \\pi r^2 h",
+          "explanation": "Base area times height — the stacking argument."
+        },
+        {
+          "title": "Pyramid and cone",
+          "latex": "V = \\frac{1}{3}Bh = \\frac{1}{3}\\pi r^2 h",
+          "explanation": "Three congruent pyramids fill the matching prism."
+        },
+        {
+          "title": "Sphere",
+          "latex": "V = \\frac{4}{3}\\pi r^3",
+          "explanation": "Archimedes' comparison with a cylinder minus a cone."
+        },
+        {
+          "title": "Cavalieri's principle",
+          "latex": "\\text{equal heights} + \\text{equal slices} \\Rightarrow \\text{equal volume}",
+          "explanation": "Why oblique solids match their upright versions."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im2-u8-l1-we1",
+          "statement": "A cylinder has radius $5$ cm and height $12$ cm. Find its volume in terms of $\\pi$, and compare it with a cone of the same radius and height.",
+          "solution": "**Cylinder: base area times height.** The base is a circle of area $\\pi(5)^2 = 25\\pi$ cm², so $V = 25\\pi \\cdot 12 = 300\\pi$ cm³.**Cone: a third of that.** $V = \\frac{1}{3}(300\\pi) = 100\\pi$ cm³.**The relationship is the point.** A cone and the cylinder that encloses it always stand in the ratio $1 : 3$, whatever the radius and height — so three cone-fuls of water fill the cylinder exactly.",
+          "check": [
+            "Eq(pi*5**2*12, 300*pi)",
+            "Eq(Rational(1, 3)*300*pi, 100*pi)",
+            "Eq(300*pi/(100*pi), 3)"
+          ]
+        },
+        {
+          "id": "im2-u8-l1-we2",
+          "statement": "An oblique cylinder leans so that its top face is offset from its base, but its radius is $4$ m and its vertical height is $9$ m. Find its volume.",
+          "solution": "**The lean is a distraction.** Every horizontal slice of the leaning cylinder is a circle of radius $4$, exactly like the upright cylinder of the same height.**So Cavalieri's principle applies.** Equal heights and equal cross-sectional areas at every level force equal volumes.**Compute with the upright formula.** $V = \\pi(4)^2(9) = 144\\pi$ m³.**Watch the height that matters.** It is the PERPENDICULAR height $9$, not the slanted distance along the lean — the slant would overstate the answer.",
+          "check": [
+            "Eq(pi*4**2*9, 144*pi)",
+            "Eq(16*9, 144)"
+          ]
+        },
+        {
+          "id": "im2-u8-l1-we3",
+          "statement": "A sphere and a cylinder both have radius $3$ cm, and the cylinder's height is $6$ cm — exactly the sphere's diameter. Which holds more, and by what fraction?",
+          "solution": "**Sphere.** $V = \\frac{4}{3}\\pi(3)^3 = \\frac{4}{3}\\pi \\cdot 27 = 36\\pi$ cm³.**Cylinder.** $V = \\pi(3)^2(6) = 54\\pi$ cm³.**Compare.** $\\dfrac{36\\pi}{54\\pi} = \\dfrac{2}{3}$, so the sphere holds exactly two thirds of the cylinder that just contains it.**Archimedes' favourite result.** He asked for that ratio to be carved on his tombstone — it holds for every radius, which is why it is a theorem rather than a coincidence about $3$ cm.",
+          "check": [
+            "Eq(Rational(4, 3)*pi*3**3, 36*pi)",
+            "Eq(pi*3**2*6, 54*pi)",
+            "Eq(Rational(36, 54), Rational(2, 3))"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the slant height in a cone's or a prism's volume.",
+          "correction": "Volume needs the PERPENDICULAR height — the vertical distance from base to apex or top face. The slant height belongs to surface area, not volume.",
+          "authored": true
+        },
+        {
+          "text": "Forgetting the one third for pyramids and cones.",
+          "correction": "A cone is a third of the cylinder around it, not equal to it. The dissection into three congruent pyramids is the reason, and it is worth remembering the picture rather than the fraction alone.",
+          "authored": true
+        },
+        {
+          "text": "Squaring the diameter instead of the radius.",
+          "correction": "In πr²h the letter r is the RADIUS. Given a diameter of 10, use r = 5; using 10 multiplies the answer by four.",
+          "authored": true
+        },
+        {
+          "text": "Mixing volume and surface-area units.",
+          "correction": "Volume is cubic units, surface area is square units. An answer of '150 cm²' for a volume is not a rounding problem, it is a different quantity.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im2-u8-l1-t1",
+          "statement": "Find the volume of a cylinder with radius $6$ m and height $10$ m, in terms of $\\pi$.",
+          "solution": "$V = \\pi(6)^2(10) = 360\\pi$ m³.",
+          "check": [
+            "Eq(pi*6**2*10, 360*pi)"
+          ]
+        },
+        {
+          "id": "im2-u8-l1-t2",
+          "statement": "A pyramid has a square base of side $9$ cm and height $10$ cm. Find its volume.",
+          "solution": "Base area $= 9^2 = 81$ cm². $V = \\frac{1}{3}(81)(10) = 270$ cm³.",
+          "check": [
+            "Eq(9**2, 81)",
+            "Eq(Rational(1, 3)*81*10, 270)"
+          ]
+        },
+        {
+          "id": "im2-u8-l1-t3",
+          "statement": "Find the volume of a sphere of radius $6$ cm, in terms of $\\pi$.",
+          "solution": "$V = \\frac{4}{3}\\pi(6)^3 = \\frac{4}{3}\\pi \\cdot 216 = 288\\pi$ cm³.",
+          "check": [
+            "Eq(6**3, 216)",
+            "Eq(Rational(4, 3)*pi*216, 288*pi)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "Stack the base and you have the prism",
+            "body": "Give the base a thickness of one unit and it holds $B$ cubic units. Stack $h$ of those slabs: $V = Bh$. The argument never asked what shape the base was, which is why one formula covers every prism — and, with a circular base, every cylinder.",
+            "beats": [
+              "One unit-thick slab holds $B$",
+              "Stack $h$ of them",
+              "$V = Bh$ for any base shape"
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "title": "Turn a cylinder",
+            "body": "Rotate the cylinder and change its dimensions. The volume is the circular base's area carried straight up through the height — nothing about the shape changes that.",
+            "config": {
+              "solid": "cylinder",
+              "r": 5,
+              "h": 12
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A cylinder and the cone inside it",
+            "problemId": "im2-u8-l1-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "The cone-to-cylinder ratio",
+            "prompt": "A cone and a cylinder share the same radius and the same height. The cone's volume is:",
+            "options": [
+              "one third of the cylinder's",
+              "half of the cylinder's",
+              "equal to the cylinder's",
+              "one quarter of the cylinder's"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\frac{1}{3}\\pi r^2 h$ against $\\pi r^2 h$ — the ratio is $1:3$ for every radius and height.",
+            "check": [
+              "Eq(pi*5**2*12/(Rational(1,3)*pi*5**2*12), 3)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Cavalieri: the leaning stack of paper",
+            "body": "If two solids have the same height and every horizontal slice of one matches the AREA of the corresponding slice of the other, they have the same volume. Pushing a stack of paper sideways is the demonstration: no sheet changed, so nothing changed. This is why an oblique cylinder is still $\\pi r^2 h$.",
+            "beats": [
+              "Equal heights",
+              "Equal cross-sectional areas at every level",
+              "Therefore equal volumes"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A cylinder that leans",
+            "problemId": "im2-u8-l1-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Watch out",
+            "title": "Perpendicular height, always",
+            "body": "Every volume formula wants the PERPENDICULAR height — straight up from the base. A cone's slant height is longer and belongs to surface area. Using the slant inflates the volume, and the error grows the more the solid leans."
+          },
+          {
+            "kind": "teach",
+            "title": "Three pyramids fill a cube",
+            "body": "Three congruent oblique pyramids, each built on a face of a cube and reaching the opposite corner, assemble into the cube with nothing left over. So each is one third of it: $V = \\frac{1}{3}Bh$. Cavalieri's principle then hands that answer to every pyramid and cone with the same base area and height.",
+            "beats": [
+              "Three congruent pyramids = one cube",
+              "$V = \\frac{1}{3}Bh$",
+              "Cavalieri extends it to cones and oblique pyramids"
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "title": "A cone and its third",
+            "body": "The cone occupies exactly a third of the cylinder that encloses it. Change the radius and height and the fraction does not budge.",
+            "config": {
+              "solid": "cone",
+              "r": 5,
+              "h": 12
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Archimedes' two thirds",
+            "problemId": "im2-u8-l1-we3"
+          },
+          {
+            "kind": "tryIt",
+            "title": "A cylinder",
+            "problemId": "im2-u8-l1-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "A square pyramid",
+            "problemId": "im2-u8-l1-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "A sphere",
+            "problemId": "im2-u8-l1-t3"
+          },
+          {
+            "kind": "funFact",
+            "title": "The tombstone",
+            "body": "Archimedes proved that a sphere occupies exactly two thirds of the smallest cylinder containing it, and asked for a sphere-in-a-cylinder to be carved on his grave. Cicero found the monument, overgrown, more than a century later — and identified it by that carving."
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "Prism and cylinder: $V = Bh$, from stacking",
+              "Pyramid and cone: $V = \\frac{1}{3}Bh$, from the three-pyramid dissection",
+              "Sphere: $V = \\frac{4}{3}\\pi r^3$",
+              "Cavalieri: equal heights and equal slices give equal volume",
+              "Volume needs the PERPENDICULAR height, never the slant"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-with-volume-and-surface-area",
+      "title": "Solving with Volume & Surface Area",
+      "concreteComparison": "A tank has to hold exactly $500$ litres and the site only allows a base one metre square. How tall must it be? Nobody hands you the height — you know the volume and have to run the formula backwards. That is most real measurement work: the unknown is inside the formula, not at the end of it.",
+      "objective": "Compute volumes and surface areas of prisms, cylinders, cones, pyramids and spheres; solve for a missing dimension; handle composite solids; and convert between compatible units of capacity and volume.",
+      "concept": [
+        "**Forwards is arithmetic; backwards is algebra.** Given every dimension, a volume is one substitution. Given the volume and all but one dimension, you have an equation to solve — and it is exactly the rearranging you did in IM1 Unit 1, with $V = \\pi r^2 h$ in place of $y = mx + b$.",
+        "**Solving for a radius costs a square root.** From $V = \\pi r^2 h$, $r^2 = \\dfrac{V}{\\pi h}$ and $r = \\sqrt{\\dfrac{V}{\\pi h}}$. Only the positive root is a length, so the $\\pm$ that Unit 4 insisted on is discarded here — not because the algebra changed, but because a negative radius is not a thing.",
+        "**A composite solid is added or subtracted, never averaged.** A grain silo is a cylinder plus a hemisphere: compute each and add. A bead is a sphere minus a cylindrical hole: compute each and subtract. Decide which operation the picture calls for BEFORE reaching for a formula.",
+        "**Surface area needs every face counted once.** For a composite solid this is where errors live: gluing a hemisphere onto a cylinder HIDES the cylinder's top disc, so that disc is not part of the surface any more. Volume adds cleanly; surface area does not.",
+        "**Capacity and volume are the same quantity in different clothes.** $1000$ cm³ is $1$ litre, and $1$ m³ is $1000$ litres. Converting before or after the formula both work — but converting first, into one consistent unit, produces far fewer wrong answers.",
+        "**Scaling changes area and volume at different rates.** Double every length and the surface area multiplies by $2^2 = 4$ while the volume multiplies by $2^3 = 8$. This is Unit 5's similarity result reappearing in three dimensions, and it is why large animals are not simply scaled-up small ones."
+      ],
+      "keyIdea": "A volume formula is an equation with four slots. Fill three and solve for the fourth — square-rooting when the unknown is a radius, and keeping only the positive root, because lengths are positive.",
+      "facts": [
+        {
+          "title": "Cylinder, solved for height",
+          "latex": "h = \\frac{V}{\\pi r^2}",
+          "explanation": "Divide the volume by the base area."
+        },
+        {
+          "title": "Cylinder, solved for radius",
+          "latex": "r = \\sqrt{\\frac{V}{\\pi h}}",
+          "explanation": "Positive root only — a radius is a length."
+        },
+        {
+          "title": "Cylinder surface area",
+          "latex": "S = 2\\pi r^2 + 2\\pi r h",
+          "explanation": "Two discs plus the rolled-out rectangle."
+        },
+        {
+          "title": "Capacity",
+          "latex": "1000\\ \\text{cm}^3 = 1\\ \\text{litre}",
+          "explanation": "And 1 m³ = 1000 litres."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im2-u8-l2-we1",
+          "statement": "A cylindrical tank of radius $2$ m must hold $50\\pi$ m³. How tall is it?",
+          "solution": "**Write the formula and put in what you know.** $V = \\pi r^2 h$ becomes $50\\pi = \\pi(2)^2 h = 4\\pi h$.**Solve for the unknown.** Divide both sides by $4\\pi$: $h = \\dfrac{50\\pi}{4\\pi} = \\dfrac{50}{4} = 12.5$ m.**Check by going forwards.** $\\pi(2)^2(12.5) = 50\\pi$ ✓.**Note.** The $\\pi$ cancelled completely, which is why leaving answers in terms of $\\pi$ until the last step keeps the arithmetic exact.",
+          "check": [
+            "Eq(pi*2**2*Rational(25, 2), 50*pi)",
+            "Eq(Rational(50, 4), Rational(25, 2))"
+          ]
+        },
+        {
+          "id": "im2-u8-l2-we2",
+          "statement": "A grain silo is a cylinder of radius $3$ m and height $8$ m topped by a hemisphere of the same radius. Find its total volume in terms of $\\pi$.",
+          "solution": "**Split the solid.** Cylinder plus hemisphere — two volumes to add.**Cylinder.** $\\pi(3)^2(8) = 72\\pi$ m³.**Hemisphere.** Half a sphere: $\\frac{1}{2} \\cdot \\frac{4}{3}\\pi(3)^3 = \\frac{2}{3}\\pi(27) = 18\\pi$ m³.**Add.** $72\\pi + 18\\pi = 90\\pi$ m³, about $283$ m³.**Why adding is right here.** The two pieces occupy separate space and share only a flat disc, which has no volume of its own.",
+          "check": [
+            "Eq(pi*3**2*8, 72*pi)",
+            "Eq(Rational(1, 2)*Rational(4, 3)*pi*3**3, 18*pi)",
+            "Eq(72*pi + 18*pi, 90*pi)",
+            "Abs(90*pi - 283) < 1"
+          ]
+        },
+        {
+          "id": "im2-u8-l2-we3",
+          "statement": "A closed cylindrical can has radius $4$ cm and height $10$ cm. Find its total surface area in terms of $\\pi$, and say how much the surface area grows if every length is doubled.",
+          "solution": "**Two circular ends.** $2 \\cdot \\pi(4)^2 = 32\\pi$ cm².**The curved side, rolled flat.** A rectangle of height $10$ and width equal to the circumference $2\\pi(4) = 8\\pi$: area $80\\pi$ cm².**Total.** $32\\pi + 80\\pi = 112\\pi$ cm².**Doubling every length.** Areas scale by the square of the scale factor, so the new surface area is $4 \\times 112\\pi = 448\\pi$ cm² — and checking directly with $r = 8$, $h = 20$ gives $2\\pi(64) + 2\\pi(8)(20) = 128\\pi + 320\\pi = 448\\pi$ ✓.",
+          "check": [
+            "Eq(2*pi*4**2, 32*pi)",
+            "Eq(2*pi*4*10, 80*pi)",
+            "Eq(32*pi + 80*pi, 112*pi)",
+            "Eq(2*pi*8**2 + 2*pi*8*20, 448*pi)",
+            "Eq(448*pi/(112*pi), 4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding the surface areas of two glued solids.",
+          "correction": "Gluing hides the faces at the join. A hemisphere capping a cylinder covers the cylinder's top disc, so that disc leaves the total. Volumes add cleanly; surface areas need the join subtracted.",
+          "authored": true
+        },
+        {
+          "text": "Keeping the negative root when solving for a radius.",
+          "correction": "r² = 16 gives r = ±4, but a radius of -4 cm describes nothing. Take the positive root and say why.",
+          "authored": true
+        },
+        {
+          "text": "Mixing centimetres and metres inside one formula.",
+          "correction": "Convert everything to one unit before substituting. A radius in cm with a height in m produces a number in no unit at all.",
+          "authored": true
+        },
+        {
+          "text": "Scaling volume by the same factor as length.",
+          "correction": "Doubling every length multiplies volume by 8, not 2, and surface area by 4. The exponent matches the dimension.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im2-u8-l2-t1",
+          "statement": "A cylinder of height $5$ cm has volume $80\\pi$ cm³. Find its radius.",
+          "solution": "$80\\pi = \\pi r^2(5)$, so $r^2 = 16$ and $r = 4$ cm — the positive root, since a radius is a length.",
+          "check": [
+            "Eq(pi*4**2*5, 80*pi)",
+            "Eq(Rational(80, 5), 16)"
+          ]
+        },
+        {
+          "id": "im2-u8-l2-t2",
+          "statement": "A rectangular tank measures $1$ m by $1$ m by $0.5$ m. How many litres does it hold?",
+          "solution": "$V = 1 \\cdot 1 \\cdot 0.5 = 0.5$ m³, and $1$ m³ is $1000$ litres, so it holds $500$ litres.",
+          "check": [
+            "Eq(Rational(1, 2)*1000, 500)",
+            "Eq(1*1*Rational(1, 2), Rational(1, 2))"
+          ]
+        },
+        {
+          "id": "im2-u8-l2-t3",
+          "statement": "A cone of radius $6$ cm has volume $96\\pi$ cm³. Find its height.",
+          "solution": "$96\\pi = \\frac{1}{3}\\pi(36)h = 12\\pi h$, so $h = 8$ cm.",
+          "check": [
+            "Eq(Rational(1, 3)*pi*6**2*8, 96*pi)",
+            "Eq(Rational(96, 12), 8)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "Four slots, fill three",
+            "body": "$V = \\pi r^2 h$ has four quantities in it. Knowing three turns the formula into an equation for the fourth — and solving it is the rearranging from IM1 Unit 1, no new technique required.",
+            "beats": [
+              "Forwards: substitute",
+              "Backwards: solve",
+              "Same algebra as rearranging any formula"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "How tall must the tank be?",
+            "problemId": "im2-u8-l2-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Solving for a radius",
+            "prompt": "A cylinder has volume $V$ and height $h$. Its radius is:",
+            "options": [
+              "$\\sqrt{\\dfrac{V}{\\pi h}}$",
+              "$\\dfrac{V}{\\pi h}$",
+              "$\\dfrac{V}{2\\pi h}$",
+              "$\\pm\\sqrt{\\dfrac{V}{\\pi h}}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Divide by $\\pi h$ to isolate $r^2$, then take the POSITIVE square root — a negative radius describes no cylinder.",
+            "check": [
+              "Eq(sqrt(Rational(80, 5)), 4)",
+              "Eq(pi*4**2*5, 80*pi)"
+            ]
+          },
+          {
+            "kind": "solidNet",
+            "title": "Unroll the can",
+            "body": "The curved surface of a cylinder is a rectangle in disguise: its width is the circumference $2\\pi r$ and its height is $h$. Unfold the net and the surface-area formula reads itself off.",
+            "config": {
+              "solid": "cylinder",
+              "r": 4,
+              "h": 10
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A silo: cylinder plus hemisphere",
+            "problemId": "im2-u8-l2-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Watch out",
+            "title": "Volumes add; surfaces do not",
+            "body": "Joining two solids adds their volumes exactly. It does NOT add their surface areas — the faces at the join disappear inside. Sketch the finished solid and count only the faces you could actually paint."
+          },
+          {
+            "kind": "worked",
+            "title": "Surface area, and what doubling does",
+            "problemId": "im2-u8-l2-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Scaling in three dimensions",
+            "prompt": "Every length of a solid is tripled. Its VOLUME is multiplied by:",
+            "options": [
+              "$27$",
+              "$3$",
+              "$9$",
+              "$6$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Volume scales by the cube of the scale factor: $3^3 = 27$. Surface area would scale by $3^2 = 9$.",
+            "check": [
+              "Eq(3**3, 27)",
+              "Eq(3**2, 9)"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "Backwards to a radius",
+            "problemId": "im2-u8-l2-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Cubic metres to litres",
+            "problemId": "im2-u8-l2-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Backwards to a height",
+            "problemId": "im2-u8-l2-t3"
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "Knowing the volume turns a formula into an equation",
+              "Solving for a radius takes the POSITIVE square root",
+              "Composite volumes add or subtract — decide which first",
+              "Glued surfaces lose the faces at the join",
+              "Scale lengths by $k$: areas by $k^2$, volumes by $k^3$"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cross-sections-and-solids-of-revolution",
+      "title": "Cross-Sections & Solids of Revolution",
+      "concreteComparison": "Slice a cucumber straight across and the face is a circle; slice it at a slant and the face is an ellipse; slice it lengthwise and you get a long rectangle with rounded ends. One solid, three completely different two-dimensional answers — and which one you get is decided entirely by the angle of the knife.",
+      "objective": "Identify the two-dimensional cross-sections produced by slicing common solids at various angles, and identify the three-dimensional solid generated by rotating a two-dimensional figure about an axis.",
+      "concept": [
+        "**A cross-section is what the cut face looks like.** Pass a plane through a solid and the shape of the intersection is the cross-section. It depends on both the solid AND the plane's direction, so the question is never complete without saying how the cut is made.",
+        "**Slice parallel to the base and you get the base back.** A cylinder cut horizontally gives a circle of the same radius; a square prism gives the same square all the way up. A cone or pyramid also reproduces its base shape, but SMALLER as you climb — similar to the base, shrinking to a point at the apex.",
+        "**Slice perpendicular to the base and the answer usually changes shape.** A vertical cut through the axis of a cylinder gives a RECTANGLE, not a circle. The same cut through a cone gives a triangle, and through a sphere it gives a circle again — the sphere is the one solid whose every flat slice is a circle.",
+        "**Slanted cuts are where the interesting shapes live.** A slanted cut across a cylinder gives an ELLIPSE. Slanting through a cube can produce a triangle, a rectangle, a pentagon or even a regular hexagon, depending on which corners the plane passes. Cutting a cone at different angles produces the circle, ellipse, parabola and hyperbola — which is exactly why those four curves are called the CONIC SECTIONS.",
+        "**Rotation runs the process backwards.** Spin a flat region about a line and it sweeps out a solid. A rectangle spun about one of its sides sweeps a CYLINDER; a right triangle spun about a leg sweeps a CONE; a semicircle spun about its diameter sweeps a SPHERE. Every solid in Lesson 1 has a flat parent.",
+        "**The axis choice changes the solid completely.** Spin the same right triangle about its other leg and you get a different cone — same triangle, different radius and height. Spin a rectangle about a line OUTSIDE it and you get a ring rather than a cylinder. Naming the axis is half the answer."
+      ],
+      "keyIdea": "Parallel to the base reproduces the base; perpendicular through the axis usually gives a rectangle or triangle; slanted gives ellipses and the other conics. Rotating a flat figure about a line is the same relationship read backwards.",
+      "facts": [
+        {
+          "title": "Horizontal slice of a cylinder",
+          "latex": "\\text{circle}",
+          "explanation": "Same radius at every height — parallel to the base."
+        },
+        {
+          "title": "Vertical slice through a cylinder's axis",
+          "latex": "\\text{rectangle}",
+          "explanation": "Width the diameter, height the cylinder's height."
+        },
+        {
+          "title": "Slanted slice of a cylinder",
+          "latex": "\\text{ellipse}",
+          "explanation": "And slanted cuts of a cone give all four conic sections."
+        },
+        {
+          "title": "Rotating a right triangle about a leg",
+          "latex": "\\text{cone}",
+          "explanation": "The leg is the axis; the other leg becomes the radius."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im2-u8-l3-we1",
+          "statement": "A cylinder has radius $5$ cm and height $12$ cm. Describe the cross-section from (a) a horizontal cut, and (b) a vertical cut through the axis, giving the dimensions and area of each.",
+          "solution": "**(a) Horizontal.** The cut is parallel to the base, so the face is a circle of the same radius $5$ cm. Its area is $\\pi(5)^2 = 25\\pi$ cm².**(b) Vertical through the axis.** The face is a RECTANGLE whose width is the full diameter $10$ cm and whose height is the cylinder's height $12$ cm. Its area is $10 \\times 12 = 120$ cm².**The lesson in one line.** Same solid, same knife, different angle — and not even the same family of shape.",
+          "check": [
+            "Eq(pi*5**2, 25*pi)",
+            "Eq(2*5, 10)",
+            "Eq(10*12, 120)"
+          ]
+        },
+        {
+          "id": "im2-u8-l3-we2",
+          "statement": "A right triangle has legs $3$ cm and $4$ cm. It is rotated a full turn about the leg of length $4$ cm. Name the solid and find its volume.",
+          "solution": "**Identify the solid.** A right triangle spun about a leg sweeps out a CONE.**Read off the dimensions.** The axis leg becomes the HEIGHT, so $h = 4$; the other leg sweeps the base circle, so $r = 3$.**Compute.** $V = \\frac{1}{3}\\pi(3)^2(4) = \\frac{1}{3}\\pi(36) = 12\\pi$ cm³.**Spinning about the other leg would differ.** Then $h = 3$ and $r = 4$, giving $\\frac{1}{3}\\pi(16)(3) = 16\\pi$ cm³ — same triangle, a bigger cone, because the radius is squared and the height is not.",
+          "check": [
+            "Eq(Rational(1, 3)*pi*3**2*4, 12*pi)",
+            "Eq(Rational(1, 3)*pi*4**2*3, 16*pi)",
+            "16*pi > 12*pi"
+          ]
+        },
+        {
+          "id": "im2-u8-l3-we3",
+          "statement": "A square pyramid has base side $12$ cm and height $9$ cm. A horizontal cut is made $6$ cm above the base. What shape is the cross-section, and what is its side length?",
+          "solution": "**Shape.** The cut is parallel to the base, so the face is a SQUARE — similar to the base, shrunk toward the apex.**Set up the similarity.** The cut sits $6$ cm up out of $9$ cm, so the remaining height above the cut is $9 - 6 = 3$ cm. The small pyramid above the cut is similar to the whole one with scale factor $\\dfrac{3}{9} = \\dfrac{1}{3}$.**Scale the side.** $12 \\cdot \\dfrac{1}{3} = 4$ cm.**Sanity check.** Cutting at the base ($0$ cm up) would give the full $12$; cutting at the apex would give $0$. A side of $4$ two thirds of the way up sits sensibly between them.",
+          "check": [
+            "Eq(9 - 6, 3)",
+            "Eq(Rational(3, 9), Rational(1, 3))",
+            "Eq(12*Rational(1, 3), 4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Saying every cross-section of a cylinder is a circle.",
+          "correction": "Only the cuts parallel to the base are circles. A vertical cut through the axis gives a rectangle, and a slanted cut gives an ellipse.",
+          "authored": true
+        },
+        {
+          "text": "Treating a pyramid's horizontal cross-sections as congruent to the base.",
+          "correction": "They are SIMILAR, not congruent — the same shape scaled down by how far up the cut is. Only a prism repeats its base exactly.",
+          "authored": true
+        },
+        {
+          "text": "Swapping radius and height when rotating a triangle.",
+          "correction": "The leg you spin ABOUT is the axis, so it becomes the height. The other leg sweeps the circle, so it is the radius. Swapping them changes the volume, because the radius is squared.",
+          "authored": true
+        },
+        {
+          "text": "Assuming a slanted cut of a cylinder is still a circle.",
+          "correction": "It is an ellipse — longer along the direction of the slant. Only a cut perpendicular to the axis stays circular.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im2-u8-l3-t1",
+          "statement": "A cylinder has radius $7$ m and height $10$ m. What is the area of the cross-section formed by a vertical cut through its axis?",
+          "solution": "The face is a rectangle of width $2(7) = 14$ m and height $10$ m, so its area is $140$ m².",
+          "check": [
+            "Eq(2*7, 14)",
+            "Eq(14*10, 140)"
+          ]
+        },
+        {
+          "id": "im2-u8-l3-t2",
+          "statement": "A rectangle $6$ cm by $11$ cm is rotated about its side of length $11$ cm. Name the solid and find its volume in terms of $\\pi$.",
+          "solution": "A rectangle spun about one side sweeps a cylinder. The axis side is the height, $h = 11$; the other side is the radius, $r = 6$. $V = \\pi(6)^2(11) = 396\\pi$ cm³.",
+          "check": [
+            "Eq(pi*6**2*11, 396*pi)"
+          ]
+        },
+        {
+          "id": "im2-u8-l3-t3",
+          "statement": "A cone has base radius $10$ cm and height $15$ cm. A horizontal cut is made $9$ cm above the base. What is the radius of the circular cross-section?",
+          "solution": "The height remaining above the cut is $15 - 9 = 6$ cm, so the small cone is similar to the whole with scale factor $\\frac{6}{15} = \\frac{2}{5}$. The radius there is $10 \\cdot \\frac{2}{5} = 4$ cm.",
+          "check": [
+            "Eq(15 - 9, 6)",
+            "Eq(Rational(6, 15), Rational(2, 5))",
+            "Eq(10*Rational(2, 5), 4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "The knife's angle decides the shape",
+            "body": "A cross-section is the face left by a plane passing through a solid, and it depends on the plane as much as on the solid. Parallel to the base returns the base's shape; through the axis usually returns something else entirely; slanted returns something else again.",
+            "beats": [
+              "Parallel to base: the base's shape",
+              "Through the axis: rectangle or triangle",
+              "Slanted: ellipses and the other conics"
+            ]
+          },
+          {
+            "kind": "solid3d",
+            "title": "Turn the cylinder and imagine the cuts",
+            "body": "Rotate the solid and picture a plane sweeping through it. Horizontally the face is a circle of radius $5$; vertically through the middle it is a $10 \\times 12$ rectangle.",
+            "config": {
+              "solid": "cylinder",
+              "r": 5,
+              "h": 12
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "Two cuts, two different shapes",
+            "problemId": "im2-u8-l3-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "A vertical cut",
+            "prompt": "A cylinder is cut by a vertical plane through its axis. The cross-section is:",
+            "options": [
+              "a rectangle",
+              "a circle",
+              "an ellipse",
+              "a triangle"
+            ],
+            "correctIndex": 0,
+            "explanation": "The cut runs the full height and the full diameter, so the face is a rectangle — diameter wide, height tall.",
+            "check": [
+              "Eq(2*5*12, 120)"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Spinning a flat figure builds a solid",
+            "body": "Rotation is the reverse of slicing. A rectangle spun about one side sweeps a cylinder; a right triangle spun about a leg sweeps a cone; a semicircle spun about its diameter sweeps a sphere. The line you spin about becomes the solid's axis.",
+            "beats": [
+              "Rectangle about a side: cylinder",
+              "Right triangle about a leg: cone",
+              "Semicircle about its diameter: sphere"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Spinning a 3-4-5 triangle",
+            "problemId": "im2-u8-l3-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Watch out",
+            "title": "The axis becomes the height",
+            "body": "When a right triangle is spun about a leg, THAT leg is the axis and therefore the height; the other leg sweeps the base circle and is the radius. Swapping them gives a different cone — and because the radius is squared, a noticeably different volume."
+          },
+          {
+            "kind": "solid3d",
+            "title": "The cone the triangle swept",
+            "body": "Spinning the $3$–$4$ right triangle about its $4$ cm leg produces this cone: height $4$, radius $3$.",
+            "config": {
+              "solid": "cone",
+              "r": 3,
+              "h": 4
+            }
+          },
+          {
+            "kind": "worked",
+            "title": "A slice through a pyramid",
+            "problemId": "im2-u8-l3-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Slicing a pyramid",
+            "prompt": "A horizontal cut through a square pyramid, above the base, gives a square that is:",
+            "options": [
+              "similar to the base and smaller",
+              "congruent to the base",
+              "always half the base's side",
+              "a rectangle, not a square"
+            ],
+            "correctIndex": 0,
+            "explanation": "The cross-sections of a pyramid shrink toward the apex, staying the same SHAPE — similar to the base with the scale factor set by the height above the cut.",
+            "check": [
+              "Eq(12*Rational(1, 3), 4)",
+              "Eq(Rational(3, 9), Rational(1, 3))"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "A vertical slice",
+            "problemId": "im2-u8-l3-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Spinning a rectangle",
+            "problemId": "im2-u8-l3-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Slicing a cone",
+            "problemId": "im2-u8-l3-t3"
+          },
+          {
+            "kind": "funFact",
+            "title": "Where the conic sections got their name",
+            "body": "Tilt a plane through a cone and the edge you cut traces a circle, then an ellipse, then a parabola, then a hyperbola as the angle steepens. The Greeks studied all four purely as slices of a cone — eighteen centuries before Kepler discovered that planets travel along them."
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "A cross-section depends on the solid AND the cutting plane",
+              "Parallel to the base: the base's shape (similar, for a cone or pyramid)",
+              "Through the axis: rectangle for a cylinder, triangle for a cone",
+              "Slanted through a cone: circle, ellipse, parabola, hyperbola",
+              "Spin a flat figure and the axis becomes the solid's height"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "density-and-design-problems",
+      "title": "Density & Design Problems",
+      "concreteComparison": "Two cities have a million people each. One is packed into $50$ km² and the other spreads over $900$ km². The populations are identical and living in them is nothing alike — because the number that decides how a place FEELS is not the count, it is the count divided by the space. That division is what modelling with geometry is mostly about.",
+      "objective": "Model real objects with geometric shapes, compute and interpret densities based on area and volume, and solve design problems where a geometric quantity must be optimised or met under a constraint.",
+      "concept": [
+        "**Modelling starts by choosing a shape that is wrong in a useful way.** A tree trunk is not a cylinder and a can of soup is not exactly one either, but treating them as cylinders gives an answer accurate enough to act on. State the shape you chose — the choice is part of the answer, and so are its limits.",
+        "**Density is an amount divided by the space it occupies.** Population density is people per km²; a material's density is mass per cm³; a crop yield is tonnes per hectare. In every case the units tell you the formula: 'per' means divide, and the thing after 'per' goes on the bottom.",
+        "**Area density and volume density are different beasts.** People spread across a region, so population density uses AREA. Metal fills a bar, so mass density uses VOLUME. Using the wrong one is not a small error — the units come out wrong, which is the fastest way to catch it.",
+        "**Rearranged, density answers the other two questions.** From $\\text{density} = \\dfrac{\\text{amount}}{\\text{size}}$ you get $\\text{amount} = \\text{density} \\times \\text{size}$ and $\\text{size} = \\dfrac{\\text{amount}}{\\text{density}}$. One relationship, three questions — exactly like distance, speed and time.",
+        "**A design problem is a constraint plus a goal.** 'The box must hold $2$ litres and use as little card as possible' fixes the volume and asks you to minimise surface area. Write both quantities as formulas, use the constraint to eliminate one variable, and compare the candidates you are allowed to build.",
+        "**Cost usually follows area while capacity follows volume.** Material is bought by the square metre and sold by the litre, so scaling a design up makes it cheaper per unit held — capacity grows like $k^3$ while the skin grows only like $k^2$. That single mismatch explains bulk packaging, oil tankers and why small animals eat so much for their size.",
+        "**Always check that the answer could exist.** A radius of $-3$, a density heavier than the material it is made of, a box taller than the room — the algebra will happily produce these. Modelling is finished only when the answer has been tested against the situation it came from."
+      ],
+      "keyIdea": "Model the object with a shape, then divide: density is amount per unit of area or volume, and the units tell you which. Design problems fix one quantity by a constraint and ask you to push another as far as it will go.",
+      "facts": [
+        {
+          "title": "Density",
+          "latex": "\\text{density} = \\frac{\\text{amount}}{\\text{size}}",
+          "explanation": "Size is an area for spread-out things, a volume for filled things."
+        },
+        {
+          "title": "Rearranged",
+          "latex": "\\text{amount} = \\text{density} \\times \\text{size}",
+          "explanation": "One relationship answers all three questions."
+        },
+        {
+          "title": "Cost against capacity",
+          "latex": "k^2 \\text{ against } k^3",
+          "explanation": "Scaling up grows capacity faster than the material needed."
+        },
+        {
+          "title": "Units are the check",
+          "latex": "\\text{people/km}^2,\\ \\text{g/cm}^3",
+          "explanation": "The wrong choice of area or volume shows up in the units."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "im2-u8-l4-we1",
+          "statement": "A town of $84\\,000$ people occupies a roughly rectangular area $12$ km by $5$ km. Find its population density, and say how many people a randomly chosen $1$ km² would hold on average.",
+          "solution": "**Model the shape.** Treat the town as a rectangle: area $= 12 \\times 5 = 60$ km².**Divide.** Density $= \\dfrac{84\\,000}{60} = 1400$ people per km².**Interpret.** An average square kilometre holds about $1400$ people. 'Average' is doing real work here — the centre will be far denser and the edges far emptier.**Check the units.** People divided by km² gives people per km², which is what was asked for.",
+          "check": [
+            "Eq(12*5, 60)",
+            "Eq(Rational(84000, 60), 1400)"
+          ]
+        },
+        {
+          "id": "im2-u8-l4-we2",
+          "statement": "A solid copper cylinder has radius $2$ cm and height $10$ cm. Copper has a density of $9$ grams per cm³. Find the cylinder's mass, to the nearest gram.",
+          "solution": "**This is a volume density**, because the copper FILLS the shape — so the volume is what the density multiplies.**Volume.** $V = \\pi(2)^2(10) = 40\\pi$ cm³, about $125.7$ cm³.**Mass.** $\\text{mass} = \\text{density} \\times \\text{volume} = 9 \\times 40\\pi = 360\\pi$ grams.**Evaluate.** $360\\pi \\approx 1131$ grams, or a little over $1.1$ kg.**Sanity check.** Copper is heavy; a bar the size of a soft-drink can weighing more than a kilogram is entirely believable.",
+          "check": [
+            "Eq(pi*2**2*10, 40*pi)",
+            "Eq(9*40*pi, 360*pi)",
+            "Abs(360*pi - 1131) < 1"
+          ]
+        },
+        {
+          "id": "im2-u8-l4-we3",
+          "statement": "A closed box with a square base must hold $32$ litres. Compare the card needed for a base of side $2$ dm against a base of side $4$ dm, and say which design is cheaper. (Work in decimetres: $1$ litre $= 1$ dm³.)",
+          "solution": "**Set up the constraint.** With base side $s$ and height $h$, the volume is $s^2 h = 32$.**Design A — a base of side two.** With $s = 2$, $h = \\dfrac{32}{4} = 8$ dm. Surface area $= 2s^2 + 4sh = 2(4) + 4(2)(8) = 8 + 64 = 72$ dm².**Design B — a base of side four.** With $s = 4$, $h = \\dfrac{32}{16} = 2$ dm. Surface area $= 2(16) + 4(4)(2) = 32 + 32 = 64$ dm².**Compare.** Design B uses $64$ dm² against Design A's $72$ dm², so the shorter, wider box is cheaper — $8$ dm² of card saved for the same capacity.**Why.** The tall thin box has a large area of side wall for very little volume; squarer shapes hold more per unit of skin, which is why packaging tends toward cubes.",
+          "check": [
+            "Eq(2**2*8, 32)",
+            "Eq(4**2*2, 32)",
+            "Eq(2*2**2 + 4*2*8, 72)",
+            "Eq(2*4**2 + 4*4*2, 64)",
+            "64 < 72"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using volume for a population density.",
+          "correction": "People spread over a surface, not through a solid. Population density is per unit AREA; using a volume gives people per cubic kilometre, which describes nothing.",
+          "authored": true
+        },
+        {
+          "text": "Multiplying when the question wants a division.",
+          "correction": "Density is amount PER unit of size, so it divides. Read the units off the answer you want: 'grams per cm³' literally says grams ÷ cm³.",
+          "authored": true
+        },
+        {
+          "text": "Comparing designs without holding the constraint fixed.",
+          "correction": "A bigger box uses more card, which proves nothing. Every design compared must satisfy the same requirement — here, the same 32 litres.",
+          "authored": true
+        },
+        {
+          "text": "Reporting an answer the situation cannot hold.",
+          "correction": "A negative length, a tank taller than the ceiling, a density exceeding the material's: check the answer against the real object before writing it down.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "im2-u8-l4-t1",
+          "statement": "A city of $240\\,000$ people covers $80$ km². Find its population density.",
+          "solution": "$\\dfrac{240\\,000}{80} = 3000$ people per km².",
+          "check": [
+            "Eq(Rational(240000, 80), 3000)"
+          ]
+        },
+        {
+          "id": "im2-u8-l4-t2",
+          "statement": "A rectangular steel block measures $5$ cm by $4$ cm by $3$ cm and steel has density $8$ g/cm³. Find its mass.",
+          "solution": "$V = 5 \\cdot 4 \\cdot 3 = 60$ cm³, so the mass is $8 \\times 60 = 480$ g.",
+          "check": [
+            "Eq(5*4*3, 60)",
+            "Eq(8*60, 480)"
+          ]
+        },
+        {
+          "id": "im2-u8-l4-t3",
+          "statement": "A cylindrical silo must hold $200\\pi$ m³. If its radius is $5$ m, how tall is it? If the radius were doubled to $10$ m, how tall would it be?",
+          "solution": "With $r = 5$: $200\\pi = \\pi(25)h$, so $h = 8$ m. With $r = 10$: $200\\pi = \\pi(100)h$, so $h = 2$ m — doubling the radius quartered the height, because the radius is squared.",
+          "check": [
+            "Eq(pi*5**2*8, 200*pi)",
+            "Eq(pi*10**2*2, 200*pi)",
+            "Eq(Rational(8, 2), 4)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "title": "Choose a shape, and say that you chose it",
+            "body": "A tree trunk modelled as a cylinder, a lake as a prism, a town as a rectangle — none is exact, and each is close enough to act on. Naming the shape you assumed is part of the answer, because it is also where the answer's accuracy comes from.",
+            "beats": [
+              "Real objects get approximated by shapes",
+              "The approximation is a stated choice",
+              "Its limits are part of the report"
+            ]
+          },
+          {
+            "kind": "teach",
+            "title": "Per means divide",
+            "body": "Density is an amount divided by the space holding it. People per km² uses AREA because people spread out; grams per cm³ uses VOLUME because metal fills. The units name the formula: whatever follows 'per' goes on the bottom.",
+            "beats": [
+              "Spread out on a surface: use area",
+              "Filling a solid: use volume",
+              "The units are the check"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "A town's population density",
+            "problemId": "im2-u8-l4-we1"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Area or volume?",
+            "prompt": "To compute the population density of a country, you divide the population by its:",
+            "options": [
+              "area",
+              "volume",
+              "perimeter",
+              "surface area including buildings"
+            ],
+            "correctIndex": 0,
+            "explanation": "People live spread across a surface, so the density is people per unit of AREA — and the units 'people per km²' say so directly.",
+            "check": [
+              "Eq(Rational(84000, 60), 1400)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "title": "Mass from volume density",
+            "problemId": "im2-u8-l4-we2"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Shortcut",
+            "title": "Let the units write the formula",
+            "body": "If the answer must be in grams and you have g/cm³ and cm³, the only way to reach grams is to MULTIPLY. If the answer must be in cm³ and you have grams and g/cm³, you must divide. The units settle it before any arithmetic starts."
+          },
+          {
+            "kind": "worked",
+            "title": "Two boxes, same capacity",
+            "problemId": "im2-u8-l4-we3"
+          },
+          {
+            "kind": "tapQuestion",
+            "title": "Why bigger packaging is cheaper per litre",
+            "prompt": "Scaling a container up by a factor of $k$ multiplies what it holds by $k^3$ and the material needed by:",
+            "options": [
+              "$k^2$",
+              "$k^3$",
+              "$k$",
+              "$k^4$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Capacity is a volume and grows like $k^3$; the skin is an area and grows like $k^2$. Volume outruns surface, so the material per litre falls.",
+            "check": [
+              "Eq(2**3, 8)",
+              "Eq(2**2, 4)",
+              "8 > 4"
+            ]
+          },
+          {
+            "kind": "tryIt",
+            "title": "People per square kilometre",
+            "problemId": "im2-u8-l4-t1"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Mass of a steel block",
+            "problemId": "im2-u8-l4-t2"
+          },
+          {
+            "kind": "tryIt",
+            "title": "Designing a silo",
+            "problemId": "im2-u8-l4-t3"
+          },
+          {
+            "kind": "funFact",
+            "title": "Why there are no mouse-sized elephants",
+            "body": "An animal's weight grows with volume ($k^3$) while its bones' strength grows with their cross-sectional area ($k^2$). Scale a mouse to elephant size and its legs would snap under it — which is why large animals evolve disproportionately thick limbs rather than bigger copies of small ones."
+          },
+          {
+            "kind": "recap",
+            "title": "What to carry forward",
+            "points": [
+              "Model the object with a shape, and state the choice",
+              "Density is amount per unit of size — 'per' means divide",
+              "Spread-out things use AREA; filling things use VOLUME",
+              "A design problem is a constraint plus something to push",
+              "Capacity grows like $k^3$ while material grows like $k^2$"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "im2-u8-p1",
+      "statement": "Find the volume of a rectangular prism measuring $7$ cm by $4$ cm by $5$ cm.",
+      "solution": "$V = 7 \\cdot 4 \\cdot 5 = 140$ cm³.",
+      "check": [
+        "Eq(7*4*5, 140)"
+      ]
+    },
+    {
+      "id": "im2-u8-p2",
+      "statement": "Find the volume of a cylinder of radius $3$ m and height $7$ m, in terms of $\\pi$.",
+      "solution": "$V = \\pi(3)^2(7) = 63\\pi$ m³.",
+      "check": [
+        "Eq(pi*3**2*7, 63*pi)"
+      ]
+    },
+    {
+      "id": "im2-u8-p3",
+      "statement": "Find the volume of a cone of radius $6$ cm and height $7$ cm, in terms of $\\pi$.",
+      "solution": "$V = \\frac{1}{3}\\pi(36)(7) = 84\\pi$ cm³.",
+      "check": [
+        "Eq(Rational(1, 3)*pi*6**2*7, 84*pi)"
+      ]
+    },
+    {
+      "id": "im2-u8-p4",
+      "statement": "Find the volume of a sphere of radius $3$ m, in terms of $\\pi$.",
+      "solution": "$V = \\frac{4}{3}\\pi(27) = 36\\pi$ m³.",
+      "check": [
+        "Eq(Rational(4, 3)*pi*3**3, 36*pi)"
+      ]
+    },
+    {
+      "id": "im2-u8-p5",
+      "statement": "A cylinder has volume $175\\pi$ cm³ and height $7$ cm. Find its radius.",
+      "solution": "$175\\pi = \\pi r^2(7)$ gives $r^2 = 25$, so $r = 5$ cm.",
+      "check": [
+        "Eq(pi*5**2*7, 175*pi)",
+        "Eq(Rational(175, 7), 25)"
+      ]
+    },
+    {
+      "id": "im2-u8-p6",
+      "statement": "A square pyramid has volume $200$ cm³ and height $6$ cm. Find the side length of its base.",
+      "solution": "$200 = \\frac{1}{3}s^2(6) = 2s^2$, so $s^2 = 100$ and $s = 10$ cm.",
+      "check": [
+        "Eq(Rational(1, 3)*10**2*6, 200)",
+        "Eq(Rational(200, 2), 100)"
+      ]
+    },
+    {
+      "id": "im2-u8-p7",
+      "statement": "Find the total surface area of a closed cylinder with radius $3$ cm and height $8$ cm, in terms of $\\pi$.",
+      "solution": "$S = 2\\pi(9) + 2\\pi(3)(8) = 18\\pi + 48\\pi = 66\\pi$ cm².",
+      "check": [
+        "Eq(2*pi*3**2, 18*pi)",
+        "Eq(2*pi*3*8, 48*pi)",
+        "Eq(18*pi + 48*pi, 66*pi)"
+      ]
+    },
+    {
+      "id": "im2-u8-p8",
+      "statement": "A cylinder is cut by a plane parallel to its base. What shape is the cross-section, and how does it compare with the base?",
+      "solution": "A circle, congruent to the base — a cylinder repeats its base at every height, unlike a cone, whose parallel slices shrink.",
+      "check": [
+        "Eq(pi*5**2, pi*5**2)",
+        "Eq(2*5, 10)"
+      ]
+    },
+    {
+      "id": "im2-u8-p9",
+      "statement": "A right triangle with legs $5$ cm and $12$ cm is rotated about the $12$ cm leg. Name the solid and find its volume in terms of $\\pi$.",
+      "solution": "A cone with $h = 12$ and $r = 5$: $V = \\frac{1}{3}\\pi(25)(12) = 100\\pi$ cm³.",
+      "check": [
+        "Eq(Rational(1, 3)*pi*5**2*12, 100*pi)"
+      ]
+    },
+    {
+      "id": "im2-u8-p10",
+      "statement": "A region of $45$ km² is home to $126\\,000$ people. Find the population density.",
+      "solution": "$\\dfrac{126\\,000}{45} = 2800$ people per km².",
+      "check": [
+        "Eq(Rational(126000, 45), 2800)"
+      ]
+    },
+    {
+      "id": "im2-u8-p11",
+      "statement": "Aluminium has density $2.7$ g/cm³. Find the mass of an aluminium block measuring $10$ cm by $5$ cm by $4$ cm.",
+      "solution": "$V = 200$ cm³, so the mass is $2.7 \\times 200 = 540$ g.",
+      "check": [
+        "Eq(10*5*4, 200)",
+        "Eq(Rational(27, 10)*200, 540)"
+      ]
+    },
+    {
+      "id": "im2-u8-p12",
+      "statement": "Every length of a solid is multiplied by $4$. By what factor are its surface area and its volume multiplied?",
+      "solution": "Surface area by $4^2 = 16$; volume by $4^3 = 64$.",
+      "check": [
+        "Eq(4**2, 16)",
+        "Eq(4**3, 64)"
+      ]
+    },
+    {
+      "id": "im2-u8-p13",
+      "statement": "A tank measuring $2$ m by $1.5$ m by $1$ m is filled with water. How many litres does it hold?",
+      "solution": "$V = 2 \\cdot 1.5 \\cdot 1 = 3$ m³, and $1$ m³ is $1000$ litres, so $3000$ litres.",
+      "check": [
+        "Eq(2*Rational(3, 2)*1, 3)",
+        "Eq(3*1000, 3000)"
+      ]
+    },
+    {
+      "id": "im2-u8-p14",
+      "statement": "A cone of height $12$ cm and base radius $8$ cm is cut horizontally $9$ cm above the base. Find the radius of the cross-section.",
+      "solution": "Height remaining above the cut: $12 - 9 = 3$ cm, so the scale factor is $\\frac{3}{12} = \\frac{1}{4}$ and the radius is $8 \\cdot \\frac{1}{4} = 2$ cm.",
+      "check": [
+        "Eq(12 - 9, 3)",
+        "Eq(Rational(3, 12), Rational(1, 4))",
+        "Eq(8*Rational(1, 4), 2)"
+      ]
+    },
+    {
+      "id": "im2-u8-p15",
+      "statement": "A composite solid is a cube of side $6$ cm with a hemisphere of radius $3$ cm sitting on top. Find its volume in terms of $\\pi$.",
+      "solution": "Cube: $6^3 = 216$ cm³. Hemisphere: $\\frac{1}{2} \\cdot \\frac{4}{3}\\pi(27) = 18\\pi$ cm³. Total $216 + 18\\pi$ cm³.",
+      "check": [
+        "Eq(6**3, 216)",
+        "Eq(Rational(1, 2)*Rational(4, 3)*pi*3**3, 18*pi)"
+      ]
+    },
+    {
+      "id": "im2-u8-p16",
+      "statement": "Explain, using Cavalieri's principle, why an oblique prism and an upright prism with the same base and height have the same volume.",
+      "solution": "Every horizontal slice of either prism is congruent to the base, so the slices have equal AREA at every level, and the heights match. Cavalieri's principle then forces the volumes to be equal — the lean moves material sideways without adding or removing any.",
+      "check": [
+        "Eq(2*3*10, 60)",
+        "Eq(6*10, 60)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "im2-u8-x1",
+      "statement": "A cylindrical water tank has radius $1.5$ m and height $4$ m. Find its capacity in litres, to the nearest litre.",
+      "solution": "$V = \\pi(1.5)^2(4) = 9\\pi$ m³. Since $1$ m³ is $1000$ litres, the capacity is $9000\\pi \\approx 28\\,274$ litres.",
+      "check": [
+        "Eq(pi*Rational(3, 2)**2*4, 9*pi)",
+        "Abs(9000*pi - 28274) < 1"
+      ]
+    },
+    {
+      "id": "im2-u8-x2",
+      "statement": "A cone and a sphere have the same radius $6$ cm, and the cone's volume equals the sphere's. Find the cone's height.",
+      "solution": "Sphere: $\\frac{4}{3}\\pi(216) = 288\\pi$ cm³. Setting $\\frac{1}{3}\\pi(36)h = 288\\pi$ gives $12h = 288$, so $h = 24$ cm — four times the radius.",
+      "check": [
+        "Eq(Rational(4, 3)*pi*6**3, 288*pi)",
+        "Eq(Rational(1, 3)*pi*6**2*24, 288*pi)",
+        "Eq(Rational(288, 12), 24)"
+      ]
+    },
+    {
+      "id": "im2-u8-x3",
+      "statement": "A grain hopper is a cylinder of radius $2$ m and height $5$ m with a cone of the same radius and height $3$ m below it. Find the total volume in terms of $\\pi$, and the depth of a cylinder of the same radius that would hold the same amount.",
+      "solution": "Cylinder: $\\pi(4)(5) = 20\\pi$ m³. Cone: $\\frac{1}{3}\\pi(4)(3) = 4\\pi$ m³. Total $24\\pi$ m³. An equivalent plain cylinder of radius $2$ needs $\\pi(4)h = 24\\pi$, so $h = 6$ m.",
+      "check": [
+        "Eq(pi*2**2*5, 20*pi)",
+        "Eq(Rational(1, 3)*pi*2**2*3, 4*pi)",
+        "Eq(20*pi + 4*pi, 24*pi)",
+        "Eq(pi*2**2*6, 24*pi)"
+      ]
+    },
+    {
+      "id": "im2-u8-x4",
+      "statement": "A solid metal sphere of radius $6$ cm is melted down and recast as a cylinder of radius $4$ cm. How tall is the cylinder?",
+      "solution": "Melting conserves volume. Sphere: $\\frac{4}{3}\\pi(216) = 288\\pi$ cm³. Cylinder: $\\pi(16)h = 288\\pi$, so $h = 18$ cm.",
+      "check": [
+        "Eq(Rational(4, 3)*pi*6**3, 288*pi)",
+        "Eq(pi*4**2*18, 288*pi)",
+        "Eq(Rational(288, 16), 18)"
+      ]
+    },
+    {
+      "id": "im2-u8-x5",
+      "statement": "A rectangle measuring $3$ cm by $8$ cm is rotated about its $8$ cm side, and a second copy is rotated about its $3$ cm side. Find both volumes and say which is larger.",
+      "solution": "About the $8$ cm side: $r = 3$, $h = 8$, giving $\\pi(9)(8) = 72\\pi$ cm³. About the $3$ cm side: $r = 8$, $h = 3$, giving $\\pi(64)(3) = 192\\pi$ cm³. The second is larger, because the radius is squared while the height is not — spinning about the SHORTER side always wins.",
+      "check": [
+        "Eq(pi*3**2*8, 72*pi)",
+        "Eq(pi*8**2*3, 192*pi)",
+        "192*pi > 72*pi"
+      ]
+    },
+    {
+      "id": "im2-u8-x6",
+      "statement": "A closed box with a square base of side $s$ and height $h$ must hold $108$ dm³. Compare the card required when $s = 3$ with the card required when $s = 6$, and state which design is more economical.",
+      "solution": "With $s = 3$: $h = \\frac{108}{9} = 12$, and $S = 2(9) + 4(3)(12) = 18 + 144 = 162$ dm². With $s = 6$: $h = \\frac{108}{36} = 3$, and $S = 2(36) + 4(6)(3) = 72 + 72 = 144$ dm². The wider, shorter box uses $18$ dm² less card for the same capacity.",
+      "check": [
+        "Eq(3**2*12, 108)",
+        "Eq(6**2*3, 108)",
+        "Eq(2*3**2 + 4*3*12, 162)",
+        "Eq(2*6**2 + 4*6*3, 144)",
+        "144 < 162"
+      ]
+    },
+    {
+      "id": "im2-u8-x7",
+      "statement": "A city's population density is $4200$ people per km² and it covers $35$ km². A new district of $5$ km² is added, housing $31\\,500$ people. Find the density of the enlarged city.",
+      "solution": "Original population: $4200 \\times 35 = 147\\,000$. New totals: $147\\,000 + 31\\,500 = 178\\,500$ people over $35 + 5 = 40$ km². Density $= \\frac{178\\,500}{40} = 4462.5$ people per km² — higher, because the new district's own density, $\\frac{31\\,500}{5} = 6300$, exceeds the old one.",
+      "check": [
+        "Eq(4200*35, 147000)",
+        "Eq(147000 + 31500, 178500)",
+        "Eq(Rational(178500, 40), Rational(8925, 2))",
+        "Eq(Rational(31500, 5), 6300)",
+        "6300 > 4200"
+      ]
+    },
+    {
+      "id": "im2-u8-x8",
+      "statement": "Two similar cones have heights $4$ cm and $10$ cm. The smaller has volume $32\\pi$ cm³. Find the volume of the larger, and the ratio of their surface areas.",
+      "solution": "The scale factor is $\\frac{10}{4} = \\frac{5}{2}$. Volumes scale by its cube: $32\\pi \\cdot \\frac{125}{8} = 500\\pi$ cm³. Surface areas scale by its square, $\\frac{25}{4}$ — so the larger cone's surface is $6.25$ times the smaller's.",
+      "check": [
+        "Eq(Rational(10, 4), Rational(5, 2))",
+        "Eq(32*pi*Rational(5, 2)**3, 500*pi)",
+        "Eq(Rational(5, 2)**2, Rational(25, 4))"
+      ]
+    }
+  ]
+}
