@@ -49,6 +49,7 @@ import {
   type GeometrySpineEntry,
 } from "@/lib/genmath-lessons";
 import type { CourseDef } from "@/components/course/CourseShell";
+import { ESH_DOMAINS, type EshDomain } from "@/lib/esh-questions";
 
 // The three ЭЕШ-authored units — the one exam topic with no source in the
 // /math catalog. Built by scripts/esh/build_sets_logic.py; never hand-edited.
@@ -528,6 +529,23 @@ export const ESH_COURSE_READY_SCORE = 650;
 
 export function getEshTopicCourse(topic: string): EshTopicCourse | null {
   return ESH_COURSES.find((c) => c.topic === topic) ?? null;
+}
+
+/**
+ * The learn hub's shape: five MAIN topics (the ministry's strands, defined
+ * in lib/esh-questions ESH_DOMAINS), each carrying its subtopic courses in
+ * the domain's own display order. Derived rather than stored, so the course
+ * list and the question taxonomy can never disagree about where a topic
+ * lives — lib/esh-course.test.ts asserts the derivation is total (every
+ * course reachable, every domain non-empty).
+ */
+export function eshCoursesByDomain(): { domain: EshDomain; courses: EshTopicCourse[] }[] {
+  return ESH_DOMAINS.map((domain) => ({
+    domain,
+    courses: domain.topics
+      .map((t) => getEshTopicCourse(t))
+      .filter((c): c is EshTopicCourse => c !== null),
+  }));
 }
 
 export function getEshUnit(topic: string, unitSlug: string): CourseUnit | null {

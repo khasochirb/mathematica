@@ -33,8 +33,8 @@ import {
   getQuestionsByTopicForUser,
   getQuestionBySource,
   getTestInfo,
-  TOPICS,
   TOPIC_LABELS,
+  ESH_DOMAINS,
 } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import { useAuth } from "@/lib/auth-context";
@@ -553,28 +553,37 @@ export default function PracticePage() {
           })}
         </div>
 
-        {/* Topic filter */}
+        {/* Topic filter — subtopic chips grouped under the five main topics */}
         {mode === "topic" && (
           <div className="mb-6">
             <div className="eyebrow mb-3">Сэдэв сонгох</div>
-            <div className="flex flex-wrap gap-1.5">
-              {TOPICS.map((t) => {
-                const isActive = topicFilter === t.value;
-                return (
-                  <button
-                    key={t.value}
-                    onClick={() => setTopicFilter(isActive ? "" : t.value)}
-                    className="badge-edit transition-all"
-                    style={
-                      isActive
-                        ? { background: "var(--accent-wash)", borderColor: "var(--accent-line)", color: "var(--accent)" }
-                        : { background: "var(--bg-2)" }
-                    }
-                  >
-                    {t.label}
-                  </button>
-                );
-              })}
+            <div className="space-y-3">
+              {ESH_DOMAINS.map((domain) => (
+                <div key={domain.key}>
+                  <div className="mono text-[10px] uppercase mb-1.5" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                    {domain.titleMn}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {domain.topics.map((value) => {
+                      const isActive = topicFilter === value;
+                      return (
+                        <button
+                          key={value}
+                          onClick={() => setTopicFilter(isActive ? "" : value)}
+                          className="badge-edit transition-all"
+                          style={
+                            isActive
+                              ? { background: "var(--accent-wash)", borderColor: "var(--accent-line)", color: "var(--accent)" }
+                              : { background: "var(--bg-2)" }
+                          }
+                        >
+                          {TOPIC_LABELS[value] || value}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

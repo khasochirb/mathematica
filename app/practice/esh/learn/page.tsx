@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Play, Lock } from "lucide-react";
-import { TOPICS } from "@/lib/esh-questions";
-import { getEshTopicCourse, liveUnitCount, totalUnitCount } from "@/lib/esh-course";
+import { eshCoursesByDomain, liveUnitCount, totalUnitCount } from "@/lib/esh-course";
 import topicsData from "@/data/learn/topics.json";
 import EshLevelAdvisor from "@/components/esh/course/EshLevelAdvisor";
 import ComingSoonBadge from "@/components/ComingSoonBadge";
@@ -169,35 +168,55 @@ export default function LearnPage() {
         {/* Readiness routing: below ~650 → General Math first. */}
         <EshLevelAdvisor />
 
-        {/* Topic grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10">
-          {TOPICS.map((topic, i) => {
-            const data = (topicsData as Record<string, { title: string; overview: string; formulas: unknown[]; tips: unknown[] }>)[topic.value];
-            const course = getEshTopicCourse(topic.value);
-            // A topic shows up if it has a course, a formula sheet, or both —
-            // the four topics with no formula sheet used to be invisible here.
-            if (!data && !course) return null;
-
-            const title = course?.title ?? data?.title ?? topic.label;
-            const overview = course?.intro ?? data?.overview ?? "";
-            const live = liveUnitCount(topic.value);
-            const total = totalUnitCount(topic.value);
-
-            return (
-              <Link
-                key={topic.value}
-                href={`/practice/esh/learn/${topic.value}`}
-                className="card-edit p-5 group"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                    {String(i + 1).padStart(2, "0")} · СЭДЭВ
+        {/* Five MAIN topics — the ministry's strands — each with its
+            subtopic courses. The flat 14-card grid used to put Logarithms
+            next to Probability as equals; the strand layer is how the
+            curriculum (and the exam) actually group them. */}
+        {eshCoursesByDomain().map(({ domain, courses }, di) => {
+          if (courses.length === 0) return null;
+          return (
+            <section key={domain.key} className="mt-12">
+              <div className="flex items-baseline justify-between gap-4 flex-wrap">
+                <div>
+                  <div className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                    {String(di + 1).padStart(2, "0")} · ҮНДСЭН СЭДЭВ
                   </div>
-                  <ArrowRight className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
+                  <h2 className="serif mt-1" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                    {domain.titleMn}
+                  </h2>
                 </div>
+                <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                  {courses.length} дэд сэдэв
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                {courses.map((course, i) => {
+                  const data = (topicsData as Record<string, { title: string; overview: string; formulas: unknown[]; tips: unknown[] }>)[course.topic];
+                  const topic = { value: course.topic };
+
+                  const title = course.title;
+                  const overview = course.intro;
+                  const live = liveUnitCount(topic.value);
+                  const total = totalUnitCount(topic.value);
+
+                  return (
+                    <Link
+                      key={topic.value}
+                      href={`/practice/esh/learn/${topic.value}`}
+                      className="card-edit p-5 group"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+                          {String(di + 1)}.{String(i + 1)} · ДЭД СЭДЭВ
+                        </div>
+                        <ArrowRight className="w-4 h-4" style={{ color: "var(--fg-3)" }} />
+                      </div>
                 <h3 className="serif" style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                   {title}
                 </h3>
+                <p className="mono text-[10px] uppercase mt-1" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                  {course.titleMn}
+                </p>
                 <p className="text-[13px] mt-2 line-clamp-2" style={{ color: "var(--fg-2)" }}>
                   {overview}
                 </p>
@@ -219,21 +238,24 @@ export default function LearnPage() {
                       </span>
                     </div>
                   )}
-                  {data && (
-                    <div className="flex items-baseline gap-1">
-                      <span className="serif tabular" style={{ fontSize: 18, color: "var(--accent)", letterSpacing: "-0.02em" }}>
-                        {data.formulas.length}
-                      </span>
-                      <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
-                        томьёо
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+                        {data && (
+                          <div className="flex items-baseline gap-1">
+                            <span className="serif tabular" style={{ fontSize: 18, color: "var(--accent)", letterSpacing: "-0.02em" }}>
+                              {data.formulas.length}
+                            </span>
+                            <span className="mono text-[10px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>
+                              томьёо
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </div>
   );

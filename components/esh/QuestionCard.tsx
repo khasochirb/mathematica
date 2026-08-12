@@ -13,7 +13,7 @@ import {
   Lock,
 } from "lucide-react";
 import type { Question } from "@/lib/esh-questions";
-import { TOPIC_LABELS } from "@/lib/esh-questions";
+import { TOPIC_LABELS, eshDomainOf } from "@/lib/esh-questions";
 
 interface QuestionCardBaseProps {
   question: Question;
@@ -101,6 +101,19 @@ function QuestionHeader({
         >
           {questionNumber}
         </span>
+        {eshDomainOf(topic) && (
+          <span
+            className="mono text-[10px] uppercase px-2 py-1 rounded-full"
+            style={{
+              background: "var(--accent-wash)",
+              border: "1px solid var(--accent-line)",
+              color: "var(--accent)",
+              letterSpacing: "0.06em",
+            }}
+          >
+            {eshDomainOf(topic)!.titleMn}
+          </span>
+        )}
         <span
           className="mono text-[10px] uppercase px-2 py-1 rounded-full"
           style={{

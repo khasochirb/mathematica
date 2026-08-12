@@ -1,6 +1,6 @@
 "use client";
 
-import { TOPIC_LABELS } from "@/lib/esh-questions";
+import { TOPIC_LABELS, ESH_DOMAINS, DOMAIN_OF_TOPIC } from "@/lib/esh-questions";
 
 interface TopicStat {
   topic: string;
@@ -20,12 +20,47 @@ export default function TopicBreakdownChart({
 }: TopicBreakdownChartProps) {
   if (stats.length === 0) return null;
 
-  const sorted = [...stats].sort((a, b) => a.accuracy - b.accuracy);
+  // Group under the five MAIN topics (ministry strands), weakest subtopic
+  // first within each — so the report reads "Алгебр: 12/18" with the exact
+  // subtopic to fix right underneath, not a flat 14-row list.
+  const groups = ESH_DOMAINS.map((domain) => {
+    const rows = stats
+      .filter((s) => DOMAIN_OF_TOPIC[s.topic] === domain.key)
+      .sort((a, b) => a.accuracy - b.accuracy);
+    const total = rows.reduce((n, r) => n + r.total, 0);
+    const correct = rows.reduce((n, r) => n + r.correct, 0);
+    return { domain, rows, total, correct };
+  }).filter((g) => g.rows.length > 0);
+  const ungrouped = stats
+    .filter((s) => !DOMAIN_OF_TOPIC[s.topic])
+    .sort((a, b) => a.accuracy - b.accuracy);
 
   return (
-    <div className="space-y-3">
-      {sorted.map((stat) => {
-        const isWeak = highlightWeak && stat.accuracy < 50;
+    <div className="space-y-5">
+      {groups.map(({ domain, rows, total, correct }) => (
+        <div key={domain.key}>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-medium uppercase tracking-wide text-gray-400">
+              {domain.titleMn}
+            </span>
+            <span className="text-xs text-gray-500">
+              {correct}/{total}
+            </span>
+          </div>
+          <div className="space-y-3">
+            {rows.map((stat) => renderRow(stat, highlightWeak))}
+          </div>
+        </div>
+      ))}
+      {ungrouped.length > 0 && (
+        <div className="space-y-3">{ungrouped.map((stat) => renderRow(stat, highlightWeak))}</div>
+      )}
+    </div>
+  );
+}
+
+function renderRow(stat: TopicStat, highlightWeak: boolean) {
+  const isWeak = highlightWeak && stat.accuracy < 50;
         return (
           <div key={stat.topic}>
             <div className="flex items-center justify-between mb-1">
@@ -65,7 +100,4 @@ export default function TopicBreakdownChart({
             </div>
           </div>
         );
-      })}
-    </div>
-  );
 }

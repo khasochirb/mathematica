@@ -202,8 +202,97 @@ const TOPIC_ALIASES: Record<string, string> = {
   "exponents and logarithms": "logarithms",
   "exponents": "logarithms",
   "sets": "set_theory",
+  "set theory": "set_theory",
   "complex numbers": "complex_numbers",
+  "linear algebra": "linear_algebra",
+  // Number theory has no course of its own: divisibility, primes, GCD/LCM
+  // sit in the Numbers & Expressions course (ministry sections 10.1/11.1),
+  // whose topic key is `arithmetic`.
+  "number theory": "arithmetic",
+  "тоон онол": "arithmetic",
 };
+
+// ---------------------------------------------------------------------------
+// The five MAIN topics (domains) of the ЭЕШ hub, mirroring the strands of the
+// ministry curriculum А/492 (data/esh/moe-curriculum.json): АЛГЕБР, ГЕОМЕТР
+// БА ТРИГОНОМЕТР, АНАЛИЗЫН ЭХЛЭЛ, МАГАДЛАЛ/СТАТИСТИК. The one deliberate
+// deviation: the ministry files комбинаторик under МАГАДЛАЛ, СТАТИСТИК, but
+// the hub promotes it to a main topic of its own (owner decision 2026-08-12)
+// because counting is its own skill on the exam, not a probability sub-skill.
+// Every one of the 14 canonical topics above is a SUBTOPIC of exactly one
+// domain — a question therefore carries two marks: domain and topic.
+// ---------------------------------------------------------------------------
+
+export type EshDomainKey =
+  | "algebra"
+  | "geometry_trig"
+  | "analysis"
+  | "probability_stats"
+  | "combinatorics";
+
+export interface EshDomain {
+  key: EshDomainKey;
+  /** English name (hub content is English-first; chrome is Mongolian). */
+  title: string;
+  /** The ministry's own strand wording. */
+  titleMn: string;
+  /** Canonical topic keys that make up this domain, in hub display order. */
+  topics: string[];
+}
+
+export const ESH_DOMAINS: EshDomain[] = [
+  {
+    key: "algebra",
+    title: "Algebra",
+    titleMn: "Алгебр",
+    topics: [
+      "arithmetic",
+      "algebra",
+      "set_theory",
+      "functions",
+      "logarithms",
+      "sequences",
+      "complex_numbers",
+    ],
+  },
+  {
+    key: "geometry_trig",
+    title: "Geometry & Trigonometry",
+    titleMn: "Геометр ба тригонометр",
+    // linear_algebra spans strands (matrices 10.4 is АЛГЕБР; vectors 10.9 and
+    // 11.8 and transformations 10.11 are ГЕОМЕТР) — it lives here, where the
+    // majority of its ministry sections and its exam questions sit.
+    topics: ["geometry", "trigonometry", "linear_algebra"],
+  },
+  {
+    key: "analysis",
+    title: "Analysis",
+    titleMn: "Анализын эхлэл",
+    topics: ["calculus"],
+  },
+  {
+    key: "probability_stats",
+    title: "Probability & Statistics",
+    titleMn: "Магадлал ба статистик",
+    topics: ["probability", "statistics"],
+  },
+  {
+    key: "combinatorics",
+    title: "Combinatorics",
+    titleMn: "Комбинаторик",
+    topics: ["combinatorics"],
+  },
+];
+
+/** topic key -> its domain key, derived so the two can never disagree. */
+export const DOMAIN_OF_TOPIC: Record<string, EshDomainKey> = Object.fromEntries(
+  ESH_DOMAINS.flatMap((d) => d.topics.map((t) => [t, d.key])),
+) as Record<string, EshDomainKey>;
+
+export function eshDomainOf(topic: string | null | undefined): EshDomain | null {
+  const key = DOMAIN_OF_TOPIC[canonicalizeTopic(topic)];
+  return ESH_DOMAINS.find((d) => d.key === key) ?? null;
+}
 
 export function canonicalizeTopic(input: string | null | undefined): string {
   if (!input) return "other";
