@@ -1,6 +1,9 @@
 import { describe, it, expect } from "vitest";
+import moeCurriculum from "@/data/esh/moe-curriculum.json";
 import {
   ESH_COURSES,
+  MOE_COVERAGE,
+  MOE_NOT_YET_COVERED,
   ESH_COURSE_READY_SCORE,
   eshCourseDef,
   getEshTopicCourse,
@@ -172,5 +175,103 @@ describe("ЭЕШ course performance context", () => {
   it("links the course context into the ЭЕШ hub, and its report to the single ЭЕШ report", () => {
     expect(contextHref(ESH_COURSE_CONTEXT)).toBe("/practice/esh/learn");
     expect(contextProgressHref(ESH_COURSE_CONTEXT)).toBe("/analytics");
+  });
+});
+
+describe("ministry curriculum coverage (А/492, 2019)", () => {
+  const objectives = new Map<string, { elective: boolean; text: string }>();
+  const sectionOf = new Map<string, string>();
+  for (const section of moeCurriculum.sections) {
+    for (const o of section.objectives) {
+      objectives.set(o.code, { elective: o.elective, text: o.text });
+      sectionOf.set(o.code, section.code);
+    }
+  }
+
+  it("parsed the ministry standard whole", () => {
+    // 43 sections and 221 objectives, counted off the PDF. If a future parse
+    // silently drops one — it has happened, on two Latin-homoglyph codes —
+    // these numbers move and this fails before the coverage claims do.
+    expect(moeCurriculum.sections.length).toBe(43);
+    expect(objectives.size).toBe(221);
+    expect(moeCurriculum.counts.core).toBe(133);
+    expect(moeCurriculum.counts.elective).toBe(88);
+  });
+
+  it("claims only codes the ministry actually publishes", () => {
+    for (const [slug, codes] of Object.entries(MOE_COVERAGE)) {
+      for (const code of codes) {
+        expect(objectives.has(code), `${slug} claims unknown code ${code}`).toBe(true);
+      }
+    }
+  });
+
+  it("maps every course unit, and only real units", () => {
+    const unitSlugs = new Set(ESH_COURSES.flatMap((c) => c.units.map((u) => u.slug)));
+    for (const slug of Object.keys(MOE_COVERAGE)) {
+      expect(unitSlugs.has(slug), `MOE_COVERAGE has no unit "${slug}"`).toBe(true);
+    }
+    for (const slug of Array.from(unitSlugs)) {
+      expect(MOE_COVERAGE[slug], `unit "${slug}" is not in MOE_COVERAGE`).toBeDefined();
+    }
+  });
+
+  it("accounts for every objective — covered, or listed as a gap with a reason", () => {
+    const claimed = new Set(Object.values(MOE_COVERAGE).flat());
+    const listed = new Set(MOE_NOT_YET_COVERED.map((g) => g.code));
+    // Nothing may be both.
+    for (const g of MOE_NOT_YET_COVERED) {
+      expect(claimed.has(g.code), `${g.code} is listed as a gap but a unit claims it`).toBe(false);
+      expect(objectives.has(g.code), `${g.code} is not a ministry code`).toBe(true);
+      expect(g.why.length, `${g.code} needs a reason`).toBeGreaterThan(20);
+    }
+    // And nothing may be neither — an unlisted gap is the failure this
+    // whole file exists to prevent.
+    const unaccounted = Array.from(objectives.keys()).filter(
+      (c) => !claimed.has(c) && !listed.has(c),
+    );
+    expect(unaccounted, "ministry objectives with no unit and no gap entry").toEqual([]);
+  });
+
+  it("keeps the CORE gap small and named", () => {
+    const coreGaps = MOE_NOT_YET_COVERED.filter((g) => !objectives.get(g.code)!.elective);
+    // Six today: the whole of 10.11 (transformations as matrices) and 11.2г
+    // (Gaussian elimination). Closing them is the work order; this number
+    // must go DOWN, never up, so a regression that drops coverage fails here.
+    expect(coreGaps.length).toBeLessThanOrEqual(6);
+    for (const g of coreGaps) {
+      expect(["10.11", "11.2"]).toContain(sectionOf.get(g.code));
+    }
+  });
+
+  it("gives every course the ministry's own Mongolian name and sections", () => {
+    for (const c of ESH_COURSES) {
+      expect(c.titleMn.length, `${c.topic} titleMn`).toBeGreaterThan(2);
+      // Cyrillic, not a stray English fallback.
+      expect(/[\u0400-\u04FF]/.test(c.titleMn), `${c.topic} titleMn is not Cyrillic`).toBe(true);
+      expect(c.moeSections.length, `${c.topic} moeSections`).toBeGreaterThan(0);
+      for (const sec of c.moeSections) {
+        expect(
+          moeCurriculum.sections.some((s) => s.code === sec),
+          `${c.topic} names unknown ministry section ${sec}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("routes each course's units to the sections the course claims", () => {
+    for (const c of ESH_COURSES) {
+      const claimed = new Set(c.moeSections);
+      const fromUnits = new Set(
+        c.units.flatMap((u) => MOE_COVERAGE[u.slug] ?? []).map((code) => sectionOf.get(code)!),
+      );
+      // Every section a course advertises must be reachable from its units.
+      for (const sec of Array.from(claimed)) {
+        expect(
+          fromUnits.has(sec),
+          `${c.topic} advertises ministry section ${sec} but no unit teaches it`,
+        ).toBe(true);
+      }
+    }
   });
 });

@@ -87,8 +87,23 @@ export default function TopicLearnPage() {
           {title}
         </h1>
         {course && (
+          <p className="mt-2 serif" style={{ color: "var(--fg-2)", fontSize: 20 }}>
+            {course.titleMn}
+          </p>
+        )}
+        {course && (
           <p className="mt-4" style={{ color: "var(--fg-1)", fontSize: 17, lineHeight: 1.55, maxWidth: "58ch" }}>
             {course.intro}
+          </p>
+        )}
+        {/* The ministry's own section numbers for this topic. A student
+            holding the school syllabus (БСШУСЯ, А/492) can line it up
+            against this course line for line — and lib/esh-course.test.ts
+            keeps the claim honest by failing if a section listed here has
+            no unit behind it. */}
+        {course && course.moeSections.length > 0 && (
+          <p className="mt-3 mono" style={{ color: "var(--fg-3)", fontSize: 12 }}>
+            Сургалтын хөтөлбөр (БСШУСЯ, А/492): {course.moeSections.join(", ")}
           </p>
         )}
 

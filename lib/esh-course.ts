@@ -16,6 +16,17 @@
 //      first (components/esh/course/EshLevelAdvisor.tsx does the routing,
 //      via the exam-study-map).
 //
+// STRUCTURE ANSWERS TO THE MINISTRY. Mongolia's Ministry of Education
+// publishes the grade 10-12 mathematics standard as order А/492 (2019-08-01,
+// third appendix), and it numbers every learning objective — `10.5б`,
+// `11.9ж`, `12.4и`. That numbering is the spine a Mongolian teacher, parent
+// or student already knows, so every unit below records the objectives it
+// teaches (MOE_COVERAGE) and lib/esh-course.test.ts fails if a CORE
+// objective has no unit behind it. The syllabus itself is checked in at
+// data/esh/moe-curriculum.json, parsed from the ministry PDF (archived
+// beside it) by scripts/esh/parse_moe_curriculum.py — so the claim "we
+// cover the national curriculum" is a test, not a slogan.
+//
 // Units are the SAME verified English units taught in the named /math
 // courses and grade ladders — one source of truth, resolved through the
 // registry in lib/genmath-lessons.ts — curated and re-ordered for the exam
@@ -108,6 +119,16 @@ export interface EshTopicCourse {
   topic: string;
   /** Course title shown in the hub and crumbs. English-first (see header). */
   title: string;
+  /**
+   * The Mongolian name, taken from the ministry's own section headings in
+   * data/esh/moe-curriculum.json wherever one exists — so the hub reads in
+   * the words a Mongolian student has already met in class, not a fresh
+   * translation of our English. `moeSections` names the headings it came
+   * from, which is also the reader's route back into the standard.
+   */
+  titleMn: string;
+  /** Ministry section codes this course answers to, e.g. ["10.5", "11.1"]. */
+  moeSections: string[];
   /** One-paragraph intro on the topic page. */
   intro: string;
   units: EshUnitEntry[];
@@ -126,10 +147,170 @@ function live(unit: number, slug: string, source: string, buildsOn?: string): Es
 }
 
 
+
+// -------------------------------------------------------------------------
+// Ministry coverage — which objectives each unit teaches
+// -------------------------------------------------------------------------
+
+/**
+ * Unit slug -> the МОЭ objective codes (data/esh/moe-curriculum.json) that
+ * unit teaches. Codes are the ministry's own: <grade>.<section><letter>.
+ * A unit may legitimately claim codes from several grades — the exam does
+ * not respect year boundaries and neither do these courses — and one code
+ * may be claimed by more than one unit where two courses genuinely share
+ * it (the sine rule is taught in Trigonometry and used in Geometry).
+ *
+ * An EMPTY array is a deliberate statement: the unit is here for the exam,
+ * not for the ministry's list. Percent applications, congruence proofs and
+ * study design are all tested on ЭЕШ papers without appearing as a grade
+ * 10-12 objective, because the ministry places them earlier.
+ */
+export const MOE_COVERAGE: Record<string, string[]> = {
+  // --- arithmetic ------------------------------------------------
+  "the-real-number-system": ["10.1г"],
+  "exponents-and-scientific-notation": ["10.1а", "10.1б", "10.1в"],
+  "roots": ["10.2а"],
+  "percent-applications": [],
+  // --- algebra ---------------------------------------------------
+  "linear-equations": ["10.5а"],
+  "inequalities": ["10.5а", "10.5г", "11.1б", "11.1в", "12.1а"],
+  "systems-of-equations": ["10.5ж", "11.2б"],
+  "polynomials-and-factoring": ["10.2б", "10.2д", "12.2а", "12.2б", "12.2в"],
+  "quadratic-equations": ["10.5б", "10.5в", "10.5е", "11.1а", "11.1г"],
+  "rational-expressions": ["10.2в", "10.2г", "12.2г", "12.2д", "12.2е"],
+  "radicals-and-rational-exponents": ["10.2а"],
+  "systems-and-nonlinear-models": ["11.2а", "11.2б"],
+  // --- sets & logic ----------------------------------------------
+  "sets-and-operations": ["10.6б"],
+  "venn-diagrams-and-counting": ["10.6в", "10.6г"],
+  "number-sets-and-intervals": ["10.6а"],
+  // --- functions -------------------------------------------------
+  "introduction-to-functions": ["10.3а", "11.3а", "11.3в", "11.3г", "11.3ж", "11.3з"],
+  "linear-functions": ["10.8в", "10.8г"],
+  "quadratic-functions": ["10.3б"],
+  "piecewise-and-absolute-value-graphs": ["12.3е"],
+  "functions-and-transformations": ["11.3д", "11.3е", "11.3и", "11.3к"],
+  "polynomial-functions": ["10.3в", "11.3б"],
+  "rational-functions": ["12.3г"],
+  // --- exponentials & logarithms ---------------------------------
+  "exponential-functions": ["10.3г", "10.3е", "10.5д"],
+  "logarithms": ["12.3а", "12.3б"],
+  "exponentials-and-logarithms": ["12.3в"],
+  // --- sequences & series ----------------------------------------
+  "sequences-and-series": [
+    "11.4а", "11.4б", "11.4в", "11.4ж", "11.4з", "11.4и", "12.9а", "12.9б", "12.9в", "12.9г",
+    "12.9д",
+  ],
+  // --- trigonometry ----------------------------------------------
+  "right-triangle-trigonometry": ["10.10а"],
+  "special-triangles-and-exact-values": ["11.7б"],
+  "radians-and-the-unit-circle": ["11.6а", "11.6б", "11.7а", "12.3д"],
+  "graphs-of-trig-functions": ["11.7г", "12.6а"],
+  "identities-and-equations": ["11.7в", "11.7д", "11.7е", "12.6б", "12.6в", "12.6г"],
+  "laws-of-sines-and-cosines": ["10.10б", "10.10в"],
+  // --- geometry --------------------------------------------------
+  "triangles-and-congruence": [],
+  "relationships-in-triangles": ["10.7г"],
+  "similarity": [],
+  "right-triangles-and-trig": ["10.10г"],
+  "quadrilaterals-and-polygons": ["10.7в"],
+  "circles": ["10.7а", "10.7б", "10.8д"],
+  "area-and-perimeter": ["10.12а"],
+  "coordinate-geometry": ["10.8а", "10.8б", "11.5а", "11.5б"],
+  "surface-area-and-volume": ["10.12б"],
+  "lines-and-planes-in-space": ["10.12в", "11.5в", "11.5г"],
+  "cylinders-and-cones": ["10.12б"],
+  "spheres": ["10.12б"],
+  // --- vectors & matrices ----------------------------------------
+  "vector-arithmetic": ["10.9а", "10.9б"],
+  "vectors-and-coordinates": ["10.9в", "10.9г", "11.5д"],
+  "the-dot-product": ["10.9д", "10.9е"],
+  "vectors-in-space": ["11.8а", "11.8б", "11.8в", "11.8г", "11.8д", "11.8е"],
+  "matrices-and-operations": ["10.4а", "10.4б", "10.4в", "10.4г"],
+  "determinants-and-inverses": ["10.4д", "10.4е", "11.2в", "11.2д"],
+  // --- complex numbers -------------------------------------------
+  "complex-numbers": ["12.4а", "12.4б", "12.4в", "12.4г", "12.4д"],
+  "quadratics-and-complex-numbers": ["12.4г"],
+  // --- combinatorics ---------------------------------------------
+  "counting-principles": ["10.6в", "10.6г", "10.14а", "12.14а"],
+  "permutations": ["10.14б", "11.12а", "11.12б"],
+  "combinations": ["10.14б", "11.13а", "12.14б"],
+  "binomial-theorem": ["11.4г", "11.4д", "11.4е", "12.9ж"],
+  // --- probability -----------------------------------------------
+  "probability-models": ["10.15а", "10.15б", "12.15а"],
+  "conditional-probability": ["11.13б", "11.13в", "11.13г", "11.13д", "12.15а"],
+  "random-variables": ["12.12а", "12.12б"],
+  "binomial-distribution": ["12.12в", "12.12г"],
+  // --- statistics ------------------------------------------------
+  "describing-data": [
+    "10.13а", "10.13б", "10.13г", "10.13д", "10.13е", "11.11а", "11.11б", "11.11в", "11.11г",
+    "11.11д",
+  ],
+  "distributions-and-position": ["12.13а", "12.13б", "12.13в"],
+  "two-variable-data": ["10.13в"],
+  "inference-and-studies": [],
+  // --- calculus --------------------------------------------------
+  "limits-and-continuity": ["10.3д", "11.9а"],
+  "the-derivative": ["11.9б", "11.9в", "11.9г", "11.9е"],
+  "differentiation-techniques": ["11.9д", "12.7а", "12.7б", "12.7в", "12.7г"],
+  "applications-of-derivatives": [
+    "11.9ж", "11.9з", "11.9и", "11.9к", "11.9л", "11.9м", "11.9н",
+  ],
+  "integrals": [
+    "11.10а", "11.10б", "11.10в", "11.10г", "11.10е", "12.8а", "12.8б", "12.8в", "12.8г",
+    "12.8д", "12.8е",
+  ],
+  "applications-of-integrals": ["11.10д", "11.10ж", "11.10з", "11.10и", "11.10к", "12.8ж"],
+};
+
+/**
+ * Ministry objectives NO unit teaches yet, with the reason. This list is
+ * asserted EXACTLY by lib/esh-course.test.ts: a code may only sit here
+ * deliberately, and the moment a unit claims it the test demands it be
+ * removed. Silence about a gap is the thing the list exists to prevent.
+ *
+ * Six of these are CORE (заавал судлах) and are the real work order; the
+ * rest are elective (сонгон судлах, starred in the ministry's own text),
+ * which the ЭЕШ paper reaches for far less often.
+ */
+export const MOE_NOT_YET_COVERED: { code: string; why: string }[] = [
+  // --- CORE ---------------------------------------------------------
+  { code: "10.11а", why: "Геометр хувиргалт — transformations written as matrices. The whole ministry section has no unit: the catalog teaches rigid motions geometrically (geometry/transformations) but never as a matrix acting on coordinates, which is how the ministry and the exam pose it." },
+  { code: "10.11б", why: "Reflection in a point or an axis, expressed as a matrix." },
+  { code: "10.11в", why: "Translation, expressed as a matrix." },
+  { code: "10.11г", why: "Rotation, expressed as a matrix." },
+  { code: "10.11д", why: "Homothety (гомотет), expressed as a matrix." },
+  { code: "11.2г", why: "Гауссын арга — Gaussian elimination on a 3x3 system. Vectors & Matrices solves 2x2 systems by inverse matrix; the row-reduction method for three unknowns is not taught anywhere." },
+  // --- elective (сонгон судлах) --------------------------------------
+  { code: "10.11е", why: "Composing transformations as a matrix product — follows 10.11а-д." },
+  { code: "10.11ж", why: "Naming a transformation from its matrix — follows 10.11а-д." },
+  { code: "11.2е", why: "Крамерын дүрэм — Cramer's rule for a 3x3 system." },
+  { code: "12.3ж", why: "Parametric equations and their graphs." },
+  { code: "12.3з", why: "Curves and their equations, sketched from the equation." },
+  { code: "12.4е", why: "Polar and exponential form r(cos θ + i sin θ) = re^{iθ}." },
+  { code: "12.4ж", why: "Square roots of a complex number, and why there are two." },
+  { code: "12.4з", why: "The geometric meaning of complex arithmetic and conjugation." },
+  { code: "12.4и", why: "Loci in the complex plane: |z - a| < k, |z - a| = |z - b|, arg(z - a) = α." },
+  { code: "12.5а", why: "Огторгуйн шулуун — the vector equation of a line in space. Geometry Unit 10 does lines and planes synthetically; the vector/Cartesian treatment the ministry asks for is missing." },
+  { code: "12.5б", why: "Two lines in space: parallel, intersecting or skew (солбисон)." },
+  { code: "12.5в", why: "The angle between two lines in space, and their point of intersection." },
+  { code: "12.5г", why: "The equation of a plane, ax + by + cz = d and in vector form." },
+  { code: "12.5д", why: "Distances and angles between points, lines and planes in space." },
+  { code: "12.9е", why: "Ялгаврын арга — summing a series by the method of differences." },
+  { code: "12.10а", why: "Математик индукц — proof by mathematical induction. Nothing on the platform teaches it." },
+  { code: "12.11а", why: "Дифференциал тэгшитгэл — setting up a differential equation from a situation." },
+  { code: "12.11б", why: "Separable first-order differential equations, general solution." },
+  { code: "12.11в", why: "Using an initial condition to find the particular solution." },
+  { code: "12.11г", why: "Interpreting the solution of a differential equation in context." },
+  { code: "12.15б", why: "Геометр магадлал — geometric probability." },
+];
+
 export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "arithmetic",
     title: "Numbers & Arithmetic",
+    titleMn: "Тоо ба үсэгт илэрхийлэл",
+    moeSections: ["10.1", "10.2"],
     intro:
       "The number system as the exam uses it: rational vs irrational, exponent laws, scientific notation, roots, and the percent problems (interest, markup, error) that appear on nearly every paper. Short by design — at this level you are sharpening, not learning to count.",
     units: [
@@ -142,6 +323,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "algebra",
     title: "Algebra",
+    titleMn: "Тэгшитгэл, тэнцэтгэл биш",
+    moeSections: ["10.2", "10.5", "11.1", "11.2", "12.1", "12.2"],
     intro:
       "The heaviest-weighted topic on the exam. Equations and inequalities, systems, polynomial identities and factoring, quadratics by every method, rational expressions with their forbidden values, and radical manipulation — each unit feeds the next, so the order matters.",
     units: [
@@ -158,6 +341,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "set_theory",
     title: "Sets & Logic",
+    titleMn: "Олонлог",
+    moeSections: ["10.6"],
     intro:
       "Set operations, Venn counting, and interval notation — tested directly and used as the language of probability problems. Authored specifically for this course: nothing on the platform covered it before.",
     units: [
@@ -171,6 +356,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "functions",
     title: "Functions",
+    titleMn: "Функц ба график",
+    moeSections: ["10.3", "11.3", "12.3"],
     intro:
       "The backbone of the paper: domain and range, graphs, transformations, composition and inverses — then the full family tour from linear through quadratic, piecewise, polynomial and rational.",
     units: [
@@ -186,6 +373,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "logarithms",
     title: "Exponentials & Logarithms",
+    titleMn: "Илтгэгч ба логарифм функц",
+    moeSections: ["10.3", "12.3"],
     intro:
       "Two sides of one coin, and three recurring exam shapes: growth-and-decay models, equation solving, and expression manipulation with the log laws.",
     units: [
@@ -197,6 +386,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "sequences",
     title: "Sequences & Series",
+    titleMn: "Дараалал, цуваа",
+    moeSections: ["11.4", "12.9"],
     intro:
       "Arithmetic and geometric progressions, their sums, and recursive definitions. The exam rarely hands you the formula — it hands you conditions and expects you to rebuild it.",
     units: [live(1, "sequences-and-series", "11/sequences-and-series")],
@@ -204,6 +395,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "trigonometry",
     title: "Trigonometry",
+    titleMn: "Тригонометр",
+    moeSections: ["10.10", "11.6", "11.7", "12.6"],
     intro:
       "From right-triangle ratios to the unit circle, exact values, graphs, identities, trig equations, and the sine and cosine rules — nearly every ЭЕШ trig question lives inside these six units.",
     units: [
@@ -218,6 +411,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "geometry",
     title: "Geometry",
+    titleMn: "Геометр ба хэмжигдэхүүн",
+    moeSections: ["10.7", "10.8", "10.12", "11.5"],
     intro:
       "Plane geometry through solids: triangles and their centers, similarity, right-triangle trig, quadrilaterals, circles, areas, coordinate methods, and 3D measurement. Exam geometry chains two or three facts per problem — the order here builds those chains.",
     units: [
@@ -238,6 +433,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "linear_algebra",
     title: "Vectors & Matrices",
+    titleMn: "Вектор ба матриц",
+    moeSections: ["10.4", "10.9", "11.8"],
     intro:
       "Vector arithmetic and coordinates, the dot product, 3D vectors, then matrix operations, determinants and inverses — the exam connects vectors to geometry and matrices to systems.",
     units: [
@@ -252,6 +449,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "complex_numbers",
     title: "Complex Numbers",
+    titleMn: "Комплекс тоо",
+    moeSections: ["12.4"],
     intro:
       "Where a negative discriminant leads: arithmetic with i, conjugates and modulus, the complex plane, and the complete picture of quadratic roots.",
     units: [
@@ -262,6 +461,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "combinatorics",
     title: "Combinatorics",
+    titleMn: "Комбинаторик",
+    moeSections: ["10.14", "11.12", "12.14"],
     intro:
       "The art of counting: multiplication and addition principles, permutations, combinations, and the binomial theorem. Half of the probability section is secretly this topic.",
     units: [
@@ -274,6 +475,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "probability",
     title: "Probability",
+    titleMn: "Магадлал",
+    moeSections: ["10.15", "11.13", "12.12", "12.15"],
     intro:
       "Probability models, conditional probability, random variables with expectation and variance, and the binomial distribution — in the order the exam escalates them.",
     units: [
@@ -286,6 +489,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "statistics",
     title: "Statistics",
+    titleMn: "Өгөгдлийн шинжилгээ",
+    moeSections: ["10.13", "11.11", "12.13"],
     intro:
       "Describing data, position and distribution (z-scores, the normal curve), two-variable data with regression, and inference — ЭЕШ statistics rewards interpretation over computation.",
     units: [
@@ -298,6 +503,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
   {
     topic: "calculus",
     title: "Calculus",
+    titleMn: "Анализын эхлэл",
+    moeSections: ["11.9", "11.10", "12.7", "12.8"],
     intro:
       "Limits, the derivative and its techniques, applications (monotonicity, extrema, optimization), then integrals and their applications — ЭЕШ analysis questions concentrate on derivative applications, so that unit deserves the most repetitions.",
     units: [

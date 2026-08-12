@@ -91,7 +91,33 @@ starting a new grade.
 
 ## Terminology glossary (canonical — do not improvise synonyms)
 
-Core: тэгшитгэл (equation) · тэнцэтгэл бус (inequality) · пропорц,
+**The ministry outranks this file.** Mongolia's Ministry of Education fixes
+school mathematical vocabulary in the grade 10-12 standard (order А/492,
+2019-08-01), parsed into `data/esh/moe-curriculum.json` with the source PDF
+archived beside it. Where the standard has a word, that word is canonical
+and everything below yields to it. The upper-secondary glossary — 100 terms
+covering algebra, functions, geometry, analysis, probability and statistics
+— lives in `scripts/i18n/mn_terms.py`, next to the check that enforces it:
+
+```
+npm run verify:mn-terms          # fails on wording the ministry does not use
+python3 scripts/i18n/mn_terms.py --fix    # applies, idempotently
+```
+
+Enforcement lives in a script rather than in this document because
+translation tables are gitignored: once a topic is translated the table is
+usually gone, so a bad term in a shipped mirror cannot be fixed by
+"regenerate from the table". `--fix` is re-appliable after any regeneration,
+which keeps the correction inside the pipeline instead of becoming a hand
+edit of generated JSON.
+
+**Correction on record:** this file said `тэнцэтгэл бус` for *inequality*.
+The standard writes `тэнцэтгэл биш` thirteen times and `тэнцэтгэл бус`
+never. `тэнцэтгэл биш` is canonical; the six occurrences that had shipped in
+the Grade 7 mirror are fixed and gated.
+
+
+Core: тэгшитгэл (equation) · тэнцэтгэл биш (inequality) · пропорц,
 пропорциональ хамаарал · пропорциональ тогтмол (constant of
 proportionality) · үржүүлэгч (multiplier) · хувь (percent) · хувийн
 өөрчлөлт (percent change) · хувийн алдаа (percent error) · нэмэгдэл
@@ -102,7 +128,7 @@ proportionality) · үржүүлэгч (multiplier) · хувь (percent) · х�
 Geometry: масштаб (scale) · масштабын коэффициент (scale factor) ·
 нэмэлт өнцөг (complementary) · дүүргэгч өнцөг (supplementary) · эсрэг
 өнцөг (vertical angles) · зэргэлдээ өнцөг (adjacent) · гурвалжны
-тэнцэтгэл бус (triangle inequality) · тойргийн урт (circumference) ·
+тэнцэтгэл биш (triangle inequality) · тойргийн урт (circumference) ·
 диаметр, радиус (Latin-derived, keep) · нийлмэл дүрс (composite
 figure) · призм (prism) · эзэлхүүн (volume) · гадаргуугийн талбай
 (surface area) · дэлгээс (net).
