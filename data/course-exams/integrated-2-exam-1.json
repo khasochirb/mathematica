@@ -5,9 +5,9 @@
     "courseTitle": "Integrated Math 2",
     "label": "Integrated Math 2 — Practice Exam 1",
     "intro": "A full-course exam: every unit of Integrated Math 2 is represented, so the result shows which units are solid and which need another pass.",
-    "minutes": 50,
-    "totalQuestions": 32,
-    "unitsCovered": 8
+    "minutes": 55,
+    "totalQuestions": 36,
+    "unitsCovered": 9
   },
   "questions": [
     {
@@ -30,294 +30,300 @@
       ]
     },
     {
-      "id": "im2-rad-v02",
-      "unit": "rational-exponents-and-radicals",
-      "unitTitle": "Rational Exponents & Radicals",
-      "level": 1,
-      "skill": "Pull out the largest perfect-square factor — anything less is not simplified.",
-      "statement": "Simplify $\\sqrt{20}$ completely.",
-      "options": [
-        "$5\\sqrt{2}$",
-        "$2\\sqrt{5}$",
-        "$10$",
-        "$\\sqrt{20}$"
-      ],
-      "correctIndex": 1,
-      "explanation": "Pull out the largest square factor: $20 = 2^2 \\times 5$, so $\\sqrt{20} = 2\\sqrt{5}$. Leaving it as $\\sqrt{20}$ is not simplified, and swapping which part comes out changes the value.",
-      "check": [
-        "Eq(sqrt(20), 2*sqrt(5))"
-      ]
-    },
-    {
-      "id": "im2-rar-v03",
+      "id": "im2-req-v02",
       "unit": "rational-exponents-and-radicals",
       "unitTitle": "Rational Exponents & Radicals",
       "level": 2,
-      "skill": "Like radicals add like terms; multiplication combines under one root.",
-      "statement": "Simplify $4\\sqrt{5} + 9\\sqrt{5}$.",
+      "skill": "Square both sides, then CHECK — squaring can invent solutions.",
+      "statement": "Solve $\\sqrt{x - 4} = 3$.",
       "options": [
-        "$13\\sqrt{10}$",
-        "$36\\sqrt{5}$",
-        "$13\\sqrt{5}$",
-        "$\\sqrt{65}$"
+        "$5$",
+        "$13$",
+        "$7$",
+        "$10$"
       ],
-      "correctIndex": 2,
-      "explanation": "Like radicals add like terms — the $\\sqrt{5}$ is the 'unit': $4\\sqrt{5} + 9\\sqrt{5} = 13\\sqrt{5}$. The radicand does NOT change; adding it is the classic error.",
+      "correctIndex": 1,
+      "explanation": "Square both sides to undo the root: $x - 4 = 9$, so $x = 13$. Check it: $\\sqrt{9} = 3$. Squaring can invent solutions, so the check is part of the method, not politeness.",
       "check": [
-        "Eq(4*sqrt(5) + 9*sqrt(5), 13*sqrt(5))"
+        "Eq(sqrt(13 + (-4)), 3)",
+        "Eq(9 - (-4), 13)"
       ]
     },
     {
-      "id": "im2-rir-v04",
+      "id": "im2-rir-v03",
       "unit": "rational-exponents-and-radicals",
       "unitTitle": "Rational Exponents & Radicals",
       "level": 2,
       "skill": "A rational plus an irrational is always irrational — but a radical is not automatically irrational.",
-      "statement": "Is $2 + \\sqrt{7}$ rational or irrational, and why?",
+      "statement": "Is $7 + \\sqrt{5}$ rational or irrational, and why?",
       "options": [
         "rational — the sum of two reals is rational",
-        "rational — $2$ is rational so the sum is too",
-        "it depends on the value of $\\sqrt{7}$",
-        "irrational — a rational plus an irrational is always irrational"
+        "rational — $7$ is rational so the sum is too",
+        "irrational — a rational plus an irrational is always irrational",
+        "it depends on the value of $\\sqrt{5}$"
+      ],
+      "correctIndex": 2,
+      "explanation": "$\\sqrt{5}$ is irrational. If $7 + \\sqrt{5}$ were rational, subtracting the rational $7$ would make $\\sqrt{5}$ rational too — a contradiction. So the sum must be irrational.",
+      "check": [
+        "Eq(sqrt(5)**2, 5)"
+      ]
+    },
+    {
+      "id": "im2-ext-v04",
+      "unit": "rational-exponents-and-radicals",
+      "unitTitle": "Rational Exponents & Radicals",
+      "level": 3,
+      "skill": "Squaring can make a false statement true — so every root gets tested.",
+      "statement": "Solve $\\sqrt{x + 19} = x - 1$.",
+      "options": [
+        "$x = -3$ and $x = 6$",
+        "$x = -3$ only",
+        "There is no solution.",
+        "$x = 6$ only"
       ],
       "correctIndex": 3,
-      "explanation": "$\\sqrt{7}$ is irrational. If $2 + \\sqrt{7}$ were rational, subtracting the rational $2$ would make $\\sqrt{7}$ rational too — a contradiction. So the sum must be irrational.",
+      "explanation": "Squaring both sides gives $x + 19 = x^2 - 2x + 1$, which rearranges to $x^2 - 3x - 18 = 0$ with roots $x = -3$ and $x = 6$. Both must be CHECKED in the ORIGINAL equation, because squaring can turn a false statement into a true one. At $x = -3$ the right-hand side is $-4$, and a square root is never negative — so that root is extraneous. Only $x = 6$ survives.",
       "check": [
-        "Eq(sqrt(7)**2, 7)"
+        "Eq(sqrt(6 + 19), 6 - 1)",
+        "-3 - 1 < 0",
+        "Eq((-3)**2 - 3*(-3) + (-18), 0)",
+        "Eq((6)**2 - 3*(6) + (-18), 0)"
       ]
     },
     {
-      "id": "im2-gcf-v01",
+      "id": "im2-adp-v01",
       "unit": "polynomials-and-factoring",
       "unitTitle": "Polynomials & Factoring",
       "level": 1,
-      "skill": "Take the numeric GCF and every shared variable — always the FIRST factoring step.",
-      "statement": "Factor out the greatest common factor: $6x^2 + 10x$.",
+      "skill": "The minus sign distributes over EVERY term in the bracket.",
+      "statement": "Simplify $(2x^2 - 6x + 1) - (2x^2 - 3x)$.",
       "options": [
-        "$2x(3x + 5)$",
-        "$2(3x^2 + 5x)$",
-        "$x(6x + 10)$",
-        "$6x(1x + 5)$"
+        "$-3x + 1$",
+        "$-9x + 1$",
+        "$4x^2 - 9x + 1$",
+        "$3x - 1$"
       ],
       "correctIndex": 0,
-      "explanation": "The numeric GCF of $6$ and $10$ is $2$, and both terms carry at least one $x$, so the full common factor is $2x$: $2x(3x + 5)$. Pulling out only the number leaves an $x$ behind.",
+      "explanation": "The minus sign applies to EVERY term in the second bracket: $2x^2 - 6x + 1 - 2x^2 - 3x$. Collecting like terms gives $-3x + 1$. Distributing the minus over only the first term is the standard slip.",
       "check": [
-        "Eq(expand(2*x*(3*x + 5)), 6*x**2 + 10*x)"
+        "Eq(expand(((2)*x**2 + (-6)*x + (1)) - ((2)*x**2 + (-3)*x + (0))), (0)*x**2 + (-3)*x + (1))"
       ]
     },
     {
-      "id": "im2-mb-v02",
-      "unit": "polynomials-and-factoring",
-      "unitTitle": "Polynomials & Factoring",
-      "level": 1,
-      "skill": "The constant is the product of the two numbers; the middle coefficient is their sum.",
-      "statement": "Expand $(x + 2)(x - 4)$.",
-      "options": [
-        "$x^2 - 8x - 2$",
-        "$x^2 - 2x - 8$",
-        "$x^2 - 8$",
-        "$x^2 - 2x - 7$"
-      ],
-      "correctIndex": 1,
-      "explanation": "Each term of the first bracket multiplies each of the second: $x^2 + 2x - 4x - 8$, and the middle terms combine to give $x^2 - 2x - 8$. The constant is the PRODUCT $-8$ and the middle coefficient is the SUM $-2$ — swapping them is the usual slip.",
-      "check": [
-        "Eq(expand((x + (2))*(x + (-4))), x**2 + (-2)*x + (-8))"
-      ]
-    },
-    {
-      "id": "im2-ds-v03",
+      "id": "im2-fa1-v02",
       "unit": "polynomials-and-factoring",
       "unitTitle": "Polynomials & Factoring",
       "level": 2,
-      "skill": "a² - b² = (a - b)(a + b); a repeated bracket would create a middle term.",
-      "statement": "Factor $x^2 - 16$.",
+      "skill": "Both brackets cannot start with x — decide which carries the coefficient.",
+      "statement": "Factor $2x^2 - 5x - 3$.",
       "options": [
-        "$(1x - 4)^2$",
-        "$(1x + 4)^2$",
-        "$(1x - 4)(1x + 4)$",
-        "$(1x - 4)(1x - 4)$"
+        "$(x + 1)(2x - 3)$",
+        "$(2x + 1)(x - 3)$",
+        "$(2x - 3)(x + 1)$",
+        "$(2x - 1)(x + 3)$"
       ],
-      "correctIndex": 2,
-      "explanation": "Both parts are squares: $1x^2 = (1x)^2$ and $16 = 4^2$. A difference of squares factors as a SUM times a DIFFERENCE: $(1x - 4)(1x + 4)$. A repeated bracket would give a middle term, which this expression does not have.",
+      "correctIndex": 1,
+      "explanation": "With a leading coefficient of $2$ the two brackets cannot both start with $x$. Trying $(2x + 1)(x - 3)$ and expanding gives a middle term of $2 \\cdot -3 + 1 = -5$ ✓, so that is the factorisation. Swapping which bracket carries the $2$ changes the middle term and breaks it.",
       "check": [
-        "Eq(expand((1*x - 4)*(1*x + 4)), 1*x**2 - 16)"
+        "Eq(expand(((2)*x + (1))*((1)*x + (-3))), (2)*x**2 + (-5)*x + (-3))"
       ]
     },
     {
-      "id": "im2-ft-v04",
+      "id": "im2-ft-v03",
       "unit": "polynomials-and-factoring",
       "unitTitle": "Polynomials & Factoring",
       "level": 2,
       "skill": "Two numbers multiplying to c and adding to b — multiplication read backwards.",
-      "statement": "Factor $x^2 + 9x + 14$ completely.",
+      "statement": "Factor $x^2 + 7x + 10$ completely.",
       "options": [
-        "$(x - 2)(x - 7)$",
-        "$(x + 9)(x + 14)$",
-        "$(x + 2)(x - 7)$",
-        "$(x + 2)(x + 7)$"
-      ],
-      "correctIndex": 3,
-      "explanation": "Find two numbers multiplying to $14$ and adding to $9$: $2$ and $7$. So the factorisation is $(x + 2)(x + 7)$. Check by expanding — the signs must reproduce BOTH the middle term and the constant.",
-      "check": [
-        "Eq(expand((x + (2))*(x + (7))), x**2 + (9)*x + (14))"
-      ]
-    },
-    {
-      "id": "im2-FUNC-vertex-v01",
-      "unit": "quadratic-functions",
-      "unitTitle": "Quadratic Functions",
-      "level": 1,
-      "skill": "y = (x−h)² + k has vertex (h; k) — mind the sign of h.",
-      "statement": "The parabola $y = (x - 3)^2 - 4$ has its vertex at…",
-      "options": [
-        "$(3; -4)$",
-        "$(-3; -4)$",
-        "$(3; 4)$",
-        "$(-4; 3)$"
-      ],
-      "correctIndex": 0,
-      "explanation": "Vertex form $y = (x - h)^2 + k$ puts the vertex at $(h; k)$: here $(3; -4)$. Watch the sign: $(x - h)$ means the vertex sits at $+h$.",
-      "check": [
-        "(3 - 3)**2 + -4 == -4",
-        "(3+1 - 3)**2 + -4 > -4"
-      ]
-    },
-    {
-      "id": "im2-wf-v02",
-      "unit": "quadratic-functions",
-      "unitTitle": "Quadratic Functions",
-      "level": 1,
-      "skill": "Standard shows the intercept, factored shows the roots, vertex form shows the vertex.",
-      "statement": "A quadratic is written in factored form $y = a(x - p)(x - q)$, with $a = 1$. Which feature does this form reveal WITHOUT any algebra?",
-      "options": [
-        "the vertex, read straight off",
-        "the roots, read straight off as $p$ and $q$",
-        "the $y$-intercept, read straight off",
-        "the maximum value, read straight off"
-      ],
-      "correctIndex": 1,
-      "explanation": "Each form is chosen for what it exposes. The roots is immediate as $p$ and $q$ Getting a different feature out of this form always costs you some work — expanding, factoring, or completing the square.",
-      "check": [
-        "Eq(1, 1)"
-      ]
-    },
-    {
-      "id": "im2-av-v03",
-      "unit": "quadratic-functions",
-      "unitTitle": "Quadratic Functions",
-      "level": 2,
-      "skill": "x = -b/2a, minus included; substitute back for the y-coordinate.",
-      "statement": "Find the $y$-coordinate of the vertex of $y = x^2 + 12x + 7$.",
-      "options": [
-        "$-6$",
-        "$7$",
-        "$-29$",
-        "$-28$"
+        "$(x - 2)(x - 5)$",
+        "$(x + 7)(x + 10)$",
+        "$(x + 2)(x + 5)$",
+        "$(x + 2)(x - 5)$"
       ],
       "correctIndex": 2,
-      "explanation": "The vertex sits at $x = -6$; substituting gives $y = -29$. The $x$-coordinate $-6$ answers a different question, and $c = 7$ is the $y$-INTERCEPT, not the vertex.",
+      "explanation": "Find two numbers multiplying to $10$ and adding to $7$: $2$ and $5$. So the factorisation is $(x + 2)(x + 5)$. Check by expanding — the signs must reproduce BOTH the middle term and the constant.",
       "check": [
-        "Eq((1)*Rational(-6,1)**2 + (12)*Rational(-6,1) + (7), Rational(-29,1))"
+        "Eq(expand((x + (2))*(x + (5))), x**2 + (7)*x + (10))"
       ]
     },
     {
-      "id": "im2-FUNC-min-v04",
+      "id": "im2-fcm-v04",
+      "unit": "polynomials-and-factoring",
+      "unitTitle": "Polynomials & Factoring",
+      "level": 3,
+      "skill": "Take out the common factor, then look again — 'completely' means completely.",
+      "statement": "Factor $2x^2 - 50$ completely.",
+      "options": [
+        "$(2x - 10)(x + 5)$",
+        "$2(x - 5)^2$",
+        "$2(x^2 - 25)$",
+        "$2(x - 5)(x + 5)$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Take out the common factor first: $2x^2 - 50 = 2(x^2 - 25)$. What is left is a difference of squares, $x^2 - 5^2$, which factors as $(x - 5)(x + 5)$. Stopping at $2(x^2 - 25)$ is not 'completely' — there is still a factorisation available.",
+      "check": [
+        "Eq(expand(2*(x - 5)*(x + 5)), 2*x**2 - 50)"
+      ]
+    },
+    {
+      "id": "im2-pdi-v01",
+      "unit": "quadratic-functions",
+      "unitTitle": "Quadratic Functions",
+      "level": 1,
+      "skill": "Only the leading coefficient decides up or down, maximum or minimum.",
+      "statement": "The graph of $y = x^2 - 6x - 5$ is a parabola. Which way does it open, and does its vertex give a maximum or a minimum?",
+      "options": [
+        "Opens upward, so the vertex is a minimum.",
+        "Opens downward, so the vertex is a maximum.",
+        "Opens upward, so the vertex is a maximum.",
+        "The direction depends on the constant term."
+      ],
+      "correctIndex": 0,
+      "explanation": "Only the LEADING coefficient decides the direction: $a = 1$ is positive, so the arms point upward and the turning point is the smallest value the function takes. The other two coefficients move the parabola around but cannot flip it.",
+      "check": [
+        "1 > 0"
+      ]
+    },
+    {
+      "id": "im2-FUNC-min-v02",
       "unit": "quadratic-functions",
       "unitTitle": "Quadratic Functions",
       "level": 2,
       "skill": "x² + bx + c = (x + b/2)² + (c − b²/4); the constant IS the minimum.",
-      "statement": "Find the MINIMUM value of $y = x^2 + 4x - 3$.",
+      "statement": "Find the MINIMUM value of $y = x^2 + 4x - 5$.",
       "options": [
-        "$-3$",
-        "$7$",
-        "$4$",
-        "$-7$"
+        "$-5$",
+        "$-9$",
+        "$9$",
+        "$4$"
       ],
-      "correctIndex": 3,
-      "explanation": "Complete the square: $y = (x + 2)^2 + (-7)$. A square is never negative, so the minimum is $-7$, reached at $x = -2$.",
+      "correctIndex": 1,
+      "explanation": "Complete the square: $y = (x + 2)^2 + (-9)$. A square is never negative, so the minimum is $-9$, reached at $x = -2$.",
       "check": [
-        "(-2)**2 + 4*(-2) + -3 == -7",
-        "(-1)**2 + 4*(-1) + -3 > -7"
+        "(-2)**2 + 4*(-2) + -5 == -9",
+        "(-1)**2 + 4*(-1) + -5 > -9"
       ]
     },
     {
-      "id": "im2-FUNC-roots-v01",
+      "id": "im2-tpb-v03",
+      "unit": "quadratic-functions",
+      "unitTitle": "Quadratic Functions",
+      "level": 2,
+      "skill": "The sign inside the bracket is reversed; the one outside is not.",
+      "statement": "The graph of $y = 3(x + 5)^2 - 6$ is the graph of $y = x^2$ after which transformation?",
+      "options": [
+        "Stretched by a factor of 3, then moved 5 units right and 6 units down.",
+        "Stretched by a factor of 3, then moved 5 units left and 6 units up.",
+        "Stretched by a factor of 3, then moved 5 units left and 6 units down.",
+        "Stretched by a factor of 3, then moved 6 units left and 5 units down."
+      ],
+      "correctIndex": 2,
+      "explanation": "Inside the bracket the sign is REVERSED: $(x + 5)^2$ moves the graph $5$ units left. Outside the bracket it is not: $- 6$ moves it $6$ units down. The vertex ends at $(-5,\\ -6)$, which is the fastest way to check.",
+      "check": [
+        "Eq(3*((-5) - (-5))**2 + (-6), -6)",
+        "Eq(3*((-5) + 1 - (-5))**2 + (-6), -3)"
+      ]
+    },
+    {
+      "id": "im2-avr-v04",
+      "unit": "quadratic-functions",
+      "unitTitle": "Quadratic Functions",
+      "level": 3,
+      "skill": "The slope of the joining line — different on every interval.",
+      "statement": "For $f(x) = x^2 - 6x - 4$, what is the average rate of change between $x = -2$ and $x = 2$?",
+      "options": [
+        "$-24$",
+        "$4$",
+        "$-10$",
+        "$-6$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Average rate of change is the slope of the line joining the two points: $\\dfrac{f(2) - f(-2)}{2 - -2} = \\dfrac{-12 - 12}{4} = -6$. Unlike a line, a quadratic's rate is different on every interval — which is exactly why the interval must be stated.",
+      "check": [
+        "Eq(1*(-2)**2 + -6*(-2) + -4, 12)",
+        "Eq(1*(2)**2 + -6*(2) + -4, -12)",
+        "Eq(Rational(-12 - 12, 2 - -2), Rational(-6, 1))"
+      ]
+    },
+    {
+      "id": "im2-fsv-v01",
       "unit": "solving-quadratic-equations",
       "unitTitle": "Solving Quadratic Equations",
       "level": 1,
-      "skill": "Zero-product property; Vieta's sum = −b/a.",
-      "statement": "The equation $(x + 5)(x + 4) = 0$ has roots $x_1$ and $x_2$. Find $x_1 + x_2$.",
+      "skill": "Two numbers multiplying to c and adding to b — then flip their signs.",
+      "statement": "Solve $x^2 + 13x + 42 = 0$.",
       "options": [
-        "$-9$",
-        "$20$",
-        "$9$",
-        "$1$"
+        "$x = -7$ or $x = -6$",
+        "$x = 6$ or $x = 7$",
+        "$x = -6$ or $x = -5$",
+        "$x = 42$"
       ],
       "correctIndex": 0,
-      "explanation": "A product is zero when a factor is zero: $x = -5$ or $x = -4$. Sum: $-9$. (Vieta agrees: for $x^2 + 9x + 20$, the root sum is $-9$.)",
+      "explanation": "Find two numbers multiplying to $42$ and adding to $13$: they are $-7$ and $-6$. So the equation factors as $(x + 7)(x + 6) = 0$ and the roots are $-7$ and $-6$ — the OPPOSITES of the numbers in the brackets.",
       "check": [
-        "solve((x + 5)*(x + 4), x) == sorted([-5, -4])",
-        "-5 + -4 == -9"
+        "Eq((-7)**2 + 13*(-7) + 42, 0)",
+        "Eq((-6)**2 + 13*(-6) + 42, 0)",
+        "Eq(expand((x - (-7))*(x - (-6))), x**2 + (13)*x + (42))"
       ]
     },
     {
-      "id": "im2-qf-v02",
-      "unit": "solving-quadratic-equations",
-      "unitTitle": "Solving Quadratic Equations",
-      "level": 2,
-      "skill": "Compute the discriminant first, then read both roots off the formula.",
-      "statement": "Solve $x^2 + 9x + 18 = 0$. Give the LARGER root.",
-      "options": [
-        "$-6$",
-        "$-3$",
-        "$3$",
-        "$-2$"
-      ],
-      "correctIndex": 1,
-      "explanation": "The discriminant is $9^2 - 4(1)(18) = 9$, so $x = \\frac{-9 \\pm \\sqrt{9}}{2}$ gives roots $-6$ and $-3$. The larger is $-3$.",
-      "check": [
-        "Eq(1*(-3)**2 + (9)*(-3) + (18), 0)",
-        "Eq(1*(-6)**2 + (9)*(-6) + (18), 0)"
-      ]
-    },
-    {
-      "id": "im2-FUNC-disc-v03",
+      "id": "im2-FUNC-disc-v02",
       "unit": "solving-quadratic-equations",
       "unitTitle": "Solving Quadratic Equations",
       "level": 2,
       "skill": "D = b² − 4ac: positive two, zero one, negative none.",
-      "statement": "How many real roots does $x^2 + 1 = 0$ have?",
+      "statement": "How many real roots does $x^2 + 2x + 1 = 0$ have?",
       "options": [
         "Two distinct real roots",
         "Exactly one real root",
         "No real roots",
         "Infinitely many roots"
       ],
-      "correctIndex": 2,
-      "explanation": "Discriminant: $D = (0)^2 - 4 \\cdot 1 \\cdot (1) = -4$. Negative ⟹ no real roots.",
+      "correctIndex": 1,
+      "explanation": "Discriminant: $D = (2)^2 - 4 \\cdot 1 \\cdot (1) = 0$. Zero ⟹ one (repeated) root.",
       "check": [
-        "(0)**2 - 4*1*1 == -4",
-        "(0)**2 - 4*1*1 < 0"
+        "(2)**2 - 4*1*1 == 0",
+        "(2)**2 - 4*1*1 == 0"
       ]
     },
     {
-      "id": "im2-FUNC-tan-v04",
+      "id": "im2-qf-v03",
+      "unit": "solving-quadratic-equations",
+      "unitTitle": "Solving Quadratic Equations",
+      "level": 2,
+      "skill": "Compute the discriminant first, then read both roots off the formula.",
+      "statement": "Solve $x^2 + x - 30 = 0$. Give the LARGER root.",
+      "options": [
+        "$-6$",
+        "$-5$",
+        "$5$",
+        "$6$"
+      ],
+      "correctIndex": 2,
+      "explanation": "The discriminant is $1^2 - 4(1)(-30) = 121$, so $x = \\frac{-1 \\pm \\sqrt{121}}{2}$ gives roots $-6$ and $5$. The larger is $5$.",
+      "check": [
+        "Eq(1*(5)**2 + (1)*(5) + (-30), 0)",
+        "Eq(1*(-6)**2 + (1)*(-6) + (-30), 0)"
+      ]
+    },
+    {
+      "id": "im2-cx-v04",
       "unit": "solving-quadratic-equations",
       "unitTitle": "Solving Quadratic Equations",
       "level": 3,
-      "skill": "One root ⟺ D = 0; solve for the parameter.",
-      "statement": "For which $m$ does $x^2 + 8x + m = 0$ have exactly ONE root?",
+      "skill": "b² - 4ac < 0 means no real roots — and a parabola that misses the axis entirely.",
+      "statement": "How many REAL solutions does $x^2 + 2x + 13 = 0$ have, and what does that mean for its graph?",
       "options": [
-        "$64$",
-        "$32$",
-        "$8$",
-        "$16$"
+        "one — the parabola touches the $x$-axis",
+        "two — the parabola crosses twice",
+        "infinitely many",
+        "none — the parabola never crosses the $x$-axis"
       ],
       "correctIndex": 3,
-      "explanation": "Exactly one root needs $D = 0$: $(8)^2 - 4m = 0 \\Rightarrow m = \\frac{64}{4} = 16$. Then $x^2 + 8x + 16 = (x + 4)^2$ — a perfect square kissing the axis.",
+      "explanation": "The discriminant is $2^2 - 4(1)(13) = -48 < 0$, so there are no real roots — the solutions are a complex conjugate pair. Graphically the parabola sits entirely off the $x$-axis.",
       "check": [
-        "(8)**2 - 4*16 == 0",
-        "expand((x + (4))**2) == x**2 + (8)*x + 16"
+        "-48 < 0"
       ]
     },
     {
@@ -376,56 +382,76 @@
       }
     },
     {
-      "id": "im2-dil-v03",
+      "id": "im2-ss-v02",
       "unit": "similarity-and-dilations",
       "unitTitle": "Similarity & Dilations",
-      "level": 1,
-      "skill": "Multiply both coordinates by the scale factor — adding it would be a translation.",
-      "statement": "Dilate $A(2,\\ 3)$ about the origin with scale factor $\\frac{1}{2}$. Where does it land?",
+      "level": 2,
+      "skill": "A line parallel to one side cuts the other two proportionally.",
+      "statement": "In $\\triangle ABC$, $DE \\parallel BC$ with $D$ on $AB$ and $E$ on $AC$. If $AD = 3$, $DB = 6$ and $AE = 6$, find $EC$.",
       "options": [
-        "$(\\frac{5}{2},\\ \\frac{7}{2})$",
-        "$(4,\\ 6)$",
-        "$(1,\\ \\frac{3}{2})$",
-        "$(1,\\ 3)$"
+        "$3$",
+        "$12$",
+        "$8$",
+        "$15$"
       ],
-      "correctIndex": 2,
-      "explanation": "A dilation about the origin MULTIPLIES both coordinates by the scale factor: $(2 \\cdot \\frac{1}{2},\\ 3 \\cdot \\frac{1}{2}) = (1,\\ \\frac{3}{2})$. Adding the factor is a translation, and dividing shrinks when you meant to grow.",
+      "correctIndex": 1,
+      "explanation": "The side-splitter theorem gives $\\frac{AD}{DB} = \\frac{AE}{EC}$, so $\\frac{3}{6} = \\frac{6}{EC}$ and $EC = 12$. Inverting one of the ratios is the usual slip.",
       "check": [
-        "Eq(2*Rational(1,2), Rational(1,1))",
-        "Eq(3*Rational(1,2), Rational(3,2))"
+        "Eq(Rational(3,6), Rational(6, 1)/Rational(12,1))"
       ],
       "geoFigure": {
         "points": [
           {
-            "id": "O",
-            "x": 0.0,
-            "y": 0.0,
-            "label": "O"
-          },
-          {
             "id": "A",
-            "x": 2.0,
-            "y": 3.0,
+            "x": 0.0,
+            "y": 6.0,
             "label": "A"
           },
           {
             "id": "B",
-            "x": 1.0,
-            "y": 1.5,
-            "label": "A'"
+            "x": -4.0,
+            "y": 0.0,
+            "label": "B"
+          },
+          {
+            "id": "C",
+            "x": 4.0,
+            "y": 0.0,
+            "label": "C"
+          },
+          {
+            "id": "D",
+            "x": -2.0,
+            "y": 3.0,
+            "label": "D"
+          },
+          {
+            "id": "E",
+            "x": 2.0,
+            "y": 3.0,
+            "label": "E"
           }
         ],
         "objects": [
           {
             "kind": "segment",
-            "from": "O",
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "kind": "segment",
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "kind": "segment",
+            "from": "C",
             "to": "A"
           },
           {
             "kind": "segment",
-            "from": "O",
-            "to": "B",
-            "dashed": true
+            "from": "D",
+            "to": "E"
           }
         ]
       }
@@ -541,79 +567,23 @@
       }
     },
     {
-      "id": "im2-ss-v04",
+      "id": "im2-dcp-v04",
       "unit": "similarity-and-dilations",
       "unitTitle": "Similarity & Dilations",
-      "level": 2,
-      "skill": "A line parallel to one side cuts the other two proportionally.",
-      "statement": "In $\\triangle ABC$, $DE \\parallel BC$ with $D$ on $AB$ and $E$ on $AC$. If $AD = 4$, $DB = 8$ and $AE = 4$, find $EC$.",
+      "level": 3,
+      "skill": "Scale factors MULTIPLY; they never add.",
+      "statement": "A figure is dilated about the origin by a factor of $3$, and the image is then dilated about the origin by a factor of $2$. What single dilation has the same effect?",
       "options": [
+        "$5$",
+        "$\\frac{5}{2}$",
         "$2$",
-        "$6$",
-        "$16$",
-        "$8$"
+        "$6$"
       ],
       "correctIndex": 3,
-      "explanation": "The side-splitter theorem gives $\\frac{AD}{DB} = \\frac{AE}{EC}$, so $\\frac{4}{8} = \\frac{4}{EC}$ and $EC = 8$. Inverting one of the ratios is the usual slip.",
+      "explanation": "Each dilation MULTIPLIES every length, so doing both multiplies twice: $3 \\times 2 = 6$. Adding the factors would say that two doublings quadruple nothing — but $2 \\times 2 = 4$, not $2 + 2$ applied to a length.",
       "check": [
-        "Eq(Rational(4,8), Rational(4, 1)/Rational(8,1))"
-      ],
-      "geoFigure": {
-        "points": [
-          {
-            "id": "A",
-            "x": 0.0,
-            "y": 6.0,
-            "label": "A"
-          },
-          {
-            "id": "B",
-            "x": -4.0,
-            "y": 0.0,
-            "label": "B"
-          },
-          {
-            "id": "C",
-            "x": 4.0,
-            "y": 0.0,
-            "label": "C"
-          },
-          {
-            "id": "D",
-            "x": -2.0,
-            "y": 3.0,
-            "label": "D"
-          },
-          {
-            "id": "E",
-            "x": 2.0,
-            "y": 3.0,
-            "label": "E"
-          }
-        ],
-        "objects": [
-          {
-            "kind": "segment",
-            "from": "A",
-            "to": "B"
-          },
-          {
-            "kind": "segment",
-            "from": "B",
-            "to": "C"
-          },
-          {
-            "kind": "segment",
-            "from": "C",
-            "to": "A"
-          },
-          {
-            "kind": "segment",
-            "from": "D",
-            "to": "E"
-          }
-        ]
-      }
+        "Eq(Rational(3, 1)*Rational(2, 1), Rational(6, 1))"
+      ]
     },
     {
       "id": "im2-pr-v01",
@@ -682,22 +652,22 @@
       }
     },
     {
-      "id": "im2-TRIG-rt-v02",
+      "id": "im2-GEO-spec-v02",
       "unit": "right-triangle-trigonometry",
       "unitTitle": "Right-Triangle Trigonometry",
-      "level": 1,
-      "skill": "SOH: opposite = hypotenuse × sin(angle).",
-      "statement": "A right triangle has hypotenuse $4$ and an acute angle of $30°$. Find the side ADJACENT the $30°$ angle.",
+      "level": 2,
+      "skill": "45-45-90: x, x, x√2. 30-60-90: x, x√3, 2x.",
+      "statement": "A 45-45-90 triangle has legs $4$. Find the hypotenuse.",
       "options": [
-        "$2$",
-        "$2 \\sqrt{3}$",
         "$4$",
-        "$4 \\sqrt{3}$"
+        "$4\\sqrt{2}$",
+        "$8$",
+        "$4\\sqrt{3}$"
       ],
       "correctIndex": 1,
-      "explanation": "The adjacent side over the hypotenuse is the cosine: side $= 4\\cos 30° = 2 \\sqrt{3}$.",
+      "explanation": "In a 45-45-90 triangle the hypotenuse is a leg times $\\sqrt2$: $4\\sqrt2 = 4\\sqrt{2}$.",
       "check": [
-        "4*cos(rad(30)) == 2*sqrt(3)"
+        "sqrt(2*4**2) == 4*sqrt(2)"
       ],
       "geoFigure": {
         "points": [
@@ -709,14 +679,14 @@
           },
           {
             "id": "B",
-            "x": 3.4641,
+            "x": 4,
             "y": 0,
             "label": ""
           },
           {
             "id": "C",
-            "x": 3.4641,
-            "y": 2.0,
+            "x": 0,
+            "y": 4,
             "label": ""
           }
         ],
@@ -725,88 +695,13 @@
             "kind": "segment",
             "from": "A",
             "to": "B",
-            "label": "?",
-            "color": "accent"
-          },
-          {
-            "kind": "segment",
-            "from": "B",
-            "to": "C"
+            "label": "4"
           },
           {
             "kind": "segment",
             "from": "A",
             "to": "C",
             "label": "4"
-          },
-          {
-            "kind": "angle",
-            "at": "B",
-            "from": "A",
-            "to": "C",
-            "right": true
-          },
-          {
-            "kind": "angle",
-            "at": "A",
-            "from": "B",
-            "to": "C",
-            "label": "30°"
-          }
-        ]
-      }
-    },
-    {
-      "id": "im2-GEO-spec-v03",
-      "unit": "right-triangle-trigonometry",
-      "unitTitle": "Right-Triangle Trigonometry",
-      "level": 2,
-      "skill": "45-45-90: x, x, x√2. 30-60-90: x, x√3, 2x.",
-      "statement": "A 45-45-90 triangle has legs $5$. Find the hypotenuse.",
-      "options": [
-        "$5$",
-        "$10$",
-        "$5\\sqrt{2}$",
-        "$5\\sqrt{3}$"
-      ],
-      "correctIndex": 2,
-      "explanation": "In a 45-45-90 triangle the hypotenuse is a leg times $\\sqrt2$: $5\\sqrt2 = 5\\sqrt{2}$.",
-      "check": [
-        "sqrt(2*5**2) == 5*sqrt(2)"
-      ],
-      "geoFigure": {
-        "points": [
-          {
-            "id": "A",
-            "x": 0,
-            "y": 0,
-            "label": ""
-          },
-          {
-            "id": "B",
-            "x": 5,
-            "y": 0,
-            "label": ""
-          },
-          {
-            "id": "C",
-            "x": 0,
-            "y": 5,
-            "label": ""
-          }
-        ],
-        "objects": [
-          {
-            "kind": "segment",
-            "from": "A",
-            "to": "B",
-            "label": "5"
-          },
-          {
-            "kind": "segment",
-            "from": "A",
-            "to": "C",
-            "label": "5"
           },
           {
             "kind": "segment",
@@ -833,23 +728,43 @@
       }
     },
     {
-      "id": "im2-TRIG-sc-v04",
+      "id": "im2-eas-v03",
       "unit": "right-triangle-trigonometry",
       "unitTitle": "Right-Triangle Trigonometry",
       "level": 2,
-      "skill": "Build the triangle from the triple; read the other ratios.",
-      "statement": "An acute angle $\\alpha$ has $\\cos\\alpha = \\dfrac{24}{25}$. Find $\\tan\\alpha$.",
+      "skill": "30, 45 and 60 degrees need no calculator at all.",
+      "statement": "In a right triangle the hypotenuse is $6$ and one acute angle is $30°$. What is the length of the side OPPOSITE the $30°$ angle?",
       "options": [
-        "$\\frac{24}{7}$",
-        "$\\frac{7}{25}$",
-        "$\\frac{24}{25}$",
-        "$\\frac{7}{24}$"
+        "$6$",
+        "$12$",
+        "$3$",
+        "$2$"
+      ],
+      "correctIndex": 2,
+      "explanation": "$\\sin 30° = \\frac{1}{2}$, and sine is opposite over hypotenuse, so the opposite side is $6 \\times \\frac{1}{2} = 3$. In any $30$–$60$–$90$ triangle the shortest side is exactly half the hypotenuse.",
+      "check": [
+        "Eq(Rational(6, 2), Rational(3, 1))",
+        "Eq(2*Rational(3, 1), 6)"
+      ]
+    },
+    {
+      "id": "im2-tst-v04",
+      "unit": "right-triangle-trigonometry",
+      "unitTitle": "Right-Triangle Trigonometry",
+      "level": 3,
+      "skill": "Find which triangle actually carries the quantity you were asked for.",
+      "statement": "A wire of length $12$ m runs from the ground to the top of a pole, making an angle of $30°$ with the ground. From the foot of the pole, a second wire runs horizontally $12$ m to a peg. What is the height of the pole?",
+      "options": [
+        "$12$",
+        "$24$",
+        "$4$",
+        "$6$"
       ],
       "correctIndex": 3,
-      "explanation": "Use the $7\\text{-}24\\text{-}25$ right triangle (legs $7$, $24$, hypotenuse $25$); read off $\\tan\\alpha = \\frac{7}{24}$.",
+      "explanation": "The first wire is the hypotenuse of a right triangle whose vertical side is the pole. $\\sin 30° = \\frac{1}{2}$, so the pole is $12 \\times \\frac{1}{2} = 6$ m. The second wire is horizontal and shares only the pole's foot — it does not affect the height at all, which is what makes this a two-triangle question with a one-triangle answer.",
       "check": [
-        "7**2 + 24**2 == 25**2",
-        "Rational(7,25)**2 + Rational(24,25)**2 == 1"
+        "Eq(Rational(12, 2), Rational(6, 1))",
+        "Rational(6, 1) < 12"
       ]
     },
     {
@@ -929,41 +844,22 @@
       }
     },
     {
-      "id": "im2-GEO-circ-v02",
-      "unit": "circles",
-      "unitTitle": "Circles",
-      "level": 1,
-      "skill": "A = πr² (fills), C = 2πr (wraps) — don't swap them.",
-      "statement": "A circle has radius $3$. Find its area, exactly.",
-      "options": [
-        "$6\\pi$",
-        "$9\\pi$",
-        "$3\\pi$",
-        "$18\\pi$"
-      ],
-      "correctIndex": 1,
-      "explanation": "$A = \\pi r^2 = \\pi\\cdot 3^2 = 9\\pi$. ($2\\pi r = 6\\pi$ is the circumference, not the area.)",
-      "check": [
-        "pi*3**2 == 9*pi"
-      ]
-    },
-    {
-      "id": "im2-tan-v03",
+      "id": "im2-tan-v02",
       "unit": "circles",
       "unitTitle": "Circles",
       "level": 2,
       "skill": "That right angle is what lets Pythagoras into a circle problem.",
-      "statement": "$PT$ is tangent to a circle of centre $O$ at $T$. If the radius $OT = 5$ and the tangent length $PT = 12$, find $OP$.",
+      "statement": "$PT$ is tangent to a circle of centre $O$ at $T$. If the radius $OT = 6$ and the tangent length $PT = 8$, find $OP$.",
       "options": [
-        "$17$",
-        "$7$",
-        "$13$",
-        "$60$"
+        "$14$",
+        "$10$",
+        "$2$",
+        "$48$"
       ],
-      "correctIndex": 2,
-      "explanation": "A tangent meets the radius at the point of contact at $90°$, so $\\triangle OTP$ is right-angled at $T$: $OP = \\sqrt{5^2 + 12^2} = 13$. That right angle is the whole reason Pythagoras applies here.",
+      "correctIndex": 1,
+      "explanation": "A tangent meets the radius at the point of contact at $90°$, so $\\triangle OTP$ is right-angled at $T$: $OP = \\sqrt{6^2 + 8^2} = 10$. That right angle is the whole reason Pythagoras applies here.",
       "check": [
-        "Eq(5**2 + 12**2, 13**2)"
+        "Eq(6**2 + 8**2, 10**2)"
       ],
       "geoFigure": {
         "points": [
@@ -975,14 +871,14 @@
           },
           {
             "id": "T",
-            "x": 2.5,
+            "x": 3.0,
             "y": 0.0,
             "label": "T"
           },
           {
             "id": "P",
-            "x": 2.5,
-            "y": 6.0,
+            "x": 3.0,
+            "y": 4.0,
             "label": "P"
           }
         ],
@@ -1013,22 +909,125 @@
       }
     },
     {
-      "id": "im2-arc-v04",
+      "id": "im2-cyq-v03",
       "unit": "circles",
       "unitTitle": "Circles",
       "level": 2,
-      "skill": "The angle's share of 360° times 2πr — not πr², which is area.",
-      "statement": "A circle has radius $3$. Find the length of an arc subtending a central angle of $90°$, as a multiple of $\\pi$.",
+      "skill": "Opposite angles are supplementary, because the two arcs make a full circle.",
+      "statement": "A quadrilateral is inscribed in a circle. Two of its angles, in order around the shape, are $52°$ and $88°$. What is the angle OPPOSITE the $52°$ one?",
       "options": [
-        "$\\frac{9}{4}$",
-        "$\\frac{3}{4}$",
-        "$6$",
-        "$\\frac{3}{2}$"
+        "$52$",
+        "$92$",
+        "$128$",
+        "$220$"
+      ],
+      "correctIndex": 2,
+      "explanation": "In a cyclic quadrilateral, opposite angles are SUPPLEMENTARY — each pair intercepts the two arcs that together make the whole circle, and half of $360°$ is $180°$. So the angle opposite $52°$ is $180 - 52 = 128°$. The $88°$ is adjacent, not opposite, so it plays no part.",
+      "check": [
+        "Eq(180 - 52, 128)",
+        "Eq(52 + 128, 180)"
+      ]
+    },
+    {
+      "id": "im2-ccs-v04",
+      "unit": "circles",
+      "unitTitle": "Circles",
+      "level": 3,
+      "skill": "Group x with x and y with y — and the right-hand side is r SQUARED.",
+      "statement": "The graph of $x^2 + y^2 + 10x + 8y - 59 = 0$ is a circle. What is its radius?",
+      "options": [
+        "$100$",
+        "$20$",
+        "$9$",
+        "$10$"
       ],
       "correctIndex": 3,
-      "explanation": "Arc length is the fraction $\\frac{90}{360}$ of the whole circumference $2\\pi r = 6\\pi$: $\\frac{3}{2}\\pi$. Using $\\pi r^2$ there would give a sector AREA instead.",
+      "explanation": "Complete the square in each variable: $x^2 + 10x$ needs $25$ and $y^2 + 8y$ needs $16$. The equation becomes $(x + 5)^2 + (y + 4)^2 = 100$, so the centre is $(-5,\\ -4)$ and the right-hand side is $r^2$, not $r$. Taking the square root gives $10$; stopping one step early gives $100$.",
       "check": [
-        "Eq(Rational(90,360)*2*3, Rational(3,2))"
+        "Eq(expand((x - (-5))**2 + (y - (-4))**2 - 10**2), x**2 + y**2 + (10)*x + (8)*y + (-59))",
+        "Eq((-5)**2 + (-4)**2 - (-59), 100)"
+      ]
+    },
+    {
+      "id": "im2-kvl-v01",
+      "unit": "geometric-measurement-and-modelling",
+      "unitTitle": "Geometric Measurement & Modelling",
+      "level": 1,
+      "skill": "Exactly one third of the cylinder that encloses it.",
+      "statement": "A cone has radius $2$ cm and height $3$ cm. What is its volume, in terms of $\\pi$?",
+      "options": [
+        "$4\\pi$",
+        "$12\\pi$",
+        "$2\\pi$",
+        "$8\\pi$"
+      ],
+      "correctIndex": 0,
+      "explanation": "A cone is exactly one third of the cylinder that encloses it: $\\frac{1}{3}\\pi(2)^2(3) = \\frac{1}{3}(12\\pi) = 4\\pi$ cm³. Dropping the third gives $12\\pi$, the cylinder's volume, which is three times too big.",
+      "check": [
+        "Eq(Rational(1, 3)*pi*2**2*3, 4*pi)",
+        "Eq(3*4, 12)"
+      ]
+    },
+    {
+      "id": "im2-crs-v02",
+      "unit": "geometric-measurement-and-modelling",
+      "unitTitle": "Geometric Measurement & Modelling",
+      "level": 2,
+      "skill": "It depends on the cutting plane as much as on the solid.",
+      "statement": "A cylinder of radius $6$ cm and height $9$ cm is sliced horizontally, parallel to its base. What shape is the cross-section?",
+      "options": [
+        "A rectangle",
+        "A circle",
+        "An ellipse",
+        "A triangle"
+      ],
+      "correctIndex": 1,
+      "explanation": "A cross-section depends on the solid AND the cutting plane. Slicing a cylinder horizontally, parallel to its base produces a circle. Changing the ANGLE of the cut changes the answer — the same solid can give several different shapes.",
+      "check": [
+        "Eq(6*9, 54)",
+        "6 > 0"
+      ]
+    },
+    {
+      "id": "im2-srd-v03",
+      "unit": "geometric-measurement-and-modelling",
+      "unitTitle": "Geometric Measurement & Modelling",
+      "level": 2,
+      "skill": "A square root appears, and only the positive one is a length.",
+      "statement": "A cylinder of height $5$ cm has volume $20\\pi$ cm³. What is its radius?",
+      "options": [
+        "$4$",
+        "$20$",
+        "$2$",
+        "$\\frac{4}{5}$"
+      ],
+      "correctIndex": 2,
+      "explanation": "From $20\\pi = \\pi r^2(5)$, divide by $5\\pi$ to get $r^2 = 4$, then take the POSITIVE square root: $r = 2$ cm. The negative root is discarded because a radius is a length, and stopping at $4$ reports an area-sized number as a length.",
+      "check": [
+        "Eq(pi*2**2*5, 20*pi)",
+        "Eq(Rational(20, 5), 4)",
+        "Eq(sqrt(4), 2)"
+      ]
+    },
+    {
+      "id": "im2-cms-v04",
+      "unit": "geometric-measurement-and-modelling",
+      "unitTitle": "Geometric Measurement & Modelling",
+      "level": 3,
+      "skill": "Volumes add cleanly; decide add or subtract before reaching for a formula.",
+      "statement": "A silo is a cylinder of radius $2$ m and height $8$ m with a hemisphere of the same radius on top. What is its total volume, in terms of $\\pi$?",
+      "options": [
+        "$32\\pi$",
+        "$\\frac{128}{3}\\pi$",
+        "$\\frac{80}{3}\\pi$",
+        "$\\frac{112}{3}\\pi$"
+      ],
+      "correctIndex": 3,
+      "explanation": "Cylinder: $\\pi(2)^2(8) = 32\\pi$ m³. Hemisphere: HALF a sphere, $\\frac{1}{2} \\cdot \\frac{4}{3}\\pi(2)^3 = \\frac{16}{3}\\pi$ m³. They occupy separate space, so the volumes ADD: $\\frac{112}{3}\\pi$ m³. Using a whole sphere for the cap doubles that second piece.",
+      "check": [
+        "Eq(pi*2**2*8, 32*pi)",
+        "Eq(Rational(1, 2)*Rational(4, 3)*2**3, Rational(16, 3))",
+        "Eq(32 + Rational(16, 3), Rational(112, 3))"
       ]
     },
     {
@@ -1051,60 +1050,61 @@
       ]
     },
     {
-      "id": "im2-ss2-v02",
+      "id": "im2-ind-v02",
       "unit": "probability",
       "unitTitle": "Probability",
-      "level": 1,
-      "skill": "The counting principle multiplies; not every visible total is equally likely.",
-      "statement": "How many equally likely outcomes are there when you use two six-sided dice?",
+      "level": 2,
+      "skill": "Independence is a calculation: does P(both) equal the product?",
+      "statement": "Of $100$ people surveyed, $50$ own a bicycle, $20$ own a car, and $10$ own both. Are 'owns a bicycle' and 'owns a car' independent?",
       "options": [
-        "$12$",
-        "$36$",
-        "$37$",
-        "$6$"
+        "No — the two events overlap, so they cannot be independent.",
+        "Yes — the probability of both equals the product of the two separate probabilities.",
+        "No — the probability of both is larger than either one alone.",
+        "Yes — because the two counts are different."
       ],
       "correctIndex": 1,
-      "explanation": "Each of the $6$ outcomes of the first can pair with each of the $6$ of the second, so the counting principle MULTIPLIES: $6 \\times 6 = 36$. Adding would count the two experiments as alternatives rather than as a pair.",
+      "explanation": "Independence is a CALCULATION, not an impression. $P(\\text{bike}) = \\frac{1}{2}$ and $P(\\text{car}) = \\frac{1}{5}$, so their product is $\\frac{1}{10}$. The observed $P(\\text{both}) = \\dfrac{10}{100} = \\frac{1}{10}$ — the same number, so the events are independent. Overlapping is not the test; mutually exclusive events are the ones that are never independent.",
       "check": [
-        "Eq(6*6, 36)"
+        "Eq(Rational(50, 100)*Rational(20, 100), Rational(1, 10))"
       ]
     },
     {
-      "id": "im2-mr-v03",
+      "id": "im2-pvc-v03",
       "unit": "probability",
       "unitTitle": "Probability",
       "level": 2,
-      "skill": "Without replacement, the second draw sees a smaller bag.",
-      "statement": "A bag has $12$ balls, $5$ red. Two are drawn WITH replacement. Find $P(\\text{both red})$.",
+      "skill": "Order matters or it does not — the factor between them is r!.",
+      "statement": "From $4$ people, how many different ORDERED line-ups of $3$ can be formed?",
       "options": [
-        "$\\frac{5}{33}$",
-        "$\\frac{5}{12}$",
-        "$\\frac{25}{144}$",
-        "$\\frac{5}{6}$"
+        "$4$",
+        "$12$",
+        "$24$",
+        "$64$"
       ],
       "correctIndex": 2,
-      "explanation": "Replacement leaves the bag unchanged, so the draws are independent and the probabilities simply multiply: $\\frac{5}{12} \\times \\frac{5}{12} = \\frac{25}{144}$.",
+      "explanation": "Order matters, so this is a permutation: $4 \\times 3 \\times \\ldots$ down $3$ factors $= 24$. The unordered count is $4$ — smaller by exactly $3!$, the number of ways to shuffle each chosen group.",
       "check": [
-        "Eq(Rational(5,12)*Rational(5,12), Rational(25,144))"
+        "Eq(factorial(4)/factorial(1), 24)"
       ]
     },
     {
-      "id": "im2-uc-v04",
+      "id": "im2-alo-v04",
       "unit": "probability",
       "unitTitle": "Probability",
-      "level": 2,
-      "skill": "Add and subtract the overlap; conditioning restricts the sample space.",
-      "statement": "In a survey — Group 1: $25$ yes, $15$ no; Group 2: $35$ yes, $25$ no. Find $P(\\text{Group 1 OR yes})$.",
+      "level": 3,
+      "skill": "Count the opposite — every attempt failing — then subtract from 1.",
+      "statement": "Each attempt succeeds with probability $\\dfrac{1}{4}$, independently of the others. What is the probability of at least ONE success in $2$ attempts?",
       "options": [
-        "$1$",
-        "$\\frac{1}{4}$",
-        "$\\frac{6}{25}$",
-        "$\\frac{3}{4}$"
+        "$\\frac{1}{16}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{9}{16}$",
+        "$\\frac{7}{16}$"
       ],
       "correctIndex": 3,
-      "explanation": "The addition rule subtracts the overlap so it is not counted twice: $\\frac{2}{5} + \\frac{3}{5} - \\frac{1}{4} = \\frac{3}{4}$. Adding without subtracting double-counts the $25$ people who are both.",
+      "explanation": "'At least one' has too many cases to count directly, so use its opposite: EVERY attempt failing. Each fails with probability $\\dfrac{3}{4}$, and all $2$ failing has probability $\\left(\\dfrac{3}{4}\\right)^{2} = \\frac{9}{16}$. Subtract from $1$: $\\frac{7}{16}$. Adding the individual successes double-counts the outcomes where more than one succeeds.",
       "check": [
-        "Eq(Rational(2,5) + Rational(3,5) - Rational(1,4), Rational(3,4))"
+        "Eq(1 - Rational(3, 4)**2, Rational(7, 16))",
+        "Eq(Rational(1, 4) + Rational(3, 4), 1)"
       ]
     }
   ]

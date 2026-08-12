@@ -49,7 +49,11 @@ COURSES = [
     {
         "slug": "integrated-2",
         "title": "Integrated Math 2",
-        "minutes": 50,
+        # 55, not 50: the course gained a ninth unit (geometric measurement)
+        # in 2026-08, which took the paper from 32 questions to 36. Leaving
+        # the old allowance would have squeezed four extra questions into the
+        # same sitting and made this the tightest paper of the three.
+        "minutes": 55,
         "intro": ("A full-course exam: every unit of Integrated Math 2 is represented, so the "
                   "result shows which units are solid and which need another pass."),
     },

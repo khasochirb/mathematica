@@ -30,141 +30,138 @@
       ]
     },
     {
-      "id": "im1-uconv-v02",
-      "unit": "quantities-and-expressions",
-      "unitTitle": "Quantities & the Structure of Expressions",
-      "level": 1,
-      "skill": "Convert by multiplying by 1 in disguise; the units tell you which way to divide.",
-      "statement": "A train moves at $72$ km/h. Express this speed in m/min.",
-      "options": [
-        "$20$",
-        "$1200$",
-        "$72000$",
-        "$4320$"
-      ],
-      "correctIndex": 1,
-      "explanation": "$1$ km $= 1000$ m and $1$ h $= 60$ min, so multiply by $\\frac{1000}{60}$: $72 \\times \\frac{1000}{60} = 1200$ m/min. Dividing by $3600$ instead would give m/s, and multiplying by $1000$ alone converts the distance but leaves the time in hours.",
-      "check": [
-        "Eq(Rational(72)*Rational(1000,60), Rational(1200,1))"
-      ]
-    },
-    {
-      "id": "im1-rear-v03",
+      "id": "im1-ccv-v02",
       "unit": "quantities-and-expressions",
       "unitTitle": "Quantities & the Structure of Expressions",
       "level": 2,
-      "skill": "Undo operations outward-in, and never divide a sum before you have split it.",
-      "statement": "Rearrange $V = \\pi r^2 h$ to make $h$ the subject.",
+      "skill": "Two units change at once, so two conversion factors apply.",
+      "statement": "A speed of $27$ kilometres per hour is how many metres per second?",
       "options": [
-        "$h = \\frac{V}{\\pi r}$",
-        "$h = V\\pi r^2$",
-        "$h = \\frac{V}{\\pi r^2}$",
-        "$h = \\frac{\\pi r^2}{V}$"
+        "$\\frac{486}{5}$",
+        "$\\frac{15}{2}$",
+        "$27$",
+        "$27000$"
       ],
-      "correctIndex": 2,
-      "explanation": "Divide by everything multiplying $h$: $h = \\frac{V}{\\pi r^2}$. Dropping the square treats the radius as linear.",
+      "correctIndex": 1,
+      "explanation": "Two conversions at once: $1$ km is $1000$ m and $1$ hour is $3600$ s, so multiply by $\\dfrac{1000}{3600} = \\dfrac{1}{3.6}$. Here $27 \\div 3.6 = \\frac{15}{2}$ m/s. Converting only one of the two units is the usual slip.",
       "check": [
-        "Eq(Rational(100,25), 4)"
+        "Eq(Rational(27*1000, 3600), Rational(15, 2))"
       ]
     },
     {
-      "id": "im1-estr-v04",
+      "id": "im1-estr-v03",
       "unit": "quantities-and-expressions",
       "unitTitle": "Quantities & the Structure of Expressions",
       "level": 2,
       "skill": "Terms are separated by + and -; factors are multiplied. Naming the part is the skill.",
-      "statement": "In the expression $2(x + 9) - 4$, which is a FACTOR of the first term?",
+      "statement": "In the expression $5(x + 2) - 6$, which is a FACTOR of the first term?",
       "options": [
-        "$4$",
+        "$6$",
         "$x$",
-        "$2(x + 9) - 4$",
-        "$(x + 9)$"
+        "$(x + 2)$",
+        "$5(x + 2) - 6$"
       ],
-      "correctIndex": 3,
-      "explanation": "The first term is the product $2 \\cdot (x + 9)$, so its factors are $2$ and $(x + 9)$. $x$ alone is a term inside the bracket, not a factor of the whole product, and $4$ is a separate term.",
+      "correctIndex": 2,
+      "explanation": "The first term is the product $5 \\cdot (x + 2)$, so its factors are $5$ and $(x + 2)$. $x$ alone is a term inside the bracket, not a factor of the whole product, and $6$ is a separate term.",
       "check": [
-        "Eq(expand(2*(x + 9) - 4), 2*x + 14)"
+        "Eq(expand(5*(x + 2) - 6), 5*x + 4)"
       ]
     },
     {
-      "id": "im1-ALG-lin-v01",
+      "id": "im1-bev-v04",
+      "unit": "quantities-and-expressions",
+      "unitTitle": "Quantities & the Structure of Expressions",
+      "level": 3,
+      "skill": "A one-off charge is a constant; a per-unit charge is a coefficient.",
+      "statement": "A taxi charges a flag-fall of $\\$12$ dollars and $\\$4$ dollars per kilometre. Write the cost as an expression in the number of kilometres, then find the cost for $8$ kilometres.",
+      "options": [
+        "$128$",
+        "$16$",
+        "$32$",
+        "$44$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The fee is charged ONCE, so it is a constant; the rate is charged per kilometre, so it is a coefficient. The expression is $4x + 12$, and at $8$ it gives $12 + 32 = 44$. Multiplying the fee by the count too is the standard error.",
+      "check": [
+        "Eq(4*8 + 12, 44)"
+      ]
+    },
+    {
+      "id": "im1-chks-v01",
       "unit": "linear-equations-and-inequalities",
       "unitTitle": "Linear Equations & Inequalities",
       "level": 1,
-      "skill": "Undo addition, then undo multiplication — in that order.",
-      "statement": "Solve: $2x - 2 = 2$.",
+      "skill": "Substitution always settles it, and it is never the wrong method.",
+      "statement": "Which value of $x$ satisfies $2x - 7 = 3x - 4$?",
       "options": [
-        "$2$",
-        "$0$",
-        "$4$",
-        "$-2$"
+        "$-3$",
+        "$-2$",
+        "$-4$",
+        "$3$"
       ],
       "correctIndex": 0,
-      "explanation": "Undo the addition first: $2x = 4$, then divide by $2$: $x = 2$. Check: $2\\cdot 2 - 2 = 2$.",
+      "explanation": "Substituting $x = -3$ makes the left side $-13$ and the right side $-13$ — equal, so it is the solution. Checking a candidate by substitution is always available and never wrong.",
       "check": [
-        "solve(2*x + (-2) - (2), x) == [2]",
-        "2*2 + (-2) == 2"
+        "Eq(2*(-3) + (-7), 3*(-3) + (-4))"
       ]
     },
     {
-      "id": "im1-ALG-ineq-v02",
+      "id": "im1-comp-v02",
       "unit": "linear-equations-and-inequalities",
       "unitTitle": "Linear Equations & Inequalities",
       "level": 2,
-      "skill": "Dividing by a negative reverses the inequality.",
-      "statement": "Solve: $-1 - 2x > 5$.",
+      "skill": "AND intersects to a band; OR unions to two rays. |x| ≤ k is a band, |x| ≥ k is not.",
+      "statement": "Describe the solution set of $-3 < x$ AND $x \\le 5$.",
       "options": [
-        "$x > -3$",
-        "$x < -3$",
-        "$x < 3$",
-        "$x > 3$"
+        "$x \\le -3$ or $x > 5$",
+        "$-3 < x \\le 5$",
+        "$-3 \\le x < 5$",
+        "all real numbers"
       ],
       "correctIndex": 1,
-      "explanation": "Subtract $-1$: $-2x > 6$. Dividing by $-2$ FLIPS the sign: $x < -3$.",
+      "explanation": "AND means BOTH must hold, so the solution is the overlap: the numbers above $-3$ and at or below $5$. The endpoint style follows each symbol — strict at $-3$, inclusive at $5$.",
       "check": [
-        "Rational(-1 - 5, 2) == -3",
-        "-1 - 2*(-3-1) > 5",
-        "-1 - 2*(-3+1) < 5"
+        "And(-3 < Rational(1,1), Rational(1,1) <= 5)"
       ]
     },
     {
-      "id": "im1-spec-v03",
+      "id": "im1-iwrd-v03",
       "unit": "linear-equations-and-inequalities",
       "unitTitle": "Linear Equations & Inequalities",
       "level": 2,
-      "skill": "Same slope and same intercept = identity; same slope, different intercept = no solution.",
-      "statement": "How many solutions does $3(x + 4) = 3x + 12$ have?",
+      "skill": "A whole-object answer rounds DOWN, however close the next one is.",
+      "statement": "At a park a fairground ride costs $\\$3$ and entry costs $\\$8$. With $\\$62$ to spend in total, what is the greatest number of rides affordable?",
       "options": [
-        "exactly one",
-        "no solution",
-        "infinitely many",
-        "exactly two"
+        "$19$",
+        "$20$",
+        "$18$",
+        "$\\frac{31}{4}$"
       ],
       "correctIndex": 2,
-      "explanation": "Expanding the left: $3x + 12 = 3x + 12$ — the two sides are the SAME expression, so every $x$ works. An identity like this has infinitely many solutions.",
+      "explanation": "The fee is paid once, leaving $62 - 8 = 54$ for the rides: $54 \\div 3 = 18$, and you cannot buy a fraction of one, so the answer rounds DOWN to $18$. Rounding up would overspend.",
       "check": [
-        "Eq(expand(3*(x + 4)), 3*x + 12)"
+        "3*18 + 8 <= 62",
+        "3*19 + 8 > 62"
       ]
     },
     {
-      "id": "im1-ALG-abs-v04",
+      "id": "im1-abse-v04",
       "unit": "linear-equations-and-inequalities",
       "unitTitle": "Linear Equations & Inequalities",
       "level": 3,
-      "skill": "|x − a| ≤ b is a distance statement: a ± b bracket the answer.",
-      "statement": "Solve: $|x - 3| \\ge 5$.",
+      "skill": "Two numbers sit a given distance from zero, so there are two cases.",
+      "statement": "Solve $|x - 9| = 10$.",
       "options": [
-        "$-2 \\le x \\le 8$",
-        "$x \\ge 8$",
-        "$x \\le -8 \\text{ or } x \\ge 2$",
-        "$x \\le -2 \\text{ or } x \\ge 8$"
+        "$x = 19$ only",
+        "$x = -19$ or $x = 19$",
+        "$x = -2$ or $x = 20$",
+        "$x = -1$ or $x = 19$"
       ],
       "correctIndex": 3,
-      "explanation": "$|x - 3| \\ge 5$ means the distance from $x$ to $3$ is at least $5$: $x \\le -2$ or $x \\ge 8$. The union belongs to $\\ge$, not a single bracket.",
+      "explanation": "Absolute value asks which numbers sit $10$ away from zero, and there are TWO: $x - 9 = 10$ gives $x = 19$, and $x - 9 = -10$ gives $x = -1$. Solving only the positive case loses half the answer.",
       "check": [
-        "Abs(-2 - 3) == 5",
-        "Abs(8 - 3) == 5",
-        "Abs(3 - 3) < 5"
+        "Eq(Abs(1*Rational(19, 1) + (-9)), 10)",
+        "Eq(Abs(1*Rational(-1, 1) + (-9)), 10)"
       ]
     },
     {
@@ -187,60 +184,64 @@
       ]
     },
     {
-      "id": "im1-SEQ-gnth-v02",
-      "unit": "functions-and-sequences",
-      "unitTitle": "Functions & Sequences",
-      "level": 1,
-      "skill": "b_n = b_1·q^(n−1) — multiply n−1 times.",
-      "statement": "A geometric sequence has $b_1 = 1$ and ratio $q = 2$. Find $b_{6}$.",
-      "options": [
-        "$64$",
-        "$16$",
-        "$32$",
-        "$10$"
-      ],
-      "correctIndex": 2,
-      "explanation": "$b_n = b_1 q^{n-1}$: $b_{6} = 1 \\cdot 2^{5} = 32$.",
-      "check": [
-        "1*2**(6-1) == 32"
-      ]
-    },
-    {
-      "id": "im1-SEQ-whic-v03",
+      "id": "im1-dmr-v02",
       "unit": "functions-and-sequences",
       "unitTitle": "Functions & Sequences",
       "level": 2,
-      "skill": "Set a_n = value, solve for n — it must land on a whole number.",
-      "statement": "In the arithmetic sequence with $a_1 = 2$, $d = 5$: which term equals $52$?",
+      "skill": "Domain is the inputs, range the outputs — first and second coordinates.",
+      "statement": "A function is given by the points $(-4, -3)$, $(-3, 1)$, $(-2, 5)$ and $(-1, 9)$. What is its DOMAIN?",
       "options": [
-        "$n = 12$",
-        "$n = 10$",
-        "$n = 13$",
-        "$n = 11$"
-      ],
-      "correctIndex": 3,
-      "explanation": "Solve $2 + (n-1) \\cdot (5) = 52$: $n - 1 = \\frac{50}{5} = 10$, so $n = 11$.",
-      "check": [
-        "2 + (11 - 1)*(5) == 52"
-      ]
-    },
-    {
-      "id": "im1-SEQ-whic-v05",
-      "unit": "functions-and-sequences",
-      "unitTitle": "Functions & Sequences",
-      "level": 2,
-      "skill": "Set a_n = value, solve for n — it must land on a whole number.",
-      "statement": "In the arithmetic sequence with $a_1 = 2$, $d = -3$: which term equals $-19$?",
-      "options": [
-        "$n = 9$",
-        "$n = 8$",
-        "$n = 7$",
-        "$n = 10$"
+        "$\\{-3, 1, 5, 9\\}$",
+        "$\\{-4, -3, -2, -1\\}$",
+        "$\\{-4, -1\\}$",
+        "$\\{-7, -2, 3, 8\\}$"
       ],
       "correctIndex": 1,
-      "explanation": "Solve $2 + (n-1) \\cdot (-3) = -19$: $n - 1 = \\frac{-21}{-3} = 7$, so $n = 8$.",
+      "explanation": "The domain is the set of INPUTS — the first coordinate of each point: $-4, -3, -2, -1$. The second coordinates form the RANGE, which is a different set and a different question.",
       "check": [
-        "2 + (8 - 1)*(-3) == -19"
+        "Eq(-3 - -4, 1)",
+        "Eq(1 - -3, 4)"
+      ]
+    },
+    {
+      "id": "im1-isf-v03",
+      "unit": "functions-and-sequences",
+      "unitTitle": "Functions & Sequences",
+      "level": 2,
+      "skill": "One output per input. Repeating an OUTPUT is allowed.",
+      "statement": "A relation consists of the pairs $(1, 8)$, $(3, 8)$ and $(5, 9)$. Is it a function, and why?",
+      "options": [
+        "No — two of the pairs share the same output.",
+        "No — an input is paired with two different outputs.",
+        "Yes — each input appears with exactly one output.",
+        "No — the outputs do not increase steadily."
+      ],
+      "correctIndex": 2,
+      "explanation": "A function requires each INPUT to have exactly one output. The inputs $1$, $3$ and $5$ are all different, so the rule is satisfied. Two inputs sharing the OUTPUT $8$ is perfectly legal — that restriction runs the other way.",
+      "check": [
+        "Ne(1, 3)",
+        "Ne(3, 5)"
+      ]
+    },
+    {
+      "id": "im1-rex-v04",
+      "unit": "functions-and-sequences",
+      "unitTitle": "Functions & Sequences",
+      "level": 3,
+      "skill": "Reaching the nth term takes n - 1 steps, not n.",
+      "statement": "A sequence is defined by $a_1 = -5$ and $a_{n} = a_{n-1} + 5$. Which explicit formula gives the same sequence?",
+      "options": [
+        "$a_n = -5 + 5n$",
+        "$a_n = -5 + 5(n + 1)$",
+        "$a_n = 5 - 5(n - 1)$",
+        "$a_n = -5 + 5(n - 1)$"
+      ],
+      "correctIndex": 3,
+      "explanation": "The recursive rule adds $5$ each step, so the explicit form is first term plus $d$ times the number of STEPS taken — and reaching the $n$th term takes $n - 1$ steps, not $n$. Checking at $n = 1$ settles it: the correct formula gives $-5$, while the $5n$ version gives $0$.",
+      "check": [
+        "Eq(-5 + 5*(1 - 1), -5)",
+        "Eq(-5 + 5*(2 - 1), 0)",
+        "Eq(-5 + 5*(5 - 1), 15)"
       ]
     },
     {
@@ -263,60 +264,62 @@
       ]
     },
     {
-      "id": "im1-m2p-v02",
-      "unit": "linear-functions",
-      "unitTitle": "Linear Functions & Modelling",
-      "level": 1,
-      "skill": "Rise over run, both differences taken in the same order.",
-      "statement": "Find the slope of the line through $(1,\\ 2)$ and $(4,\\ -10)$.",
-      "options": [
-        "$-\\frac{1}{4}$",
-        "$-4$",
-        "$4$",
-        "$-\\frac{11}{3}$"
-      ],
-      "correctIndex": 1,
-      "explanation": "Slope is rise over run: $\\frac{-10 - (2)}{4 - (1)} = -4$. Both differences must be taken in the SAME order — reversing one of them flips the sign, and inverting the fraction answers 'run over rise'.",
-      "check": [
-        "Eq(Rational(-10 - (2), 4 - (1)), Rational(-4,1))"
-      ]
-    },
-    {
-      "id": "im1-wl-v03",
+      "id": "im1-lfi-v02",
       "unit": "linear-functions",
       "unitTitle": "Linear Functions & Modelling",
       "level": 2,
-      "skill": "Point-slope first, then expand — the point's y is not the intercept.",
-      "statement": "Write the equation of the line with slope $3$ through $(-1,\\ 3)$, in slope-intercept form.",
+      "skill": "The y-intercept is the constant; the x-intercept is not.",
+      "statement": "A line crosses the $x$-axis at $(-6, 0)$ and the $y$-axis at $(0, -3)$. What is its equation?",
       "options": [
-        "$y = 3x + 3$",
-        "$y = 3x$",
-        "$y = 3x + 6$",
-        "$y = -x + 6$"
+        "$y = \\frac{1}{2}x - 3$",
+        "$y = -\\frac{1}{2}x - 3$",
+        "$y = -\\frac{1}{2}x - 6$",
+        "$y = -2x - 3$"
       ],
-      "correctIndex": 2,
-      "explanation": "Point-slope: $y - 3 = 3(x - (-1))$. Expanding, $y = 3x + 6$, so $b = 6$. Using the point's $y$-value as the intercept only works when the point is already on the $y$-axis.",
+      "correctIndex": 1,
+      "explanation": "Two points give the slope: $m = \\dfrac{-3 - 0}{0 - (-6)} = -\\frac{1}{2}$. The $y$-intercept is handed to you as $-3$, so $y = -\\frac{1}{2}x - 3$. Using the $x$-intercept as the constant is the standard mix-up.",
       "check": [
-        "Eq(3*-1 + (6), 3)"
+        "Eq(Rational(-1, 2)*(-6) + (-3), 0)",
+        "Eq(Rational(-1, 2)*0 + (-3), -3)"
       ]
     },
     {
-      "id": "im1-pp-v04",
+      "id": "im1-pp-v03",
       "unit": "linear-functions",
       "unitTitle": "Linear Functions & Modelling",
       "level": 2,
       "skill": "Parallel keeps the slope; perpendicular flips it AND negates it.",
-      "statement": "A line has slope $\\frac{3}{4}$. What is the slope of any line PARALLEL to it?",
+      "statement": "A line has slope $\\frac{3}{4}$. What is the slope of any line PERPENDICULAR to it?",
       "options": [
-        "$-\\frac{4}{3}$",
+        "$\\frac{3}{4}$",
         "$-\\frac{3}{4}$",
-        "$\\frac{4}{3}$",
-        "$\\frac{3}{4}$"
+        "$-\\frac{4}{3}$",
+        "$\\frac{4}{3}$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Perpendicular slopes are negative reciprocals: flip $\\frac{3}{4}$ to $\\frac{4}{3}$ and negate, giving $-\\frac{4}{3}$. Their product is $-1$. Negating without flipping (or flipping without negating) leaves a line that is not perpendicular.",
+      "check": [
+        "Eq(Rational(3,4)*Rational(-4,3), -1)"
+      ]
+    },
+    {
+      "id": "im1-mbd-v04",
+      "unit": "linear-functions",
+      "unitTitle": "Linear Functions & Modelling",
+      "level": 3,
+      "skill": "A model's domain is part of the model, not an afterthought.",
+      "statement": "A candle burns down according to $y = -6x + 24$, where $y$ is the height in centimetres and $t$ is the time in hours. For what values of $t$ does this model make sense?",
+      "options": [
+        "$t \\ge 0$, with no upper limit",
+        "$0 \\le t \\le 24$",
+        "$0 \\le t \\le 6$",
+        "$0 \\le t \\le 4$"
       ],
       "correctIndex": 3,
-      "explanation": "Parallel lines have EQUAL slopes, so the slope is again $\\frac{3}{4}$. The negative reciprocal $-\\frac{4}{3}$ would be perpendicular instead.",
+      "explanation": "The model starts at $t = 0$ and the quantity runs out when $y = 0$: $-6x + 24 = 0$ gives $t = 4$. Beyond that the formula predicts a NEGATIVE height in centimetres, which is where the candle is used up and the model stops describing anything. The domain of a model is part of the model.",
       "check": [
-        "Eq(Rational(3,4), Rational(3,4))"
+        "Eq(-6*4 + 24, 0)",
+        "-6*5 + 24 < 0"
       ]
     },
     {
@@ -339,65 +342,66 @@
       ]
     },
     {
-      "id": "im1-ALG-sys-v02",
+      "id": "im1-sels-v02",
+      "unit": "systems-of-equations-and-inequalities",
+      "unitTitle": "Systems of Equations & Inequalities",
+      "level": 2,
+      "skill": "When nothing cancels as written, multiply one equation first.",
+      "statement": "Solve the system $2x + 3y = 11$ and $5x + 5y = 15$ for $y$.",
+      "options": [
+        "$-2$",
+        "$5$",
+        "$6$",
+        "$-5$"
+      ],
+      "correctIndex": 1,
+      "explanation": "Neither variable cancels as written, so scale first: multiplying the equations by $5$ and $2$ makes the $x$ terms match, and subtracting leaves one equation in $y$ alone. It solves to $y = 5$ (and then $x = -2$). Substituting both back into BOTH equations is the check.",
+      "check": [
+        "Eq(2*(-2) + 3*(5), 11)",
+        "Eq(5*(-2) + 5*(5), 15)"
+      ]
+    },
+    {
+      "id": "im1-ALG-sys-v03",
       "unit": "systems-of-equations-and-inequalities",
       "unitTitle": "Systems of Equations & Inequalities",
       "level": 2,
       "skill": "Eliminate one variable; always check the pair in BOTH equations.",
-      "statement": "The system $\\begin{cases} x + y = 5 \\\\ 2x - y = 7 \\end{cases}$ has solution $(x; y)$. Find $x + y$.",
+      "statement": "The system $\\begin{cases} x + y = 7 \\\\ 2x - y = -1 \\end{cases}$ has solution $(x; y)$. Find $x + y$.",
       "options": [
-        "$4$",
+        "$2$",
         "$5$",
-        "$1$",
-        "$3$"
+        "$7$",
+        "$-3$"
       ],
-      "correctIndex": 1,
-      "explanation": "Eliminate one variable to get $x = 4$, $y = 1$ (check BOTH equations!), so $x + y = 5$.",
+      "correctIndex": 2,
+      "explanation": "Eliminate one variable to get $x = 2$, $y = 5$ (check BOTH equations!), so $x + y = 7$.",
       "check": [
-        "1*4 + (1)*1 == 5",
-        "2*4 + (-1)*1 == 7",
-        "4 + 1 == 5",
+        "1*2 + (1)*5 == 7",
+        "2*2 + (-1)*5 == -1",
+        "2 + 5 == 7",
         "1*-1 - 2*1 != 0"
       ]
     },
     {
-      "id": "im1-feas-v03",
-      "unit": "systems-of-equations-and-inequalities",
-      "unitTitle": "Systems of Equations & Inequalities",
-      "level": 2,
-      "skill": "A point qualifies only if EVERY inequality holds; corners come from boundary intersections.",
-      "statement": "Is the point $(2,\\ 2)$ in the region defined by $y \\le x + 2$ AND $y \\le -x + 6$?",
-      "options": [
-        "no — it fails at least one",
-        "only the first holds",
-        "yes — it satisfies both",
-        "only the second holds"
-      ],
-      "correctIndex": 2,
-      "explanation": "Test both: $2 \\le 1(2) + 2 = 4$ is true, and $2 \\le -1(2) + 6 = 4$ is true. A point is in the region only when EVERY inequality holds.",
-      "check": [
-        "(2 <= 4)",
-        "(2 <= 4)"
-      ]
-    },
-    {
-      "id": "im1-ALG-par-v04",
+      "id": "im1-scmb-v04",
       "unit": "systems-of-equations-and-inequalities",
       "unitTitle": "Systems of Equations & Inequalities",
       "level": 3,
-      "skill": "No solution ⟺ slopes match, intercepts don't (proportional coefficients, unproportional constants).",
-      "statement": "For which value of $m$ does the system $\\begin{cases} x + 2y = 5 \\\\ 2x + my = 11 \\end{cases}$ have NO solution?",
+      "skill": "Read what is asked before choosing a method — sometimes it is already there.",
+      "statement": "In the system $2x + 3y = 19$ and $x + y + 3 = 9$, what is the value of $x + y$?",
       "options": [
-        "$-4$",
-        "$5$",
-        "$2$",
-        "$4$"
+        "$-1$",
+        "$7$",
+        "$9$",
+        "$6$"
       ],
       "correctIndex": 3,
-      "explanation": "No solution = parallel lines: coefficients proportional but constants not. $\\frac{2}{1} = \\frac{m}{2}$ gives $m = 4$, and $\\frac{11}{5} \\ne \\frac{2}{1}$ confirms they never meet.",
+      "explanation": "The second equation already contains $x + y$: $x + y = 9 - 3 = 6$. No solving for $x$ and $y$ separately is needed — and doing it would take three times as long for the same answer. Read the question before choosing a method.",
       "check": [
-        "Rational(2*2,1) == 4",
-        "Rational(11,5) != Rational(2,1)"
+        "Eq(2*(-1) + 3*(7), 19)",
+        "Eq((-1) + (7) + 3, 9)",
+        "Eq((-1) + (7), 6)"
       ]
     },
     {
@@ -420,22 +424,25 @@
       ]
     },
     {
-      "id": "im1-gf-v02",
+      "id": "im1-LOG-sub-v02",
       "unit": "exponential-functions",
       "unitTitle": "Exponential Functions & Growth",
-      "level": 1,
-      "skill": "Factor = 1 + rate for growth, 1 - rate for decay. The rate alone is not the factor.",
-      "statement": "A quantity grows by $8\\%$ each year. What is its growth FACTOR?",
+      "level": 2,
+      "skill": "b^(2x) is (b^x)² — substitute t = b^x and solve the quadratic.",
+      "statement": "The equation $2^{2x} - 5 \\cdot 2^{x} + 4 = 0$ has two roots. Find their SUM.",
       "options": [
-        "$\\frac{2}{25}$",
-        "$\\frac{27}{25}$",
-        "$\\frac{25}{27}$",
-        "$108$"
+        "$5$",
+        "$2$",
+        "$4$",
+        "$0$"
       ],
       "correctIndex": 1,
-      "explanation": "Growing by $8\\%$ means keeping $100\\%$ and adding $8\\%$, so multiply by $1 + \\frac{8}{100} = \\frac{27}{25}$. The rate $\\frac{2}{25}$ alone is what you ADD, not what you multiply by.",
+      "explanation": "Let $t = 2^{x}$: $t^2 - 5t + 4 = 0$ gives $t = 1$ or $t = 4$, so $2^{x} = 1$ ($x = 0$) or $2^{x} = 4$ ($x = 2$). The sum of the roots is $2$.",
       "check": [
-        "Eq(1 + Rational(8,100), Rational(27,25))"
+        "solve(t**2 - 5*t + 4, t) == sorted([1, 4])",
+        "2**0 == 1",
+        "2**2 == 4",
+        "(2) == 2"
       ]
     },
     {
@@ -458,22 +465,23 @@
       ]
     },
     {
-      "id": "im1-hl-v04",
+      "id": "im1-dth-v04",
       "unit": "exponential-functions",
       "unitTitle": "Exponential Functions & Growth",
-      "level": 2,
-      "skill": "Count how many half-lives fit, then halve that many times — decay never reaches zero.",
-      "statement": "A sample of $80$ g has a half-life of $3$ years. How much remains after $6$ years?",
+      "level": 3,
+      "skill": "Whole periods mean the answer rounds UP.",
+      "statement": "A population is modelled by $P = 3 \\cdot 2^{t}$, with $t$ in years. After how many WHOLE years does the population first exceed $900$?",
       "options": [
-        "$80$",
-        "$10$",
-        "$0$",
-        "$20$"
+        "$8$",
+        "$300$",
+        "$450$",
+        "$9$"
       ],
       "correctIndex": 3,
-      "explanation": "$6$ years is $2$ half-lives, so halve $2$ times: $80 \\div 2^{2} = 20$ g. Subtracting half the ORIGINAL each time would reach zero, which decay never does.",
+      "explanation": "At $t = 8$ the model gives $768$, still at most $900$; at $t = 9$ it gives $1536$, which is past it. So the answer is $9$ years. Because $t$ counts whole years, the answer must round UP — the model crosses the level part-way through the year.",
       "check": [
-        "Eq(Rational(80, 2**2), Rational(20,1))"
+        "3*2**9 > 900",
+        "3*2**8 <= 900"
       ]
     },
     {
@@ -689,23 +697,24 @@
       }
     },
     {
-      "id": "im1-cmp-v04",
+      "id": "im1-aalg-v04",
       "unit": "transformations-and-congruence",
       "unitTitle": "Transformations & Congruence",
       "level": 3,
-      "skill": "Two rigid motions compose to a single rigid motion — find which one.",
-      "statement": "A point undergoes a rotation of $180°$ then a rotation of $180°$. What single transformation has the same effect? (Check with $(3,\\ 1) \\mapsto (3,\\ 1)$.)",
+      "skill": "Corresponding angles are EQUAL — that is what makes an equation.",
+      "statement": "Two parallel lines are cut by a transversal. A pair of CORRESPONDING angles measure $2x + 33$ and $4x + 21$ degrees. Find $x$.",
       "options": [
-        "a rotation of $90°$ anticlockwise about the origin",
-        "a reflection in the line $y = x$",
-        "a translation",
-        "the identity — the point returns to where it started"
+        "$45$",
+        "$-6$",
+        "$12$",
+        "$6$"
       ],
       "correctIndex": 3,
-      "explanation": "Applying the two motions in turn sends $(3,\\ 1)$ to $(3,\\ 1)$, which is exactly what the identity — the point returns to where it started does. Composing rigid motions always gives another rigid motion.",
+      "explanation": "Corresponding angles between parallel lines are EQUAL, so $2x + 33 = 4x + 21$. Collecting gives $2x = 12$, hence $x = 6$; both expressions then give $45°$, which is the check. Treating the pair as supplementary — making them sum to $180°$ — is the commonest wrong move, and it is what CO-INTERIOR angles do, not corresponding ones.",
       "check": [
-        "Eq(3, 3)",
-        "Eq(1, 1)"
+        "Eq(2*6 + 33, 4*6 + 21)",
+        "Eq(2*6 + 33, 45)",
+        "45 < 180"
       ]
     },
     {
@@ -728,42 +737,22 @@
       ]
     },
     {
-      "id": "im1-mid-v02",
-      "unit": "coordinate-geometry",
-      "unitTitle": "Connecting Algebra & Geometry",
-      "level": 1,
-      "skill": "Average each coordinate; halving the difference is a different point.",
-      "statement": "Find the midpoint of the segment joining $(2,\\ 4)$ and $(7,\\ -5)$.",
-      "options": [
-        "$(\\frac{5}{2},\\ -\\frac{9}{2})$",
-        "$(\\frac{9}{2},\\ -\\frac{1}{2})$",
-        "$(9,\\ -1)$",
-        "$(-\\frac{1}{2},\\ \\frac{9}{2})$"
-      ],
-      "correctIndex": 1,
-      "explanation": "The midpoint AVERAGES each coordinate: $\\left(\\frac{2 + 7}{2},\\ \\frac{4 + -5}{2}\\right) = (\\frac{9}{2},\\ -\\frac{1}{2})$. Halving the DIFFERENCE gives half the displacement, not the middle point.",
-      "check": [
-        "Eq(Rational(2 + 7, 2), Rational(9,2))",
-        "Eq(Rational(4 + -5, 2), Rational(-1,2))"
-      ]
-    },
-    {
-      "id": "im1-quad-v03",
+      "id": "im1-quad-v02",
       "unit": "coordinate-geometry",
       "unitTitle": "Connecting Algebra & Geometry",
       "level": 2,
       "skill": "Slopes decide parallel and perpendicular; distances decide equal sides.",
-      "statement": "Classify the quadrilateral with vertices $(0,\\ 0)$, $(5,\\ 0)$, $(5,\\ 5)$ and $(0,\\ 5)$, in that order.",
+      "statement": "Classify the quadrilateral with vertices $(0,\\ 0)$, $(4,\\ 0)$, $(4,\\ 4)$ and $(0,\\ 4)$, in that order.",
       "options": [
         "a rectangle that is not a square",
-        "a parallelogram that is not a rectangle",
         "a square",
+        "a parallelogram that is not a rectangle",
         "a trapezium (exactly one pair of parallel sides)"
       ],
-      "correctIndex": 2,
+      "correctIndex": 1,
       "explanation": "Compare opposite sides by SLOPE (parallel?) and by LENGTH (equal?), then check whether adjacent sides are perpendicular. Those three tests separate every option here — this figure is a square.",
       "check": [
-        "Eq(5, 5)"
+        "Eq(4, 4)"
       ],
       "geoFigure": {
         "points": [
@@ -775,20 +764,20 @@
           },
           {
             "id": "Q",
-            "x": 5.0,
+            "x": 4.0,
             "y": 0.0,
             "label": "Q"
           },
           {
             "id": "R",
-            "x": 5.0,
-            "y": 5.0,
+            "x": 4.0,
+            "y": 4.0,
             "label": "R"
           },
           {
             "id": "S",
             "x": 0.0,
-            "y": 5.0,
+            "y": 4.0,
             "label": "S"
           }
         ],
@@ -817,23 +806,43 @@
       }
     },
     {
-      "id": "im1-part-v04",
+      "id": "im1-part-v03",
       "unit": "coordinate-geometry",
       "unitTitle": "Connecting Algebra & Geometry",
       "level": 2,
       "skill": "Travel r/(r+s) of the way from the named endpoint — the end you start from matters.",
-      "statement": "Point $P$ divides the segment from $A(0,\\ 0)$ to $B(8,\\ 12)$ in the ratio $3:1$ (measured from $A$). Find $P$.",
+      "statement": "Point $P$ divides the segment from $A(0,\\ 0)$ to $B(8,\\ 12)$ in the ratio $1:2$ (measured from $A$). Find $P$.",
       "options": [
-        "$(2,\\ 3)$",
+        "$(\\frac{16}{3},\\ 8)$",
         "$(4,\\ 6)$",
-        "$(7,\\ 9)$",
-        "$(6,\\ 9)$"
+        "$(\\frac{8}{3},\\ 4)$",
+        "$(\\frac{11}{3},\\ 4)$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Travel $\\frac{1}{3}$ of the way from $A$ to $B$: $P = A + \\frac{1}{3}(B - A) = (\\frac{8}{3},\\ 4)$. Applying the ratio from the wrong end swaps the weights, and the midpoint is only right when the ratio is $1:1$.",
+      "check": [
+        "Eq(0 + Rational(1,3)*(8 - 0), Rational(8,3))",
+        "Eq(0 + Rational(1,3)*(12 - 0), Rational(4,1))"
+      ]
+    },
+    {
+      "id": "im1-ppg-v04",
+      "unit": "coordinate-geometry",
+      "unitTitle": "Connecting Algebra & Geometry",
+      "level": 3,
+      "skill": "Equal slopes on both pairs of opposite sides, and nothing more.",
+      "statement": "A quadrilateral has vertices $(0,\\ 0)$, $(4,\\ 0)$, $(11,\\ 7)$ and $(7,\\ 7)$, in order. Which single coordinate check PROVES it is a parallelogram?",
+      "options": [
+        "All four sides have the same length.",
+        "The four vertices are all in different quadrants.",
+        "The diagonals have equal length.",
+        "Both pairs of opposite sides have equal slopes."
       ],
       "correctIndex": 3,
-      "explanation": "Travel $\\frac{3}{4}$ of the way from $A$ to $B$: $P = A + \\frac{3}{4}(B - A) = (6,\\ 9)$. Applying the ratio from the wrong end swaps the weights, and the midpoint is only right when the ratio is $1:1$.",
+      "explanation": "A parallelogram is DEFINED by both pairs of opposite sides being parallel, and parallel means equal slope — so that is the check that proves it and nothing more is needed. Equal side lengths would prove a RHOMBUS and equal diagonals a RECTANGLE; both are stronger claims than the question asks for, and neither follows from being a parallelogram.",
       "check": [
-        "Eq(0 + Rational(3,4)*(8 - 0), Rational(6,1))",
-        "Eq(0 + Rational(3,4)*(12 - 0), Rational(9,1))"
+        "Eq(Rational((0) - (0), (4) - (0)), Rational((7) - (7), (11) - (7)))",
+        "Eq((4) - (0), (11) - (7))"
       ]
     },
     {
@@ -856,60 +865,61 @@
       ]
     },
     {
-      "id": "im1-cs-v03",
-      "unit": "data-and-statistics",
-      "unitTitle": "Describing Data",
-      "level": 1,
-      "skill": "Centre and spread answer different questions — read which one is asked.",
-      "statement": "For the data set $4,\\ 8,\\ 15,\\ 16,\\ 23,\\ 42$, find the RANGE.",
-      "options": [
-        "$18$",
-        "$\\frac{31}{2}$",
-        "$38$",
-        "$42$"
-      ],
-      "correctIndex": 2,
-      "explanation": "Range is largest minus smallest: $42 - 4 = 38$. It measures SPREAD, not centre.",
-      "check": [
-        "Eq(42 - 4, 38)"
-      ]
-    },
-    {
-      "id": "im1-2way-v03",
+      "id": "im1-iqr-v02",
       "unit": "data-and-statistics",
       "unitTitle": "Describing Data",
       "level": 2,
-      "skill": "The denominator is the question: row total, column total, or grand total.",
-      "statement": "A survey gives this two-way table — Group 1: $30$ yes, $20$ no; Group 2: $10$ yes, $40$ no. What fraction of everyone answered yes (either group)?",
+      "skill": "IQR is Q3 - Q1; the fence sits 1.5 IQRs beyond the quartile.",
+      "statement": "For $4,\\ 8,\\ 15,\\ 16,\\ 23,\\ 42$, the upper outlier fence is $Q_3 + 1.5 \\times IQR$. What is it?",
       "options": [
-        "$\\frac{3}{10}$",
-        "$\\frac{3}{5}$",
-        "$\\frac{2}{5}$",
-        "$\\frac{1}{10}$"
+        "$59$",
+        "$\\frac{289}{4}$",
+        "$\\frac{65}{2}$",
+        "$112$"
       ],
-      "correctIndex": 2,
-      "explanation": "Add the yes column across both groups: $30 + 10 = 40$, over the grand total $100$, giving $\\frac{2}{5}$. This is the MARGINAL proportion.",
+      "correctIndex": 1,
+      "explanation": "$Q_3 = \\frac{65}{2}$ and $IQR = \\frac{53}{2}$, so the fence is $\\frac{65}{2} + 1.5 \\times \\frac{53}{2} = \\frac{289}{4}$. Any value above it is flagged as an outlier.",
       "check": [
-        "Eq(Rational(40,100), Rational(2,5))"
+        "Eq(Rational(65,2) + Rational(3,2)*Rational(53,2), Rational(289,4))"
       ]
     },
     {
-      "id": "im1-lof-v04",
+      "id": "im1-mvm-v03",
       "unit": "data-and-statistics",
       "unitTitle": "Describing Data",
       "level": 2,
-      "skill": "Slope is change per unit; intercept is the prediction at zero; neither proves cause.",
-      "statement": "A line of best fit for hours of TV ($x$) against test score ($y$) is $y = -2x + 50$. What does the SLOPE mean?",
+      "skill": "Turn the mean into a total, then subtract what you already have.",
+      "statement": "Four numbers have mean $5$. Three of them are $3$, $7$ and $8$. Find the fourth.",
       "options": [
-        "the predicted test score when hours of TV is zero",
-        "the total test score",
-        "the strength of the correlation",
-        "each extra unit of hours of TV is associated with a change of -2 points per hour of TV"
+        "$5$",
+        "$20$",
+        "$2$",
+        "$-13$"
+      ],
+      "correctIndex": 2,
+      "explanation": "A mean of $5$ over four numbers means the TOTAL is $4 \\times 5 = 20$. The three given add to $18$, so the fourth is $20 - 18 = 2$. Working with the total rather than the mean is what makes this one line.",
+      "check": [
+        "Eq(Rational(3 + 7 + 8 + 2, 4), 5)"
+      ]
+    },
+    {
+      "id": "im1-asc-v04",
+      "unit": "data-and-statistics",
+      "unitTitle": "Describing Data",
+      "level": 3,
+      "skill": "Correlation is real evidence of association and no evidence of cause.",
+      "statement": "A study finds a correlation of $0.84$ between hours of sleep and test scores. Which conclusion is supported?",
+      "options": [
+        "Hours of sleep causes test scores, because the correlation is strong.",
+        "Introducing a tutoring programme will therefore change test scores.",
+        "There is no relationship, because correlation is never meaningful.",
+        "The two vary together; the study alone cannot show that one causes the other."
       ],
       "correctIndex": 3,
-      "explanation": "The slope is the predicted CHANGE in $y$ per one-unit increase in $x$ — here $-2$ points per hour of TV. The intercept $50$ is the prediction at $x = 0$, and correlation strength is a separate quantity.",
+      "explanation": "A correlation of $0.84$ is real and worth reporting — the two quantities do move together. But an OBSERVATIONAL study cannot rule out a lurking variable driving both, or the causation running the other way. Only a randomised experiment licenses a causal claim, and only for the population it sampled.",
       "check": [
-        "Eq((-2*2 + 50) - (-2*1 + 50), -2)"
+        "0.84 > 0",
+        "0.84 < 1"
       ]
     }
   ]

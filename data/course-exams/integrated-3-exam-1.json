@@ -31,123 +31,121 @@
       ]
     },
     {
-      "id": "im3-A2-mult-v02",
+      "id": "im3-pfz-v02",
       "unit": "polynomial-functions",
       "unitTitle": "Polynomial Functions",
       "level": 2,
-      "skill": "Even multiplicity touches the x-axis; odd multiplicity crosses. Distinct zeros count once.",
-      "statement": "Find the sum of the distinct zeros of $p(x) = (x - 2)^2(x - 3)$.",
+      "skill": "A zero at p means a factor (x - p) — the sign flips.",
+      "statement": "A quadratic has zeros $-4$ and $-5$ and a leading coefficient of $2$. What is it, in expanded form?",
       "options": [
-        "$7$",
-        "$5$",
-        "$-5$",
-        "$6$"
+        "$2x^2 - 18x + 40$",
+        "$2x^2 + 18x + 40$",
+        "$2x^2 + 18x - 40$",
+        "$2x^2 + 20x + 40$"
       ],
       "correctIndex": 1,
-      "explanation": "The distinct zeros are $2$ and $3$, so the sum is $5$. Counting the double zero twice — as if multiplicity added a root — gives $7$.",
+      "explanation": "A zero at $-4$ means a factor of $(x + 4)$ — the SIGN flips. So the polynomial is $2(x + 4)(x + 5)$, which expands to $2x^2 + 18x + 40$. Reading the zeros straight into the brackets without flipping gives the wrong middle term.",
       "check": [
-        "(2) + (3) == 5",
-        "((2) - (2))**2*((2) - (3)) == 0"
+        "Eq(expand(2*(x - (-4))*(x - (-5))), (2)*x**2 + (18)*x + (40))",
+        "Eq(2*(-4)**2 + 18*(-4) + 40, 0)",
+        "Eq(2*(-5)**2 + 18*(-5) + 40, 0)"
       ]
     },
     {
-      "id": "im3-A2-rem-v03",
+      "id": "im3-vic-v03",
       "unit": "polynomial-functions",
       "unitTitle": "Polynomial Functions",
       "level": 2,
-      "skill": "Dividing by (x − k) leaves remainder p(k) — just substitute.",
-      "statement": "Find the remainder when $x^3 + 2x^2 + 2x - 3$ is divided by $(x - 2)$.",
+      "skill": "Read it off the coefficients; no solving required.",
+      "statement": "The equation $x^3 + 4x^2 - 9x - 36 = 0$ has three real roots. What is their SUM?",
       "options": [
-        "$-7$",
-        "$-3$",
-        "$17$",
-        "$1$"
+        "$4$",
+        "$36$",
+        "$-4$",
+        "$-9$"
       ],
       "correctIndex": 2,
-      "explanation": "By the Remainder Theorem, dividing by $(x - 2)$ leaves $p(2)$; substituting gives $17$. Evaluating at $x = -2$ instead — misreading the divisor's sign — gives $-7$.",
+      "explanation": "For $x^3 + bx^2 + cx + d = 0$ the roots sum to $-b$ — expanding $(x - r_1)(x - r_2)(x - r_3)$ puts $-(r_1 + r_2 + r_3)$ in the $x^2$ slot. Here $b = 4$, so the sum is $-4$. No solving is needed, and the product $36$ answers a different question.",
       "check": [
-        "rem(x**3 + (2)*x**2 + (2)*x + (-3), x - (2), x) == 17",
-        "(2)**3 + (2)*(2)**2 + (2)*(2) + (-3) == 17"
+        "Eq(expand((x - (-4))*(x - (-3))*(x - (3))), x**3 + (4)*x**2 + (-9)*x + (-36))",
+        "Eq((-4) + (-3) + (3), -4)"
       ]
     },
     {
-      "id": "im3-PC-div-v04",
+      "id": "im3-eqc-v04",
       "unit": "polynomial-functions",
       "unitTitle": "Polynomial Functions",
       "level": 3,
-      "skill": "Dividing by (x − k) leaves remainder p(k) — substitute instead of long-dividing.",
-      "statement": "Divide $x^3 + x^2 + 10x - 12$ by $(x - 3)$. What is the remainder?",
+      "skill": "Identical expressions must match coefficient by coefficient.",
+      "statement": "For all $x$, $2x^2 - 4x - 30 = 2(x + A)(x + B)$ where $A$ and $B$ are constants. What is $A + B$?",
       "options": [
-        "$-60$",
-        "$-12$",
-        "$22$",
-        "$54$"
+        "$-15$",
+        "$-4$",
+        "$-30$",
+        "$-2$"
       ],
       "correctIndex": 3,
-      "explanation": "By the Remainder Theorem the remainder is $p(3) = 54$ — no long division needed. Evaluating at $x = -3$ (misreading the divisor's sign) gives $-60$.",
+      "explanation": "Expanding the right side gives $2x^2 + 2(A + B)x + 2AB$. Two expressions equal for ALL $x$ must match coefficient by coefficient, so $2(A + B) = -4$ and $A + B = -2$. Nothing has to be solved for $A$ and $B$ individually.",
       "check": [
-        "rem(x**3 + (1)*x**2 + (10)*x + (-12), x - (3), x) == 54",
-        "(3)**3 + (1)*(3)**2 + (10)*(3) + (-12) == 54"
+        "Eq(expand(2*(x + (-5))*(x + (3))), (2)*x**2 + (-4)*x + (-30))",
+        "Eq(2*((-5) + (3)), -4)"
       ]
     },
     {
-      "id": "im3-PC-rint-v01",
+      "id": "im3-mrt-v01",
       "unit": "rational-and-radical-functions",
       "unitTitle": "Rational & Radical Functions",
       "level": 1,
-      "skill": "x-intercept: numerator = 0. y-intercept: plug in x = 0 and watch the signs cancel.",
-      "statement": "For $f(x) = \\dfrac{x - 3}{x - 7}$, what is the x-intercept?",
+      "skill": "Straight across, then cancel — and watch which side keeps the x.",
+      "statement": "Simplify $\\dfrac{2x}{3} \\cdot \\dfrac{1}{2x^2}$ for $x \\ne 0$.",
       "options": [
-        "$x = 3$",
-        "$x = 7$",
-        "$x = -3$",
-        "$x = -7$"
+        "$\\dfrac{1}{3x}$",
+        "$\\dfrac{1x}{3}$",
+        "$\\dfrac{1}{3x^2}$",
+        "$\\dfrac{3}{1x}$"
       ],
       "correctIndex": 0,
-      "explanation": "The graph crosses the x-axis where the numerator is zero: $x = 3$. The denominator's zero, $x = 7$, is the vertical asymptote — the classic mix-up.",
+      "explanation": "Multiply straight across: $\\dfrac{2x \\cdot 1}{3 \\cdot 2x^2} = \\dfrac{2x}{6x^2}$. One power of $x$ cancels, leaving $\\dfrac{1}{3x}$ after dividing the numbers by $2$. The $x$ ends up DOWNSTAIRS because the denominator carried the higher power.",
       "check": [
-        "(3) - (3) == 0",
-        "Abs((3) - (7)) > 0"
+        "Eq(simplify(Rational(2,3)*x*Rational(1,2)/x**2 - Rational(1,3)/x), 0)"
       ]
     },
     {
-      "id": "im3-A2-rsimp-v02",
+      "id": "im3-invvar-v02",
       "unit": "rational-and-radical-functions",
       "unitTitle": "Rational & Radical Functions",
       "level": 2,
-      "skill": "(x^2 - k^2)/(x - k) = x + k for x != k — factor before substituting.",
-      "statement": "Simplify $\\dfrac{x^2 - 4}{x - 2}$, then evaluate the result at $x = 7$.",
+      "skill": "Inverse variation keeps the PRODUCT constant; direct variation keeps the ratio.",
+      "statement": "$y$ varies inversely with $x$. When $x = 2$, $y = 6$. Find $y$ when $x = 4$.",
       "options": [
-        "$5$",
-        "$9$",
-        "$7$",
-        "$14$"
+        "$6$",
+        "$3$",
+        "$24$",
+        "$\\frac{3}{4}$"
       ],
       "correctIndex": 1,
-      "explanation": "Factor the difference of squares and cancel: $\\frac{(x - 2)(x + 2)}{x - 2} = x + 2$, which at $x = 7$ equals $9$. Subtracting instead — as if it simplified to $x - 2$ — gives $5$.",
+      "explanation": "Inverse variation means the PRODUCT stays constant: $xy = 2 \\cdot 6 = 12$. So at $x = 4$, $y = \\frac{12}{4} = 3$. Direct variation would keep the RATIO constant instead, and the two move in opposite directions.",
       "check": [
-        "((7)**2 - 4)/((7) - 2) == 9",
-        "simplify((x**2 - 4)/(x - 2) - (x + 2)) == 0"
+        "Eq(2*6, 4*3)"
       ]
     },
     {
-      "id": "im3-A2-rfa-v03",
+      "id": "im3-PC-sr-v03",
       "unit": "rational-and-radical-functions",
       "unitTitle": "Rational & Radical Functions",
       "level": 2,
-      "skill": "Vertical: where the denominator dies. Horizontal (equal degrees): ratio of leading coefficients.",
-      "statement": "Find the vertical asymptote of $f(x) = \\dfrac{x + 6}{x - 3}$.",
+      "skill": "Cancel the shared factor, then carry the restriction it leaves behind.",
+      "statement": "Simplify $\\dfrac{x^2 - 25}{x - 5}$, and state the restriction.",
       "options": [
-        "$x = -3$",
-        "$x = -6$",
-        "$x = 3$",
-        "$x = 6$"
+        "$x - 5$, with $x \\neq 5$",
+        "$x + 5$, with $x \\neq -5$",
+        "$x + 5$, with $x \\neq 5$",
+        "$x^2 - 5$, with $x \\neq 5$"
       ],
       "correctIndex": 2,
-      "explanation": "A vertical asymptote sits where the denominator is zero: $x - 3 = 0$ gives $x = 3$. The numerator's zero, $x = -6$, is the x-intercept — not an asymptote.",
+      "explanation": "The top is a difference of two squares: $x^2 - 25 = (x - 5)(x + 5)$. Cancelling the shared bracket leaves $x + 5$ — but only where the cancelled factor was not zero, so $x \\neq 5$ has to travel with the answer. Dropping the restriction quietly changes the function.",
       "check": [
-        "(3) + (-3) == 0",
-        "Abs((3) + (6)) > 0"
+        "((6)**2 - 25)/((6) - 5) == (6) + 5"
       ]
     },
     {
@@ -189,65 +187,65 @@
       ]
     },
     {
-      "id": "im3-LOG-chain-v02",
-      "unit": "exponential-and-logarithmic-functions",
-      "unitTitle": "Exponential & Logarithmic Functions",
-      "level": 2,
-      "skill": "log_a b · log_b c = log_a c — the middle base cancels.",
-      "statement": "Evaluate: $\\log_{2} 5 \\cdot \\log_{5} 4$.",
-      "options": [
-        "$3$",
-        "$2$",
-        "$1$",
-        "$4$"
-      ],
-      "correctIndex": 1,
-      "explanation": "The middle base cancels: $\\log_{2} 5 \\cdot \\log_{5} 4 = \\log_{2} 4 = 2$, since $2^{2} = 4$.",
-      "check": [
-        "simplify(log(5, 2) * log(4, 5) - log(4, 2)) == 0",
-        "2**2 == 4"
-      ]
-    },
-    {
-      "id": "im3-LOG-sub-v03",
+      "id": "im3-LOG-sub-v02",
       "unit": "exponential-and-logarithmic-functions",
       "unitTitle": "Exponential & Logarithmic Functions",
       "level": 2,
       "skill": "b^(2x) is (b^x)² — substitute t = b^x and solve the quadratic.",
-      "statement": "The equation $2^{2x} - 9 \\cdot 2^{x} + 8 = 0$ has two roots. Find their SUM.",
+      "statement": "The equation $2^{2x} - 5 \\cdot 2^{x} + 4 = 0$ has two roots. Find their SUM.",
       "options": [
-        "$9$",
-        "$8$",
-        "$3$",
+        "$5$",
+        "$2$",
+        "$4$",
         "$0$"
       ],
-      "correctIndex": 2,
-      "explanation": "Let $t = 2^{x}$: $t^2 - 9t + 8 = 0$ gives $t = 1$ or $t = 8$, so $2^{x} = 1$ ($x = 0$) or $2^{x} = 8$ ($x = 3$). The sum of the roots is $3$.",
+      "correctIndex": 1,
+      "explanation": "Let $t = 2^{x}$: $t^2 - 5t + 4 = 0$ gives $t = 1$ or $t = 4$, so $2^{x} = 1$ ($x = 0$) or $2^{x} = 4$ ($x = 2$). The sum of the roots is $2$.",
       "check": [
-        "solve(t**2 - 9*t + 8, t) == sorted([1, 8])",
+        "solve(t**2 - 5*t + 4, t) == sorted([1, 4])",
         "2**0 == 1",
-        "2**3 == 8",
-        "(3) == 3"
+        "2**2 == 4",
+        "(2) == 2"
       ]
     },
     {
-      "id": "im3-LOG-flip-v04",
+      "id": "im3-LOG-eq-v03",
+      "unit": "exponential-and-logarithmic-functions",
+      "unitTitle": "Exponential & Logarithmic Functions",
+      "level": 2,
+      "skill": "log_b(…) = c means (…) = b^c; check the argument stays positive.",
+      "statement": "Solve: $\\log_{2}(x + 3) = 2$.",
+      "options": [
+        "$7$",
+        "$4$",
+        "$1$",
+        "$-2$"
+      ],
+      "correctIndex": 2,
+      "explanation": "$\\log_{2}(x + 3) = 2$ means $x + 3 = 2^{2} = 4$, so $x = 1$. The argument $x + 3 = 4 > 0$, valid.",
+      "check": [
+        "2**2 - (3) == 1",
+        "1 + (3) > 0"
+      ]
+    },
+    {
+      "id": "im3-dbt-v04",
       "unit": "exponential-and-logarithmic-functions",
       "unitTitle": "Exponential & Logarithmic Functions",
       "level": 3,
-      "skill": "A decreasing base flips the inequality when you compare exponents.",
-      "statement": "Solve: $\\left(\\dfrac{1}{2}\\right)^x < \\dfrac{1}{4}$.",
+      "skill": "The growth factor and the time are different quantities.",
+      "statement": "A quantity follows $P = 1000 \\cdot 2^{t}$ with $t$ in years. How long does it take to reach $16000$?",
       "options": [
-        "$x < 2$",
-        "$x > -2$",
-        "$x < -2$",
-        "$x > 2$"
+        "$16$",
+        "$8$",
+        "$5$",
+        "$4$"
       ],
       "correctIndex": 3,
-      "explanation": "Since the base $\\tfrac{1}{2} < 1$ is decreasing, comparing $\\left(\\tfrac{1}{2}\\right)^x < \\left(\\tfrac{1}{2}\\right)^{2}$ FLIPS the inequality: $x > 2$.",
+      "explanation": "Divide out the starting amount: $2^{t} = \\dfrac{16000}{1000} = 16$. That is $2^{4}$, so $t = 4$ years. The growth FACTOR over the whole period is $16$, but the TIME is its logarithm — the two are different quantities and only one of them is in years.",
       "check": [
-        "Rational(1, 2)**(2-1) > Rational(1, 2)**2",
-        "Rational(1, 2)**(2+1) < Rational(1, 2)**2"
+        "Eq(1000*2**4, 16000)",
+        "Eq(log(16, 2), 4)"
       ]
     },
     {
@@ -270,62 +268,61 @@
       ]
     },
     {
-      "id": "im3-PC-pt-v02",
+      "id": "im3-los-v02",
       "unit": "trigonometric-functions",
       "unitTitle": "Trigonometric Functions",
       "level": 2,
-      "skill": "The terminal point of t is (cos t; sin t) — cosine first, signs from the quadrant.",
-      "statement": "The terminal point of $t = \\dfrac{5\\pi}{6}$ on the unit circle is which of the following?",
+      "skill": "It needs a side and the angle OPPOSITE it, both known.",
+      "statement": "In triangle $ABC$, $A = 30°$, $B = 45°$ and $a = 6$. Find $b$ exactly.",
       "options": [
-        "$(\\frac{1}{2}; -\\frac{\\sqrt{3}}{2})$",
-        "$(-\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
-        "$(\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$",
-        "$(-\\frac{\\sqrt{3}}{2}; -\\frac{1}{2})$"
+        "$3 \\sqrt{2}$",
+        "$6 \\sqrt{2}$",
+        "$9$",
+        "$6$"
       ],
       "correctIndex": 1,
-      "explanation": "The terminal point is $(\\cos t; \\sin t)$: cosine first, then sine, with signs set by the quadrant — here $(-\\frac{\\sqrt{3}}{2}; \\frac{1}{2})$. Writing the pair as $(\\sin t; \\cos t)$ is the classic swap.",
+      "explanation": "Side $a$ sits OPPOSITE angle $A$, so the Law of Sines can start: $\\dfrac{b}{\\sin 45°} = \\dfrac{6}{\\sin 30°}$, giving $b = 6 \\cdot \\dfrac{\\sin 45°}{\\sin 30°} = 6 \\sqrt{2}$. Turning the ratio upside down gives $3 \\sqrt{2}$ — the check is that the larger angle must face the longer side.",
       "check": [
-        "cos(5*pi/6) == -sqrt(3)/2",
-        "sin(5*pi/6) == 1/2"
+        "Eq(simplify(6*sin(45*pi/180)/sin(30*pi/180) - (6*sqrt(2))), 0)"
       ]
     },
     {
-      "id": "im3-ap-v03",
+      "id": "im3-srange-v03",
       "unit": "trigonometric-functions",
       "unitTitle": "Trigonometric Functions",
       "level": 2,
-      "skill": "Amplitude is |A|; the period of sin(Bx) is 2π/B — B squeezes, never stretches.",
-      "statement": "State the period of $y = 2\\sin(2x)$.",
+      "skill": "Midline plus or minus the amplitude.",
+      "statement": "Find the MAXIMUM value of $y = 2\\sin x - 3$.",
       "options": [
-        "$2\\pi$",
-        "$4\\pi$",
-        "$\\pi$",
-        "$\\frac{\\pi}{3}$"
+        "$-5$",
+        "$2$",
+        "$-1$",
+        "$-3$"
       ],
       "correctIndex": 2,
-      "explanation": "The period of $\\sin(Bx)$ is $\\dfrac{2\\pi}{B} = \\pi$: a bigger $B$ squeezes more cycles into the same space, so the period SHRINKS. Multiplying by $B$ instead of dividing is the standard slip.",
+      "explanation": "$\\sin x$ never leaves $[-1, 1]$, so $2\\sin x$ never leaves $[-2, 2]$, and adding $-3$ lifts that to $[-5, -1]$. The maximum is $-1$ — the midline plus the amplitude. The amplitude $2$ on its own is the maximum only when the midline sits at zero.",
       "check": [
-        "Eq(2*pi/2, pi)"
+        "Eq((-3) + (2), -1)"
       ]
     },
     {
-      "id": "im3-pyth-v04",
+      "id": "im3-lca-v04",
       "unit": "trigonometric-functions",
       "unitTitle": "Trigonometric Functions",
       "level": 3,
-      "skill": "sin² + cos² = 1 gives the size; the quadrant gives the sign.",
-      "statement": "Given $\\cos\\theta = -\\frac{4}{5}$ with $\\theta$ in quadrant III, find $\\sin\\theta$.",
+      "skill": "The numerator's sign classifies the angle before you divide.",
+      "statement": "A triangle has sides $6$, $16$ and $14$. What is the angle opposite the side of length $14$?",
       "options": [
-        "$\\frac{3}{5}$",
-        "$-\\frac{3}{4}$",
-        "$-\\frac{4}{5}$",
-        "$-\\frac{3}{5}$"
+        "$120$",
+        "$30$",
+        "$90$",
+        "$60$"
       ],
       "correctIndex": 3,
-      "explanation": "Pythagorean identity first: $\\sin^2\\theta + \\cos^2\\theta = 1$ gives $\\sin^2\\theta = 1 - \\frac{16}{25} = \\frac{9}{25}$, so $\\sin\\theta = \\pm\\frac{3}{5}$. Quadrant III fixes the sign: $\\sin\\theta = -\\frac{3}{5}$.",
+      "explanation": "Rearranged, the Law of Cosines gives $\\cos C = \\dfrac{6^2 + 16^2 - 14^2}{2(6)(16)} = \\dfrac{96}{192} = \\frac{1}{2}$, so $C = 60°$. The numerator's SIGN settles the type before any division: $36 + 256 > 196$, so the angle is acute.",
       "check": [
-        "Eq(Rational(3,5)**2 + Rational(4,5)**2, 1)",
-        "Lt(Rational(-3,5), 0)"
+        "Eq(Rational(36 + 256 - 196, 192), Rational(1, 2))",
+        "Eq(acos(Rational(1, 2)), 60*pi/180)"
       ]
     },
     {
@@ -348,43 +345,42 @@
       ]
     },
     {
-      "id": "im3-A2-invf-v02",
-      "unit": "function-families-and-inverses",
-      "unitTitle": "Function Families & Inverses",
-      "level": 2,
-      "skill": "f^{-1}(c) undoes f: subtract b first, then divide by a.",
-      "statement": "If $f(x) = 3x - 2$, find $f^{-1}(13)$.",
-      "options": [
-        "$37$",
-        "$5$",
-        "$\\frac{11}{3}$",
-        "$15$"
-      ],
-      "correctIndex": 1,
-      "explanation": "Undo $f$ in reverse: $f^{-1}(13) = \\frac{13 - (-2)}{3} = 5$. Plugging $13$ into $f$ itself — the classic inverse slip — gives $37$.",
-      "check": [
-        "((13) - (-2))/(3) == 5",
-        "(3)*(5) + (-2) == 13"
-      ]
-    },
-    {
-      "id": "im3-eo-v03",
+      "id": "im3-eo-v02",
       "unit": "function-families-and-inverses",
       "unitTitle": "Function Families & Inverses",
       "level": 2,
       "skill": "Substitute -x: all-even exponents mirror, all-odd flip, mixtures do neither.",
-      "statement": "Classify $f(x) = x^4 - 3x^3$ as even, odd, or neither.",
+      "statement": "Classify $f(x) = x^5 - 3x^3$ as even, odd, or neither.",
       "options": [
         "even — $f(-x) = f(x)$",
         "odd — $f(-x) = -f(x)$",
         "neither",
         "both even and odd"
       ],
-      "correctIndex": 2,
-      "explanation": "Substitute $-x$: the exponents mix parities, so $f(-x)$ is neither $f(x)$ nor $-f(x)$ — test $x = 2$: $f(2) = -8$ but $f(-2) = 40$. (Even = mirror symmetry across the $y$-axis; odd = point symmetry through the origin; only $f(x) = 0$ is both.)",
+      "correctIndex": 1,
+      "explanation": "Substitute $-x$: every exponent is odd, so each term flips sign: $f(-x) = -f(x)$. (Even = mirror symmetry across the $y$-axis; odd = point symmetry through the origin; only $f(x) = 0$ is both.)",
       "check": [
-        "Ne(40, -8)",
-        "Ne(40, 8)"
+        "Eq(-8, -8)"
+      ]
+    },
+    {
+      "id": "im3-A2-invf-v03",
+      "unit": "function-families-and-inverses",
+      "unitTitle": "Function Families & Inverses",
+      "level": 2,
+      "skill": "f^{-1}(c) undoes f: subtract b first, then divide by a.",
+      "statement": "If $f(x) = 4x + 1$, find $f^{-1}(-11)$.",
+      "options": [
+        "$-43$",
+        "$-\\frac{5}{2}$",
+        "$-3$",
+        "$-12$"
+      ],
+      "correctIndex": 2,
+      "explanation": "Undo $f$ in reverse: $f^{-1}(-11) = \\frac{-11 - (1)}{4} = -3$. Plugging $-11$ into $f$ itself — the classic inverse slip — gives $-43$.",
+      "check": [
+        "((-11) - (1))/(4) == -3",
+        "(4)*(-3) + (1) == -11"
       ]
     },
     {
@@ -446,60 +442,63 @@
       ]
     },
     {
-      "id": "im3-SEQ-whic-v03",
+      "id": "im3-SEQ-gsum-v03",
       "unit": "sequences-series-and-the-binomial-theorem",
       "unitTitle": "Sequences, Series & the Binomial Theorem",
       "level": 2,
-      "skill": "Set a_n = value, solve for n — it must land on a whole number.",
-      "statement": "In the arithmetic sequence with $a_1 = 2$, $d = 5$: which term equals $52$?",
+      "skill": "S_n = b_1(qⁿ − 1)/(q − 1).",
+      "statement": "Find the sum of the first $6$ terms of the geometric sequence with $b_1 = 1$, $q = 2$.",
       "options": [
-        "$n = 12$",
-        "$n = 10$",
-        "$n = 13$",
-        "$n = 11$"
+        "$64$",
+        "$32$",
+        "$127$",
+        "$63$"
       ],
       "correctIndex": 3,
-      "explanation": "Solve $2 + (n-1) \\cdot (5) = 52$: $n - 1 = \\frac{50}{5} = 10$, so $n = 11$.",
+      "explanation": "$S_n = b_1\\frac{q^n - 1}{q - 1} = 1 \\cdot \\frac{2^{6} - 1}{1} = 63$.",
       "check": [
-        "2 + (11 - 1)*(5) == 52"
+        "1*(2**6 - 1)/(2 - 1) == 63"
       ]
     },
     {
-      "id": "im3-SEQ-inf-v04",
+      "id": "im3-SEQ-two-v04",
       "unit": "sequences-series-and-the-binomial-theorem",
       "unitTitle": "Sequences, Series & the Binomial Theorem",
       "level": 3,
-      "skill": "S = b_1/(1 − q), valid only when |q| < 1.",
-      "statement": "Find the sum of the infinite geometric series with $b_1 = 10$ and $q = \\frac{1}{2}$.",
+      "skill": "Divide the given terms to isolate a power of q.",
+      "statement": "A geometric sequence has $b_{3} = 4$ and $b_{5} = 16$. Find $b_1$.",
       "options": [
-        "$20$",
-        "$\\frac{20}{3}$",
-        "$5$",
-        "$21$"
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$"
       ],
       "correctIndex": 0,
-      "explanation": "$|q| < 1$, so it converges: $S = \\dfrac{b_1}{1 - q} = \\dfrac{10}{1 - (\\frac{1}{2})} = 20$.",
+      "explanation": "Divide: $\\frac{b_{5}}{b_{3}} = q^{2} = \\frac{16}{4} = 4$, so $q = 2$. Then $b_1 = \\frac{b_{3}}{q^{2}} = 1$.",
       "check": [
-        "10/(1 - Rational(1,2)) == 20"
+        "Rational(16, 4) == 2**2",
+        "1*2**(3-1) == 4",
+        "1*2**(5-1) == 16"
       ]
     },
     {
-      "id": "im3-se-v01",
+      "id": "im3-pvs-v01",
       "unit": "statistical-inference",
       "unitTitle": "Statistical Inference",
       "level": 1,
-      "skill": "The sample proportion, scaled to the population — that's what random sampling buys.",
-      "statement": "A population of $1200$ students is studied through a random sample of $50$; exactly $30$ of the sample support a later school start. What is the best estimate of how many of the 1200 support a later school start?",
+      "skill": "The population is who the conclusion is about; the sample is who was measured.",
+      "statement": "A study wants to describe every student at a school of 400, and data is collected from the 30 students in one class. Which is the SAMPLE?",
       "options": [
-        "$720$",
-        "$30$",
-        "$480$",
-        "$360$"
+        "The 30 students in one class.",
+        "Every student at a school of 400.",
+        "Both groups together.",
+        "Neither — a sample must be chosen at random."
       ],
       "correctIndex": 0,
-      "explanation": "The sample proportion is $\\hat{p} = \\frac{30}{50}$, and because the sample was random it estimates the population proportion: about $\\frac{30}{50} \\cdot 1200 = 720$. The raw count $30$ describes only the sample.",
+      "explanation": "The POPULATION is the whole group the conclusion is meant to describe ($400$ in total); the SAMPLE is the smaller group actually measured ($30$). Random selection is what makes a sample TRUSTWORTHY, but a sample that was not chosen at random is still a sample.",
       "check": [
-        "Eq(Rational(30,50)*1200, 720)"
+        "30 < 400",
+        "30 > 0"
       ]
     },
     {
@@ -541,100 +540,105 @@
       ]
     },
     {
-      "id": "im3-ssz-v04",
+      "id": "im3-cfi-v04",
       "unit": "statistical-inference",
       "unitTitle": "Statistical Inference",
       "level": 3,
-      "skill": "Halving the margin quadruples the sample — invert 1/√n with care.",
-      "statement": "A newspaper wants poll results with a margin of error of about $10\\%$. Using $\\text{MoE} \\approx \\frac{1}{\\sqrt{n}}$, how many people must it sample?",
+      "skill": "Every value in the range is consistent — the midpoint is not the truth.",
+      "statement": "A poll estimates support at $38\\%$ with a margin of error of $5$ percentage points. Which conclusion is supported?",
       "options": [
-        "$25$",
-        "$400$",
-        "$10$",
-        "$100$"
+        "Support is exactly $38\\%$.",
+        "Support is definitely above $43\\%$.",
+        "Exactly $38\\%$ of polls of this kind are correct.",
+        "Support is plausibly anywhere from $33\\%$ to $43\\%$."
       ],
       "correctIndex": 3,
-      "explanation": "Set $\\frac{1}{\\sqrt{n}} = 10\\%$ and invert: $\\sqrt{n} = \\frac{100}{10}$, so $n = 100$. The margin's square root means small improvements in precision demand large increases in sample.",
+      "explanation": "The margin of error builds an INTERVAL around the estimate: $38 \\pm 5$, so from $33\\%$ to $43\\%$. Every value in that range is consistent with the data, and the single figure $38\\%$ has no special claim to being the truth — it is the middle of the range, not a measurement.",
       "check": [
-        "Eq(1/sqrt(100), Rational(1,10))"
+        "Eq(38 - 5, 33)",
+        "Eq(38 + 5, 43)",
+        "33 < 43"
       ]
     },
     {
-      "id": "im3-fam-v01",
+      "id": "im3-cfm-v01",
       "unit": "modelling-with-functions",
       "unitTitle": "Modelling with Functions",
       "level": 1,
-      "skill": "Constant differences: linear. Constant ratios: exponential. Constant second differences: quadratic.",
-      "statement": "For equal steps $x = 0, 1, 2, 3$ a table reads $1,\\ 3,\\ 5,\\ 7$. Which function family fits?",
+      "skill": "Equal additions are linear; equal multiplications are exponential.",
+      "statement": "Which family of functions best models a fixed amount is added every hour?",
       "options": [
-        "linear — constant first differences",
-        "exponential — constant ratios",
-        "quadratic — constant second differences",
-        "none of these families"
+        "Linear",
+        "Exponential",
+        "Quadratic",
+        "Inverse"
       ],
       "correctIndex": 0,
-      "explanation": "Run the tests in order — differences, ratios, second differences: the first differences are constant at $2$. That signature belongs to exactly one family.",
+      "explanation": "Look at HOW the quantity changes, not at how big it gets. Equal ADDITIONS per step are linear; equal MULTIPLICATIONS per step are exponential; a squared relationship is quadratic; and a product that stays constant is inverse variation. Here, a fixed amount is added every hour is linear.",
       "check": [
-        "Eq(3 - 1, 5 - 3)",
-        "Eq(5 - 3, 7 - 5)"
+        "Eq(0, 0)",
+        "0 >= 0"
       ]
     },
     {
-      "id": "im3-PS-fit-v02",
+      "id": "im3-isc-v02",
       "unit": "modelling-with-functions",
       "unitTitle": "Modelling with Functions",
       "level": 2,
-      "skill": "Substitute x into ŷ = ax + b — slope times x, plus the intercept once.",
-      "statement": "A line of best fit for a scatterplot is $\\hat{y} = 2x + 7$. Predict $\\hat{y}$ when $x = 6$.",
+      "skill": "The coefficient is a rate; the constant is a starting value.",
+      "statement": "A model gives cost in dollars as $y = 4x + 20$, where $t$ is measured in hours of hire. What does the number $4$ represent?",
       "options": [
-        "$44$",
-        "$19$",
-        "$20$",
-        "$26$"
+        "The starting amount is 4 dollars.",
+        "Each extra hour adds 4 dollars.",
+        "The total after one hour is 4 dollars.",
+        "Each extra hour adds 20 dollars."
       ],
       "correctIndex": 1,
-      "explanation": "Substitute the $x$-value into the line: $2 \\cdot 6 + 7 = 19$. The slope multiplies $x$; the intercept is added once, not multiplied.",
+      "explanation": "The coefficient of $t$ is a RATE: one more hour changes $y$ by $4$. The constant $20$ is the starting amount, and the total after one hour is $4 + 20 = 24$ — three different numbers answering three different questions.",
       "check": [
-        "2*6 + (7) == 19"
+        "Eq((4*1 + 20) - (4*0 + 20), 4)",
+        "Eq(4*0 + 20, 20)"
       ]
     },
     {
-      "id": "im3-res-v03",
+      "id": "im3-mfp-v03",
       "unit": "modelling-with-functions",
       "unitTitle": "Modelling with Functions",
       "level": 2,
-      "skill": "Residual = actual - predicted; the sign says above or below the model.",
-      "statement": "A fitted model predicts $\\hat{y} = 2x + 1$. The measured data point is $(2,\\ 3)$. What is the residual at that point?",
+      "skill": "Slope from the two points, intercept from either — then predict.",
+      "statement": "A hiker is $106$ km from camp $2$ hours into the day and $115$ km after $5$ hours. If the change is linear, how far (km) is the hiker after $8$ hours?",
       "options": [
-        "$2$",
-        "$5$",
-        "$-2$",
-        "$3$"
+        "$118$",
+        "$76$",
+        "$124$",
+        "$106$"
       ],
       "correctIndex": 2,
-      "explanation": "Residual = actual $-$ predicted. The model predicts $\\hat{y} = 2 \\cdot 2 + 1 = 5$, and the measurement was $3$, so $r = 3 - 5 = -2$ — the data point sits below the model.",
+      "explanation": "Slope from the two readings: $m = \\frac{115 - 106}{5 - 2} = 3$ per unit, and $106 = 3 \\cdot 2 + b$ gives $b = 100$. So $y = 3x + 100$, and at $x = 8$: $124$.",
       "check": [
-        "Eq(3 - (2*2 + 1), -2)"
+        "Eq(Rational(115 - 106, 5 - 2), 3)",
+        "Eq(3*8 + 100, 124)"
       ]
     },
     {
-      "id": "im3-qfv-v04",
+      "id": "im3-cfit-v04",
       "unit": "modelling-with-functions",
       "unitTitle": "Modelling with Functions",
       "level": 3,
-      "skill": "Vertex form hands you h and k; one more point pins a.",
-      "statement": "A parabola has vertex $(1,\\ -3)$ and passes through $(4,\\ 15)$. What is its $y$-intercept?",
+      "skill": "Smaller residuals mean a closer fit, judged across ALL the points.",
+      "statement": "Two models are fitted to the same $3$ data points. Model P's residuals have a total absolute size of $3$; model Q's total is $15$. Both pass near the point $(3,\\ 20)$. Which model fits better, and why?",
       "options": [
-        "$-2$",
-        "$5$",
-        "$-3$",
-        "$-1$"
+        "Model Q — larger residuals mean it covers more of the data.",
+        "Neither — residuals say nothing about fit.",
+        "Model Q — it must be the more complicated model.",
+        "Model P — smaller residuals mean the predictions sit closer to the data."
       ],
       "correctIndex": 3,
-      "explanation": "Vertex form does the work: $y = a(x - 1)^2 - 3$ with $a$ from the extra point — $15 = a(3)^2 - 3$ gives $a = 2$. At $x = 0$: $y = 2(-1)^2 - 3 = -1$.",
+      "explanation": "A residual is how far a point sits from the model's prediction, so SMALLER total residuals mean a closer fit: $3 < 15$, and model P wins. Passing near one shared point tells you nothing — fit is judged across ALL the points, which is exactly what the residual total measures.",
       "check": [
-        "Eq(2*(4 - 1)**2 + -3, 15)",
-        "Eq(2*(0 - 1)**2 + -3, -1)"
+        "3 < 15",
+        "Eq(1*3, 3)",
+        "Eq(5*3, 15)"
       ]
     }
   ]
