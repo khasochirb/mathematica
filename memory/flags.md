@@ -100,6 +100,22 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-12** — Probe after deploy `4c147d0` (three commits: the ЭЕШ hub
+  aligned to the ministry curriculum А/492 with the standard checked in as
+  data, Vectors & Matrices units 7-8 closing the last six CORE objective
+  gaps, and an IM course-exam rebuild): `anthropic_api_key: configured`,
+  `migration_009: applied`, `migration_008_student_profiles: unknown`
+  (FLAG-002 unchanged — `unknown`, so read that flag's "Reading a
+  non-`applied` result" row before acting). FLAG-003 still optional/unset.
+  Content-only deploy — no migrations in the diff, no auth or API surface
+  touched, nothing depended on either open flag; prod runtime errors clean
+  over the 2h window. NOTE: `verify:exams` had been RED on main since
+  `e9f7da9` — the IM2 papers did not cover the measurement unit that landed
+  with it, while claiming in their own intro to span every unit. Caught in
+  this deploy's pre-flight and fixed before shipping. The lesson is that a
+  gate whose inputs are generated (banks -> exams) can go red from a change
+  that never touches it, so pre-flight must run the WHOLE matrix, not the
+  gates the diff appears to touch.
 - **2026-08-11** — Probe after deploy `4a37fb8` (13 commits: the SAT hub
   rebuilt on the College Board's 20 official subtopics, its bank re-cut to
   match, the four CCSS coverage gaps closed in Integrated Math 1-3, and all
