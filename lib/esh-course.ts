@@ -227,7 +227,11 @@ export const MOE_COVERAGE: Record<string, string[]> = {
   "the-dot-product": ["10.9д", "10.9е"],
   "vectors-in-space": ["11.8а", "11.8б", "11.8в", "11.8г", "11.8д", "11.8е"],
   "matrices-and-operations": ["10.4а", "10.4б", "10.4в", "10.4г"],
-  "determinants-and-inverses": ["10.4д", "10.4е", "11.2в", "11.2д"],
+  "determinants-and-inverses": ["10.4д", "10.4е", "11.2в"],
+  "transformation-matrices": [
+    "10.11а", "10.11б", "10.11в", "10.11г", "10.11д", "10.11е", "10.11ж",
+  ],
+  "systems-in-three-unknowns": ["11.2г", "11.2д", "11.2е"],
   // --- complex numbers -------------------------------------------
   "complex-numbers": ["12.4а", "12.4б", "12.4в", "12.4г", "12.4д"],
   "quadratics-and-complex-numbers": ["12.4г"],
@@ -269,22 +273,15 @@ export const MOE_COVERAGE: Record<string, string[]> = {
  * deliberately, and the moment a unit claims it the test demands it be
  * removed. Silence about a gap is the thing the list exists to prevent.
  *
- * Six of these are CORE (заавал судлах) and are the real work order; the
- * rest are elective (сонгон судлах, starred in the ministry's own text),
- * which the ЭЕШ paper reaches for far less often.
+ * EVERY remaining entry is elective (сонгон судлах, starred in the
+ * ministry's own text), which the ЭЕШ paper reaches for far less often.
+ * The core list is empty, and lib/esh-course.test.ts asserts that: the last
+ * six core gaps — section 10.11 (transformations as matrices) and 11.2г
+ * (Gauss's method) — were closed on 2026-08-12 by Vectors & Matrices units
+ * 7 and 8. A core objective may not silently reappear here.
  */
 export const MOE_NOT_YET_COVERED: { code: string; why: string }[] = [
-  // --- CORE ---------------------------------------------------------
-  { code: "10.11а", why: "Геометр хувиргалт — transformations written as matrices. The whole ministry section has no unit: the catalog teaches rigid motions geometrically (geometry/transformations) but never as a matrix acting on coordinates, which is how the ministry and the exam pose it." },
-  { code: "10.11б", why: "Reflection in a point or an axis, expressed as a matrix." },
-  { code: "10.11в", why: "Translation, expressed as a matrix." },
-  { code: "10.11г", why: "Rotation, expressed as a matrix." },
-  { code: "10.11д", why: "Homothety (гомотет), expressed as a matrix." },
-  { code: "11.2г", why: "Гауссын арга — Gaussian elimination on a 3x3 system. Vectors & Matrices solves 2x2 systems by inverse matrix; the row-reduction method for three unknowns is not taught anywhere." },
   // --- elective (сонгон судлах) --------------------------------------
-  { code: "10.11е", why: "Composing transformations as a matrix product — follows 10.11а-д." },
-  { code: "10.11ж", why: "Naming a transformation from its matrix — follows 10.11а-д." },
-  { code: "11.2е", why: "Крамерын дүрэм — Cramer's rule for a 3x3 system." },
   { code: "12.3ж", why: "Parametric equations and their graphs." },
   { code: "12.3з", why: "Curves and their equations, sketched from the equation." },
   { code: "12.4е", why: "Polar and exponential form r(cos θ + i sin θ) = re^{iθ}." },
@@ -434,9 +431,9 @@ export const ESH_COURSES: EshTopicCourse[] = [
     topic: "linear_algebra",
     title: "Vectors & Matrices",
     titleMn: "Вектор ба матриц",
-    moeSections: ["10.4", "10.9", "11.8"],
+    moeSections: ["10.4", "10.9", "10.11", "11.2", "11.8"],
     intro:
-      "Vector arithmetic and coordinates, the dot product, 3D vectors, then matrix operations, determinants and inverses — the exam connects vectors to geometry and matrices to systems.",
+      "Vector arithmetic and coordinates, the dot product, 3D vectors, then matrix operations, determinants and inverses, geometric transformations as matrices, and systems in three unknowns — the exam connects vectors to geometry and matrices to systems.",
     units: [
       live(1, "vector-arithmetic", "vectors-matrices/vector-arithmetic"),
       live(2, "vectors-and-coordinates", "vectors-matrices/vectors-and-coordinates"),
@@ -444,6 +441,8 @@ export const ESH_COURSES: EshTopicCourse[] = [
       live(4, "vectors-in-space", "vectors-matrices/vectors-in-space"),
       live(5, "matrices-and-operations", "vectors-matrices/matrices-and-operations"),
       live(6, "determinants-and-inverses", "vectors-matrices/determinants-and-inverses"),
+      live(7, "transformation-matrices", "vectors-matrices/transformation-matrices"),
+      live(8, "systems-in-three-unknowns", "vectors-matrices/systems-in-three-unknowns"),
     ],
   },
   {

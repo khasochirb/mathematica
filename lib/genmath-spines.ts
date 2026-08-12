@@ -745,6 +745,22 @@ export const VECMAT_SPINE: GeometrySpineEntry[] = [
     buildsOn: "Matrix multiplication (Unit 5) and the Geometry course's transformation matrices.",
     live: true,
   },
+  {
+    unit: 7,
+    slug: "transformation-matrices",
+    title: "Transformation Matrices",
+    blurb: "Every geometric transformation as four numbers: reflections, rotations, enlargements, the translation that needs a third coordinate, and how to compose and name them.",
+    buildsOn: "The matrix machinery of Units 5–6, pointed at the plane's geometry.",
+    live: true,
+  },
+  {
+    unit: 8,
+    slug: "systems-in-three-unknowns",
+    title: "Systems in Three Unknowns",
+    blurb: "Elimination with the letters removed: augmented matrices, Gauss's method, the 3×3 determinant and inverse, and Cramer's rule.",
+    buildsOn: "The 2×2 systems, determinants and inverses of Unit 6.",
+    live: true,
+  },
 ];
 
 export const ALG1_SPINE: GeometrySpineEntry[] = [

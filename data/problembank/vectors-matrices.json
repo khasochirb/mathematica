@@ -33,6 +33,16 @@
       "id": "determinants-and-inverses",
       "title": "Determinants, Inverses & Systems",
       "blurb": "ad − bc, the 2×2 inverse, Cramer's rule, and matrices as transformations — the capstone."
+    },
+    {
+      "id": "transformation-matrices",
+      "title": "Transformation Matrices",
+      "blurb": "Reflections, rotations, enlargements and translations as matrices, then composing and naming them."
+    },
+    {
+      "id": "systems-in-three-unknowns",
+      "title": "Systems in Three Unknowns",
+      "blurb": "Augmented matrices and row operations, Gauss's method, 3×3 determinants and inverses, and Cramer's rule."
     }
   ],
   "forms": [
@@ -40,7 +50,7 @@
       "id": "vector-from-points",
       "title": "Vector between two points",
       "level": 1,
-      "skill": "VM-from",
+      "skill": "Tip minus tail gives the vector between two points.",
       "unit": "vectors-and-coordinates",
       "variants": [
         {
@@ -241,7 +251,7 @@
       "id": "vector-relation",
       "title": "Equal, opposite, parallel or neither",
       "level": 1,
-      "skill": "VM-rel",
+      "skill": "Compare two vectors: equal, opposite, parallel or none of these.",
       "unit": "vectors-and-coordinates",
       "variants": [
         {
@@ -430,7 +440,7 @@
       "id": "scaled-magnitude",
       "title": "Magnitude after scaling",
       "level": 2,
-      "skill": "VM-smag",
+      "skill": "Scaling a vector multiplies its magnitude by |k|.",
       "unit": "vectors-and-coordinates",
       "variants": [
         {
@@ -619,7 +629,7 @@
       "id": "unit-vector",
       "title": "The unit vector in a direction",
       "level": 2,
-      "skill": "VM-unit",
+      "skill": "Divide a vector by its own magnitude to get length 1.",
       "unit": "vectors-and-coordinates",
       "variants": [
         {
@@ -820,7 +830,7 @@
       "id": "vector-magnitude",
       "title": "Magnitude of a vector",
       "level": 2,
-      "skill": "VM-mag",
+      "skill": "Pythagoras on the components.",
       "unit": "vectors-and-coordinates",
       "variants": [
         {
@@ -1621,7 +1631,7 @@
       "id": "vector-combine",
       "title": "Linear combinations m·a + n·b",
       "level": 1,
-      "skill": "VM-comb",
+      "skill": "Combine vectors componentwise with scalar weights.",
       "unit": "vector-arithmetic",
       "variants": [
         {
@@ -1822,7 +1832,7 @@
       "id": "vector-subtract",
       "title": "Subtracting vectors",
       "level": 1,
-      "skill": "VM-sub",
+      "skill": "Subtract componentwise — order decides the direction.",
       "unit": "vector-arithmetic",
       "variants": [
         {
@@ -2023,7 +2033,7 @@
       "id": "parallel-scalar",
       "title": "Parallel vectors: find k",
       "level": 2,
-      "skill": "VM-par",
+      "skill": "Parallel vectors are multiples: match the ratios.",
       "unit": "vector-arithmetic",
       "variants": [
         {
@@ -2224,7 +2234,7 @@
       "id": "tip-to-tail",
       "title": "Tip-to-tail: magnitude of a sum",
       "level": 2,
-      "skill": "VM-tip",
+      "skill": "Add tip to tail, then take the magnitude of the sum.",
       "unit": "vector-arithmetic",
       "variants": [
         {
@@ -2953,7 +2963,7 @@
       "id": "section-point",
       "title": "The section formula",
       "level": 3,
-      "skill": "VM-sect",
+      "skill": "The section formula splits a segment in a given ratio.",
       "unit": "vector-arithmetic",
       "variants": [
         {
@@ -3154,7 +3164,7 @@
       "id": "dot-sign",
       "title": "The angle from the sign of the dot product",
       "level": 1,
-      "skill": "VM-dsign",
+      "skill": "The sign of the dot product classifies the angle.",
       "unit": "the-dot-product",
       "variants": [
         {
@@ -3343,7 +3353,7 @@
       "id": "dot-value",
       "title": "Computing the dot product",
       "level": 1,
-      "skill": "VM-dot",
+      "skill": "Multiply matching components and add.",
       "unit": "the-dot-product",
       "variants": [
         {
@@ -3532,7 +3542,7 @@
       "id": "perpendicular-k",
       "title": "Perpendicular vectors: find k",
       "level": 2,
-      "skill": "VM-perp",
+      "skill": "Perpendicular means the dot product is zero — solve for k.",
       "unit": "the-dot-product",
       "variants": [
         {
@@ -3721,7 +3731,7 @@
       "id": "sum-square",
       "title": "Expanding the square of a sum",
       "level": 3,
-      "skill": "VM-ssq",
+      "skill": "Expand |u + v|² with the dot product.",
       "unit": "the-dot-product",
       "variants": [
         {
@@ -3910,7 +3920,7 @@
       "id": "vector-angle-special",
       "title": "Angle between vectors",
       "level": 3,
-      "skill": "VM-ang",
+      "skill": "Find the angle from the dot product and the two magnitudes.",
       "unit": "the-dot-product",
       "variants": [
         {
@@ -4099,7 +4109,7 @@
       "id": "midpoint-3d",
       "title": "Midpoint in 3D",
       "level": 1,
-      "skill": "VM-mid3",
+      "skill": "Average each of the three coordinates.",
       "unit": "vectors-in-space",
       "variants": [
         {
@@ -4312,7 +4322,7 @@
       "id": "vector-from-points-3d",
       "title": "A vector between two points in space",
       "level": 1,
-      "skill": "VM-f3d",
+      "skill": "Tip minus tail, one coordinate at a time, in space.",
       "unit": "vectors-in-space",
       "variants": [
         {
@@ -4525,7 +4535,7 @@
       "id": "magnitude-3d",
       "title": "Magnitude in 3D",
       "level": 2,
-      "skill": "VM-m3d",
+      "skill": "Pythagoras with a third term.",
       "unit": "vectors-in-space",
       "variants": [
         {
@@ -4714,7 +4724,7 @@
       "id": "parallel-3d",
       "title": "Parallel vectors in space",
       "level": 2,
-      "skill": "VM-p3d",
+      "skill": "Parallel vectors in space share one scale factor across all three components.",
       "unit": "vectors-in-space",
       "variants": [
         {
@@ -4927,7 +4937,7 @@
       "id": "dot-3d",
       "title": "Dot product in space",
       "level": 3,
-      "skill": "VM-dot3",
+      "skill": "Multiply matching components and add — now three of them.",
       "unit": "vectors-in-space",
       "variants": [
         {
@@ -5116,7 +5126,7 @@
       "id": "perpendicular-3d",
       "title": "Perpendicular vectors in space",
       "level": 3,
-      "skill": "VM-x3d",
+      "skill": "Set the 3D dot product to zero and solve.",
       "unit": "vectors-in-space",
       "variants": [
         {
@@ -5305,7 +5315,7 @@
       "id": "matrix-dimensions",
       "title": "The size of a product",
       "level": 1,
-      "skill": "VM-dim",
+      "skill": "The product exists when the inner sizes match; the outer sizes survive.",
       "unit": "matrices-and-operations",
       "variants": [
         {
@@ -5494,7 +5504,7 @@
       "id": "matrix-entry",
       "title": "Entry of A + mB",
       "level": 1,
-      "skill": "VM-ment",
+      "skill": "Add and scale matrices entry by entry.",
       "unit": "matrices-and-operations",
       "variants": [
         {
@@ -5683,7 +5693,7 @@
       "id": "scalar-matrix",
       "title": "Scaling a matrix",
       "level": 1,
-      "skill": "VM-scal",
+      "skill": "Multiply every entry by the scalar.",
       "unit": "matrices-and-operations",
       "variants": [
         {
@@ -5872,7 +5882,7 @@
       "id": "transpose",
       "title": "The transpose",
       "level": 1,
-      "skill": "VM-trn",
+      "skill": "Rows become columns.",
       "unit": "matrices-and-operations",
       "variants": [
         {
@@ -6073,7 +6083,7 @@
       "id": "matrix-product-entry",
       "title": "Entry of a matrix product",
       "level": 2,
-      "skill": "VM-mprod",
+      "skill": "Row of the first times column of the second.",
       "unit": "matrices-and-operations",
       "variants": [
         {
@@ -6262,7 +6272,7 @@
       "id": "matrix-square",
       "title": "An entry of A squared",
       "level": 2,
-      "skill": "VM-sqr",
+      "skill": "Multiply a matrix by itself and read one entry.",
       "unit": "matrices-and-operations",
       "variants": [
         {
@@ -6451,7 +6461,7 @@
       "id": "det-2x2",
       "title": "The 2×2 determinant",
       "level": 1,
-      "skill": "VM-det",
+      "skill": "The determinant is ad − bc.",
       "unit": "determinants-and-inverses",
       "variants": [
         {
@@ -6640,7 +6650,7 @@
       "id": "inverse-2x2",
       "title": "The inverse of a 2×2 matrix",
       "level": 2,
-      "skill": "VM-inv",
+      "skill": "Swap the diagonal, negate the off-diagonal, divide by the determinant.",
       "unit": "determinants-and-inverses",
       "variants": [
         {
@@ -6853,7 +6863,7 @@
       "id": "singular-k",
       "title": "Making a matrix singular",
       "level": 2,
-      "skill": "VM-sing",
+      "skill": "A matrix is singular exactly when its determinant is zero.",
       "unit": "determinants-and-inverses",
       "variants": [
         {
@@ -7042,7 +7052,7 @@
       "id": "cramer-2x2",
       "title": "Cramer's rule for 2×2 systems",
       "level": 3,
-      "skill": "VM-cram",
+      "skill": "Replace a column with the constants and divide by the determinant.",
       "unit": "determinants-and-inverses",
       "variants": [
         {
@@ -7243,7 +7253,7 @@
       "id": "unique-solution",
       "title": "When a 2×2 system has one solution",
       "level": 3,
-      "skill": "VM-uniq",
+      "skill": "One solution exactly when the coefficient determinant is non-zero.",
       "unit": "determinants-and-inverses",
       "variants": [
         {
@@ -7424,6 +7434,2821 @@
           "explanation": "The coefficient determinant is $(5)(4) - (3)(2) = 14$. A non-zero determinant means the two lines have different slopes and cross exactly once; a zero determinant means they are parallel, so there is either no solution or a whole line of them — never exactly two.",
           "check": [
             "(5)*(4) - (3)*(2) != 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm-image-of-point",
+      "title": "The image of a point",
+      "level": 1,
+      "skill": "Multiply a matrix by a point written as a column.",
+      "unit": "transformation-matrices",
+      "variants": [
+        {
+          "id": "VM-tmi-v01",
+          "statement": "Find the image of the point $(2; -1)$ under the transformation with matrix $\\begin{pmatrix} 3 & -1 \\\\ 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$(7; 0)$",
+            "$(4; -6)$",
+            "$(0; 7)$",
+            "$(-5; 6)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row times column: $x' = 3 \\cdot 2 + (-1) \\cdot (-1) = 7$ and $y' = 2 \\cdot 2 + 4 \\cdot (-1) = 0$, so the image is $(7; 0)$.",
+          "check": [
+            "(3)*(2) + (-1)*(-1) == 7",
+            "(2)*(2) + (4)*(-1) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmi-v02",
+          "statement": "Find the image of the point $(3; 2)$ under the transformation with matrix $\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$(3; 8)$",
+            "$(7; 2)$",
+            "$(2; 7)$",
+            "$(8; 3)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row times column: $x' = 1 \\cdot 3 + 2 \\cdot 2 = 7$ and $y' = 0 \\cdot 3 + 1 \\cdot 2 = 2$, so the image is $(7; 2)$.",
+          "check": [
+            "(1)*(3) + (2)*(2) == 7",
+            "(0)*(3) + (1)*(2) == 2"
+          ]
+        },
+        {
+          "id": "VM-tmi-v03",
+          "statement": "Find the image of the point $(5; 2)$ under the transformation with matrix $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$.",
+          "options": [
+            "$(2; -5)$",
+            "$(5; -2)$",
+            "$(-2; 5)$",
+            "$(-5; 2)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Row times column: $x' = 0 \\cdot 5 + (-1) \\cdot 2 = -2$ and $y' = 1 \\cdot 5 + 0 \\cdot 2 = 5$, so the image is $(-2; 5)$.",
+          "check": [
+            "(0)*(5) + (-1)*(2) == -2",
+            "(1)*(5) + (0)*(2) == 5"
+          ]
+        },
+        {
+          "id": "VM-tmi-v04",
+          "statement": "Find the image of the point $(-4; 1)$ under the transformation with matrix $\\begin{pmatrix} 2 & 0 \\\\ 0 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$(3; -8)$",
+            "$(2; -12)$",
+            "$(-8; -3)$",
+            "$(-8; 3)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Row times column: $x' = 2 \\cdot (-4) + 0 \\cdot 1 = -8$ and $y' = 0 \\cdot (-4) + 3 \\cdot 1 = 3$, so the image is $(-8; 3)$.",
+          "check": [
+            "(2)*(-4) + (0)*(1) == -8",
+            "(0)*(-4) + (3)*(1) == 3"
+          ]
+        },
+        {
+          "id": "VM-tmi-v05",
+          "statement": "Find the image of the point $(2; 4)$ under the transformation with matrix $\\begin{pmatrix} 1 & 3 \\\\ -2 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$(14; 0)$",
+            "$(-6; 10)$",
+            "$(0; 14)$",
+            "$(10; -6)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row times column: $x' = 1 \\cdot 2 + 3 \\cdot 4 = 14$ and $y' = (-2) \\cdot 2 + 1 \\cdot 4 = 0$, so the image is $(14; 0)$.",
+          "check": [
+            "(1)*(2) + (3)*(4) == 14",
+            "(-2)*(2) + (1)*(4) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmi-v06",
+          "statement": "Find the image of the point $(1; 5)$ under the transformation with matrix $\\begin{pmatrix} 4 & 1 \\\\ 2 & -3 \\end{pmatrix}$.",
+          "options": [
+            "$(14; -14)$",
+            "$(9; -13)$",
+            "$(-13; 9)$",
+            "$(21; 7)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row times column: $x' = 4 \\cdot 1 + 1 \\cdot 5 = 9$ and $y' = 2 \\cdot 1 + (-3) \\cdot 5 = -13$, so the image is $(9; -13)$.",
+          "check": [
+            "(4)*(1) + (1)*(5) == 9",
+            "(2)*(1) + (-3)*(5) == -13"
+          ]
+        },
+        {
+          "id": "VM-tmi-v07",
+          "statement": "Find the image of the point $(4; -2)$ under the transformation with matrix $\\begin{pmatrix} -1 & 2 \\\\ 3 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$(-10; 6)$",
+            "$(10; -8)$",
+            "$(-8; 10)$",
+            "$(10; -2)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Row times column: $x' = (-1) \\cdot 4 + 2 \\cdot (-2) = -8$ and $y' = 3 \\cdot 4 + 1 \\cdot (-2) = 10$, so the image is $(-8; 10)$.",
+          "check": [
+            "(-1)*(4) + (2)*(-2) == -8",
+            "(3)*(4) + (1)*(-2) == 10"
+          ]
+        },
+        {
+          "id": "VM-tmi-v08",
+          "statement": "Find the image of the point $(2; 3)$ under the transformation with matrix $\\begin{pmatrix} 5 & -2 \\\\ 1 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$(13; 5)$",
+            "$(11; 4)$",
+            "$(11; 9)$",
+            "$(4; 11)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Row times column: $x' = 5 \\cdot 2 + (-2) \\cdot 3 = 4$ and $y' = 1 \\cdot 2 + 3 \\cdot 3 = 11$, so the image is $(4; 11)$.",
+          "check": [
+            "(5)*(2) + (-2)*(3) == 4",
+            "(1)*(2) + (3)*(3) == 11"
+          ]
+        },
+        {
+          "id": "VM-tmi-v09",
+          "statement": "Find the image of the point $(3; 1)$ under the transformation with matrix $\\begin{pmatrix} 2 & 4 \\\\ -1 & 0 \\end{pmatrix}$.",
+          "options": [
+            "$(10; -3)$",
+            "$(5; 12)$",
+            "$(-3; 10)$",
+            "$(14; -1)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row times column: $x' = 2 \\cdot 3 + 4 \\cdot 1 = 10$ and $y' = (-1) \\cdot 3 + 0 \\cdot 1 = -3$, so the image is $(10; -3)$.",
+          "check": [
+            "(2)*(3) + (4)*(1) == 10",
+            "(-1)*(3) + (0)*(1) == -3"
+          ]
+        },
+        {
+          "id": "VM-tmi-v10",
+          "statement": "Find the image of the point $(1; 4)$ under the transformation with matrix $\\begin{pmatrix} 0 & 2 \\\\ -3 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$(-12; 6)$",
+            "$(8; 1)$",
+            "$(1; 8)$",
+            "$(2; -11)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row times column: $x' = 0 \\cdot 1 + 2 \\cdot 4 = 8$ and $y' = (-3) \\cdot 1 + 1 \\cdot 4 = 1$, so the image is $(8; 1)$.",
+          "check": [
+            "(0)*(1) + (2)*(4) == 8",
+            "(-3)*(1) + (1)*(4) == 1"
+          ]
+        },
+        {
+          "id": "VM-tmi-v11",
+          "statement": "Find the image of the point $(-2; 5)$ under the transformation with matrix $\\begin{pmatrix} 3 & 1 \\\\ 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$(8; -1)$",
+            "$(13; 1)$",
+            "$(-1; 8)$",
+            "$(-6; 10)$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Row times column: $x' = 3 \\cdot (-2) + 1 \\cdot 5 = -1$ and $y' = 1 \\cdot (-2) + 2 \\cdot 5 = 8$, so the image is $(-1; 8)$.",
+          "check": [
+            "(3)*(-2) + (1)*(5) == -1",
+            "(1)*(-2) + (2)*(5) == 8"
+          ]
+        },
+        {
+          "id": "VM-tmi-v12",
+          "statement": "Find the image of the point $(6; 1)$ under the transformation with matrix $\\begin{pmatrix} 1 & -4 \\\\ 2 & 3 \\end{pmatrix}$.",
+          "options": [
+            "$(8; -21)$",
+            "$(15; 2)$",
+            "$(-23; 20)$",
+            "$(2; 15)$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Row times column: $x' = 1 \\cdot 6 + (-4) \\cdot 1 = 2$ and $y' = 2 \\cdot 6 + 3 \\cdot 1 = 15$, so the image is $(2; 15)$.",
+          "check": [
+            "(1)*(6) + (-4)*(1) == 2",
+            "(2)*(6) + (3)*(1) == 15"
+          ]
+        },
+        {
+          "id": "VM-tmi-v13",
+          "statement": "Find the image of the point $(1; 2)$ under the transformation with matrix $\\begin{pmatrix} 6 & 2 \\\\ -1 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$(10; 7)$",
+            "$(4; 10)$",
+            "$(7; 10)$",
+            "$(14; 2)$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row times column: $x' = 6 \\cdot 1 + 2 \\cdot 2 = 10$ and $y' = (-1) \\cdot 1 + 4 \\cdot 2 = 7$, so the image is $(10; 7)$.",
+          "check": [
+            "(6)*(1) + (2)*(2) == 10",
+            "(-1)*(1) + (4)*(2) == 7"
+          ]
+        },
+        {
+          "id": "VM-tmi-v14",
+          "statement": "Find the image of the point $(3; -1)$ under the transformation with matrix $\\begin{pmatrix} 2 & -3 \\\\ 5 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$(1; -10)$",
+            "$(9; 14)$",
+            "$(14; 9)$",
+            "$(-11; -2)$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row times column: $x' = 2 \\cdot 3 + (-3) \\cdot (-1) = 9$ and $y' = 5 \\cdot 3 + 1 \\cdot (-1) = 14$, so the image is $(9; 14)$.",
+          "check": [
+            "(2)*(3) + (-3)*(-1) == 9",
+            "(5)*(3) + (1)*(-1) == 14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm-matrix-from-rules",
+      "title": "The matrix of a coordinate rule",
+      "level": 1,
+      "skill": "Stack the two coordinate rules into a matrix, rows first.",
+      "unit": "transformation-matrices",
+      "variants": [
+        {
+          "id": "VM-tmr-v01",
+          "statement": "A transformation of the plane is given by $x' = 3x - y$ and $y' = 2x + 4y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 3 & -1 \\\\ 2 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 2 \\\\ -1 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 4 \\\\ 3 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 1 \\\\ 2 & -4 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 3 & -1 \\\\ 2 & 4 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 3 & 2 \\\\ -1 & 4 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(3)*1 + (-1)*0 == 3",
+            "(2)*0 + (4)*1 == 4"
+          ]
+        },
+        {
+          "id": "VM-tmr-v02",
+          "statement": "A transformation of the plane is given by $x' = 5x + 2y$ and $y' = -x + 3y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 5 & -1 \\\\ 2 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 5 & 2 \\\\ -1 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 3 \\\\ 5 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 5 & -2 \\\\ -1 & -3 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 5 & 2 \\\\ -1 & 3 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 5 & -1 \\\\ 2 & 3 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(5)*1 + (2)*0 == 5",
+            "(-1)*0 + (3)*1 == 3"
+          ]
+        },
+        {
+          "id": "VM-tmr-v03",
+          "statement": "A transformation of the plane is given by $x' = x + 4y$ and $y' = 2x - 3y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 2 \\\\ 4 & -3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -3 \\\\ 1 & 4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 4 \\\\ 2 & -3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -4 \\\\ 2 & 3 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 1 & 4 \\\\ 2 & -3 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 1 & 2 \\\\ 4 & -3 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(1)*1 + (4)*0 == 1",
+            "(2)*0 + (-3)*1 == -3"
+          ]
+        },
+        {
+          "id": "VM-tmr-v04",
+          "statement": "A transformation of the plane is given by $x' = -2x + 5y$ and $y' = 3x + y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} -2 & 3 \\\\ 5 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 1 \\\\ -2 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & -5 \\\\ 3 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 5 \\\\ 3 & 1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} -2 & 5 \\\\ 3 & 1 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} -2 & 3 \\\\ 5 & 1 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(-2)*1 + (5)*0 == -2",
+            "(3)*0 + (1)*1 == 1"
+          ]
+        },
+        {
+          "id": "VM-tmr-v05",
+          "statement": "A transformation of the plane is given by $x' = 4x$ and $y' = -x + 2y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 4 & 0 \\\\ -1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & -1 \\\\ 0 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 2 \\\\ 4 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & 0 \\\\ -1 & -2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 4 & 0 \\\\ -1 & 2 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 4 & -1 \\\\ 0 & 2 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(4)*1 + (0)*0 == 4",
+            "(-1)*0 + (2)*1 == 2"
+          ]
+        },
+        {
+          "id": "VM-tmr-v06",
+          "statement": "A transformation of the plane is given by $x' = 2x + 7y$ and $y' = 5y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 2 & 0 \\\\ 7 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 7 \\\\ 0 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 5 \\\\ 2 & 7 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -7 \\\\ 0 & -5 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 2 & 7 \\\\ 0 & 5 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 2 & 0 \\\\ 7 & 5 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(2)*1 + (7)*0 == 2",
+            "(0)*0 + (5)*1 == 5"
+          ]
+        },
+        {
+          "id": "VM-tmr-v07",
+          "statement": "A transformation of the plane is given by $x' = 6x - 3y$ and $y' = x + 2y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 6 & 1 \\\\ -3 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 2 \\\\ 6 & -3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & -3 \\\\ 1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & 3 \\\\ 1 & -2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 6 & -3 \\\\ 1 & 2 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 6 & 1 \\\\ -3 & 2 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(6)*1 + (-3)*0 == 6",
+            "(1)*0 + (2)*1 == 2"
+          ]
+        },
+        {
+          "id": "VM-tmr-v08",
+          "statement": "A transformation of the plane is given by $x' = -x + 2y$ and $y' = 4x + 5y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} -1 & 4 \\\\ 2 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 4 & 5 \\\\ -1 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & -2 \\\\ 4 & -5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 2 \\\\ 4 & 5 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} -1 & 2 \\\\ 4 & 5 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} -1 & 4 \\\\ 2 & 5 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(-1)*1 + (2)*0 == -1",
+            "(4)*0 + (5)*1 == 5"
+          ]
+        },
+        {
+          "id": "VM-tmr-v09",
+          "statement": "A transformation of the plane is given by $x' = 3x + 5y$ and $y' = -2x + y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 3 & 5 \\\\ -2 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -2 \\\\ 5 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 1 \\\\ 3 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -5 \\\\ -2 & -1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 3 & 5 \\\\ -2 & 1 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 3 & -2 \\\\ 5 & 1 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(3)*1 + (5)*0 == 3",
+            "(-2)*0 + (1)*1 == 1"
+          ]
+        },
+        {
+          "id": "VM-tmr-v10",
+          "statement": "A transformation of the plane is given by $x' = 7x + y$ and $y' = 3x - 4y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 7 & 3 \\\\ 1 & -4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 7 & 1 \\\\ 3 & -4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & -4 \\\\ 7 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 7 & -1 \\\\ 3 & 4 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 7 & 1 \\\\ 3 & -4 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 7 & 3 \\\\ 1 & -4 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(7)*1 + (1)*0 == 7",
+            "(3)*0 + (-4)*1 == -4"
+          ]
+        },
+        {
+          "id": "VM-tmr-v11",
+          "statement": "A transformation of the plane is given by $x' = 2x - 5y$ and $y' = 6x + 3y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 2 & 6 \\\\ -5 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 6 & 3 \\\\ 2 & -5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & -5 \\\\ 6 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 5 \\\\ 6 & -3 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 2 & -5 \\\\ 6 & 3 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 2 & 6 \\\\ -5 & 3 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(2)*1 + (-5)*0 == 2",
+            "(6)*0 + (3)*1 == 3"
+          ]
+        },
+        {
+          "id": "VM-tmr-v12",
+          "statement": "A transformation of the plane is given by $x' = x + 3y$ and $y' = -4x + 2y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 1 & -4 \\\\ 3 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -4 & 2 \\\\ 1 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -3 \\\\ -4 & -2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 3 \\\\ -4 & 2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 1 & 3 \\\\ -4 & 2 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 1 & -4 \\\\ 3 & 2 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(1)*1 + (3)*0 == 1",
+            "(-4)*0 + (2)*1 == 2"
+          ]
+        },
+        {
+          "id": "VM-tmr-v13",
+          "statement": "A transformation of the plane is given by $x' = 5x - 2y$ and $y' = 3x + 6y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} 5 & -2 \\\\ 3 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 5 & 3 \\\\ -2 & 6 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 6 \\\\ 5 & -2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 5 & 2 \\\\ 3 & -6 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} 5 & -2 \\\\ 3 & 6 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} 5 & 3 \\\\ -2 & 6 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(5)*1 + (-2)*0 == 5",
+            "(3)*0 + (6)*1 == 6"
+          ]
+        },
+        {
+          "id": "VM-tmr-v14",
+          "statement": "A transformation of the plane is given by $x' = -3x + y$ and $y' = 2x + 7y$. Which matrix carries this transformation?",
+          "options": [
+            "$\\begin{pmatrix} -3 & 2 \\\\ 1 & 7 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & 1 \\\\ 2 & 7 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 2 & 7 \\\\ -3 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -3 & -1 \\\\ 2 & -7 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Row one holds the coefficients of the $x'$ rule and row two those of the $y'$ rule, so the matrix is $\\begin{pmatrix} -3 & 1 \\\\ 2 & 7 \\end{pmatrix}$. Reading the coefficients DOWN the columns instead gives the transpose $\\begin{pmatrix} -3 & 2 \\\\ 1 & 7 \\end{pmatrix}$ — the most common slip in this topic.",
+          "check": [
+            "(-3)*1 + (1)*0 == -3",
+            "(2)*0 + (7)*1 == 7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm-area-factor",
+      "title": "Area under a transformation",
+      "level": 2,
+      "skill": "Areas are multiplied by the absolute value of the determinant.",
+      "unit": "transformation-matrices",
+      "variants": [
+        {
+          "id": "VM-tma-v01",
+          "statement": "A figure of area $2$ is transformed by the matrix $\\begin{pmatrix} 3 & 1 \\\\ 2 & 4 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$20$",
+            "$10$",
+            "$28$",
+            "$12$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The determinant is $3 \\cdot 4 - 1 \\cdot 2 = 10$, and areas are multiplied by its absolute value: $2 \\cdot 10 = 20$.",
+          "check": [
+            "(3)*(4) - (1)*(2) == 10",
+            "Abs(10)*2 == 20"
+          ]
+        },
+        {
+          "id": "VM-tma-v02",
+          "statement": "A figure of area $5$ is transformed by the matrix $\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$1$",
+            "$5$",
+            "$6$",
+            "$10$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The determinant is $1 \\cdot 1 - 2 \\cdot 0 = 1$, and areas are multiplied by its absolute value: $5 \\cdot 1 = 5$.",
+          "check": [
+            "(1)*(1) - (2)*(0) == 1",
+            "Abs(1)*5 == 5"
+          ]
+        },
+        {
+          "id": "VM-tma-v03",
+          "statement": "A figure of area $4$ is transformed by the matrix $\\begin{pmatrix} 2 & 0 \\\\ 0 & 3 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$6$",
+            "$10$",
+            "$24$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The determinant is $2 \\cdot 3 - 0 \\cdot 0 = 6$, and areas are multiplied by its absolute value: $4 \\cdot 6 = 24$.",
+          "check": [
+            "(2)*(3) - (0)*(0) == 6",
+            "Abs(6)*4 == 24"
+          ]
+        },
+        {
+          "id": "VM-tma-v04",
+          "statement": "A figure of area $3$ is transformed by the matrix $\\begin{pmatrix} 5 & 2 \\\\ 1 & 3 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$13$",
+            "$51$",
+            "$16$",
+            "$39$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The determinant is $5 \\cdot 3 - 2 \\cdot 1 = 13$, and areas are multiplied by its absolute value: $3 \\cdot 13 = 39$.",
+          "check": [
+            "(5)*(3) - (2)*(1) == 13",
+            "Abs(13)*3 == 39"
+          ]
+        },
+        {
+          "id": "VM-tma-v05",
+          "statement": "A figure of area $6$ is transformed by the matrix $\\begin{pmatrix} 4 & 1 \\\\ 1 & 2 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$42$",
+            "$7$",
+            "$54$",
+            "$13$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The determinant is $4 \\cdot 2 - 1 \\cdot 1 = 7$, and areas are multiplied by its absolute value: $6 \\cdot 7 = 42$.",
+          "check": [
+            "(4)*(2) - (1)*(1) == 7",
+            "Abs(7)*6 == 42"
+          ]
+        },
+        {
+          "id": "VM-tma-v06",
+          "statement": "A figure of area $2$ is transformed by the matrix $\\begin{pmatrix} 0 & -2 \\\\ 3 & 0 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$6$",
+            "$12$",
+            "$8$",
+            "$0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The determinant is $0 \\cdot 0 - (-2) \\cdot 3 = 6$, and areas are multiplied by its absolute value: $2 \\cdot 6 = 12$.",
+          "check": [
+            "(0)*(0) - (-2)*(3) == 6",
+            "Abs(6)*2 == 12"
+          ]
+        },
+        {
+          "id": "VM-tma-v07",
+          "statement": "A figure of area $10$ is transformed by the matrix $\\begin{pmatrix} 1 & 4 \\\\ 2 & 3 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$5$",
+            "$110$",
+            "$50$",
+            "$15$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The determinant is $1 \\cdot 3 - 4 \\cdot 2 = -5$, and areas are multiplied by its absolute value: $10 \\cdot 5 = 50$.",
+          "check": [
+            "(1)*(3) - (4)*(2) == -5",
+            "Abs(-5)*10 == 50"
+          ]
+        },
+        {
+          "id": "VM-tma-v08",
+          "statement": "A figure of area $3$ is transformed by the matrix $\\begin{pmatrix} 6 & 1 \\\\ 2 & 2 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$10$",
+            "$42$",
+            "$13$",
+            "$30$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The determinant is $6 \\cdot 2 - 1 \\cdot 2 = 10$, and areas are multiplied by its absolute value: $3 \\cdot 10 = 30$.",
+          "check": [
+            "(6)*(2) - (1)*(2) == 10",
+            "Abs(10)*3 == 30"
+          ]
+        },
+        {
+          "id": "VM-tma-v09",
+          "statement": "A figure of area $7$ is transformed by the matrix $\\begin{pmatrix} 2 & 5 \\\\ 1 & 4 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$21$",
+            "$3$",
+            "$91$",
+            "$10$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The determinant is $2 \\cdot 4 - 5 \\cdot 1 = 3$, and areas are multiplied by its absolute value: $7 \\cdot 3 = 21$.",
+          "check": [
+            "(2)*(4) - (5)*(1) == 3",
+            "Abs(3)*7 == 21"
+          ]
+        },
+        {
+          "id": "VM-tma-v10",
+          "statement": "A figure of area $5$ is transformed by the matrix $\\begin{pmatrix} 3 & 0 \\\\ 4 & 2 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$6$",
+            "$30$",
+            "$11$",
+            "$25$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The determinant is $3 \\cdot 2 - 0 \\cdot 4 = 6$, and areas are multiplied by its absolute value: $5 \\cdot 6 = 30$.",
+          "check": [
+            "(3)*(2) - (0)*(4) == 6",
+            "Abs(6)*5 == 30"
+          ]
+        },
+        {
+          "id": "VM-tma-v11",
+          "statement": "A figure of area $4$ is transformed by the matrix $\\begin{pmatrix} 1 & -3 \\\\ 2 & 1 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$7$",
+            "$20$",
+            "$28$",
+            "$11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The determinant is $1 \\cdot 1 - (-3) \\cdot 2 = 7$, and areas are multiplied by its absolute value: $4 \\cdot 7 = 28$.",
+          "check": [
+            "(1)*(1) - (-3)*(2) == 7",
+            "Abs(7)*4 == 28"
+          ]
+        },
+        {
+          "id": "VM-tma-v12",
+          "statement": "A figure of area $8$ is transformed by the matrix $\\begin{pmatrix} 5 & 1 \\\\ 3 & 2 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$7$",
+            "$104$",
+            "$15$",
+            "$56$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The determinant is $5 \\cdot 2 - 1 \\cdot 3 = 7$, and areas are multiplied by its absolute value: $8 \\cdot 7 = 56$.",
+          "check": [
+            "(5)*(2) - (1)*(3) == 7",
+            "Abs(7)*8 == 56"
+          ]
+        },
+        {
+          "id": "VM-tma-v13",
+          "statement": "A figure of area $6$ is transformed by the matrix $\\begin{pmatrix} 2 & 3 \\\\ 4 & 1 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$60$",
+            "$10$",
+            "$84$",
+            "$16$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The determinant is $2 \\cdot 1 - 3 \\cdot 4 = -10$, and areas are multiplied by its absolute value: $6 \\cdot 10 = 60$.",
+          "check": [
+            "(2)*(1) - (3)*(4) == -10",
+            "Abs(-10)*6 == 60"
+          ]
+        },
+        {
+          "id": "VM-tma-v14",
+          "statement": "A figure of area $2$ is transformed by the matrix $\\begin{pmatrix} 7 & 2 \\\\ 3 & 1 \\end{pmatrix}$. Find the area of the image.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$26$",
+            "$3$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The determinant is $7 \\cdot 1 - 2 \\cdot 3 = 1$, and areas are multiplied by its absolute value: $2 \\cdot 1 = 2$.",
+          "check": [
+            "(7)*(1) - (2)*(3) == 1",
+            "Abs(1)*2 == 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm-identify",
+      "title": "Naming a transformation from its matrix",
+      "level": 2,
+      "skill": "Read the determinant and the columns, then name the map.",
+      "unit": "transformation-matrices",
+      "variants": [
+        {
+          "id": "VM-tmn-v01",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$",
+            "a reflection in the line $y = -x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Its determinant is $-1$, and multiplying by $(1; 0)$ gives $(1; 0)$ — that pins the transformation down as a reflection in the $x$-axis.",
+          "check": [
+            "Eq((1)*(-1) - (0)*(0), (-1))",
+            "Eq((1)*1 + (0)*0, (1))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v02",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$",
+            "a reflection in the line $y = -x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Its determinant is $-1$, and multiplying by $(1; 0)$ gives $(-1; 0)$ — that pins the transformation down as a reflection in the $y$-axis.",
+          "check": [
+            "Eq((-1)*(1) - (0)*(0), (-1))",
+            "Eq((-1)*1 + (0)*0, (-1))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v03",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$",
+            "a reflection in the line $y = -x$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Its determinant is $-1$, and multiplying by $(1; 0)$ gives $(0; 1)$ — that pins the transformation down as a reflection in the line $y = x$.",
+          "check": [
+            "Eq((0)*(0) - (1)*(1), (-1))",
+            "Eq((0)*1 + (1)*0, (0))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v04",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$",
+            "a reflection in the line $y = -x$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Its determinant is $-1$, and multiplying by $(1; 0)$ gives $(0; -1)$ — that pins the transformation down as a reflection in the line $y = -x$.",
+          "check": [
+            "Eq((0)*(0) - (-1)*(-1), (-1))",
+            "Eq((0)*1 + (-1)*0, (0))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v05",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ perform?",
+          "options": [
+            "a rotation of $90°$ counter-clockwise about the origin",
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Its determinant is $1$, and multiplying by $(1; 0)$ gives $(0; 1)$ — that pins the transformation down as a rotation of $90°$ counter-clockwise about the origin.",
+          "check": [
+            "Eq((0)*(0) - (-1)*(1), (1))",
+            "Eq((0)*1 + (-1)*0, (0))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v06",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a rotation of $270°$ counter-clockwise about the origin",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Its determinant is $1$, and multiplying by $(1; 0)$ gives $(0; -1)$ — that pins the transformation down as a rotation of $270°$ counter-clockwise about the origin.",
+          "check": [
+            "Eq((0)*(0) - (1)*(-1), (1))",
+            "Eq((0)*1 + (1)*0, (0))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v07",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "an enlargement with centre the origin and ratio $2$",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Its determinant is $4$, and multiplying by $(1; 0)$ gives $(2; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $2$.",
+          "check": [
+            "Eq((2)*(2) - (0)*(0), (4))",
+            "Eq((2)*1 + (0)*0, (2))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v08",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$",
+            "an enlargement with centre the origin and ratio $3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Its determinant is $9$, and multiplying by $(1; 0)$ gives $(3; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $3$.",
+          "check": [
+            "Eq((3)*(3) - (0)*(0), (9))",
+            "Eq((3)*1 + (0)*0, (3))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v09",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 4 & 0 \\\\ 0 & 4 \\end{pmatrix}$ perform?",
+          "options": [
+            "an enlargement with centre the origin and ratio $4$",
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Its determinant is $16$, and multiplying by $(1; 0)$ gives $(4; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $4$.",
+          "check": [
+            "Eq((4)*(4) - (0)*(0), (16))",
+            "Eq((4)*1 + (0)*0, (4))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v10",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} 6 & 0 \\\\ 0 & 6 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "an enlargement with centre the origin and ratio $6$",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Its determinant is $36$, and multiplying by $(1; 0)$ gives $(6; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $6$.",
+          "check": [
+            "Eq((6)*(6) - (0)*(0), (36))",
+            "Eq((6)*1 + (0)*0, (6))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v11",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} -3 & 0 \\\\ 0 & -3 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "an enlargement with centre the origin and ratio $-3$",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Its determinant is $9$, and multiplying by $(1; 0)$ gives $(-3; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $-3$.",
+          "check": [
+            "Eq((-3)*(-3) - (0)*(0), (9))",
+            "Eq((-3)*1 + (0)*0, (-3))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v12",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} -5 & 0 \\\\ 0 & -5 \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$",
+            "an enlargement with centre the origin and ratio $-5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Its determinant is $25$, and multiplying by $(1; 0)$ gives $(-5; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $-5$.",
+          "check": [
+            "Eq((-5)*(-5) - (0)*(0), (25))",
+            "Eq((-5)*1 + (0)*0, (-5))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v13",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} \\frac{1}{3} & 0 \\\\ 0 & \\frac{1}{3} \\end{pmatrix}$ perform?",
+          "options": [
+            "an enlargement with centre the origin and ratio $\\tfrac{1}{3}$",
+            "a reflection in the $x$-axis",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Its determinant is $\\frac{1}{9}$, and multiplying by $(1; 0)$ gives $(\\frac{1}{3}; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $\\tfrac{1}{3}$.",
+          "check": [
+            "Eq(Rational(1, 3)*Rational(1, 3) - (0)*(0), Rational(1, 9))",
+            "Eq(Rational(1, 3)*1 + (0)*0, Rational(1, 3))"
+          ]
+        },
+        {
+          "id": "VM-tmn-v14",
+          "statement": "Which transformation does the matrix $\\begin{pmatrix} \\frac{1}{4} & 0 \\\\ 0 & \\frac{1}{4} \\end{pmatrix}$ perform?",
+          "options": [
+            "a reflection in the $x$-axis",
+            "an enlargement with centre the origin and ratio $\\tfrac{1}{4}$",
+            "a reflection in the $y$-axis",
+            "a reflection in the line $y = x$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Its determinant is $\\frac{1}{16}$, and multiplying by $(1; 0)$ gives $(\\frac{1}{4}; 0)$ — that pins the transformation down as an enlargement with centre the origin and ratio $\\tfrac{1}{4}$.",
+          "check": [
+            "Eq(Rational(1, 4)*Rational(1, 4) - (0)*(0), Rational(1, 16))",
+            "Eq(Rational(1, 4)*1 + (0)*0, Rational(1, 4))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm-standard-matrix",
+      "title": "The matrix of a named transformation",
+      "level": 2,
+      "skill": "Build reflections, rotations and enlargements from the two unit points.",
+      "unit": "transformation-matrices",
+      "variants": [
+        {
+          "id": "VM-tms-v01",
+          "statement": "Which matrix performs a reflection in the $x$-axis?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Build it from the two unit points: $(1; 0)$ stays put and $(0; 1) \\to (0; -1)$, and those two destinations stand up as the columns of $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$.",
+          "check": [
+            "Eq((1)*1 + (0)*0, (1))",
+            "Eq((0)*0 + (-1)*1, (-1))"
+          ]
+        },
+        {
+          "id": "VM-tms-v02",
+          "statement": "Which matrix performs a reflection in the $y$-axis?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Build it from the two unit points: $(1; 0) \\to (-1; 0)$ and $(0; 1)$ stays put, and those two destinations stand up as the columns of $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$.",
+          "check": [
+            "Eq((-1)*1 + (0)*0, (-1))",
+            "Eq((0)*0 + (1)*1, (1))"
+          ]
+        },
+        {
+          "id": "VM-tms-v03",
+          "statement": "Which matrix performs a reflection in the line $y = x$?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Build it from the two unit points: the reflection swaps the two coordinates, and those two destinations stand up as the columns of $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$.",
+          "check": [
+            "Eq((0)*1 + (1)*0, (0))",
+            "Eq((1)*0 + (0)*1, (0))"
+          ]
+        },
+        {
+          "id": "VM-tms-v04",
+          "statement": "Which matrix performs a reflection in the line $y = -x$?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Build it from the two unit points: the coordinates swap and both change sign, and those two destinations stand up as the columns of $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$.",
+          "check": [
+            "Eq((0)*1 + (-1)*0, (0))",
+            "Eq((-1)*0 + (0)*1, (0))"
+          ]
+        },
+        {
+          "id": "VM-tms-v05",
+          "statement": "Which matrix performs a rotation of $90°$ counter-clockwise about the origin?",
+          "options": [
+            "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Build it from the two unit points: $(1; 0) \\to (0; 1)$ and $(0; 1) \\to (-1; 0)$, and those two destinations stand up as the columns of $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$.",
+          "check": [
+            "Eq((0)*1 + (-1)*0, (0))",
+            "Eq((1)*0 + (0)*1, (0))"
+          ]
+        },
+        {
+          "id": "VM-tms-v06",
+          "statement": "Which matrix performs a rotation of $270°$ counter-clockwise about the origin?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Build it from the two unit points: $(1; 0) \\to (0; -1)$ — a quarter turn clockwise, and those two destinations stand up as the columns of $\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$.",
+          "check": [
+            "Eq((0)*1 + (1)*0, (0))",
+            "Eq((-1)*0 + (0)*1, (0))"
+          ]
+        },
+        {
+          "id": "VM-tms-v07",
+          "statement": "Which matrix performs a rotation of $180°$ about the origin?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Build it from the two unit points: both coordinates change sign, and those two destinations stand up as the columns of $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$.",
+          "check": [
+            "Eq((-1)*1 + (0)*0, (-1))",
+            "Eq((0)*0 + (-1)*1, (-1))"
+          ]
+        },
+        {
+          "id": "VM-tms-v08",
+          "statement": "Which matrix performs a reflection in the origin?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Build it from the two unit points: point symmetry sends $(x; y)$ to $(-x; -y)$, and those two destinations stand up as the columns of $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$.",
+          "check": [
+            "Eq((-1)*1 + (0)*0, (-1))",
+            "Eq((0)*0 + (-1)*1, (-1))"
+          ]
+        },
+        {
+          "id": "VM-tms-v09",
+          "statement": "Which matrix performs an enlargement with centre the origin and ratio $2$?",
+          "options": [
+            "$\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Build it from the two unit points: both coordinates are multiplied by $2$, and those two destinations stand up as the columns of $\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$.",
+          "check": [
+            "Eq((2)*1 + (0)*0, (2))",
+            "Eq((0)*0 + (2)*1, (2))"
+          ]
+        },
+        {
+          "id": "VM-tms-v10",
+          "statement": "Which matrix performs an enlargement with centre the origin and ratio $3$?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Build it from the two unit points: both coordinates are multiplied by $3$, and those two destinations stand up as the columns of $\\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix}$.",
+          "check": [
+            "Eq((3)*1 + (0)*0, (3))",
+            "Eq((0)*0 + (3)*1, (3))"
+          ]
+        },
+        {
+          "id": "VM-tms-v11",
+          "statement": "Which matrix performs an enlargement with centre the origin and ratio $5$?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 5 & 0 \\\\ 0 & 5 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Build it from the two unit points: both coordinates are multiplied by $5$, and those two destinations stand up as the columns of $\\begin{pmatrix} 5 & 0 \\\\ 0 & 5 \\end{pmatrix}$.",
+          "check": [
+            "Eq((5)*1 + (0)*0, (5))",
+            "Eq((0)*0 + (5)*1, (5))"
+          ]
+        },
+        {
+          "id": "VM-tms-v12",
+          "statement": "Which matrix performs an enlargement with centre the origin and ratio $-2$?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -2 & 0 \\\\ 0 & -2 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Build it from the two unit points: the ratio is negative, so the figure also turns through $180°$, and those two destinations stand up as the columns of $\\begin{pmatrix} -2 & 0 \\\\ 0 & -2 \\end{pmatrix}$.",
+          "check": [
+            "Eq((-2)*1 + (0)*0, (-2))",
+            "Eq((0)*0 + (-2)*1, (-2))"
+          ]
+        },
+        {
+          "id": "VM-tms-v13",
+          "statement": "Which matrix performs an enlargement with centre the origin and ratio $-4$?",
+          "options": [
+            "$\\begin{pmatrix} -4 & 0 \\\\ 0 & -4 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Build it from the two unit points: the ratio is negative, so the figure also turns through $180°$, and those two destinations stand up as the columns of $\\begin{pmatrix} -4 & 0 \\\\ 0 & -4 \\end{pmatrix}$.",
+          "check": [
+            "Eq((-4)*1 + (0)*0, (-4))",
+            "Eq((0)*0 + (-4)*1, (-4))"
+          ]
+        },
+        {
+          "id": "VM-tms-v14",
+          "statement": "Which matrix performs an enlargement with centre the origin and ratio $\\tfrac{1}{2}$?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} \\frac{1}{2} & 0 \\\\ 0 & \\frac{1}{2} \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Build it from the two unit points: both coordinates are halved, and those two destinations stand up as the columns of $\\begin{pmatrix} \\frac{1}{2} & 0 \\\\ 0 & \\frac{1}{2} \\end{pmatrix}$.",
+          "check": [
+            "Eq(Rational(1, 2)*1 + (0)*0, Rational(1, 2))",
+            "Eq((0)*0 + Rational(1, 2)*1, Rational(1, 2))"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tm-compose",
+      "title": "Composing two transformations",
+      "level": 3,
+      "skill": "The first transformation is the right-hand factor of the product.",
+      "unit": "transformation-matrices",
+      "variants": [
+        {
+          "id": "VM-tmc-v01",
+          "statement": "A figure undergoes a reflection in the $x$-axis, and then a rotation of $90°$ counter-clockwise about the origin. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -1 \\\\ 1 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(1) + (-1)*(0) == 0",
+            "(1)*(0) + (0)*(-1) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v02",
+          "statement": "A figure undergoes a rotation of $90°$ counter-clockwise about the origin, and then a reflection in the $x$-axis. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & -1 \\\\ 1 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(1)*(0) + (0)*(1) == 0",
+            "(0)*(-1) + (-1)*(0) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v03",
+          "statement": "A figure undergoes a reflection in the $y$-axis, and then a rotation of $90°$ counter-clockwise about the origin. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & -1 \\\\ 1 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(-1) + (-1)*(0) == 0",
+            "(1)*(0) + (0)*(1) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v04",
+          "statement": "A figure undergoes a rotation of $90°$ counter-clockwise about the origin, and then a reflection in the $y$-axis. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & -1 \\\\ 1 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(-1)*(0) + (0)*(1) == 0",
+            "(0)*(-1) + (1)*(0) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v05",
+          "statement": "A figure undergoes a reflection in the line $y = x$, and then a rotation of $90°$ counter-clockwise about the origin. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 0 \\\\ 2 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(0) + (-1)*(1) == -1",
+            "(1)*(1) + (0)*(0) == 1"
+          ]
+        },
+        {
+          "id": "VM-tmc-v06",
+          "statement": "A figure undergoes a rotation of $90°$ counter-clockwise about the origin, and then a reflection in the line $y = x$. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 0 \\\\ 2 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(0) + (1)*(1) == 1",
+            "(1)*(-1) + (0)*(0) == -1"
+          ]
+        },
+        {
+          "id": "VM-tmc-v07",
+          "statement": "A figure undergoes a reflection in the $x$-axis, and then a rotation of $270°$ counter-clockwise about the origin. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 1 \\\\ -1 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(1) + (1)*(0) == 0",
+            "(-1)*(0) + (0)*(-1) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v08",
+          "statement": "A figure undergoes a rotation of $270°$ counter-clockwise about the origin, and then a reflection in the $x$-axis. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 1 & 1 \\\\ -1 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(1)*(0) + (0)*(-1) == 0",
+            "(0)*(1) + (-1)*(0) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v09",
+          "statement": "A figure undergoes a reflection in the line $y = -x$, and then a rotation of $90°$ counter-clockwise about the origin. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -2 \\\\ 0 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(0) + (-1)*(-1) == 1",
+            "(1)*(-1) + (0)*(0) == -1"
+          ]
+        },
+        {
+          "id": "VM-tmc-v10",
+          "statement": "A figure undergoes a rotation of $90°$ counter-clockwise about the origin, and then a reflection in the line $y = -x$. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -2 \\\\ 0 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(0) + (-1)*(1) == -1",
+            "(-1)*(-1) + (0)*(0) == 1"
+          ]
+        },
+        {
+          "id": "VM-tmc-v11",
+          "statement": "A figure undergoes a reflection in the $y$-axis, and then a rotation of $270°$ counter-clockwise about the origin. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 1 \\\\ -1 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(-1) + (1)*(0) == 0",
+            "(-1)*(0) + (0)*(1) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v12",
+          "statement": "A figure undergoes a rotation of $270°$ counter-clockwise about the origin, and then a reflection in the $y$-axis. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 1 \\\\ -1 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(-1)*(0) + (0)*(-1) == 0",
+            "(0)*(1) + (1)*(0) == 0"
+          ]
+        },
+        {
+          "id": "VM-tmc-v13",
+          "statement": "A figure undergoes a reflection in the line $y = x$, and then a rotation of $270°$ counter-clockwise about the origin. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 2 \\\\ 0 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(0) + (1)*(1) == 1",
+            "(-1)*(1) + (0)*(0) == -1"
+          ]
+        },
+        {
+          "id": "VM-tmc-v14",
+          "statement": "A figure undergoes a rotation of $270°$ counter-clockwise about the origin, and then a reflection in the line $y = x$. Which single matrix performs the combined transformation?",
+          "options": [
+            "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 2 \\\\ 0 & 0 \\end{pmatrix}$",
+            "$\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The first transformation stands nearest the point, so the product is $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix} = \\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$. Multiplying in reading order instead gives $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ — a different transformation, because matrix multiplication does not commute.",
+          "check": [
+            "(0)*(0) + (1)*(-1) == -1",
+            "(1)*(1) + (0)*(0) == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "su-equation-to-row",
+      "title": "An equation as a matrix row",
+      "level": 1,
+      "skill": "Write a zero for every missing unknown, constant past the bar.",
+      "unit": "systems-in-three-unknowns",
+      "variants": [
+        {
+          "id": "VM-sur-v01",
+          "statement": "Which row of an augmented matrix represents the equation $4x - z = 9$?",
+          "options": [
+            "$4 \\;\\; 0 \\;\\; -1 \\mid 9$",
+            "$4 \\;\\; -1 \\;\\; 9 \\mid 0$",
+            "$4 \\;\\; 0 \\;\\; 9 \\mid -1$",
+            "$-4 \\;\\; 0 \\;\\; 1 \\mid 9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $9$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(4)*1 + (0)*0 + (-1)*0 == 4",
+            "(4)*0 + (0)*1 + (-1)*0 == 0"
+          ]
+        },
+        {
+          "id": "VM-sur-v02",
+          "statement": "Which row of an augmented matrix represents the equation $3x - y = 5$?",
+          "options": [
+            "$3 \\;\\; -1 \\;\\; 5 \\mid 0$",
+            "$3 \\;\\; -1 \\;\\; 0 \\mid 5$",
+            "$-3 \\;\\; 1 \\;\\; 0 \\mid 5$",
+            "$5 \\;\\; 3 \\;\\; -1 \\mid 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $5$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(3)*1 + (-1)*0 + (0)*0 == 3",
+            "(3)*0 + (-1)*1 + (0)*0 == -1"
+          ]
+        },
+        {
+          "id": "VM-sur-v03",
+          "statement": "Which row of an augmented matrix represents the equation $x + 5z = 4$?",
+          "options": [
+            "$1 \\;\\; 5 \\;\\; 4 \\mid 0$",
+            "$1 \\;\\; 0 \\;\\; 4 \\mid 5$",
+            "$1 \\;\\; 0 \\;\\; 5 \\mid 4$",
+            "$-1 \\;\\; 0 \\;\\; -5 \\mid 4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $4$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(1)*1 + (0)*0 + (5)*0 == 1",
+            "(1)*0 + (0)*1 + (5)*0 == 0"
+          ]
+        },
+        {
+          "id": "VM-sur-v04",
+          "statement": "Which row of an augmented matrix represents the equation $2y - 3z = 7$?",
+          "options": [
+            "$2 \\;\\; -3 \\;\\; 7 \\mid 0$",
+            "$0 \\;\\; 2 \\;\\; 7 \\mid -3$",
+            "$0 \\;\\; -2 \\;\\; 3 \\mid 7$",
+            "$0 \\;\\; 2 \\;\\; -3 \\mid 7$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $7$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(0)*1 + (2)*0 + (-3)*0 == 0",
+            "(0)*0 + (2)*1 + (-3)*0 == 2"
+          ]
+        },
+        {
+          "id": "VM-sur-v05",
+          "statement": "Which row of an augmented matrix represents the equation $2x + 5y = 1$?",
+          "options": [
+            "$2 \\;\\; 5 \\;\\; 0 \\mid 1$",
+            "$2 \\;\\; 5 \\;\\; 1 \\mid 0$",
+            "$-2 \\;\\; -5 \\;\\; 0 \\mid 1$",
+            "$1 \\;\\; 2 \\;\\; 5 \\mid 0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $1$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(2)*1 + (5)*0 + (0)*0 == 2",
+            "(2)*0 + (5)*1 + (0)*0 == 5"
+          ]
+        },
+        {
+          "id": "VM-sur-v06",
+          "statement": "Which row of an augmented matrix represents the equation $-x + 3y = 6$?",
+          "options": [
+            "$-1 \\;\\; 3 \\;\\; 6 \\mid 0$",
+            "$-1 \\;\\; 3 \\;\\; 0 \\mid 6$",
+            "$1 \\;\\; -3 \\;\\; 0 \\mid 6$",
+            "$6 \\;\\; -1 \\;\\; 3 \\mid 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $6$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(-1)*1 + (3)*0 + (0)*0 == -1",
+            "(-1)*0 + (3)*1 + (0)*0 == 3"
+          ]
+        },
+        {
+          "id": "VM-sur-v07",
+          "statement": "Which row of an augmented matrix represents the equation $5x + 2z = -3$?",
+          "options": [
+            "$5 \\;\\; 2 \\;\\; -3 \\mid 0$",
+            "$5 \\;\\; 0 \\;\\; -3 \\mid 2$",
+            "$5 \\;\\; 0 \\;\\; 2 \\mid -3$",
+            "$-5 \\;\\; 0 \\;\\; -2 \\mid -3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $-3$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(5)*1 + (0)*0 + (2)*0 == 5",
+            "(5)*0 + (0)*1 + (2)*0 == 0"
+          ]
+        },
+        {
+          "id": "VM-sur-v08",
+          "statement": "Which row of an augmented matrix represents the equation $x - 4y = 8$?",
+          "options": [
+            "$1 \\;\\; -4 \\;\\; 8 \\mid 0$",
+            "$-1 \\;\\; 4 \\;\\; 0 \\mid 8$",
+            "$8 \\;\\; 1 \\;\\; -4 \\mid 0$",
+            "$1 \\;\\; -4 \\;\\; 0 \\mid 8$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $8$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(1)*1 + (-4)*0 + (0)*0 == 1",
+            "(1)*0 + (-4)*1 + (0)*0 == -4"
+          ]
+        },
+        {
+          "id": "VM-sur-v09",
+          "statement": "Which row of an augmented matrix represents the equation $y + 6z = 2$?",
+          "options": [
+            "$0 \\;\\; 1 \\;\\; 6 \\mid 2$",
+            "$1 \\;\\; 6 \\;\\; 2 \\mid 0$",
+            "$0 \\;\\; 1 \\;\\; 2 \\mid 6$",
+            "$0 \\;\\; -1 \\;\\; -6 \\mid 2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $2$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(0)*1 + (1)*0 + (6)*0 == 0",
+            "(0)*0 + (1)*1 + (6)*0 == 1"
+          ]
+        },
+        {
+          "id": "VM-sur-v10",
+          "statement": "Which row of an augmented matrix represents the equation $7x + 2y = 4$?",
+          "options": [
+            "$7 \\;\\; 2 \\;\\; 4 \\mid 0$",
+            "$7 \\;\\; 2 \\;\\; 0 \\mid 4$",
+            "$-7 \\;\\; -2 \\;\\; 0 \\mid 4$",
+            "$4 \\;\\; 7 \\;\\; 2 \\mid 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $4$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(7)*1 + (2)*0 + (0)*0 == 7",
+            "(7)*0 + (2)*1 + (0)*0 == 2"
+          ]
+        },
+        {
+          "id": "VM-sur-v11",
+          "statement": "Which row of an augmented matrix represents the equation $2x + 3z = -5$?",
+          "options": [
+            "$2 \\;\\; 3 \\;\\; -5 \\mid 0$",
+            "$2 \\;\\; 0 \\;\\; -5 \\mid 3$",
+            "$2 \\;\\; 0 \\;\\; 3 \\mid -5$",
+            "$-2 \\;\\; 0 \\;\\; -3 \\mid -5$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $-5$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(2)*1 + (0)*0 + (3)*0 == 2",
+            "(2)*0 + (0)*1 + (3)*0 == 0"
+          ]
+        },
+        {
+          "id": "VM-sur-v12",
+          "statement": "Which row of an augmented matrix represents the equation $-3y + 4z = 1$?",
+          "options": [
+            "$-3 \\;\\; 4 \\;\\; 1 \\mid 0$",
+            "$0 \\;\\; -3 \\;\\; 1 \\mid 4$",
+            "$0 \\;\\; 3 \\;\\; -4 \\mid 1$",
+            "$0 \\;\\; -3 \\;\\; 4 \\mid 1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $1$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(0)*1 + (-3)*0 + (4)*0 == 0",
+            "(0)*0 + (-3)*1 + (4)*0 == -3"
+          ]
+        },
+        {
+          "id": "VM-sur-v13",
+          "statement": "Which row of an augmented matrix represents the equation $6x - 2z = 3$?",
+          "options": [
+            "$6 \\;\\; 0 \\;\\; -2 \\mid 3$",
+            "$6 \\;\\; -2 \\;\\; 3 \\mid 0$",
+            "$6 \\;\\; 0 \\;\\; 3 \\mid -2$",
+            "$-6 \\;\\; 0 \\;\\; 2 \\mid 3$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $3$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(6)*1 + (0)*0 + (-2)*0 == 6",
+            "(6)*0 + (0)*1 + (-2)*0 == 0"
+          ]
+        },
+        {
+          "id": "VM-sur-v14",
+          "statement": "Which row of an augmented matrix represents the equation $x + y = 10$?",
+          "options": [
+            "$1 \\;\\; 1 \\;\\; 10 \\mid 0$",
+            "$1 \\;\\; 1 \\;\\; 0 \\mid 10$",
+            "$-1 \\;\\; -1 \\;\\; 0 \\mid 10$",
+            "$10 \\;\\; 1 \\;\\; 1 \\mid 0$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The columns hold the coefficients of $x$, $y$ and $z$ in that order, and a missing unknown contributes a $0$; the constant $10$ goes past the bar. Dropping the zero shifts every later column and solves a different system.",
+          "check": [
+            "(1)*1 + (1)*0 + (0)*0 == 1",
+            "(1)*0 + (1)*1 + (0)*0 == 1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "su-row-operation",
+      "title": "One row operation",
+      "level": 1,
+      "skill": "Apply R2 - kR1 across all four entries, constant included.",
+      "unit": "systems-in-three-unknowns",
+      "variants": [
+        {
+          "id": "VM-suo-v01",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; -2 \\;\\; 4 \\mid 2$ and $R_2 = 3 \\;\\; 1 \\;\\; -5 \\mid 7$. What is the new $R_2$ after the operation $R_2 - 3R_1$?",
+          "options": [
+            "$0 \\;\\; 7 \\;\\; -17 \\mid 1$",
+            "$6 \\;\\; -5 \\;\\; 7 \\mid 13$",
+            "$0 \\;\\; 7 \\;\\; -17 \\mid 7$",
+            "$-8 \\;\\; -5 \\;\\; 19 \\mid -19$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $7 - 3 \\cdot 2 = 1$, and likewise across the row, giving $0 \\;\\; 7 \\;\\; -17 \\mid 1$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(3) - (3)*(1) == 0",
+            "(1) - (3)*(-2) == 7",
+            "(7) - (3)*(2) == 1"
+          ]
+        },
+        {
+          "id": "VM-suo-v02",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 2 \\;\\; -1 \\mid 3$ and $R_2 = 2 \\;\\; 5 \\;\\; 1 \\mid 8$. What is the new $R_2$ after the operation $R_2 - 2R_1$?",
+          "options": [
+            "$4 \\;\\; 9 \\;\\; -1 \\mid 14$",
+            "$0 \\;\\; 1 \\;\\; 3 \\mid 2$",
+            "$0 \\;\\; 1 \\;\\; 3 \\mid 8$",
+            "$-3 \\;\\; -8 \\;\\; -3 \\mid -13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $8 - 2 \\cdot 3 = 2$, and likewise across the row, giving $0 \\;\\; 1 \\;\\; 3 \\mid 2$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(2) - (2)*(1) == 0",
+            "(5) - (2)*(2) == 1",
+            "(8) - (2)*(3) == 2"
+          ]
+        },
+        {
+          "id": "VM-suo-v03",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 0 \\;\\; 2 \\mid 5$ and $R_2 = 4 \\;\\; 1 \\;\\; 3 \\mid 1$. What is the new $R_2$ after the operation $R_2 - 4R_1$?",
+          "options": [
+            "$8 \\;\\; 1 \\;\\; 11 \\mid 21$",
+            "$0 \\;\\; 1 \\;\\; -5 \\mid 1$",
+            "$0 \\;\\; 1 \\;\\; -5 \\mid -19$",
+            "$-15 \\;\\; -4 \\;\\; -10 \\mid 1$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $1 - 4 \\cdot 5 = -19$, and likewise across the row, giving $0 \\;\\; 1 \\;\\; -5 \\mid -19$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(4) - (4)*(1) == 0",
+            "(1) - (4)*(0) == 1",
+            "(1) - (4)*(5) == -19"
+          ]
+        },
+        {
+          "id": "VM-suo-v04",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 3 \\;\\; 1 \\mid -2$ and $R_2 = 5 \\;\\; 2 \\;\\; 4 \\mid 6$. What is the new $R_2$ after the operation $R_2 - 5R_1$?",
+          "options": [
+            "$10 \\;\\; 17 \\;\\; 9 \\mid -4$",
+            "$0 \\;\\; -13 \\;\\; -1 \\mid 6$",
+            "$-24 \\;\\; -7 \\;\\; -19 \\mid -32$",
+            "$0 \\;\\; -13 \\;\\; -1 \\mid 16$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $6 - 5 \\cdot (-2) = 16$, and likewise across the row, giving $0 \\;\\; -13 \\;\\; -1 \\mid 16$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(5) - (5)*(1) == 0",
+            "(2) - (5)*(3) == -13",
+            "(6) - (5)*(-2) == 16"
+          ]
+        },
+        {
+          "id": "VM-suo-v05",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; -1 \\;\\; 3 \\mid 4$ and $R_2 = 2 \\;\\; 6 \\;\\; 1 \\mid 0$. What is the new $R_2$ after the operation $R_2 - 2R_1$?",
+          "options": [
+            "$0 \\;\\; 8 \\;\\; -5 \\mid -8$",
+            "$4 \\;\\; 4 \\;\\; 7 \\mid 8$",
+            "$0 \\;\\; 8 \\;\\; -5 \\mid 0$",
+            "$-3 \\;\\; -13 \\;\\; 1 \\mid 4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $0 - 2 \\cdot 4 = -8$, and likewise across the row, giving $0 \\;\\; 8 \\;\\; -5 \\mid -8$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(2) - (2)*(1) == 0",
+            "(6) - (2)*(-1) == 8",
+            "(0) - (2)*(4) == -8"
+          ]
+        },
+        {
+          "id": "VM-suo-v06",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 4 \\;\\; -2 \\mid 1$ and $R_2 = 3 \\;\\; 3 \\;\\; 3 \\mid 9$. What is the new $R_2$ after the operation $R_2 - 3R_1$?",
+          "options": [
+            "$6 \\;\\; 15 \\;\\; -3 \\mid 12$",
+            "$0 \\;\\; -9 \\;\\; 9 \\mid 6$",
+            "$0 \\;\\; -9 \\;\\; 9 \\mid 9$",
+            "$-8 \\;\\; -5 \\;\\; -11 \\mid -26$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $9 - 3 \\cdot 1 = 6$, and likewise across the row, giving $0 \\;\\; -9 \\;\\; 9 \\mid 6$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(3) - (3)*(1) == 0",
+            "(3) - (3)*(4) == -9",
+            "(9) - (3)*(1) == 6"
+          ]
+        },
+        {
+          "id": "VM-suo-v07",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 1 \\;\\; 1 \\mid 6$ and $R_2 = 2 \\;\\; -1 \\;\\; 3 \\mid 9$. What is the new $R_2$ after the operation $R_2 - 2R_1$?",
+          "options": [
+            "$4 \\;\\; 1 \\;\\; 5 \\mid 21$",
+            "$0 \\;\\; -3 \\;\\; 1 \\mid 9$",
+            "$0 \\;\\; -3 \\;\\; 1 \\mid -3$",
+            "$-3 \\;\\; 3 \\;\\; -5 \\mid -12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $9 - 2 \\cdot 6 = -3$, and likewise across the row, giving $0 \\;\\; -3 \\;\\; 1 \\mid -3$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(2) - (2)*(1) == 0",
+            "(-1) - (2)*(1) == -3",
+            "(9) - (2)*(6) == -3"
+          ]
+        },
+        {
+          "id": "VM-suo-v08",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; -3 \\;\\; 2 \\mid 0$ and $R_2 = 6 \\;\\; 1 \\;\\; 5 \\mid 4$. What is the new $R_2$ after the operation $R_2 - 6R_1$?",
+          "options": [
+            "$12 \\;\\; -17 \\;\\; 17 \\mid 4$",
+            "$-35 \\;\\; -9 \\;\\; -28 \\mid -24$",
+            "$5 \\;\\; 4 \\;\\; 3 \\mid 4$",
+            "$0 \\;\\; 19 \\;\\; -7 \\mid 4$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $4 - 6 \\cdot 0 = 4$, and likewise across the row, giving $0 \\;\\; 19 \\;\\; -7 \\mid 4$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(6) - (6)*(1) == 0",
+            "(1) - (6)*(-3) == 19",
+            "(4) - (6)*(0) == 4"
+          ]
+        },
+        {
+          "id": "VM-suo-v09",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 2 \\;\\; 5 \\mid 7$ and $R_2 = 3 \\;\\; -2 \\;\\; 1 \\mid 2$. What is the new $R_2$ after the operation $R_2 - 3R_1$?",
+          "options": [
+            "$0 \\;\\; -8 \\;\\; -14 \\mid -19$",
+            "$6 \\;\\; 4 \\;\\; 16 \\mid 23$",
+            "$0 \\;\\; -8 \\;\\; -14 \\mid 2$",
+            "$-8 \\;\\; 8 \\;\\; 2 \\mid 1$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $2 - 3 \\cdot 7 = -19$, and likewise across the row, giving $0 \\;\\; -8 \\;\\; -14 \\mid -19$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(3) - (3)*(1) == 0",
+            "(-2) - (3)*(2) == -8",
+            "(2) - (3)*(7) == -19"
+          ]
+        },
+        {
+          "id": "VM-suo-v10",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 5 \\;\\; -1 \\mid 3$ and $R_2 = 4 \\;\\; 0 \\;\\; 2 \\mid 8$. What is the new $R_2$ after the operation $R_2 - 4R_1$?",
+          "options": [
+            "$8 \\;\\; 20 \\;\\; -2 \\mid 20$",
+            "$0 \\;\\; -20 \\;\\; 6 \\mid -4$",
+            "$0 \\;\\; -20 \\;\\; 6 \\mid 8$",
+            "$-15 \\;\\; 5 \\;\\; -9 \\mid -29$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $8 - 4 \\cdot 3 = -4$, and likewise across the row, giving $0 \\;\\; -20 \\;\\; 6 \\mid -4$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(4) - (4)*(1) == 0",
+            "(0) - (4)*(5) == -20",
+            "(8) - (4)*(3) == -4"
+          ]
+        },
+        {
+          "id": "VM-suo-v11",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; -2 \\;\\; 1 \\mid 5$ and $R_2 = 2 \\;\\; 3 \\;\\; 7 \\mid 1$. What is the new $R_2$ after the operation $R_2 - 2R_1$?",
+          "options": [
+            "$4 \\;\\; -1 \\;\\; 9 \\mid 11$",
+            "$0 \\;\\; 7 \\;\\; 5 \\mid 1$",
+            "$0 \\;\\; 7 \\;\\; 5 \\mid -9$",
+            "$-3 \\;\\; -8 \\;\\; -13 \\mid 3$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $1 - 2 \\cdot 5 = -9$, and likewise across the row, giving $0 \\;\\; 7 \\;\\; 5 \\mid -9$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(2) - (2)*(1) == 0",
+            "(3) - (2)*(-2) == 7",
+            "(1) - (2)*(5) == -9"
+          ]
+        },
+        {
+          "id": "VM-suo-v12",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 6 \\;\\; 3 \\mid -4$ and $R_2 = 5 \\;\\; 1 \\;\\; 0 \\mid 2$. What is the new $R_2$ after the operation $R_2 - 5R_1$?",
+          "options": [
+            "$10 \\;\\; 31 \\;\\; 15 \\mid -18$",
+            "$0 \\;\\; -29 \\;\\; -15 \\mid 2$",
+            "$-24 \\;\\; 1 \\;\\; 3 \\mid -14$",
+            "$0 \\;\\; -29 \\;\\; -15 \\mid 22$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $2 - 5 \\cdot (-4) = 22$, and likewise across the row, giving $0 \\;\\; -29 \\;\\; -15 \\mid 22$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(5) - (5)*(1) == 0",
+            "(1) - (5)*(6) == -29",
+            "(2) - (5)*(-4) == 22"
+          ]
+        },
+        {
+          "id": "VM-suo-v13",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 0 \\;\\; -3 \\mid 8$ and $R_2 = 7 \\;\\; 2 \\;\\; 1 \\mid 5$. What is the new $R_2$ after the operation $R_2 - 7R_1$?",
+          "options": [
+            "$0 \\;\\; 2 \\;\\; 22 \\mid -51$",
+            "$14 \\;\\; 2 \\;\\; -20 \\mid 61$",
+            "$0 \\;\\; 2 \\;\\; 22 \\mid 5$",
+            "$-48 \\;\\; -14 \\;\\; -10 \\mid -27$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $5 - 7 \\cdot 8 = -51$, and likewise across the row, giving $0 \\;\\; 2 \\;\\; 22 \\mid -51$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(7) - (7)*(1) == 0",
+            "(2) - (7)*(0) == 2",
+            "(5) - (7)*(8) == -51"
+          ]
+        },
+        {
+          "id": "VM-suo-v14",
+          "statement": "An augmented matrix has $R_1 = 1 \\;\\; 2 \\;\\; 2 \\mid 1$ and $R_2 = 3 \\;\\; 5 \\;\\; 8 \\mid 3$. What is the new $R_2$ after the operation $R_2 - 3R_1$?",
+          "options": [
+            "$6 \\;\\; 11 \\;\\; 14 \\mid 6$",
+            "$0 \\;\\; -1 \\;\\; 2 \\mid 0$",
+            "$0 \\;\\; -1 \\;\\; 2 \\mid 3$",
+            "$-8 \\;\\; -13 \\;\\; -22 \\mid -8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Subtract entry by entry, INCLUDING the constant past the bar: $3 - 3 \\cdot 1 = 0$, and likewise across the row, giving $0 \\;\\; -1 \\;\\; 2 \\mid 0$. Leaving the constant untouched is the classic error.",
+          "check": [
+            "(3) - (3)*(1) == 0",
+            "(5) - (3)*(2) == -1",
+            "(3) - (3)*(1) == 0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "su-back-substitution",
+      "title": "Back-substitution",
+      "level": 2,
+      "skill": "Read a triangular system from the bottom row upward.",
+      "unit": "systems-in-three-unknowns",
+      "variants": [
+        {
+          "id": "VM-suz-v01",
+          "statement": "Solve $\\begin{cases} x + y + z = 2 \\\\ y + 2z = 5 \\\\ 3z = 9 \\end{cases}$ for $x$.",
+          "options": [
+            "$0$",
+            "$-1$",
+            "$3$",
+            "$2$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The system is already triangular. The last equation gives $z = 3$, the second then gives $y = -1$, and substituting both into the first gives $x = 0$.",
+          "check": [
+            "Eq(Rational(9, 3), 3)",
+            "Eq(Rational(5 - (2)*(3), 1), -1)",
+            "Eq((1)*(0) + (1)*(-1) + (1)*(3), 2)"
+          ]
+        },
+        {
+          "id": "VM-suz-v02",
+          "statement": "Solve $\\begin{cases} x + 2y - z = 3 \\\\ y + z = 7 \\\\ 2z = 8 \\end{cases}$ for $x$.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$4$",
+            "$2$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The system is already triangular. The last equation gives $z = 4$, the second then gives $y = 3$, and substituting both into the first gives $x = 1$.",
+          "check": [
+            "Eq(Rational(8, 2), 4)",
+            "Eq(Rational(7 - (1)*(4), 1), 3)",
+            "Eq((1)*(1) + (2)*(3) + (-1)*(4), 3)"
+          ]
+        },
+        {
+          "id": "VM-suz-v03",
+          "statement": "Solve $\\begin{cases} x - y + 2z = 11 \\\\ 2y + z = 7 \\\\ 5z = 25 \\end{cases}$ for $x$.",
+          "options": [
+            "$1$",
+            "$5$",
+            "$2$",
+            "$11$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The system is already triangular. The last equation gives $z = 5$, the second then gives $y = 1$, and substituting both into the first gives $x = 2$.",
+          "check": [
+            "Eq(Rational(25, 5), 5)",
+            "Eq(Rational(7 - (1)*(5), 2), 1)",
+            "Eq((1)*(2) + (-1)*(1) + (2)*(5), 11)"
+          ]
+        },
+        {
+          "id": "VM-suz-v04",
+          "statement": "Solve $\\begin{cases} x + 3y + z = 15 \\\\ y - 2z = 3 \\\\ 4z = 4 \\end{cases}$ for $x$.",
+          "options": [
+            "$5$",
+            "$1$",
+            "$15$",
+            "$-1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The system is already triangular. The last equation gives $z = 1$, the second then gives $y = 5$, and substituting both into the first gives $x = -1$.",
+          "check": [
+            "Eq(Rational(4, 4), 1)",
+            "Eq(Rational(3 - (-2)*(1), 1), 5)",
+            "Eq((1)*(-1) + (3)*(5) + (1)*(1), 15)"
+          ]
+        },
+        {
+          "id": "VM-suz-v05",
+          "statement": "Solve $\\begin{cases} x + y - 2z = 0 \\\\ 3y + z = 9 \\\\ 2z = 6 \\end{cases}$ for $x$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$3$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The system is already triangular. The last equation gives $z = 3$, the second then gives $y = 2$, and substituting both into the first gives $x = 4$.",
+          "check": [
+            "Eq(Rational(6, 2), 3)",
+            "Eq(Rational(9 - (1)*(3), 3), 2)",
+            "Eq((1)*(4) + (1)*(2) + (-2)*(3), 0)"
+          ]
+        },
+        {
+          "id": "VM-suz-v06",
+          "statement": "Solve $\\begin{cases} x - 2y + z = 8 \\\\ y + 3z = 1 \\\\ 6z = 6 \\end{cases}$ for $x$.",
+          "options": [
+            "$-2$",
+            "$3$",
+            "$1$",
+            "$8$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The system is already triangular. The last equation gives $z = 1$, the second then gives $y = -2$, and substituting both into the first gives $x = 3$.",
+          "check": [
+            "Eq(Rational(6, 6), 1)",
+            "Eq(Rational(1 - (3)*(1), 1), -2)",
+            "Eq((1)*(3) + (-2)*(-2) + (1)*(1), 8)"
+          ]
+        },
+        {
+          "id": "VM-suz-v07",
+          "statement": "Solve $\\begin{cases} x + 2y + 2z = 22 \\\\ 2y - z = 2 \\\\ 3z = 18 \\end{cases}$ for $x$.",
+          "options": [
+            "$4$",
+            "$6$",
+            "$2$",
+            "$22$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The system is already triangular. The last equation gives $z = 6$, the second then gives $y = 4$, and substituting both into the first gives $x = 2$.",
+          "check": [
+            "Eq(Rational(18, 3), 6)",
+            "Eq(Rational(2 - (-1)*(6), 2), 4)",
+            "Eq((1)*(2) + (2)*(4) + (2)*(6), 22)"
+          ]
+        },
+        {
+          "id": "VM-suz-v08",
+          "statement": "Solve $\\begin{cases} x + y + 3z = 18 \\\\ y + z = 5 \\\\ 4z = 16 \\end{cases}$ for $x$.",
+          "options": [
+            "$1$",
+            "$4$",
+            "$18$",
+            "$5$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The system is already triangular. The last equation gives $z = 4$, the second then gives $y = 1$, and substituting both into the first gives $x = 5$.",
+          "check": [
+            "Eq(Rational(16, 4), 4)",
+            "Eq(Rational(5 - (1)*(4), 1), 1)",
+            "Eq((1)*(5) + (1)*(1) + (3)*(4), 18)"
+          ]
+        },
+        {
+          "id": "VM-suz-v09",
+          "statement": "Solve $\\begin{cases} x - y + z = 4 \\\\ 2y + 3z = 19 \\\\ 5z = 25 \\end{cases}$ for $x$.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$5$",
+            "$4$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The system is already triangular. The last equation gives $z = 5$, the second then gives $y = 2$, and substituting both into the first gives $x = 1$.",
+          "check": [
+            "Eq(Rational(25, 5), 5)",
+            "Eq(Rational(19 - (3)*(5), 2), 2)",
+            "Eq((1)*(1) + (-1)*(2) + (1)*(5), 4)"
+          ]
+        },
+        {
+          "id": "VM-suz-v10",
+          "statement": "Solve $\\begin{cases} x + 4y - z = 11 \\\\ y + 2z = 5 \\\\ 3z = 3 \\end{cases}$ for $x$.",
+          "options": [
+            "$3$",
+            "$0$",
+            "$1$",
+            "$11$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The system is already triangular. The last equation gives $z = 1$, the second then gives $y = 3$, and substituting both into the first gives $x = 0$.",
+          "check": [
+            "Eq(Rational(3, 3), 1)",
+            "Eq(Rational(5 - (2)*(1), 1), 3)",
+            "Eq((1)*(0) + (4)*(3) + (-1)*(1), 11)"
+          ]
+        },
+        {
+          "id": "VM-suz-v11",
+          "statement": "Solve $\\begin{cases} x + 2y + z = 10 \\\\ 3y - 2z = -1 \\\\ 2z = 4 \\end{cases}$ for $x$.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$6$",
+            "$10$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The system is already triangular. The last equation gives $z = 2$, the second then gives $y = 1$, and substituting both into the first gives $x = 6$.",
+          "check": [
+            "Eq(Rational(4, 2), 2)",
+            "Eq(Rational(-1 - (-2)*(2), 3), 1)",
+            "Eq((1)*(6) + (2)*(1) + (1)*(2), 10)"
+          ]
+        },
+        {
+          "id": "VM-suz-v12",
+          "statement": "Solve $\\begin{cases} x - 3y + 2z = -7 \\\\ y + 4z = 17 \\\\ 7z = 21 \\end{cases}$ for $x$.",
+          "options": [
+            "$5$",
+            "$3$",
+            "$-7$",
+            "$2$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The system is already triangular. The last equation gives $z = 3$, the second then gives $y = 5$, and substituting both into the first gives $x = 2$.",
+          "check": [
+            "Eq(Rational(21, 7), 3)",
+            "Eq(Rational(17 - (4)*(3), 1), 5)",
+            "Eq((1)*(2) + (-3)*(5) + (2)*(3), -7)"
+          ]
+        },
+        {
+          "id": "VM-suz-v13",
+          "statement": "Solve $\\begin{cases} x + y + 4z = 9 \\\\ 2y + 2z = 6 \\\\ 6z = 6 \\end{cases}$ for $x$.",
+          "options": [
+            "$3$",
+            "$2$",
+            "$1$",
+            "$9$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The system is already triangular. The last equation gives $z = 1$, the second then gives $y = 2$, and substituting both into the first gives $x = 3$.",
+          "check": [
+            "Eq(Rational(6, 6), 1)",
+            "Eq(Rational(6 - (2)*(1), 2), 2)",
+            "Eq((1)*(3) + (1)*(2) + (4)*(1), 9)"
+          ]
+        },
+        {
+          "id": "VM-suz-v14",
+          "statement": "Solve $\\begin{cases} x + 5y + z = 20 \\\\ y - z = 2 \\\\ 4z = 8 \\end{cases}$ for $x$.",
+          "options": [
+            "$4$",
+            "$-2$",
+            "$2$",
+            "$20$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The system is already triangular. The last equation gives $z = 2$, the second then gives $y = 4$, and substituting both into the first gives $x = -2$.",
+          "check": [
+            "Eq(Rational(8, 4), 2)",
+            "Eq(Rational(2 - (-1)*(2), 1), 4)",
+            "Eq((1)*(-2) + (5)*(4) + (1)*(2), 20)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "su-classify",
+      "title": "How many solutions?",
+      "level": 2,
+      "skill": "Read the final row: a contradiction, a free unknown, or a unique answer.",
+      "unit": "systems-in-three-unknowns",
+      "variants": [
+        {
+          "id": "VM-suc-v01",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 2 \\;\\; -1 \\mid 3$, $0 \\;\\; 1 \\;\\; 4 \\mid 5$ and $0 \\;\\; 0 \\;\\; 0 \\mid 7$. How many solutions does the system have?",
+          "options": [
+            "no solution",
+            "exactly one solution",
+            "infinitely many solutions",
+            "exactly two solutions"
+          ],
+          "correctIndex": 0,
+          "explanation": "The last row reads $0 = 7$, which nothing can satisfy.",
+          "check": [
+            "Ne(0, 7)"
+          ]
+        },
+        {
+          "id": "VM-suc-v02",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 1 \\;\\; 1 \\mid 6$, $0 \\;\\; 3 \\;\\; 2 \\mid 4$ and $0 \\;\\; 0 \\;\\; 0 \\mid 0$. How many solutions does the system have?",
+          "options": [
+            "no solution",
+            "infinitely many solutions",
+            "exactly one solution",
+            "exactly two solutions"
+          ],
+          "correctIndex": 1,
+          "explanation": "The last row reads $0 = 0$: one equation carried no new information, so a free unknown remains and the solutions form a line.",
+          "check": [
+            "Eq(0*1 + 0*2 + 0*3, 0)"
+          ]
+        },
+        {
+          "id": "VM-suc-v03",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; -1 \\;\\; 2 \\mid 4$, $0 \\;\\; 2 \\;\\; 1 \\mid 3$ and $0 \\;\\; 0 \\;\\; 5 \\mid 10$. How many solutions does the system have?",
+          "options": [
+            "no solution",
+            "infinitely many solutions",
+            "exactly one solution",
+            "exactly two solutions"
+          ],
+          "correctIndex": 2,
+          "explanation": "The last row gives $z = 2$ on its own, and back-substitution then pins down $y$ and $x$ uniquely.",
+          "check": [
+            "Ne(5, 0)",
+            "Eq(Rational(10, 5), 2)"
+          ]
+        },
+        {
+          "id": "VM-suc-v04",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 3 \\;\\; 0 \\mid 2$, $0 \\;\\; 1 \\;\\; -2 \\mid 1$ and $0 \\;\\; 0 \\;\\; 0 \\mid -4$. How many solutions does the system have?",
+          "options": [
+            "exactly one solution",
+            "infinitely many solutions",
+            "exactly two solutions",
+            "no solution"
+          ],
+          "correctIndex": 3,
+          "explanation": "The last row reads $0 = -4$, which nothing can satisfy.",
+          "check": [
+            "Ne(0, -4)"
+          ]
+        },
+        {
+          "id": "VM-suc-v05",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 0 \\;\\; 4 \\mid 7$, $0 \\;\\; 1 \\;\\; 1 \\mid 2$ and $0 \\;\\; 0 \\;\\; 3 \\mid 9$. How many solutions does the system have?",
+          "options": [
+            "exactly one solution",
+            "no solution",
+            "infinitely many solutions",
+            "exactly two solutions"
+          ],
+          "correctIndex": 0,
+          "explanation": "The last row gives $z = 3$ on its own, and back-substitution then pins down $y$ and $x$ uniquely.",
+          "check": [
+            "Ne(3, 0)",
+            "Eq(Rational(9, 3), 3)"
+          ]
+        },
+        {
+          "id": "VM-suc-v06",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 2 \\;\\; 2 \\mid 5$, $0 \\;\\; -1 \\;\\; 3 \\mid 1$ and $0 \\;\\; 0 \\;\\; 0 \\mid 0$. How many solutions does the system have?",
+          "options": [
+            "no solution",
+            "infinitely many solutions",
+            "exactly one solution",
+            "exactly two solutions"
+          ],
+          "correctIndex": 1,
+          "explanation": "The last row reads $0 = 0$: one equation carried no new information, so a free unknown remains and the solutions form a line.",
+          "check": [
+            "Eq(0*1 + 0*2 + 0*3, 0)"
+          ]
+        },
+        {
+          "id": "VM-suc-v07",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 1 \\;\\; -3 \\mid 0$, $0 \\;\\; 4 \\;\\; 1 \\mid 8$ and $0 \\;\\; 0 \\;\\; 2 \\mid 6$. How many solutions does the system have?",
+          "options": [
+            "no solution",
+            "infinitely many solutions",
+            "exactly one solution",
+            "exactly two solutions"
+          ],
+          "correctIndex": 2,
+          "explanation": "The last row gives $z = 3$ on its own, and back-substitution then pins down $y$ and $x$ uniquely.",
+          "check": [
+            "Ne(2, 0)",
+            "Eq(Rational(6, 2), 3)"
+          ]
+        },
+        {
+          "id": "VM-suc-v08",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; -2 \\;\\; 1 \\mid 9$, $0 \\;\\; 1 \\;\\; 5 \\mid 3$ and $0 \\;\\; 0 \\;\\; 0 \\mid 2$. How many solutions does the system have?",
+          "options": [
+            "exactly one solution",
+            "infinitely many solutions",
+            "exactly two solutions",
+            "no solution"
+          ],
+          "correctIndex": 3,
+          "explanation": "The last row reads $0 = 2$, which nothing can satisfy.",
+          "check": [
+            "Ne(0, 2)"
+          ]
+        },
+        {
+          "id": "VM-suc-v09",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 5 \\;\\; 1 \\mid 1$, $0 \\;\\; 2 \\;\\; -1 \\mid 4$ and $0 \\;\\; 0 \\;\\; 0 \\mid 0$. How many solutions does the system have?",
+          "options": [
+            "infinitely many solutions",
+            "no solution",
+            "exactly one solution",
+            "exactly two solutions"
+          ],
+          "correctIndex": 0,
+          "explanation": "The last row reads $0 = 0$: one equation carried no new information, so a free unknown remains and the solutions form a line.",
+          "check": [
+            "Eq(0*1 + 0*2 + 0*3, 0)"
+          ]
+        },
+        {
+          "id": "VM-suc-v10",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 1 \\;\\; 2 \\mid 8$, $0 \\;\\; 3 \\;\\; 3 \\mid 6$ and $0 \\;\\; 0 \\;\\; 1 \\mid 4$. How many solutions does the system have?",
+          "options": [
+            "no solution",
+            "exactly one solution",
+            "infinitely many solutions",
+            "exactly two solutions"
+          ],
+          "correctIndex": 1,
+          "explanation": "The last row gives $z = 4$ on its own, and back-substitution then pins down $y$ and $x$ uniquely.",
+          "check": [
+            "Ne(1, 0)",
+            "Eq(Rational(4, 1), 4)"
+          ]
+        },
+        {
+          "id": "VM-suc-v11",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; -1 \\;\\; 0 \\mid 5$, $0 \\;\\; 1 \\;\\; 2 \\mid 7$ and $0 \\;\\; 0 \\;\\; 0 \\mid -1$. How many solutions does the system have?",
+          "options": [
+            "exactly one solution",
+            "infinitely many solutions",
+            "no solution",
+            "exactly two solutions"
+          ],
+          "correctIndex": 2,
+          "explanation": "The last row reads $0 = -1$, which nothing can satisfy.",
+          "check": [
+            "Ne(0, -1)"
+          ]
+        },
+        {
+          "id": "VM-suc-v12",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 4 \\;\\; -1 \\mid 3$, $0 \\;\\; 1 \\;\\; 1 \\mid 5$ and $0 \\;\\; 0 \\;\\; 0 \\mid 0$. How many solutions does the system have?",
+          "options": [
+            "no solution",
+            "exactly one solution",
+            "exactly two solutions",
+            "infinitely many solutions"
+          ],
+          "correctIndex": 3,
+          "explanation": "The last row reads $0 = 0$: one equation carried no new information, so a free unknown remains and the solutions form a line.",
+          "check": [
+            "Eq(0*1 + 0*2 + 0*3, 0)"
+          ]
+        },
+        {
+          "id": "VM-suc-v13",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 2 \\;\\; 3 \\mid 6$, $0 \\;\\; 5 \\;\\; 2 \\mid 1$ and $0 \\;\\; 0 \\;\\; 4 \\mid 8$. How many solutions does the system have?",
+          "options": [
+            "exactly one solution",
+            "no solution",
+            "infinitely many solutions",
+            "exactly two solutions"
+          ],
+          "correctIndex": 0,
+          "explanation": "The last row gives $z = 2$ on its own, and back-substitution then pins down $y$ and $x$ uniquely.",
+          "check": [
+            "Ne(4, 0)",
+            "Eq(Rational(8, 4), 2)"
+          ]
+        },
+        {
+          "id": "VM-suc-v14",
+          "statement": "Gaussian elimination reduces a system in $x$, $y$, $z$ to the rows $1 \\;\\; 0 \\;\\; -2 \\mid 2$, $0 \\;\\; 2 \\;\\; 1 \\mid 3$ and $0 \\;\\; 0 \\;\\; 0 \\mid 5$. How many solutions does the system have?",
+          "options": [
+            "exactly one solution",
+            "no solution",
+            "infinitely many solutions",
+            "exactly two solutions"
+          ],
+          "correctIndex": 1,
+          "explanation": "The last row reads $0 = 5$, which nothing can satisfy.",
+          "check": [
+            "Ne(0, 5)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "su-determinant-3x3",
+      "title": "A 3x3 determinant",
+      "level": 2,
+      "skill": "Expand into three 2x2 minors with the signs plus, minus, plus.",
+      "unit": "systems-in-three-unknowns",
+      "variants": [
+        {
+          "id": "VM-sud-v01",
+          "statement": "Compute $\\det \\begin{pmatrix} 2 & -1 & 3 \\\\ 0 & 4 & 1 \\\\ 5 & 2 & -2 \\end{pmatrix}$.",
+          "options": [
+            "$-85$",
+            "$-75$",
+            "$-21$",
+            "$85$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $2(4 \\cdot (-2) - 1 \\cdot 2) - (-1)(0 \\cdot (-2) - 1 \\cdot 5) + 3(0 \\cdot 2 - 4 \\cdot 5) = -85$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(2)*((4)*(-2) - (1)*(2)) - (-1)*((0)*(-2) - (1)*(5)) + (3)*((0)*(2) - (4)*(5)) == -85"
+          ]
+        },
+        {
+          "id": "VM-sud-v02",
+          "statement": "Compute $\\det \\begin{pmatrix} 1 & 2 & 0 \\\\ 3 & -1 & 4 \\\\ 2 & 0 & 5 \\end{pmatrix}$.",
+          "options": [
+            "$9$",
+            "$-19$",
+            "$11$",
+            "$19$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $1((-1) \\cdot 5 - 4 \\cdot 0) - 2(3 \\cdot 5 - 4 \\cdot 2) + 0(3 \\cdot 0 - (-1) \\cdot 2) = -19$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(1)*((-1)*(5) - (4)*(0)) - (2)*((3)*(5) - (4)*(2)) + (0)*((3)*(0) - (-1)*(2)) == -19"
+          ]
+        },
+        {
+          "id": "VM-sud-v03",
+          "statement": "Compute $\\det \\begin{pmatrix} 3 & 0 & 0 \\\\ 7 & -2 & 5 \\\\ 1 & 6 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$-24$",
+            "$114$",
+            "$-114$",
+            "$-113$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $3((-2) \\cdot 4 - 5 \\cdot 6) - 0(7 \\cdot 4 - 5 \\cdot 1) + 0(7 \\cdot 6 - (-2) \\cdot 1) = -114$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(3)*((-2)*(4) - (5)*(6)) - (0)*((7)*(4) - (5)*(1)) + (0)*((7)*(6) - (-2)*(1)) == -114"
+          ]
+        },
+        {
+          "id": "VM-sud-v04",
+          "statement": "Compute $\\det \\begin{pmatrix} 1 & 0 & 2 \\\\ 2 & -1 & 3 \\\\ 4 & 1 & 8 \\end{pmatrix}$.",
+          "options": [
+            "$-4$",
+            "$-1$",
+            "$-8$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $1((-1) \\cdot 8 - 3 \\cdot 1) - 0(2 \\cdot 8 - 3 \\cdot 4) + 2(2 \\cdot 1 - (-1) \\cdot 4) = 1$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(1)*((-1)*(8) - (3)*(1)) - (0)*((2)*(8) - (3)*(4)) + (2)*((2)*(1) - (-1)*(4)) == 1"
+          ]
+        },
+        {
+          "id": "VM-sud-v05",
+          "statement": "Compute $\\det \\begin{pmatrix} 2 & 1 & 0 \\\\ 1 & 3 & -1 \\\\ 0 & 2 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$24$",
+            "$32$",
+            "$-24$",
+            "$25$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $2(3 \\cdot 4 - (-1) \\cdot 2) - 1(1 \\cdot 4 - (-1) \\cdot 0) + 0(1 \\cdot 2 - 3 \\cdot 0) = 24$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(2)*((3)*(4) - (-1)*(2)) - (1)*((1)*(4) - (-1)*(0)) + (0)*((1)*(2) - (3)*(0)) == 24"
+          ]
+        },
+        {
+          "id": "VM-sud-v06",
+          "statement": "Compute $\\det \\begin{pmatrix} 4 & -2 & 1 \\\\ 3 & 0 & 5 \\\\ -1 & 2 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$-56$",
+            "$-12$",
+            "$16$",
+            "$12$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $4(0 \\cdot 2 - 5 \\cdot 2) - (-2)(3 \\cdot 2 - 5 \\cdot (-1)) + 1(3 \\cdot 2 - 0 \\cdot (-1)) = -12$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(4)*((0)*(2) - (5)*(2)) - (-2)*((3)*(2) - (5)*(-1)) + (1)*((3)*(2) - (0)*(-1)) == -12"
+          ]
+        },
+        {
+          "id": "VM-sud-v07",
+          "statement": "Compute $\\det \\begin{pmatrix} 1 & 1 & 2 \\\\ 2 & -1 & 1 \\\\ 1 & 2 & -1 \\end{pmatrix}$.",
+          "options": [
+            "$6$",
+            "$10$",
+            "$12$",
+            "$-12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $1((-1) \\cdot (-1) - 1 \\cdot 2) - 1(2 \\cdot (-1) - 1 \\cdot 1) + 2(2 \\cdot 2 - (-1) \\cdot 1) = 12$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(1)*((-1)*(-1) - (1)*(2)) - (1)*((2)*(-1) - (1)*(1)) + (2)*((2)*(2) - (-1)*(1)) == 12"
+          ]
+        },
+        {
+          "id": "VM-sud-v08",
+          "statement": "Compute $\\det \\begin{pmatrix} 5 & 0 & 1 \\\\ 2 & 3 & 0 \\\\ 1 & 1 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$32$",
+            "$-29$",
+            "$30$",
+            "$29$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $5(3 \\cdot 2 - 0 \\cdot 1) - 0(2 \\cdot 2 - 0 \\cdot 1) + 1(2 \\cdot 1 - 3 \\cdot 1) = 29$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(5)*((3)*(2) - (0)*(1)) - (0)*((2)*(2) - (0)*(1)) + (1)*((2)*(1) - (3)*(1)) == 29"
+          ]
+        },
+        {
+          "id": "VM-sud-v09",
+          "statement": "Compute $\\det \\begin{pmatrix} 2 & 2 & 1 \\\\ 0 & 1 & 3 \\\\ 4 & 0 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$22$",
+            "$-26$",
+            "$26$",
+            "$-22$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $2(1 \\cdot 1 - 3 \\cdot 0) - 2(0 \\cdot 1 - 3 \\cdot 4) + 1(0 \\cdot 0 - 1 \\cdot 4) = 22$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(2)*((1)*(1) - (3)*(0)) - (2)*((0)*(1) - (3)*(4)) + (1)*((0)*(0) - (1)*(4)) == 22"
+          ]
+        },
+        {
+          "id": "VM-sud-v10",
+          "statement": "Compute $\\det \\begin{pmatrix} 1 & -1 & 0 \\\\ 2 & 3 & 1 \\\\ 0 & 4 & 2 \\end{pmatrix}$.",
+          "options": [
+            "$-2$",
+            "$6$",
+            "$-6$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $1(3 \\cdot 2 - 1 \\cdot 4) - (-1)(2 \\cdot 2 - 1 \\cdot 0) + 0(2 \\cdot 4 - 3 \\cdot 0) = 6$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(1)*((3)*(2) - (1)*(4)) - (-1)*((2)*(2) - (1)*(0)) + (0)*((2)*(4) - (3)*(0)) == 6"
+          ]
+        },
+        {
+          "id": "VM-sud-v11",
+          "statement": "Compute $\\det \\begin{pmatrix} 3 & 1 & 2 \\\\ 1 & 0 & 4 \\\\ 2 & 5 & 1 \\end{pmatrix}$.",
+          "options": [
+            "$-57$",
+            "$18$",
+            "$-43$",
+            "$43$"
+          ],
+          "correctIndex": 2,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $3(0 \\cdot 1 - 4 \\cdot 5) - 1(1 \\cdot 1 - 4 \\cdot 2) + 2(1 \\cdot 5 - 0 \\cdot 2) = -43$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(3)*((0)*(1) - (4)*(5)) - (1)*((1)*(1) - (4)*(2)) + (2)*((1)*(5) - (0)*(2)) == -43"
+          ]
+        },
+        {
+          "id": "VM-sud-v12",
+          "statement": "Compute $\\det \\begin{pmatrix} 1 & 3 & 0 \\\\ 4 & 1 & 2 \\\\ 0 & 2 & 5 \\end{pmatrix}$.",
+          "options": [
+            "$61$",
+            "$5$",
+            "$59$",
+            "$-59$"
+          ],
+          "correctIndex": 3,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $1(1 \\cdot 5 - 2 \\cdot 2) - 3(4 \\cdot 5 - 2 \\cdot 0) + 0(4 \\cdot 2 - 1 \\cdot 0) = -59$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(1)*((1)*(5) - (2)*(2)) - (3)*((4)*(5) - (2)*(0)) + (0)*((4)*(2) - (1)*(0)) == -59"
+          ]
+        },
+        {
+          "id": "VM-sud-v13",
+          "statement": "Compute $\\det \\begin{pmatrix} 2 & 0 & 3 \\\\ 1 & 4 & 1 \\\\ 3 & 1 & 0 \\end{pmatrix}$.",
+          "options": [
+            "$-35$",
+            "$3$",
+            "$35$",
+            "$0$"
+          ],
+          "correctIndex": 0,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $2(4 \\cdot 0 - 1 \\cdot 1) - 0(1 \\cdot 0 - 1 \\cdot 3) + 3(1 \\cdot 1 - 4 \\cdot 3) = -35$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(2)*((4)*(0) - (1)*(1)) - (0)*((1)*(0) - (1)*(3)) + (3)*((1)*(1) - (4)*(3)) == -35"
+          ]
+        },
+        {
+          "id": "VM-sud-v14",
+          "statement": "Compute $\\det \\begin{pmatrix} 6 & 1 & 0 \\\\ 2 & 2 & 3 \\\\ 1 & 0 & 4 \\end{pmatrix}$.",
+          "options": [
+            "$53$",
+            "$43$",
+            "$51$",
+            "$-43$"
+          ],
+          "correctIndex": 1,
+          "explanation": "Expand along the first row with the signs $+, -, +$: $6(2 \\cdot 4 - 3 \\cdot 0) - 1(2 \\cdot 4 - 3 \\cdot 1) + 0(2 \\cdot 0 - 2 \\cdot 1) = 43$. Forgetting the middle minus sign is the usual error.",
+          "check": [
+            "(6)*((2)*(4) - (3)*(0)) - (1)*((2)*(4) - (3)*(1)) + (0)*((2)*(0) - (2)*(1)) == 43"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "su-cramer-3x3",
+      "title": "Cramer's rule for three unknowns",
+      "level": 3,
+      "skill": "Replace the unknown's column with the constants and divide by D.",
+      "unit": "systems-in-three-unknowns",
+      "variants": [
+        {
+          "id": "VM-sux-v01",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} 2x + y - z = 3 \\\\ x - y + 2z = 7 \\\\ 3x + 2y + z = 16 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$3$",
+            "$4$",
+            "$-20$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The coefficient determinant is $D = -10$. Replacing the FIRST column by the constants $(3; 7; 16)$ gives $D_x = -20$, so $x = \\dfrac{-20}{-10} = 2$.",
+          "check": [
+            "(2)*((-1)*(1) - (2)*(2)) - (1)*((1)*(1) - (2)*(3)) + (-1)*((1)*(2) - (-1)*(3)) == -10",
+            "(3)*((-1)*(1) - (2)*(2)) - (1)*((7)*(1) - (2)*(16)) + (-1)*((7)*(2) - (-1)*(16)) == -20",
+            "Eq(Rational(-20, -10), 2)"
+          ]
+        },
+        {
+          "id": "VM-sux-v02",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} x + y + z = 6 \\\\ 2x - y + z = 3 \\\\ x + 2y - z = 2 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$3$",
+            "$7$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The coefficient determinant is $D = 7$. Replacing the FIRST column by the constants $(6; 3; 2)$ gives $D_x = 7$, so $x = \\dfrac{7}{7} = 1$.",
+          "check": [
+            "(1)*((-1)*(-1) - (1)*(2)) - (1)*((2)*(-1) - (1)*(1)) + (1)*((2)*(2) - (-1)*(1)) == 7",
+            "(6)*((-1)*(-1) - (1)*(2)) - (1)*((3)*(-1) - (1)*(2)) + (1)*((3)*(2) - (-1)*(2)) == 7",
+            "Eq(Rational(7, 7), 1)"
+          ]
+        },
+        {
+          "id": "VM-sux-v03",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} 2x + y + z = 7 \\\\ x + 2y + z = 8 \\\\ x + y + 2z = 9 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$3$",
+            "$1$",
+            "$4$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The coefficient determinant is $D = 4$. Replacing the FIRST column by the constants $(7; 8; 9)$ gives $D_x = 4$, so $x = \\dfrac{4}{4} = 1$.",
+          "check": [
+            "(2)*((2)*(2) - (1)*(1)) - (1)*((1)*(2) - (1)*(1)) + (1)*((1)*(1) - (2)*(1)) == 4",
+            "(7)*((2)*(2) - (1)*(1)) - (1)*((8)*(2) - (1)*(9)) + (1)*((8)*(1) - (2)*(9)) == 4",
+            "Eq(Rational(4, 4), 1)"
+          ]
+        },
+        {
+          "id": "VM-sux-v04",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} x + 2y + z = 7 \\\\ 2x - y + z = 7 \\\\ x + y + 3z = 10 \\end{cases}$.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$-33$",
+            "$3$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The coefficient determinant is $D = -11$. Replacing the FIRST column by the constants $(7; 7; 10)$ gives $D_x = -33$, so $x = \\dfrac{-33}{-11} = 3$.",
+          "check": [
+            "(1)*((-1)*(3) - (1)*(1)) - (2)*((2)*(3) - (1)*(1)) + (1)*((2)*(1) - (-1)*(1)) == -11",
+            "(7)*((-1)*(3) - (1)*(1)) - (2)*((7)*(3) - (1)*(10)) + (1)*((7)*(1) - (-1)*(10)) == -33",
+            "Eq(Rational(-33, -11), 3)"
+          ]
+        },
+        {
+          "id": "VM-sux-v05",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} x + y + 2z = 7 \\\\ 2x + y + z = 8 \\\\ x + 2y + z = 9 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$3$",
+            "$1$",
+            "$8$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The coefficient determinant is $D = 4$. Replacing the FIRST column by the constants $(7; 8; 9)$ gives $D_x = 8$, so $x = \\dfrac{8}{4} = 2$.",
+          "check": [
+            "(1)*((1)*(1) - (1)*(2)) - (1)*((2)*(1) - (1)*(1)) + (2)*((2)*(2) - (1)*(1)) == 4",
+            "(7)*((1)*(1) - (1)*(2)) - (1)*((8)*(1) - (1)*(9)) + (2)*((8)*(2) - (1)*(9)) == 8",
+            "Eq(Rational(8, 4), 2)"
+          ]
+        },
+        {
+          "id": "VM-sux-v06",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} 3x + y + z = 8 \\\\ x + 2y + z = 9 \\\\ x + y + 4z = 12 \\end{cases}$.",
+          "options": [
+            "$3$",
+            "$1$",
+            "$2$",
+            "$17$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The coefficient determinant is $D = 17$. Replacing the FIRST column by the constants $(8; 9; 12)$ gives $D_x = 17$, so $x = \\dfrac{17}{17} = 1$.",
+          "check": [
+            "(3)*((2)*(4) - (1)*(1)) - (1)*((1)*(4) - (1)*(1)) + (1)*((1)*(1) - (2)*(1)) == 17",
+            "(8)*((2)*(4) - (1)*(1)) - (1)*((9)*(4) - (1)*(12)) + (1)*((9)*(1) - (2)*(12)) == 17",
+            "Eq(Rational(17, 17), 1)"
+          ]
+        },
+        {
+          "id": "VM-sux-v07",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} x - y + z = 5 \\\\ 2x + y + z = 11 \\\\ x + y + 2z = 9 \\end{cases}$.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$4$",
+            "$20$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The coefficient determinant is $D = 5$. Replacing the FIRST column by the constants $(5; 11; 9)$ gives $D_x = 20$, so $x = \\dfrac{20}{5} = 4$.",
+          "check": [
+            "(1)*((1)*(2) - (1)*(1)) - (-1)*((2)*(2) - (1)*(1)) + (1)*((2)*(1) - (1)*(1)) == 5",
+            "(5)*((1)*(2) - (1)*(1)) - (-1)*((11)*(2) - (1)*(9)) + (1)*((11)*(1) - (1)*(9)) == 20",
+            "Eq(Rational(20, 5), 4)"
+          ]
+        },
+        {
+          "id": "VM-sux-v08",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} 2x + y + 3z = 16 \\\\ x + 2y + z = 9 \\\\ 3x + y + z = 9 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$4$",
+            "$-11$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The coefficient determinant is $D = -11$. Replacing the FIRST column by the constants $(16; 9; 9)$ gives $D_x = -11$, so $x = \\dfrac{-11}{-11} = 1$.",
+          "check": [
+            "(2)*((2)*(1) - (1)*(1)) - (1)*((1)*(1) - (1)*(3)) + (3)*((1)*(1) - (2)*(3)) == -11",
+            "(16)*((2)*(1) - (1)*(1)) - (1)*((9)*(1) - (1)*(9)) + (3)*((9)*(1) - (2)*(9)) == -11",
+            "Eq(Rational(-11, -11), 1)"
+          ]
+        },
+        {
+          "id": "VM-sux-v09",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} x + 2y - z = 1 \\\\ 2x + y + z = 8 \\\\ x + 3y + 2z = 11 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$3$",
+            "$-24$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The coefficient determinant is $D = -12$. Replacing the FIRST column by the constants $(1; 8; 11)$ gives $D_x = -24$, so $x = \\dfrac{-24}{-12} = 2$.",
+          "check": [
+            "(1)*((1)*(2) - (1)*(3)) - (2)*((2)*(2) - (1)*(1)) + (-1)*((2)*(3) - (1)*(1)) == -12",
+            "(1)*((1)*(2) - (1)*(3)) - (2)*((8)*(2) - (1)*(11)) + (-1)*((8)*(3) - (1)*(11)) == -24",
+            "Eq(Rational(-24, -12), 2)"
+          ]
+        },
+        {
+          "id": "VM-sux-v10",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} 4x + y + z = 12 \\\\ x + 3y + z = 8 \\\\ x + y + 2z = 9 \\end{cases}$.",
+          "options": [
+            "$1$",
+            "$2$",
+            "$3$",
+            "$34$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The coefficient determinant is $D = 17$. Replacing the FIRST column by the constants $(12; 8; 9)$ gives $D_x = 34$, so $x = \\dfrac{34}{17} = 2$.",
+          "check": [
+            "(4)*((3)*(2) - (1)*(1)) - (1)*((1)*(2) - (1)*(1)) + (1)*((1)*(1) - (3)*(1)) == 17",
+            "(12)*((3)*(2) - (1)*(1)) - (1)*((8)*(2) - (1)*(9)) + (1)*((8)*(1) - (3)*(9)) == 34",
+            "Eq(Rational(34, 17), 2)"
+          ]
+        },
+        {
+          "id": "VM-sux-v11",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} x + y + 3z = 8 \\\\ 2x + 3y + z = 13 \\\\ x + 2y + 2z = 9 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$3$",
+            "$12$"
+          ],
+          "correctIndex": 2,
+          "explanation": "The coefficient determinant is $D = 4$. Replacing the FIRST column by the constants $(8; 13; 9)$ gives $D_x = 12$, so $x = \\dfrac{12}{4} = 3$.",
+          "check": [
+            "(1)*((3)*(2) - (1)*(2)) - (1)*((2)*(2) - (1)*(1)) + (3)*((2)*(2) - (3)*(1)) == 4",
+            "(8)*((3)*(2) - (1)*(2)) - (1)*((13)*(2) - (1)*(9)) + (3)*((13)*(2) - (3)*(9)) == 12",
+            "Eq(Rational(12, 4), 3)"
+          ]
+        },
+        {
+          "id": "VM-sux-v12",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} 2x + 3y + z = 16 \\\\ x + y + 2z = 9 \\\\ 3x + y + z = 9 \\end{cases}$.",
+          "options": [
+            "$4$",
+            "$2$",
+            "$11$",
+            "$1$"
+          ],
+          "correctIndex": 3,
+          "explanation": "The coefficient determinant is $D = 11$. Replacing the FIRST column by the constants $(16; 9; 9)$ gives $D_x = 11$, so $x = \\dfrac{11}{11} = 1$.",
+          "check": [
+            "(2)*((1)*(1) - (2)*(1)) - (3)*((1)*(1) - (2)*(3)) + (1)*((1)*(1) - (1)*(3)) == 11",
+            "(16)*((1)*(1) - (2)*(1)) - (3)*((9)*(1) - (2)*(9)) + (1)*((9)*(1) - (1)*(9)) == 11",
+            "Eq(Rational(11, 11), 1)"
+          ]
+        },
+        {
+          "id": "VM-sux-v13",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} x + 4y + z = 9 \\\\ 2x + y + 3z = 14 \\\\ x + y + z = 6 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$3$",
+            "$6$"
+          ],
+          "correctIndex": 0,
+          "explanation": "The coefficient determinant is $D = 3$. Replacing the FIRST column by the constants $(9; 14; 6)$ gives $D_x = 6$, so $x = \\dfrac{6}{3} = 2$.",
+          "check": [
+            "(1)*((1)*(1) - (3)*(1)) - (4)*((2)*(1) - (3)*(1)) + (1)*((2)*(1) - (1)*(1)) == 3",
+            "(9)*((1)*(1) - (3)*(1)) - (4)*((14)*(1) - (3)*(6)) + (1)*((14)*(1) - (1)*(6)) == 6",
+            "Eq(Rational(6, 3), 2)"
+          ]
+        },
+        {
+          "id": "VM-sux-v14",
+          "statement": "Use Cramer's rule to find $x$ for the system $\\begin{cases} 3x + 2y + z = 11 \\\\ x + y + 3z = 15 \\\\ 2x + 3y + z = 12 \\end{cases}$.",
+          "options": [
+            "$2$",
+            "$1$",
+            "$4$",
+            "$-13$"
+          ],
+          "correctIndex": 1,
+          "explanation": "The coefficient determinant is $D = -13$. Replacing the FIRST column by the constants $(11; 15; 12)$ gives $D_x = -13$, so $x = \\dfrac{-13}{-13} = 1$.",
+          "check": [
+            "(3)*((1)*(1) - (3)*(3)) - (2)*((1)*(1) - (3)*(2)) + (1)*((1)*(3) - (1)*(2)) == -13",
+            "(11)*((1)*(1) - (3)*(3)) - (2)*((15)*(1) - (3)*(12)) + (1)*((15)*(3) - (1)*(12)) == -13",
+            "Eq(Rational(-13, -13), 1)"
           ]
         }
       ]

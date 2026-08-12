@@ -1,0 +1,996 @@
+{
+  "slug": "transformation-matrices",
+  "title": "Transformation Matrices",
+  "unit": 7,
+  "status": "published",
+  "blurb": "Every geometric transformation as four numbers: reflections, rotations, enlargements, the translation that needs a third coordinate, and how to compose and name them.",
+  "buildsOn": "The matrix machinery of Units 5-6, now pointed at the plane's geometry.",
+  "lessons": [
+    {
+      "slug": "the-transformation-matrix",
+      "title": "The Transformation Matrix",
+      "concreteComparison": "A transformation is a rule that moves every point of the plane at once. Written as two formulas it looks like homework; written as a matrix it is four numbers — and those four numbers are nothing more than the destinations of two points you already know.",
+      "objective": "Turn a coordinate rule into a 2x2 matrix and back, and apply a matrix to a point or to every vertex of a figure.",
+      "concept": [
+        "**A linear rule is a matrix.** If a transformation sends $(x; y)$ to $x' = ax + by$, $y' = cx + dy$, then the very same rule is $\\begin{pmatrix} x' \\\\ y' \\end{pmatrix} = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix}$. Row one builds $x'$, row two builds $y'$ — the matrix is the two rules stacked.",
+        "**The columns are destinations.** Put $(x; y) = (1; 0)$ into the product and you get the first column $(a; c)$; put in $(0; 1)$ and you get the second column $(b; d)$. So the matrix of ANY transformation can be built by asking two questions: where does $(1; 0)$ go, and where does $(0; 1)$ go?",
+        "**Transform a figure vertex by vertex.** A polygon is its corners, and straight lines stay straight under a matrix, so transforming a triangle means transforming three points and reconnecting them. One consequence is worth noticing early: $M \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ always, so the origin never moves."
+      ],
+      "keyIdea": "x' = ax + by, y' = cx + dy IS the matrix (a b; c d) — and its columns are the images of (1,0) and (0,1).",
+      "facts": [
+        {
+          "title": "Matrix form",
+          "latex": "\\begin{pmatrix} x' \\\\ y' \\end{pmatrix} = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix}",
+          "explanation": "The point rides as a column on the right; row times column gives each new coordinate."
+        },
+        {
+          "title": "Columns",
+          "latex": "\\text{col}_1 = T(1; 0), \\qquad \\text{col}_2 = T(0; 1)",
+          "explanation": "Build any transformation matrix from two destinations — no table to memorise."
+        },
+        {
+          "title": "The origin is fixed",
+          "latex": "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}",
+          "explanation": "Every 2x2 transformation keeps the origin. This becomes important in Lesson 3."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm71-we1",
+          "statement": "A transformation of the plane is given by the rules $x' = 3x - y$ and $y' = 2x + 4y$. Write its matrix, then find the image of $(2; -1)$.",
+          "solution": "The coefficients of $x$ and $y$ in the $x'$ rule are the first ROW, and the coefficients in the $y'$ rule are the second row: $M = \\begin{pmatrix} 3 & -1 \\\\ 2 & 4 \\end{pmatrix}$. Now apply it: $x' = 3 \\cdot 2 - 1 \\cdot (-1) = 7$ and $y' = 2 \\cdot 2 + 4 \\cdot (-1) = 0$, so $(2; -1) \\to (7; 0)$.",
+          "check": [
+            "3*2 - 1*(-1) == 7",
+            "2*2 + 4*(-1) == 0"
+          ]
+        },
+        {
+          "id": "vm71-we2",
+          "statement": "A transformation sends $(1; 0)$ to $(2; 5)$ and $(0; 1)$ to $(-3; 1)$. Write its matrix and its coordinate rules, then find the image of $(4; 2)$.",
+          "solution": "Stand the two destinations up as COLUMNS: $M = \\begin{pmatrix} 2 & -3 \\\\ 5 & 1 \\end{pmatrix}$. Reading the rows back gives $x' = 2x - 3y$ and $y' = 5x + y$. So $x' = 2 \\cdot 4 - 3 \\cdot 2 = 2$ and $y' = 5 \\cdot 4 + 2 = 22$: the image is $(2; 22)$. Nothing was memorised — two destinations were enough.",
+          "check": [
+            "2*4 - 3*2 == 2",
+            "5*4 + 1*2 == 22",
+            "2*1 - 3*0 == 2",
+            "5*1 + 1*0 == 5"
+          ]
+        },
+        {
+          "id": "vm71-we3",
+          "statement": "Apply $M = \\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$ to the triangle with vertices $(0; 0)$, $(3; 0)$ and $(0; 2)$. Find the image triangle and its area.",
+          "solution": "Transform vertex by vertex. $(0; 0) \\to (0; 0)$ — every $2 \\times 2$ matrix fixes the origin. $(3; 0) \\to (1 \\cdot 3 + 2 \\cdot 0;\\; 0 \\cdot 3 + 1 \\cdot 0) = (3; 0)$: the $x$-axis does not move. $(0; 2) \\to (1 \\cdot 0 + 2 \\cdot 2;\\; 0 \\cdot 0 + 1 \\cdot 2) = (4; 2)$ — the top vertex slides sideways. The original area is $\\tfrac{1}{2} \\cdot 3 \\cdot 2 = 3$, and $\\det M = 1 \\cdot 1 - 2 \\cdot 0 = 1$, so the image also has area $3$. This map is a shear: it leans the triangle without changing how much paper it covers.",
+          "check": [
+            "1*3 + 2*0 == 3",
+            "1*0 + 2*2 == 4",
+            "0*0 + 1*2 == 2",
+            "1*1 - 2*0 == 1",
+            "Rational(1,2)*3*2 == 3"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing the point as a row on the left of the matrix.",
+          "correction": "The point rides as a COLUMN on the right: M times (x, y) written vertically. Row times column, in that order. Putting the point on the left computes the transposed matrix's transformation, which is usually a different map.",
+          "authored": true
+        },
+        {
+          "text": "Reading the matrix ROWS as the images of the unit points.",
+          "correction": "COLUMNS are the destinations. In (a b; c d) the first column (a, c) is where (1,0) lands; the first ROW (a, b) is only the recipe for the new x-coordinate.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm71-t1",
+          "statement": "A transformation has rules $x' = 5x + 2y$ and $y' = -x + 3y$. Write its matrix and find the image of $(1; 1)$.",
+          "solution": "$M = \\begin{pmatrix} 5 & 2 \\\\ -1 & 3 \\end{pmatrix}$, and $(1; 1) \\to (5 + 2;\\; -1 + 3) = (7; 2)$.",
+          "check": [
+            "5*1 + 2*1 == 7",
+            "-1*1 + 3*1 == 2"
+          ]
+        },
+        {
+          "id": "vm71-t2",
+          "statement": "Where do $(1; 0)$ and $(0; 1)$ land under $M = \\begin{pmatrix} 0 & 4 \\\\ -2 & 0 \\end{pmatrix}$?",
+          "solution": "The columns answer it directly: $(1; 0) \\to (0; -2)$ and $(0; 1) \\to (4; 0)$. Multiplying confirms it: $0 \\cdot 1 + 4 \\cdot 0 = 0$ and $-2 \\cdot 1 + 0 \\cdot 0 = -2$.",
+          "check": [
+            "0*1 + 4*0 == 0",
+            "-2*1 + 0*0 == -2",
+            "0*0 + 4*1 == 4",
+            "-2*0 + 0*1 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Two rules, one matrix",
+            "body": "A transformation of the plane assigns to each point $(x; y)$ a new point $(x'; y')$. When both new coordinates are built by multiplying and adding — $x' = ax + by$, $y' = cx + dy$ — the transformation is LINEAR, and the four coefficients are all there is to it. Collect them into $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ and the pair of rules becomes one object you can multiply, invert and compose."
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Watch one",
+            "title": "A mirror, and its four numbers",
+            "teach": "Reflecting in the $x$-axis sends $(x; y)$ to $(x; -y)$. Ask the two unit points: $(1; 0) \\to (1; 0)$ and $(0; 1) \\to (0; -1)$. Stand those up as columns and the matrix is $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ — read the rows back and you recover $x' = x$, $y' = -y$.",
+            "config": {
+              "transform": "reflectX"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Where does (1; 0) land?",
+            "prompt": "Under $M = \\begin{pmatrix} 3 & -1 \\\\ 2 & 4 \\end{pmatrix}$, the point $(1; 0)$ lands at…",
+            "options": [
+              "$(3; 2)$ — the first column",
+              "$(3; -1)$ — the first row",
+              "$(-1; 4)$ — the second column",
+              "$(2; 4)$ — the second row"
+            ],
+            "correctIndex": 0,
+            "explanation": "$3 \\cdot 1 + (-1) \\cdot 0 = 3$ and $2 \\cdot 1 + 4 \\cdot 0 = 2$. The first COLUMN is where $(1; 0)$ goes; the first row only builds $x'$.",
+            "check": [
+              "3*1 + (-1)*0 == 3",
+              "2*1 + 4*0 == 2"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Rules to matrix",
+            "problemId": "vm71-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two destinations, one matrix",
+            "problemId": "vm71-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the reading",
+            "title": "Matrix of a rule",
+            "prompt": "Which matrix carries the rules $x' = 2x + 7y$, $y' = 5y$?",
+            "options": [
+              "$\\begin{pmatrix} 2 & 7 \\\\ 0 & 5 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 0 \\\\ 7 & 5 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 7 & 2 \\\\ 5 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 2 & 7 \\\\ 5 & 0 \\end{pmatrix}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Row one is the $x'$ recipe $(2, 7)$; row two is the $y'$ recipe, and $y' = 5y$ has no $x$ term, so it is $(0, 5)$.",
+            "check": [
+              "2*1 + 7*0 == 2",
+              "0*1 + 5*0 == 0",
+              "0*0 + 5*1 == 5"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A whole triangle",
+            "problemId": "vm71-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Test your matrix on (1; 0)",
+            "body": "Whenever you write down a transformation matrix, spend three seconds multiplying it by $(1; 0)$ and $(0; 1)$. If the answers are not the two destinations you intended, you have transposed the matrix — the single most common slip in this whole section, and the cheapest one to catch."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Your turn: rules to matrix",
+            "problemId": "vm71-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Read the columns",
+            "problemId": "vm71-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Your screen does this millions of times a second",
+            "body": "Every time a character turns in a game or a map rotates under your finger, a graphics chip is multiplying coordinates by a small matrix — the same operation you just did by hand, run on millions of points per frame. The reason hardware can do it so fast is precisely that a transformation is only a handful of numbers."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Two coordinate rules stack into one $2 \\times 2$ matrix.",
+              "Columns are destinations: $\\text{col}_1 = T(1; 0)$, $\\text{col}_2 = T(0; 1)$.",
+              "Transform a figure by transforming its vertices; the origin never moves."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "reflections-and-rotations",
+      "title": "Reflections & Rotations",
+      "concreteComparison": "Two of the transformations the exam asks for are rigid: a mirror and a turn. Nothing about the figure changes except where it sits. Each one is a single matrix, and you can rebuild either from scratch in ten seconds by asking the two unit points where they go.",
+      "objective": "Write and use the matrices of reflections (in the axes, in y = x, in the origin) and of rotations about the origin, including a general angle.",
+      "concept": [
+        "**Reflections come straight from the unit points.** In the $x$-axis: $(1; 0)$ stays, $(0; 1) \\to (0; -1)$, so $M = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$. In the $y$-axis: $M = \\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$. In the line $y = x$ the coordinates swap: $M = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$; in $y = -x$ they swap and change sign: $M = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$.",
+        "**A rotation by any angle has one formula.** Turning counter-clockwise by $\\theta$ about the origin sends $(1; 0) \\to (\\cos\\theta; \\sin\\theta)$ and $(0; 1) \\to (-\\sin\\theta; \\cos\\theta)$, giving $R(\\theta) = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}$. The quarter turns fall out of it: $R(90°) = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$, $R(180°) = \\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$, $R(270°) = \\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$.",
+        "**Point symmetry is the half turn.** Reflecting in the ORIGIN sends $(x; y)$ to $(-x; -y)$ — matrix $-I$ — which is exactly $R(180°)$. Determinants tell the two families apart: a line reflection has $\\det = -1$ (orientation flips, the figure is mirrored), a rotation has $\\det = 1$ (orientation is kept)."
+      ],
+      "keyIdea": "Reflections: read the unit points. Rotations: R(θ) = (cos −sin; sin cos). det = −1 mirrors, det = +1 turns.",
+      "facts": [
+        {
+          "title": "Reflection in the x-axis",
+          "latex": "\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix},\\qquad \\det = -1",
+          "explanation": "In the y-axis, negate the other entry; in y = x, swap the coordinates."
+        },
+        {
+          "title": "Rotation by θ",
+          "latex": "R(\\theta) = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}",
+          "explanation": "Counter-clockwise is positive; the lower sine is the one that stays positive."
+        },
+        {
+          "title": "Point symmetry",
+          "latex": "-I = \\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix} = R(180°)",
+          "explanation": "Reflection in the origin and the half turn are the same transformation."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm72-we1",
+          "statement": "Reflect the triangle with vertices $(2; 1)$, $(5; 1)$, $(2; 3)$ in the line $y = x$. Give the matrix and the image vertices.",
+          "solution": "Ask the unit points: reflecting in $y = x$ swaps coordinates, so $(1; 0) \\to (0; 1)$ and $(0; 1) \\to (1; 0)$. The matrix is $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. Applying it swaps each vertex: $(2; 1) \\to (1; 2)$, $(5; 1) \\to (1; 5)$, $(2; 3) \\to (3; 2)$.",
+          "check": [
+            "0*2 + 1*1 == 1",
+            "1*2 + 0*1 == 2",
+            "0*5 + 1*1 == 1",
+            "1*5 + 0*1 == 5",
+            "0*2 + 1*3 == 3",
+            "1*2 + 0*3 == 2"
+          ]
+        },
+        {
+          "id": "vm72-we2",
+          "statement": "Rotate $(3; -2)$ by $90°$ counter-clockwise about the origin. Then say where a $270°$ counter-clockwise rotation would send the same point.",
+          "solution": "A quarter turn counter-clockwise sends $(1; 0) \\to (0; 1)$ and $(0; 1) \\to (-1; 0)$, so its matrix is $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$. Then $x' = 0 \\cdot 3 + (-1)(-2) = 2$ and $y' = 1 \\cdot 3 + 0 \\cdot (-2) = 3$: the image is $(2; 3)$. A $270°$ counter-clockwise turn is the same as $90°$ clockwise, with matrix $\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$, giving $(-2; -3)$.",
+          "check": [
+            "0*3 + (-1)*(-2) == 2",
+            "1*3 + 0*(-2) == 3",
+            "0*3 + 1*(-2) == -2",
+            "-1*3 + 0*(-2) == -3"
+          ]
+        },
+        {
+          "id": "vm72-we3",
+          "statement": "Write the matrix of a $60°$ counter-clockwise rotation about the origin and use it to rotate $(2; 0)$.",
+          "solution": "Substitute into $R(\\theta) = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}$ with $\\theta = 60°$. Since $\\cos 60° = \\tfrac{1}{2}$ and $\\sin 60° = \\tfrac{\\sqrt{3}}{2}$, the matrix is $\\begin{pmatrix} \\tfrac{1}{2} & -\\tfrac{\\sqrt{3}}{2} \\\\ \\tfrac{\\sqrt{3}}{2} & \\tfrac{1}{2} \\end{pmatrix}$. Then $x' = \\tfrac{1}{2} \\cdot 2 = 1$ and $y' = \\tfrac{\\sqrt{3}}{2} \\cdot 2 = \\sqrt{3}$, so $(2; 0) \\to (1; \\sqrt{3})$. The image is still $2$ from the origin, as a rotation demands: $1^2 + (\\sqrt{3})^2 = 4 = 2^2$.",
+          "check": [
+            "Eq(cos(pi/3), Rational(1,2))",
+            "Eq(sin(pi/3), sqrt(3)/2)",
+            "Eq(Rational(1,2)*2, 1)",
+            "Eq(sqrt(3)/2*2, sqrt(3))",
+            "1**2 + (sqrt(3))**2 == 4"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Using the clockwise matrix for a counter-clockwise turn.",
+          "correction": "R(θ) with a positive θ turns COUNTER-clockwise: the sine below the diagonal is the positive one. A clockwise turn through θ is R(−θ), which swaps the two sine signs.",
+          "authored": true
+        },
+        {
+          "text": "Treating reflection in the origin as a reflection in a line.",
+          "correction": "Point symmetry in the origin sends (x, y) to (−x, −y): determinant +1, orientation kept, and it equals a 180° rotation. A reflection in a LINE has determinant −1.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm72-t1",
+          "statement": "Find the image of $(-4; 7)$ after a reflection in the $y$-axis, and after a reflection in the origin.",
+          "solution": "Reflection in the $y$-axis has matrix $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$, giving $(4; 7)$. Reflection in the origin (point symmetry) has matrix $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$, giving $(4; -7)$.",
+          "check": [
+            "-1*(-4) + 0*7 == 4",
+            "0*(-4) + 1*7 == 7",
+            "-1*(-4) == 4",
+            "-1*7 == -7"
+          ]
+        },
+        {
+          "id": "vm72-t2",
+          "statement": "Which rotation about the origin has matrix $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$, and which other transformation of this lesson does the same job?",
+          "solution": "Substituting $\\theta = 180°$ gives $\\cos 180° = -1$, $\\sin 180° = 0$, which is exactly this matrix — a half turn. It is also the reflection in the origin, so point symmetry and the $180°$ rotation are one and the same map.",
+          "check": [
+            "Eq(cos(pi), -1)",
+            "Eq(sin(pi), 0)",
+            "(-1)*(-1) - 0*0 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Rigid means lengths survive",
+            "body": "Reflections and rotations move a figure without resizing or distorting it: every distance and every angle inside the figure is preserved. In matrix language that shows up as columns of length $1$ that are perpendicular to each other, and a determinant of $\\pm 1$ — area is untouched, and only the SIGN records whether the figure was mirrored."
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Watch one",
+            "title": "A quarter turn",
+            "teach": "This $90°$ counter-clockwise rotation sends $(1; 0) \\to (0; 1)$ and $(0; 1) \\to (-1; 0)$. Columns up: $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$, with $\\det = 0 \\cdot 0 - (-1) \\cdot 1 = 1$ — nothing was stretched or mirrored.",
+            "config": {
+              "transform": "rotate",
+              "deg": 90
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Mirror in y = x",
+            "prompt": "Reflection in the line $y = x$ has which matrix?",
+            "options": [
+              "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$",
+              "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$",
+              "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The reflection swaps the coordinates, so $(1; 0) \\to (0; 1)$ and $(0; 1) \\to (1; 0)$ — those two destinations ARE the columns.",
+            "check": [
+              "0*1 + 1*0 == 0",
+              "1*1 + 0*0 == 1",
+              "0*0 - 1*1 == -1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A triangle in the mirror",
+            "problemId": "vm72-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Quarter turns",
+            "problemId": "vm72-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the reading",
+            "title": "Mirror or turn?",
+            "prompt": "A transformation matrix has $\\det = -1$ and columns of length $1$. It is…",
+            "options": [
+              "a reflection in a line through the origin",
+              "a rotation about the origin",
+              "an enlargement",
+              "a translation"
+            ],
+            "correctIndex": 0,
+            "explanation": "Unit-length perpendicular columns mean rigid; the negative determinant means orientation was reversed — a mirror, not a turn.",
+            "check": [
+              "1*(-1) - 0*0 == -1",
+              "Eq(cos(pi/2)**2 + sin(pi/2)**2, 1)"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A rotation by 60°",
+            "problemId": "vm72-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Sketch one point before you trust the matrix",
+            "body": "Pick the simplest point in the question — usually $(1; 0)$ — multiply, and check the answer against a quick sketch. A $90°$ counter-clockwise turn must send a point on the positive $x$-axis up to the positive $y$-axis. If your matrix sends it down, you have the clockwise one."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two mirrors",
+            "problemId": "vm72-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Name the turn",
+            "problemId": "vm72-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Two mirrors make a turn",
+            "body": "Reflect a figure in one line through the origin, then in another, and the result is always a rotation — through twice the angle between the lines. That is why kaleidoscopes spin patterns out of flat mirrors, and in matrix form it is just the fact that (−1)(−1) = 1: two orientation flips restore the original orientation."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Reflections: in the $x$-axis, $y$-axis, $y = x$, $y = -x$ — read the unit points.",
+              "$R(\\theta) = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}$ turns counter-clockwise.",
+              "Point symmetry $= -I = R(180°)$; $\\det = -1$ mirrors, $\\det = 1$ turns."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "enlargement-and-translation",
+      "title": "Enlargement & Translation",
+      "concreteComparison": "Two more transformations, and one of them breaks the machine. Enlargement is the easiest matrix in the course. Translation has no 2x2 matrix at all — and the reason it fails tells you exactly how to fix it, with the same trick every graphics engine on earth uses.",
+      "objective": "Write a homothety (enlargement) as a matrix, handle a centre that is not the origin, and express a translation with a 3x3 homogeneous matrix.",
+      "concept": [
+        "**Homothety is the scalar matrix.** An enlargement centred at the origin with ratio $k$ sends $(x; y)$ to $(kx; ky)$, so its matrix is $kI = \\begin{pmatrix} k & 0 \\\\ 0 & k \\end{pmatrix}$. Lengths are multiplied by $|k|$ and areas by $\\det(kI) = k^2$. A negative $k$ also turns the figure through $180°$, landing it on the far side of the centre.",
+        "**A centre away from the origin: shift, scale, shift back.** A $2 \\times 2$ matrix always fixes the origin, so for a centre $C$ work with the vector from the centre: $P' = C + k(P - C)$. Subtracting $C$ moves the problem to the origin, the matrix acts there, and adding $C$ puts it back.",
+        "**Translation needs a third coordinate.** No $2 \\times 2$ matrix translates, for the same reason: it cannot move the origin. The repair is to write each point as $(x; y; 1)$ and use $\\begin{pmatrix} 1 & 0 & a \\\\ 0 & 1 & b \\\\ 0 & 0 & 1 \\end{pmatrix}$, whose last column carries the shift $(a; b)$. These are called homogeneous coordinates, and they let one $3 \\times 3$ matrix hold a rotation and a translation together."
+      ],
+      "keyIdea": "Enlargement = kI (areas ×k²); off-centre = C + k(P − C); translation needs the 3×3 homogeneous matrix, because no 2×2 can move the origin.",
+      "facts": [
+        {
+          "title": "Homothety",
+          "latex": "H_k = \\begin{pmatrix} k & 0 \\\\ 0 & k \\end{pmatrix},\\qquad \\det H_k = k^2",
+          "explanation": "Lengths scale by |k|, areas by k². Negative k adds a half turn."
+        },
+        {
+          "title": "Centre not at the origin",
+          "latex": "P' = C + k(P - C)",
+          "explanation": "Shift to the origin, scale, shift back — the standard repair for any fixed centre."
+        },
+        {
+          "title": "Translation, homogeneous",
+          "latex": "\\begin{pmatrix} 1 & 0 & a \\\\ 0 & 1 & b \\\\ 0 & 0 & 1 \\end{pmatrix}",
+          "explanation": "Points ride as (x; y; 1); the last column is the shift vector."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm73-we1",
+          "statement": "A homothety with centre at the origin and ratio $k = 3$ is applied to the triangle $(1; 2)$, $(4; 0)$, $(2; 5)$. Find the image vertices and the factor by which the area grows.",
+          "solution": "The matrix is $3I = \\begin{pmatrix} 3 & 0 \\\\ 0 & 3 \\end{pmatrix}$, which simply multiplies both coordinates by $3$: $(3; 6)$, $(12; 0)$, $(6; 15)$. Areas scale by $\\det(3I) = 3 \\cdot 3 = 9$ — every length tripled, so every area is $9$ times as big.",
+          "check": [
+            "3*1 == 3",
+            "3*2 == 6",
+            "3*4 == 12",
+            "3*5 == 15",
+            "3*3 - 0*0 == 9"
+          ]
+        },
+        {
+          "id": "vm73-we2",
+          "statement": "A homothety has centre $C = (2; 1)$ and ratio $k = -2$. Find the image of $P = (5; 3)$.",
+          "solution": "The centre is not the origin, so work with the vector from the centre: $P - C = (3; 2)$. Scale it: $-2 \\cdot (3; 2) = (-6; -4)$. Add the centre back: $P' = (2 - 6;\\; 1 - 4) = (-4; -3)$. The negative ratio puts the image on the OPPOSITE side of the centre, twice as far — an enlargement combined with a half turn.",
+          "check": [
+            "5 - 2 == 3",
+            "3 - 1 == 2",
+            "2 + (-2)*3 == -4",
+            "1 + (-2)*2 == -3"
+          ]
+        },
+        {
+          "id": "vm73-we3",
+          "statement": "Write the $3 \\times 3$ homogeneous matrix of the translation by $(4; -3)$ and use it on $(2; 6)$. Then explain why no $2 \\times 2$ matrix can perform this translation.",
+          "solution": "Write points with a third coordinate $1$. The matrix is $\\begin{pmatrix} 1 & 0 & 4 \\\\ 0 & 1 & -3 \\\\ 0 & 0 & 1 \\end{pmatrix}$, and multiplying it by $(2; 6; 1)$ gives $x' = 2 + 4 = 6$, $y' = 6 - 3 = 3$, third coordinate $1$: the image is $(6; 3)$. A $2 \\times 2$ matrix cannot do this, because every such matrix sends $(0; 0)$ to $(0; 0)$, whereas this translation must send the origin to $(4; -3)$. The extra row and column exist precisely to carry the constants.",
+          "check": [
+            "1*2 + 0*6 + 4*1 == 6",
+            "0*2 + 1*6 + (-3)*1 == 3",
+            "0*2 + 0*6 + 1*1 == 1",
+            "0*0 + 0*0 == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Scaling areas by k instead of k squared.",
+          "correction": "Lengths scale by |k|, areas by k². A homothety with ratio 3 makes a shape 9 times as large in area, not 3 times.",
+          "authored": true
+        },
+        {
+          "text": "Hunting for a 2x2 translation matrix.",
+          "correction": "There isn't one. Every 2x2 matrix sends the origin to the origin, and a translation by a non-zero vector must move it. Add the third coordinate 1 and use the 3x3 form.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm73-t1",
+          "statement": "Apply the homothety with centre at the origin and ratio $k = -4$ to $(3; -1)$, and state the area factor.",
+          "solution": "Multiply both coordinates by $-4$: the image is $(-12; 4)$. Areas scale by $(-4)^2 = 16$ — the sign only tells you the figure was turned through $180°$ as well.",
+          "check": [
+            "-4*3 == -12",
+            "-4*(-1) == 4",
+            "(-4)**2 == 16"
+          ]
+        },
+        {
+          "id": "vm73-t2",
+          "statement": "A square of area $5$ is enlarged with ratio $k = \\tfrac{5}{2}$. Find the new area.",
+          "solution": "Areas scale by $k^2 = \\tfrac{25}{4}$, so the new area is $5 \\cdot \\tfrac{25}{4} = \\tfrac{125}{4} = 31.25$.",
+          "check": [
+            "Eq(Rational(5,2)**2, Rational(25,4))",
+            "Eq(5*Rational(25,4), Rational(125,4))",
+            "Eq(Rational(125,4), 31.25)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "One transformation that fits, one that doesn't",
+            "body": "Enlargement slots into the $2 \\times 2$ machine perfectly: it is the matrix $kI$, and it is the only transformation in this unit that changes the SIZE of a figure. Translation slots in not at all, and it is worth seeing why rather than memorising a table: $M \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ for every $2 \\times 2$ matrix $M$, so a map that moves the origin is simply not of that form."
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Watch one",
+            "title": "Doubling from the origin",
+            "teach": "This enlargement has centre the origin and ratio $k = 2$, so its matrix is $\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$. Every length doubles and $\\det = 4$, so the area quadruples — watch the triangle's edges and its interior grow at different rates.",
+            "config": {
+              "transform": "dilate",
+              "k": 2
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Area under enlargement",
+            "prompt": "A homothety with ratio $k = 5$ is applied to a shape of area $3$. The image has area…",
+            "options": [
+              "$75$",
+              "$15$",
+              "$25$",
+              "$8$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Areas scale by $k^2 = 25$, so $3 \\cdot 25 = 75$. Multiplying by $k$ alone would be the length rule, not the area rule.",
+            "check": [
+              "5**2 == 25",
+              "3*25 == 75"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Tripling a triangle",
+            "problemId": "vm73-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "A centre that isn't the origin",
+            "problemId": "vm73-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the reading",
+            "title": "Why translation refuses",
+            "prompt": "Why is there no $2 \\times 2$ matrix for the translation by $(4; -3)$?",
+            "options": [
+              "every $2 \\times 2$ matrix sends the origin to the origin",
+              "the shift vector has a negative entry",
+              "its determinant would be zero",
+              "translations are not transformations"
+            ],
+            "correctIndex": 0,
+            "explanation": "$M \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$ always, but this translation must send $(0; 0)$ to $(4; -3)$. Hence the homogeneous $3 \\times 3$ form.",
+            "check": [
+              "1*0 + 0*0 == 0",
+              "0*0 + 1*0 == 0",
+              "0 + 4 == 4",
+              "0 + (-3) == -3"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Translation in 3x3",
+            "problemId": "vm73-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Name the centre before you compute",
+            "body": "Homothety questions divide cleanly: centre at the origin means multiply both coordinates by $k$ and stop; any other centre means use $P' = C + k(P - C)$. Deciding which case you are in first prevents the most expensive error in this lesson — scaling the coordinates when you should have scaled the displacement from the centre."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "A negative ratio",
+            "problemId": "vm73-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Area after enlargement",
+            "problemId": "vm73-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The extra 1 that runs 3D graphics",
+            "body": "Homogeneous coordinates were invented in the 1820s for projective geometry, long before computers. Today every 3D engine stores points as four numbers instead of three for exactly the reason you just met: with the extra coordinate, rotation, scaling and translation all become matrix multiplies, so a whole chain of movements collapses into a single matrix."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Homothety at the origin is $kI$: lengths $\\times |k|$, areas $\\times k^2$.",
+              "Any other centre: $P' = C + k(P - C)$.",
+              "Translation needs homogeneous coordinates — the $3 \\times 3$ matrix."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composing-and-identifying",
+      "title": "Composing & Identifying Transformations",
+      "concreteComparison": "Exams rarely stop at one transformation. They chain two and ask for the single matrix, or they hand you a matrix and ask what it does. Both directions run on the same two facts: composition is multiplication right-to-left, and the determinant plus the columns name the map.",
+      "objective": "Compose transformations by multiplying their matrices in the correct order, and identify the transformation a given matrix performs.",
+      "concept": [
+        "**Composition is a product, read right to left.** Doing $T_1$ and then $T_2$ has matrix $M_2 M_1$ — the matrix that acts FIRST stands nearest the point, exactly as in $f(g(x))$. Since matrix multiplication is not commutative, swapping the order usually gives a genuinely different transformation.",
+        "**Identify with the determinant first.** $\\det = 1$ with unit-length perpendicular columns means a rotation; $\\det = -1$ with unit-length columns means a reflection in a line through the origin; a scalar matrix $kI$ is a homothety with ratio $k$ and $\\det = k^2$; $\\det = 0$ means the plane was flattened onto a line and nothing can be undone.",
+        "**When in doubt, send the unit points.** Multiply the matrix by $(1; 0)$ and $(0; 1)$ and look at where they went. A rotation carries them round together; a reflection leaves the mirror line alone and flips across it; an enlargement stretches both along their own directions."
+      ],
+      "keyIdea": "Do T1 then T2 = M2·M1. To name a matrix: det, then column lengths, then send (1,0).",
+      "facts": [
+        {
+          "title": "Composition",
+          "latex": "T_2 \\circ T_1 = M_2 M_1",
+          "explanation": "The first transformation is the right-hand factor — nearest the point."
+        },
+        {
+          "title": "Rotation test",
+          "latex": "\\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix},\\qquad \\det = 1",
+          "explanation": "Unit perpendicular columns and determinant 1: a turn through θ."
+        },
+        {
+          "title": "Reflection in a line at angle α",
+          "latex": "\\begin{pmatrix} \\cos 2\\alpha & \\sin 2\\alpha \\\\ \\sin 2\\alpha & -\\cos 2\\alpha \\end{pmatrix},\\qquad \\det = -1",
+          "explanation": "Unit perpendicular columns and determinant −1: a mirror through the origin."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "vm74-we1",
+          "statement": "A figure is reflected in the $x$-axis and then rotated $90°$ counter-clockwise about the origin. Find the single matrix of the combined transformation and the image of $(1; 2)$.",
+          "solution": "Let $F = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}$ be the reflection and $R = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$ the rotation. The reflection acts FIRST, so it stands nearest the point and the product is $RF$: $RF = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$. That is the reflection in the line $y = x$ — two transformations collapsed into one. The image of $(1; 2)$ is $(2; 1)$.",
+          "check": [
+            "0*1 + (-1)*0 == 0",
+            "0*0 + (-1)*(-1) == 1",
+            "1*1 + 0*0 == 1",
+            "1*0 + 0*(-1) == 0",
+            "0*1 + 1*2 == 2",
+            "1*1 + 0*2 == 1"
+          ]
+        },
+        {
+          "id": "vm74-we2",
+          "statement": "Name the transformation with matrix $\\begin{pmatrix} 0 & 1 \\\\ -1 & 0 \\end{pmatrix}$.",
+          "solution": "Work through the checklist. First $\\det = 0 \\cdot 0 - 1 \\cdot (-1) = 1$, so area and orientation are both kept. Next the columns: $(0; -1)$ and $(1; 0)$ each have length $1$ and are perpendicular, so the map is rigid — a rotation. Which one? It sends $(1; 0)$ to $(0; -1)$, a quarter turn CLOCKWISE, i.e. a $270°$ counter-clockwise rotation about the origin.",
+          "check": [
+            "0*0 - 1*(-1) == 1",
+            "0**2 + (-1)**2 == 1",
+            "1**2 + 0**2 == 1",
+            "0*1 + (-1)*0 == 0",
+            "Eq(cos(-pi/2), 0)",
+            "Eq(sin(-pi/2), -1)"
+          ]
+        },
+        {
+          "id": "vm74-we3",
+          "statement": "Name the transformation for each matrix: $A = \\begin{pmatrix} -3 & 0 \\\\ 0 & -3 \\end{pmatrix}$ and $B = \\begin{pmatrix} \\tfrac{3}{5} & \\tfrac{4}{5} \\\\ \\tfrac{4}{5} & -\\tfrac{3}{5} \\end{pmatrix}$.",
+          "solution": "$A$ is $-3I$, a scalar matrix, so it is a homothety with centre the origin and ratio $-3$: lengths tripled, the figure turned through $180°$, and areas multiplied by $\\det A = 9$. For $B$, the determinant is $-\\tfrac{9}{25} - \\tfrac{16}{25} = -1$ and the first column has length $\\sqrt{\\tfrac{9}{25} + \\tfrac{16}{25}} = 1$, so $B$ is rigid with orientation reversed — a reflection in a line through the origin.",
+          "check": [
+            "(-3)*(-3) - 0*0 == 9",
+            "Eq(Rational(3,5)*Rational(-3,5) - Rational(4,5)*Rational(4,5), -1)",
+            "Eq(Rational(3,5)**2 + Rational(4,5)**2, 1)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Writing the composition in reading order.",
+          "correction": "The FIRST transformation goes on the RIGHT. 'Reflect, then rotate' is R times F, not F times R, and the two products are usually different matrices.",
+          "authored": true
+        },
+        {
+          "text": "Calling every determinant-1 matrix a rotation.",
+          "correction": "A shear like (1 2; 0 1) also has determinant 1. A rotation additionally needs columns of length 1 that are perpendicular — check the first column's length before you name it.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "vm74-t1",
+          "statement": "A figure is rotated $180°$ about the origin and then enlarged with centre the origin and ratio $2$. Find the single matrix and its determinant.",
+          "solution": "The rotation is $-I$ and the enlargement is $2I$; scalar matrices commute, and the product is $-2I = \\begin{pmatrix} -2 & 0 \\\\ 0 & -2 \\end{pmatrix}$, with $\\det = (-2)(-2) - 0 = 4$. Equivalently: one homothety of ratio $-2$.",
+          "check": [
+            "(-2)*(-2) - 0*0 == 4",
+            "2*(-1) == -2"
+          ]
+        },
+        {
+          "id": "vm74-t2",
+          "statement": "Compute $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ and name the transformation it performs.",
+          "solution": "Multiplying gives $\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$, which is $-I$: a half turn about the origin, equivalently the reflection in the origin. Reflecting in the $y$-axis and then in the $x$-axis amounts to a single $180°$ rotation.",
+          "check": [
+            "1*(-1) + 0*0 == -1",
+            "0*(-1) + (-1)*0 == 0",
+            "0*0 + (-1)*1 == -1",
+            "(-1)*(-1) - 0*0 == 1"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "The idea",
+            "title": "Two directions, one toolkit",
+            "body": "Everything in this unit now runs both ways. Given a description, build the matrix from two destinations and multiply the pieces together in the right order. Given a matrix, read it back: the determinant reports area and orientation, the column lengths report rigidity, and the image of $(1; 0)$ pins down the exact angle or ratio."
+          },
+          {
+            "kind": "transformPlane",
+            "eyebrow": "Watch one",
+            "title": "Two moves that became one",
+            "teach": "Reflecting in the $x$-axis and then turning $90°$ counter-clockwise gives $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$ — the mirror in $y = x$ shown here. Two transformations, one matrix, one multiplication.",
+            "config": {
+              "transform": "reflectYeqX"
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Which factor acts first?",
+            "prompt": "A figure is rotated by $A$ and then reflected by $B$. The combined matrix is…",
+            "options": [
+              "$BA$",
+              "$AB$",
+              "$A + B$",
+              "$AB^{-1}$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$BA(x) = B(A(x))$: the matrix touching the point acts first, so the rotation $A$ must be the right-hand factor.",
+            "check": [
+              "0*1 + (-1)*0 == 0",
+              "1*1 + 0*0 == 1"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Reflect, then turn",
+            "problemId": "vm74-we1"
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Name this matrix",
+            "problemId": "vm74-we2"
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Check the reading",
+            "title": "Scalar matrix",
+            "prompt": "The matrix $\\begin{pmatrix} 4 & 0 \\\\ 0 & 4 \\end{pmatrix}$ performs…",
+            "options": [
+              "an enlargement with centre the origin and ratio $4$",
+              "a rotation through $4°$",
+              "a translation by $(4; 4)$",
+              "a reflection in the line $y = 4x$"
+            ],
+            "correctIndex": 0,
+            "explanation": "It multiplies both coordinates by $4$: a homothety of ratio $4$, with $\\det = 16$, so areas grow sixteenfold.",
+            "check": [
+              "4*4 - 0*0 == 16",
+              "4*1 == 4",
+              "4*0 == 0"
+            ]
+          },
+          {
+            "kind": "worked",
+            "eyebrow": "Worked example",
+            "title": "Two matrices, two names",
+            "problemId": "vm74-we3"
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Exam habit",
+            "title": "Determinant, columns, unit point — in that order",
+            "body": "Naming a matrix is a three-step routine, and doing the steps in order saves time. The determinant separates the four families in one subtraction. The column lengths then decide rigid or not. Only after that do you need the image of $(1; 0)$, and by then it answers a much narrower question: which angle, or which ratio."
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Turn, then enlarge",
+            "problemId": "vm74-t1"
+          },
+          {
+            "kind": "tryIt",
+            "eyebrow": "Try it",
+            "title": "Two mirrors",
+            "problemId": "vm74-t2"
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The transformations form a group",
+            "body": "Compose two transformations and you get a transformation; every one of them (except the flattening ones) can be undone; and doing nothing is itself a transformation, the identity matrix. Those three properties define a GROUP — the structure mathematicians use to describe symmetry everywhere, from crystal lattices to the Standard Model of particle physics."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What sticks",
+            "points": [
+              "Do $T_1$ then $T_2$: multiply as $M_2 M_1$, first map on the right.",
+              "Name by determinant, then column lengths, then the image of $(1; 0)$.",
+              "$kI$ is a homothety; $\\det = \\pm 1$ with unit columns is a turn or a mirror."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "vm7-pr-1",
+      "statement": "Write the matrix of the transformation $x' = 4x - 5y$, $y' = x + 2y$.",
+      "solution": "Row one holds the $x'$ coefficients, row two the $y'$ coefficients: $\\begin{pmatrix} 4 & -5 \\\\ 1 & 2 \\end{pmatrix}$.",
+      "check": [
+        "4*1 - 5*0 == 4",
+        "1*1 + 2*0 == 1",
+        "4*0 - 5*1 == -5",
+        "1*0 + 2*1 == 2"
+      ]
+    },
+    {
+      "id": "vm7-pr-2",
+      "statement": "Find the image of $(-2; 5)$ under $M = \\begin{pmatrix} 3 & 1 \\\\ 0 & -2 \\end{pmatrix}$.",
+      "solution": "$x' = 3(-2) + 1 \\cdot 5 = -1$ and $y' = 0 \\cdot (-2) + (-2) \\cdot 5 = -10$, so the image is $(-1; -10)$.",
+      "check": [
+        "3*(-2) + 1*5 == -1",
+        "0*(-2) + (-2)*5 == -10"
+      ]
+    },
+    {
+      "id": "vm7-pr-3",
+      "statement": "Reflect $(6; -3)$ in the line $y = x$, and then state its image under a reflection in the $y$-axis instead.",
+      "solution": "Reflection in $y = x$ swaps the coordinates: $(-3; 6)$. Reflection in the $y$-axis negates the first coordinate: $(-6; -3)$.",
+      "check": [
+        "0*6 + 1*(-3) == -3",
+        "1*6 + 0*(-3) == 6",
+        "-1*6 == -6"
+      ]
+    },
+    {
+      "id": "vm7-pr-4",
+      "statement": "Rotate $(5; 2)$ by $90°$ counter-clockwise about the origin.",
+      "solution": "With $R = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$: $x' = -2$ and $y' = 5$, so the image is $(-2; 5)$.",
+      "check": [
+        "0*5 + (-1)*2 == -2",
+        "1*5 + 0*2 == 5"
+      ]
+    },
+    {
+      "id": "vm7-pr-5",
+      "statement": "A homothety with centre the origin has ratio $k = \\tfrac{1}{2}$. Find the image of $(8; -6)$ and the factor by which areas change.",
+      "solution": "Halve both coordinates: $(4; -3)$. Areas scale by $k^2 = \\tfrac{1}{4}$ — the image covers a quarter of the original area.",
+      "check": [
+        "Eq(Rational(1,2)*8, 4)",
+        "Eq(Rational(1,2)*(-6), -3)",
+        "Eq(Rational(1,2)**2, Rational(1,4))"
+      ]
+    },
+    {
+      "id": "vm7-pr-6",
+      "statement": "A homothety has centre $C = (1; 4)$ and ratio $3$. Find the image of $P = (3; 5)$.",
+      "solution": "$P - C = (2; 1)$, tripled gives $(6; 3)$, and adding the centre back gives $P' = (7; 7)$.",
+      "check": [
+        "3 - 1 == 2",
+        "5 - 4 == 1",
+        "1 + 3*2 == 7",
+        "4 + 3*1 == 7"
+      ]
+    },
+    {
+      "id": "vm7-pr-7",
+      "statement": "Write the $3 \\times 3$ homogeneous matrix of the translation by $(-2; 5)$ and apply it to $(7; 1)$.",
+      "solution": "The matrix is $\\begin{pmatrix} 1 & 0 & -2 \\\\ 0 & 1 & 5 \\\\ 0 & 0 & 1 \\end{pmatrix}$, and it sends $(7; 1)$ to $(7 - 2;\\; 1 + 5) = (5; 6)$.",
+      "check": [
+        "1*7 + 0*1 + (-2)*1 == 5",
+        "0*7 + 1*1 + 5*1 == 6"
+      ]
+    },
+    {
+      "id": "vm7-pr-8",
+      "statement": "A figure is reflected in the $y$-axis and then rotated $90°$ counter-clockwise. Find the single matrix of the combined transformation.",
+      "solution": "The reflection $\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix}$ acts first, so it is the right-hand factor: $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}\\begin{pmatrix} -1 & 0 \\\\ 0 & 1 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$ — the reflection in the line $y = -x$.",
+      "check": [
+        "0*(-1) + (-1)*0 == 0",
+        "0*0 + (-1)*1 == -1",
+        "1*(-1) + 0*0 == -1",
+        "1*0 + 0*1 == 0",
+        "0*0 - (-1)*(-1) == -1"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "vm7-ty-1",
+      "statement": "A transformation sends $(1; 0)$ to $(-2; 3)$ and $(0; 1)$ to $(4; 1)$. Write its matrix and the image of $(2; 3)$.",
+      "solution": "The destinations are the columns: $M = \\begin{pmatrix} -2 & 4 \\\\ 3 & 1 \\end{pmatrix}$. Then $x' = -2 \\cdot 2 + 4 \\cdot 3 = 8$ and $y' = 3 \\cdot 2 + 1 \\cdot 3 = 9$, so the image is $(8; 9)$.",
+      "check": [
+        "-2*2 + 4*3 == 8",
+        "3*2 + 1*3 == 9"
+      ]
+    },
+    {
+      "id": "vm7-ty-2",
+      "statement": "Write the matrix of a $45°$ counter-clockwise rotation about the origin and use it to rotate $(\\sqrt{2}; 0)$.",
+      "solution": "$\\cos 45° = \\sin 45° = \\tfrac{\\sqrt{2}}{2}$, so $R = \\begin{pmatrix} \\tfrac{\\sqrt{2}}{2} & -\\tfrac{\\sqrt{2}}{2} \\\\ \\tfrac{\\sqrt{2}}{2} & \\tfrac{\\sqrt{2}}{2} \\end{pmatrix}$. Applying it: $x' = \\tfrac{\\sqrt{2}}{2} \\cdot \\sqrt{2} = 1$ and $y' = \\tfrac{\\sqrt{2}}{2} \\cdot \\sqrt{2} = 1$, so the image is $(1; 1)$ — still at distance $\\sqrt{2}$ from the origin, as a rotation requires.",
+      "check": [
+        "Eq(cos(pi/4), sqrt(2)/2)",
+        "Eq(sqrt(2)/2*sqrt(2), 1)",
+        "Eq(sqrt(1**2 + 1**2), sqrt(2))"
+      ]
+    },
+    {
+      "id": "vm7-ty-3",
+      "statement": "A triangle of area $6$ is enlarged with ratio $k = -\\tfrac{3}{2}$ about the origin. Find the image of the vertex $(4; -2)$ and the area of the image triangle.",
+      "solution": "Multiply the vertex by $-\\tfrac{3}{2}$: $(-6; 3)$. Areas scale by $k^2 = \\tfrac{9}{4}$, so the image has area $6 \\cdot \\tfrac{9}{4} = \\tfrac{27}{2}$. The negative ratio turns the triangle through $180°$ but does not affect the area.",
+      "check": [
+        "Eq(Rational(-3,2)*4, -6)",
+        "Eq(Rational(-3,2)*(-2), 3)",
+        "Eq(Rational(-3,2)**2, Rational(9,4))",
+        "Eq(6*Rational(9,4), Rational(27,2))"
+      ]
+    },
+    {
+      "id": "vm7-ty-4",
+      "statement": "Explain why the translation by $(3; 7)$ cannot be written as a $2 \\times 2$ matrix, and write it in homogeneous form.",
+      "solution": "Every $2 \\times 2$ matrix sends $(0; 0)$ to $(0; 0)$, but this translation must send the origin to $(3; 7)$ — so no such matrix exists. Adding a third coordinate fixes it: $\\begin{pmatrix} 1 & 0 & 3 \\\\ 0 & 1 & 7 \\\\ 0 & 0 & 1 \\end{pmatrix}$ sends $(x; y; 1)$ to $(x + 3;\\; y + 7;\\; 1)$.",
+      "check": [
+        "1*0 + 0*0 + 3*1 == 3",
+        "0*0 + 1*0 + 7*1 == 7",
+        "0*0 + 0*0 == 0"
+      ]
+    },
+    {
+      "id": "vm7-ty-5",
+      "statement": "Name the transformation with matrix $\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$, justifying your answer.",
+      "solution": "$\\det = 0 \\cdot 0 - (-1)(-1) = -1$, so orientation is reversed. Both columns have length $1$ and are perpendicular, so the map is rigid: a reflection in a line through the origin. It sends $(1; 0)$ to $(0; -1)$, which identifies the mirror as the line $y = -x$.",
+      "check": [
+        "0*0 - (-1)*(-1) == -1",
+        "0**2 + (-1)**2 == 1",
+        "(-1)**2 + 0**2 == 1",
+        "0*1 + (-1)*0 == 0",
+        "-1*1 + 0*0 == -1"
+      ]
+    },
+    {
+      "id": "vm7-ty-6",
+      "statement": "A figure is rotated $90°$ counter-clockwise about the origin and then reflected in the $x$-axis. Find the single matrix, and check that reversing the order gives a different one.",
+      "solution": "The rotation acts first, so it is the right-hand factor: $\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$, the reflection in $y = -x$. The other order gives $\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}\\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$, the reflection in $y = x$ — a different mirror, so order genuinely matters.",
+      "check": [
+        "1*0 + 0*1 == 0",
+        "1*(-1) + 0*0 == -1",
+        "0*0 + (-1)*1 == -1",
+        "0*(-1) + (-1)*0 == 0",
+        "0*1 + (-1)*0 == 0",
+        "0*0 + (-1)*(-1) == 1",
+        "1*1 + 0*0 == 1",
+        "1*0 + 0*(-1) == 0"
+      ]
+    }
+  ]
+}

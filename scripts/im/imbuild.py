@@ -216,6 +216,14 @@ def write_unit(course, slug, title, unit_number, blurb, builds_on, lessons, prac
         assert_checks(p["id"], p.get("check"))
     for p in test:
         assert_checks(p["id"], p.get("check"))
+    # tapQuestion steps assembled as literal dicts never pass through tap(),
+    # so nothing had verified their checks until the gate ran — by which point
+    # a stale assertion is already sitting in a committed JSON file. Sweep
+    # them here too; builders that DID use tap() simply verify twice.
+    for les in lessons:
+        for i, step in enumerate(les["interactive"]["steps"]):
+            if step["kind"] == "tapQuestion":
+                assert_checks(f"{les['slug']}.steps[{i}]", step.get("check"))
 
     widget_problems = check_widget_configs(lessons)
     if widget_problems:

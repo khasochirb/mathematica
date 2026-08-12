@@ -66,7 +66,7 @@ describe("ЭЕШ course registry", () => {
     }
     // Exam-level curation over the existing English catalog: a registry
     // regression that silently drops sources should trip this floor.
-    expect(liveTotal).toBe(70);
+    expect(liveTotal).toBe(72);
   });
 
   it("course content is English-first (owner decision 2026-07-28)", () => {
@@ -233,15 +233,26 @@ describe("ministry curriculum coverage (А/492, 2019)", () => {
     expect(unaccounted, "ministry objectives with no unit and no gap entry").toEqual([]);
   });
 
-  it("keeps the CORE gap small and named", () => {
+  it("teaches every CORE objective — the gap list is elective-only", () => {
     const coreGaps = MOE_NOT_YET_COVERED.filter((g) => !objectives.get(g.code)!.elective);
-    // Six today: the whole of 10.11 (transformations as matrices) and 11.2г
-    // (Gaussian elimination). Closing them is the work order; this number
-    // must go DOWN, never up, so a regression that drops coverage fails here.
-    expect(coreGaps.length).toBeLessThanOrEqual(6);
-    for (const g of coreGaps) {
-      expect(["10.11", "11.2"]).toContain(sectionOf.get(g.code));
+    // Zero since 2026-08-12. The last six were the whole of section 10.11
+    // (transformations as matrices) and 11.2г (Gauss's method), closed by
+    // Vectors & Matrices units 7 and 8. Every заавал судлах objective in the
+    // grade 10-12 standard is now taught by a unit a student can open, and a
+    // regression that drops one back into the gap list fails right here.
+    expect(coreGaps.map((g) => g.code)).toEqual([]);
+  });
+
+  it("covers section 10.11 and 11.2г, the ministry's transformations and Gauss", () => {
+    // Named explicitly rather than left to the counts: these were the last
+    // core gaps, and they are the two places the hub used to fall short of
+    // the national standard outright.
+    const claimed = new Set(Object.values(MOE_COVERAGE).flat());
+    for (const code of ["10.11а", "10.11б", "10.11в", "10.11г", "10.11д", "11.2г"]) {
+      expect(claimed.has(code), `${code} is not taught by any unit`).toBe(true);
     }
+    expect(MOE_COVERAGE["transformation-matrices"]).toHaveLength(7);
+    expect(MOE_COVERAGE["systems-in-three-unknowns"]).toContain("11.2г");
   });
 
   it("gives every course the ministry's own Mongolian name and sections", () => {

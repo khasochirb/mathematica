@@ -7,9 +7,17 @@ reroll/retry pool, and an independent RESOLVERS re-solver used by
 scripts/audit_problembank.py. Run `python3 scripts/pb/vectors_matrices.py` to
 self-check.
 """
+import os
 import re
+import sys
 
 from sympy import Rational, simplify, sqrt, sympify
+
+PB = os.path.dirname(os.path.abspath(__file__))
+if PB not in sys.path:
+    sys.path.insert(0, PB)
+
+import vecmat_more  # noqa: E402 — the units 7-8 forms
 
 SLUG = "vectors-matrices"
 TITLE = "Vectors & Matrices"
@@ -29,6 +37,10 @@ UNITS = [
      "blurb": "Grids with an address system: entrywise arithmetic, row-times-column multiplication, identity and powers."},
     {"id": "determinants-and-inverses", "title": "Determinants, Inverses & Systems",
      "blurb": "ad − bc, the 2×2 inverse, Cramer's rule, and matrices as transformations — the capstone."},
+    {"id": "transformation-matrices", "title": "Transformation Matrices",
+     "blurb": "Reflections, rotations, enlargements and translations as matrices, then composing and naming them."},
+    {"id": "systems-in-three-unknowns", "title": "Systems in Three Unknowns",
+     "blurb": "Augmented matrices and row operations, Gauss's method, 3×3 determinants and inverses, and Cramer's rule."},
 ]
 
 # No legacy forms: this subject is authored fresh.
@@ -883,6 +895,54 @@ NEW_FORMS_META = [
 ]
 
 
+# form id -> the one-line "what this drills" line. It is SHOWN TO STUDENTS,
+# under the answer in the browser and under each form title in the runner's
+# summary (components/bank/BankBrowser.tsx, BankRunner.tsx). Both assemblers
+# below used to pass the variant-id PREFIX here, so every form in this subject
+# shipped a debug code — "VM-from" — where a sentence belongs.
+SKILLS = {
+    "vector-from-points": "Tip minus tail gives the vector between two points.",
+    "vector-relation": "Compare two vectors: equal, opposite, parallel or none of these.",
+    "scaled-magnitude": "Scaling a vector multiplies its magnitude by |k|.",
+    "unit-vector": "Divide a vector by its own magnitude to get length 1.",
+    "vector-magnitude": "Pythagoras on the components.",
+    "vector-combine": "Combine vectors componentwise with scalar weights.",
+    "vector-subtract": "Subtract componentwise — order decides the direction.",
+    "parallel-scalar": "Parallel vectors are multiples: match the ratios.",
+    "tip-to-tail": "Add tip to tail, then take the magnitude of the sum.",
+    "section-point": "The section formula splits a segment in a given ratio.",
+    "dot-sign": "The sign of the dot product classifies the angle.",
+    "dot-value": "Multiply matching components and add.",
+    "perpendicular-k": "Perpendicular means the dot product is zero — solve for k.",
+    "sum-square": "Expand |u + v|² with the dot product.",
+    "vector-angle-special": "Find the angle from the dot product and the two magnitudes.",
+    "midpoint-3d": "Average each of the three coordinates.",
+    "vector-from-points-3d": "Tip minus tail, one coordinate at a time, in space.",
+    "magnitude-3d": "Pythagoras with a third term.",
+    "parallel-3d": "Parallel vectors in space share one scale factor across all three components.",
+    "dot-3d": "Multiply matching components and add — now three of them.",
+    "perpendicular-3d": "Set the 3D dot product to zero and solve.",
+    "matrix-dimensions": "The product exists when the inner sizes match; the outer sizes survive.",
+    "matrix-entry": "Add and scale matrices entry by entry.",
+    "scalar-matrix": "Multiply every entry by the scalar.",
+    "transpose": "Rows become columns.",
+    "matrix-product-entry": "Row of the first times column of the second.",
+    "matrix-square": "Multiply a matrix by itself and read one entry.",
+    "det-2x2": "The determinant is ad − bc.",
+    "inverse-2x2": "Swap the diagonal, negate the off-diagonal, divide by the determinant.",
+    "singular-k": "A matrix is singular exactly when its determinant is zero.",
+    "cramer-2x2": "Replace a column with the constants and divide by the determinant.",
+    "unique-solution": "One solution exactly when the coefficient determinant is non-zero.",
+}
+
+
+def skill_of(fid):
+    """The student-facing skill line, or a loud failure if one is missing."""
+    line = SKILLS.get(fid)
+    assert line, "%s: no student-facing skill line (see SKILLS)" % fid
+    return line
+
+
 def new_forms():
     """Unit-specific forms authored for this subject."""
     forms = []
@@ -895,7 +955,8 @@ def new_forms():
             vd.update(v)
             variants.append(vd)
         forms.append({"id": fid, "title": title, "level": level,
-                      "skill": prefix, "unit": unit, "variants": variants})
+                      "skill": skill_of(fid), "unit": unit,
+                      "variants": variants})
     return forms
 
 
@@ -1666,7 +1727,8 @@ def _batch2_forms():
             vd.update(v)
             variants.append(vd)
         forms.append({"id": fid, "title": title, "level": level,
-                      "skill": prefix, "unit": unit, "variants": variants})
+                      "skill": skill_of(fid), "unit": unit,
+                      "variants": variants})
     return forms
 
 
@@ -1674,8 +1736,8 @@ _BATCH1_FORMS = new_forms
 
 
 def new_forms():  # noqa: F811 — appends batch 2 to the original set
-    """All unit-specific forms: the original set plus batch 2 above."""
-    return _BATCH1_FORMS() + _batch2_forms()
+    """All unit-specific forms: the original set, batch 2, and units 7-8."""
+    return _BATCH1_FORMS() + _batch2_forms() + vecmat_more.forms()
 
 
 RESOLVERS.update({fid: rz for fid, _t, _l, _p, _u, _g, rz
