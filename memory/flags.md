@@ -100,6 +100,20 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-12** — Probe after deploy `a039c21` (the public ЭЕШ Study by
+  Topic page rebuilt on the five-main-topic structure with measured exam
+  weights; /practice hub grid grouped the same way): `anthropic_api_key:
+  configured`, `migration_009: applied`, `migration_008: unknown`
+  (FLAG-002 unchanged), FLAG-003 still optional/unset. Content-only, no
+  migrations; prod runtime errors clean. Verified on prod HTML: 5 domain
+  headers, 14 course links, no legacy leftovers. LESSON for future
+  sessions: "restructure the topics section" touched THREE surfaces
+  (/practice/esh/topics — the public one, /practice/esh/learn — auth-
+  walled, /practice — auth-walled); the first pass hit only the walled
+  one and the owner rightly reported the change missing. Enumerate every
+  surface listing the same taxonomy BEFORE declaring a restructure done,
+  and when work is finished but undeployed, say so in the FIRST line of
+  the report, not the last.
 - **2026-08-12** — Probe after deploy `c8b31a1` (the ЭЕШ learn hub re-cut
   onto five MAIN topics — the ministry's strands — with the 14 courses as
   their subtopics, and every past-paper/Premium question normalized to a
