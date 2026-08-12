@@ -76,6 +76,35 @@ describe("ЭЕШ question taxonomy (5 main topics × 14 subtopics)", () => {
     ).toEqual([]);
   });
 
+  it("ships exam weights that match the tagged past papers", () => {
+    // data/esh/exam-weights.json is what /practice/esh/topics displays as
+    // "% of exam". It is generated (scripts/esh/build_exam_weights.py), so
+    // this recomputes the same counts from the question files and fails if
+    // the shipped numbers have gone stale — invented weights are exactly
+    // what this page was rebuilt to eliminate.
+    const weights = JSON.parse(
+      fs.readFileSync(path.join(process.cwd(), "data", "esh", "exam-weights.json"), "utf-8"),
+    );
+    const isPastPaper = (f: string) => /^20\d\d[a-z](-section2)?\.json$/.test(f);
+    const perTopic = new Map<string, number>();
+    let total = 0;
+    for (const q of allQuestions().filter((q) => isPastPaper(q.file))) {
+      perTopic.set(q.topic as string, (perTopic.get(q.topic as string) ?? 0) + 1);
+      total++;
+    }
+    expect(weights.basedOn.questions).toBe(total);
+    for (const d of weights.domains) {
+      const domain = ESH_DOMAINS.find((x) => x.key === d.key)!;
+      expect(domain, `unknown domain ${d.key} in weights`).toBeTruthy();
+      const count = domain.topics.reduce((n, t) => n + (perTopic.get(t) ?? 0), 0);
+      expect(d.count, `${d.key} count stale — rerun build_exam_weights.py`).toBe(count);
+      expect(d.sharePct).toBeCloseTo((100 * count) / total, 1);
+      for (const row of d.topics) {
+        expect(row.count, `${row.topic} stale`).toBe(perTopic.get(row.topic) ?? 0);
+      }
+    }
+  });
+
   it("derives a main topic for every question", () => {
     for (const q of allQuestions()) {
       const domain = DOMAIN_OF_TOPIC[q.topic as string];

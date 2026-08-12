@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import usePerformance from "@/lib/use-performance";
-import { TOPICS } from "@/lib/esh-questions";
+import { ESH_DOMAINS, TOPIC_LABELS } from "@/lib/esh-questions";
 import topicsData from "@/data/learn/topics.json";
 
 export default function PracticePage() {
@@ -211,8 +211,15 @@ export default function PracticePage() {
           <h2 className="serif mb-5" style={{ fontWeight: 400, fontSize: 32, letterSpacing: "-0.02em", color: "var(--fg)" }}>
             Сэдвээ <em className="serif-italic" style={{ color: "var(--accent)" }}>сонго</em>.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {TOPICS.map((topic, i) => {
+          <div className="space-y-8">
+            {ESH_DOMAINS.map((domain, di) => (
+            <div key={domain.key}>
+            <div className="mono text-[10px] uppercase mb-2.5" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
+              {String(di + 1).padStart(2, "0")} · {domain.titleMn}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {domain.topics.map((value, i) => {
+              const topic = { value, label: TOPIC_LABELS[value] || value };
               const data = (topicsData as Record<string, { title: string; overview: string }>)[topic.value];
               return (
                 <Link
@@ -223,7 +230,7 @@ export default function PracticePage() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <div className="mono text-[10px] mb-1.5" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                        {String(i + 1).padStart(2, "0")}
+                        {di + 1}.{i + 1}
                       </div>
                       <h3 className="serif" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
                         {data?.title ?? topic.label}
@@ -239,6 +246,9 @@ export default function PracticePage() {
                 </Link>
               );
             })}
+            </div>
+            </div>
+            ))}
           </div>
         </div>
       </div>
