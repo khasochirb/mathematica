@@ -22,6 +22,7 @@ import {
   eshDomainOf,
 } from "@/lib/esh-questions";
 import { eshCoursesByDomain, getEshTopicCourse } from "@/lib/esh-course";
+import moeCurriculum from "@/data/esh/moe-curriculum.json";
 
 const QDIR = path.join(process.cwd(), "data", "questions");
 const CANONICAL = new Set(TOPICS.map((t) => t.value));
@@ -74,6 +75,51 @@ describe("ЭЕШ question taxonomy (5 main topics × 14 subtopics)", () => {
       bad.map((q) => `${q.file} ${q.source}: ${JSON.stringify(q.topic)}`),
       "run scripts/esh/normalize_question_topics.py (and classify any new residuals)",
     ).toEqual([]);
+  });
+
+  it("follows the ministry's strand for every course, with three named exceptions", () => {
+    // The five main topics ARE the strands of curriculum А/492
+    // (data/esh/moe-curriculum.json, parsed from the ministry PDF). This
+    // asserts each course's domain equals the strand of every ministry
+    // section it teaches. The exceptions, each deliberate and documented:
+    //  - combinatorics: the document files 10.14/11.12/12.14 under
+    //    МАГАДЛАЛ, СТАТИСТИК; the hub promotes counting to a main topic
+    //    (owner decision, 2026-08-12).
+    //  - linear_algebra: mixed IN THE DOCUMENT (matrices 10.4 and systems
+    //    11.2 are АЛГЕБР; vectors 10.9/11.8 and transformations 10.11 are
+    //    ГЕОМЕТР) — one course needs one home; majority of sections wins.
+    //  - sequences: 11.4 (дараалал) is АЛГЕБР but 12.9 (цуваа) is АНАЛИЗЫН
+    //    ЭХЛЭЛ in the document; the course lives with its core exam
+    //    content, the progressions of 11.4.
+    const strandToDomain: Record<string, string> = {
+      algebra: "algebra",
+      "geometry-trigonometry": "geometry_trig",
+      analysis: "analysis",
+      "probability-statistics": "probability_stats",
+    };
+    const strandOf = new Map<string, string>(
+      moeCurriculum.sections.map((s: { code: string; strand: string }) => [s.code, s.strand]),
+    );
+    const MIXED_OK = new Set(["combinatorics", "linear_algebra", "sequences"]);
+    for (const { domain, courses } of eshCoursesByDomain()) {
+      for (const course of courses) {
+        if (MIXED_OK.has(course.topic)) continue;
+        for (const sec of course.moeSections) {
+          expect(
+            strandToDomain[strandOf.get(sec)!],
+            `${course.topic}: ministry section ${sec} is strand ${strandOf.get(sec)}, ` +
+              `but the course sits in domain ${domain.key}`,
+          ).toBe(domain.key);
+        }
+      }
+    }
+    // The exceptions still anchor where claimed — a majority of
+    // linear_algebra's sections really are geometry, and sequences really
+    // does carry the algebra-strand section it is filed under.
+    const la = eshCoursesByDomain().find((g) => g.domain.key === "geometry_trig")!
+      .courses.find((c) => c.topic === "linear_algebra")!;
+    const geoSections = la.moeSections.filter((s) => strandOf.get(s) === "geometry-trigonometry");
+    expect(geoSections.length * 2).toBeGreaterThan(la.moeSections.length);
   });
 
   it("ships exam weights that match the tagged past papers", () => {
