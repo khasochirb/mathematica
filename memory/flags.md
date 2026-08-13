@@ -100,6 +100,21 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-13** — Deploy `6c2f25a` pushed to main (grade 4 re-figured: the
+  band's figure vocabulary extracted to scripts/primary/figures.py, lineGraph
+  and clockFace renderers added, 80 figures across its 40 lessons, and
+  `verify:figure-first` making the rule mechanical). POST-DEPLOY PROBE NOT
+  RUN — the Vercel MCP server is DISCONNECTED for this session (it 502'd for
+  ~15 min, then dropped entirely), and direct curl to prod is proxy-blocked
+  by design. Confirmed instead: main is at `6c2f25a` via GitHub MCP, and
+  Vercel auto-deploys main. NOTE ON THE PUSH: main had moved under us —
+  PR #4 (problem bank Premium-gating) merged at `5038570` mid-session — so
+  this went out as a REBASE onto it, never a force-push over someone else's
+  work, with the whole gate re-run against the merged tree (709 tests, up
+  from 669, because their tests came along). Content-only diff: no
+  migrations, no auth or API surface, nothing depending on an open flag.
+  OWED, NOW TWO DEPLOYS DEEP: probe `5f8e3c4` AND `6c2f25a` when the Vercel
+  connection returns; flag state has been unverified since `b113b96`.
 - **2026-08-13** — Deploy `5f8e3c4` pushed to main (primary band renumbered
   onto the ministry's grade labels + the redirect map that keeps old links
   working, real bar-chart/pictograph figures, the Baga curriculum as data
