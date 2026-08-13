@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine" | "integerAdd" | "geo";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine" | "integerAdd" | "geo" | "barChart" | "pictograph";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -145,6 +145,27 @@ export interface FigureSpec {
   integerAdd?: { a: number; b: number; min: number; max: number };
   // "geo" — a static geometry diagram (points/segments/rays/lines/angle arcs).
   geo?: GeoDiagramSpec;
+  // "barChart" — a real bar chart for the primary-band data units: labelled
+  // categories, a numeric axis with gridlines, one bar per category. The
+  // audit of 2026-08-13 found bar-graph lessons DESCRIBING bars in words
+  // ("a bar reaching the 7th line"); this mode exists so a chart-reading
+  // problem can show the chart. `unit` names the axis (e.g. "сурагч").
+  barChart?: {
+    categories: { label: string; value: number; color?: string }[];
+    max?: number; // top of the axis (default: next nice number above the data)
+    step?: number; // gridline spacing (default 1)
+    unit?: string;
+    highlight?: number; // index of a bar to emphasise (the one the question asks about)
+  };
+  // "pictograph" — rows of repeated symbols with a key ("⚫ = 2 books").
+  // Half-symbols are real pictograph vocabulary, so value may be a
+  // half-multiple of the key (e.g. key 2, value 5 → 2½ symbols).
+  pictograph?: {
+    rows: { label: string; value: number }[];
+    key: number; // how much one symbol stands for (>= 1)
+    symbol?: string; // single glyph, default "●"
+    color?: string;
+  };
 }
 
 // Fractions — a bar you split into more (equal) pieces to see equivalent fractions.

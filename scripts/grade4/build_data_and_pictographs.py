@@ -27,7 +27,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g4build import (withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g4build import (fig_barchart, fig_pictograph, withprobfig, funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic, withfig,
                      fig_groups, C_ACCENT, C_WARM, C_GREEN)
 
@@ -490,15 +490,14 @@ def lesson_pictographs():
     # Drawing: 35 with key 5, and 45 with key 10 (four and a half symbols).
     draw_n, draw_sym = 35, 7
     key_c, half_full, half_val = 10, 4, 45
-    fig_week = fig_groups((sym_mon, "symbols — Monday"),
-                          (sym_tue, "symbols — Tuesday"),
-                          (sym_wed, "symbols — Wednesday"))
-    fig_two_days = fig_groups((sym_mon, "symbols — Monday"),
-                              (sym_tue, "symbols — Tuesday"))
-    fig_draw = fig_groups((draw_sym, "symbols — %d in all" % draw_n, C_GREEN))
-    fig_half = fig_groups((half_full, "full symbols — %d each" % key_c, C_ACCENT),
-                          (1, "half symbol — %d" % (key_c // 2), C_WARM))
-    fig_practice = fig_groups((7, "symbols — Saturday"), (4, "symbols — Sunday"))
+    # REAL pictographs (2026-08-13): the audit found this lesson teaching
+    # pictographs with dot-cluster stand-ins. Same variables, actual figure.
+    fig_week = fig_pictograph([("Monday", val_mon), ("Tuesday", val_tue),
+                               ("Wednesday", val_wed)], key_a)
+    fig_two_days = fig_pictograph([("Monday", val_mon), ("Tuesday", val_tue)], key_a)
+    fig_draw = fig_pictograph([("Sheep", draw_n)], key_a, color=C_GREEN)
+    fig_half = fig_pictograph([("Sheep", half_val)], key_c, color=C_ACCENT)
+    fig_practice = fig_pictograph([("Saturday", 7 * key_a), ("Sunday", 4 * key_a)], key_a)
     return {
         "slug": "pictographs",
         "title": "Pictographs",
@@ -709,10 +708,14 @@ def lesson_bars():
     # Comparing two bars.
     tall, short = 20, 14
     diff = tall - short                                 # 6
-    fig_bars = fig_groups((val_w, "wrestling — %d lines of %d" % (lines_w, step_a), C_ACCENT),
-                          (val_a, "archery — %d lines of %d" % (lines_a, step_a), C_WARM))
-    fig_compare = fig_groups((tall, "Monday", C_ACCENT), (short, "Tuesday", C_GREEN))
-    fig_practice = fig_groups((22, "Saturday", C_ACCENT), (16, "Sunday", C_WARM))
+    # REAL bar charts (2026-08-13): the audit found bars described in prose
+    # ("a bar reaching the 7th line"). Same variables, actual chart.
+    fig_bars = fig_barchart([("wrestling", val_w, C_ACCENT), ("archery", val_a, C_WARM)],
+                            step=step_a)
+    fig_compare = fig_barchart([("Monday", tall, C_ACCENT), ("Tuesday", short, C_GREEN)],
+                               step=step_b)
+    fig_practice = fig_barchart([("Saturday", 22, C_ACCENT), ("Sunday", 16, C_WARM)],
+                                step=step_b)
     return {
         "slug": "bar-charts",
         "title": "Bar Charts",

@@ -139,6 +139,48 @@ def fig_numline(points, lo=None, hi=None):
     return {"mode": "numberLine", "numberLine": nl}
 
 
+def fig_barchart(categories, step=1, unit=None, max_=None, highlight=None):
+    """A real bar chart: [(label, value, color?)...]. Values must be exact
+    multiples the axis can carry; the assert keeps a chart readable for a
+    child — no bar past the axis, no zero-category chart."""
+    assert categories, "fig_barchart: no categories"
+    cats = []
+    for c in categories:
+        label, value = c[0], c[1]
+        assert isinstance(value, int) and 0 <= value <= 60, "fig_barchart: value %r" % (value,)
+        d = {"label": label, "value": value}
+        if len(c) > 2 and c[2]:
+            d["color"] = c[2]
+        cats.append(d)
+    top = max(c["value"] for c in cats)
+    if max_ is not None:
+        assert max_ >= top, "fig_barchart: max below tallest bar"
+    fig = {"mode": "barChart", "barChart": {"categories": cats, "step": step}}
+    if unit: fig["barChart"]["unit"] = unit
+    if max_ is not None: fig["barChart"]["max"] = max_
+    if highlight is not None:
+        assert 0 <= highlight < len(cats), "fig_barchart: highlight out of range"
+        fig["barChart"]["highlight"] = highlight
+    return fig
+
+
+def fig_pictograph(rows, key, symbol=None, color=None):
+    """A pictograph with a key: rows [(label, value)...], one symbol = key.
+    Every value must be a whole- or half-multiple of the key, because that
+    is the only thing a symbol row can SHOW — a value the picture cannot
+    draw is a lying figure and fails the build."""
+    assert rows and key >= 1, "fig_pictograph: bad rows/key"
+    for label, value in rows:
+        doubled = (2 * value) % key
+        assert doubled == 0,             "fig_pictograph: %r=%r not a half-multiple of key %r" % (label, value, key)
+        assert value // key <= 12, "fig_pictograph: row %r too long to read" % (label,)
+    fig = {"mode": "pictograph",
+           "pictograph": {"rows": [{"label": l, "value": v} for l, v in rows], "key": key}}
+    if symbol: fig["pictograph"]["symbol"] = symbol
+    if color: fig["pictograph"]["color"] = color
+    return fig
+
+
 def P(pid, x, y, label=None):
     """A named point for geo diagrams. Label defaults to the id; pass
     label="" for an unlabelled construction point."""

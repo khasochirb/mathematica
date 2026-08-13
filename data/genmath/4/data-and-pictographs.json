@@ -1264,24 +1264,24 @@
               "Wednesday shows $5$ symbols: $5 \\times 5 = 25$. Same picture, always the same move — count the symbols, then multiply by the key."
             ],
             "figure": {
-              "mode": "groups",
-              "groups": [
-                {
-                  "count": 6,
-                  "color": "#3b82f6",
-                  "label": "symbols — Monday"
-                },
-                {
-                  "count": 4,
-                  "color": "#d97706",
-                  "label": "symbols — Tuesday"
-                },
-                {
-                  "count": 5,
-                  "color": "#059669",
-                  "label": "symbols — Wednesday"
-                }
-              ]
+              "mode": "pictograph",
+              "pictograph": {
+                "rows": [
+                  {
+                    "label": "Monday",
+                    "value": 30
+                  },
+                  {
+                    "label": "Tuesday",
+                    "value": 20
+                  },
+                  {
+                    "label": "Wednesday",
+                    "value": 25
+                  }
+                ],
+                "key": 5
+              }
             }
           },
           {
@@ -1302,19 +1302,20 @@
                   "Eq(4*5, 20)"
                 ],
                 "figure": {
-                  "mode": "groups",
-                  "groups": [
-                    {
-                      "count": 6,
-                      "color": "#3b82f6",
-                      "label": "symbols — Monday"
-                    },
-                    {
-                      "count": 4,
-                      "color": "#d97706",
-                      "label": "symbols — Tuesday"
-                    }
-                  ]
+                  "mode": "pictograph",
+                  "pictograph": {
+                    "rows": [
+                      {
+                        "label": "Monday",
+                        "value": 30
+                      },
+                      {
+                        "label": "Tuesday",
+                        "value": 20
+                      }
+                    ],
+                    "key": 5
+                  }
                 }
               },
               {
@@ -1415,19 +1416,17 @@
               "So you draw HALF a symbol for it: $4$ full symbols and a half, and the receipt $4 \\times 10 + 5 = 45$ ✓ proves the row still says what it should."
             ],
             "figure": {
-              "mode": "groups",
-              "groups": [
-                {
-                  "count": 4,
-                  "color": "#3b82f6",
-                  "label": "full symbols — 10 each"
-                },
-                {
-                  "count": 1,
-                  "color": "#d97706",
-                  "label": "half symbol — 5"
-                }
-              ]
+              "mode": "pictograph",
+              "pictograph": {
+                "rows": [
+                  {
+                    "label": "Sheep",
+                    "value": 45
+                  }
+                ],
+                "key": 10,
+                "color": "#3b82f6"
+              }
             }
           },
           {
@@ -1448,14 +1447,17 @@
                   "Eq(7*5, 35)"
                 ],
                 "figure": {
-                  "mode": "groups",
-                  "groups": [
-                    {
-                      "count": 7,
-                      "color": "#059669",
-                      "label": "symbols — 35 in all"
-                    }
-                  ]
+                  "mode": "pictograph",
+                  "pictograph": {
+                    "rows": [
+                      {
+                        "label": "Sheep",
+                        "value": 35
+                      }
+                    ],
+                    "key": 5,
+                    "color": "#059669"
+                  }
                 }
               },
               {
@@ -1471,19 +1473,17 @@
                   "5 < 10"
                 ],
                 "figure": {
-                  "mode": "groups",
-                  "groups": [
-                    {
-                      "count": 4,
-                      "color": "#3b82f6",
-                      "label": "full symbols — 10 each"
-                    },
-                    {
-                      "count": 1,
-                      "color": "#d97706",
-                      "label": "half symbol — 5"
-                    }
-                  ]
+                  "mode": "pictograph",
+                  "pictograph": {
+                    "rows": [
+                      {
+                        "label": "Sheep",
+                        "value": 45
+                      }
+                    ],
+                    "key": 10,
+                    "color": "#3b82f6"
+                  }
                 }
               }
             ]
@@ -1598,19 +1598,20 @@
                   "Eq(15 + 20, 35)"
                 ],
                 "figure": {
-                  "mode": "groups",
-                  "groups": [
-                    {
-                      "count": 7,
-                      "color": "#3b82f6",
-                      "label": "symbols — Saturday"
-                    },
-                    {
-                      "count": 4,
-                      "color": "#d97706",
-                      "label": "symbols — Sunday"
-                    }
-                  ]
+                  "mode": "pictograph",
+                  "pictograph": {
+                    "rows": [
+                      {
+                        "label": "Saturday",
+                        "value": 35
+                      },
+                      {
+                        "label": "Sunday",
+                        "value": 20
+                      }
+                    ],
+                    "key": 5
+                  }
                 }
               },
               {
@@ -1784,19 +1785,22 @@
               "Change the step and the same drawing says something else: on a step-of-$1$ chart those bars would be only $4$ and $3$. The scale is not decoration — it is half the chart."
             ],
             "figure": {
-              "mode": "groups",
-              "groups": [
-                {
-                  "count": 20,
-                  "color": "#3b82f6",
-                  "label": "wrestling — 4 lines of 5"
-                },
-                {
-                  "count": 15,
-                  "color": "#d97706",
-                  "label": "archery — 3 lines of 5"
-                }
-              ]
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "wrestling",
+                    "value": 20,
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "label": "archery",
+                    "value": 15,
+                    "color": "#d97706"
+                  }
+                ],
+                "step": 5
+              }
             }
           },
           {
@@ -1817,19 +1821,22 @@
                   "Eq(3*5, 15)"
                 ],
                 "figure": {
-                  "mode": "groups",
-                  "groups": [
-                    {
-                      "count": 20,
-                      "color": "#3b82f6",
-                      "label": "wrestling — 4 lines of 5"
-                    },
-                    {
-                      "count": 15,
-                      "color": "#d97706",
-                      "label": "archery — 3 lines of 5"
-                    }
-                  ]
+                  "mode": "barChart",
+                  "barChart": {
+                    "categories": [
+                      {
+                        "label": "wrestling",
+                        "value": 20,
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "label": "archery",
+                        "value": 15,
+                        "color": "#d97706"
+                      }
+                    ],
+                    "step": 5
+                  }
                 }
               },
               {
@@ -1932,19 +1939,22 @@
               "'How many ALTOGETHER?' is the other question, and it adds instead: $20 + 14 = 34$. Ask which question you were given before you touch the numbers."
             ],
             "figure": {
-              "mode": "groups",
-              "groups": [
-                {
-                  "count": 20,
-                  "color": "#3b82f6",
-                  "label": "Monday"
-                },
-                {
-                  "count": 14,
-                  "color": "#059669",
-                  "label": "Tuesday"
-                }
-              ]
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "Monday",
+                    "value": 20,
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "label": "Tuesday",
+                    "value": 14,
+                    "color": "#059669"
+                  }
+                ],
+                "step": 2
+              }
             }
           },
           {
@@ -1965,19 +1975,22 @@
                   "Eq(6 + 14, 20)"
                 ],
                 "figure": {
-                  "mode": "groups",
-                  "groups": [
-                    {
-                      "count": 20,
-                      "color": "#3b82f6",
-                      "label": "Monday"
-                    },
-                    {
-                      "count": 14,
-                      "color": "#059669",
-                      "label": "Tuesday"
-                    }
-                  ]
+                  "mode": "barChart",
+                  "barChart": {
+                    "categories": [
+                      {
+                        "label": "Monday",
+                        "value": 20,
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "label": "Tuesday",
+                        "value": 14,
+                        "color": "#059669"
+                      }
+                    ],
+                    "step": 2
+                  }
                 }
               },
               {
@@ -2134,19 +2147,22 @@
                   "Eq(22 + 16, 38)"
                 ],
                 "figure": {
-                  "mode": "groups",
-                  "groups": [
-                    {
-                      "count": 22,
-                      "color": "#3b82f6",
-                      "label": "Saturday"
-                    },
-                    {
-                      "count": 16,
-                      "color": "#d97706",
-                      "label": "Sunday"
-                    }
-                  ]
+                  "mode": "barChart",
+                  "barChart": {
+                    "categories": [
+                      {
+                        "label": "Saturday",
+                        "value": 22,
+                        "color": "#3b82f6"
+                      },
+                      {
+                        "label": "Sunday",
+                        "value": 16,
+                        "color": "#d97706"
+                      }
+                    ],
+                    "step": 2
+                  }
                 }
               },
               {
