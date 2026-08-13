@@ -23,9 +23,9 @@ import {
   ALG2_SPINE,
   CALC_SPINE,
   GEOMETRY_SPINE,
+  GRADE2_SPINE,
   GRADE3_SPINE,
   GRADE4_SPINE,
-  GRADE5_SPINE,
   GRADE6_SPINE,
   GRADE7_SPINE,
   GRADE8_SPINE,
@@ -53,9 +53,9 @@ export type CourseKey = string;
 // taught order. Grades and named courses share one shape here on purpose:
 // the policy should not care which band a course belongs to.
 const COURSE_TOPIC_ORDER: Record<CourseKey, string[]> = {
+  "2": GRADE2_SPINE.map((t) => t.slug),
   "3": GRADE3_SPINE.map((t) => t.slug),
   "4": GRADE4_SPINE.map((t) => t.slug),
-  "5": GRADE5_SPINE.map((t) => t.slug),
   "6": GRADE6_SPINE.map((t) => t.slug),
   "7": GRADE7_SPINE.map((t) => t.slug),
   "8": GRADE8_SPINE.map((t) => t.slug),
@@ -110,9 +110,9 @@ function liveSlugsFor(courseKey: CourseKey): Set<string> | null {
 }
 
 const SPINE_WITH_LIVE: Record<CourseKey, { slug: string; live: boolean }[]> = {
+  "2": GRADE2_SPINE,
   "3": GRADE3_SPINE,
   "4": GRADE4_SPINE,
-  "5": GRADE5_SPINE,
   "6": GRADE6_SPINE,
   "7": GRADE7_SPINE,
   "8": GRADE8_SPINE,

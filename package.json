@@ -35,7 +35,8 @@
     "verify:exams": "python3 scripts/verify-exams.py",
     "verify:links": "node scripts/crawl-links.mjs",
     "verify:mn-terms": "python3 scripts/i18n/mn_terms.py --check",
-    "verify:esh-topics": "vitest run scripts/verify-esh-question-topics.test.ts"
+    "verify:esh-topics": "vitest run scripts/verify-esh-question-topics.test.ts",
+    "verify:primary-figures": "vitest run scripts/verify-primary-figures.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.111.0",

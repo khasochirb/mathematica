@@ -12,6 +12,8 @@ import PercentChangeFinderView from "@/components/genmath/interactive/PercentCha
 import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
 import IntegerAddView from "@/components/genmath/interactive/IntegerAddView";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
+import BarChartView from "@/components/genmath/interactive/BarChartView";
+import PictographView from "@/components/genmath/interactive/PictographView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -141,6 +143,12 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
     );
   }
 
+  if (mode === "barChart" && figure.barChart) {
+    return <BarChartView spec={figure.barChart} />;
+  }
+  if (mode === "pictograph" && figure.pictograph) {
+    return <PictographView spec={figure.pictograph} />;
+  }
   if (mode === "cross" && figure.cross) {
     return <CrossFigure {...figure.cross} />;
   }

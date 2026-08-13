@@ -1,4 +1,14 @@
+import { readFileSync } from "node:fs";
 import withSerwistInit from "@serwist/next";
+
+// Primary-band renumber (2026-08-13): the band moved onto the ministry's
+// grade labels, so every saved link into the old grade numbers is sent to
+// where that exact content now lives. Generated from the spines by
+// scripts/primary/build_renumber_redirects.py; asserted complete by
+// scripts/verify-primary-renumber.test.ts.
+const primaryRenumber = JSON.parse(
+  readFileSync(new URL("./data/primary/renumber-redirects.json", import.meta.url), "utf-8"),
+).redirects;
 
 // Service worker (PWA offline support). Compiles app/sw.ts → public/sw.js at
 // build; disabled in `next dev` by default to avoid stale-cache confusion.
@@ -35,6 +45,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      ...primaryRenumber,
       { source: "/ai", destination: "/practice", permanent: false },
       { source: "/ai/:path*", destination: "/practice", permanent: false },
       { source: "/progress", destination: "/dashboard", permanent: false },

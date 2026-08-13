@@ -1,0 +1,2651 @@
+{
+  "slug": "addition-and-subtraction",
+  "title": "Addition & Subtraction",
+  "grade": 4,
+  "status": "published",
+  "blurb": "Column addition and subtraction with regrouping inside 10 000, mental strategies, missing-number fact families, and one- and two-step word problems.",
+  "lessons": [
+    {
+      "slug": "column-addition",
+      "title": "Column Addition",
+      "concreteComparison": "Counting money after a market day: you sort the togrog notes into piles — thousands, hundreds, tens, ones — and count each pile on its own. Whenever ten small notes stack up, you swap them for one bigger note. Column addition is exactly that sorting: line the places up, add each pile, and trade every ten upward.",
+      "objective": "Add three- and four-digit numbers in columns — lining up places, adding from the ones, carrying past nine — and check every sum by adding the other way.",
+      "concept": [
+        "**Places line up from the right.** Ones under ones, tens under tens, hundreds under hundreds. A digit's column IS its value — slide $47$ one place left and it silently becomes $470$.",
+        "**Add from the ones and trade every ten.** $8 + 7 = 15$ ones is too many for one column: five stay, and ten of them trade for $1$ ten that moves next door. The carry is real value on the move — and when you add TWO numbers it is always exactly $1$. (Stack three or more numbers in a column and a bigger carry can appear: $9 + 9 + 9 = 27$ carries a $2$.)",
+        "**Check by adding the other way.** $358 + 467$ and $467 + 358$ walk different roads to the SAME total. Re-adding in the other order is the sum's receipt: if the two answers disagree, a carry slipped somewhere."
+      ],
+      "keyIdea": "Line up the places, add from the right, and trade every ten upward — then add the other way and make the total repeat.",
+      "facts": [
+        {
+          "title": "Ten of these make one of those",
+          "latex": "10 \\ \\text{ones} = 1 \\ \\text{ten} \\qquad 10 \\ \\text{tens} = 1 \\ \\text{hundred}",
+          "explanation": "Carrying is trading: ten in one column become one in the next."
+        },
+        {
+          "title": "The other-way check",
+          "latex": "358 + 467 = 825 \\quad \\text{and} \\quad 467 + 358 = 825",
+          "explanation": "Order never changes a sum — add the other way and the total must repeat."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4as-l1-we1",
+          "statement": "Add $358 + 467$ in columns, then check by adding the other way.",
+          "note": "Ones first; every ten trades up.",
+          "solution": "Ones: $8 + 7 = 15$ — write $5$, carry $1$. Tens: $5 + 6 + 1 = 12$ — write $2$, carry $1$. Hundreds: $3 + 4 + 1 = 8$. Total $825$. Other way: $467 + 358 = 825$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(8 + 7, 15)",
+            "Eq(5 + 6 + 1, 12)",
+            "Eq(358 + 467, 825)",
+            "Eq(467 + 358, 825)"
+          ]
+        },
+        {
+          "id": "g4as-l1-we2",
+          "statement": "Add $785 + 649$.",
+          "note": "The hundreds outgrow one digit — the total crosses 1000.",
+          "solution": "Ones: $5 + 9 = 14$. Tens: $8 + 4 + 1 = 13$. Hundreds: $7 + 6 + 1 = 14$ — fourteen hundreds are $1$ thousand $4$ hundreds. Total $1\\,434$; other way $649 + 785 = 1\\,434$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(5 + 9, 14)",
+            "Eq(7 + 6 + 1, 14)",
+            "Eq(785 + 649, 1434)",
+            "Eq(649 + 785, 1434)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Lining numbers up on the left — writing the 4 of 47 under the 3 of 385.",
+          "correction": "Places line up from the RIGHT: ones under ones, tens under tens. 47 + 385 is 432; left-aligned, the 47 acts as 470 and the sum silently becomes 855.",
+          "authored": true
+        },
+        {
+          "text": "Writing a two-digit column total straight down — a 15 squeezed into the ones column.",
+          "correction": "15 ones are 1 ten and 5 ones: write the 5, carry the 1 into the tens column. The carry is real value, not decoration.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4as-l1-t1",
+          "statement": "Add $276 + 358$ and check it the other way.",
+          "solution": "Ones $6 + 8 = 14$; tens $7 + 5 + 1 = 13$; hundreds $2 + 3 + 1 = 6$: total $634$. Check: $358 + 276 = 634$ ✓.",
+          "check": [
+            "Eq(276 + 358, 634)",
+            "Eq(358 + 276, 634)"
+          ]
+        },
+        {
+          "id": "g4as-l1-t2",
+          "statement": "Add $894 + 538$.",
+          "solution": "Ones $4 + 8 = 12$; tens $9 + 3 + 1 = 13$; hundreds $8 + 5 + 1 = 14$: total $1\\,432$. Check: $538 + 894 = 1\\,432$ ✓.",
+          "check": [
+            "Eq(894 + 538, 1432)",
+            "Eq(538 + 894, 1432)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Line up, add from the right, trade",
+            "beats": [
+              "Write the numbers so PLACES line up — ones under ones, tens under tens, hundreds under hundreds. In $358 + 467$, the $8$ and the $7$ share the ones column.",
+              "Add from the RIGHT. Ones first: $8 + 7 = 15$ — too many for one column. Ten of those ones trade for ONE ten: write $5$, carry $1$ into the tens.",
+              "The carry is real value, not decoration. Tens: $5 + 6 + 1 = 12$ — write $2$, carry $1$ again. Hundreds: $3 + 4 + 1 = 8$. Total: $825$."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 8,
+                  "color": "#3b82f6",
+                  "label": "ones in 358"
+                },
+                {
+                  "count": 7,
+                  "color": "#d97706",
+                  "label": "ones in 467"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Carrying past nine",
+            "intro": "Ones first, and every ten trades up.",
+            "examples": [
+              {
+                "prompt": "Add $358 + 467$ in columns.",
+                "steps": [
+                  "Ones: $8 + 7 = 15$ — write $5$, carry $1$.",
+                  "Tens: $5 + 6 + 1 = 12$ — write $2$, carry $1$. Hundreds: $3 + 4 + 1 = 8$."
+                ],
+                "answer": "$825$",
+                "check": [
+                  "Eq(8 + 7, 15)",
+                  "Eq(358 + 467, 825)"
+                ]
+              },
+              {
+                "prompt": "Add $429 + 386$ in columns.",
+                "steps": [
+                  "Ones: $9 + 6 = 15$ — write $5$, carry $1$. Tens: $2 + 8 + 1 = 11$ — write $1$, carry $1$.",
+                  "Hundreds: $4 + 3 + 1 = 8$. Total: $815$."
+                ],
+                "answer": "$815$",
+                "check": [
+                  "Eq(9 + 6, 15)",
+                  "Eq(429 + 386, 815)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Carry it over",
+            "intro": "Ones first; trade every ten upward.",
+            "problems": [
+              {
+                "prompt": "$347 + 285$ equals:",
+                "options": [
+                  "$632$",
+                  "$522$",
+                  "$622$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $7 + 5 = 12$ (write $2$, carry $1$); tens $4 + 8 + 1 = 13$; hundreds $3 + 2 + 1 = 6$: $632$. Dropping the carries gives $522$ — the no-trade trap.",
+                "check": [
+                  "Eq(7 + 5, 12)",
+                  "Eq(347 + 285, 632)"
+                ]
+              },
+              {
+                "prompt": "$508 + 293$ equals:",
+                "options": [
+                  "$801$",
+                  "$791$",
+                  "$811$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $8 + 3 = 11$ (write $1$, carry $1$); tens $0 + 9 + 1 = 10$ (write $0$, carry $1$); hundreds $5 + 2 + 1 = 8$: $801$. Forgetting the ones carry leaves $791$.",
+                "check": [
+                  "Eq(0 + 9 + 1, 10)",
+                  "Eq(508 + 293, 801)"
+                ]
+              },
+              {
+                "prompt": "$634 + 187$ equals:",
+                "options": [
+                  "$821$",
+                  "$721$",
+                  "$711$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $4 + 7 = 11$; tens $3 + 8 + 1 = 12$; hundreds $6 + 1 + 1 = 8$: $821$. Missing the tens carry gives $721$.",
+                "check": [
+                  "Eq(3 + 8 + 1, 12)",
+                  "Eq(634 + 187, 821)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Columns are places",
+            "prompt": "To add $47 + 385$, Dorj lines the numbers up on the LEFT, so the $4$ of $47$ sits under the $3$ of $385$. What really happens?",
+            "options": [
+              "the $47$ acts as $470$, and the sum comes out $855$ instead of $432$",
+              "nothing — lining up on the left works just as well",
+              "the sum still comes out $432$",
+              "the $385$ turns into $3\\,850$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Columns are PLACES. Slid one place left, the $4$ of $47$ sits in the tens — the addition quietly computes $470 + 385 = 855$. Lined up from the right it is $47 + 385 = 432$.",
+            "check": [
+              "Eq(470 + 385, 855)",
+              "Eq(47 + 385, 432)",
+              "Ne(855, 432)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The carry that stays a 1",
+            "body": "When you add TWO numbers, however long they get, one column can hold at most $9 + 9 = 18$, plus an incoming carry: $19$ at the very most. That is one ten and nine ones — so the number you carry is always exactly $1$, never more. The scariest-looking two-number column addition still moves only a quiet little $1$. Stack THREE or more numbers, though, and the carry can grow — $9 + 9 + 9 = 27$ writes $7$ and carries $2$."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Into the thousands — and the other-way check",
+            "beats": [
+              "Two three-digit numbers can outgrow three digits: $785 + 649$ — ones $5 + 9 = 14$, tens $8 + 4 + 1 = 13$, hundreds $7 + 6 + 1 = 14$. Fourteen hundreds are $1$ thousand $4$ hundreds: $1\\,434$.",
+              "That is as big as it gets for two three-digit numbers: even $999 + 999 = 1\\,998$, so the answer never needs more than one extra digit. And nothing changes when the numbers themselves are four digits — $1\\,748 + 2\\,596$ simply adds one more column, the thousands.",
+              "Now the through-line of this whole topic: one fact can be read two ways. Check every sum by adding the OTHER way — $649 + 785$ must land on the same $1\\,434$. If the two reads disagree, one of them slipped."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Crossing 1000 — and four digits",
+            "intro": "Add both ways; the total must repeat.",
+            "examples": [
+              {
+                "prompt": "Add $785 + 649$, then check by adding the other way.",
+                "steps": [
+                  "Ones $5 + 9 = 14$; tens $8 + 4 + 1 = 13$; hundreds $7 + 6 + 1 = 14$: $1\\,434$.",
+                  "Other way: $649 + 785 = 1\\,434$ — same total, sum confirmed."
+                ],
+                "answer": "$1\\,434$",
+                "check": [
+                  "Eq(785 + 649, 1434)",
+                  "Eq(649 + 785, 1434)"
+                ]
+              },
+              {
+                "prompt": "Add $967 + 568$ and check it.",
+                "steps": [
+                  "Ones $7 + 8 = 15$; tens $6 + 6 + 1 = 13$; hundreds $9 + 5 + 1 = 15$: $1\\,535$.",
+                  "Check: $568 + 967 = 1\\,535$ ✓."
+                ],
+                "answer": "$1\\,535$",
+                "check": [
+                  "Eq(967 + 568, 1535)",
+                  "Eq(568 + 967, 1535)"
+                ]
+              },
+              {
+                "prompt": "Add $1\\,748 + 2\\,596$ — four digits, one more column.",
+                "steps": [
+                  "Ones $8 + 6 = 14$ (write $4$, carry $1$); tens $4 + 9 + 1 = 14$ (write $4$, carry $1$); hundreds $7 + 5 + 1 = 13$ (write $3$, carry $1$).",
+                  "Thousands are just the next column along: $1 + 2 + 1 = 4$. Total $4\\,344$; other way $2\\,596 + 1\\,748 = 4\\,344$ ✓."
+                ],
+                "answer": "$4\\,344$",
+                "check": [
+                  "Eq(8 + 6, 14)",
+                  "Eq(7 + 5 + 1, 13)",
+                  "Eq(1 + 2 + 1, 4)",
+                  "Eq(1748 + 2596, 4344)",
+                  "Eq(2596 + 1748, 4344)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Past a thousand",
+            "intro": "Four-digit totals, checked the other way.",
+            "problems": [
+              {
+                "prompt": "$856 + 379$ equals:",
+                "options": [
+                  "$1\\,235$",
+                  "$1\\,125$",
+                  "$477$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $6 + 9 = 15$; tens $5 + 7 + 1 = 13$; hundreds $8 + 3 + 1 = 12$: $1\\,235$. $1\\,125$ dropped the carries; $477$ subtracted instead of adding ($856 - 379 = 477$, since $477 + 379 = 856$).",
+                "check": [
+                  "Eq(856 + 379, 1235)",
+                  "Eq(856 - 379, 477)",
+                  "Eq(477 + 379, 856)"
+                ]
+              },
+              {
+                "prompt": "$604 + 517$ equals:",
+                "options": [
+                  "$1\\,121$",
+                  "$1\\,111$",
+                  "$121$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $4 + 7 = 11$; tens $0 + 1 + 1 = 2$; hundreds $6 + 5 = 11$ — eleven hundreds are one thousand one hundred: $1\\,121$. $1\\,111$ lost the ones carry; $121$ lost the thousand.",
+                "check": [
+                  "Eq(4 + 7, 11)",
+                  "Eq(604 + 517, 1121)"
+                ]
+              },
+              {
+                "prompt": "You computed $358 + 467 = 825$. Which check adds the SAME two numbers in the other order?",
+                "options": [
+                  "compute $467 + 358$ and expect $825$ again",
+                  "compute $825 + 467$ and expect $358$",
+                  "compute $358 + 467$ once more, the same way"
+                ],
+                "correctIndex": 0,
+                "explanation": "Swapping the order re-walks the sum by a different road: $467 + 358 = 825$ ✓. Adding $825 + 467$ climbs to $1\\,292$ — a sum can never shrink back to $358$. Re-adding the same way just repeats any slip.",
+                "check": [
+                  "Eq(467 + 358, 825)",
+                  "Eq(358 + 467, 825)",
+                  "Eq(825 + 467, 1292)",
+                  "Ne(1292, 358)"
+                ]
+              },
+              {
+                "prompt": "$2\\,375 + 1\\,846$ equals:",
+                "options": [
+                  "$4\\,221$",
+                  "$4\\,211$",
+                  "$4\\,121$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Four digits, four columns: ones $5 + 6 = 11$; tens $7 + 4 + 1 = 12$; hundreds $3 + 8 + 1 = 12$; thousands $2 + 1 + 1 = 4$: $4\\,221$, and the other way $1\\,846 + 2\\,375 = 4\\,221$ ✓. $4\\,211$ dropped the ones carry.",
+                "check": [
+                  "Eq(5 + 6, 11)",
+                  "Eq(2 + 1 + 1, 4)",
+                  "Eq(2375 + 1846, 4221)",
+                  "Eq(1846 + 2375, 4221)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The ceiling",
+            "prompt": "The LARGEST total two three-digit numbers can make is:",
+            "options": [
+              "$1\\,998$",
+              "$999$",
+              "$1\\,899$",
+              "$9\\,999$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$999 + 999 = 1\\,998$ — so the sum of two three-digit numbers never needs more than four digits, and when it does grow a digit, that digit is always $1$: $1\\,998 < 2\\,000$.",
+            "check": [
+              "Eq(999 + 999, 1998)",
+              "1998 < 2000"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Line up places from the right: ones under ones, tens under tens.",
+              "Add from the ones; ten in any column trades for one in the next.",
+              "Adding TWO numbers, the carry is always exactly 1 — a column holds at most 9 + 9 + 1 = 19. (Stack three or more and a bigger carry can appear.)",
+              "Two three-digit numbers can reach four digits, never five.",
+              "Check every sum by adding the other way — the total must repeat."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Say the trade out loud each time it happens — 'fifteen ones: five stay, one ten moves' — and finish every sum with the other-way check."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Columns, carries, and the other-way check.",
+            "problems": [
+              {
+                "prompt": "$263 + 349$ equals:",
+                "options": [
+                  "$612$",
+                  "$602$",
+                  "$512$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $3 + 9 = 12$; tens $6 + 4 + 1 = 11$; hundreds $2 + 3 + 1 = 6$: $612$. $602$ lost the ones carry.",
+                "check": [
+                  "Eq(263 + 349, 612)"
+                ]
+              },
+              {
+                "prompt": "$578 + 246$ equals:",
+                "options": [
+                  "$824$",
+                  "$814$",
+                  "$724$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $8 + 6 = 14$; tens $7 + 4 + 1 = 12$; hundreds $5 + 2 + 1 = 8$: $824$. $814$ dropped the ones carry into the tens.",
+                "check": [
+                  "Eq(578 + 246, 824)"
+                ]
+              },
+              {
+                "prompt": "$745 + 255$ equals:",
+                "options": [
+                  "$1\\,000$",
+                  "$990$",
+                  "$900$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Every column trades: ones $5 + 5 = 10$, tens $4 + 5 + 1 = 10$, hundreds $7 + 2 + 1 = 10$ — a clean thousand. $990$ carried nothing — it wrote the $0$ from $5 + 5$, then added $4 + 5 = 9$ and $7 + 2 = 9$ with no trades at all.",
+                "check": [
+                  "Eq(745 + 255, 1000)",
+                  "Eq(7 + 2 + 1, 10)",
+                  "Eq(4 + 5, 9)",
+                  "Eq(7 + 2, 9)"
+                ]
+              },
+              {
+                "prompt": "$936 + 487$ equals:",
+                "options": [
+                  "$1\\,423$",
+                  "$1\\,413$",
+                  "$1\\,323$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $6 + 7 = 13$; tens $3 + 8 + 1 = 12$; hundreds $9 + 4 + 1 = 14$: $1\\,423$ — checked the other way, $487 + 936 = 1\\,423$ ✓.",
+                "check": [
+                  "Eq(936 + 487, 1423)",
+                  "Eq(487 + 936, 1423)"
+                ]
+              },
+              {
+                "prompt": "A herder counts $486$ sheep and $375$ goats. How many animals altogether?",
+                "options": [
+                  "$861$",
+                  "$851$",
+                  "$751$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Altogether joins the flocks: $486 + 375 = 861$, and the other-way check $375 + 486 = 861$ agrees. $851$ lost the ones carry.",
+                "check": [
+                  "Eq(486 + 375, 861)",
+                  "Eq(375 + 486, 861)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Column Addition\"",
+            "body": "Line up, add from the right, trade every ten — and let the other-way check sign each answer. Next the machine runs in reverse: column subtraction, where every answer signs its receipt with the addition you just mastered."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "column-subtraction",
+      "title": "Column Subtraction",
+      "concreteComparison": "You owe a friend eight one-togrog coins but your pocket holds only four — so you break one ten-togrog coin into ten ones. Nothing gained, nothing lost: your money just changed outfits. Column subtraction regroups the same way — and afterwards you add your answer back, to prove nothing leaked.",
+      "objective": "Subtract three- and four-digit numbers with regrouping — including tops with zeros like $503 - 168$ and $3\\,005 - 1\\,428$ — and prove every answer with the add-back check.",
+      "concept": [
+        "**The top number is the one being cut.** $634 - 278$ asks what is LEFT of $634$ — so when a top digit runs short ($4$ ones facing $8$), you may not flip the column around. Open a ten instead: $634$ becomes $6$ hundreds, $2$ tens, $14$ ones — same value, readier outfit.",
+        "**Zeros pass the borrow along.** In $503 - 168$ the tens hold nothing to lend, so knock one door further: a hundred opens into ten tens, THEN a ten opens into ten ones — $503 = 400 + 90 + 13$. Check the outfit before subtracting: it must still total $503$.",
+        "**The add-back receipt, every time.** Subtraction and addition are one fact read two ways: if $634 - 278 = 356$, then $356 + 278$ must rebuild $634$. Add the answer back every single time — a wrong answer fails its receipt on the spot."
+      ],
+      "keyIdea": "When the top digit runs short, open the next place — and prove every difference by adding it back: answer plus what you took away must rebuild what you started with.",
+      "facts": [
+        {
+          "title": "Open a ten when the top runs short",
+          "latex": "634 = 6 \\ \\text{hundreds}, \\ 2 \\ \\text{tens}, \\ 14 \\ \\text{ones}",
+          "explanation": "Same number, new outfit — now the ones column can pay."
+        },
+        {
+          "title": "The add-back receipt",
+          "latex": "634 - 278 = 356 \\quad \\text{because} \\quad 356 + 278 = 634",
+          "explanation": "Every subtraction is checked by the addition that undoes it."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4as-l2-we1",
+          "statement": "Compute $634 - 278$, then sign the receipt.",
+          "note": "Two tops run short — open a ten, then a hundred.",
+          "solution": "Ones: $4 < 8$, open a ten — $14 - 8 = 6$. Tens: now $2 < 7$, open a hundred — $12 - 7 = 5$. Hundreds: $5 - 2 = 3$. So $634 - 278 = 356$. Receipt: $356 + 278 = 634$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(14 - 8, 6)",
+            "Eq(6 + 8, 14)",
+            "Eq(12 - 7, 5)",
+            "Eq(5 + 7, 12)",
+            "Eq(634 - 278, 356)",
+            "Eq(356 + 278, 634)"
+          ]
+        },
+        {
+          "id": "g4as-l2-we2",
+          "statement": "Compute $503 - 168$.",
+          "note": "The tens are zero — the borrow travels through them.",
+          "solution": "The tens hold nothing to lend, so open a hundred into ten tens, then a ten into ten ones: $503 = 400 + 90 + 13$. Now subtract: $13 - 8 = 5$, $9 - 6 = 3$, $4 - 1 = 3$ — answer $335$. Receipt: $335 + 168 = 503$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(400 + 90 + 13, 503)",
+            "Eq(13 - 8, 5)",
+            "Eq(5 + 8, 13)",
+            "Eq(503 - 168, 335)",
+            "Eq(335 + 168, 503)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Flipping a column to bigger-minus-smaller — for 634 − 278 computing 8 − 4 in the ones.",
+          "correction": "The TOP number is the one being cut. If its digit is smaller, regroup — open a ten. Flip-work gives 444 here, and the receipt exposes it: 444 + 278 = 722, not 634.",
+          "authored": true
+        },
+        {
+          "text": "Jumping over a zero when borrowing — in 503 − 168, taking ones straight from the hundreds and leaving the tens untouched.",
+          "correction": "Go through the zero door by door: 5 hundreds become 4 hundreds and 10 tens; one of those tens becomes 10 ones. Check it: 503 = 400 + 90 + 13 — then subtract.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4as-l2-t1",
+          "statement": "Compute $725 - 468$, then prove it with the add-back check.",
+          "solution": "Ones $15 - 8 = 7$; tens $11 - 6 = 5$; hundreds $6 - 4 = 2$: answer $257$. Receipt: $257 + 468 = 725$ ✓.",
+          "check": [
+            "Eq(725 - 468, 257)",
+            "Eq(257 + 468, 725)"
+          ]
+        },
+        {
+          "id": "g4as-l2-t2",
+          "statement": "Compute $800 - 356$ and receipt it.",
+          "solution": "$800 = 700 + 90 + 10$: ones $10 - 6 = 4$, tens $9 - 5 = 4$, hundreds $7 - 3 = 4$ — answer $444$. Receipt: $444 + 356 = 800$ ✓.",
+          "check": [
+            "Eq(700 + 90 + 10, 800)",
+            "Eq(800 - 356, 444)",
+            "Eq(444 + 356, 800)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Open a ten, then sign the receipt",
+            "beats": [
+              "Subtract from the right, and remember which number is being cut: $634 - 278$ asks what is left of $634$. Ones first: $4 - 8$ cannot happen — the top ran short.",
+              "Do not flip the column. REGROUP: open one of the $3$ tens into $10$ ones — now $634$ wears $6$ hundreds, $2$ tens, $14$ ones, and $14 - 8 = 6$ works fine.",
+              "Tens next: $2 < 7$, so a hundred opens — $12 - 7 = 5$; hundreds $5 - 2 = 3$. Answer $356$ — and the receipt seals it: $356 + 278 = 634$ ✓."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "ones 634 already had"
+                },
+                {
+                  "count": 10,
+                  "color": "#d97706",
+                  "label": "ones from one opened ten"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Opening tens",
+            "intro": "The top runs short? Open the next place — then receipt.",
+            "examples": [
+              {
+                "prompt": "Compute $634 - 278$.",
+                "steps": [
+                  "Ones: $14 - 8 = 6$ (a ten opened). Tens: $12 - 7 = 5$ (a hundred opened).",
+                  "Hundreds: $5 - 2 = 3$. Receipt: $356 + 278 = 634$ ✓."
+                ],
+                "answer": "$356$",
+                "check": [
+                  "Eq(634 - 278, 356)",
+                  "Eq(356 + 278, 634)"
+                ]
+              },
+              {
+                "prompt": "Compute $852 - 367$, with its receipt.",
+                "steps": [
+                  "Ones: $12 - 7 = 5$; tens: $14 - 6 = 8$; hundreds: $7 - 3 = 4$.",
+                  "Receipt: $485 + 367 = 852$ ✓."
+                ],
+                "answer": "$485$",
+                "check": [
+                  "Eq(852 - 367, 485)",
+                  "Eq(485 + 367, 852)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Regroup and receipt",
+            "intro": "Open the place, subtract, add it back.",
+            "problems": [
+              {
+                "prompt": "$741 - 356$ equals:",
+                "options": [
+                  "$385$",
+                  "$415$",
+                  "$495$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $11 - 6 = 5$; tens $13 - 5 = 8$; hundreds $6 - 3 = 3$: $385$, receipted by $385 + 356 = 741$ ✓. $415$ flipped columns to bigger-minus-smaller; $495$ forgot to reduce after lending.",
+                "check": [
+                  "Eq(741 - 356, 385)",
+                  "Eq(385 + 356, 741)"
+                ]
+              },
+              {
+                "prompt": "$623 - 189$ equals:",
+                "options": [
+                  "$434$",
+                  "$566$",
+                  "$544$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $13 - 9 = 4$; tens $11 - 8 = 3$; hundreds $5 - 1 = 4$: $434$, and $434 + 189 = 623$ ✓. $566$ flipped every column.",
+                "check": [
+                  "Eq(623 - 189, 434)",
+                  "Eq(434 + 189, 623)"
+                ]
+              },
+              {
+                "prompt": "$917 - 528$ equals:",
+                "options": [
+                  "$389$",
+                  "$411$",
+                  "$499$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $17 - 8 = 9$; tens $10 - 2 = 8$; hundreds $8 - 5 = 3$: $389$, and $389 + 528 = 917$ ✓. $499$ subtracted without ever reducing a lender.",
+                "check": [
+                  "Eq(917 - 528, 389)",
+                  "Eq(389 + 528, 917)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "The receipt catches the flip",
+            "prompt": "For $634 - 278$, Suvdaa works each column as bigger digit minus smaller and gets $444$. What does the add-back check say?",
+            "options": [
+              "$444 + 278 = 722$, not $634$ — the receipt fails, so $444$ is wrong",
+              "$444 + 278 = 634$ — the receipt passes",
+              "the add-back check cannot catch this kind of slip",
+              "receipts are only for division"
+            ],
+            "correctIndex": 0,
+            "explanation": "The top number is the one being cut — flipping a column answers a different question. The receipt exposes it: $444 + 278 = 722$, not $634$. The true answer $356$ passes: $356 + 278 = 634$ ✓.",
+            "check": [
+              "Eq(444 + 278, 722)",
+              "Ne(722, 634)",
+              "Eq(634 - 278, 356)",
+              "Eq(356 + 278, 634)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Cashiers count up",
+            "body": "Watch change being made at a market stall: pay $1\\,000$ togrog for something costing $640$, and many sellers count UPWARD — six hundred forty, six hundred fifty, seven hundred, one thousand — dropping coins into your hand as they go. They are running the add-back check with real money: $640 + 360 = 1\\,000$, so the change is $360$."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Zeros on top",
+            "beats": [
+              "$503 - 168$: the ones run short, but the tens have NOTHING to lend. Knock on the next door: open a hundred into ten tens first.",
+              "Now a ten can open into ten ones: $503$ wears $4$ hundreds, $9$ tens, $13$ ones. Pause and check the outfit: $400 + 90 + 13 = 503$ — nothing leaked.",
+              "Subtract: $13 - 8 = 5$, $9 - 6 = 3$, $4 - 1 = 3$ — answer $335$. Receipt: $335 + 168 = 503$ ✓. Zeros just pass the borrow along; the receipt signs exactly as before."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Borrowing through zero",
+            "intro": "Open the hundred, then the ten — check the outfit, then subtract.",
+            "examples": [
+              {
+                "prompt": "Compute $503 - 168$.",
+                "steps": [
+                  "Regroup: $503 = 400 + 90 + 13$ (check: still $503$).",
+                  "$13 - 8 = 5$, $9 - 6 = 3$, $4 - 1 = 3$: answer $335$. Receipt $335 + 168 = 503$ ✓."
+                ],
+                "answer": "$335$",
+                "check": [
+                  "Eq(400 + 90 + 13, 503)",
+                  "Eq(503 - 168, 335)",
+                  "Eq(335 + 168, 503)"
+                ]
+              },
+              {
+                "prompt": "Compute $900 - 347$.",
+                "steps": [
+                  "$900 = 800 + 90 + 10$.",
+                  "$10 - 7 = 3$, $9 - 4 = 5$, $8 - 3 = 5$: answer $553$. Receipt $553 + 347 = 900$ ✓."
+                ],
+                "answer": "$553$",
+                "check": [
+                  "Eq(800 + 90 + 10, 900)",
+                  "Eq(900 - 347, 553)",
+                  "Eq(553 + 347, 900)"
+                ]
+              },
+              {
+                "prompt": "Compute $3\\,005 - 1\\,428$ — four digits, same doors.",
+                "steps": [
+                  "The tens and hundreds are zero, so the borrow walks all the way to the thousands: $3\\,005 = 2\\,000 + 900 + 90 + 15$ (check: still $3\\,005$).",
+                  "$15 - 8 = 7$, $9 - 2 = 7$, $9 - 4 = 5$, $2 - 1 = 1$: answer $1\\,577$. Receipt $1\\,577 + 1\\,428 = 3\\,005$ ✓."
+                ],
+                "answer": "$1\\,577$",
+                "check": [
+                  "Eq(2000 + 900 + 90 + 15, 3005)",
+                  "Eq(15 - 8, 7)",
+                  "Eq(7 + 8, 15)",
+                  "Eq(3005 - 1428, 1577)",
+                  "Eq(1577 + 1428, 3005)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Through the zero",
+            "intro": "The borrow travels door to door; the receipt still signs.",
+            "problems": [
+              {
+                "prompt": "$605 - 238$ equals:",
+                "options": [
+                  "$367$",
+                  "$433$",
+                  "$467$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$605 = 500 + 90 + 15$; subtract: $367$, receipted by $367 + 238 = 605$ ✓. $433$ flipped columns; $467$ forgot to reduce the hundreds.",
+                "check": [
+                  "Eq(500 + 90 + 15, 605)",
+                  "Eq(605 - 238, 367)",
+                  "Eq(367 + 238, 605)"
+                ]
+              },
+              {
+                "prompt": "$700 - 463$ equals:",
+                "options": [
+                  "$237$",
+                  "$363$",
+                  "$337$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$700 = 600 + 90 + 10$; subtract: $237$, and $237 + 463 = 700$ ✓. $363$ flipped the columns.",
+                "check": [
+                  "Eq(700 - 463, 237)",
+                  "Eq(237 + 463, 700)"
+                ]
+              },
+              {
+                "prompt": "$1\\,000 - 674$ equals:",
+                "options": [
+                  "$326$",
+                  "$336$",
+                  "$436$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\,000 = 900 + 90 + 10$ — three doors open in a row. Subtract: $326$, receipted by $326 + 674 = 1\\,000$ ✓.",
+                "check": [
+                  "Eq(900 + 90 + 10, 1000)",
+                  "Eq(1000 - 674, 326)",
+                  "Eq(326 + 674, 1000)"
+                ]
+              },
+              {
+                "prompt": "$4\\,006 - 1\\,879$ equals:",
+                "options": [
+                  "$2\\,127$",
+                  "$3\\,873$",
+                  "$3\\,127$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$4\\,006 = 3\\,000 + 900 + 90 + 16$ — the borrow walks through both zeros. Subtract: $2\\,127$, receipted by $2\\,127 + 1\\,879 = 4\\,006$ ✓. $3\\,873$ flipped every column; $3\\,127$ forgot to reduce the thousands after lending.",
+                "check": [
+                  "Eq(3000 + 900 + 90 + 16, 4006)",
+                  "Eq(4006 - 1879, 2127)",
+                  "Eq(2127 + 1879, 4006)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Check the outfit",
+            "prompt": "To compute $503 - 168$, the $503$ regroups as:",
+            "options": [
+              "$4$ hundreds, $9$ tens, $13$ ones",
+              "$5$ hundreds, $0$ tens, $13$ ones",
+              "$4$ hundreds, $0$ tens, $13$ ones",
+              "$5$ hundreds, $9$ tens, $3$ ones"
+            ],
+            "correctIndex": 0,
+            "explanation": "Only the first still totals $503$: $400 + 90 + 13 = 503$ ✓. The second claims $500 + 13 = 513$, the third only $413$ — but regrouping must never change the number, only its outfit.",
+            "check": [
+              "Eq(400 + 90 + 13, 503)",
+              "Eq(500 + 13, 513)",
+              "Ne(513, 503)",
+              "Eq(400 + 13, 413)",
+              "Ne(413, 503)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "The top number is the one being cut — never flip a column.",
+              "Top digit short? Open a ten; zeros pass the borrow to the next door.",
+              "Check every regroup: the new outfit must total the same number.",
+              "The add-back receipt, every time: difference + subtracted = start.",
+              "A flipped or leaky answer fails its receipt instantly."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "No subtraction is finished until its receipt is signed: add your answer to the number you took away, and watch the starting number reappear."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Regrouping, zeros, and a receipt for every answer.",
+            "problems": [
+              {
+                "prompt": "$542 - 267$ equals:",
+                "options": [
+                  "$275$",
+                  "$325$",
+                  "$285$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Ones $12 - 7 = 5$; tens $13 - 6 = 7$; hundreds $4 - 2 = 2$: $275$, and $275 + 267 = 542$ ✓. $325$ flipped the columns.",
+                "check": [
+                  "Eq(542 - 267, 275)",
+                  "Eq(275 + 267, 542)"
+                ]
+              },
+              {
+                "prompt": "$806 - 359$ equals:",
+                "options": [
+                  "$447$",
+                  "$553$",
+                  "$457$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Through the zero: $806 = 700 + 90 + 16$; subtract to $447$, receipted by $447 + 359 = 806$ ✓.",
+                "check": [
+                  "Eq(700 + 90 + 16, 806)",
+                  "Eq(806 - 359, 447)",
+                  "Eq(447 + 359, 806)"
+                ]
+              },
+              {
+                "prompt": "$903 - 457$ equals:",
+                "options": [
+                  "$446$",
+                  "$554$",
+                  "$456$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$903 = 800 + 90 + 13$; subtract to $446$, and $446 + 457 = 903$ ✓. $554$ flipped every column.",
+                "check": [
+                  "Eq(903 - 457, 446)",
+                  "Eq(446 + 457, 903)"
+                ]
+              },
+              {
+                "prompt": "$1\\,200 - 745$ equals:",
+                "options": [
+                  "$455$",
+                  "$545$",
+                  "$465$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$1\\,200 = 1\\,100 + 90 + 10$; subtract to $455$, receipted by $455 + 745 = 1\\,200$ ✓.",
+                "check": [
+                  "Eq(1100 + 90 + 10, 1200)",
+                  "Eq(1200 - 745, 455)",
+                  "Eq(455 + 745, 1200)"
+                ]
+              },
+              {
+                "prompt": "A ger camp steamed $500$ buuz for a feast; $268$ were eaten. How many are left?",
+                "options": [
+                  "$232$",
+                  "$368$",
+                  "$342$"
+                ],
+                "correctIndex": 0,
+                "explanation": "What is left is a subtraction: $500 - 268 = 232$, receipted by $232 + 268 = 500$ ✓. $368$ flipped the columns.",
+                "check": [
+                  "Eq(500 - 268, 232)",
+                  "Eq(232 + 268, 500)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Column Subtraction\"",
+            "body": "Regroup when the top runs short, walk borrows through zeros, and let every difference sign its add-back receipt. Next: leaving the columns behind — the mental moves that make many of these sums faster than paper."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "mental-strategies",
+      "title": "Mental Strategies",
+      "concreteComparison": "To pay $99$ togrog you do not count out ninety-nine coins — you hand over a hundred and take one back. Mental arithmetic works the same way: slide the numbers to a round, friendly place, do the easy sum there, and settle the small difference after. The answer never changes; only the road gets smoother.",
+      "objective": "Add and subtract in your head using make-ten, near-doubles, and compensation — moving amounts between numbers and giving back overshoots — with a number-line picture of every jump.",
+      "concept": [
+        "**Make a ten: jump to round ground.** $48 + 27$: move $2$ out of the $27$ to fill $48$ up to $50$, then jump the easy $25$: $50 + 25 = 75$. What one number gains, the other must lose — the total never moves.",
+        "**Near-doubles ride a known fact.** $47 + 48$ sits next to a double you already own: $47 + 47 = 94$, so one more makes $95$. Spot neighbours and let the double carry the load.",
+        "**Compensation overshoots on purpose.** Adding $99$ is awkward; adding $100$ is instant: $356 + 100 = 456$, then give the extra $1$ back — $455$. Subtracting works too: for $725 - 98$, jump back the round $100$ — $725 - 100 = 625$ took $2$ too many, so hand $2$ back: $627$."
+      ],
+      "keyIdea": "Slide the sum to round ground — fill tens, lean on doubles, overshoot to hundreds — and always settle the difference you moved.",
+      "facts": [
+        {
+          "title": "Make a ten",
+          "latex": "48 + 27 = 48 + 2 + 25 = 50 + 25 = 75",
+          "explanation": "The 2 that fills 48 to 50 comes out of the 27 — totals never change when amounts just move."
+        },
+        {
+          "title": "Compensation",
+          "latex": "356 + 99 = 356 + 100 - 1 = 455",
+          "explanation": "Overshoot to the round hundred, then give the extra 1 back."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4as-l3-we1",
+          "statement": "Compute $48 + 27$ in your head with the make-ten strategy.",
+          "note": "Fill 48 up to the next round ten first.",
+          "solution": "Take $2$ from the $27$: $48 + 2 = 50$, and $25$ remains to add (because $2 + 25 = 27$). Then $50 + 25 = 75$. One tidy jump to round ground, one easy jump after.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(48 + 2, 50)",
+            "Eq(2 + 25, 27)",
+            "Eq(50 + 25, 75)",
+            "Eq(48 + 27, 75)"
+          ]
+        },
+        {
+          "id": "g4as-l3-we2",
+          "statement": "Compute $356 + 99$ with compensation.",
+          "note": "99 is 100 with 1 to give back.",
+          "solution": "Overshoot: $356 + 100 = 456$. Give the extra $1$ back: $456 - 1 = 455$ (and $455 + 1 = 456$ confirms the settle). So $356 + 99 = 455$.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(356 + 100, 456)",
+            "Eq(456 - 1, 455)",
+            "Eq(455 + 1, 456)",
+            "Eq(356 + 99, 455)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Moving an amount without taking it from anywhere — 48 + 27 computed as 50 + 27.",
+          "correction": "The 2 that filled 48 up to 50 came OUT of the 27: what remains is 25, and 50 + 25 = 75. What one number gains, the other must lose.",
+          "authored": true
+        },
+        {
+          "text": "Settling the wrong way after subtracting — 725 − 98 finished as 625 − 2.",
+          "correction": "Subtracting 100 took away 2 TOO MANY, so give the 2 back: 625 + 2 = 627. The receipt confirms it: 627 + 98 = 725.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4as-l3-t1",
+          "statement": "Compute $65 + 29$ with make-ten.",
+          "solution": "Take $5$ from the $29$: $65 + 5 = 70$, and $24$ remains ($5 + 24 = 29$). Then $70 + 24 = 94$.",
+          "check": [
+            "Eq(65 + 5, 70)",
+            "Eq(5 + 24, 29)",
+            "Eq(70 + 24, 94)",
+            "Eq(65 + 29, 94)"
+          ]
+        },
+        {
+          "id": "g4as-l3-t2",
+          "statement": "Compute $725 - 98$ with compensation, and receipt the answer.",
+          "solution": "$725 - 100 = 625$ — that took $2$ too many, so give them back: $625 + 2 = 627$. Receipt: $627 + 98 = 725$ ✓.",
+          "check": [
+            "Eq(725 - 100, 625)",
+            "Eq(625 + 100, 725)",
+            "Eq(625 + 2, 627)",
+            "Eq(725 - 98, 627)",
+            "Eq(627 + 98, 725)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Fill the ten, lean on a double",
+            "beats": [
+              "See $48 + 27$ on the number line: standing at $48$, the next round ten is $50$ — just $2$ away. Take that $2$ out of the $27$ and jump to round ground.",
+              "From $50$ the rest is easy: $25$ remains (because $2 + 25 = 27$), and $50 + 25 = 75$. Two friendly jumps instead of one awkward one.",
+              "Near-doubles pull the same trick with a fact you own: $47 + 48$ leans on $47 + 47 = 94$ — one more makes $95$. Move amounts, lean on rounds and doubles; the total never changes."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 48,
+                    "label": "48"
+                  },
+                  {
+                    "value": 50,
+                    "label": "+2"
+                  },
+                  {
+                    "value": 75,
+                    "label": "75",
+                    "color": "#059669"
+                  }
+                ],
+                "min": 40,
+                "max": 80
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Jumps to round ground",
+            "intro": "Fill the ten; let a double do the lifting.",
+            "examples": [
+              {
+                "prompt": "Compute $48 + 27$ with make-ten.",
+                "steps": [
+                  "Fill: $48 + 2 = 50$; the $27$ keeps $25$.",
+                  "Jump: $50 + 25 = 75$."
+                ],
+                "answer": "$75$",
+                "check": [
+                  "Eq(48 + 2, 50)",
+                  "Eq(50 + 25, 75)",
+                  "Eq(48 + 27, 75)"
+                ]
+              },
+              {
+                "prompt": "Compute $47 + 48$ with a near-double.",
+                "steps": [
+                  "Double first: $47 + 47 = 94$.",
+                  "$48$ is one more than $47$: $94 + 1 = 95$."
+                ],
+                "answer": "$95$",
+                "check": [
+                  "Eq(47 + 47, 94)",
+                  "Eq(94 + 1, 95)",
+                  "Eq(47 + 48, 95)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Slide and jump",
+            "intro": "Move an amount, then jump round-to-round.",
+            "problems": [
+              {
+                "prompt": "$36 + 48$ equals:",
+                "options": [
+                  "$84$",
+                  "$86$",
+                  "$74$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fill $48$ to $50$ with $2$ from the $36$ — $34$ remains ($34 + 2 = 36$): $50 + 34 = 84$. Choosing $86$ counts the moved $2$ twice ($50 + 36$).",
+                "check": [
+                  "Eq(34 + 2, 36)",
+                  "Eq(50 + 34, 84)",
+                  "Eq(36 + 48, 84)",
+                  "Eq(50 + 36, 86)"
+                ]
+              },
+              {
+                "prompt": "$65 + 29$ equals:",
+                "options": [
+                  "$94$",
+                  "$95$",
+                  "$84$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Take $5$ from the $29$: $65 + 5 = 70$, then $70 + 24 = 94$. Answering $95$ jumps $65 + 30$ and never gives the extra $1$ back.",
+                "check": [
+                  "Eq(65 + 5, 70)",
+                  "Eq(70 + 24, 94)",
+                  "Eq(65 + 29, 94)",
+                  "Eq(65 + 30, 95)"
+                ]
+              },
+              {
+                "prompt": "$25 + 26$ equals:",
+                "options": [
+                  "$51$",
+                  "$50$",
+                  "$52$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Double: $25 + 25 = 50$; one more: $51$. $50$ is the bare double — the extra $1$ still wants in.",
+                "check": [
+                  "Eq(25 + 25, 50)",
+                  "Eq(50 + 1, 51)",
+                  "Eq(25 + 26, 51)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Pick the move",
+            "prompt": "Which move computes $57 + 36$ by MAKING A TEN?",
+            "options": [
+              "move $3$ into the $57$: $60 + 33 = 93$",
+              "move $6$ into the $57$: $63 + 30 = 93$",
+              "add the tens and stop: $50 + 30 = 80$",
+              "double the $57$"
+            ],
+            "correctIndex": 0,
+            "explanation": "The next round ten above $57$ is $60$ — exactly $3$ away, and the $3$ comes out of the $36$: $60 + 33 = 93$. Moving $6$ lands on $63$ — the total survives, but there is no round ground to stand on. Adding only the tens abandons $13$.",
+            "check": [
+              "Eq(57 + 3, 60)",
+              "Eq(60 + 33, 93)",
+              "Eq(57 + 36, 93)",
+              "Eq(63 + 30, 93)",
+              "Eq(50 + 30, 80)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Fingers named the digits",
+            "body": "The Latin word for finger is digitus — and that is exactly why the symbols $0$ to $9$ are called DIGITS. People counted on ten fingers, numbers settled into a ten-based system, and the fingers' own name stuck to the figures. Every make-ten jump lands on the base your hands built."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Overshoot and settle",
+            "beats": [
+              "Compensation on the line: to add $99$, overshoot with one big jump of $100$ — $356 + 100 = 456$ — then step $1$ back: $455$. Big jump, small settle.",
+              "Subtraction compensates too, but settle the OTHER way: $725 - 98$ — jump back $100$ to $625$; that removed $2$ too many, so walk $2$ forward: $627$.",
+              "The receipt still rules the lesson: $627 + 98 = 725$ ✓. Mental shortcuts change the road, never the destination — and they never escape their receipts."
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 356,
+                    "label": "356"
+                  },
+                  {
+                    "value": 456,
+                    "label": "+100"
+                  },
+                  {
+                    "value": 455,
+                    "label": "455",
+                    "color": "#d97706"
+                  }
+                ],
+                "min": 350,
+                "max": 460
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Round jump first",
+            "intro": "Overshoot to the round number; settle the difference after.",
+            "examples": [
+              {
+                "prompt": "Compute $467 + 199$.",
+                "steps": [
+                  "$467 + 200 = 667$.",
+                  "Give the extra $1$ back: $666$."
+                ],
+                "answer": "$666$",
+                "check": [
+                  "Eq(467 + 200, 667)",
+                  "Eq(667 - 1, 666)",
+                  "Eq(666 + 1, 667)",
+                  "Eq(467 + 199, 666)"
+                ]
+              },
+              {
+                "prompt": "Compute $843 - 299$, receipted.",
+                "steps": [
+                  "$843 - 300 = 543$ — that took $1$ too many.",
+                  "Give it back: $544$. Receipt: $544 + 299 = 843$ ✓."
+                ],
+                "answer": "$544$",
+                "check": [
+                  "Eq(843 - 300, 543)",
+                  "Eq(543 + 300, 843)",
+                  "Eq(543 + 1, 544)",
+                  "Eq(843 - 299, 544)",
+                  "Eq(544 + 299, 843)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Settle the difference",
+            "intro": "Which way does the settle go? Say it before you jump.",
+            "problems": [
+              {
+                "prompt": "$534 + 98$ equals:",
+                "options": [
+                  "$632$",
+                  "$634$",
+                  "$622$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$534 + 100 = 634$, then give the $2$ back: $632$ ($632 + 2 = 634$ confirms). Stopping at $634$ keeps the borrowed $2$.",
+                "check": [
+                  "Eq(534 + 100, 634)",
+                  "Eq(634 - 2, 632)",
+                  "Eq(632 + 2, 634)",
+                  "Eq(534 + 98, 632)"
+                ]
+              },
+              {
+                "prompt": "$500 - 199$ equals:",
+                "options": [
+                  "$301$",
+                  "$299$",
+                  "$300$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$500 - 200 = 300$ took $1$ too many — give it back: $301$, receipted by $301 + 199 = 500$ ✓. $299$ settled the wrong way.",
+                "check": [
+                  "Eq(500 - 200, 300)",
+                  "Eq(300 + 200, 500)",
+                  "Eq(300 + 1, 301)",
+                  "Eq(500 - 199, 301)",
+                  "Eq(301 + 199, 500)"
+                ]
+              },
+              {
+                "prompt": "$276 + 99$ equals:",
+                "options": [
+                  "$375$",
+                  "$376$",
+                  "$275$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$276 + 100 = 376$, give $1$ back: $375$ ($375 + 1 = 376$). $376$ keeps the borrowed $1$; $275$ subtracted $1$ from $276$ and never added the hundred.",
+                "check": [
+                  "Eq(276 + 100, 376)",
+                  "Eq(376 - 1, 375)",
+                  "Eq(375 + 1, 376)",
+                  "Eq(276 + 99, 375)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Settle the right way",
+            "prompt": "For $700 - 298$, Naran computes $700 - 300 = 400$, then takes $2$ MORE off and answers $398$. The truth:",
+            "options": [
+              "taking $300$ removed $2$ too many — give them back: $402$",
+              "$398$ is right — overshoots always subtract again",
+              "$400$ was already the answer",
+              "compensation never works on subtraction"
+            ],
+            "correctIndex": 0,
+            "explanation": "Removing $300$ removes MORE than $298$, so the running answer is $2$ too small: settle forward, $400 + 2 = 402$. Receipt: $402 + 298 = 700$ ✓. Settling backward doubles the error instead of fixing it.",
+            "check": [
+              "Eq(700 - 300, 400)",
+              "Eq(400 + 300, 700)",
+              "Eq(400 + 2, 402)",
+              "Eq(700 - 298, 402)",
+              "Eq(402 + 298, 700)",
+              "Ne(398, 402)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Make a ten: move just enough to reach round ground — the moved amount comes OUT of the other number.",
+              "Near-doubles: compute the double you know, then adjust by 1.",
+              "Compensation: overshoot to a round number, then settle — back after adding too much, forward after subtracting too much.",
+              "Mental shortcuts change the road, never the total — receipts still apply."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Before each one, say the move you chose — fill the ten, lean on a double, or overshoot and settle. Naming the road is half the trip."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "All three tools; pick the smoothest road.",
+            "problems": [
+              {
+                "prompt": "$38 + 45$ equals:",
+                "options": [
+                  "$83$",
+                  "$85$",
+                  "$73$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Fill $38$ to $40$ with $2$ from the $45$ — $43$ remains ($43 + 2 = 45$): $40 + 43 = 83$. $85$ counts the moved $2$ twice.",
+                "check": [
+                  "Eq(38 + 2, 40)",
+                  "Eq(43 + 2, 45)",
+                  "Eq(40 + 43, 83)",
+                  "Eq(38 + 45, 83)"
+                ]
+              },
+              {
+                "prompt": "$348 + 99$ equals:",
+                "options": [
+                  "$447$",
+                  "$448$",
+                  "$347$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$348 + 100 = 448$, give $1$ back: $447$ ($447 + 1 = 448$). $448$ keeps the borrowed $1$.",
+                "check": [
+                  "Eq(348 + 100, 448)",
+                  "Eq(448 - 1, 447)",
+                  "Eq(447 + 1, 448)",
+                  "Eq(348 + 99, 447)"
+                ]
+              },
+              {
+                "prompt": "$75 + 76$ equals:",
+                "options": [
+                  "$151$",
+                  "$150$",
+                  "$141$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Near-double: $75 + 75 = 150$, one more: $151$. $150$ is the bare double.",
+                "check": [
+                  "Eq(75 + 75, 150)",
+                  "Eq(150 + 1, 151)",
+                  "Eq(75 + 76, 151)"
+                ]
+              },
+              {
+                "prompt": "$632 - 98$ equals:",
+                "options": [
+                  "$534$",
+                  "$530$",
+                  "$532$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$632 - 100 = 532$, give the $2$ back: $534$, receipted by $534 + 98 = 632$ ✓. $530$ settled the wrong way; $532$ never settled.",
+                "check": [
+                  "Eq(632 - 100, 532)",
+                  "Eq(532 + 100, 632)",
+                  "Eq(532 + 2, 534)",
+                  "Eq(632 - 98, 534)",
+                  "Eq(534 + 98, 632)"
+                ]
+              },
+              {
+                "prompt": "$999 + 999$ equals:",
+                "options": [
+                  "$1\\,998$",
+                  "$2\\,000$",
+                  "$1\\,988$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Overshoot twice: $1\\,000 + 1\\,000 = 2\\,000$, then give back $1 + 1 = 2$: $1\\,998$ — the same ceiling column addition met. $2\\,000$ keeps the borrowed $2$.",
+                "check": [
+                  "Eq(1000 + 1000, 2000)",
+                  "Eq(2000 - 2, 1998)",
+                  "Eq(1998 + 2, 2000)",
+                  "Eq(999 + 999, 1998)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Mental Strategies\"",
+            "body": "Fill the ten, lean on a double, overshoot and settle — three roads to the same honest total. Next: equations with a missing number, where the receipt idea stops checking answers and starts FINDING them."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "missing-numbers",
+      "title": "Missing Numbers",
+      "concreteComparison": "Three numbers — $53$, $38$ and their whole $91$ — live like a small family in one ger: know any two and you know the third. Cover the $91$: the parts rebuild it. Cover the $53$: the whole gives it back as $91 - 38$. Three numbers, four facts, and no strangers allowed in.",
+      "objective": "Read a fact family as four faces of one fact, and solve box equations like $\\square + 38 = 91$ with the inverse operation — always checking by substitution.",
+      "concept": [
+        "**Three numbers, four facts.** $53$, $38$ and $91$ hold together: $53 + 38 = 91$, $38 + 53 = 91$, $91 - 38 = 53$, $91 - 53 = 38$. Two additions, two subtractions — one triangle of numbers wearing four outfits.",
+        "**The inverse opens the box.** $\\square + 38 = 91$ hides a family member. Addition put the $38$ in; subtraction takes it out: $\\square = 91 - 38 = 53$. And when the box was cut — $\\square - 47 = 129$ — addition restores it: $\\square = 129 + 47 = 176$.",
+        "**Substitution is the receipt.** An answer for the box is only an OFFER until you put it back in: $53 + 38 = 91$ ✓ — now it is a fact. Substitute every time; a wrong box fails its own equation on the spot."
+      ],
+      "keyIdea": "A fact family is one fact wearing four outfits — so a box equation is solved by the family member that undoes it, and proved by substitution.",
+      "facts": [
+        {
+          "title": "One family, four facts",
+          "latex": "53 + 38 = 91 \\quad 38 + 53 = 91 \\quad 91 - 38 = 53 \\quad 91 - 53 = 38",
+          "explanation": "The whole stands alone on its side; the parts join together."
+        },
+        {
+          "title": "The inverse opens the box",
+          "latex": "\\square + 38 = 91 \\ \\Rightarrow \\ \\square = 91 - 38 = 53",
+          "explanation": "Undo the addition with a subtraction — then substitute to check."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4as-l4-we1",
+          "statement": "Write the four facts of the family $53$, $38$, $91$.",
+          "note": "Two additions, two subtractions.",
+          "solution": "$53 + 38 = 91$ and $38 + 53 = 91$; $91 - 38 = 53$ and $91 - 53 = 38$. The whole ($91$) always stands alone on one side of the equals sign.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(53 + 38, 91)",
+            "Eq(38 + 53, 91)",
+            "Eq(91 - 38, 53)",
+            "Eq(91 - 53, 38)"
+          ]
+        },
+        {
+          "id": "g4as-l4-we2",
+          "statement": "Solve $\\square - 47 = 129$, and check by substitution.",
+          "note": "The box was cut by 47 and still shows 129 — it started bigger.",
+          "solution": "Undo the cut with addition: $\\square = 129 + 47 = 176$. Substitute: $176 - 47 = 129$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(129 + 47, 176)",
+            "Eq(176 - 47, 129)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Adding whatever two numbers appear — solving □ + 38 = 91 as 91 + 38 = 129.",
+          "correction": "The box and 38 TOGETHER make 91, so the box is smaller than 91: undo with 91 − 38 = 53, and substitute: 53 + 38 = 91 ✓.",
+          "authored": true
+        },
+        {
+          "text": "Subtracting on □ − 47 = 129 because the equation shows a minus sign.",
+          "correction": "The box LOST 47 and still has 129 — it started bigger: □ = 129 + 47 = 176. Undo what the equation DID, not what its sign looks like.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4as-l4-t1",
+          "statement": "Write the four facts of the family $160$, $340$, $500$.",
+          "solution": "$340 + 160 = 500$, $160 + 340 = 500$, $500 - 160 = 340$, $500 - 340 = 160$.",
+          "check": [
+            "Eq(340 + 160, 500)",
+            "Eq(160 + 340, 500)",
+            "Eq(500 - 160, 340)",
+            "Eq(500 - 340, 160)"
+          ]
+        },
+        {
+          "id": "g4as-l4-t2",
+          "statement": "Solve $\\square + 260 = 730$ and substitute to check.",
+          "solution": "Undo the added $260$: $\\square = 730 - 260 = 470$. Substitute: $470 + 260 = 730$ ✓.",
+          "check": [
+            "Eq(730 - 260, 470)",
+            "Eq(470 + 260, 730)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Three numbers, four facts",
+            "beats": [
+              "Put the three numbers on a triangle: the whole $91$ on top, the parts $53$ and $38$ below. That one triangle holds FOUR facts.",
+              "Adding reads it upward — $53 + 38 = 91$ and $38 + 53 = 91$. Subtracting reads it downward — $91 - 38 = 53$ and $91 - 53 = 38$.",
+              "Cover any corner and the other two rebuild it. That is the secret of this whole lesson: addition and subtraction are ONE fact read in different directions."
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "W",
+                    "x": 5.0,
+                    "y": 7.4,
+                    "label": "91"
+                  },
+                  {
+                    "id": "A",
+                    "x": 1.8,
+                    "y": 2.0,
+                    "label": "53"
+                  },
+                  {
+                    "id": "B",
+                    "x": 8.2,
+                    "y": 2.0,
+                    "label": "38"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "W",
+                    "to": "A",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "W",
+                    "color": "#3b82f6"
+                  }
+                ],
+                "height": 190
+              }
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Four outfits",
+            "intro": "The whole on top, parts below — four readings.",
+            "examples": [
+              {
+                "prompt": "List the family of $27$, $45$, $72$.",
+                "steps": [
+                  "$27 + 45 = 72$ and $45 + 27 = 72$.",
+                  "$72 - 45 = 27$ and $72 - 27 = 45$."
+                ],
+                "answer": "four facts",
+                "check": [
+                  "Eq(27 + 45, 72)",
+                  "Eq(45 + 27, 72)",
+                  "Eq(72 - 45, 27)",
+                  "Eq(72 - 27, 45)"
+                ]
+              },
+              {
+                "prompt": "The family of $285$, $460$, $745$ — write its two subtractions.",
+                "steps": [
+                  "The whole is $745$, the largest.",
+                  "$745 - 285 = 460$ and $745 - 460 = 285$ — each receipted by $285 + 460 = 745$."
+                ],
+                "answer": "$745 - 285 = 460$ and $745 - 460 = 285$",
+                "check": [
+                  "Eq(285 + 460, 745)",
+                  "Eq(745 - 285, 460)",
+                  "Eq(745 - 460, 285)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Family members only",
+            "intro": "The whole stands alone; the parts join.",
+            "problems": [
+              {
+                "prompt": "Which fact belongs to the family of $27$, $45$, $72$?",
+                "options": [
+                  "$72 - 45 = 27$",
+                  "$45 - 27 = 18$",
+                  "$27 + 72 = 99$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The whole $72$ stands alone: $72 - 45 = 27$ ✓ (receipt $27 + 45 = 72$). The other two drag in strangers — $18$ and $99$ are not family members.",
+                "check": [
+                  "Eq(72 - 45, 27)",
+                  "Eq(27 + 45, 72)",
+                  "Eq(45 - 27, 18)",
+                  "Eq(18 + 27, 45)",
+                  "Eq(27 + 72, 99)"
+                ]
+              },
+              {
+                "prompt": "In the family of $160$, $340$, $500$, one subtraction fact is:",
+                "options": [
+                  "$500 - 160 = 340$",
+                  "$500 - 340 = 260$",
+                  "$340 - 160 = 500$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The whole $500$ gives up a part: $500 - 160 = 340$ ✓ (receipt $340 + 160 = 500$). The middle claim misses: $500 - 340 = 160$, not $260$. And $340 - 160$ could never GROW to $500$.",
+                "check": [
+                  "Eq(500 - 160, 340)",
+                  "Eq(340 + 160, 500)",
+                  "Eq(500 - 340, 160)"
+                ]
+              },
+              {
+                "prompt": "Two members of a family are $250$ and $480$, with $480$ the whole. The third member is:",
+                "options": [
+                  "$230$",
+                  "$730$",
+                  "$330$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Part = whole minus part: $480 - 250 = 230$, receipted by $230 + 250 = 480$ ✓. $730$ ADDED the two — but a part can never outgrow its whole.",
+                "check": [
+                  "Eq(480 - 250, 230)",
+                  "Eq(230 + 250, 480)",
+                  "Eq(250 + 480, 730)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Count the outfits",
+            "prompt": "How many facts does the family $16$, $59$, $75$ hold?",
+            "options": [
+              "four — two additions and two subtractions",
+              "two — one of each",
+              "one big one",
+              "three — one for each number"
+            ],
+            "correctIndex": 0,
+            "explanation": "$16 + 59 = 75$, $59 + 16 = 75$, $75 - 59 = 16$, $75 - 16 = 59$: four faces of one fact. Learn one triangle, own four equations.",
+            "check": [
+              "Eq(16 + 59, 75)",
+              "Eq(59 + 16, 75)",
+              "Eq(75 - 59, 16)",
+              "Eq(75 - 16, 59)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "Two little lines",
+            "body": "The $=$ sign was invented in the 1500s by Robert Recorde, a Welsh mathematician. He chose a pair of parallel lines of one length because, he wrote, no two things can be more equal. Every fact family you write balances on his little invention."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Boxes opened by the inverse",
+            "beats": [
+              "$\\square + 38 = 91$ is a family with one corner hidden. Do not guess — the INVERSE digs it out: subtraction undoes addition, so $\\square = 91 - 38 = 53$.",
+              "When the box was cut, addition restores it: $\\square - 47 = 129$ means the box LOST $47$ and still shows $129$ — so $\\square = 129 + 47 = 176$. Read what happened to the box, then do the opposite.",
+              "Always SUBSTITUTE the answer back: $53 + 38 = 91$ ✓ and $176 - 47 = 129$ ✓. Substitution is the receipt in its smartest clothes."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Undo, then substitute",
+            "intro": "Read what happened to the box; do the opposite.",
+            "examples": [
+              {
+                "prompt": "Solve $\\square + 38 = 91$.",
+                "steps": [
+                  "The box gained $38$; take it away: $\\square = 91 - 38 = 53$. Counting up agrees: $38$ to $40$ is $2$, to $90$ is $50$ more, to $91$ is $1$ more — $2 + 50 + 1 = 53$.",
+                  "Substitute: $53 + 38 = 91$ ✓."
+                ],
+                "answer": "$53$",
+                "check": [
+                  "Eq(91 - 38, 53)",
+                  "Eq(2 + 50 + 1, 53)",
+                  "Eq(53 + 38, 91)"
+                ],
+                "figure": {
+                  "mode": "numberLine",
+                  "numberLine": {
+                    "points": [
+                      {
+                        "value": 38,
+                        "label": "38"
+                      },
+                      {
+                        "value": 40,
+                        "label": "+2"
+                      },
+                      {
+                        "value": 90,
+                        "label": "+50"
+                      },
+                      {
+                        "value": 91,
+                        "label": "91",
+                        "color": "#059669"
+                      }
+                    ],
+                    "min": 30,
+                    "max": 100
+                  }
+                }
+              },
+              {
+                "prompt": "Solve $620 - \\square = 265$.",
+                "steps": [
+                  "$620$ lost the box and kept $265$ — so the box and $265$ are the two parts of $620$: $\\square = 620 - 265 = 355$.",
+                  "Substitute: $620 - 355 = 265$ ✓."
+                ],
+                "answer": "$355$",
+                "check": [
+                  "Eq(620 - 265, 355)",
+                  "Eq(355 + 265, 620)",
+                  "Eq(620 - 355, 265)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Open the box",
+            "intro": "Inverse first, substitution always.",
+            "problems": [
+              {
+                "prompt": "$\\square + 260 = 730$. The box holds:",
+                "options": [
+                  "$470$",
+                  "$990$",
+                  "$530$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Undo the added $260$: $730 - 260 = 470$; substitute $470 + 260 = 730$ ✓. $990$ ADDED instead ($730 + 260$) — but a box that gains $260$ to reach $730$ must start below $730$.",
+                "check": [
+                  "Eq(730 - 260, 470)",
+                  "Eq(470 + 260, 730)",
+                  "Eq(730 + 260, 990)"
+                ]
+              },
+              {
+                "prompt": "$\\square - 155 = 245$. The box holds:",
+                "options": [
+                  "$400$",
+                  "$90$",
+                  "$300$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The box lost $155$ and kept $245$: restore it — $245 + 155 = 400$; substitute $400 - 155 = 245$ ✓. $90$ comes from $245 - 155$ — undoing in the wrong direction.",
+                "check": [
+                  "Eq(245 + 155, 400)",
+                  "Eq(400 - 155, 245)",
+                  "Eq(245 - 155, 90)",
+                  "Eq(90 + 155, 245)"
+                ]
+              },
+              {
+                "prompt": "$1\\,000 - \\square = 386$. The box holds:",
+                "options": [
+                  "$614$",
+                  "$1\\,386$",
+                  "$724$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The box and $386$ are the two parts of $1\\,000$: $\\square = 1\\,000 - 386 = 614$; substitute $1\\,000 - 614 = 386$ ✓.",
+                "check": [
+                  "Eq(1000 - 386, 614)",
+                  "Eq(614 + 386, 1000)",
+                  "Eq(1000 - 614, 386)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Substitution catches it",
+            "prompt": "$\\square - 84 = 312$. Otgo answers $228$, from computing $312 - 84$. What does substitution say?",
+            "options": [
+              "$228 - 84 = 144$, not $312$ — the box must be $312 + 84 = 396$",
+              "$228 - 84 = 312$ — the answer passes",
+              "substitution cannot test box equations",
+              "the equation has no answer"
+            ],
+            "correctIndex": 0,
+            "explanation": "Put the offer back: $228 - 84 = 144$, not $312$ — rejected. The box LOST $84$, so restore by adding: $312 + 84 = 396$, and indeed $396 - 84 = 312$ ✓. The minus sign in the equation does not mean YOU subtract — undo what the equation did.",
+            "check": [
+              "Eq(228 - 84, 144)",
+              "Eq(144 + 84, 228)",
+              "Ne(144, 312)",
+              "Eq(312 + 84, 396)",
+              "Eq(396 - 84, 312)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Three numbers, four facts: two additions, two subtractions — one triangle.",
+              "The whole stands alone on its side; parts join together.",
+              "Open a box with the inverse: undo what the equation DID to it.",
+              "Substitute every answer back — a wrong box fails its own equation.",
+              "Addition and subtraction are one fact read two ways: that is the whole machinery."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "For each box, first say aloud what happened to it — 'the box gained 260', 'the box lost 155' — then do the opposite, and substitute to sign the receipt."
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Families and boxes, receipts throughout.",
+            "problems": [
+              {
+                "prompt": "Which addition belongs to the family $125$, $375$, $500$?",
+                "options": [
+                  "$125 + 375 = 500$",
+                  "$125 + 500 = 625$",
+                  "$375 + 500 = 875$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Parts join to make the whole: $125 + 375 = 500$ ✓. The others add the whole itself to a part, making the strangers $625$ and $875$.",
+                "check": [
+                  "Eq(125 + 375, 500)",
+                  "Eq(125 + 500, 625)",
+                  "Eq(375 + 500, 875)"
+                ]
+              },
+              {
+                "prompt": "$\\square + 476 = 900$. The box holds:",
+                "options": [
+                  "$424$",
+                  "$1\\,376$",
+                  "$524$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$900 - 476 = 424$; substitute $424 + 476 = 900$ ✓. $1\\,376$ added the two numbers.",
+                "check": [
+                  "Eq(900 - 476, 424)",
+                  "Eq(424 + 476, 900)",
+                  "Eq(900 + 476, 1376)"
+                ]
+              },
+              {
+                "prompt": "$\\square - 238 = 517$. The box holds:",
+                "options": [
+                  "$755$",
+                  "$279$",
+                  "$745$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The box lost $238$: restore it — $517 + 238 = 755$; substitute $755 - 238 = 517$ ✓. $279$ subtracted instead ($517 - 238$).",
+                "check": [
+                  "Eq(517 + 238, 755)",
+                  "Eq(755 - 238, 517)",
+                  "Eq(517 - 238, 279)",
+                  "Eq(279 + 238, 517)"
+                ]
+              },
+              {
+                "prompt": "$903 - \\square = 447$. The box holds:",
+                "options": [
+                  "$456$",
+                  "$1\\,350$",
+                  "$556$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The box and $447$ are the parts of $903$: $903 - 447 = 456$; substitute $903 - 456 = 447$ ✓. $1\\,350$ added.",
+                "check": [
+                  "Eq(903 - 447, 456)",
+                  "Eq(456 + 447, 903)",
+                  "Eq(903 - 456, 447)"
+                ]
+              },
+              {
+                "prompt": "Saruul had some togrog saved. She spent $350$ on a hair clip and has $480$ left. How much did she start with?",
+                "options": [
+                  "$830$",
+                  "$130$",
+                  "$730$"
+                ],
+                "correctIndex": 0,
+                "explanation": "The story is a box equation: $\\square - 350 = 480$. Restore: $480 + 350 = 830$; substitute $830 - 350 = 480$ ✓. $130$ subtracted the story's numbers — but spending REDUCED her savings, so the start must be the biggest number of the three.",
+                "check": [
+                  "Eq(480 + 350, 830)",
+                  "Eq(830 - 350, 480)",
+                  "Eq(480 - 350, 130)",
+                  "Eq(130 + 350, 480)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Missing Numbers\"",
+            "body": "Fact families gave you the inverse; boxes taught substitution. Last lesson: stories — where the numbers arrive dressed as sheep, togrog and Naadam tickets, and YOU choose the operation."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "word-problems",
+      "title": "Word Problems",
+      "concreteComparison": "Two questions about the same pen of animals: 'how many altogether?' wants the flocks JOINED — addition; 'how many more sheep than goats?' wants the gap measured — subtraction. The numbers are identical; the STORY picks the operation. Reading the story's shape is the real work; the arithmetic afterwards is last week's job.",
+      "objective": "Solve one- and two-step word problems inside 10 000 — reading the story's shape to choose addition or subtraction, finding hidden numbers first, and receipting every answer.",
+      "concept": [
+        "**The story picks the operation.** Joining shapes — altogether, in all, total, gained, more arrive — ADD. Gap shapes — how many more X than Y, how many fewer X than Y, how many left — SUBTRACT. One word decides nothing: 'more' joins in '$29$ more arrive' and measures a gap in 'how many more sheep than goats'. Read the whole question sentence.",
+        "**Two-step stories hide a number.** 'Spent $1\\,250$ and then $850$ out of $3\\,600$' hides the TOTAL SPENT: find it first ($2\\,100$), then answer the real question ($3\\,600 - 2\\,100 = 1\\,500$). Name the hidden number before touching any arithmetic.",
+        "**Every answer carries a receipt.** One step or two: add the answer back, or walk the other road — $3\\,600 - 1\\,250 - 850$ lands on the same $1\\,500$. Two roads agreeing is the strongest receipt there is."
+      ],
+      "keyIdea": "Read the story's shape, find the hidden number first, and receipt every answer — two roads to the same number make it true.",
+      "facts": [
+        {
+          "title": "Story shapes",
+          "latex": "\\text{altogether, in all} \\to + \\qquad \\text{how many more X than Y, how many left} \\to -",
+          "explanation": "Joining stories add; gap and taking-away stories subtract. The word 'more' on its own is NOT a subtraction signal — '29 more arrive' joins."
+        },
+        {
+          "title": "Two steps, one receipt",
+          "latex": "3\\,600 - (1\\,250 + 850) = 1\\,500",
+          "explanation": "Find the hidden total first; then receipt: 1500 + 2100 rebuilds 3600."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "g4as-l5-we1",
+          "statement": "A herder's flock holds $1\\,250$ sheep and $860$ goats. How many animals altogether?",
+          "note": "Altogether is a joining shape.",
+          "solution": "Join the flocks: $1\\,250 + 860 = 2\\,110$ animals. Other-way check: $860 + 1\\,250 = 2\\,110$ ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(1250 + 860, 2110)",
+            "Eq(860 + 1250, 2110)"
+          ]
+        },
+        {
+          "id": "g4as-l5-we2",
+          "statement": "Bilguun saves $3\\,600$ togrog. At the market he buys a notebook for $1\\,250$ and a pen for $850$. How much is left?",
+          "note": "Two steps — the total cost is hidden.",
+          "solution": "Hidden number, the total cost: $1\\,250 + 850 = 2\\,100$. Then $3\\,600 - 2\\,100 = 1\\,500$ togrog left. Receipts: $1\\,500 + 2\\,100 = 3\\,600$ ✓, and the second road $3\\,600 - 1\\,250 - 850 = 1\\,500$ agrees ✓.",
+          "badges": [
+            {
+              "text": "core"
+            }
+          ],
+          "check": [
+            "Eq(1250 + 850, 2100)",
+            "Eq(3600 - 2100, 1500)",
+            "Eq(1500 + 2100, 3600)",
+            "Eq(3600 - 1250 - 850, 1500)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Grabbing the two numbers and adding, whatever the question asks.",
+          "correction": "The STORY chooses the operation: joining shapes add; 'how many more X than Y' and 'how many left' subtract. Read the question sentence twice before touching the numbers — 'more' on its own can join ('29 more arrive') or measure a gap.",
+          "authored": true
+        },
+        {
+          "text": "Stopping after step one of a two-step problem.",
+          "correction": "Ask: does my number answer THE question, or a stepping-stone question? 380 + 295 = 675 khuushuur SOLD is the stepping stone; 850 − 675 = 175 LEFT answers the question.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "g4as-l5-t1",
+          "statement": "At the wrestling, $875$ spectators are watching; $390$ leave for the horse race. How many stay? Receipt your answer.",
+          "solution": "A leaving shape subtracts: $875 - 390 = 485$ stay. Receipt: $485 + 390 = 875$ ✓.",
+          "check": [
+            "Eq(875 - 390, 485)",
+            "Eq(485 + 390, 875)"
+          ]
+        },
+        {
+          "id": "g4as-l5-t2",
+          "statement": "A library holds $1\\,480$ books. It receives $260$ new ones, then lends out $575$. How many are on the shelves?",
+          "solution": "Step 1: $1\\,480 + 260 = 1\\,740$. Step 2: $1\\,740 - 575 = 1\\,165$ books. Receipt: $1\\,165 + 575 = 1\\,740$ ✓.",
+          "check": [
+            "Eq(1480 + 260, 1740)",
+            "Eq(1740 - 575, 1165)",
+            "Eq(1165 + 575, 1740)"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Concept A",
+            "title": "Read the story's shape",
+            "beats": [
+              "By the ger graze $8$ sheep and $5$ goats. 'How many animals ALTOGETHER?' joins the groups: $8 + 5 = 13$. Joining words — altogether, in all, total, gained — always add.",
+              "Same animals, different question: 'how many MORE sheep THAN goats?' measures the gap: $8 - 5 = 3$. Gap phrases — 'how many more X than Y', 'how many fewer X than Y', 'how many left', 'how many remain' — subtract.",
+              "Watch out for the word 'more' on its own: it can JOIN instead. '$29$ more guests arrive' adds. Only the whole phrase 'how many more X THAN Y' asks for a gap — so read the phrase, never one word.",
+              "The numbers never choose the operation; the story's SHAPE does. Read the question sentence twice, name the shape, then compute — and receipt: $3 + 5 = 8$ ✓."
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 8,
+                  "color": "#3b82f6",
+                  "label": "sheep"
+                },
+                {
+                  "count": 5,
+                  "color": "#d97706",
+                  "label": "goats"
+                }
+              ]
+            }
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "One-step stories",
+            "intro": "Name the shape first; compute second; receipt third.",
+            "examples": [
+              {
+                "prompt": "$1\\,250$ sheep and $860$ goats — how many animals altogether?",
+                "steps": [
+                  "Joining shape: add. $1\\,250 + 860 = 2\\,110$.",
+                  "Other-way check: $860 + 1\\,250 = 2\\,110$ ✓."
+                ],
+                "answer": "$2\\,110$ animals",
+                "check": [
+                  "Eq(1250 + 860, 2110)",
+                  "Eq(860 + 1250, 2110)"
+                ]
+              },
+              {
+                "prompt": "$875$ spectators are watching the wrestling; $390$ leave. How many stay?",
+                "steps": [
+                  "Leaving shape: subtract. $875 - 390 = 485$.",
+                  "Receipt: $485 + 390 = 875$ ✓."
+                ],
+                "answer": "$485$ spectators",
+                "check": [
+                  "Eq(875 - 390, 485)",
+                  "Eq(485 + 390, 875)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Joining or gap?",
+            "intro": "The question sentence decides.",
+            "problems": [
+              {
+                "prompt": "By the river graze $14$ sheep and $9$ goats. How many animals altogether?",
+                "options": [
+                  "$23$ animals",
+                  "$5$ animals",
+                  "$22$ animals"
+                ],
+                "correctIndex": 0,
+                "explanation": "Altogether joins: $14 + 9 = 23$. Answering $5$ measured the gap ($14 - 9 = 5$, since $5 + 9 = 14$) — the wrong shape for this question.",
+                "check": [
+                  "Eq(14 + 9, 23)",
+                  "Eq(14 - 9, 5)",
+                  "Eq(5 + 9, 14)"
+                ],
+                "figure": {
+                  "mode": "groups",
+                  "groups": [
+                    {
+                      "count": 14,
+                      "color": "#3b82f6",
+                      "label": "sheep"
+                    },
+                    {
+                      "count": 9,
+                      "color": "#d97706",
+                      "label": "goats"
+                    }
+                  ]
+                }
+              },
+              {
+                "prompt": "A school has $468$ girls and $415$ boys. How many MORE girls than boys?",
+                "options": [
+                  "$53$",
+                  "$883$",
+                  "$63$"
+                ],
+                "correctIndex": 0,
+                "explanation": "'How many more' is a gap: $468 - 415 = 53$, receipted by $53 + 415 = 468$ ✓. $883$ joined the groups — the altogether answer to a gap question.",
+                "check": [
+                  "Eq(468 - 415, 53)",
+                  "Eq(53 + 415, 468)",
+                  "Eq(468 + 415, 883)"
+                ]
+              },
+              {
+                "prompt": "$2\\,500$ Naadam tickets were printed and $1\\,730$ sold. How many are unsold?",
+                "options": [
+                  "$770$",
+                  "$4\\,230$",
+                  "$830$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Unsold is what is LEFT: $2\\,500 - 1\\,730 = 770$, receipted by $770 + 1\\,730 = 2\\,500$ ✓. $4\\,230$ added the story's numbers.",
+                "check": [
+                  "Eq(2500 - 1730, 770)",
+                  "Eq(770 + 1730, 2500)",
+                  "Eq(2500 + 1730, 4230)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Spot the shape",
+            "prompt": "Which story needs SUBTRACTION?",
+            "options": [
+              "Tuya had $900$ togrog and spent $350$ — how much is left?",
+              "A pen holds $12$ sheep and $8$ goats — how many animals in all?",
+              "Bat read $365$ pages last month and $120$ this month — how many altogether?",
+              "A herd of $56$ horses gains $40$ foals — how big is it now?"
+            ],
+            "correctIndex": 0,
+            "explanation": "'Spent, and how much is LEFT' takes away: $900 - 350 = 550$, receipt $550 + 350 = 900$ ✓. The other three all JOIN amounts: $12 + 8 = 20$, $365 + 120 = 485$, $56 + 40 = 96$.",
+            "check": [
+              "Eq(900 - 350, 550)",
+              "Eq(550 + 350, 900)",
+              "Eq(12 + 8, 20)",
+              "Eq(365 + 120, 485)",
+              "Eq(56 + 40, 96)"
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Fun fact",
+            "title": "The three games of Naadam",
+            "body": "Naadam, Mongolia's great summer festival, centres on three sports: wrestling, horse racing and archery. The long-distance horse races are ridden by child jockeys across open steppe rather than around a track. And the stands are full of arithmetic — scores, distances and ticket counts all day long."
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Concept B",
+            "title": "Two-step stories",
+            "beats": [
+              "Some stories will not solve in one move: 'Bilguun has $3\\,600$ togrog and buys a notebook for $1\\,250$ and a pen for $850$ — how much is left?' The cost of BOTH things is hidden. Name it, then find it: $1\\,250 + 850 = 2\\,100$.",
+              "Now the real question is one step: $3\\,600 - 2\\,100 = 1\\,500$ togrog left. Step one finds the hidden number; step two answers the question.",
+              "Receipt with two roads: subtracting the prices one at a time — $3\\,600 - 1\\,250 = 2\\,350$, then $2\\,350 - 850 = 1\\,500$ — lands on the same answer. Two roads agreeing is the strongest receipt there is."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Worked examples",
+            "title": "Hidden numbers",
+            "intro": "Find what the story hides; then answer what it asks.",
+            "examples": [
+              {
+                "prompt": "Bilguun has $3\\,600$ togrog and buys a notebook for $1\\,250$ and a pen for $850$. How much is left?",
+                "steps": [
+                  "Hidden: total cost $1\\,250 + 850 = 2\\,100$.",
+                  "Answer: $3\\,600 - 2\\,100 = 1\\,500$ togrog. Second road: $3\\,600 - 1\\,250 - 850 = 1\\,500$ ✓."
+                ],
+                "answer": "$1\\,500$ togrog",
+                "check": [
+                  "Eq(1250 + 850, 2100)",
+                  "Eq(3600 - 2100, 1500)",
+                  "Eq(1500 + 2100, 3600)",
+                  "Eq(3600 - 1250 - 850, 1500)"
+                ]
+              },
+              {
+                "prompt": "A library holds $1\\,480$ books; $260$ new ones arrive, then $575$ are lent out. How many remain?",
+                "steps": [
+                  "Step 1 — arrivals join: $1\\,480 + 260 = 1\\,740$.",
+                  "Step 2 — lending leaves: $1\\,740 - 575 = 1\\,165$ books. Receipt: $1\\,165 + 575 = 1\\,740$ ✓."
+                ],
+                "answer": "$1\\,165$ books",
+                "check": [
+                  "Eq(1480 + 260, 1740)",
+                  "Eq(1740 - 575, 1165)",
+                  "Eq(1165 + 575, 1740)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Try it yourself",
+            "title": "Two moves, one answer",
+            "intro": "Name the hidden number before you compute.",
+            "problems": [
+              {
+                "prompt": "A bus carries $46$ passengers. At the market $18$ get off and $11$ get on. How many ride now?",
+                "options": [
+                  "$39$",
+                  "$75$",
+                  "$17$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Two steps: $46 - 18 = 28$ (receipt $28 + 18 = 46$ ✓), then $28 + 11 = 39$. $75$ added everything; $17$ subtracted everything — each ignored half the story.",
+                "check": [
+                  "Eq(46 - 18, 28)",
+                  "Eq(28 + 18, 46)",
+                  "Eq(28 + 11, 39)",
+                  "Eq(46 + 18 + 11, 75)",
+                  "Eq(46 - 18 - 11, 17)",
+                  "Eq(17 + 11 + 18, 46)"
+                ]
+              },
+              {
+                "prompt": "A camp kitchen fried $850$ khuushuur, selling $380$ in the morning and $295$ in the afternoon. How many are left?",
+                "options": [
+                  "$175$",
+                  "$675$",
+                  "$765$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hidden number — total sold: $380 + 295 = 675$. Left: $850 - 675 = 175$, receipted by $175 + 675 = 850$ ✓. $675$ stops at step one.",
+                "check": [
+                  "Eq(380 + 295, 675)",
+                  "Eq(850 - 675, 175)",
+                  "Eq(175 + 675, 850)",
+                  "Eq(850 - 380 - 295, 175)"
+                ]
+              },
+              {
+                "prompt": "Bat picks $145$ sea buckthorn berries and his sister picks $168$. They eat $96$. How many berries remain?",
+                "options": [
+                  "$217$",
+                  "$313$",
+                  "$207$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Join: $145 + 168 = 313$; eat: $313 - 96 = 217$, receipted by $217 + 96 = 313$ ✓. $313$ stops at step one.",
+                "check": [
+                  "Eq(145 + 168, 313)",
+                  "Eq(313 - 96, 217)",
+                  "Eq(217 + 96, 313)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Quick check",
+            "title": "Finish the story",
+            "prompt": "In the khuushuur story, Zaya answers $675$. What happened?",
+            "options": [
+              "she stopped at step one — $675$ is the amount SOLD, but the question asks what is LEFT: $850 - 675 = 175$",
+              "nothing — $675$ is the final answer",
+              "she should have added the $850$ as well",
+              "the story cannot be solved without more information"
+            ],
+            "correctIndex": 0,
+            "explanation": "Step one's result answers a stepping-stone question, not the story's question. Re-read the final sentence: LEFT means subtract the sold total from $850$ — $175$, receipted by $175 + 675 = 850$ ✓.",
+            "check": [
+              "Eq(380 + 295, 675)",
+              "Eq(850 - 675, 175)",
+              "Eq(175 + 675, 850)"
+            ]
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Recap",
+            "title": "What you learned",
+            "points": [
+              "Joining shapes (altogether, in all, gained, more arrive) add; gap shapes (how many more X than Y, how many fewer X than Y, how many left) subtract.",
+              "The numbers never pick the operation — the question sentence does. 'More' by itself decides nothing: read the whole phrase.",
+              "Two-step stories hide a number: name it, find it, THEN answer the question.",
+              "Receipt every answer — add it back, or walk the second road and watch the answers agree.",
+              "An answer without a receipt is an offer, not a fact."
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Practice",
+            "title": "Time to practice",
+            "body": "Underline the question sentence, say the shape aloud, and after computing ask: did I answer THE question, or a stepping stone?"
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Chapter practice",
+            "title": "Mixed practice",
+            "intro": "Stories of every shape, receipts on every answer.",
+            "problems": [
+              {
+                "prompt": "$1\\,675$ adults and $980$ children watched the horse race finish. How many spectators altogether?",
+                "options": [
+                  "$2\\,655$",
+                  "$695$",
+                  "$2\\,555$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Joining shape: $1\\,675 + 980 = 2\\,655$, and the other way $980 + 1\\,675$ agrees ✓. $695$ measured the gap ($1\\,675 - 980 = 695$, since $695 + 980 = 1\\,675$).",
+                "check": [
+                  "Eq(1675 + 980, 2655)",
+                  "Eq(980 + 1675, 2655)",
+                  "Eq(1675 - 980, 695)",
+                  "Eq(695 + 980, 1675)"
+                ]
+              },
+              {
+                "prompt": "A book costs $3\\,250$ togrog; Oyun pays with a $5\\,000$ note. Her change is:",
+                "options": [
+                  "$1\\,750$",
+                  "$8\\,250$",
+                  "$2\\,250$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Change is what is left of the note: $5\\,000 - 3\\,250 = 1\\,750$, receipted the cashier's way: $1\\,750 + 3\\,250 = 5\\,000$ ✓. $8\\,250$ added the price to the note.",
+                "check": [
+                  "Eq(5000 - 3250, 1750)",
+                  "Eq(1750 + 3250, 5000)",
+                  "Eq(5000 + 3250, 8250)"
+                ]
+              },
+              {
+                "prompt": "A shelf holds $248$ books; $67$ are borrowed, then $35$ returned books come back. How many stand on the shelf?",
+                "options": [
+                  "$216$",
+                  "$146$",
+                  "$350$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$248 - 67 = 181$ (receipt $181 + 67 = 248$ ✓), then $181 + 35 = 216$. $146$ subtracted both numbers; $350$ added both.",
+                "check": [
+                  "Eq(248 - 67, 181)",
+                  "Eq(181 + 67, 248)",
+                  "Eq(181 + 35, 216)",
+                  "Eq(248 - 67 - 35, 146)",
+                  "Eq(146 + 35 + 67, 248)",
+                  "Eq(248 + 67 + 35, 350)"
+                ]
+              },
+              {
+                "prompt": "Sarnai's book has $900$ pages. She reads $356$ pages one week and $288$ the next. How many pages are left?",
+                "options": [
+                  "$256$",
+                  "$644$",
+                  "$344$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Hidden number — pages read: $356 + 288 = 644$. Left: $900 - 644 = 256$, receipted by $256 + 644 = 900$ ✓. $644$ stops at step one.",
+                "check": [
+                  "Eq(356 + 288, 644)",
+                  "Eq(900 - 644, 256)",
+                  "Eq(256 + 644, 900)"
+                ]
+              },
+              {
+                "prompt": "The ger camp had $78$ guests; $29$ more arrive for Naadam. Which operation, and how many now?",
+                "options": [
+                  "add — $78 + 29 = 107$ guests",
+                  "subtract — $78 - 29 = 49$ guests",
+                  "add — $78 + 29 = 97$ guests"
+                ],
+                "correctIndex": 0,
+                "explanation": "Arriving guests JOIN: $78 + 29 = 107$ (make-ten: $78 + 2 = 80$, then $80 + 27 = 107$). Here 'more' means 'more arrive', a joining word — the gap phrase would be 'how many MORE guests THAN yesterday'. So the subtraction $78 - 29 = 49$ reads the story backwards; $97$ drops the carry.",
+                "check": [
+                  "Eq(78 + 29, 107)",
+                  "Eq(78 + 2, 80)",
+                  "Eq(80 + 27, 107)",
+                  "Eq(78 - 29, 49)",
+                  "Eq(49 + 29, 78)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Chapter complete",
+            "title": "You've finished \"Word Problems\" — and the whole topic",
+            "body": "Column addition, column subtraction, mental shortcuts, fact families, and stories: five lessons circling one idea — addition and subtraction are one fact read two ways, so every answer can sign its own receipt. Multiplication picks up the story from here."
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "g4as-pr1",
+      "statement": "Compute $476 + 358$ in columns, then check by adding the other way.",
+      "solution": "Ones $6 + 8 = 14$; tens $7 + 5 + 1 = 13$; hundreds $4 + 3 + 1 = 8$: total $834$. Other way: $358 + 476 = 834$ ✓.",
+      "check": [
+        "Eq(6 + 8, 14)",
+        "Eq(476 + 358, 834)",
+        "Eq(358 + 476, 834)"
+      ]
+    },
+    {
+      "id": "g4as-pr2",
+      "statement": "Compute $685 + 777$.",
+      "solution": "Ones $5 + 7 = 12$; tens $8 + 7 + 1 = 16$; hundreds $6 + 7 + 1 = 14$: total $1\\,462$. Check: $777 + 685 = 1\\,462$ ✓.",
+      "check": [
+        "Eq(685 + 777, 1462)",
+        "Eq(777 + 685, 1462)"
+      ]
+    },
+    {
+      "id": "g4as-pr3",
+      "statement": "Compute $823 - 457$ and sign the receipt.",
+      "solution": "Ones $13 - 7 = 6$; tens $11 - 5 = 6$; hundreds $7 - 4 = 3$: answer $366$. Receipt: $366 + 457 = 823$ ✓.",
+      "check": [
+        "Eq(13 - 7, 6)",
+        "Eq(6 + 7, 13)",
+        "Eq(823 - 457, 366)",
+        "Eq(366 + 457, 823)"
+      ]
+    },
+    {
+      "id": "g4as-pr4",
+      "statement": "Compute $904 - 568$, showing the regrouped outfit of $904$ first.",
+      "solution": "$904 = 800 + 90 + 14$ (check: still $904$). Subtract: $14 - 8 = 6$, $9 - 6 = 3$, $8 - 5 = 3$ — answer $336$. Receipt: $336 + 568 = 904$ ✓.",
+      "check": [
+        "Eq(800 + 90 + 14, 904)",
+        "Eq(904 - 568, 336)",
+        "Eq(336 + 568, 904)"
+      ]
+    },
+    {
+      "id": "g4as-pr5",
+      "statement": "Compute $456 + 399$ in your head, with compensation.",
+      "solution": "Overshoot: $456 + 400 = 856$; give the extra $1$ back: $855$ (and $855 + 1 = 856$ confirms the settle). So $456 + 399 = 855$.",
+      "check": [
+        "Eq(456 + 400, 856)",
+        "Eq(856 - 1, 855)",
+        "Eq(855 + 1, 856)",
+        "Eq(456 + 399, 855)"
+      ],
+      "courseFigure": {
+        "mode": "numberLine",
+        "numberLine": {
+          "points": [
+            {
+              "value": 456,
+              "label": "456"
+            },
+            {
+              "value": 856,
+              "label": "+400"
+            },
+            {
+              "value": 855,
+              "label": "855",
+              "color": "#d97706"
+            }
+          ],
+          "min": 450,
+          "max": 900
+        }
+      }
+    },
+    {
+      "id": "g4as-pr6",
+      "statement": "Solve $\\square - 260 = 480$ and substitute to check.",
+      "solution": "The box lost $260$: restore it — $480 + 260 = 740$. Substitute: $740 - 260 = 480$ ✓.",
+      "check": [
+        "Eq(480 + 260, 740)",
+        "Eq(740 - 260, 480)"
+      ]
+    },
+    {
+      "id": "g4as-pr7",
+      "statement": "$1\\,265$ adults and $985$ children watched the archery at Naadam. How many spectators altogether?",
+      "solution": "Joining shape: $1\\,265 + 985 = 2\\,250$. Other-way check: $985 + 1\\,265 = 2\\,250$ ✓.",
+      "check": [
+        "Eq(1265 + 985, 2250)",
+        "Eq(985 + 1265, 2250)"
+      ]
+    },
+    {
+      "id": "g4as-pr8",
+      "statement": "Tuya brings $5\\,000$ togrog to the bookshop and buys a book for $2\\,350$ and a pencil case for $1\\,425$. How much does she carry home?",
+      "solution": "Hidden number — the total cost: $2\\,350 + 1\\,425 = 3\\,775$. Left: $5\\,000 - 3\\,775 = 1\\,225$ togrog. Receipts: $1\\,225 + 3\\,775 = 5\\,000$ ✓, and the second road $5\\,000 - 2\\,350 - 1\\,425 = 1\\,225$ agrees ✓.",
+      "check": [
+        "Eq(2350 + 1425, 3775)",
+        "Eq(5000 - 3775, 1225)",
+        "Eq(1225 + 3775, 5000)",
+        "Eq(5000 - 2350 - 1425, 1225)"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "g4as-x1",
+      "statement": "Compute $2\\,486 + 3\\,957$, checked by adding the other way.",
+      "solution": "Ones $6 + 7 = 13$; tens $8 + 5 + 1 = 14$; hundreds $4 + 9 + 1 = 14$; thousands $2 + 3 + 1 = 6$: total $6\\,443$. Other way: $3\\,957 + 2\\,486 = 6\\,443$ ✓.",
+      "check": [
+        "Eq(2486 + 3957, 6443)",
+        "Eq(3957 + 2486, 6443)"
+      ]
+    },
+    {
+      "id": "g4as-x2",
+      "statement": "Compute $6\\,004 - 2\\,758$ and sign the receipt.",
+      "solution": "Regroup through the zeros: $6\\,004 = 5\\,000 + 900 + 90 + 14$ (check: still $6\\,004$). Subtract: $14 - 8 = 6$, $9 - 5 = 4$, $9 - 7 = 2$, $5 - 2 = 3$ — answer $3\\,246$. Receipt: $3\\,246 + 2\\,758 = 6\\,004$ ✓.",
+      "check": [
+        "Eq(5000 + 900 + 90 + 14, 6004)",
+        "Eq(6004 - 2758, 3246)",
+        "Eq(3246 + 2758, 6004)"
+      ]
+    },
+    {
+      "id": "g4as-x3",
+      "statement": "Compute in your head, naming the strategy: $647 + 99$, then $835 - 97$.",
+      "solution": "Compensation both times. $647 + 100 = 747$, give $1$ back: $746$. And $835 - 100 = 735$ took $3$ too many, so give them back: $735 + 3 = 738$. Receipt: $738 + 97 = 835$ ✓.",
+      "check": [
+        "Eq(647 + 100, 747)",
+        "Eq(747 - 1, 746)",
+        "Eq(746 + 1, 747)",
+        "Eq(647 + 99, 746)",
+        "Eq(835 - 100, 735)",
+        "Eq(735 + 100, 835)",
+        "Eq(735 + 3, 738)",
+        "Eq(835 - 97, 738)",
+        "Eq(738 + 97, 835)"
+      ]
+    },
+    {
+      "id": "g4as-x4",
+      "statement": "Write the four facts of the family $245$, $380$, $625$.",
+      "solution": "$245 + 380 = 625$, $380 + 245 = 625$, $625 - 380 = 245$, $625 - 245 = 380$ — one fact, four readings.",
+      "check": [
+        "Eq(245 + 380, 625)",
+        "Eq(380 + 245, 625)",
+        "Eq(625 - 380, 245)",
+        "Eq(625 - 245, 380)"
+      ]
+    },
+    {
+      "id": "g4as-x5",
+      "statement": "Solve $173 + \\square = 902$ and substitute to check.",
+      "solution": "Undo the added $173$: $\\square = 902 - 173 = 729$. Substitute: $173 + 729 = 902$ ✓.",
+      "check": [
+        "Eq(902 - 173, 729)",
+        "Eq(173 + 729, 902)"
+      ]
+    },
+    {
+      "id": "g4as-x6",
+      "statement": "A herd of $2\\,400$ animals holds $1\\,350$ sheep; the rest are goats. After $275$ goats are sold, how many goats remain?",
+      "solution": "Hidden number — the goats: $2\\,400 - 1\\,350 = 1\\,050$ (receipt $1\\,050 + 1\\,350 = 2\\,400$ ✓). Then $1\\,050 - 275 = 775$ goats remain (receipt $775 + 275 = 1\\,050$ ✓).",
+      "check": [
+        "Eq(2400 - 1350, 1050)",
+        "Eq(1050 + 1350, 2400)",
+        "Eq(1050 - 275, 775)",
+        "Eq(775 + 275, 1050)"
+      ]
+    }
+  ]
+}

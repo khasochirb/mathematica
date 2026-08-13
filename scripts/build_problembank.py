@@ -37,9 +37,11 @@ SUBJECTS = [
     ("integrated-2", "integrated_2"),
     ("integrated-3", "integrated_3"),
     # Primary and middle band: one collection per unit of each year.
+    # Primary band on MINISTRY grade labels since 2026-08-13 (the courses
+    # formerly labelled 3/4/5 taught ministry grade 2/3/4 content).
+    ("2", "grade2"),
     ("3", "grade3"),
     ("4", "grade4"),
-    ("5", "grade5"),
     ("6", "grade6"),
     ("7", "grade7"),
     ("8", "grade8"),
