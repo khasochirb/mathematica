@@ -2,19 +2,21 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BookOpen, Check, Eye, EyeOff, RefreshCw, X, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, PencilLine, RefreshCw, Zap } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 import { useAuth } from "@/lib/auth-context";
+import { type AnswerMode, formAnswerMode } from "@/lib/bank-answer";
 import {
   type BankTopic,
   type BankUnit,
   type BankForm,
   type BankLevel,
   LEVEL_LABELS,
-  recordSelfGrade,
+  recordCheckedResult,
   unitForms,
 } from "@/lib/problem-bank";
+import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
 import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 
 // The unit's exercise set, textbook style: a numbered list that INTERLEAVES
@@ -59,9 +61,11 @@ export default function BankBrowser({ topic, unit, chrome }: { topic: BankTopic;
         </h1>
         <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15.5, maxWidth: "58ch" }}>
           A mixed exercise set, like a textbook: every problem type this unit
-          covers, shuffled together and getting harder as you go. Work on
-          paper, reveal to check — and hit <RefreshCw className="inline h-3.5 w-3.5 -mt-0.5" /> on
-          any problem for the same kind with new numbers ({total} in the pool).
+          covers, shuffled together and getting harder as you go. Work each one
+          on paper, then <b>enter your answer to check it</b> — the worked
+          solution opens once you&apos;ve committed. Hit{" "}
+          <RefreshCw className="inline h-3.5 w-3.5 -mt-0.5" /> on any problem for
+          the same kind with new numbers ({total} in the pool).
         </p>
 
         <div className="mt-5 flex items-center gap-2 flex-wrap">
@@ -166,12 +170,20 @@ function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankFo
           {slots.length} of {totalSlots} shown
         </span>
       </div>
+      <p className="mb-1 flex items-start gap-1.5 text-[12px]" style={{ color: "var(--fg-3)" }}>
+        <PencilLine className="mt-[3px] h-3 w-3 flex-shrink-0" />
+        <span>
+          Type the answer where it&apos;s a number; pick from the options where it
+          isn&apos;t. Either way the solution stays closed until you check.
+        </span>
+      </p>
       <div style={{ borderTop: "1px solid var(--line)" }}>
         {slots.map((s, i) => (
           <ExerciseRow
             key={`${s.form.id}:${s.round}`}
             topic={topic}
             form={s.form}
+            mode={formAnswerMode(s.form)}
             initialIndex={spreadIndex(s.round, s.form.variants.length)}
             number={i + 1}
             userId={userId}
@@ -201,35 +213,41 @@ function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankFo
   );
 }
 
-// One numbered exercise: compact row, solution expands inline, and the
-// reroll swaps in a sibling variant (same type, new numbers).
+// One numbered exercise: compact row, an answer to commit, and only THEN the
+// solution. The reroll swaps in a sibling variant (same type, new numbers)
+// and resets the row for a fresh attempt.
+//
+// There is no bare "Solution" button any more. The old row put reveal one
+// click away from an unsolved problem, which a student told us was too
+// tempting to resist; the way to the solution now runs through an answer.
 function ExerciseRow({
-  topic, form, initialIndex, number, userId,
+  topic, form, mode, initialIndex, number, userId,
 }: {
-  topic: BankTopic; form: BankForm; initialIndex: number; number: number; userId?: string | null;
+  topic: BankTopic; form: BankForm; mode: AnswerMode; initialIndex: number; number: number; userId?: string | null;
 }) {
   const [idx, setIdx] = useState(initialIndex);
-  const [open, setOpen] = useState(false);
-  const [graded, setGraded] = useState<boolean | null>(null);
+  const [outcome, setOutcome] = useState<AnswerOutcome | null>(null);
   const v = form.variants[idx] ?? form.variants[0];
 
   function reroll() {
     const n = form.variants.length;
-    if (n < 2) return;
+    if (n < 2) {
+      setOutcome(null);
+      return;
+    }
     let j = Math.floor(Math.random() * (n - 1));
     if (j >= idx) j += 1;
     setIdx(j);
-    setOpen(false);
-    setGraded(null);
+    setOutcome(null);
   }
 
-  function grade(correct: boolean) {
-    setGraded(correct);
-    recordSelfGrade(topic, form.id, correct, userId);
+  function commit(o: AnswerOutcome) {
+    setOutcome(o);
+    recordCheckedResult(topic, form.id, o.correct, userId);
   }
 
   return (
-    <div className="py-3.5" style={{ borderBottom: "1px solid var(--line)" }}>
+    <div className="py-4" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="flex items-start gap-3">
         <span className="mono text-[12px] tabular flex-shrink-0 mt-1 select-none" style={{ color: "var(--fg-3)", minWidth: 24, textAlign: "right" }}>
           {number}.
@@ -243,7 +261,17 @@ function ExerciseRow({
               <GeoDiagram spec={v.geoFigure} />
             </div>
           )}
-          {open && (
+
+          <AnswerPrompt
+            key={v.id}
+            variant={v}
+            mode={mode}
+            outcome={outcome}
+            onCommit={commit}
+            salt={v.id}
+          />
+
+          {outcome && (
             <div className="mt-2.5 rounded-lg px-3.5 py-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
               <p className="font-sans" style={{ fontSize: 14, lineHeight: 1.55, color: "var(--fg-1)" }}>
                 <b>Answer: <MathText text={v.options[v.correctIndex]} /></b>{" "}
@@ -252,23 +280,11 @@ function ExerciseRow({
               <p className="mt-1.5 text-[12px]" style={{ color: "var(--fg-3)" }}>
                 {form.skill}
               </p>
-              <div className="mt-2.5 flex items-center gap-2">
-                {graded === null ? (
-                  <>
-                    <span className="text-[12px] mr-1" style={{ color: "var(--fg-3)" }}>Did you have it?</span>
-                    <button type="button" onClick={() => grade(true)} className="gm-press inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px]" style={{ background: "rgba(63,178,127,0.12)", border: "1px solid rgba(63,178,127,0.45)", color: "#2f9868" }}>
-                      <Check className="h-3.5 w-3.5" /> Got it
-                    </button>
-                    <button type="button" onClick={() => grade(false)} className="gm-press inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px]" style={{ background: "rgba(215,80,63,0.08)", border: "1px solid rgba(215,80,63,0.4)", color: "#c05a49" }}>
-                      <X className="h-3.5 w-3.5" /> Missed it
-                    </button>
-                  </>
-                ) : (
-                  <button type="button" onClick={reroll} className="gm-press inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-                    <RefreshCw className="h-3.5 w-3.5" />
-                    {graded ? "Another like this" : "Try again with new numbers"}
-                  </button>
-                )}
+              <div className="mt-2.5">
+                <button type="button" onClick={reroll} className="gm-press inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  {outcome.correct ? "Another like this" : "Try again with new numbers"}
+                </button>
               </div>
             </div>
           )}
@@ -283,17 +299,6 @@ function ExerciseRow({
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
             <RefreshCw className="h-3.5 w-3.5" />
-          </button>
-          <button
-            type="button"
-            onClick={() => setOpen((o) => !o)}
-            title={open ? "Hide the solution" : "Show the solution"}
-            aria-label={open ? "Hide the solution" : "Show the solution"}
-            className="gm-press inline-flex h-8 items-center gap-1.5 rounded-md px-2.5 text-[12.5px]"
-            style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}
-          >
-            {open ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
-            <span className="hidden sm:inline">{open ? "Hide" : "Solution"}</span>
           </button>
         </div>
       </div>

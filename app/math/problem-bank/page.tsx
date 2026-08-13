@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Layers, Repeat2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Layers, Lock, PencilLine, Repeat2 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { loadBankProgress } from "@/lib/problem-bank";
 import {
@@ -47,11 +47,13 @@ export default function ProblemBankHub() {
         <p className="mt-4 mb-2" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "58ch" }}>
           {totalProblems} problems organized exactly like the courses: pick a
           subject, pick the unit you just finished, and work its collection —
-          on paper with reveal-to-check, or as a practice set where missing a
-          problem brings back a similar one until you&apos;ve got it.
+          as an exercise set or as a practice run where missing a problem
+          brings back a similar one until you&apos;ve got it. Nothing here
+          reveals its answer until you&apos;ve entered one.
         </p>
         <div className="mb-8 flex flex-wrap gap-3 text-[13px]" style={{ color: "var(--fg-2)" }}>
           <span className="inline-flex items-center gap-1.5"><Layers className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Level 1 basics · Level 2 standard · Level 3 exam</span>
+          <span className="inline-flex items-center gap-1.5"><PencilLine className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Answer first, solution after</span>
           <span className="inline-flex items-center gap-1.5"><Repeat2 className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Miss → practice a similar one</span>
         </div>
 
@@ -60,7 +62,32 @@ export default function ProblemBankHub() {
             <TopicCard key={t.slug} topic={t} mastery={mastery[t.slug]} />
           ))}
         </div>
+
+        <BankAccessNote />
       </div>
+    </div>
+  );
+}
+
+// The bank is Premium material. Say so here, at the top of the funnel, so
+// nobody works down to a unit before meeting the wall.
+function BankAccessNote() {
+  const { isSubscribed } = useAuth();
+  if (isSubscribed) return null;
+  return (
+    <div
+      className="mt-8 rounded-xl px-4 py-3 flex items-start gap-2.5 text-[13px]"
+      style={{
+        background: "color-mix(in oklch, var(--warn) 8%, var(--bg))",
+        border: "1px solid color-mix(in oklch, var(--warn) 30%, transparent)",
+        color: "var(--fg-1)",
+      }}
+    >
+      <Lock className="mt-[3px] h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--warn, #d89620)" }} />
+      <span>
+        The Problem Bank is a Premium feature. Every subject opens its{" "}
+        <b>first unit free</b> so you can try it — Premium unlocks the rest.
+      </span>
     </div>
   );
 }

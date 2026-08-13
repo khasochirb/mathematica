@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, Lock, Sparkles } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
+import { useUpgradeModal, type UpgradeSource } from "@/lib/upgrade-modal-context";
 import { useLang } from "@/lib/lang-context";
 import { accessFor, isTopicFree } from "@/lib/course-access";
 
@@ -28,6 +28,8 @@ export default function ContentGate({
   courseKey,
   topicSlug,
   free,
+  premiumBody,
+  upgradeSource = "course_content_lock",
 }: {
   children: React.ReactNode;
   backHref: string;
@@ -38,6 +40,14 @@ export default function ContentGate({
   topicSlug?: string;
   /** Force-free content (placement tests, samplers). Overrides the policy. */
   free?: boolean;
+  /**
+   * Replacement copy for the Premium wall. Surfaces that are not the course
+   * ladder (the problem bank reaches into the SAT and IB hubs) say what the
+   * student would actually unlock instead of talking about "courses".
+   */
+  premiumBody?: { en: string; mn: string };
+  /** Which wall this is, for upgrade analytics. */
+  upgradeSource?: UpgradeSource;
 }) {
   const { isAuthenticated, isSubscribed, loading } = useAuth();
   const { open: openUpgrade } = useUpgradeModal();
@@ -95,14 +105,18 @@ export default function ContentGate({
       backLabel={backLabel}
       title={mn ? "Энэ хэсэг Премиумд нээлттэй" : "This one is Premium"}
       body={
-        mn
-          ? "Хичээл бүрийн эхний сэдэв үнэгүй. Үлдсэн сэдэв, дасгал, шалгалтыг Премиум эрхээр нээнэ."
-          : "The first topic of every course is free. Premium opens the rest — every topic, its practice sets and its tests."
+        premiumBody
+          ? mn
+            ? premiumBody.mn
+            : premiumBody.en
+          : mn
+            ? "Хичээл бүрийн эхний сэдэв үнэгүй. Үлдсэн сэдэв, дасгал, шалгалтыг Премиум эрхээр нээнэ."
+            : "The first topic of every course is free. Premium opens the rest — every topic, its practice sets and its tests."
       }
       actions={
         isAuthenticated ? (
           <button
-            onClick={() => openUpgrade({ source: "course_content_lock" })}
+            onClick={() => openUpgrade({ source: upgradeSource })}
             className="btn btn-primary w-full inline-flex items-center justify-center gap-1.5"
           >
             <Sparkles className="h-3.5 w-3.5" />

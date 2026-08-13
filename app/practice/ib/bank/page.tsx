@@ -35,9 +35,10 @@ export default function IbBankPage() {
         </h1>
         <p className="mt-3 mb-8" style={{ color: "var(--fg-1)", fontSize: 16, maxWidth: "58ch" }}>
           Every exam form across the five syllabus topics, organized like the
-          courses. Work a unit&apos;s collection on paper with reveal-to-check, or
-          run it as a practice set where a miss immediately queues a similar
-          problem.
+          courses. Work a unit&apos;s collection as an exercise set, or run it as
+          a practice set where a miss immediately queues a similar problem.
+          You enter an answer and it gets checked — the worked solution opens
+          after that, never before.
         </p>
 
         <div className="space-y-3">

@@ -43,6 +43,11 @@ export type UpgradeSource =
   | "course_content_lock"
   | "course_topic_lock"
   | "course_exam_lock"
+  // The problem bank's wall. Separate from course_content_lock so the owner
+  // can see whether drilling converts differently than lessons do — the bank
+  // spans /math, the SAT hub and the IB hub.
+  | "bank_content_lock"
+  | "bank_unit_lock"
   | "landing_premium_card"
   // Purchase requests — a plan was selected and an email submitted. The
   // owner works these rows: collect payment, then activate (see lib/pricing.ts).

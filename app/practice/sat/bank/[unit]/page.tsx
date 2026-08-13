@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import BankBrowser from "@/components/bank/BankBrowser";
+import BankGate from "@/components/bank/BankGate";
 import { SAT_BANK_CHROME } from "@/components/bank/bank-chrome";
 import { getSatBankTopic } from "@/lib/bank-data";
 import { getBankUnit } from "@/lib/problem-bank";
@@ -19,5 +20,9 @@ export default function SatBankUnitPage({ params }: { params: { unit: string } }
   const topic = getSatBankTopic();
   const unit = getBankUnit(topic, params.unit);
   if (!unit) notFound();
-  return <BankBrowser topic={topic} unit={unit} chrome={SAT_BANK_CHROME} />;
+  return (
+    <BankGate topic={topic} unitId={unit.id} backHref={SAT_BANK_CHROME.topicBase}>
+      <BankBrowser topic={topic} unit={unit} chrome={SAT_BANK_CHROME} />
+    </BankGate>
+  );
 }

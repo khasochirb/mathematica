@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import TopicLink from "@/components/genmath/TopicLink";
 import { useAuth } from "@/lib/auth-context";
+import { isBankUnitFree } from "@/lib/course-access";
 import {
   type BankTopic,
   type BankProgress,
@@ -27,6 +29,9 @@ export default function BankUnitList({ topic, chrome }: { topic: BankTopic; chro
   }, [topic.slug, user?.id]);
 
   const totalProblems = topic.forms.reduce((n, f) => n + f.variants.length, 0);
+  // Hub-owned banks (SAT) have no course spine to read freeness from, so the
+  // policy needs this bank's own unit order — see lib/course-access.
+  const unitOrder = useMemo(() => topic.units.map((u) => u.id), [topic]);
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -54,8 +59,9 @@ export default function BankUnitList({ topic, chrome }: { topic: BankTopic; chro
           ) : (
             <>
               {" "}into {topic.units.length} units. Pick a unit and work its
-              collection — on paper with reveal-to-check, or as a practice set
-              with instant feedback.
+              collection — as an exercise set or as a practice run. Either way
+              you enter your answer and it gets checked; the solution opens
+              after that.
             </>
           )}
         </p>
@@ -67,8 +73,12 @@ export default function BankUnitList({ topic, chrome }: { topic: BankTopic; chro
             const m = progress ? unitMastery(topic, u.id, progress) : null;
             const pct = m && m.total > 0 ? Math.round((m.mastered / m.total) * 100) : 0;
             return (
-              <Link
+              <TopicLink
                 key={u.id}
+                courseKey={topic.slug}
+                topicSlug={u.id}
+                free={isBankUnitFree(topic.slug, u.id, unitOrder)}
+                upgradeSource="bank_unit_lock"
                 href={`${c.topicBase}/${u.id}`}
                 className="card-edit p-5 flex items-start gap-4 transition-colors"
                 style={{ textDecoration: "none" }}
@@ -111,11 +121,25 @@ export default function BankUnitList({ topic, chrome }: { topic: BankTopic; chro
                   )}
                 </div>
                 <ArrowRight className="h-4 w-4 flex-shrink-0 mt-1.5" style={{ color: "var(--fg-3)" }} />
-              </Link>
+              </TopicLink>
             );
           })}
         </div>
+
+        <FreeUnitNote />
       </div>
     </div>
+  );
+}
+
+// Names the offer under the unit list, so a student reads the wall here
+// rather than discovering it after picking a unit.
+function FreeUnitNote() {
+  const { isSubscribed } = useAuth();
+  if (isSubscribed) return null;
+  return (
+    <p className="text-[13px] mt-6" style={{ color: "var(--fg-3)" }}>
+      The first unit is free. Premium opens the rest of the bank.
+    </p>
   );
 }

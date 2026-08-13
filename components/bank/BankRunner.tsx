@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, X, RotateCcw, Repeat2, Layers, Target } from "lucide-react";
+import { ArrowLeft, ArrowRight, PencilLine, RotateCcw, Repeat2, Layers, Target } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 import { useAuth } from "@/lib/auth-context";
+import { formAnswerMode } from "@/lib/bank-answer";
 import {
   type BankTopic,
   type BankUnit,
@@ -18,13 +19,13 @@ import {
   answerCurrent,
   isDone,
   summarize,
-  displayVariant,
   getForm,
   getVariant,
   unitForms,
   saveBankSession,
 } from "@/lib/problem-bank";
 import useScrollToTop from "@/lib/use-scroll-to-top";
+import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
 import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 
 type Phase = "setup" | "quiz" | "done";
@@ -39,9 +40,8 @@ export default function BankRunner({ topic, unit, chrome }: { topic: BankTopic; 
   const [phase, setPhase] = useState<Phase>("setup");
   const [level, setLevel] = useState<BankLevel>(0);
   const [session, setSession] = useState<BankSession | null>(null);
-  const [picked, setPicked] = useState<number | null>(null);
+  const [outcome, setOutcome] = useState<AnswerOutcome | null>(null);
   const [summary, setSummary] = useState<BankSummary | null>(null);
-  const [seed, setSeed] = useState(0); // re-shuffle key per question
 
   const scopedForms = unitForms(topic, unit.id);
   const scopedIds = scopedForms.map((f) => f.id);
@@ -53,33 +53,23 @@ export default function BankRunner({ topic, unit, chrome }: { topic: BankTopic; 
   const item = session ? currentItem(session) : null;
   const form = item ? getForm(topic, item.formId) : null;
   const variantData = item ? getVariant(topic, item.formId, item.variantId) : null;
-  const disp = useMemo(
-    () => (variantData ? displayVariant(variantData) : null),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [variantData?.id, seed],
-  );
+  // Per FORM, not per variant, so a retry never switches the student from a
+  // text box to options mid-drill (lib/bank-answer).
+  const mode = useMemo(() => (form ? formAnswerMode(form) : "choice"), [form]);
 
   function start(lv: BankLevel, formIds?: string[]) {
     const s = initSession(topic, lv, Math.random, formIds ?? scopedIds);
     setLevel(lv);
     setSession(s);
-    setPicked(null);
+    setOutcome(null);
     setSummary(null);
-    setSeed((n) => n + 1);
     setPhase("quiz");
   }
 
-  function choose(i: number) {
-    if (picked !== null) return;
-    setPicked(i);
-  }
-
   function next() {
-    if (!session || picked === null || !disp) return;
-    const correct = picked === disp.correctIndex;
-    const advanced = answerCurrent(topic, session, correct);
-    setPicked(null);
-    setSeed((n) => n + 1);
+    if (!session || !outcome) return;
+    const advanced = answerCurrent(topic, session, outcome.correct);
+    setOutcome(null);
     if (isDone(advanced)) {
       const sum = summarize(topic, advanced);
       saveBankSession(topic, sum, user?.id);
@@ -103,7 +93,7 @@ export default function BankRunner({ topic, unit, chrome }: { topic: BankTopic; 
 
         {phase === "setup" && <Setup unit={unit} forms={scopedForms} onStart={start} />}
 
-        {phase === "quiz" && session && item && form && variantData && disp && (
+        {phase === "quiz" && session && item && form && variantData && (
           <div>
             <div className="flex items-center justify-between mb-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
               <span className="mono">
@@ -134,46 +124,34 @@ export default function BankRunner({ topic, unit, chrome }: { topic: BankTopic; 
               </div>
             )}
 
-            <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
-              {disp.options.map((opt, i) => {
-                const answered = picked !== null;
-                const isCorrect = answered && i === disp.correctIndex;
-                const isWrong = answered && i === picked && i !== disp.correctIndex;
-                let bg = "var(--bg-2)", border = "var(--line)", color = "var(--fg)";
-                if (isCorrect) { bg = "rgba(63,178,127,0.14)"; border = "#3fb27f"; }
-                else if (isWrong) { bg = "rgba(215,80,63,0.10)"; border = "rgba(215,80,63,0.5)"; color = "var(--fg-2)"; }
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => choose(i)}
-                    disabled={answered}
-                    className="gm-press flex items-center justify-between gap-2 rounded-xl px-4 py-3 text-left"
-                    style={{ background: bg, border: `1.5px solid ${border}`, color, opacity: answered && !isCorrect && i !== picked ? 0.5 : 1 }}
-                  >
-                    <span className="q-math" style={{ fontSize: 15 }}><MathText text={opt} /></span>
-                    {isCorrect && <span className="grid h-6 w-6 flex-shrink-0 place-items-center rounded-full" style={{ background: "#3fb27f", color: "#fff" }}><Check className="h-4 w-4" /></span>}
-                    {isWrong && <span className="grid h-6 w-6 flex-shrink-0 place-items-center rounded-full" style={{ background: "rgba(215,80,63,0.85)", color: "#fff" }}><X className="h-4 w-4" /></span>}
-                  </button>
-                );
-              })}
+            <div className="mt-5">
+              <AnswerPrompt
+                key={`${item.formId}:${item.variantId}:${session.pos}`}
+                variant={variantData}
+                mode={mode}
+                outcome={outcome}
+                onCommit={setOutcome}
+                salt={String(session.pos)}
+                autoFocus
+              />
             </div>
 
-            {picked !== null && (
+            {outcome && (
               <>
                 <div className="mt-4 rounded-xl p-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
                   <p className="font-sans" style={{ fontSize: 14, lineHeight: 1.55, color: "var(--fg-1)" }}>
+                    <b>Answer: <MathText text={variantData.options[variantData.correctIndex]} /></b>{" "}
                     <MathText text={variantData.explanation} />
                   </p>
                 </div>
                 <div className="mt-5 flex items-center justify-between gap-3">
                   <span className="text-[13px]" style={{ color: "var(--fg-3)" }}>
-                    {picked !== disp.correctIndex ? "A similar problem is queued next — same form, new numbers." : ""}
+                    {!outcome.correct ? "A similar problem is queued next — same form, new numbers." : ""}
                   </span>
                   <button type="button" onClick={next} className="btn btn-primary inline-flex items-center gap-1.5 flex-shrink-0">
                     {session.pos + 1 >= session.queue.length
                       ? "See my results"
-                      : picked !== disp.correctIndex
+                      : !outcome.correct
                         ? "Try a similar one"
                         : "Next problem"}
                     <ArrowRight className="h-4 w-4" />
@@ -210,6 +188,10 @@ function Setup({ unit, forms, onStart }: { unit: BankUnit; forms: ReturnType<typ
         <li className="flex items-start gap-2">
           <Layers className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
           <span><b>{total} exam forms</b>, {problems} problems — every shape this unit takes on a test, labeled Level 1–3.</span>
+        </li>
+        <li className="flex items-start gap-2">
+          <PencilLine className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
+          <span>You <b>enter the answer</b> — typed where it's a number, picked from the options where it isn't. The solution opens after you check, never before.</span>
         </li>
         <li className="flex items-start gap-2">
           <Repeat2 className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />

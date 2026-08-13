@@ -9,7 +9,7 @@ import {
   isTopicFree,
   listCourseKeys,
 } from "./course-access";
-import { getBankTopics } from "./bank-data";
+import { getBankTopics, getIbBankTopic, getSatBankTopic } from "./bank-data";
 import { allExamIds } from "./course-exam";
 
 // The course paywall's contract. These tests exist because the failure modes
@@ -80,9 +80,37 @@ describe("course access policy", () => {
     // locked when reached through /math/problem-bank.
     for (const t of getBankTopics()) {
       const free = freeTopicSlug(t.slug);
-      if (!free) continue; // hub-owned banks (sat, ib) are not course ladders
+      if (!free) continue; // hub-owned banks (sat) are not course ladders
       const freeUnits = t.units.filter((u) => isBankUnitFree(t.slug, u.id));
       expect(freeUnits.length, `${t.slug} should free exactly one bank unit`).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("frees exactly one unit in EVERY bank, hub-owned ones included", () => {
+    // The SAT bank has no course spine behind it, so it needs the bank's own
+    // unit order to find its sample. Before this it fell through to "unknown
+    // course" and the whole hub bank sat wide open.
+    const banks = [
+      ...getBankTopics(),
+      getSatBankTopic(),
+      getIbBankTopic("sl"),
+      getIbBankTopic("hl"),
+    ];
+    for (const t of banks) {
+      const order = t.units.map((u) => u.id);
+      const free = t.units.filter((u) => isBankUnitFree(t.slug, u.id, order));
+      expect(free.length, `${t.slug}: expected exactly 1 free unit, got ${free.length}`).toBe(1);
+      expect(free[0].id, `${t.slug}: the free unit should be the first one`).toBe(order[0]);
+    }
+  });
+
+  it("locks a hub-owned bank completely when the unit order is not passed", () => {
+    // Fail CLOSED: a new bank wired up without its unit order must lock, not
+    // leak. (Course-ladder banks still resolve through their spine.)
+    const sat = getSatBankTopic();
+    expect(freeTopicSlug(sat.slug)).toBeNull();
+    for (const u of sat.units) {
+      expect(isBankUnitFree(sat.slug, u.id)).toBe(false);
     }
   });
 
@@ -115,15 +143,55 @@ describe("course routes are wired to the policy", () => {
             /\[(topic|unit)\]\/(\[lesson\]|practice|test)\/page\.tsx$/.test(rel);
           if (!isContent) continue;
           const src = fs.readFileSync(p, "utf8");
-          // Either the page arms the gate itself, or it delegates to a shell
-          // component that does (CourseShell / CourseExamPages).
+          // Either the page arms the gate itself, or it delegates to a
+          // component that does (CourseShell / CourseExamPages / BankGate).
           const armed =
-            src.includes("courseKey=") || /from "@\/components\/course\/CourseShell"/.test(src);
+            src.includes("courseKey=") ||
+            /from "@\/components\/course\/CourseShell"/.test(src) ||
+            /from "@\/components\/bank\/BankGate"/.test(src);
           if (!armed) offenders.push(rel);
         }
       }
     };
     walk(mathDir);
     expect(offenders, `content routes with no premium lock:\n${offenders.join("\n")}`).toEqual([]);
+  });
+
+  // The bank reaches into three separate route trees, and the SAT and IB
+  // ones shipped with no gate at all — a student could drill the entire
+  // corpus without an account. This scan is what stops that coming back:
+  // any page rendering a bank component must render BankGate too.
+  it("arms the premium lock on every problem-bank route, in every hub", () => {
+    const appDir = path.join(process.cwd(), "app");
+    const offenders: string[] = [];
+    const surfaces: string[] = [];
+
+    const walk = (dir: string) => {
+      for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, d.name);
+        if (d.isDirectory()) {
+          walk(p);
+          continue;
+        }
+        if (d.name !== "page.tsx") continue;
+        const src = fs.readFileSync(p, "utf8");
+        // A page that shows PROBLEMS — the unit browser or the practice
+        // runner. Unit LISTS stay open on purpose (the catalog is browsable
+        // and indexable); they carry per-unit locks instead.
+        const showsProblems =
+          /from "@\/components\/bank\/BankBrowser"/.test(src) ||
+          /from "@\/components\/bank\/BankRunner"/.test(src);
+        if (!showsProblems) continue;
+        const rel = path.relative(appDir, p);
+        surfaces.push(rel);
+        if (!/from "@\/components\/bank\/BankGate"/.test(src)) offenders.push(rel);
+      }
+    };
+    walk(appDir);
+
+    // Guard against the scan silently finding nothing (a rename would make
+    // the assertion above vacuously true).
+    expect(surfaces.length, "expected to find bank content routes").toBeGreaterThanOrEqual(6);
+    expect(offenders, `bank routes with no premium lock:\n${offenders.join("\n")}`).toEqual([]);
   });
 });

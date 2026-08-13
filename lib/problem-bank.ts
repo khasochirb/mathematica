@@ -334,9 +334,12 @@ export function saveBankSession(
   return next;
 }
 
-// Browse-mode self-grades feed the SAME per-form mastery as runner sessions:
-// grading yourself wrong marks the form needs-work; right re-masters it.
-export function recordSelfGrade(
+// Browse-mode results feed the SAME per-form mastery as runner sessions:
+// missing a problem marks the form needs-work; getting it right re-masters
+// it. These used to be self-reported ("did you have it?"); they are now
+// machine-graded by lib/bank-answer, so the mastery number means something.
+// Revealing a solution instead of answering is recorded as a miss.
+export function recordCheckedResult(
   topic: BankTopic,
   formId: string,
   correct: boolean,
