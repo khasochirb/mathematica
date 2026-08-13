@@ -6,10 +6,9 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getGrade3Spine, getGrade3TopicLocalized } from "@/lib/genmath-data/grade-3";
 import { useLang } from "@/lib/lang-context";
 
-// Grade 3 — the lowest year currently open, and the rung below Grade 4. It
-// shipped as one complete batch, but the page still renders from the spine's
-// `live` flags rather than assuming completeness: that is what will let
-// grades 1 and 2 open topic by topic without touching this file.
+// Grade 3 — the first PRIMARY-band course. The grade goes live topic by
+// topic (like IM3's units did), so this page renders the whole year from
+// the spine: live topics link through; unwritten ones show as coming soon.
 export default function Grade3TopicsPage() {
   const spine = getGrade3Spine();
   const { lang } = useLang();
@@ -33,8 +32,8 @@ export default function Grade3TopicsPage() {
         <p className="mt-3 mb-8" style={{ color: "var(--fg-1)", fontSize: 16 }}>
           {complete
             ? mn
-              ? "Мянга хүртэлх тоо, дөрвөн үйлдэл, бутархай, дүрс, хэмжилт — бүтэн хичээлийн жил, зурагтайгаа бэлэн."
-              : "Numbers to a thousand, the four operations, first fractions, shapes and measuring — the full year, drawn with figures throughout."
+              ? "Тоо, үйлдэл, дүрс, хэмжилт — бүтэн хичээлийн жил, зурагтайгаа бэлэн."
+              : "Numbers, the four operations, shapes and measuring — the full year, drawn with figures throughout."
             : mn
               ? "Сэдвүүд нэг нэгээрээ нэмэгдэж байна."
               : "Topics go live one at a time as they are written."}
@@ -58,7 +57,7 @@ export default function Grade3TopicsPage() {
             const topic = getGrade3TopicLocalized(entry.slug, lang);
             const lessonCount = topic?.lessons.length ?? 0;
             return (
-              <TopicLink courseKey="3" topicSlug={entry.slug} key={entry.slug} href={`/math/3/${entry.slug}`} className="card-edit p-5 flex flex-col gap-1.5 transition-colors group" style={{ textDecoration: "none" }}>
+              <TopicLink courseKey="4" topicSlug={entry.slug} key={entry.slug} href={`/math/3/${entry.slug}`} className="card-edit p-5 flex flex-col gap-1.5 transition-colors group" style={{ textDecoration: "none" }}>
                 <span className="mono text-[10px] uppercase" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
                   {mn ? `${lessonCount} хичээл` : `${lessonCount} lessons`}
                 </span>

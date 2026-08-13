@@ -100,7 +100,7 @@ describe("site-wide link integrity", () => {
   it("reads a plausible route table out of app/", () => {
     expect(ROUTES.length).toBeGreaterThan(150);
     expect(resolves("/math")).toBe(true);
-    expect(resolves("/math/5/whole-numbers-and-place-value")).toBe(true);
+    expect(resolves("/math/4/whole-numbers-and-place-value")).toBe(true);
     expect(resolves("/dashboard")).toBe(true);
     // The matcher must actually reject something, or every test below is vacuous.
     expect(resolves("/definitely/not/a/route/here")).toBe(false);

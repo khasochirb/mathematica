@@ -64,9 +64,9 @@ describe("pictograph figure", () => {
   });
 });
 
-describe("the shipped grade-4 data unit uses the real figures", () => {
+describe("the shipped grade-3 data unit uses the real figures", () => {
   it("pictograph and bar-chart lessons carry their own chart modes", async () => {
-    const unit = (await import("@/data/genmath/4/data-and-pictographs.json")).default;
+    const unit = (await import("@/data/genmath/3/data-and-pictographs.json")).default;
     const raw = JSON.stringify(unit);
     expect(raw.includes('"pictograph"')).toBe(true);
     expect(raw.includes('"barChart"')).toBe(true);

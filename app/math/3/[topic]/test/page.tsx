@@ -100,7 +100,7 @@ export default function GenMathTestPage() {
   const params = useParams();
   const topicSlug = params.topic as string;
   return (
-    <ContentGate courseKey="3" topicSlug={topicSlug} backHref={`/math/3/${topicSlug}`} backLabel="Back to topic">
+    <ContentGate courseKey="4" topicSlug={topicSlug} backHref={`/math/3/${topicSlug}`} backLabel="Back to topic">
       <GenMathTestPageInner />
     </ContentGate>
   );

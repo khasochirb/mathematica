@@ -28,10 +28,18 @@ export interface GeometrySpineEntry {
   live: boolean;
 }
 
+// Primary band renumbered 2026-08-13 to MINISTRY grade labels (Baga core
+// curriculum, data/primary/moe-baga-curriculum.json): what shipped as
+// grades 3/4/5 was ministry grade 2/3/4 content, so the labels moved down
+// to match the national standard. Grades 1 and 5 are pending authoring
+// (memory/primary-band-alignment.md) and stay inactive until their courses
+// exist — active:false keeps them off the band page without special cases.
 const ALL_GRADES: GradeInfo[] = [
+  { grade: 1, active: false },
+  { grade: 2, active: true },
   { grade: 3, active: true },
   { grade: 4, active: true },
-  { grade: 5, active: true },
+  { grade: 5, active: false },
   { grade: 6, active: true },
   { grade: 7, active: true },
   { grade: 8, active: true },
@@ -45,15 +53,15 @@ export function listGrades(): GradeInfo[] {
   return ALL_GRADES;
 }
 
-// Grade 3 — authored as one complete batch (scripts/grade3/build_*.py), one
-// rung BELOW Grade 4 and mechanically held there: scripts/primary_check.py
+// Grade 2 — authored as one complete batch (scripts/grade2/build_*.py), one
+// rung BELOW Grade 3 and mechanically held there: scripts/primary_check.py
 // runs with a ceiling of 1000, so a four-digit number in student-facing prose
-// fails the build. The level split from Grade 4 is deliberate throughout —
+// fails the build. The level split from Grade 3 is deliberate throughout —
 // numbers to 1000 (not 10 000), tables of 2/3/4/5/10 (not to ten), exact
 // division with no remainders, denominators of 2/3/4 only, the clock to
 // o'clock and half past (not the quarter hour), and every graph strictly
 // one-for-one (no keys, no scales).
-export const GRADE3_SPINE: GradeSpineEntry[] = [
+export const GRADE2_SPINE: GradeSpineEntry[] = [
   {
     slug: "numbers-to-1000",
     title: "Numbers to 1000",
@@ -112,11 +120,11 @@ export const GRADE3_SPINE: GradeSpineEntry[] = [
   },
 ];
 
-// Grade 4 — the second primary-band year, authored as one complete batch
-// (scripts/grade4/build_*.py) and the first grade with figures from day one.
-// Content sits strictly BELOW Grade 5: numbers to 10 000, tables to 10,
+// Grade 3 — the second primary-band year, authored as one complete batch
+// (scripts/grade3/build_*.py) and the first grade with figures from day one.
+// Content sits strictly BELOW Grade 4: numbers to 10 000, tables to 10,
 // fraction meaning (no equivalence), shapes without area, data without mean.
-export const GRADE4_SPINE: GradeSpineEntry[] = [
+export const GRADE3_SPINE: GradeSpineEntry[] = [
   {
     slug: "numbers-to-10000",
     title: "Numbers to 10 000",
@@ -167,10 +175,11 @@ export const GRADE4_SPINE: GradeSpineEntry[] = [
   },
 ];
 
-// Grade 5 — the school-entrance transition year that OPENS the primary band
-// (grades 1–5). Topics go live one at a time as they are authored
-// (scripts/grade5/build_*.py), the way IM3's units did.
-export const GRADE5_SPINE: GradeSpineEntry[] = [
+// Grade 4 — the top authored year of the primary band (scripts/grade4/
+// build_*.py). NOTE from the 2026-08-13 figure audit: this course shipped
+// with ZERO figures; re-figuring it end to end is step 2 of
+// memory/primary-band-alignment.md and blocks the next primary deploy.
+export const GRADE4_SPINE: GradeSpineEntry[] = [
   {
     slug: "whole-numbers-and-place-value",
     title: "Whole Numbers & Place Value",

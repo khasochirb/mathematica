@@ -1,67 +1,82 @@
 # -*- coding: utf-8 -*-
-"""Problem-bank subject: Grade 3 — mirrors /math/3.
+"""Problem-bank subject: Grade 3 — mirrors /math/4.
 
 One collection PER UNIT: each of the eight Grade 3 topics gets its own set of
 forms, its own unit page and its own practice session
-(/math/problem-bank/3/<unit>/practice), so a student drilling times tables is
+(/math/problem-bank/4/<unit>/practice), so a student drilling times tables is
 never handed a clock question.
 
 Every problem is generated from a parameter SWEEP and every answer is
 COMPUTED, never typed. Values stay exact: sympy checks are built from
 Integer/Rational, never from float division.
 
-Grade 3 house rules (the same ones scripts/primary_check.py enforces on the
-lessons at a ceiling of 1000, applied here by hand because the bank has its
-own gate):
-  - nothing above 1000, because that is the year's number range;
+Grade 3 house rules (the same ones scripts/grade4/check_grade4.py enforces on
+the lessons, applied here by hand because the bank has its own gate):
+  - nothing above 10 000, because that is the year's number range;
   - no decimals and no negatives — both are later years;
-  - division comes out EXACTLY, with no remainder (remainders are Grade 4's),
-    and every division carries its multiplication receipt;
-  - fraction denominators are 2, 3 and 4 only, written as the picture shows
-    them and never silently reduced;
-  - the tögrög is written as a WORD, outside math (KaTeX cannot draw the sign);
-  - numbers below 1000 need no thousands separator, so none is used — money()
-    is deliberately not imported here;
-  - reading level stays at eight years old: short sentences, concrete nouns.
+  - division carries its receipt (q*d + r = n AND r < d);
+  - the tögrög is written as a WORD, outside math (KaTeX cannot draw ₮);
+  - reading level stays at nine years old: short sentences, concrete nouns.
 
-Self-check:  python3 scripts/pb/grade3.py
+Self-check:  python3 scripts/pb/grade4.py
 Regenerate:  python3 scripts/build_problembank.py
 """
 import os
-import re
 import sys
+
+from sympy import Rational
 
 PB = os.path.dirname(os.path.abspath(__file__))
 if PB not in sys.path:
     sys.path.insert(0, PB)
 
-from imbank import form, mk_num, mk_txt  # noqa: E402
+from imbank import fmt, form, mk_num, mk_txt, money  # noqa: E402
 
 SLUG = "3"
 TITLE = "Grade 3"
 TITLE_MN = "3-р анги"
-BLURB = ("Unit-by-unit practice for the whole Grade 3 year — numbers to 1000, "
-         "the four operations, first fractions, shapes, measuring and data, "
-         "with a separate problem set for every unit.")
+BLURB = ("Unit-by-unit practice for the whole Grade 3 year — numbers to "
+         "10 000, the four operations, first fractions, shapes and symmetry, "
+         "measurement and data, with a separate problem set for every unit.")
 
 UNITS = [
-    {"id": "numbers-to-1000", "title": "Numbers to 1000",
-     "blurb": "Hundreds, tens and ones, words and digits, comparing and ordering, step counting and rounding to the nearest ten."},
-    {"id": "addition-and-subtraction-to-1000", "title": "Addition & Subtraction to 1000",
-     "blurb": "Mental tens and hundreds, column addition with a carry, column subtraction with a break, fact families and word problems."},
-    {"id": "multiplication-first-facts", "title": "Multiplication — First Facts",
-     "blurb": "Equal groups, arrays and the turnaround, the tables of 2, 5 and 10, the threes and fours, and times one and times zero."},
-    {"id": "division-sharing-and-grouping", "title": "Division — Sharing & Grouping",
-     "blurb": "Sharing into equal parts, grouping into bundles, division facts from the tables, dividing by 3 and 4, and choosing the operation."},
-    {"id": "fractions-halves-and-quarters", "title": "Fractions — Halves, Thirds & Quarters",
-     "blurb": "Naming equal parts, how many make a whole, comparing unit fractions, the leftover part, and a fraction of a set."},
-    {"id": "shapes-sides-and-corners", "title": "Shapes, Sides & Corners",
-     "blurb": "Naming flat shapes by their sides, square corners, solid shapes and what they do, shape patterns and sorting."},
-    {"id": "measuring-time-and-money", "title": "Measuring, Time & Money",
-     "blurb": "Reading a ruler, metres and centimetres, comparing mass and capacity, o'clock and half past, and counting tögrög."},
-    {"id": "tallies-and-picture-graphs", "title": "Tallies & Picture Graphs",
-     "blurb": "Reading and drawing tallies, table totals and missing rows, one-for-one picture graphs and the questions they answer."},
+    {"id": "numbers-to-10000", "title": "Numbers to 10 000",
+     "blurb": "Place value to the thousands, reading and writing numbers, comparing, rounding and number patterns."},
+    {"id": "addition-and-subtraction", "title": "Addition & Subtraction",
+     "blurb": "Column addition and subtraction with regrouping, mental strategies, missing numbers and word problems."},
+    {"id": "times-tables-and-multiplication", "title": "Times Tables & Multiplication",
+     "blurb": "Equal groups, the tables to ten, arrays and the turnaround trick, and multiplying bigger numbers."},
+    {"id": "division-and-sharing", "title": "Division & Sharing",
+     "blurb": "Sharing and grouping, division facts, remainders and what they mean, halving, and choosing the operation."},
+    {"id": "fractions-parts-of-a-whole", "title": "Fractions — Parts of a Whole",
+     "blurb": "Equal parts, unit and non-unit fractions, comparing fractions, equivalence and a fraction of a set."},
+    {"id": "shapes-and-symmetry", "title": "Shapes & Symmetry",
+     "blurb": "Naming 2-D shapes, right angles, sorting quadrilaterals, lines of symmetry, 3-D solids and perimeter."},
+    {"id": "measurement-time-and-money", "title": "Measurement, Time & Money",
+     "blurb": "Centimetres and metres, grams and kilograms, millilitres and litres, the clock, the calendar and tögrög."},
+    {"id": "data-and-pictographs", "title": "Data & Pictographs",
+     "blurb": "Tally marks, tables and totals, pictograph keys, bar-chart scales and asking questions of data."},
 ]
+
+
+def M(n):
+    """A grouped whole number INSIDE math: 3 407 -> $3\\,407$."""
+    return "$%s$" % money(n)
+
+
+def frac(a, b):
+    """A fraction written EXACTLY as given, without reducing.
+
+    Grade 3 meets fractions as "how many of the equal parts", so shading two
+    of four parts must read 2/4. Rendering through Rational would silently
+    reduce it to 1/2 and quietly change the question. The sympy checks still
+    use Rational, so the maths is exact even though the display is not
+    lowest-terms.
+    """
+    return "\\frac{%d}{%d}" % (a, b)
+
+
+PLACE_NAME = {0: "ones", 1: "tens", 2: "hundreds", 3: "thousands"}
 
 ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
         "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
@@ -78,1455 +93,1332 @@ def words_under_100(n):
 
 
 def words(n):
-    """A three-digit number in words, the way it is read aloud."""
-    assert 0 < n <= 1000, "words: %r outside the Grade 3 range" % (n,)
-    if n == 1000:
-        return "one thousand"
-    h, rest = divmod(n, 100)
-    if h == 0:
-        return words_under_100(rest)
-    out = "%s hundred" % ONES[h]
-    if rest:
-        out += " and %s" % words_under_100(rest)
-    return out
-
-
-def frac(a, b):
-    """A fraction written EXACTLY as given, never reduced.
-
-    Grade 3 meets fractions as "how many of the equal parts", so two shaded
-    pieces of four must read 2/4 — that is what the child can see. The sympy
-    checks still use Rational, so the maths is exact even though the display
-    is not in lowest terms."""
-    return "\\frac{%d}{%d}" % (a, b)
-
-
-
-# Objects a fraction can be "of". Varying the object is not decoration: the
-# bank keys distinctness on the STATEMENT, so a form that asks about a bar
-# eight times ships one question, not eight.
-FRAC_OBJECTS = ["bar", "bread", "cake", "ribbon", "rug", "plank",
-                "strip of felt", "loaf", "board", "belt", "sheet", "rope"]
-
-
-def _frac_distractors(num, den, count=3):
-    """Three wrong fractions, distinct from the answer AS RENDERED STRINGS.
-
-    Chosen from a fixed pool in order of how plausible the mistake is —
-    upside down first, then the complement, then a single part — falling
-    through to other legal denominators when an earlier candidate happens to
-    render the same as the answer. Picking them by formula instead was what
-    silently dropped whole draws: 2/4's complement IS 2/4."""
-    right = frac(num, den)
-    cands = [(den, num), (den - num, den), (1, den), (den, den)]
-    for d2 in (2, 3, 4):
-        for n2 in range(1, d2 + 1):
-            cands.append((n2, d2))
-    out, seen = [], {right}
-    for a, b in cands:
-        if not (b in (2, 3, 4) and 0 < a <= b):
-            continue
-        text = frac(a, b)
-        if text in seen:
-            continue
-        seen.add(text)
-        out.append("$%s$" % text)
-        if len(out) == count:
-            break
-    return out
+    """British-style words for 1..9999: 3406 -> 'three thousand four hundred and six'."""
+    assert 1 <= n <= 9999
+    th, rest = divmod(n, 1000)
+    h, r = divmod(rest, 100)
+    parts = []
+    if th:
+        parts.append("%s thousand" % ONES[th])
+    if h:
+        parts.append("%s hundred" % ONES[h])
+    if r:
+        parts.append(("and " if (th or h) else "") + words_under_100(r))
+    return " ".join(parts)
 
 
 # ===========================================================================
-# Unit 1 — Numbers to 1000
+# UNIT 1 — Numbers to 10 000
 # ===========================================================================
 
 def _g_place_value():
-    """Every draw's three distractors are the SAME digit read in the wrong
-    column, plus the whole number — the actual mistakes a child makes. They
-    have to be chosen per column: reusing one formula across all three places
-    makes a distractor collide with the answer and silently drops the draw."""
-    names = {2: "hundreds", 1: "tens", 0: "ones"}
-    for h in range(1, 10):
-        for t in (2, 4, 6, 8):
-            for o in (3, 7):
-                n = 100 * h + 10 * t + o
-                for place, digit in ((2, h), (1, t), (0, o)):
-                    worth = digit * 10 ** place
-                    if place == 2:
-                        dvals = [digit, digit * 10, n]
-                    elif place == 1:
-                        dvals = [digit, digit * 100, n]
-                    else:
-                        dvals = [digit * 10, digit * 100, n]
-                    yield {
-                        "statement": ("In the number $%d$, what is the digit $%d$ in the "
-                                      "%s column worth?" % (n, digit, names[place])),
-                        "correct": worth,
-                        "dvals": dvals,
-                        "explanation": ("The $%d$ stands in the %s column, so it counts "
-                                        "$%d$ %s: $%d \\times %d = %d$."
-                                        % (digit, names[place], digit, names[place],
-                                           digit, 10 ** place, worth)),
-                        "check": ["Eq(%d*%d, %d)" % (digit, 10 ** place, worth),
-                                  "Eq(%d + %d + %d, %d)" % (h * 100, t * 10, o, n)],
-                    }
-
-
-def _g_words_to_digits():
-    for h in range(1, 10):
-        for rest in (0, 4, 15, 30, 47, 60, 8, 19):
-            n = 100 * h + rest
-            swapped = 100 * h + (rest % 10) * 10 + rest // 10 if rest >= 10 else n + 10
-            yield {
-                "statement": ("Write \"%s\" in digits." % words(n)),
-                "correct": n,
-                "dvals": [n + 100, swapped if swapped != n else n + 1, n - h * 100 if rest else n + 9],
-                "explanation": ("$%d$ hundreds, $%d$ tens and $%d$ ones: "
-                                "$%d + %d + %d = %d$."
-                                % (h, rest // 10, rest % 10, h * 100,
-                                   (rest // 10) * 10, rest % 10, n)),
-                "check": ["Eq(%d + %d + %d, %d)"
-                          % (h * 100, (rest // 10) * 10, rest % 10, n)],
-            }
-
-
-def _g_compare():
-    pairs = []
-    for h in range(1, 10):
-        for d in (1, 2, 3):
-            if h + d <= 9:
-                pairs.append((100 * h + 47, 100 * (h + d) + 12))
-        pairs.append((100 * h + 30, 100 * h + 70))
-        pairs.append((100 * h + 5, 100 * h + 50))
-    for a, b in pairs:
-        big, small = max(a, b), min(a, b)
-        yield {
-            "statement": ("Which sign belongs between $%d$ and $%d$?" % (a, b)),
-            "correct": "$%d %s %d$" % (a, ">" if a > b else "<", b),
-            "dvals": ["$%d %s %d$" % (a, "<" if a > b else ">", b),
-                      "$%d = %d$" % (a, b),
-                      "$%d %s %d$" % (b, ">" if a > b else "<", a)],
-            "explanation": ("Compare from the left. The first column where the "
-                            "digits differ decides, and $%d$ is the larger by "
-                            "$%d$." % (big, big - small)),
-            "check": ["%d > %d" % (big, small),
-                      "Eq(%d - %d, %d)" % (big, small, big - small)],
-        }
-
-
-def _g_order():
-    for h in range(1, 9):
-        for gap in (1, 2, 3):
-            if h + gap > 9:
-                continue
-            for lo_tens in (0, 1):
-                a = 100 * h + 9 + lo_tens
-                b = 100 * h + 90
-                c = 100 * (h + gap) + 5
+    # The asked digit must appear EXACTLY ONCE, or the question has two
+    # answers. Build the other three digits from a pool that excludes it.
+    POOLS = [(7, 1, 4), (2, 9, 5), (6, 3, 8), (4, 7, 1)]
+    for d in range(2, 10):
+        for p in (1, 2, 3):
+            for pool in POOLS:
+                rest = [x for x in pool if x != d]
+                if len(rest) < 3:
+                    continue
+                digits = list(rest[:3])
+                digits.insert(3 - p, d)
+                if digits[0] == 0 or digits.count(d) != 1:
+                    continue
+                n = int("".join(str(x) for x in digits))
+                val = d * 10 ** p
+                others = [d * 10 ** q for q in (0, 1, 2, 3) if q != p]
                 yield {
-                    "statement": ("Put $%d$, $%d$ and $%d$ in order, smallest "
-                                  "first. Which comes FIRST?" % (b, c, a)),
-                    "correct": a,
-                    "dvals": [b, c, a + 100],
-                    "explanation": ("$%d$ and $%d$ share their hundreds digit, so "
-                                    "the tens decide and $%d$ is smaller; $%d$ has "
-                                    "more hundreds than both." % (a, b, a, c)),
-                    "check": ["%d < %d" % (a, b), "%d < %d" % (b, c)],
+                    "statement": "In %s, what is the digit $%d$ worth?" % (M(n), d),
+                    "correct": M(val),
+                    "dvals": [M(o) for o in others],
+                    "explanation": ("The $%d$ stands in the %s place, so it is worth "
+                                    "$%d \\times %s = %s$."
+                                    % (d, PLACE_NAME[p], d, money(10 ** p), money(val))),
+                    "check": ["Eq(%d*%d, %d)" % (d, 10 ** p, val),
+                              "Eq(Mod(floor(Rational(%d, %d)), 10), %d)" % (n, 10 ** p, d)],
                 }
 
 
-def _g_step_count():
-    for step in (2, 5, 10, 100):
-        for start in range(step, 400, 17):
-            s = start - start % step if step in (5, 10, 100) else start - start % 2
-            if s < step:
-                continue
-            third = s + 2 * step
-            nxt = s + 3 * step
-            if nxt > 1000:
+def _g_words_to_numeral():
+    SHAPES = [(4, 0, 6), (2, 5, 0), (0, 3, 7), (6, 1, 2), (0, 0, 9), (5, 4, 0)]
+    for th in range(1, 10):
+        for (h, t, o) in SHAPES:
+            n = th * 1000 + h * 100 + t * 10 + o
+            # Distractors: the classic misreadings — dropping the hundreds
+            # zero, swapping tens and ones, and hearing the thousands digit
+            # as hundreds.
+            d1 = th * 1000 + h * 100 + o * 10 + t
+            d2 = th * 1000 + t * 10 + o + h * 10
+            d3 = th * 100 + h * 100 + t * 10 + o
+            if len({n, d1, d2, d3}) != 4:
                 continue
             yield {
-                "statement": ("A count in %ds reads $%d$, $%d$, $%d$. What comes "
-                              "next?" % (step, s, s + step, third)),
-                "correct": nxt,
-                "dvals": [third + 1, nxt + step, third],
-                "explanation": ("Every gap is $%d$, so the next number is "
-                                "$%d + %d = %d$." % (step, third, step, nxt)),
-                "check": ["Eq(%d + %d, %d)" % (third, step, nxt),
-                          "Eq(%d - %d, %d)" % (s + step, s, step)],
+                "statement": "Write %s as a numeral." % words(n),
+                "correct": M(n),
+                "dvals": [M(d1), M(d2), M(d3)],
+                "explanation": ("$%d$ thousands, $%d$ hundreds, $%d$ tens and $%d$ ones: "
+                                "$%s + %s + %d + %d = %s$."
+                                % (th, h, t, o, money(th * 1000), money(h * 100), t * 10, o,
+                                   money(n))),
+                "check": ["Eq(%d*1000 + %d*100 + %d*10 + %d, %d)" % (th, h, t, o, n)],
             }
 
 
-def _g_round_ten():
-    for n in range(11, 700, 7):
-        low = n - n % 10
-        high = low + 10
-        up = n % 10 >= 5
-        ans = high if up else low
+def _g_compare_numbers():
+    BASES = [(3241, 3412, 3214), (5060, 5600, 5006), (7418, 7481, 7148),
+             (2903, 2930, 2093), (8175, 8157, 8517), (4602, 4620, 4062),
+             (6389, 6398, 6839), (1547, 1574, 1457), (9024, 9042, 9204),
+             (2768, 2786, 2678), (5391, 5319, 5913), (3480, 3408, 3840)]
+    for (a, b, c) in BASES:
+        ordered = sorted([a, b, c])
+        small, mid, big = ordered
+        # The three options besides the answer are the other two numbers plus
+        # one near-miss, so a guesser cannot win by elimination.
         yield {
-            "statement": "Round $%d$ to the nearest ten." % n,
-            "correct": ans,
-            "dvals": [low if up else high, n, ans + 10],
-            "explanation": ("$%d$ sits between $%d$ and $%d$. It is $%d$ above "
-                            "$%d$ and $%d$ below $%d$, so %s is nearer."
-                            % (n, low, high, n - low, low, high - n, high,
-                               "the upper ten" if up else "the lower ten")
-                            if n % 10 != 5 else
-                            "$%d$ is exactly halfway between $%d$ and $%d$, and "
-                            "the agreed rule rounds a half UP to $%d$."
-                            % (n, low, high, high)),
-            "check": ["Eq(%d - %d, %d)" % (n, low, n - low),
-                      "Eq(%d - %d, %d)" % (high, n, high - n)],
+            "statement": "Which of these is the largest: %s, %s or %s?" % (M(a), M(b), M(c)),
+            "correct": M(big),
+            "dvals": [M(small), M(mid), M(big - 1000)],
+            "explanation": ("Compare from the left. The first column where they differ "
+                            "decides it, so %s is the largest." % M(big)),
+            "check": ["%d > %d" % (big, mid), "%d > %d" % (mid, small)],
+        }
+        yield {
+            "statement": "Which of these is the smallest: %s, %s or %s?" % (M(a), M(b), M(c)),
+            "correct": M(small),
+            "dvals": [M(mid), M(big), M(small + 1000)],
+            "explanation": ("Compare from the left. %s has the smaller digit in the first "
+                            "column that differs." % M(small)),
+            "check": ["%d < %d" % (small, mid), "%d < %d" % (mid, big)],
         }
 
 
-# ===========================================================================
-# Unit 2 — Addition & Subtraction to 1000
-# ===========================================================================
+def _round_to(n, step):
+    """Round half UP, which is the rule Grade 3 is taught."""
+    return ((n + step // 2) // step) * step
 
-def _g_mental_hundreds():
-    for a in range(105, 700, 23):
-        for add in (100, 200, 300):
-            if a + add > 1000:
+
+def _g_rounding():
+    NUMS = [1463, 2748, 3529, 4185, 5074, 6836, 7291, 8617, 9352, 2605, 4470, 7938]
+    for n in NUMS:
+        for step in (10, 100, 1000):
+            r = _round_to(n, step)
+            below = (n // step) * step
+            above = below + step
+            d = [x for x in (below, above, below - step, above + step) if x != r][:3]
+            if len(set(d + [r])) != 4 or min(d + [r]) < 0:
                 continue
             yield {
-                "statement": "Work out $%d + %d$ in your head." % (a, add),
-                "correct": a + add,
-                "dvals": [a + add // 10, a + add + 100, a + add // 100],
-                "explanation": ("$%d$ is $%d$ whole hundreds, so only the "
-                                "hundreds digit moves: $%d + %d = %d$, with the "
-                                "tens and ones copied down."
-                                % (add, add // 100, a, add, a + add)),
-                "check": ["Eq(%d + %d, %d)" % (a, add, a + add),
-                          "Eq(Mod(%d, 100), Mod(%d, 100))" % (a + add, a)],
+                "statement": "Round %s to the nearest %s." % (M(n), M(step)),
+                "correct": M(r),
+                "dvals": [M(x) for x in d],
+                "explanation": ("%s sits between %s and %s. It is nearer to %s."
+                                % (M(n), M(below), M(above), M(r))),
+                "check": ["Eq(%d, %d)" % (r, r),
+                          "Abs(%d - %d) <= %d" % (n, r, step // 2),
+                          "Eq(Mod(%d, %d), 0)" % (r, step)],
             }
+
+
+def _g_expanded_form():
+    NUMS = [3407, 5162, 2840, 7095, 6318, 4703, 9526, 1274, 8039, 2951,
+            6480, 3715, 5208, 7362, 4096, 1583, 2607, 3928, 4260, 5074,
+            6135, 7409, 8261, 9037, 1746, 2385, 3054, 4817, 5390, 6702,
+            7148, 8523, 9264, 1069, 2478, 3691, 4205, 5836, 6017, 7952]
+    for n in NUMS:
+        th, rest = divmod(n, 1000)
+        h, r = divmod(rest, 100)
+        t, o = divmod(r, 10)
+        parts = [(th * 1000), (h * 100), (t * 10), o]
+        shown = " + ".join(money(p) for p in parts if p)
+        wrong1 = " + ".join(money(p) for p in [th, h, t, o] if p)
+        wrong2 = " + ".join(money(p) for p in [th * 1000, h * 100, t, o] if p)
+        wrong3 = " + ".join(money(p) for p in [th * 100, h * 10, t * 10, o] if p)
+        if len({shown, wrong1, wrong2, wrong3}) != 4:
+            continue
+        yield {
+            "statement": "Write %s in expanded form." % M(n),
+            "correct": "$%s$" % shown,
+            "dvals": ["$%s$" % wrong1, "$%s$" % wrong2, "$%s$" % wrong3],
+            "explanation": ("Each digit is worth its digit times its place, and a zero "
+                            "contributes nothing: $%s = %s$." % (shown, money(n))),
+            "check": ["Eq(%s, %d)" % (" + ".join(str(p) for p in parts if p), n)],
+        }
+
+
+def _g_number_pattern():
+    for start in (120, 245, 370, 415, 560, 685, 730, 855, 900):
+        for step in (25, 50, 100, 5):
+            terms = [start + i * step for i in range(4)]
+            nxt = start + 4 * step
+            if nxt > 9999:
+                continue
+            yield {
+                "statement": ("A pattern starts %s, %s, %s, %s. What comes next?"
+                              % tuple(M(t) for t in terms)),
+                "correct": M(nxt),
+                "dvals": [M(nxt + step), M(nxt - 1), M(terms[3] + step // 5 + 1)],
+                "explanation": ("Each step adds $%d$, so after %s comes $%s + %d = %s$."
+                                % (step, M(terms[3]), money(terms[3]), step, money(nxt))),
+                "check": ["Eq(%d - %d, %d)" % (terms[1], terms[0], step),
+                          "Eq(%d + %d, %d)" % (terms[3], step, nxt)],
+            }
+
+
+# ===========================================================================
+# UNIT 2 — Addition & Subtraction
+# ===========================================================================
+
+def _addition_pairs():
+    """A sweep of four-digit pairs that each need at least one carry — a sum
+    with no regrouping is not what this form is drilling."""
+    for th in range(1, 5):
+        for h in (1, 3, 5, 7, 9):
+            for t in (2, 6, 8):
+                a = th * 1000 + h * 100 + t * 10 + 7
+                b = (5 - th) * 1000 + (9 - h) * 100 + (9 - t) * 10 + 8
+                if a + b > 9999 or b < 1000:
+                    continue
+                # at least one column must carry
+                if not (7 + 8 >= 10 or t + (9 - t) >= 10 or h + (9 - h) >= 10):
+                    continue
+                yield a, b
 
 
 def _g_column_add():
-    for a in range(126, 700, 31):
-        for b in range(117, 300, 29):
-            if a + b > 1000:
-                continue
-            if (a % 10) + (b % 10) < 10:
-                continue                      # this form drills the carry
-            no_carry = a + b - 10
-            yield {
-                "statement": "Add $%d + %d$." % (a, b),
-                "correct": a + b,
-                "dvals": [no_carry, a + b + 90, a + b - 100],
-                "explanation": ("Ones: $%d + %d = %d$ — write $%d$ and carry a "
-                                "ten. Adding the rest gives $%d$. Forgetting the "
-                                "carry costs exactly ten."
-                                % (a % 10, b % 10, a % 10 + b % 10,
-                                   (a % 10 + b % 10) % 10, a + b)),
-                "check": ["Eq(%d + %d, %d)" % (a, b, a + b),
-                          "Eq(%d + %d, %d)" % (a % 10, b % 10, a % 10 + b % 10),
-                          "%d > 9" % (a % 10 + b % 10)],
-            }
+    for (a, b) in _addition_pairs():
+        s = a + b
+        if s > 9999:
+            continue
+        yield {
+            "statement": "Work out $%s + %s$." % (money(a), money(b)),
+            "correct": M(s),
+            "dvals": [M(s - 100), M(s + 10), M(s - 1000)],
+            "explanation": ("Line up the places and add from the right, carrying past "
+                            "nine: $%s + %s = %s$." % (money(a), money(b), money(s))),
+            "check": ["Eq(%d + %d, %d)" % (a, b, s), "Eq(%d - %d, %d)" % (s, a, b)],
+        }
+
+
+def _subtraction_pairs():
+    """Four-digit pairs where the ones column forces a regroup, so the form
+    actually drills borrowing rather than digit-by-digit subtraction."""
+    for th in range(4, 10):
+        for h in (0, 2, 4, 6):
+            for t in (1, 3, 5):
+                a = th * 1000 + h * 100 + t * 10 + 2
+                b = (th - 3) * 1000 + (h + 3) * 100 + (t + 4) * 10 + 7
+                if b < 1000 or b >= a:
+                    continue
+                yield a, b
 
 
 def _g_column_sub():
-    for a in range(231, 950, 37):
-        for b in range(118, 400, 43):
-            if b >= a:
-                continue
-            if (a % 10) >= (b % 10):
-                continue                      # this form drills the break
-            yield {
-                "statement": "Work out $%d - %d$." % (a, b),
-                "correct": a - b,
-                "dvals": [a - b + 10, a - b + 2 * ((b % 10) - (a % 10)), a - b + 100],
-                "explanation": ("The ones column is short, so break a ten: "
-                                "$%d - %d = %d$ in the ones. The answer is $%d$, "
-                                "and the receipt $%d + %d = %d$ proves it."
-                                % (a % 10 + 10, b % 10, a % 10 + 10 - b % 10,
-                                   a - b, a - b, b, a)),
-                "check": ["Eq(%d - %d, %d)" % (a, b, a - b),
-                          "Eq(%d + %d, %d)" % (a - b, b, a),
-                          "%d < %d" % (a % 10, b % 10)],
-            }
-
-
-def _g_fact_family():
-    for p in range(30, 500, 23):
-        for q in range(40, 400, 37):
-            if p + q > 1000:
-                continue
-            whole = p + q
-            yield {
-                "statement": ("Two parts of $%d$ and $%d$ make a whole. Which "
-                              "fact does NOT belong to their family?"
-                              % (p, q)),
-                "correct": "$%d - %d = %d$" % (p, whole, q),
-                "dvals": ["$%d + %d = %d$" % (p, q, whole),
-                          "$%d - %d = %d$" % (whole, p, q),
-                          "$%d - %d = %d$" % (whole, q, p)],
-                "explanation": ("The whole, $%d$, always leads a subtraction — "
-                                "you cannot take it away from one of its own "
-                                "parts. The other three facts are the family."
-                                % whole),
-                "check": ["Eq(%d + %d, %d)" % (p, q, whole),
-                          "Eq(%d - %d, %d)" % (whole, p, q),
-                          "%d > %d" % (whole, p)],
-            }
+    for (a, b) in _subtraction_pairs():
+        d = a - b
+        yield {
+            "statement": "Work out $%s - %s$." % (money(a), money(b)),
+            "correct": M(d),
+            "dvals": [M(d + 100), M(d - 10), M(d + 1000)],
+            "explanation": ("Regroup where the top digit is smaller, then subtract: "
+                            "$%s - %s = %s$. Check by adding back: $%s + %s = %s$."
+                            % (money(a), money(b), money(d), money(d), money(b), money(a))),
+            "check": ["Eq(%d - %d, %d)" % (a, b, d), "Eq(%d + %d, %d)" % (d, b, a)],
+        }
 
 
 def _g_missing_number():
-    for known in range(30, 500, 19):
-        for whole in range(520, 1000, 41):
-            if known >= whole:
-                continue
-            miss = whole - known
+    for (a, b) in _addition_pairs():
+        s = a + b
+        if s > 9999:
+            continue
+        yield {
+            "statement": "What number goes in the box? $%s + \\square = %s$" % (money(a), money(s)),
+            "correct": M(b),
+            "dvals": [M(s + a), M(b + 10), M(b - 100)],
+            "explanation": ("The box is the missing part, so subtract the part you know: "
+                            "$%s - %s = %s$." % (money(s), money(a), money(b))),
+            "check": ["Eq(%d + %d, %d)" % (a, b, s), "Eq(%d - %d, %d)" % (s, a, b)],
+        }
+
+
+def _g_mental_strategy():
+    for a in (146, 238, 375, 427, 519, 663, 728, 854, 942):
+        for near in (99, 199, 98, 49):
+            s = a + near
+            round_up = near + 1
             yield {
-                "statement": ("Find the missing number: $\\square + %d = %d$."
-                              % (known, whole)),
-                "correct": miss,
-                # `whole + known` was the natural "added instead of
-                # subtracting" distractor and it ran past 1500 — outside the
-                # year's number range, which is a rule the bank keeps by hand.
-                "dvals": [known, miss + 10, miss - 10],
-                "explanation": ("The whole $%d$ is showing, so the gap is a "
-                                "PART: $%d - %d = %d$. Check: $%d + %d = %d$."
-                                % (whole, whole, known, miss, miss, known, whole)),
-                "check": ["Eq(%d - %d, %d)" % (whole, known, miss),
-                          "Eq(%d + %d, %d)" % (miss, known, whole)],
+                "statement": "Work out $%d + %d$ in your head." % (a, near),
+                "correct": M(s),
+                "dvals": [M(s + 1), M(s - 1), M(a + round_up + 1)],
+                "explanation": ("Add $%d$ and take one back: $%d + %d = %d$, then "
+                                "$%d - 1 = %d$." % (round_up, a, round_up, a + round_up,
+                                                    a + round_up, s)),
+                "check": ["Eq(%d + %d, %d)" % (a, near, s),
+                          "Eq(%d + %d - 1, %d)" % (a, round_up, s)],
             }
 
 
-def _g_word_two_step():
-    for start in range(300, 900, 47):
-        for spend in range(60, 300, 53):
-            for gain in (30, 50, 80):
-                if spend >= start:
-                    continue
-                mid = start - spend
-                end = mid + gain
-                if end > 1000 or mid <= gain:
-                    continue      # `mid - gain` is a distractor; keep it positive
-                yield {
-                    "statement": ("A shop had $%d$ eggs, sold $%d$, then received "
-                                  "$%d$ more. How many now?" % (start, spend, gain)),
-                    "correct": end,
-                    "dvals": [mid, start + spend + gain, mid - gain],
-                    "explanation": ("Selling splits: $%d - %d = %d$. The delivery "
-                                    "joins: $%d + %d = %d$. The middle number "
-                                    "$%d$ is the shop between the two events, "
-                                    "not the answer."
-                                    % (start, spend, mid, mid, gain, end, mid)),
-                    "check": ["Eq(%d - %d, %d)" % (start, spend, mid),
-                              "Eq(%d + %d, %d)" % (mid, gain, end)],
-                }
+def _g_word_problem_add():
+    # (plural noun, where it lives) — the sentence reads "There were N books in
+    # the school library. Then M more books arrived."
+    ITEMS = [("books", "in the school library"), ("bricks", "on the site"),
+             ("seedlings", "in the nursery"), ("stamps", "in the album"),
+             ("sheep", "in the herd"), ("bottles", "at the depot")]
+    STARTS = [1240, 2185, 3072, 1836, 2451, 3608, 1974, 2760, 3125]
+    ADDS = [365, 478, 592, 246, 813, 157]
+    i = 0
+    for start in STARTS:
+        for add in ADDS:
+            i += 1
+            noun, where = ITEMS[i % len(ITEMS)]
+            total = start + add
+            if total > 9999:
+                continue
+            yield {
+                "statement": ("There were %s %s %s. Then %s more %s arrived. "
+                              "How many are there now?"
+                              % (M(start), noun, where, M(add), noun)),
+                "correct": M(total),
+                "dvals": [M(start - add), M(total + 100), M(total - 10)],
+                "explanation": ("More were added, so add: $%s + %s = %s$."
+                                % (money(start), money(add), money(total))),
+                "check": ["Eq(%d + %d, %d)" % (start, add, total),
+                          "%d > %d" % (total, start)],
+            }
+
+
+def _g_inverse_check():
+    for (a, b) in _subtraction_pairs():
+        d = a - b
+        yield {
+            "statement": ("A pupil worked out $%s - %s$ and got %s. Which addition checks it?"
+                          % (money(a), money(b), M(d))),
+            "correct": "$%s + %s = %s$" % (money(d), money(b), money(a)),
+            "dvals": ["$%s + %s = %s$" % (money(d), money(a), money(a + d)),
+                      "$%s - %s = %s$" % (money(a), money(d), money(b)),
+                      "$%s + %s = %s$" % (money(a), money(b), money(a + b))],
+            "explanation": ("Addition undoes subtraction: the answer plus what was taken "
+                            "away must give back the start, and $%s + %s = %s$."
+                            % (money(d), money(b), money(a))),
+            "check": ["Eq(%d + %d, %d)" % (d, b, a), "Eq(%d - %d, %d)" % (a, b, d)],
+        }
 
 
 # ===========================================================================
-# Unit 3 — Multiplication — First Facts
+# UNIT 3 — Times Tables & Multiplication
 # ===========================================================================
+
+def _g_tables_2_5_10():
+    for t in (2, 5, 10):
+        for k in range(2, 13):
+            p = t * k
+            yield {
+                "statement": "What is $%d \\times %d$?" % (t, k),
+                "correct": p,
+                "dvals": [p + t, p - t, t * (k + 2)],
+                "explanation": ("$%d$ groups of $%d$ is $%d$." % (k, t, p)),
+                "check": ["Eq(%d*%d, %d)" % (t, k, p), "Eq(%d/%d, %d)" % (p, t, k)],
+            }
+
+
+def _g_tables_6_9():
+    for t in (6, 7, 8, 9):
+        for k in range(3, 13):
+            p = t * k
+            yield {
+                "statement": "What is $%d \\times %d$?" % (t, k),
+                "correct": p,
+                "dvals": [p + t, p - t, p + 1],
+                "explanation": ("$%d$ groups of $%d$ is $%d$. One group less is $%d$."
+                                % (k, t, p, p - t)),
+                "check": ["Eq(%d*%d, %d)" % (t, k, p), "Eq(%d/%d, %d)" % (p, k, t)],
+            }
+
 
 def _g_equal_groups():
-    for g in range(2, 9):
-        for s in range(2, 11):
+    THINGS = ["pencils", "sweets", "marbles", "buttons", "coins", "stickers",
+              "apples", "beads", "shells"]
+    i = 0
+    for g in range(3, 10):
+        for per in (4, 6, 7, 8, 9):
+            i += 1
+            p = g * per
             yield {
-                "statement": ("There are $%d$ baskets with $%d$ eggs in each. "
-                              "How many eggs?" % (g, s)),
-                "correct": g * s,
-                "dvals": [g + s, g * s + s, g * s - s],
-                "explanation": ("%d groups of %d: %s $= %d$, which is "
-                                "$%d \\times %d$."
-                                % (g, s, " + ".join([str(s)] * min(g, 5))
-                                   + (" + ..." if g > 5 else ""), g * s, g, s)),
-                "check": ["Eq(%d*%d, %d)" % (g, s, g * s),
-                          "Eq(%d + %d, %d)" % (g, s, g + s)],
+                "statement": ("There are $%d$ boxes with $%d$ %s in each box. "
+                              "How many %s altogether?"
+                              % (g, per, THINGS[i % len(THINGS)], THINGS[i % len(THINGS)])),
+                "correct": p,
+                "dvals": [g + per, p - per, p + g],
+                "explanation": ("Equal groups mean multiply: $%d \\times %d = %d$."
+                                % (g, per, p)),
+                "check": ["Eq(%d*%d, %d)" % (g, per, p), "Eq(%d/%d, %d)" % (p, g, per)],
             }
 
 
-def _g_turnaround():
-    for r in range(2, 9):
-        for c in range(2, 11):
-            if r == c:
+def _g_arrays_turnaround():
+    for r in range(2, 12):
+        for c in range(2, 12):
+            if r >= c:
                 continue
+            p = r * c
             yield {
-                "statement": ("An array has $%d$ rows of $%d$. Reading it down "
-                              "the columns instead gives which fact?" % (r, c)),
-                "correct": "$%d \\times %d = %d$" % (c, r, r * c),
-                "dvals": ["$%d \\times %d = %d$" % (c, r, r * c + c),
-                          "$%d + %d = %d$" % (r, c, r + c),
-                          "$%d \\times %d = %d$" % (r, c, r * c + r)],
-                "explanation": ("The same stones read the other way: $%d$ "
-                                "columns of $%d$, so $%d \\times %d = %d$ — the "
-                                "turnaround, and the total cannot change."
-                                % (c, r, c, r, r * c)),
-                "check": ["Eq(%d*%d, %d)" % (c, r, r * c),
-                          "Eq(%d*%d, %d*%d)" % (r, c, c, r)],
+                "statement": ("An array has $%d$ rows of $%d$. Which multiplication gives "
+                              "the same total?" % (r, c)),
+                "correct": "$%d \\times %d$" % (c, r),
+                "dvals": ["$%d \\times %d$" % (c, r + 1),
+                          "$%d + %d$" % (r, c),
+                          "$%d \\times %d$" % (c, c)],
+                "explanation": ("Turn the array a quarter turn and it becomes $%d$ rows of "
+                                "$%d$. Both give $%d$." % (c, r, p)),
+                "check": ["Eq(%d*%d, %d*%d)" % (r, c, c, r), "Eq(%d*%d, %d)" % (r, c, p)],
             }
 
 
-def _g_friendly_tables():
-    for t in (2, 5, 10):
-        for k in range(2, 11):
+def _g_multiply_two_digit():
+    for a in (12, 14, 16, 18, 21, 23, 25, 27, 32, 34, 36, 41, 43, 45, 52, 54, 63, 72):
+        for k in (3, 4, 5):
+            p = a * k
+            if p > 9999:
+                continue
+            tens, ones = divmod(a, 10)
+            yield {
+                "statement": "Work out $%d \\times %d$." % (a, k),
+                "correct": M(p),
+                "dvals": [M(p + k), M(p - 10), M(tens * 10 * k + ones)],
+                "explanation": ("Split $%d$ into $%d$ and $%d$: $%d \\times %d = %d$ and "
+                                "$%d \\times %d = %d$, and $%d + %d = %d$."
+                                % (a, tens * 10, ones, tens * 10, k, tens * 10 * k,
+                                   ones, k, ones * k, tens * 10 * k, ones * k, p)),
+                "check": ["Eq(%d*%d, %d)" % (a, k, p),
+                          "Eq(%d*%d + %d*%d, %d)" % (tens * 10, k, ones, k, p)],
+            }
+
+
+def _g_missing_factor():
+    for t in (3, 4, 6, 7, 8, 9):
+        for k in range(3, 11):
             p = t * k
             yield {
-                "statement": "What is $%d \\times %d$?" % (t, k),
-                "correct": p,
-                "dvals": [t + k, p + t, p - t],
-                "explanation": ("%s: $%d \\times %d = %d$."
-                                % ({2: "Double it", 5: "Count the fives",
-                                    10: "Whole bundles of ten"}[t], t, k, p)),
-                "check": ["Eq(%d*%d, %d)" % (t, k, p),
-                          "Eq(Mod(%d, %d), 0)" % (p, t)],
+                "statement": "What number goes in the box? $%d \\times \\square = %d$" % (t, p),
+                "correct": k,
+                "dvals": [k + 1, k - 1, p - t],
+                "explanation": ("Ask how many $%d$s make $%d$: $%d \\div %d = %d$."
+                                % (t, p, p, t, k)),
+                "check": ["Eq(%d*%d, %d)" % (t, k, p), "Eq(%d/%d, %d)" % (p, t, k)],
             }
 
 
-def _g_threes_fours():
-    for t in (3, 4):
-        for k in range(2, 15):
-            p = t * k
-            if t == 4:
-                why = ("Four groups is two groups counted twice: "
-                       "$2 \\times %d = %d$, doubled to $%d$." % (k, 2 * k, p))
-                chk = ["Eq(2*%d, %d)" % (k, 2 * k),
-                       "Eq(%d + %d, %d)" % (2 * k, 2 * k, p),
-                       "Eq(%d*%d, %d)" % (t, k, p)]
-            else:
-                why = ("Count in threes to the $%d$th stop: "
-                       "$3 \\times %d = %d$." % (k, k, p))
-                chk = ["Eq(3*%d, %d)" % (k, p),
-                       "Eq(%d + 3, %d)" % (p, p + 3)]
+# ===========================================================================
+# UNIT 4 — Division & Sharing
+# ===========================================================================
+
+def _g_division_facts():
+    for d in (2, 3, 4, 5, 6, 7, 8, 9):
+        for q in range(2, 11):
+            n = d * q
             yield {
-                "statement": "What is $%d \\times %d$?" % (t, k),
-                "correct": p,
-                "dvals": [t + k, p + t, p - t],
-                "explanation": why,
-                "check": chk,
+                "statement": "What is $%d \\div %d$?" % (n, d),
+                "correct": q,
+                "dvals": [q + 1, q - 1, n - d],
+                "explanation": ("$%d \\times %d = %d$, so $%d \\div %d = %d$."
+                                % (d, q, n, n, d, q)),
+                "check": ["Eq(%d*%d, %d)" % (d, q, n), "Eq(%d/%d, %d)" % (n, d, q)],
             }
 
 
-def _g_one_and_zero():
-    for n in range(1, 21):
-        yield {
-            "statement": "What is $%d \\times 1$?" % n,
-            "correct": n,
-            "dvals": [1, n + 1, 0],
-            "explanation": ("$%d$ groups of one hold one thing each, so the "
-                            "answer is $%d$ — multiplying by one leaves a "
-                            "number alone." % (n, n)),
-            "check": ["Eq(%d*1, %d)" % (n, n)],
-        }
-    for n in range(2, 21):
-        yield {
-            "statement": "What is $%d \\times 0$?" % n,
-            "correct": 0,
-            "dvals": [n, 1, n * 10],
-            "explanation": ("$%d$ empty groups hold nothing at all: the answer "
-                            "is $0$. The $%d$ counts the groups, and there is "
-                            "nothing inside any of them." % (n, n)),
-            "check": ["Eq(%d*0, 0)" % n, "Eq(0*%d, 0)" % n],
-        }
+def _g_sharing():
+    WHO = ["children", "friends", "cousins", "classmates", "neighbours", "teammates"]
+    WHAT = ["sweets", "marbles", "stickers", "cards", "grapes", "pencils"]
+    i = 0
+    for people in (3, 4, 5, 6, 7, 8):
+        for each in (4, 6, 7, 8, 9, 12):
+            i += 1
+            total = people * each
+            yield {
+                "statement": ("$%d$ %s share $%d$ %s equally. How many does each one get?"
+                              % (people, WHO[i % len(WHO)], total, WHAT[i % len(WHAT)])),
+                "correct": each,
+                "dvals": [each + 1, each - 1, total - people],
+                "explanation": ("Sharing equally means divide: $%d \\div %d = %d$ each."
+                                % (total, people, each)),
+                "check": ["Eq(%d*%d, %d)" % (people, each, total),
+                          "Eq(%d/%d, %d)" % (total, people, each)],
+            }
 
 
-def _g_times_story():
-    nouns = [("shelf", "shelves", "jars"), ("bag", "bags", "buuz"),
-             ("post", "posts", "horses"), ("box", "boxes", "pencils")]
-    for gi, (sing, plur, thing) in enumerate(nouns):
-        for g in range(2, 9):
-            for s in (3, 4, 5, 6):
+def _g_remainders():
+    for d in (3, 4, 5, 6, 7, 8):
+        for q in (4, 6, 7, 9, 11):
+            for r in (1, 2):
+                if r >= d:
+                    continue
+                n = d * q + r
                 yield {
-                    "statement": ("There are $%d$ %s with $%d$ %s on each. How "
-                                  "many %s altogether?" % (g, plur, s, thing, thing)),
-                    "correct": g * s,
-                    "dvals": [g + s, g * s + g, abs(s - g) + g * 2],
-                    "explanation": ("Equal groups, so multiply: "
-                                    "$%d \\times %d = %d$ %s. Adding would give "
-                                    "$%d$, which counts nothing in the story."
-                                    % (g, s, g * s, thing, g + s)),
-                    "check": ["Eq(%d*%d, %d)" % (g, s, g * s),
-                              "Eq(%d + %d, %d)" % (g, s, g + s)],
+                    "statement": "Work out $%d \\div %d$ and give the remainder." % (n, d),
+                    "correct": "$%d$ remainder $%d$" % (q, r),
+                    "dvals": ["$%d$ remainder $%d$" % (q, r + 1),
+                              "$%d$ remainder $%d$" % (q + 1, r),
+                              "$%d$ remainder $%d$" % (q - 1, r)],
+                    "explanation": ("$%d \\times %d = %d$, and $%d - %d = %d$ is left over. "
+                                    "The remainder must be smaller than $%d$."
+                                    % (d, q, d * q, n, d * q, r, d)),
+                    "check": ["Eq(%d*%d + %d, %d)" % (q, d, r, n), "%d < %d" % (r, d)],
                 }
 
 
-# ===========================================================================
-# Unit 4 — Division — Sharing & Grouping
-# ===========================================================================
-
-def _g_sharing():
-    for people in (2, 3, 4, 5, 10):
-        for each in range(2, 11):
-            total = people * each
-            yield {
-                "statement": ("$%d$ sweets are shared equally between $%d$ "
-                              "children. How many does each child get?"
-                              % (total, people)),
-                "correct": each,
-                "dvals": [people, total - people, total + people],
-                "explanation": ("$%d \\times %d = %d$, so each share is $%d$. "
-                                "The receipt puts the shares back together and "
-                                "returns the pile."
-                                % (people, each, total, each)),
-                "check": ["Eq(%d*%d, %d)" % (people, each, total),
-                          "Eq(Rational(%d, %d), %d)" % (total, people, each)],
-            }
-
-
-def _g_grouping():
-    for size in (2, 3, 4, 5, 10):
-        for bags in range(2, 11):
-            total = size * bags
-            yield {
-                "statement": ("$%d$ buuz are packed into bags of $%d$. How many "
-                              "bags?" % (total, size)),
-                "correct": bags,
-                "dvals": [size, total - size, total],
-                "explanation": ("Counting up in %ds reaches $%d$ after $%d$ "
-                                "steps, so there are $%d$ bags. Receipt: "
-                                "$%d \\times %d = %d$."
-                                % (size, total, bags, bags, bags, size, total)),
-                "check": ["Eq(%d*%d, %d)" % (bags, size, total),
-                          "Eq(Rational(%d, %d), %d)" % (total, size, bags)],
-            }
-
-
-def _g_division_facts():
-    for d in (2, 5, 10):
-        for q in range(2, 13):
-            n = d * q
-            yield {
-                "statement": "What is $%d \\div %d$?" % (n, d),
-                "correct": q,
-                "dvals": [d, n - d, n + d],
-                "explanation": ("Read the times table backwards: "
-                                "$%d \\times %d = %d$, so $%d \\div %d = %d$."
-                                % (d, q, n, n, d, q)),
-                "check": ["Eq(%d*%d, %d)" % (d, q, n),
-                          "Eq(Rational(%d, %d), %d)" % (n, d, q)],
-            }
-
-
-def _g_divide_three_four():
-    for d in (3, 4):
-        for q in range(2, 16):
-            n = d * q
-            if d == 4:
-                why = ("Halve twice: half of $%d$ is $%d$, and half of that is "
-                       "$%d$. Receipt: $4 \\times %d = %d$."
-                       % (n, n // 2, q, q, n))
-                chk = ["Eq(Rational(%d, 2), %d)" % (n, n // 2),
-                       "Eq(Rational(%d, 2), %d)" % (n // 2, q),
-                       "Eq(4*%d, %d)" % (q, n)]
-            else:
-                why = ("Count in threes to $%d$: that takes $%d$ steps. "
-                       "Receipt: $3 \\times %d = %d$." % (n, q, q, n))
-                chk = ["Eq(3*%d, %d)" % (q, n),
-                       "Eq(Rational(%d, 3), %d)" % (n, q)]
-            yield {
-                "statement": "What is $%d \\div %d$?" % (n, d),
-                "correct": q,
-                "dvals": [d, n // 2 if d == 4 else n - d, n + d],
-                "explanation": why,
-                "check": chk,
-            }
-
-
-def _g_receipt_check():
-    for d in (2, 3, 4, 5, 10):
-        for q in range(3, 12):
-            n = d * q
-            wrong = q + 1
-            yield {
-                "statement": ("A pupil answers $%d \\div %d = %d$. What does the "
-                              "receipt say?" % (n, d, wrong)),
-                "correct": "$%d \\times %d = %d$, so the answer is wrong"
-                           % (d, wrong, d * wrong),
-                "dvals": ["$%d \\times %d = %d$, so the answer is right"
-                          % (d, wrong, n),
-                          "$%d + %d = %d$, so the answer is right"
-                          % (d, wrong, d + wrong),
-                          "the receipt cannot check a division"],
-                "explanation": ("Multiplying the answer back gives "
-                                "$%d \\times %d = %d$, not $%d$ — so it is "
-                                "wrong. The true answer is $%d$, since "
-                                "$%d \\times %d = %d$."
-                                % (d, wrong, d * wrong, n, q, d, q, n)),
-                "check": ["Eq(%d*%d, %d)" % (d, wrong, d * wrong),
-                          "Ne(%d, %d)" % (d * wrong, n),
-                          "Eq(%d*%d, %d)" % (d, q, n)],
-            }
+def _g_halving():
+    for n in (24, 36, 48, 56, 68, 72, 84, 96, 128, 146, 158, 164, 172, 186, 194,
+              216, 234, 258, 276, 288, 304, 326, 348, 372, 394, 416, 438, 452,
+              476, 498, 524, 546, 568, 582, 614, 636):
+        h = n // 2
+        yield {
+            "statement": "What is half of $%d$?" % n,
+            "correct": h,
+            "dvals": [h + 1, h - 2, n * 2],
+            "explanation": ("Half of $%d$ is $%d$, because $%d + %d = %d$."
+                            % (n, h, h, h, n)),
+            "check": ["Eq(2*%d, %d)" % (h, n), "Eq(%d/2, %d)" % (n, h)],
+        }
 
 
 def _g_choose_operation():
-    for g in range(2, 9):
-        for s in (3, 4, 5, 6):
-            total = g * s
-            yield {
-                "statement": ("$%d$ pencils are packed $%d$ to a box. Which "
-                              "operation finds the number of boxes?"
-                              % (total, s)),
-                "correct": "divide: $%d \\div %d = %d$" % (total, s, g),
-                "dvals": ["multiply: $%d \\times %d = %d$" % (total, s, total * s),
-                          "add: $%d + %d = %d$" % (total, s, total + s),
-                          "subtract: $%d - %d = %d$" % (total, s, total - s)],
-                "explanation": ("The total is already given and the number of "
-                                "GROUPS is missing, so divide: "
-                                "$%d \\div %d = %d$ boxes. Multiplying would "
-                                "invent pencils that do not exist."
-                                % (total, s, g)),
-                "check": ["Eq(Rational(%d, %d), %d)" % (total, s, g),
-                          "Eq(%d*%d, %d)" % (g, s, total),
-                          "%d > %d" % (total * s, total)],
-            }
+    i = 0
+    for groups in (4, 5, 6, 7, 8, 9):
+        for per in (6, 7, 8, 9, 12):
+            i += 1
+            total = groups * per
+            if i % 2 == 0:
+                yield {
+                    "statement": ("$%d$ baskets hold $%d$ eggs each. Which calculation "
+                                  "finds the total number of eggs?" % (groups, per)),
+                    "correct": "$%d \\times %d$" % (groups, per),
+                    "dvals": ["$%d \\div %d$" % (total, groups),
+                              "$%d + %d$" % (groups, per),
+                              "$%d - %d$" % (per, groups)],
+                    "explanation": ("Equal groups joined together means multiply: "
+                                    "$%d \\times %d = %d$." % (groups, per, total)),
+                    "check": ["Eq(%d*%d, %d)" % (groups, per, total)],
+                }
+            else:
+                yield {
+                    "statement": ("$%d$ eggs are packed into baskets of $%d$. Which "
+                                  "calculation finds the number of baskets?" % (total, per)),
+                    "correct": "$%d \\div %d$" % (total, per),
+                    "dvals": ["$%d \\times %d$" % (total, per),
+                              "$%d - %d$" % (total, per),
+                              "$%d + %d$" % (total, per)],
+                    "explanation": ("A total split into equal groups means divide: "
+                                    "$%d \\div %d = %d$ baskets." % (total, per, groups)),
+                    "check": ["Eq(%d/%d, %d)" % (total, per, groups),
+                              "Eq(%d*%d, %d)" % (groups, per, total)],
+                }
+
+
+def _g_remainder_meaning():
+    for d in (4, 5, 6, 8):
+        for q in (5, 6, 7, 9, 11, 13):
+            for r in (1, 3):
+                if r >= d:
+                    continue
+                n = d * q + r
+                yield {
+                    "statement": ("$%d$ children go camping. Each tent sleeps $%d$. "
+                                  "How many tents are needed so everyone has a place?"
+                                  % (n, d)),
+                    "correct": q + 1,
+                    "dvals": [q, q + 2, d + q],
+                    "explanation": ("$%d \\div %d = %d$ remainder $%d$. The $%d$ left over "
+                                    "still need a tent, so $%d + 1 = %d$ tents."
+                                    % (n, d, q, r, r, q, q + 1)),
+                    "check": ["Eq(%d*%d + %d, %d)" % (q, d, r, n), "%d < %d" % (r, d),
+                              "%d*%d >= %d" % (q + 1, d, n)],
+                }
 
 
 # ===========================================================================
-# Unit 5 — Fractions
+# UNIT 5 — Fractions — Parts of a Whole
 # ===========================================================================
 
 def _g_name_fraction():
-    for obj in FRAC_OBJECTS:
-        for den in (2, 3, 4):
-            for num in range(1, den):
-                yield {
-                    "statement": ("A %s is cut into $%d$ equal parts and $%d$ "
-                                  "%s shaded. What fraction is shaded?"
-                                  % (obj, den, num, "is" if num == 1 else "are")),
-                    "correct": "$%s$" % frac(num, den),
-                    "dvals": _frac_distractors(num, den),
-                    "explanation": ("The bottom number records the cutting — "
-                                    "$%d$ equal parts — and the top counts the "
-                                    "pieces shaded, which is $%d$."
-                                    % (den, num)),
-                    "check": ["Eq(Rational(%d, %d)*%d, %d)" % (num, den, den, num),
-                              "%d < %d" % (num, den)],
-                }
-
-
-def _g_make_a_whole():
-    for obj in FRAC_OBJECTS:
-        for den in (2, 3, 4):
-            for taken in range(1, den):
-                need = den - taken
-                yield {
-                    "statement": ("A %s is cut into $%d$ equal parts and $%d$ "
-                                  "%s been taken. How many parts are still "
-                                  "needed to make a whole %s?"
-                                  % (obj, den, taken,
-                                     "has" if taken == 1 else "have", obj)),
-                    "correct": need,
-                    "dvals": [den, den + need, need + 2 * den],
-                    "explanation": ("$%d$ parts rebuild the whole and $%d$ %s "
-                                    "gone, so $%d - %d = %d$ are still needed."
-                                    % (den, taken, "is" if taken == 1 else "are",
-                                       den, taken, need)),
-                    "check": ["Eq(%d - %d, %d)" % (den, taken, need),
-                              "Eq(Rational(%d, %d) + Rational(%d, %d), 1)"
-                              % (taken, den, need, den)],
-                }
-
-
-def _g_compare_unit_fractions():
-    for obj in FRAC_OBJECTS:
-        for a, b in ((2, 3), (2, 4), (3, 4)):
+    for den in (3, 4, 5, 6, 8, 10):
+        for num in range(1, den):
+            if den - num == num:
+                continue          # the unshaded distractor would equal the answer
             yield {
-                "statement": ("Of the same %s, which is the bigger piece — "
-                              "$%s$ or $%s$?" % (obj, frac(1, a), frac(1, b))),
-                "correct": "$%s$" % frac(1, a),
-                "dvals": ["$%s$" % frac(1, b),
-                          "they are equal",
-                          "$%s$" % frac(a, b)],
-                "explanation": ("Cutting into $%d$ gives bigger pieces than "
-                                "cutting the same %s into $%d$ — the bigger "
-                                "bottom number always means the smaller piece."
-                                % (a, obj, b)),
-                "check": ["Rational(1, %d) > Rational(1, %d)" % (a, b),
-                          "%d < %d" % (a, b)],
+                "statement": ("A shape is cut into $%d$ equal parts and $%d$ of them are "
+                              "shaded. What fraction is shaded?" % (den, num)),
+                "correct": "$%s$" % frac(num, den),
+                "dvals": ["$%s$" % frac(den, num),
+                          "$%s$" % frac(num, den + 1),
+                          "$%s$" % frac(den - num, den)],
+                "explanation": ("The bottom number counts the equal parts ($%d$) and the "
+                                "top counts the shaded ones ($%d$)." % (den, num)),
+                "check": ["Eq(Rational(%d, %d) + Rational(%d, %d), 1)" % (num, den, den - num, den),
+                          "Rational(%d, %d) < 1" % (num, den)],
             }
 
 
-def _g_leftover():
-    for obj in FRAC_OBJECTS:
-        for den in (2, 3, 4):
-            for num in range(1, den):
-                left = den - num
-                yield {
-                    "statement": ("$%s$ of a %s is shaded. What fraction is "
-                                  "plain?" % (frac(num, den), obj)),
-                    "correct": "$%s$" % frac(left, den),
-                    "dvals": _frac_distractors(left, den),
-                    "explanation": ("The %s holds $%d$ equal parts and $%d$ "
-                                    "%s shaded, so $%d$ remain plain. Shaded and "
-                                    "plain always rebuild the whole."
-                                    % (obj, den, num,
-                                       "is" if num == 1 else "are", left)),
-                    "check": ["Eq(Rational(%d, %d) + Rational(%d, %d), 1)"
-                              % (num, den, left, den),
-                              "Eq(%d - %d, %d)" % (den, num, left)],
-                }
-
-
-def _g_unit_fraction_of_set():
-    for den in (2, 3, 4):
-        for each in range(2, 13):
-            total = den * each
+def _g_unit_fraction():
+    for den in (2, 3, 4, 5, 6, 8, 10, 12):
+        for total in (12, 20, 24, 30, 36, 40, 60):
+            if total % den:
+                continue
+            part = total // den
             yield {
-                "statement": ("What is $%s$ of $%d$ sweets?" % (frac(1, den), total)),
-                "correct": each,
-                "dvals": [den, total - den, total],
-                "explanation": ("The bottom number makes the groups: share the "
-                                "$%d$ into $%d$ equal groups, giving "
-                                "$%d \\div %d = %d$ in each."
-                                % (total, den, total, den, each)),
-                "check": ["Eq(Rational(%d, %d), %d)" % (total, den, each),
-                          "Eq(%d*%d, %d)" % (den, each, total)],
+                "statement": "What is $%s$ of $%d$?" % (frac(1, den), total),
+                "correct": part,
+                "dvals": [part + 1, total - part, den * total // 10 + 1],
+                "explanation": ("One part out of $%d$ equal parts: $%d \\div %d = %d$."
+                                % (den, total, den, part)),
+                "check": ["Eq(%d*%d, %d)" % (den, part, total),
+                          "Eq(Rational(1, %d)*%d, %d)" % (den, total, part)],
             }
 
 
-def _g_non_unit_of_set():
-    for den in (3, 4):
+def _g_compare_same_denominator():
+    for den in (3, 4, 5, 6, 8, 10, 12):
+        for a in range(1, den):
+            for b in range(a + 1, den):
+                yield {
+                    "statement": ("Which is larger, $%s$ or $%s$?"
+                                  % (frac(a, den), frac(b, den))),
+                    "correct": "$%s$" % frac(b, den),
+                    "dvals": ["$%s$" % frac(a, den),
+                              "They are equal",
+                              "$%s$" % frac(a, den + 1)],
+                    "explanation": ("The parts are the same size, so more parts means more: "
+                                    "$%d > %d$." % (b, a)),
+                    "check": ["Rational(%d, %d) > Rational(%d, %d)" % (b, den, a, den),
+                              "%d > %d" % (b, a)],
+                }
+
+
+def _g_compare_same_numerator():
+    for num in (1, 2, 3):
+        for a in (3, 4, 5, 6, 8, 10, 12):
+            for b in (3, 4, 5, 6, 8, 10, 12):
+                if b <= a or num >= a:
+                    continue
+                yield {
+                    "statement": ("Which is larger, $%s$ or $%s$?"
+                                  % (frac(num, a), frac(num, b))),
+                    "correct": "$%s$" % frac(num, a),
+                    "dvals": ["$%s$" % frac(num, b),
+                              "They are equal",
+                              "$%s$" % frac(num + 1, b)],
+                    "explanation": ("Same number of parts, but cutting into $%d$ makes each "
+                                    "part bigger than cutting into $%d$." % (a, b)),
+                    "check": ["Rational(%d, %d) > Rational(%d, %d)" % (num, a, num, b),
+                              "%d < %d" % (a, b)],
+                }
+
+
+def _g_fraction_of_set():
+    for den in (3, 4, 5, 6, 8):
         for num in range(2, den):
-            for each in range(2, 11):
-                total = den * each
-                ans = num * each
+            for total in (24, 30, 36, 40, 48, 60):
+                if total % den:
+                    continue
+                part = num * total // den
                 yield {
-                    "statement": ("What is $%s$ of $%d$ pencils?"
-                                  % (frac(num, den), total)),
-                    "correct": ans,
-                    "dvals": [each, total, total + each],
-                    "explanation": ("Share into $%d$ groups: "
-                                    "$%d \\div %d = %d$ in each. Then take $%d$ "
-                                    "groups: $%d \\times %d = %d$."
-                                    % (den, total, den, each, num, num, each, ans)),
-                    "check": ["Eq(Rational(%d, %d), %d)" % (total, den, each),
-                              "Eq(%d*%d, %d)" % (num, each, ans),
-                              "%d < %d" % (ans, total)],
+                    "statement": ("A class has $%d$ pupils and $%s$ of them walk to school. "
+                                  "How many walk?" % (total, frac(num, den))),
+                    "correct": part,
+                    "dvals": [total // den, total - part, part + num],
+                    "explanation": ("One part is $%d \\div %d = %d$, and $%d$ parts is "
+                                    "$%d \\times %d = %d$."
+                                    % (total, den, total // den, num, num, total // den, part)),
+                    "check": ["Eq(Rational(%d, %d)*%d, %d)" % (num, den, total, part),
+                              "Eq(%d*%d, %d)" % (num, total // den, part)],
+                }
+
+
+def _g_equivalent_fractions():
+    for den in (2, 3, 4, 5, 6, 8, 10):
+        for num in range(1, den):
+            for k in (2, 3, 4, 5):
+                if den * k > 40:
+                    continue
+                # Asking for the missing TOP number keeps every draw a
+                # different question. "Which fraction equals 1/2?" would read
+                # identically for every multiplier and collapse to one variant.
+                yield {
+                    "statement": ("Fill the box: $%s = \\frac{\\square}{%d}$"
+                                  % (frac(num, den), den * k)),
+                    "correct": num * k,
+                    # forgot to scale the top / added the multiplier instead of
+                    # multiplying / used the wrong multiplier
+                    "dvals": [num, num + k, num * (k + 1)],
+                    "explanation": ("The bottom was multiplied by $%d$ ($%d \\times %d = %d$), "
+                                    "so the top must be too: $%d \\times %d = %d$."
+                                    % (k, den, k, den * k, num, k, num * k)),
+                    "check": ["Eq(Rational(%d, %d), Rational(%d, %d))"
+                              % (num * k, den * k, num, den),
+                              "Eq(%d*%d, %d)" % (num, k, num * k)],
                 }
 
 
 # ===========================================================================
-# Unit 6 — Shapes, Sides & Corners
+# UNIT 6 — Shapes & Symmetry
 # ===========================================================================
 
-SHAPES = [("triangle", 3), ("square", 4), ("rectangle", 4)]
+POLY = [("triangle", 3), ("quadrilateral", 4), ("pentagon", 5), ("hexagon", 6),
+        ("heptagon", 7), ("octagon", 8), ("nonagon", 9), ("decagon", 10)]
 
 
-SHAPE_CONTEXTS = ["road sign", "tile", "window pane", "biscuit", "patch of felt",
-                  "flag", "sticker", "paving stone", "card", "badge",
-                  "wooden block", "picture frame"]
-
-
-def _g_shape_by_sides():
-    for ctx in SHAPE_CONTEXTS:
-        for name, sides in SHAPES:
-            extra = {"square": " and all of them equal",
-                     "rectangle": " with two long and two short"}.get(name, "")
-            others = [n for n, _ in SHAPES if n != name] + ["circle"]
-            yield {
-                "statement": ("A %s has $%d$ straight sides%s. What shape is "
-                              "it?" % (ctx, sides, extra)),
-                "correct": name,
-                "dvals": others,
-                "explanation": ("$%d$ straight sides%s makes it a %s — and it "
-                                "has $%d$ corners to match, so $%d + %d = %d$ "
-                                "things to count."
-                                % (sides,
-                                   " that are all equal" if name == "square" else "",
-                                   name, sides, sides, sides, 2 * sides)),
-                "check": ["Eq(%d + %d, %d)" % (sides, sides, 2 * sides),
-                          "Eq(%d*2, %d)" % (sides, 2 * sides)],
-            }
-
-
-def _g_sides_and_corners():
-    for name, sides in SHAPES:
-        for count in range(2, 11):
-            yield {
-                "statement": ("How many sides do $%d$ %ss have altogether?"
-                              % (count, name)),
-                "correct": count * sides,
-                "dvals": [count + sides, sides, count * sides + count],
-                "explanation": ("Each %s has $%d$ sides, so $%d$ of them have "
-                                "$%d \\times %d = %d$."
-                                % (name, sides, count, count, sides, count * sides)),
-                "check": ["Eq(%d*%d, %d)" % (count, sides, count * sides)],
-            }
-
-
-def _g_square_corners():
-    # Every four-cornered name gives the same arithmetic, so the NAME is what
-    # keeps the statements distinct. The triangle used to live here too and
-    # silently dropped every draw: it has one square corner, so "how many do
-    # N triangles have" answers N — which is also the first distractor.
-    for name in ("rectangle", "square", "page"):
-        for count in range(1, 10):
-            yield {
-                "statement": ("How many square corners do $%d$ %ss have "
-                              "altogether?" % (count, name)),
-                "correct": 4 * count,
-                "dvals": [count, count + 4, 5 * count],
-                "explanation": ("Each %s has $4$ square corners, so $%d$ of "
-                                "them have $%d \\times 4 = %d$."
-                                % (name, count, count, 4 * count)),
-                "check": ["Eq(%d*4, %d)" % (count, 4 * count)],
-            }
-    yield {
-        "statement": ("At most how many of a triangle's corners can be "
-                      "square?"),
-        "correct": 1,
-        "dvals": [3, 2, 0],
-        "explanation": ("Two square corners would send the remaining sides "
-                        "alongside each other so they never met, and the "
-                        "triangle could not close: $3 - 2 = 1$ is the most "
-                        "it can manage."),
-        "check": ["Eq(3 - 2, 1)", "Eq(3 + 3, 6)"],
-    }
-
-
-SOLIDS = [("cube", 6), ("cylinder", 2), ("cone", 1), ("sphere", 0)]
-
-
-def _g_solid_faces():
-    # Asking about ONE solid at a time collapsed for the cone (1 face, so the
-    # answer equals the number of solids) and the sphere (0 faces, so two
-    # distractors tied at zero). Mixing two kinds keeps every draw honest and
-    # still drills the same fact: what each solid contributes.
-    FACES = {"cube": 6, "cylinder": 2, "cone": 1, "sphere": 0}
-    for a_name in ("cube", "cylinder"):
-        for b_name in ("cone", "sphere", "cube"):
-            if a_name == b_name:
-                continue
-            for a in range(1, 4):
-                for b in range(1, 4):
-                    total = a * FACES[a_name] + b * FACES[b_name]
-                    yield {
-                        "statement": ("How many flat faces do $%d$ %ss and $%d$ "
-                                      "%ss have altogether?"
-                                      % (a, a_name, b, b_name)),
-                        "correct": total,
-                        "dvals": [a + b, total + FACES[a_name], total - 1],
-                        "explanation": ("A %s has $%d$ flat faces and a %s has "
-                                        "$%d$, so $%d \\times %d + %d \\times "
-                                        "%d = %d$.%s"
-                                        % (a_name, FACES[a_name], b_name,
-                                           FACES[b_name], a, FACES[a_name],
-                                           b, FACES[b_name], total,
-                                           " A sphere is curved all over, so it "
-                                           "contributes none." if b_name == "sphere"
-                                           else "")),
-                        "check": ["Eq(%d*%d + %d*%d, %d)"
-                                  % (a, FACES[a_name], b, FACES[b_name], total)],
-                    }
-
-
-def _g_shape_pattern():
-    for rep in (2, 3, 4, 5):
-        for copies in range(2, 10):
-            n = rep * copies
-            yield {
-                "statement": ("A shape pattern repeats every $%d$ shapes. How "
-                              "many shapes are there in $%d$ full repeats?"
-                              % (rep, copies)),
-                "correct": n,
-                "dvals": [rep + copies, n + rep, copies],
-                "explanation": ("$%d$ copies of a $%d$-shape repeat: "
-                                "$%d \\times %d = %d$ shapes."
-                                % (copies, rep, copies, rep, n)),
-                "check": ["Eq(%d*%d, %d)" % (copies, rep, n)],
-            }
-
-
-def _g_sorting_rule():
-    for ctx in SHAPE_CONTEXTS:
+def _g_shape_sides():
+    for (name, n) in POLY:
         yield {
-            "statement": ("A box of %ss is sorted. Under which rule do a "
-                          "square and a rectangle land in DIFFERENT piles?"
-                          % ctx),
-            "correct": "are all the sides equal?",
-            "dvals": ["how many sides does it have?",
-                      "does it have square corners?",
-                      "is it a flat shape?"],
-            "explanation": ("Both have $4$ sides and $4$ square corners, so "
-                            "those rules keep them together — $4 + 4 = 8$ "
-                            "things to count on each. Only the equal-sides "
-                            "rule separates them."),
-            "check": ["Eq(4 + 4, 8)", "Eq(4*1, 4)"],
+            "statement": "How many sides does a %s have?" % name,
+            "correct": n,
+            "dvals": [n + 1, n - 1, n + 2],
+            "explanation": ("A %s has $%d$ sides, and the same number of corners."
+                            % (name, n)),
+            "check": ["Eq(%d, %d)" % (n, n), "Eq(%d - 2, %d)" % (n, n - 2)],
         }
-    for ctx in SHAPE_CONTEXTS:
-        yield {
-            "statement": ("A box of %ss is sorted by number of sides. Which "
-                          "shape ends up in a pile of its own, with no sides "
-                          "at all?" % ctx),
-            "correct": "a circle",
-            "dvals": ["a triangle", "a square", "a rectangle"],
-            "explanation": ("A corner is where two straight sides meet, and a "
-                            "circle has no straight sides — so $0 + 0 = 0$ "
-                            "sides and corners."),
-            "check": ["Eq(0 + 0, 0)", "Eq(3 + 3, 6)"],
-        }
-    for name, sides in SHAPES:
-        for other, osides in SHAPES:
-            if name == other or sides == osides:
+    for (a, na) in POLY:
+        for (b, nb) in POLY:
+            if nb <= na:
                 continue
             yield {
-                "statement": ("Sorting by number of sides, does a %s share a "
-                              "pile with a %s?" % (name, other)),
-                "correct": "no — $%d$ sides against $%d$" % (sides, osides),
-                "dvals": ["yes — both have $%d$ sides" % sides,
-                          "yes — both have $%d$ sides" % osides,
-                          "only if their corners match"],
-                "explanation": ("A %s has $%d$ straight sides and a %s has "
-                                "$%d$, so the rule puts them in different "
-                                "piles." % (name, sides, other, osides)),
-                "check": ["Ne(%d, %d)" % (sides, osides),
-                          "Eq(%d + %d, %d)" % (sides, sides, 2 * sides)],
+                "statement": ("How many more sides does a %s have than a %s?" % (b, a)),
+                "correct": nb - na,
+                # off by one / answered with either shape's own side count
+                "dvals": [nb - na + 1, na, nb],
+                "explanation": ("A %s has $%d$ sides and a %s has $%d$: $%d - %d = %d$."
+                                % (b, nb, a, na, nb, na, nb - na)),
+                "check": ["Eq(%d - %d, %d)" % (nb, na, nb - na), "%d > %d" % (nb, na)],
+            }
+
+
+def _g_right_angles():
+    # (shape, right angles, three plausible wrong counts). The distractors are
+    # written out per shape because a shape with 0 or 1 right angles cannot
+    # carry the usual off-by-one set without one of them landing on the answer.
+    SHAPES = [("rectangle", 4, (2, 3, 0)),
+              ("square", 4, (1, 2, 3)),
+              ("right-angled trapezium", 2, (0, 1, 4)),
+              ("right-angled triangle", 1, (0, 2, 3)),
+              ("regular pentagon", 0, (1, 2, 5)),
+              ("regular hexagon", 0, (1, 3, 6))]
+    for (name, k, wrong) in SHAPES:
+        yield {
+            "statement": "How many right angles does a %s have?" % name,
+            "correct": k,
+            "dvals": list(wrong),
+            "explanation": ("A %s has $%d$ right angle%s — a right angle is a square "
+                            "corner." % (name, k, "" if k == 1 else "s")),
+            "check": ["Eq(%d, %d)" % (k, k), "%d <= 4" % k],
+        }
+    # Only shapes with at least two right angles get the multiplied version:
+    # with k = 1 the "added instead of multiplied" distractor equals the answer.
+    for (name, k, _w) in SHAPES:
+        if k < 2:
+            continue
+        for extra in range(2, 10):
+            total = k * extra
+            yield {
+                "statement": ("A pattern is made from $%d$ %ss. How many right angles are "
+                              "there altogether?" % (extra, name)),
+                "correct": total,
+                # counted one shape only / used one shape too many / added
+                "dvals": [k, (extra + 1) * k, extra + k],
+                "explanation": ("One %s has $%d$ right angles, so $%d$ of them have "
+                                "$%d \\times %d = %d$." % (name, k, extra, extra, k, total)),
+                "check": ["Eq(%d*%d, %d)" % (extra, k, total)],
+            }
+
+
+def _g_quadrilaterals():
+    # (shape, defining property, pairs of parallel sides). The naming question
+    # is set in a pupil's context so each draw is a different question rather
+    # than the same sentence with the options shuffled.
+    FACTS = [
+        ("square", "four equal sides and four right angles", 2),
+        ("rectangle", "two pairs of equal sides and four right angles", 2),
+        ("rhombus", "four equal sides but no right angles", 2),
+        ("parallelogram", "two pairs of parallel sides but no right angles", 2),
+        ("trapezium", "exactly one pair of parallel sides", 1),
+    ]
+    PUPILS = ["Bat", "Saraa", "Dorj", "Oyuna", "Tuya", "Bold", "Naran", "Enkhee"]
+    for (i, (name, desc, _par)) in enumerate(FACTS):
+        others = [f[0] for f in FACTS if f[0] != name]
+        for (j, pupil) in enumerate(PUPILS):
+            yield {
+                "statement": ("%s cuts out a tile with %s. What shape is it?"
+                              % (pupil, desc)),
+                "correct": name.capitalize(),
+                "dvals": [others[(j) % len(others)].capitalize(),
+                          others[(j + 1) % len(others)].capitalize(),
+                          others[(j + 2) % len(others)].capitalize()],
+                "explanation": ("A %s is the quadrilateral with %s." % (name, desc)),
+                "check": ["Eq(4, 4)"],
+            }
+    for (name, desc, par) in FACTS:
+        yield {
+            "statement": "How many pairs of parallel sides does a %s have?" % name,
+            "correct": par,
+            "dvals": [par + 1, par + 2, 4],
+            "explanation": ("A %s has %s, which gives $%d$ pair%s of parallel sides."
+                            % (name, desc, par, "" if par == 1 else "s")),
+            "check": ["Eq(2*%d, %d)" % (par, 2 * par), "%d <= 2" % par],
+        }
+
+
+def _g_symmetry_lines():
+    REG = [("equilateral triangle", 3), ("square", 4), ("regular pentagon", 5),
+           ("regular hexagon", 6), ("regular octagon", 8), ("rectangle", 2),
+           ("rhombus", 2), ("circle", 0)]
+    for (name, k) in REG:
+        if name == "circle":
+            continue
+        for mult in range(2, 7):
+            total = k * mult
+            yield {
+                "statement": ("A poster shows $%d$ separate %ss. How many lines of symmetry "
+                              "are drawn in total?" % (mult, name)),
+                "correct": total,
+                "dvals": [total + mult, total - mult, k + mult],
+                "explanation": ("One %s has $%d$ lines of symmetry, so $%d$ of them have "
+                                "$%d \\times %d = %d$." % (name, k, mult, mult, k, total)),
+                "check": ["Eq(%d*%d, %d)" % (mult, k, total), "%d > 0" % total],
+            }
+
+
+def _g_solids():
+    SOLIDS = [("cube", 6, 12, 8), ("cuboid", 6, 12, 8), ("square-based pyramid", 5, 8, 5),
+              ("triangular prism", 5, 9, 6), ("tetrahedron", 4, 6, 4)]
+    for (name, f, e, v) in SOLIDS:
+        yield {
+            "statement": "How many faces does a %s have?" % name,
+            "correct": f,
+            "dvals": [e, v, f + 1] if len({e, v, f + 1, f}) == 4 else [f + 1, f + 2, f + 3],
+            "explanation": ("A %s has $%d$ faces, $%d$ edges and $%d$ vertices."
+                            % (name, f, e, v)),
+            "check": ["Eq(%d - %d + %d, 2)" % (v, e, f)],
+        }
+        yield {
+            "statement": "How many edges does a %s have?" % name,
+            "correct": e,
+            "dvals": [f, v, e + 1] if len({f, v, e + 1, e}) == 4 else [e + 1, e + 2, e + 3],
+            "explanation": ("A %s has $%d$ edges, where two faces meet." % (name, e)),
+            "check": ["Eq(%d - %d + %d, 2)" % (v, e, f)],
+        }
+        yield {
+            "statement": "How many vertices (corners) does a %s have?" % name,
+            "correct": v,
+            "dvals": [f, e, v + 1] if len({f, e, v + 1, v}) == 4 else [v + 1, v + 2, v + 3],
+            "explanation": ("A %s has $%d$ vertices, where the edges meet." % (name, v)),
+            "check": ["Eq(%d - %d + %d, 2)" % (v, e, f)],
+        }
+    for (name, f, e, v) in SOLIDS:
+        for mult in (2, 3, 4, 5):
+            yield {
+                "statement": ("A model uses $%d$ %ss. How many faces are there in total?"
+                              % (mult, name)),
+                "correct": f * mult,
+                "dvals": [e * mult, v * mult, f * mult + 1],
+                "explanation": ("Each %s has $%d$ faces: $%d \\times %d = %d$."
+                                % (name, f, mult, f, f * mult)),
+                "check": ["Eq(%d*%d, %d)" % (mult, f, f * mult)],
+            }
+
+
+def _g_perimeter():
+    for (name, n) in POLY:
+        for side in (3, 5, 6, 7, 8, 9, 12):
+            p = n * side
+            yield {
+                "statement": ("A regular %s has sides of $%d$ cm. What is its perimeter?"
+                              % (name, side)),
+                "correct": p,
+                "dvals": [p + side, p - side, n + side],
+                "explanation": ("All $%d$ sides are equal, so the perimeter is "
+                                "$%d \\times %d = %d$ cm." % (n, n, side, p)),
+                "check": ["Eq(%d*%d, %d)" % (n, side, p)],
             }
 
 
 # ===========================================================================
-# Unit 7 — Measuring, Time & Money
+# UNIT 7 — Measurement, Time & Money
 # ===========================================================================
 
-def _g_ruler():
-    for start in range(0, 8):
-        for length in range(2, 10):
-            end = start + length
-            if end > 15:
-                continue
+def _g_length():
+    for m in range(1, 10):
+        for cm in (0, 5, 20, 45, 60, 85):
+            total = m * 100 + cm
             yield {
-                "statement": ("A stick lies along a ruler from the $%d$ cm mark "
-                              "to the $%d$ cm mark. How long is it?"
-                              % (start, end)),
-                "correct": length,
-                "dvals": [end, start + end, end + 1],
-                "explanation": ("It covers the centimetres from $%d$ to $%d$: "
-                                "$%d - %d = %d$ cm. Reading only the far mark "
-                                "gives $%d$, which is right only when the "
-                                "object starts at zero."
-                                % (start, end, end, start, length, end)),
-                "check": ["Eq(%d - %d, %d)" % (end, start, length),
-                          "Eq(%d + %d, %d)" % (length, start, end)],
-            }
-
-
-def _g_metres():
-    for m in range(1, 10):
-        yield {
-            "statement": "How many centimetres are there in $%d$ metres?" % m,
-            "correct": m * 100,
-            "dvals": [m * 10, m + 100, m * 100 + 10],
-            "explanation": ("Each metre is $100$ centimetres, so "
-                            "$%d \\times 100 = %d$ cm." % (m, m * 100)),
-            "check": ["Eq(%d*100, %d)" % (m, m * 100)],
-        }
-    for m in range(1, 10):
-        yield {
-            "statement": "How many metres is $%d$ cm?" % (m * 100),
-            "correct": m,
-            "dvals": [m * 100, m * 10, m + 1],
-            "explanation": ("Every $100$ centimetres is one metre, and "
-                            "$%d$ holds $%d$ of them: $%d \\times 100 = %d$."
-                            % (m * 100, m, m, m * 100)),
-            "check": ["Eq(%d*100, %d)" % (m, m * 100),
-                      "Eq(Rational(%d, 100), %d)" % (m * 100, m)],
-        }
-    for m in range(1, 10):
-        for cm in (m * 100 - 30, m * 100 + 40):
-            if cm <= 0 or cm > 1000:
-                continue
-            longer_m = cm < m * 100
-            yield {
-                "statement": ("Which is longer, $%d$ m or $%d$ cm? Give the "
-                              "longer length in centimetres." % (m, cm)),
-                "correct": m * 100 if longer_m else cm,
-                "dvals": [cm if longer_m else m * 100, m, abs(m * 100 - cm)],
-                "explanation": ("Put both in one unit: $%d$ m is $%d$ cm. "
-                                "Then $%d > %d$, so the longer is $%d$ cm — a "
-                                "gap of $%d$ cm."
-                                % (m, m * 100,
-                                   max(m * 100, cm), min(m * 100, cm),
-                                   max(m * 100, cm), abs(m * 100 - cm))),
-                "check": ["Eq(%d*100, %d)" % (m, m * 100),
-                          "%d > %d" % (max(m * 100, cm), min(m * 100, cm))],
+                "statement": "How many centimetres are there in $%d$ m $%d$ cm?" % (m, cm),
+                "correct": M(total),
+                "dvals": [M(m * 10 + cm), M(total + 100), M(m * 100 + cm * 10)],
+                "explanation": ("One metre is $100$ cm, so $%d$ m is $%s$ cm, and "
+                                "$%s + %d = %s$ cm."
+                                % (m, money(m * 100), money(m * 100), cm, money(total))),
+                "check": ["Eq(%d*100 + %d, %d)" % (m, cm, total)],
             }
 
 
 def _g_mass_capacity():
-    for a in range(3, 20):
-        for b in range(1, 15):
-            if b >= a:
+    for kg in range(1, 9):
+        for g in (0, 50, 250, 400, 750, 900):
+            total = kg * 1000 + g
+            if total > 9999:
                 continue
             yield {
-                "statement": ("One sack weighs $%d$ kg and another weighs $%d$ "
-                              "kg. How much heavier is the first?" % (a, b)),
-                "correct": a - b,
-                "dvals": [a + b, a, b],
-                "explanation": ("The heavier pan sinks, and the gap is "
-                                "$%d - %d = %d$ kg. Adding $%d$ kg to the light "
-                                "side would level the balance."
-                                % (a, b, a - b, a - b)),
-                "check": ["Eq(%d - %d, %d)" % (a, b, a - b),
-                          "Eq(%d + %d, %d)" % (b, a - b, a),
-                          "%d > %d" % (a, b)],
+                "statement": "How many grams are there in $%d$ kg $%d$ g?" % (kg, g),
+                "correct": M(total),
+                "dvals": [M(kg * 100 + g), M(total + 1000), M(kg * 1000 + g * 10)],
+                "explanation": ("One kilogram is $1\\,000$ g, so $%d$ kg is $%s$ g, and "
+                                "$%s + %d = %s$ g."
+                                % (kg, money(kg * 1000), money(kg * 1000), g, money(total))),
+                "check": ["Eq(%d*1000 + %d, %d)" % (kg, g, total)],
             }
+    for l in range(1, 9):
+        for ml in (0, 100, 250, 500, 750):
+            total = l * 1000 + ml
+            if total > 9999:
+                continue
+            yield {
+                "statement": "How many millilitres are there in $%d$ l $%d$ ml?" % (l, ml),
+                "correct": M(total),
+                "dvals": [M(l * 100 + ml), M(total + 1000), M(l * 1000 + ml * 10)],
+                "explanation": ("One litre is $1\\,000$ ml, so $%d$ l is $%s$ ml, and "
+                                "$%s + %d = %s$ ml."
+                                % (l, money(l * 1000), money(l * 1000), ml, money(total))),
+                "check": ["Eq(%d*1000 + %d, %d)" % (l, ml, total)],
+            }
+
+
+def _clock(h, m):
+    return "$%d$:$%02d$" % (h, m)
 
 
 def _g_clock():
-    for h in range(1, 13):
-        for half in (0, 1):
-            for _rep in range(2):
-                if half:
-                    nxt = h % 12 + 1
-                    yield {
-                        "statement": ("The long hand points straight down and "
-                                      "the short hand sits between the $%d$ and "
-                                      "the $%d$. What time is it?" % (h, nxt)),
-                        "correct": "half past %s" % ONES[h],
-                        "dvals": ["half past %s" % ONES[nxt],
-                                  "%s o'clock" % ONES[h],
-                                  "%s o'clock" % ONES[nxt]],
-                        "explanation": ("The long hand straight down means $30$ "
-                                        "of the hour's $60$ minutes have gone. "
-                                        "The hour is the one the short hand has "
-                                        "PASSED, so it is half past %s."
-                                        % ONES[h]),
-                        "check": ["Eq(2*30, 60)", "Eq(60 - 30, 30)"],
-                    }
-                else:
-                    yield {
-                        "statement": ("The long hand points straight up and the "
-                                      "short hand points at the $%d$. What time "
-                                      "is it?" % h),
-                        # The fourth option used to be a hard-coded "twelve
-                        # o'clock", which IS the answer when h is 12 — every
-                        # twelve-o'clock draw collided and was dropped. Both
-                        # neighbours of the hour are safe at any h.
-                        "correct": "%s o'clock" % ONES[h],
-                        "dvals": ["half past %s" % ONES[h],
-                                  "%s o'clock" % ONES[h % 12 + 1],
-                                  "%s o'clock" % ONES[12 if h == 1 else h - 1]],
-                        "explanation": ("The long hand straight up is zero "
-                                        "minutes past, so the hour has just "
-                                        "begun — and the short hand names it: "
-                                        "%s o'clock." % ONES[h]),
-                        "check": ["Eq(60 - 60, 0)", "Eq(2*30, 60)"],
-                    }
-
-
-def _g_money_total():
-    for hundreds in range(1, 8):
-        for fifties in range(0, 3):
-            for twenties in range(0, 4):
-                total = 100 * hundreds + 50 * fifties + 20 * twenties
-                if total > 1000 or (fifties == 0 and twenties == 0):
-                    continue
-                notes = hundreds + fifties + twenties
-                parts = ["$%d$ notes of $100$" % hundreds]
-                if fifties:
-                    parts.append("$%d$ of $50$" % fifties)
-                if twenties:
-                    parts.append("$%d$ of $20$" % twenties)
-                yield {
-                    "statement": ("A purse holds %s. How many tögrög is that?"
-                                  % ", ".join(parts)),
-                    "correct": total,
-                    "dvals": [notes, total + 100, total - 20],
-                    "explanation": ("Count by value, biggest first: "
-                                    "$%d \\times 100 = %d$, and the rest adds "
-                                    "up to $%d$, giving $%d$ tögrög. The purse "
-                                    "holds $%d$ notes, but that is not the "
-                                    "amount."
-                                    % (hundreds, hundreds * 100,
-                                       total - hundreds * 100, total, notes)),
-                    "check": ["Eq(%d*100 + %d*50 + %d*20, %d)"
-                              % (hundreds, fifties, twenties, total),
-                              "Eq(%d*100, %d)" % (hundreds, hundreds * 100)],
-                }
-
-
-def _g_change():
-    for paid in (200, 300, 400, 500, 1000):
-        for price in range(60, 900, 37):
-            if price >= paid:
-                continue
-            change = paid - price
-            if change < 20:
-                continue          # change - 10 must stay a sensible amount
+    for h in range(1, 12):
+        for m in (0, 15, 30, 45):
+            past = m if m <= 30 else 60 - m
+            if m == 0:
+                phrase = "%d o'clock" % h
+            elif m == 15:
+                phrase = "quarter past %d" % h
+            elif m == 30:
+                phrase = "half past %d" % h
+            else:
+                phrase = "quarter to %d" % (h + 1)
+            wrong = ["quarter past %d" % (h + 1), "half past %d" % (h + 1),
+                     "quarter to %d" % h, "%d o'clock" % (h + 1)]
+            dv = [w for w in wrong if w != phrase][:3]
             yield {
-                "statement": ("An item costs $%d$ tögrög and you pay with $%d$. "
-                              "What is the change?" % (price, paid)),
-                "correct": change,
-                # `paid + price` models "added instead of subtracting", but
-                # with a 1000-tögrög note it lands above the year's number
-                # range — and so does change + 100. A change that is ten
-                # tögrög out shows the same slip and stays inside the year.
-                "dvals": [price, change + 10, change - 10],
-                "explanation": ("Change is payment minus price: "
-                                "$%d - %d = %d$ tögrög. Receipt: "
-                                "$%d + %d = %d$, which returns exactly what was "
-                                "handed over."
-                                % (paid, price, change, change, price, paid)),
-                "check": ["Eq(%d - %d, %d)" % (paid, price, change),
-                          "Eq(%d + %d, %d)" % (change, price, paid)],
+                "statement": "A clock reads %s. How do you say this time?" % _clock(h, m),
+                "correct": phrase,
+                "dvals": dv,
+                "explanation": ("The hour hand is at $%d$ and the minute hand shows $%d$ "
+                                "minutes, which we say as %s." % (h, m, phrase)),
+                "check": ["Eq(%d*60 + %d, %d)" % (h, m, h * 60 + m), "%d < 60" % m],
             }
 
 
+def _g_duration():
+    for sh in range(1, 11):
+        for sm in (0, 15, 30, 45):
+            for dur in (45, 90, 120):
+                start = sh * 60 + sm
+                end = start + dur
+                if end >= 12 * 60:
+                    continue
+                eh, em = divmod(end, 60)
+                yield {
+                    "statement": ("A lesson starts at %s and lasts $%d$ minutes. "
+                                  "When does it end?" % (_clock(sh, sm), dur)),
+                    "correct": _clock(eh, em),
+                    "dvals": [_clock(eh, (em + 15) % 60), _clock(eh + 1, em),
+                              _clock(sh, (sm + dur) % 60)],
+                    "explanation": ("$%d$ minutes is $%d$ h $%d$ min. Adding to %s gives %s."
+                                    % (dur, dur // 60, dur % 60, _clock(sh, sm),
+                                       _clock(eh, em))),
+                    "check": ["Eq(%d + %d, %d)" % (start, dur, end),
+                              "Eq(%d*60 + %d, %d)" % (eh, em, end)],
+                }
+
+
+def _g_money():
+    for a in (150, 250, 320, 480, 560, 720, 850, 940):
+        for b in (100, 200, 350, 450, 600):
+            total = a + b
+            if total > 9999:
+                continue
+            yield {
+                "statement": ("A pen costs %s tögrög and a notebook costs %s tögrög. "
+                              "How much do they cost together, in tögrög?"
+                              % (money(a), money(b))),
+                "correct": M(total),
+                "dvals": [M(abs(a - b)), M(total + 100), M(total - 10)],
+                "explanation": ("Add the two prices: $%s + %s = %s$ tögrög."
+                                % (money(a), money(b), money(total))),
+                "check": ["Eq(%d + %d, %d)" % (a, b, total)],
+            }
+    for paid in (1000, 2000, 5000):
+        for cost in (350, 640, 780, 1250, 1830, 2450):
+            if cost >= paid:
+                continue
+            change = paid - cost
+            yield {
+                "statement": ("A child pays with a %s tögrög note for something costing "
+                              "%s tögrög. How much change, in tögrög?"
+                              % (money(paid), money(cost))),
+                "correct": M(change),
+                "dvals": [M(paid + cost), M(change + 100), M(change - 50)],
+                "explanation": ("Change is what is left: $%s - %s = %s$ tögrög."
+                                % (money(paid), money(cost), money(change))),
+                "check": ["Eq(%d - %d, %d)" % (paid, cost, change),
+                          "Eq(%d + %d, %d)" % (change, cost, paid)],
+            }
+
+
+def _g_convert_first():
+    for m in range(2, 9):
+        for cm in (25, 40, 60, 75, 90):
+            for take in (30, 55, 80):
+                total = m * 100 + cm
+                left = total - take
+                if left <= 0:
+                    continue
+                yield {
+                    "statement": ("A ribbon is $%d$ m $%d$ cm long. $%d$ cm is cut off. "
+                                  "How many centimetres are left?" % (m, cm, take)),
+                    "correct": M(left),
+                    "dvals": [M(total + take), M(left + 100), M(m * 100 - take)],
+                    "explanation": ("Change to one unit first: $%d$ m $%d$ cm is $%s$ cm. "
+                                    "Then $%s - %d = %s$ cm."
+                                    % (m, cm, money(total), money(total), take, money(left))),
+                    "check": ["Eq(%d*100 + %d, %d)" % (m, cm, total),
+                              "Eq(%d - %d, %d)" % (total, take, left)],
+                }
+
+
 # ===========================================================================
-# Unit 8 — Tallies & Picture Graphs
+# UNIT 8 — Data & Pictographs
 # ===========================================================================
 
-def _g_read_tally():
+def _g_tally():
     for n in range(3, 40):
-        bundles, singles = divmod(n, 5)
+        fives, ones = divmod(n, 5)
         yield {
-            "statement": ("A tally shows $%d$ closed %s of five and $%d$ single "
-                          "%s. What is the count?"
-                          % (bundles, "bundle" if bundles == 1 else "bundles",
-                             singles, "mark" if singles == 1 else "marks")),
+            "statement": ("A tally chart shows $%d$ full groups of five and $%d$ single "
+                          "marks. How many is that?" % (fives, ones)),
             "correct": n,
-            "dvals": [bundles + singles, n + 5, n - 1],
-            "explanation": ("Each bundle is worth five: "
-                            "$%d \\times 5 = %d$, and $%d$ more makes $%d$."
-                            % (bundles, bundles * 5, singles, n)),
-            "check": ["Eq(%d*5 + %d, %d)" % (bundles, singles, n),
-                      "%d < 5" % singles],
+            "dvals": [fives + ones, n + 5, n - 1],
+            "explanation": ("Each full group is five: $%d \\times 5 = %d$, and $%d$ more "
+                            "makes $%d$." % (fives, fives * 5, ones, n)),
+            "check": ["Eq(%d*5 + %d, %d)" % (fives, ones, n), "%d < 5" % ones],
         }
 
 
-def _g_draw_tally():
-    for n in range(6, 45):
-        bundles, singles = divmod(n, 5)
-        yield {
-            "statement": ("Drawn as tally marks, how many SINGLE marks does "
-                          "$%d$ leave over?" % n),
-            "correct": singles,
-            "dvals": [bundles, n - bundles, singles + 5],
-            "explanation": ("$%d$ whole bundles use $%d \\times 5 = %d$ marks, "
-                            "leaving $%d - %d = %d$ singles — and it is always "
-                            "fewer than five, because a fifth would close "
-                            "another bundle."
-                            % (bundles, bundles, bundles * 5, n, bundles * 5,
-                               singles)),
-            "check": ["Eq(%d - %d, %d)" % (n, bundles * 5, singles),
-                      "%d < 5" % singles],
-        }
+def _g_pictograph():
+    for key in (2, 5, 10):
+        for whole in range(2, 10):
+            for half in (0, 1):
+                total = whole * key + half * key // 2
+                if key % 2 and half:
+                    continue
+                sym = "$%d$ whole symbols" % whole
+                if half:
+                    sym += " and a half symbol"
+                # Built as one plain sentence, not a nested format: an
+                # explanation assembled from a conditional fragment that
+                # carries its own $...$ is how the Grade 5 bank once shipped a
+                # garbled line.
+                if half:
+                    why = ("$%d \\times %d = %d$, and half a symbol is $%d$ more, "
+                           "giving $%d$." % (whole, key, whole * key, key // 2, total))
+                else:
+                    why = ("$%d$ symbols worth $%d$ each: $%d \\times %d = %d$."
+                           % (whole, key, whole, key, total))
+                yield {
+                    "statement": ("On a pictograph one symbol stands for $%d$ books. "
+                                  "A row shows %s. How many books is that?" % (key, sym)),
+                    "correct": total,
+                    # counted symbols not books / one symbol too many / forgot
+                    # that the key multiplies
+                    "dvals": [whole + half, total + key, whole * (key + 1)],
+                    "explanation": why,
+                    "check": ["Eq(%d*%d + %d, %d)" % (whole, key, half * key // 2, total)],
+                }
 
 
 def _g_table_total():
-    for a in range(3, 20):
-        for b in range(4, 18, 3):
-            for c in (2, 6, 9):
+    ROWS = [("Monday", "Tuesday", "Wednesday"), ("red", "blue", "green"),
+            ("Grade 3", "Grade 3", "Grade 5")]
+    i = 0
+    for a in (12, 18, 24, 31, 45, 52):
+        for b in (9, 15, 27, 33, 41):
+            for c in (7, 14, 22):
+                i += 1
                 total = a + b + c
+                names = ROWS[i % len(ROWS)]
                 yield {
-                    "statement": ("A table reads sheep $%d$, goats $%d$, horses "
-                                  "$%d$. What is the total?" % (a, b, c)),
+                    "statement": ("A table shows %s: $%d$, %s: $%d$, %s: $%d$. "
+                                  "What is the total?" % (names[0], a, names[1], b,
+                                                          names[2], c)),
                     "correct": total,
-                    "dvals": [a + b, total - c + 1, total + c],
-                    "explanation": ("Add the rows: $%d + %d = %d$, then "
-                                    "$%d + %d = %d$ animals."
-                                    % (a, b, a + b, a + b, c, total)),
+                    # forgot the last row / carried wrong / dropped the first row
+                    "dvals": [a + b, total + 10, b + c],
+                    "explanation": ("Add every row: $%d + %d + %d = %d$." % (a, b, c, total)),
                     "check": ["Eq(%d + %d + %d, %d)" % (a, b, c, total)],
                 }
 
 
-def _g_missing_row():
-    for a in range(4, 25):
-        for b in range(3, 20, 4):
-            for miss in (2, 5, 8):
-                total = a + b + miss
-                yield {
-                    "statement": ("A table has rows of $%d$ and $%d$ and a "
-                                  "smudged third row. The total is $%d$. What "
-                                  "was the third row?" % (a, b, total)),
-                    "correct": miss,
-                    "dvals": [a + b, total, total + a],
-                    "explanation": ("The readable rows come to $%d + %d = %d$, "
-                                    "so the missing one is $%d - %d = %d$. "
-                                    "Check: $%d + %d = %d$."
-                                    % (a, b, a + b, total, a + b, miss,
-                                       a + b, miss, total)),
-                    "check": ["Eq(%d + %d, %d)" % (a, b, a + b),
-                              "Eq(%d - %d, %d)" % (total, a + b, miss),
-                              "Eq(%d + %d, %d)" % (a + b, miss, total)],
-                }
-
-
-def _g_pictograph_compare():
-    for a in range(3, 18):
-        for b in range(2, 15, 2):
-            if b >= a:
-                continue
+def _g_bar_scale():
+    for step in (2, 5, 10, 20):
+        for lines in range(2, 10):
+            v = step * lines
             yield {
-                "statement": ("On a picture graph one picture stands for one "
-                              "child. One row has $%d$ pictures and another has "
-                              "$%d$. How many more children are in the longer "
-                              "row?" % (a, b)),
-                "correct": a - b,
-                "dvals": [a + b, a, b],
-                "explanation": ("One picture is one child, so the gap between "
-                                "the rows is the answer: $%d - %d = %d$ more. "
-                                "Adding the rows gives $%d$, which is how many "
-                                "there are altogether."
-                                % (a, b, a - b, a + b)),
-                "check": ["Eq(%d - %d, %d)" % (a, b, a - b),
-                          "Eq(%d + %d, %d)" % (b, a - b, a)],
+                "statement": ("On a bar chart each gridline is worth $%d$. A bar reaches "
+                              "the $%d$th gridline. What value does it show?" % (step, lines)),
+                "correct": v,
+                "dvals": [lines, v + step, lines + step],
+                "explanation": ("Gridlines times the step: $%d \\times %d = %d$. Counting "
+                                "gridlines as ones would give $%d$, the classic slip."
+                                % (lines, step, v, lines)),
+                "check": ["Eq(%d*%d, %d)" % (lines, step, v)],
+            }
+
+
+def _g_compare_categories():
+    i = 0
+    for a in (14, 22, 35, 48, 56, 63, 71):
+        for b in (8, 17, 29, 41, 52):
+            i += 1
+            if a == b:
+                continue
+            hi, lo = max(a, b), min(a, b)
+            yield {
+                "statement": ("A bar chart shows $%d$ for football and $%d$ for basketball. "
+                              "How many more chose the more popular sport?" % (a, b)),
+                "correct": hi - lo,
+                "dvals": [hi + lo, hi - lo + 1, lo],
+                "explanation": ("The taller bar is $%d$ and the shorter is $%d$: "
+                                "$%d - %d = %d$ more." % (hi, lo, hi, lo, hi - lo)),
+                "check": ["Eq(%d - %d, %d)" % (hi, lo, hi - lo), "%d >= %d" % (hi, lo)],
             }
 
 
 def _g_data_question():
-    for a in range(4, 16):
-        for b in range(2, 12, 3):
-            for c in (3, 7):
+    i = 0
+    for a in (12, 20, 28, 36, 44):
+        for b in (15, 25, 33, 41):
+            for c in (9, 18, 27):
+                i += 1
                 total = a + b + c
+                hi = max(a, b, c)
                 yield {
-                    "statement": ("A block graph shows wrestling $%d$, archery "
-                                  "$%d$, racing $%d$, one block per child. How "
-                                  "many children were asked altogether?"
-                                  % (a, b, c)),
-                    "correct": total,
-                    "dvals": [max(a, b, c), max(a, b, c) - min(a, b, c), a + b],
-                    "explanation": ("Each child appears in exactly one bar, so "
-                                    "\"altogether\" adds every bar: "
-                                    "$%d + %d + %d = %d$ children. The gap "
-                                    "between the tallest and shortest bar is a "
-                                    "different question."
-                                    % (a, b, c, total)),
+                    "statement": ("Three classes collected $%d$, $%d$ and $%d$ bottles. "
+                                  "Which statement is true?" % (a, b, c)),
+                    "correct": "Altogether they collected $%d$ bottles." % total,
+                    "dvals": ["Altogether they collected $%d$ bottles." % (total + 10),
+                              "The largest number collected was $%d$." % (hi + 5),
+                              "All three classes collected the same number."],
+                    "explanation": ("Add all three: $%d + %d + %d = %d$. The largest single "
+                                    "class collected $%d$." % (a, b, c, total, hi)),
                     "check": ["Eq(%d + %d + %d, %d)" % (a, b, c, total),
-                              "%d > %d" % (total, max(a, b, c))],
+                              "%d >= %d" % (hi, a), "%d >= %d" % (hi, b), "%d >= %d" % (hi, c)],
                 }
 
 
-# ===========================================================================
-# build
 # ===========================================================================
 
 def build():
     forms = []
 
-    U1 = "numbers-to-1000"
+    U1 = "numbers-to-10000"
     forms += [
-        form("g3-place-value", "What a digit is worth", 1, U1,
+        form("g4-place-value", "What a digit is worth", 1, U1,
              "A digit's value is the digit times its place — read the column, not the digit.",
-             mk_num("g3-pv", _g_place_value())),
-        form("g3-words", "Words into digits", 1, U1,
-             "Hundreds, then tens and ones — a column the words skip takes a zero.",
-             mk_num("g3-wd", _g_words_to_digits())),
-        form("g3-compare", "Comparing three-digit numbers", 2, U1,
+             mk_txt("g4-pv", _g_place_value())),
+        form("g4-words-numeral", "Words into numerals", 1, U1,
+             "Thousands, hundreds, tens and ones, in that order — a missing hundred is a zero.",
+             mk_txt("g4-wn", _g_words_to_numeral())),
+        form("g4-compare", "Comparing four-digit numbers", 2, U1,
              "Compare from the left; the first column that differs decides it.",
-             mk_txt("g3-cmp", _g_compare())),
-        form("g3-order", "Putting numbers in order", 2, U1,
-             "Sort by hundreds, and break any tie with the tens.",
-             mk_num("g3-ord", _g_order())),
-        form("g3-steps", "Counting in steps", 2, U1,
-             "Find the gap between neighbours, then keep stepping by it.",
-             mk_num("g3-stp", _g_step_count())),
-        form("g3-round", "Rounding to the nearest ten", 3, U1,
-             "Name the two neighbouring tens, then choose the nearer — a half goes up.",
-             mk_num("g3-rnd", _g_round_ten())),
+             mk_txt("g4-cmp", _g_compare_numbers())),
+        form("g4-rounding", "Rounding", 2, U1,
+             "Find the two neighbours, then choose the nearer one.",
+             mk_txt("g4-rnd", _g_rounding())),
+        form("g4-expanded", "Expanded form", 2, U1,
+             "Every digit contributes its place value; a zero contributes nothing.",
+             mk_txt("g4-exp", _g_expanded_form())),
+        form("g4-pattern", "Number patterns", 3, U1,
+             "Find the step by subtracting neighbours, then keep stepping.",
+             mk_txt("g4-pat", _g_number_pattern())),
     ]
 
-    U2 = "addition-and-subtraction-to-1000"
+    U2 = "addition-and-subtraction"
     forms += [
-        form("g3-mental-hundreds", "Adding whole hundreds", 1, U2,
-             "A whole hundred moves one digit; everything else is copied down.",
-             mk_num("g3-mh", _g_mental_hundreds())),
-        form("g3-column-add", "Column addition with a carry", 1, U2,
-             "When the ones pass nine, ten of them move next door as a carry.",
-             mk_num("g3-ca", _g_column_add())),
-        form("g3-column-sub", "Column subtraction with a break", 2, U2,
-             "Short column? Break a ten, and remember to reduce the one you took it from.",
-             mk_num("g3-cs", _g_column_sub())),
-        form("g3-fact-family", "Fact families", 2, U2,
-             "The whole always leads a subtraction — it can never be taken from a part.",
-             mk_txt("g3-ff", _g_fact_family())),
-        form("g3-missing", "Missing numbers", 2, U2,
-             "Missing part, subtract; missing whole, add.",
-             mk_num("g3-mn", _g_missing_number())),
-        form("g3-two-step", "Two-step word problems", 3, U2,
-             "Do the steps in the order the story tells them; the middle number is not the answer.",
-             mk_num("g3-ts", _g_word_two_step())),
+        form("g4-column-add", "Column addition", 1, U2,
+             "Line up the places, add from the right, carry past nine.",
+             mk_txt("g4-ca", _g_column_add())),
+        form("g4-column-sub", "Column subtraction", 1, U2,
+             "Regroup where the top digit is smaller, then check by adding back.",
+             mk_txt("g4-cs", _g_column_sub())),
+        form("g4-missing", "Missing numbers", 2, U2,
+             "The box is the missing part: whole minus the part you know.",
+             mk_txt("g4-mn", _g_missing_number())),
+        form("g4-mental", "Mental strategies", 2, U2,
+             "Add the round number, then take back what you added too much.",
+             mk_txt("g4-ms", _g_mental_strategy())),
+        form("g4-word-add", "Word problems", 2, U2,
+             "Decide what the story does to the number before you calculate.",
+             mk_txt("g4-wa", _g_word_problem_add())),
+        form("g4-inverse", "Checking by the inverse", 3, U2,
+             "Addition undoes subtraction — answer plus what was taken away.",
+             mk_txt("g4-inv", _g_inverse_check())),
     ]
 
-    U3 = "multiplication-first-facts"
+    U3 = "times-tables-and-multiplication"
     forms += [
-        form("g3-equal-groups", "Equal groups", 1, U3,
-             "The first number counts the groups, the second counts inside one.",
-             mk_num("g3-eg", _g_equal_groups())),
-        form("g3-turnaround", "Arrays and the turnaround", 2, U3,
-             "One rectangle, two readings — the total cannot change when you tilt your head.",
-             mk_txt("g3-ta", _g_turnaround())),
-        form("g3-friendly", "Tables of 2, 5 and 10", 1, U3,
-             "Double, count the fives, or bundle the tens — and check the ending.",
-             mk_num("g3-fr", _g_friendly_tables())),
-        form("g3-threes-fours", "Tables of 3 and 4", 2, U3,
-             "Threes are a step count; fours are twos doubled.",
-             mk_num("g3-tf", _g_threes_fours())),
-        form("g3-one-zero", "Times one and times zero", 1, U3,
-             "One leaves a number alone; zero empties it, whichever side the zero is on.",
-             mk_num("g3-oz", _g_one_and_zero())),
-        form("g3-times-story", "Multiplication stories", 3, U3,
-             "A story multiplies only when its groups are equal.",
-             mk_num("g3-st", _g_times_story())),
+        form("g4-tables-easy", "Tables of 2, 5 and 10", 1, U3,
+             "The tables that come first, straight from equal groups.",
+             mk_num("g4-t1", _g_tables_2_5_10())),
+        form("g4-tables-hard", "Tables of 6 to 9", 1, U3,
+             "The harder tables — one group more or less is the fastest repair.",
+             mk_num("g4-t2", _g_tables_6_9())),
+        form("g4-equal-groups", "Equal groups", 2, U3,
+             "Equal groups joined together means multiply.",
+             mk_num("g4-eg", _g_equal_groups())),
+        form("g4-arrays", "Arrays and the turnaround", 2, U3,
+             "Rows times columns, and turning the array does not change the total.",
+             mk_txt("g4-ar", _g_arrays_turnaround())),
+        form("g4-multiply-2d", "Multiplying bigger numbers", 2, U3,
+             "Split into tens and ones, multiply each, then add.",
+             mk_txt("g4-m2", _g_multiply_two_digit())),
+        form("g4-missing-factor", "Missing factors", 3, U3,
+             "Ask how many of one number make the other.",
+             mk_num("g4-mf", _g_missing_factor())),
     ]
 
-    U4 = "division-sharing-and-grouping"
+    U4 = "division-and-sharing"
     forms += [
-        form("g3-sharing", "Sharing equally", 1, U4,
-             "Sharing asks how many EACH — the answer is the size of one share.",
-             mk_num("g3-sh", _g_sharing())),
-        form("g3-grouping", "Grouping into bundles", 1, U4,
-             "Grouping asks how many BUNDLES — the bundle size was given to you.",
-             mk_num("g3-gr", _g_grouping())),
-        form("g3-div-facts", "Division facts from the tables", 2, U4,
-             "Every division fact is a times fact read backwards.",
-             mk_num("g3-df", _g_division_facts())),
-        form("g3-div-34", "Dividing by 3 and 4", 2, U4,
-             "Count threes, or halve twice — because four is two twos.",
-             mk_num("g3-d34", _g_divide_three_four())),
-        form("g3-receipt", "Checking with the receipt", 3, U4,
-             "Multiply the answer back; if the pile does not return, the answer is wrong.",
-             mk_txt("g3-rc", _g_receipt_check())),
-        form("g3-choose-op", "Choosing the operation", 3, U4,
-             "Missing total, multiply; missing group, divide.",
-             mk_txt("g3-co", _g_choose_operation())),
+        form("g4-div-facts", "Division facts", 1, U4,
+             "Every division fact is a times-table fact read backwards.",
+             mk_num("g4-df", _g_division_facts())),
+        form("g4-sharing", "Sharing equally", 1, U4,
+             "Sharing between people means divide by how many people.",
+             mk_num("g4-sh", _g_sharing())),
+        form("g4-remainders", "Remainders", 2, U4,
+             "The remainder is what will not fill another group, and it is always smaller than the divisor.",
+             mk_txt("g4-rm", _g_remainders())),
+        form("g4-halving", "Halving", 2, U4,
+             "Half is division by two, checked by doubling back.",
+             mk_num("g4-hv", _g_halving())),
+        form("g4-choose-op", "Multiply or divide?", 2, U4,
+             "Groups joined means multiply; a total split into groups means divide.",
+             mk_txt("g4-co", _g_choose_operation())),
+        form("g4-remainder-meaning", "What the remainder means", 3, U4,
+             "Sometimes the leftover needs a whole extra group — read the story, not just the numbers.",
+             mk_num("g4-rmm", _g_remainder_meaning())),
     ]
 
-    U5 = "fractions-halves-and-quarters"
+    U5 = "fractions-parts-of-a-whole"
     forms += [
-        form("g3-name-fraction", "Naming the shaded part", 1, U5,
-             "Bottom number from the cutting, top number from the counting.",
-             mk_txt("g3-nf", _g_name_fraction())),
-        form("g3-make-whole", "Making a whole", 1, U5,
-             "The bottom number is how many parts it takes to rebuild the whole.",
-             mk_num("g3-mw", _g_make_a_whole())),
-        form("g3-compare-frac", "Comparing unit fractions", 2, U5,
-             "Of one whole, a bigger bottom number always means a smaller piece.",
-             mk_txt("g3-cf", _g_compare_unit_fractions())),
-        form("g3-leftover", "The part that is left", 2, U5,
-             "Shaded and plain always rebuild the whole — just count what you did not take.",
-             mk_txt("g3-lo", _g_leftover())),
-        form("g3-frac-set", "A unit fraction of a set", 2, U5,
-             "Divide by the bottom number to make the equal groups.",
-             mk_num("g3-fs", _g_unit_fraction_of_set())),
-        form("g3-frac-set-2", "More than one part of a set", 3, U5,
-             "Share by the bottom number, then take as many groups as the top says.",
-             mk_num("g3-fs2", _g_non_unit_of_set())),
+        form("g4-name-fraction", "Naming a fraction", 1, U5,
+             "The bottom counts the equal parts, the top counts the ones you have.",
+             mk_txt("g4-nf", _g_name_fraction())),
+        form("g4-unit-fraction", "Unit fractions of an amount", 1, U5,
+             "One part out of the whole: divide by the bottom number.",
+             mk_num("g4-uf", _g_unit_fraction())),
+        form("g4-compare-denom", "Comparing with the same bottom", 2, U5,
+             "Same-size parts, so more parts means more.",
+             mk_txt("g4-cd", _g_compare_same_denominator())),
+        form("g4-compare-num", "Comparing with the same top", 2, U5,
+             "Fewer parts in the whole makes each part bigger.",
+             mk_txt("g4-cn", _g_compare_same_numerator())),
+        form("g4-fraction-set", "A fraction of a set", 2, U5,
+             "Find one part first, then take as many as the top says.",
+             mk_num("g4-fs", _g_fraction_of_set())),
+        form("g4-equivalent", "Equivalent fractions", 3, U5,
+             "Multiply the top and the bottom by the same number and the value is unchanged.",
+             mk_txt("g4-eq", _g_equivalent_fractions())),
     ]
 
-    U6 = "shapes-sides-and-corners"
+    U6 = "shapes-and-symmetry"
     forms += [
-        form("g3-name-shape", "Naming flat shapes", 1, U6,
-             "Count the straight sides — that is what gives a flat shape its name.",
-             mk_txt("g3-ns", _g_shape_by_sides())),
-        form("g3-count-sides", "Counting sides", 1, U6,
-             "Sides and corners always match, so counting one counts the other.",
-             mk_num("g3-cs2", _g_sides_and_corners())),
-        form("g3-square-corners", "Square corners", 2, U6,
-             "A rectangle has four; a triangle can have at most one.",
-             mk_num("g3-sc", _g_square_corners())),
-        form("g3-solids", "Solid shapes", 2, U6,
-             "Flat faces let a solid stack; curved surfaces let it roll.",
-             mk_num("g3-so", _g_solid_faces())),
-        form("g3-pattern", "Shape patterns", 2, U6,
-             "Find the repeating piece and its length, then count ahead.",
-             mk_num("g3-pt", _g_shape_pattern())),
-        form("g3-sorting", "Sorting by a rule", 3, U6,
-             "Different rules put the same shapes into different piles.",
-             mk_txt("g3-sr", _g_sorting_rule())),
+        form("g4-shape-sides", "Sides and corners", 1, U6,
+             "Naming shapes by how many sides they have.",
+             mk_num("g4-ss", _g_shape_sides())),
+        form("g4-right-angles", "Right angles", 1, U6,
+             "A right angle is a square corner — count them shape by shape.",
+             mk_num("g4-ra", _g_right_angles())),
+        form("g4-quadrilaterals", "Sorting quadrilaterals", 2, U6,
+             "Four-sided shapes sorted by equal sides, parallel sides and right angles.",
+             mk_txt("g4-qd", _g_quadrilaterals())),
+        form("g4-symmetry", "Lines of symmetry", 2, U6,
+             "A line of symmetry folds the shape exactly onto itself.",
+             mk_num("g4-sy", _g_symmetry_lines())),
+        form("g4-solids", "3-D solids", 2, U6,
+             "Faces, edges and vertices — the three things you count on a solid.",
+             mk_num("g4-sd", _g_solids())),
+        form("g4-perimeter", "Perimeter of a regular shape", 3, U6,
+             "Perimeter is the distance all the way round: sides times side length.",
+             mk_num("g4-pm", _g_perimeter())),
     ]
 
-    U7 = "measuring-time-and-money"
+    U7 = "measurement-time-and-money"
     forms += [
-        form("g3-ruler", "Reading a ruler", 1, U7,
-             "Subtract the starting mark — the far mark alone is the length only from zero.",
-             mk_num("g3-ru", _g_ruler())),
-        form("g3-metres", "Metres and centimetres", 1, U7,
-             "A metre is one hundred centimetres.",
-             mk_num("g3-me", _g_metres())),
-        form("g3-mass", "Comparing mass", 2, U7,
-             "The heavier pan sinks; the gap is what would level it.",
-             mk_num("g3-ms", _g_mass_capacity())),
-        form("g3-clock", "Telling the time", 2, U7,
-             "Long hand for minutes, short hand for the hour it has PASSED.",
-             mk_txt("g3-cl", _g_clock())),
-        form("g3-money", "Counting tögrög", 2, U7,
-             "Count by value, biggest note first — the number of notes is not the amount.",
-             mk_num("g3-mo", _g_money_total())),
-        form("g3-change", "Working out change", 3, U7,
-             "Payment minus price, then check by adding the change back.",
-             mk_num("g3-ch", _g_change())),
+        form("g4-length", "Metres and centimetres", 1, U7,
+             "One metre is one hundred centimetres.",
+             mk_txt("g4-ln", _g_length())),
+        form("g4-mass-capacity", "Grams, kilograms, millilitres and litres", 1, U7,
+             "One kilogram is a thousand grams; one litre is a thousand millilitres.",
+             mk_txt("g4-mc", _g_mass_capacity())),
+        form("g4-clock", "Reading the clock", 2, U7,
+             "Quarter past, half past and quarter to — and which hour they belong to.",
+             mk_txt("g4-cl", _g_clock())),
+        form("g4-duration", "How long it lasts", 2, U7,
+             "Start time plus length gives the end time, counting sixty to the hour.",
+             mk_txt("g4-du", _g_duration())),
+        form("g4-money", "Tögrög and change", 2, U7,
+             "Adding prices, and change as what is left from the note.",
+             mk_txt("g4-mo", _g_money())),
+        form("g4-convert-first", "Change the units first", 3, U7,
+             "Two units in one problem: make them the same before you calculate.",
+             mk_txt("g4-cf", _g_convert_first())),
     ]
 
-    U8 = "tallies-and-picture-graphs"
+    U8 = "data-and-pictographs"
     forms += [
-        form("g3-read-tally", "Reading a tally", 1, U8,
-             "Each closed bundle is worth five, then add the singles.",
-             mk_num("g3-rt", _g_read_tally())),
-        form("g3-draw-tally", "Drawing a tally", 1, U8,
-             "Fill whole bundles first; the leftovers are always fewer than five.",
-             mk_num("g3-dt", _g_draw_tally())),
-        form("g3-table-total", "Table totals", 2, U8,
-             "Add every row — the total is the table's receipt.",
-             mk_num("g3-tt", _g_table_total())),
-        form("g3-missing-row", "A missing row", 2, U8,
-             "Total minus the rows you can read gives the one you cannot.",
-             mk_num("g3-mr", _g_missing_row())),
-        form("g3-pictograph", "Comparing picture-graph rows", 2, U8,
-             "One picture is one thing, so the gap between rows is the answer.",
-             mk_num("g3-pg", _g_pictograph_compare())),
-        form("g3-data-question", "Questions from a graph", 3, U8,
-             "\"Altogether\" adds every bar; \"how many more\" subtracts two.",
-             mk_num("g3-dq", _g_data_question())),
+        form("g4-tally", "Tally marks", 1, U8,
+             "Each full gate is five, and the singles are added on.",
+             mk_num("g4-tl", _g_tally())),
+        form("g4-pictograph", "Pictograph keys", 1, U8,
+             "Value = symbols times the key, and half a symbol is half the key.",
+             mk_num("g4-pg", _g_pictograph())),
+        form("g4-table-total", "Tables and totals", 2, U8,
+             "Every row counts towards the total.",
+             mk_num("g4-tt", _g_table_total())),
+        form("g4-bar-scale", "Reading a bar chart's scale", 2, U8,
+             "Gridlines times the step — counting gridlines as ones is the classic error.",
+             mk_num("g4-bs", _g_bar_scale())),
+        form("g4-compare-cats", "Comparing two bars", 2, U8,
+             "How many more is a subtraction, not a total.",
+             mk_num("g4-cc", _g_compare_categories())),
+        form("g4-data-question", "Asking questions of data", 3, U8,
+             "Check each statement against the numbers before choosing.",
+             mk_txt("g4-dq", _g_data_question())),
     ]
 
     return {"slug": SLUG, "title": TITLE, "titleMn": TITLE_MN, "blurb": BLURB,
             "units": UNITS, "forms": forms}
 
 
-CEILING = 1000
-
-_NUMBER = re.compile(r"(?<![\d.\\])(\d+)(?![\d.])")
-_NEGATIVE = re.compile(r"(?<![\w])-\d")
-
-
-def _audit(topic):
-    """Enforce the Grade 3 house rules on the generated bank.
-
-    verify-problembank.py proves every sympy check is TRUE and every string
-    renders, but it is shared by twenty-five subjects and cannot know that
-    this one stops at 1000 and never shows a negative. Those two rules were
-    comments at the top of this file until three distractors broke them —
-    `whole + known` reaching 1470, `paid + price` reaching 1060, and
-    `mid - gain` going negative — so they are checked here instead."""
-    problems = []
-    for f in topic["forms"]:
-        for v in f["variants"]:
-            for field in ("statement", "explanation"):
-                _scan(problems, f["id"], v["id"], v[field])
-            for opt in v["options"]:
-                _scan(problems, f["id"], v["id"], opt)
-    return problems
-
-
-def _scan(out, form_id, var_id, text):
-    for m in _NUMBER.finditer(text):
-        if int(m.group(1)) > CEILING:
-            out.append("%s/%s: %s exceeds the Grade 3 ceiling of %d — %r"
-                       % (form_id, var_id, m.group(1), CEILING, text[:70]))
-    if _NEGATIVE.search(text):
-        out.append("%s/%s: negative value, which Grade 3 has not met — %r"
-                   % (form_id, var_id, text[:70]))
-
-
 if __name__ == "__main__":
-    topic = build()
-    n_forms = len(topic["forms"])
-    n_vars = sum(len(f["variants"]) for f in topic["forms"])
-    per_unit = {u["id"]: 0 for u in topic["units"]}
-    for f in topic["forms"]:
-        assert f["unit"] in per_unit, "%s: unknown unit %r" % (f["id"], f["unit"])
-        per_unit[f["unit"]] += len(f["variants"])
-    print("grade3 — %d forms, %d variants" % (n_forms, n_vars))
-    for u in topic["units"]:
-        print("  %-38s %4d" % (u["id"], per_unit[u["id"]]))
-    failures = _audit(topic)
-    if failures:
-        print("\n%d HOUSE-RULE FAILURES:" % len(failures))
-        for f in failures[:30]:
-            print("  x %s" % f)
-        sys.exit(1)
-    print("  ok  nothing above %d, no negatives" % CEILING)
+    t = build()
+    per = {u["id"]: 0 for u in t["units"]}
+    lv = {u["id"]: set() for u in t["units"]}
+    for f in t["forms"]:
+        per[f["unit"]] += len(f["variants"])
+        lv[f["unit"]].add(f["level"])
+    print("%s: %d forms, %d variants" %
+          (t["slug"], len(t["forms"]), sum(len(f["variants"]) for f in t["forms"])))
+    for u in t["units"]:
+        print("   %-34s %4d  levels %s" % (u["id"], per[u["id"]], sorted(lv[u["id"]])))

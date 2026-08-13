@@ -57,7 +57,7 @@ describe("course routes stay inside their own course", () => {
   it("has at least the courses we know about", () => {
     const dirs = courseDirs();
     expect(dirs.length).toBeGreaterThan(10);
-    for (const known of ["4", "5", "6", "geometry"]) {
+    for (const known of ["2", "3", "4", "6", "geometry"]) {
       expect(dirs, `${known} should be a routed course`).toContain(known);
     }
   });

@@ -3,8 +3,8 @@
 // aggregator (lib/genmath-lessons.ts); pages import from HERE —
 // lib/genmath-split.test.ts enforces it.
 //
-// Grade 3 shipped as one complete batch (all eight topics live together),
-// authored one rung below Grade 4 with figures throughout. Content is
+// Grade 3 shipped as one complete batch (all eight topics live together) and
+// is the first primary grade authored WITH figures from day one. Content is
 // English-first per the buildout decision; the Mongolian mirror map fills in
 // as the scripts/i18n pipeline runs — lookups fall back to the English
 // original until then.
@@ -12,24 +12,24 @@
 import type { GenMathTopic, GenMathLesson } from "@/lib/genmath-types";
 import { GRADE3_SPINE, type GradeSpineEntry } from "@/lib/genmath-spines";
 
-import numbersTo1000 from "@/data/genmath/3/numbers-to-1000.json";
-import additionSubtraction from "@/data/genmath/3/addition-and-subtraction-to-1000.json";
-import multiplication from "@/data/genmath/3/multiplication-first-facts.json";
-import division from "@/data/genmath/3/division-sharing-and-grouping.json";
-import fractions from "@/data/genmath/3/fractions-halves-and-quarters.json";
-import shapes from "@/data/genmath/3/shapes-sides-and-corners.json";
-import measuring from "@/data/genmath/3/measuring-time-and-money.json";
-import tallies from "@/data/genmath/3/tallies-and-picture-graphs.json";
+import numbersTo10000 from "@/data/genmath/3/numbers-to-10000.json";
+import additionSubtraction from "@/data/genmath/3/addition-and-subtraction.json";
+import timesTables from "@/data/genmath/3/times-tables-and-multiplication.json";
+import divisionSharing from "@/data/genmath/3/division-and-sharing.json";
+import fractions from "@/data/genmath/3/fractions-parts-of-a-whole.json";
+import shapesSymmetry from "@/data/genmath/3/shapes-and-symmetry.json";
+import measurement from "@/data/genmath/3/measurement-time-and-money.json";
+import dataPictographs from "@/data/genmath/3/data-and-pictographs.json";
 
 export const grade3Topics: GenMathTopic[] = [
-  numbersTo1000 as GenMathTopic,
+  numbersTo10000 as GenMathTopic,
   additionSubtraction as GenMathTopic,
-  multiplication as GenMathTopic,
-  division as GenMathTopic,
+  timesTables as GenMathTopic,
+  divisionSharing as GenMathTopic,
   fractions as GenMathTopic,
-  shapes as GenMathTopic,
-  measuring as GenMathTopic,
-  tallies as GenMathTopic,
+  shapesSymmetry as GenMathTopic,
+  measurement as GenMathTopic,
+  dataPictographs as GenMathTopic,
 ];
 
 export const grade3TopicsMn: Record<string, GenMathTopic> = {};
@@ -42,20 +42,19 @@ export function getGrade3Spine(): GradeSpineEntry[] {
   return GRADE3_SPINE;
 }
 
-export function getGrade3Topic(slug: string): GenMathTopic | null {
-  return grade3Topics.find((t) => t.slug === slug) ?? null;
+export function getGrade3Topic(topicSlug: string): GenMathTopic | null {
+  return grade3Topics.find((t) => t.slug === topicSlug) ?? null;
 }
 
-// Locale-aware lookup: the Mongolian mirror when one exists and the site is in
-// Mongolian, the English original otherwise.
-export function getGrade3TopicLocalized(slug: string, lang: string): GenMathTopic | null {
-  if (lang === "mn") {
-    const mn = grade3TopicsMn[slug];
-    if (mn) return mn;
-  }
-  return getGrade3Topic(slug);
+// Locale-aware lookup, scoped to this grade: Mongolian mirror when the site
+// language is "mn" and a translation exists; the English original otherwise.
+export function getGrade3TopicLocalized(topicSlug: string, lang: string): GenMathTopic | null {
+  if (lang === "mn" && grade3TopicsMn[topicSlug]) return grade3TopicsMn[topicSlug];
+  return getGrade3Topic(topicSlug);
 }
 
-export function getGrade3Lesson(topicSlug: string, lessonSlug: string): GenMathLesson | null {
-  return getGrade3Topic(topicSlug)?.lessons.find((l) => l.slug === lessonSlug) ?? null;
+export function getGrade4Lesson(topicSlug: string, lessonSlug: string): GenMathLesson | null {
+  const topic = getGrade3Topic(topicSlug);
+  if (!topic) return null;
+  return topic.lessons.find((l) => l.slug === lessonSlug) ?? null;
 }

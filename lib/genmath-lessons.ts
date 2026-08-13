@@ -50,9 +50,9 @@ export {
 export type { GradeInfo, GradeSpineEntry, GeometrySpineEntry } from "@/lib/genmath-spines";
 
 // Per-course data modules — every export re-published under its old name.
+export * from "@/lib/genmath-data/grade-2";
 export * from "@/lib/genmath-data/grade-3";
 export * from "@/lib/genmath-data/grade-4";
-export * from "@/lib/genmath-data/grade-5";
 export * from "@/lib/genmath-data/grade-6";
 export * from "@/lib/genmath-data/grade-7";
 export * from "@/lib/genmath-data/grade-8";
@@ -76,9 +76,9 @@ export * from "@/lib/genmath-data/ib-sl";
 export * from "@/lib/genmath-data/ib-hl";
 export * from "@/lib/genmath-data/ib-ai-sl";
 
+import { grade2Topics, grade2TopicsMn, getGrade2Topics } from "@/lib/genmath-data/grade-2";
 import { grade3Topics, grade3TopicsMn, getGrade3Topics } from "@/lib/genmath-data/grade-3";
 import { grade4Topics, grade4TopicsMn, getGrade4Topics } from "@/lib/genmath-data/grade-4";
-import { grade5Topics, grade5TopicsMn, getGrade5Topics } from "@/lib/genmath-data/grade-5";
 import {
   grade6Topics,
   grade6TopicsMn,
@@ -121,9 +121,9 @@ import type { CourseUnit } from "@/lib/genmath-types";
 // ---------------------------------------------------------------------------
 
 const allGenMathTopics: GenMathTopic[] = [
+  ...grade2Topics,
   ...grade3Topics,
   ...grade4Topics,
-  ...grade5Topics,
   ...grade6Topics,
   ...grade7Topics,
   ...grade8Topics,
@@ -140,9 +140,9 @@ export function getGenMathTopic(topicSlug: string): GenMathTopic | null {
 // Mongolian topic mirrors, keyed by slug — the union of every grade's
 // mirror map (currently grades 6–8; grown as courses are localized).
 const GENMATH_TOPICS_MN: Record<string, GenMathTopic> = {
+  ...grade2TopicsMn,
   ...grade3TopicsMn,
   ...grade4TopicsMn,
-  ...grade5TopicsMn,
   ...grade6TopicsMn,
   ...grade7TopicsMn,
   ...grade8TopicsMn,
@@ -174,9 +174,9 @@ export function getGenMathLesson(
 // ---------------------------------------------------------------------------
 
 const GRADE_TOPIC_GETTERS: Record<number, () => GenMathTopic[]> = {
-  3: getGrade3Topics,
-  4: getGrade4Topics,
-  5: getGrade5Topics,
+  3: getGrade2Topics,
+  4: getGrade3Topics,
+  5: getGrade4Topics,
   6: getGrade6Topics,
   7: getGrade7Topics,
   8: getGrade8Topics,
