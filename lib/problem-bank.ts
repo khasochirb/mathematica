@@ -280,9 +280,23 @@ export function displayVariant(
 }
 
 // ---------------------------------------------------------------------------
-// Progress persistence — per-form mastery on this device, keyed to the account
-// (same pattern as placement results). A form is "mastered" when the LAST
-// attempt in some session was correct; missing it again takes the badge back.
+// Progress persistence — per-form progress on this device, keyed to the
+// account (same pattern as placement results).
+//
+// EVERY NUMBER HERE ONLY GOES UP. A form is "mastered" the first time the
+// student answers it correctly, and stays mastered; `attempts` and `correct`
+// are running totals. Nothing a student does can take a number away.
+//
+// That is a deliberate reversal (owner decision, 2026-08-13). Mastery used to
+// be "the LAST attempt was correct", so missing a form you had already solved
+// revoked the badge and dragged your rating down. Practice you are doing
+// voluntarily, on problems deliberately harder than the lesson, is the worst
+// possible place to punish a wrong answer: it teaches students that the safe
+// move is to stop practising. The bank is now a place where effort
+// accumulates and mistakes are free.
+//
+// The bank still RESPONDS to a miss — it queues a similar problem then and
+// there (answerCurrent) — it just doesn't bill you for it later.
 // ---------------------------------------------------------------------------
 
 export type BankProgress = {
@@ -319,7 +333,8 @@ export function saveBankSession(
   for (const f of summary.forms) {
     const old = forms[f.formId] ?? { mastered: false, attempts: 0, correct: 0, updatedAt: 0 };
     forms[f.formId] = {
-      mastered: !f.needsWork,
+      // Sticky: solving this form once earns the badge for good.
+      mastered: old.mastered || f.correct > 0,
       attempts: old.attempts + f.attempts,
       correct: old.correct + f.correct,
       updatedAt: now,
@@ -352,7 +367,7 @@ export function recordCheckedResult(
     forms: {
       ...prev.forms,
       [formId]: {
-        mastered: correct,
+        mastered: old.mastered || correct,
         attempts: old.attempts + 1,
         correct: old.correct + (correct ? 1 : 0),
         updatedAt: Date.now(),
@@ -371,4 +386,30 @@ export function topicMastery(topic: BankTopic, progress: BankProgress): { master
   const total = topic.forms.length;
   const mastered = topic.forms.filter((f) => progress.forms[f.id]?.mastered).length;
   return { mastered, total };
+}
+
+/**
+ * What a student has BUILT UP in the bank, over any set of form ids.
+ *
+ * Both numbers are monotone by construction (see the persistence header), so
+ * this is the shape everything downstream — the ratings engine, the dashboard
+ * counter — is allowed to read. Deliberately no accuracy: an accuracy figure
+ * is a number a wrong answer lowers, which is exactly what the bank must not
+ * do.
+ *
+ *   solvedProblems — total problems answered correctly (the volume of work)
+ *   solvedForms    — distinct problem TYPES solved at least once (its breadth)
+ */
+export type BankSolved = { solvedForms: number; solvedProblems: number };
+
+export function bankSolved(progress: BankProgress, formIds: readonly string[]): BankSolved {
+  let solvedForms = 0;
+  let solvedProblems = 0;
+  for (const id of formIds) {
+    const p = progress.forms[id];
+    if (!p || p.correct <= 0) continue;
+    solvedForms++;
+    solvedProblems += p.correct;
+  }
+  return { solvedForms, solvedProblems };
 }

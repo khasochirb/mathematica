@@ -63,6 +63,13 @@ function eshAttempts(topic: string, n: number, nCorrect: number, ageDays = 1): R
   }));
 }
 
+// A unit's bank worked to the point of full credit: both the breadth and
+// the volume targets met. Anything less earns proportionally less.
+const FULL_BANK = {
+  solvedForms: RATING_CONSTANTS.N_BANK_FORMS,
+  solvedProblems: RATING_CONSTANTS.N_BANK_PROBLEMS,
+};
+
 // Full perfect evidence (lessons + tests + bank) for every unit of one
 // attribute — the "did everything the courses offer" student.
 function perfectAttributeEvidence(
@@ -79,7 +86,7 @@ function perfectAttributeEvidence(
   for (const u of units) {
     attempts.push(...lessonAttempts(u.context, u.slug, nL, { ageDays }));
     attempts.push(...testAttempts(u.context, u.slug, nT, nT, ageDays));
-    bank[`${u.context}/${u.slug}`] = { mastered: 6, attempted: 6 };
+    bank[`${u.context}/${u.slug}`] = FULL_BANK;
   }
   return { attempts, bank };
 }
@@ -141,7 +148,7 @@ describe("computeRatings — the 40–100 scale", () => {
   it("no unit test caps a unit at 69 even with lessons + full bank", () => {
     const p = computeRatings({
       attempts: lessonAttempts("course:geometry", "foundations", 50),
-      bank: { "course:geometry/foundations": { mastered: 6, attempted: 6 } },
+      bank: { "course:geometry/foundations": FULL_BANK },
       now: NOW,
     });
     // raw 40 + 60·0.55 = 73 → capped at 69: without the unit test you top
@@ -157,7 +164,7 @@ describe("computeRatings — the 40–100 scale", () => {
         // 7/8 = 87.5% — below the 90% elite gate.
         ...testAttempts("course:geometry", "circles", 8, 7),
       ],
-      bank: { "course:geometry/circles": { mastered: 6, attempted: 6 } },
+      bank: { "course:geometry/circles": FULL_BANK },
       now: NOW,
     };
     const p = computeRatings(base);
@@ -441,8 +448,8 @@ describe("recommendations", () => {
       ...lessonAttempts("course:geometry", "triangles-and-congruence", 10, { correctEvery: 2 }),
     ];
     const bank: BankEvidence = {
-      "course:geometry/foundations": { mastered: 6, attempted: 6 },
-      "course:geometry/reasoning-and-proof": { mastered: 6, attempted: 6 },
+      "course:geometry/foundations": FULL_BANK,
+      "course:geometry/reasoning-and-proof": FULL_BANK,
     };
     const p = computeRatings({ attempts, bank, now: NOW });
     const rec = recommendedUnits(p, "course:geometry");
@@ -549,5 +556,175 @@ describe("evidence transparency + guidance", () => {
         expect(s.projectedScore).toBeLessThanOrEqual(100);
       }
     }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Problem-bank credit — the two promises made to students, as tests.
+//
+//   1. Bank practice can ONLY help. Nothing a student does in the bank, and
+//      no shape of bank evidence, may lower any number on the ratings card.
+//      Punishing a wrong answer on voluntary practice teaches students that
+//      the safe move is to stop practising.
+//   2. It has to be EARNED. A handful of problems must barely move the
+//      overall, or the number stops meaning anything.
+//
+// These pull in opposite directions, which is exactly why they are pinned.
+// ---------------------------------------------------------------------------
+
+// Every geometry-attribute unit that lives in the Geometry course.
+function geometryUnits() {
+  return allRatedUnits().filter((u) => u.attribute === "geometry" && u.context === "course:geometry");
+}
+
+describe("problem bank: practice can only ever help", () => {
+  it("a bank-only unit never drags an attribute down", () => {
+    // The dangerous shape: an attribute whose course mastery is a MEAN over
+    // touched units, plus one unit lit up by bank work alone. Averaging that
+    // unit in naively would LOWER the attribute — the student practises and
+    // the card drops.
+    const [proven, fresh] = geometryUnits();
+    const attempts = [
+      ...lessonAttempts("course:geometry", proven.slug, 12),
+      ...testAttempts("course:geometry", proven.slug, 9, 9),
+    ];
+    const before = computeRatings({ attempts, now: NOW });
+    const after = computeRatings({
+      attempts,
+      bank: { [`course:geometry/${fresh.slug}`]: { solvedForms: 6, solvedProblems: 8 } },
+      now: NOW,
+    });
+
+    expect(attr(after, "geometry").score).toBeGreaterThanOrEqual(attr(before, "geometry").score);
+    expect(after.overall).toBeGreaterThanOrEqual(before.overall);
+  });
+
+  it("no amount or shape of bank work lowers any attribute or the overall", () => {
+    const [proven, fresh, third] = geometryUnits();
+    const attempts = [
+      ...lessonAttempts("course:geometry", proven.slug, 12),
+      ...testAttempts("course:geometry", proven.slug, 8, 6),
+      ...lessonAttempts("course:geometry", third.slug, 6, { correctEvery: 3 }),
+    ];
+    const baseline = computeRatings({ attempts, now: NOW });
+
+    // Sweep from "one lucky problem" to "ground out the whole unit", on a
+    // fresh unit and on an already-worked one.
+    const shapes: BankEvidence[] = [];
+    for (const forms of [1, 2, 6, 12]) {
+      for (const problems of [1, 3, 8, 24, 90]) {
+        if (problems < forms) continue;
+        shapes.push({ [`course:geometry/${fresh.slug}`]: { solvedForms: forms, solvedProblems: problems } });
+        shapes.push({ [`course:geometry/${proven.slug}`]: { solvedForms: forms, solvedProblems: problems } });
+        shapes.push({
+          [`course:geometry/${fresh.slug}`]: { solvedForms: forms, solvedProblems: problems },
+          [`course:geometry/${third.slug}`]: { solvedForms: forms, solvedProblems: problems },
+        });
+      }
+    }
+
+    for (const bank of shapes) {
+      const p = computeRatings({ attempts, bank, now: NOW });
+      expect(p.overall, `overall dropped for ${JSON.stringify(bank)}`).toBeGreaterThanOrEqual(
+        baseline.overall,
+      );
+      for (const a of ATTRIBUTES) {
+        const now = attr(p, a.key).score;
+        const was = attr(baseline, a.key).score;
+        expect(now, `${a.key} dropped for ${JSON.stringify(bank)}`).toBeGreaterThanOrEqual(was);
+      }
+    }
+  });
+
+  it("more bank work never scores lower than less", () => {
+    const [, fresh] = geometryUnits();
+    const attempts = lessonAttempts("course:geometry", geometryUnits()[0].slug, 12);
+    let previous = -1;
+    for (const problems of [0, 1, 4, 8, 12, 24, 48]) {
+      const p = computeRatings({
+        attempts,
+        bank:
+          problems > 0
+            ? { [`course:geometry/${fresh.slug}`]: { solvedForms: 6, solvedProblems: problems } }
+            : undefined,
+        now: NOW,
+      });
+      expect(p.overall).toBeGreaterThanOrEqual(previous);
+      previous = p.overall;
+    }
+  });
+
+  it("problems a student got WRONG are simply absent — never a penalty", () => {
+    // BankEvidence carries solved counts only, so "attempted 40, solved 3"
+    // and "attempted 3, solved 3" are the same input. There is no shape of
+    // this type that can express a miss, which is the point.
+    const [, fresh] = geometryUnits();
+    const attempts = lessonAttempts("course:geometry", geometryUnits()[0].slug, 12);
+    const noBank = computeRatings({ attempts, now: NOW });
+    const allMissed = computeRatings({
+      attempts,
+      bank: { [`course:geometry/${fresh.slug}`]: { solvedForms: 0, solvedProblems: 0 } },
+      now: NOW,
+    });
+    expect(allMissed.overall).toBe(noBank.overall);
+    expect(allMissed.units.find((u) => u.slug === fresh.slug)!.touched).toBe(false);
+  });
+});
+
+describe("problem bank: credit has to be earned", () => {
+  it("a handful of problems barely moves the overall", () => {
+    const attempts = lessonAttempts("course:geometry", geometryUnits()[0].slug, 12);
+    const before = computeRatings({ attempts, now: NOW });
+    // Six problems, one from each of six types — real work, but a fraction
+    // of a unit. Must not read as progress the student did not make.
+    const after = computeRatings({
+      attempts,
+      bank: { [`course:geometry/${geometryUnits()[1].slug}`]: { solvedForms: 6, solvedProblems: 6 } },
+      now: NOW,
+    });
+    expect(after.overall - before.overall).toBeLessThanOrEqual(1);
+  });
+
+  it("breadth and volume both matter — neither alone is full credit", () => {
+    const key = `course:geometry/${geometryUnits()[0].slug}`;
+    const C = RATING_CONSTANTS;
+    const score = (bank: BankEvidence) =>
+      computeRatings({ attempts: [], bank, now: NOW }).units.find(
+        (u) => `${u.context}/${u.slug}` === key,
+      )!;
+
+    // 90 problems, all of ONE type: breadth caps it at 1/6.
+    const grinder = score({ [key]: { solvedForms: 1, solvedProblems: 90 } });
+    expect(grinder.bankCredit).toBeCloseTo(1 / C.N_BANK_FORMS, 6);
+
+    // One problem from each of six types: volume caps it at 6/24.
+    const sampler = score({ [key]: { solvedForms: C.N_BANK_FORMS, solvedProblems: 6 } });
+    expect(sampler.bankCredit).toBeCloseTo(6 / C.N_BANK_PROBLEMS, 6);
+
+    // Both targets met — and no more than full credit for overshooting.
+    const worker = score({
+      [key]: { solvedForms: C.N_BANK_FORMS, solvedProblems: C.N_BANK_PROBLEMS },
+    });
+    expect(worker.bankCredit).toBe(1);
+    expect(score({ [key]: { solvedForms: 40, solvedProblems: 500 } }).bankCredit).toBe(1);
+  });
+
+  it("bank work alone can never rate an attribute", () => {
+    // Full bank credit on every geometry unit, and nothing else. The bank is
+    // practice, not evidence of exam ability: it must not be enough to put a
+    // number on the card by itself.
+    const bank: BankEvidence = {};
+    for (const u of allRatedUnits().filter((x) => x.attribute === "geometry")) {
+      bank[`${u.context}/${u.slug}`] = {
+        solvedForms: RATING_CONSTANTS.N_BANK_FORMS,
+        solvedProblems: RATING_CONSTANTS.N_BANK_PROBLEMS,
+      };
+    }
+    const p = computeRatings({ attempts: [], bank, now: NOW });
+    const geometry = attr(p, "geometry");
+    expect(geometry.rated).toBe(false);
+    // ...and even if it were shown, grinding the bank tops out well short of
+    // the ceiling: no unit test means the CAP_NO_UNIT_TEST cap still applies.
+    expect(geometry.score).toBeLessThanOrEqual(RATING_CONSTANTS.CAP_NO_UNIT_TEST);
   });
 });

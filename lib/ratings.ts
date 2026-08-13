@@ -316,7 +316,17 @@ export const RATING_CONSTANTS = {
   HALF_LIFE_DAYS: 90, // evidence weight halves every 90 days
   N_LESSON: 10, // lesson-check attempts for full lesson confidence
   N_TEST: 8, // unit-test attempts for full test confidence
-  N_BANK_FORMS: 6, // bank forms attempted for full bank confidence
+  // Problem-bank credit is EARNED, never lost, and it is deliberately
+  // expensive. Full bank credit for a unit needs BOTH:
+  //   • breadth — N_BANK_FORMS distinct problem types solved, so you cannot
+  //     farm one easy form, and
+  //   • volume — N_BANK_PROBLEMS problems solved correctly in that unit.
+  // The two multiply, so a student who has solved 6 problems across 6 types
+  // holds 6/24 = 25% of the credit, not 100%. That is the "you should have to
+  // work for it" dial: a handful of problems must not move the overall, or the
+  // number stops meaning anything (owner decision, 2026-08-13).
+  N_BANK_FORMS: 6, // distinct forms solved for full bank breadth
+  N_BANK_PROBLEMS: 24, // problems solved for full bank volume
   // Attributes are the niche, must-be-accurate feature: a skill is only shown
   // (RATED) once there is enough evidence to grade it fairly — roughly five
   // full mock tests' worth of questions, OR one completed adaptive placement
@@ -409,7 +419,27 @@ export interface RatingAttempt {
 }
 
 // Per-unit problem-bank evidence, keyed "<context>/<unit slug>".
-export type BankEvidence = Record<string, { mastered: number; attempted: number }>;
+//
+// SOLVED counts only — no attempts, no accuracy. The bank is voluntary
+// practice on deliberately hard problems, so a miss there must cost nothing;
+// feeding an accuracy in would make wrong answers subtract, which is exactly
+// what this shape rules out. Both fields are monotone at the source
+// (lib/problem-bank bankSolved), and bankCredit() below is monotone in both,
+// so more bank work can only ever mean more credit.
+export type BankEvidence = Record<string, { solvedForms: number; solvedProblems: number }>;
+
+/**
+ * A unit's problem-bank credit, 0..1 — breadth × volume.
+ *
+ * Multiplying (rather than averaging) means BOTH have to be there: 40
+ * problems all of one type is still only 1/6 of the breadth, and one problem
+ * from each of six types is only 6/24 of the volume.
+ */
+export function bankCredit(b: { solvedForms: number; solvedProblems: number } | undefined): number {
+  if (!b) return 0;
+  const C = RATING_CONSTANTS;
+  return conf(b.solvedForms, C.N_BANK_FORMS) * conf(b.solvedProblems, C.N_BANK_PROBLEMS);
+}
 
 // A stored placement result reduced to what ratings need. topicScores
 // accuracy is 0..1 (lib/placement-engine summarize).
@@ -446,8 +476,15 @@ export interface UnitRating extends RatedUnit {
   lessonN: number; // decayed count
   testAcc: number;
   testN: number;
-  bankMastery: number;
-  bankAttempted: number;
+  /** 0..1 earned bank credit (breadth × volume). Never decreases. */
+  bankCredit: number;
+  /** Problems solved in this unit's bank — the work, for display. */
+  bankSolved: number;
+  // The same unit scored as if the bank did not exist. computeRatings scores
+  // each attribute both ways and keeps the better one, which is what makes
+  // "bank work can never lower a rating" true rather than merely intended.
+  scoreNoBank: number;
+  touchedNoBank: boolean;
 }
 
 // One concrete, accurate next action for raising an attribute — with the
@@ -587,24 +624,29 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     const key = `${u.context}/${u.slug}`;
     const lesson = tally(unitLesson.get(key));
     const test = tally(unitTest.get(key));
-    const b = bank[key] ?? { mastered: 0, attempted: 0 };
-    const bankMastery = b.attempted > 0 ? b.mastered / b.attempted : 0;
-    const touched = lesson.n > 0 || test.n > 0 || b.attempted > 0;
+    const b = bank[key];
+    const credit = bankCredit(b);
+    const touchedNoBank = lesson.n > 0 || test.n > 0;
+    const touched = touchedNoBank || credit > 0;
 
-    const m =
+    // The course streams are accuracy-based; the bank stream is credit-based
+    // and additive only, so `m` is monotone non-decreasing in bank work.
+    const courseM =
       C.W_LESSON * lesson.acc * conf(lesson.n, C.N_LESSON) +
-      C.W_TEST * test.acc * conf(test.n, C.N_TEST) +
-      C.W_BANK * bankMastery * conf(b.attempted, C.N_BANK_FORMS);
+      C.W_TEST * test.acc * conf(test.n, C.N_TEST);
+    const m = courseM + C.W_BANK * credit;
 
-    let score = touched ? C.RATING_FLOOR + RANGE * m : 0;
     const hasTest = test.n > 0;
-    if (touched) {
-      if (!hasTest) score = Math.min(score, C.CAP_NO_UNIT_TEST);
-      const elite = test.acc >= C.ELITE_TEST_ACC && test.n >= C.ELITE_TEST_N;
-      if (!elite) score = Math.min(score, C.CAP_NOT_ELITE);
-    }
+    const elite = test.acc >= C.ELITE_TEST_ACC && test.n >= C.ELITE_TEST_N;
+    const capped = (raw: number, isTouched: boolean) => {
+      if (!isTouched) return 0;
+      let s = C.RATING_FLOOR + RANGE * raw;
+      if (!hasTest) s = Math.min(s, C.CAP_NO_UNIT_TEST);
+      if (!elite) s = Math.min(s, C.CAP_NOT_ELITE);
+      return s;
+    };
 
-    const rounded = Math.round(score);
+    const rounded = Math.round(capped(m, touched));
     return {
       ...u,
       score: rounded,
@@ -615,8 +657,10 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       lessonN: lesson.n,
       testAcc: test.acc,
       testN: test.n,
-      bankMastery,
-      bankAttempted: b.attempted,
+      bankCredit: credit,
+      bankSolved: b?.solvedProblems ?? 0,
+      scoreNoBank: Math.round(capped(courseM, touchedNoBank)),
+      touchedNoBank,
     };
   });
 
@@ -648,20 +692,38 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   // sets how far above the floor the score sits. A skill is RATED — shown as a
   // number rather than "—" — only once that confidence clears RATED_CONF.
   type ExamAgg = { weight: number; correct: number; diffWeight: number };
-  const scoreAttr = (
+  const scoreAttrOneWay = (
     attrUnits: UnitRating[],
     examAgg: ExamAgg | undefined,
     placeAgg: { seen: number; correct: number } | undefined,
+    withBank: boolean,
   ) => {
     const unitsTotal = attrUnits.length;
-    const touched = attrUnits.filter((u) => u.touched);
-    const unitsTouched = touched.length;
     const hasUnitTest = attrUnits.some((u) => u.hasTest);
+    const scoreOf = (u: UnitRating) => (withBank ? u.score : u.scoreNoBank);
+
+    // Displayed "worked N of M units" — bank practice counts as having
+    // worked a unit, because it is work.
+    const unitsTouched = attrUnits.filter((u) => (withBank ? u.touched : u.touchedNoBank)).length;
+
+    // EVIDENCE, which is a stricter thing. The bank STRENGTHENS a unit the
+    // student has studied; it does not on its own certify one. Only units
+    // with lesson or test evidence enter the course stream — and their
+    // scores DO carry bank credit, so practice pays off exactly where the
+    // student has been learning.
+    //
+    // Without this, grinding bank problems across every unit of an attribute
+    // would drive courseConf to 1.0 and RATE the skill off self-paced,
+    // retryable practice alone. Ratings are the module that has to be
+    // accurate (see this file's header); practice volume is not evidence of
+    // exam ability.
+    const streamUnits = attrUnits.filter((u) => u.touchedNoBank);
     const courseMastery =
-      unitsTouched > 0
-        ? touched.reduce((s, u) => s + (u.score - C.RATING_FLOOR) / RANGE, 0) / unitsTouched
+      streamUnits.length > 0
+        ? streamUnits.reduce((s, u) => s + (scoreOf(u) - C.RATING_FLOOR) / RANGE, 0) /
+          streamUnits.length
         : 0;
-    const courseConf = unitsTotal > 0 ? unitsTouched / unitsTotal : 0;
+    const courseConf = unitsTotal > 0 ? streamUnits.length / unitsTotal : 0;
 
     const en = examAgg && examAgg.weight > 0 ? examAgg.weight : 0;
     const ea = en > 0 ? examAgg!.correct / en : 0;
@@ -677,15 +739,15 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       streams.push({ kind: "exam", n: en, acc: ea, perf: 100 * ea * eD, conf: examConf, weight: C.W_EXAM });
     if (pn > 0)
       streams.push({ kind: "placement", n: pn, acc: pAcc, perf: 100 * pAcc * C.PLACEMENT_DIFF, conf: placeConf, weight: C.W_PLACEMENT });
-    if (unitsTouched > 0)
-      streams.push({ kind: "course", n: unitsTouched, acc: courseMastery, perf: C.RATING_FLOOR + RANGE * courseMastery, conf: courseConf, weight: C.W_COURSE });
+    if (streamUnits.length > 0)
+      streams.push({ kind: "course", n: streamUnits.length, acc: courseMastery, perf: C.RATING_FLOOR + RANGE * courseMastery, conf: courseConf, weight: C.W_COURSE });
 
     const ewTot = streams.reduce((s, x) => s + x.conf * x.weight, 0);
     const perf = ewTot > 0 ? streams.reduce((s, x) => s + x.perf * x.conf * x.weight, 0) / ewTot : C.RATING_FLOOR;
     const combinedConf = 1 - streams.reduce((prod, x) => prod * (1 - x.conf), 1);
     let score = C.RATING_FLOOR + (perf - C.RATING_FLOOR) * combinedConf;
     // Pure course work (no test of any kind) caps below Near-mastery.
-    const courseOnly = en === 0 && pn === 0 && unitsTouched > 0;
+    const courseOnly = en === 0 && pn === 0 && streamUnits.length > 0;
     const capNoExam = courseOnly && score > C.CAP_NO_EXAM;
     if (courseOnly) score = Math.min(score, C.CAP_NO_EXAM);
     score = Math.max(C.RATING_FLOOR, Math.min(100, score));
@@ -707,6 +769,30 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
         capNoExam,
       } satisfies AttributeEvidence,
     };
+  };
+
+  // THE GUARANTEE: the problem bank can only ever help.
+  //
+  // Bank credit is additive at the unit level, so it can only push a unit's
+  // own score up. But an attribute's course mastery is a MEAN over touched
+  // units, so a unit the bank alone lit up could in principle pull that mean
+  // down — the student practises, and the card drops. That would be exactly
+  // the discouragement this whole model is meant to remove.
+  //
+  // So every attribute is scored twice, once as if no bank work existed, and
+  // the better of the two wins. Doing it here rather than by tuning weights
+  // makes the promise structural: there is no evidence shape, no ordering and
+  // no edge case in which bank practice lowers a rating.
+  const scoreAttr = (
+    attrUnits: UnitRating[],
+    examAgg: ExamAgg | undefined,
+    placeAgg: { seen: number; correct: number } | undefined,
+  ) => {
+    const withBank = scoreAttrOneWay(attrUnits, examAgg, placeAgg, true);
+    const anyBank = attrUnits.some((u) => u.bankCredit > 0);
+    if (!anyBank) return withBank;
+    const noBank = scoreAttrOneWay(attrUnits, examAgg, placeAgg, false);
+    return withBank.score >= noBank.score ? withBank : noBank;
   };
 
   // The attribute's primary course placement — the accurate way to get rated.
@@ -747,7 +833,18 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     if (untouchedRung.length > 0) {
       const simUnits = attrUnits.map((x) =>
         x.context === rungCtx && !x.touched
-          ? { ...x, score: 100, band: band(100), touched: true, hasTest: true }
+          ? {
+              ...x,
+              score: 100,
+              band: band(100),
+              touched: true,
+              hasTest: true,
+              // These steps simulate COURSE work (lessons + unit
+              // tests), which is what puts a unit into the evidence
+              // stream — bank credit alone never does.
+              touchedNoBank: true,
+              scoreNoBank: 100,
+            }
           : x,
       );
       const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg).score);
@@ -805,7 +902,18 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       if (!u.touched || elite) continue;
       const simUnits = attrUnits.map((x) =>
         x.slug === u.slug && x.context === u.context
-          ? { ...x, score: 100, band: band(100), touched: true, hasTest: true }
+          ? {
+              ...x,
+              score: 100,
+              band: band(100),
+              touched: true,
+              hasTest: true,
+              // These steps simulate COURSE work (lessons + unit
+              // tests), which is what puts a unit into the evidence
+              // stream — bank credit alone never does.
+              touchedNoBank: true,
+              scoreNoBank: 100,
+            }
           : x,
       );
       const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg).score);

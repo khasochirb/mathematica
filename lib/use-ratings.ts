@@ -56,16 +56,19 @@ export default function useRatings(): {
   const [placements, setPlacements] = useState<PlacementEvidence[]>([]);
 
   useEffect(() => {
+    // SOLVED work only — a form the student attempted but never got right
+    // contributes nothing rather than counting against them (lib/ratings
+    // BankEvidence). Both tallies only ever grow.
     const evidence: BankEvidence = {};
     for (const topic of courseLadderManifest()) {
       const progress = loadBankProgress(topic.slug, userId);
       for (const form of topic.forms) {
         const p = progress.forms[form.id];
-        if (!p || p.attempts <= 0) continue;
+        if (!p || p.correct <= 0) continue;
         const key = `course:${topic.slug}/${form.unit}`;
-        const e = evidence[key] ?? { mastered: 0, attempted: 0 };
-        e.attempted++;
-        if (p.mastered) e.mastered++;
+        const e = evidence[key] ?? { solvedForms: 0, solvedProblems: 0 };
+        e.solvedForms++;
+        e.solvedProblems += p.correct;
         evidence[key] = e;
       }
     }

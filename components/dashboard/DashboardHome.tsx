@@ -17,6 +17,9 @@ import { recommendedCourse } from "@/lib/ratings";
 import RatingsPanel from "@/components/ratings/RatingsPanel";
 import RecommendedNextCard from "@/components/ratings/RecommendedNextCard";
 
+import useBankWork from "@/lib/use-bank-work";
+import BankWorkCard from "@/components/dashboard/BankWorkCard";
+
 import useGamification from "@/lib/use-gamification";
 import ProgressStrip from "@/components/gamification/ProgressStrip";
 import BadgeShelf from "@/components/gamification/BadgeShelf";
@@ -154,6 +157,9 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
   // 8 strict attribute scores out. The pinned recommendation targets the
   // lowest attribute.
   const { profile } = useRatings();
+  // Problem-bank work — a monotone counter of solved problems, kept apart
+  // from the ratings math on purpose (lib/use-bank-work).
+  const { work: bankWork, ready: bankReady } = useBankWork();
   // Streak, level and daily goal — derived from the same attempt log the
   // rest of this page reads, so it can never disagree with the stats above it.
   const { summary: game, ready: gameReady } = useGamification();
@@ -301,6 +307,18 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
           <div className="mt-8 space-y-4">
             {ratingsRec && <RecommendedNextCard rec={ratingsRec} />}
             <RatingsPanel profile={profile} />
+          </div>
+        )}
+
+        {/* Under the ratings on purpose: it answers the question that card
+            provokes — "I practised, where did it go?" Its own block rather
+            than a child of the ratings, because the ratings only see the
+            /math banks: a student drilling the SAT or IB bank still has
+            work to show. Hidden until the first solved problem — a zero
+            here reads as failure rather than as a fresh start. */}
+        {bankReady && bankWork.solvedProblems > 0 && (
+          <div className={profile.hasAnyEvidence ? "mt-4" : "mt-8"}>
+            <BankWorkCard work={bankWork} />
           </div>
         )}
 

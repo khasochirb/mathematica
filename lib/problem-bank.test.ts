@@ -13,6 +13,10 @@ import {
   sessionForms,
   getVariant,
   topicMastery,
+  bankSolved,
+  loadBankProgress,
+  recordCheckedResult,
+  saveBankSession,
   type BankProgress,
 } from "./problem-bank";
 
@@ -263,5 +267,144 @@ describe("mastery", () => {
       forms: { [forms[0].id]: { mastered: true, attempts: 1, correct: 1, updatedAt: 1 } },
     };
     expect(unitMastery(topic, unit.id, progress)).toEqual({ mastered: 1, total: forms.length });
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Progress is monotone — the promise that makes the bank safe to practise in.
+//
+// Owner decision (2026-08-13): a wrong answer in the problem bank must not
+// take anything away. The bank is voluntary practice on deliberately hard
+// problems; billing a student for a miss there teaches them that the safe
+// move is to stop practising. Everything downstream (the ratings card, the
+// dashboard counter) is built on the guarantee tested here.
+// ---------------------------------------------------------------------------
+
+// The lib guards storage in try/catch, so a node run silently no-ops without
+// this. Tests need real round-tripping.
+function withLocalStorage<T>(fn: () => T): T {
+  const store = new Map<string, string>();
+  const stub = {
+    getItem: (k: string) => store.get(k) ?? null,
+    setItem: (k: string, v: string) => void store.set(k, v),
+    removeItem: (k: string) => void store.delete(k),
+    clear: () => store.clear(),
+    key: (i: number) => Array.from(store.keys())[i] ?? null,
+    get length() {
+      return store.size;
+    },
+  };
+  const g = globalThis as { localStorage?: unknown };
+  const had = "localStorage" in g;
+  const prev = g.localStorage;
+  g.localStorage = stub;
+  try {
+    return fn();
+  } finally {
+    if (had) g.localStorage = prev;
+    else delete g.localStorage;
+  }
+}
+
+describe("bank progress never goes backwards", () => {
+  it("keeps a form mastered after a later miss", () => {
+    withLocalStorage(() => {
+      const topic = getBankTopic("algebra-1")!;
+      const form = topic.forms[0];
+
+      recordCheckedResult(topic, form.id, true, "u1");
+      const won = loadBankProgress(topic.slug, "u1").forms[form.id];
+      expect(won.mastered).toBe(true);
+      expect(won.correct).toBe(1);
+
+      // Miss the same form twice afterwards. Attempts climb; nothing is lost.
+      recordCheckedResult(topic, form.id, false, "u1");
+      recordCheckedResult(topic, form.id, false, "u1");
+      const after = loadBankProgress(topic.slug, "u1").forms[form.id];
+      expect(after.mastered, "mastery must not be revoked by a miss").toBe(true);
+      expect(after.correct).toBe(1);
+      expect(after.attempts).toBe(3);
+    });
+  });
+
+  it("a miss on a never-solved form earns nothing and costs nothing", () => {
+    withLocalStorage(() => {
+      const topic = getBankTopic("algebra-1")!;
+      const form = topic.forms[0];
+      recordCheckedResult(topic, form.id, false, "u2");
+      const p = loadBankProgress(topic.slug, "u2");
+      expect(p.forms[form.id].mastered).toBe(false);
+      expect(p.forms[form.id].correct).toBe(0);
+      // ...and it contributes no solved credit at all.
+      expect(bankSolved(p, [form.id])).toEqual({ solvedForms: 0, solvedProblems: 0 });
+    });
+  });
+
+  it("a revealed solution counts as a miss, not as a solve", () => {
+    withLocalStorage(() => {
+      const topic = getBankTopic("algebra-1")!;
+      const form = topic.forms[0];
+      // "Stuck? Show me" commits correct=false — the peek is priced.
+      recordCheckedResult(topic, form.id, false, "u3");
+      const p = loadBankProgress(topic.slug, "u3");
+      expect(p.forms[form.id].attempts).toBe(1);
+      expect(bankSolved(p, [form.id]).solvedProblems).toBe(0);
+    });
+  });
+
+  it("a runner session tops progress up without ever lowering it", () => {
+    withLocalStorage(() => {
+      const topic = getBankTopic("algebra-1")!;
+      const form = topic.forms[0];
+      recordCheckedResult(topic, form.id, true, "u4");
+
+      // A later session where this form ended WRONG (needsWork).
+      saveBankSession(
+        topic,
+        {
+          total: 1,
+          correct: 0,
+          accuracy: 0,
+          perLevel: [],
+          forms: [
+            {
+              formId: form.id,
+              title: form.title,
+              level: form.level,
+              skill: form.skill,
+              attempts: 2,
+              correct: 0,
+              firstTryCorrect: false,
+              recovered: false,
+              needsWork: true,
+            },
+          ],
+          needsWork: [],
+        },
+        "u4",
+      );
+
+      const after = loadBankProgress(topic.slug, "u4").forms[form.id];
+      expect(after.mastered, "a bad session must not revoke mastery").toBe(true);
+      expect(after.correct).toBe(1);
+      expect(after.attempts).toBe(3);
+    });
+  });
+
+  it("bankSolved counts solved work only, and only once per form", () => {
+    withLocalStorage(() => {
+      const topic = getBankTopic("algebra-1")!;
+      const [a, b, c] = topic.forms;
+      recordCheckedResult(topic, a.id, true, "u5");
+      recordCheckedResult(topic, a.id, true, "u5"); // same form, second solve
+      recordCheckedResult(topic, b.id, true, "u5");
+      recordCheckedResult(topic, c.id, false, "u5"); // attempted, never solved
+
+      const p = loadBankProgress(topic.slug, "u5");
+      expect(bankSolved(p, [a.id, b.id, c.id])).toEqual({
+        solvedForms: 2, // breadth: distinct types solved
+        solvedProblems: 3, // volume: problems answered correctly
+      });
+    });
   });
 });
