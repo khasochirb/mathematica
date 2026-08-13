@@ -100,6 +100,20 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-13** — Deploy `5f8e3c4` pushed to main (primary band renumbered
+  onto the ministry's grade labels + the redirect map that keeps old links
+  working, real bar-chart/pictograph figures, the Baga curriculum as data
+  and its 108-objective audit). POST-DEPLOY PROBE NOT RUN: the Vercel MCP
+  transport returned Cloudflare 502s continuously for ~15 minutes
+  (`zone: api.anthropic.com`, i.e. the gateway in front of the MCP server,
+  not Vercel), and direct curl to prod is proxy-blocked by design, so
+  neither the deployment state nor `/api/health/flags` could be read from
+  this session. What IS confirmed: main is at `5f8e3c4` (GitHub MCP, which
+  stayed up), Vercel auto-deploys main, and the full local gate was green
+  including a route walk proving the redirects on a production build.
+  Nothing in the diff touches migrations, auth or API surface, so no open
+  flag was in its path. NEXT SESSION: run the probe for `5f8e3c4` and log
+  it here — flag state is unverified since `b113b96` until then.
 - **2026-08-13** — Probe after deploy `b113b96` (the ministry-strand gate:
   each ЭЕШ course's main topic is now checked against the strand А/492
   assigns its sections, with the three deliberate exceptions named in the
