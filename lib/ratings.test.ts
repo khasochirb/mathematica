@@ -1,7 +1,11 @@
 import { describe, it, expect } from "vitest";
+import { getSatBankTopic } from "./bank-data";
 import {
   ATTRIBUTES,
   RATING_CONSTANTS,
+  SAT_BANK_ATTRIBUTE,
+  SAT_DOMAIN_ATTRIBUTE,
+  practiceCredit,
   allRatedUnits,
   band,
   computeRatings,
@@ -726,5 +730,179 @@ describe("problem bank: credit has to be earned", () => {
     // ...and even if it were shown, grinding the bank tops out well short of
     // the ceiling: no unit test means the CAP_NO_UNIT_TEST cap still applies.
     expect(geometry.score).toBeLessThanOrEqual(RATING_CONSTANTS.CAP_NO_UNIT_TEST);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// SAT and IB bank practice (owner request, 2026-08-13). Two different routes
+// in, because the two banks are shaped differently:
+//   • the IB banks' units ARE the IB courses' units, so their work lands on
+//     those units exactly like /math bank work;
+//   • the SAT bank is organized by the 20 exam domains, which are not course
+//     units, so its work lands on the ATTRIBUTE as a practice stream.
+// Both obey the same two promises: only ever helps, and has to be earned.
+// ---------------------------------------------------------------------------
+
+describe("SAT and IB bank practice", () => {
+  it("maps every shipped SAT bank unit to an attribute", () => {
+    // The gate that stops a new SAT domain silently dropping out of the
+    // ratings: the bank ships the units, this table must know them all.
+    const shipped = getSatBankTopic().units.map((u) => u.id);
+    expect(shipped.length).toBeGreaterThan(0);
+    const missing = shipped.filter((id) => !SAT_BANK_ATTRIBUTE[id]);
+    expect(missing, `SAT bank units with no attribute: ${missing.join(", ")}`).toEqual([]);
+    // And no stale entries pointing at domains the bank no longer ships.
+    const stale = Object.keys(SAT_BANK_ATTRIBUTE).filter((id) => !shipped.includes(id));
+    expect(stale, `stale SAT attribute entries: ${stale.join(", ")}`).toEqual([]);
+  });
+
+  it("agrees with the exam-domain map where they overlap", () => {
+    // SAT_DOMAIN_ATTRIBUTE routes SAT TEST attempts; SAT_BANK_ATTRIBUTE routes
+    // SAT BANK practice. Both must send the same maths to the same attribute.
+    expect(SAT_BANK_ATTRIBUTE["linear-equations-one-variable"]).toBe(SAT_DOMAIN_ATTRIBUTE.algebra);
+    expect(SAT_BANK_ATTRIBUTE["nonlinear-functions"]).toBe(SAT_DOMAIN_ATTRIBUTE["advanced-math"]);
+    expect(SAT_BANK_ATTRIBUTE["one-variable-data"]).toBe(
+      SAT_DOMAIN_ATTRIBUTE["problem-solving-data"],
+    );
+    expect(SAT_BANK_ATTRIBUTE["lines-angles-and-triangles"]).toBe(
+      SAT_DOMAIN_ATTRIBUTE["geometry-trig"],
+    );
+  });
+
+  it("IB bank units land on the IB course's rated units", () => {
+    const ibUnits = allRatedUnits().filter((u) => u.context === "course:ib-sl");
+    expect(ibUnits.length).toBeGreaterThan(0);
+    const target = ibUnits[0];
+    const p = computeRatings({
+      attempts: [],
+      bank: {
+        [`course:ib-sl/${target.slug}`]: {
+          solvedForms: RATING_CONSTANTS.N_BANK_FORMS,
+          solvedProblems: RATING_CONSTANTS.N_BANK_PROBLEMS,
+        },
+      },
+      now: NOW,
+    });
+    const u = p.units.find((x) => x.context === "course:ib-sl" && x.slug === target.slug)!;
+    expect(u.bankCredit).toBe(1);
+    expect(u.touched).toBe(true);
+    expect(u.bankSolved).toBe(RATING_CONSTANTS.N_BANK_PROBLEMS);
+  });
+
+  it("SAT bank practice shows as its own evidence stream on the right attribute", () => {
+    // A modest exam record, so practice argues UP rather than down and the
+    // stream survives into the displayed evidence.
+    const p = computeRatings({
+      attempts: eshAttempts("algebra", 40, 12),
+      hubBank: {
+        "sat/linear-equations-one-variable": { solvedForms: 8, solvedProblems: 30 },
+        "sat/equivalent-expressions": { solvedForms: 6, solvedProblems: 25 },
+      },
+      now: NOW,
+    });
+    const algebra = attr(p, "algebra");
+    const practice = algebra.evidence.streams.find((s) => s.kind === "practice");
+    expect(practice, "algebra should carry a practice stream").toBeDefined();
+    expect(practice!.certifying).toBe(false);
+    expect(practice!.n).toBe(55);
+    // Practice without a test tops out in Developing, the same ceiling a unit
+    // gets with no test behind it — drilling cannot argue you are a 100.
+    expect(practice!.perf).toBeLessThanOrEqual(RATING_CONSTANTS.CAP_NO_UNIT_TEST);
+    // ...and it lands nowhere else.
+    expect(attr(p, "geometry").evidence.streams.some((s) => s.kind === "practice")).toBe(false);
+  });
+
+  it("SAT bank practice alone never rates an attribute", () => {
+    // Every SAT algebra domain ground out, and nothing else. Self-paced,
+    // retryable practice is not evidence of exam ability at any volume.
+    const hubBank: Record<string, { solvedForms: number; solvedProblems: number }> = {};
+    for (const [unit, a] of Object.entries(SAT_BANK_ATTRIBUTE)) {
+      if (a === "algebra") hubBank[`sat/${unit}`] = { solvedForms: 40, solvedProblems: 500 };
+    }
+    const p = computeRatings({ attempts: [], hubBank, now: NOW });
+    const algebra = attr(p, "algebra");
+    expect(algebra.rated).toBe(false);
+    expect(algebra.score).toBe(RATING_CONSTANTS.RATING_FLOOR);
+    expect(p.overall).toBe(RATING_CONSTANTS.RATING_FLOOR);
+  });
+
+  it("SAT bank practice can only ever help a rated attribute", () => {
+    // Including the case that motivates the max() guard: a strong exam record
+    // plus modest practice, where blending practice in would argue LOWER.
+    const strong = eshAttempts("algebra", 40, 38);
+    const baseline = computeRatings({ attempts: strong, now: NOW });
+    for (const [forms, problems] of [
+      [1, 1],
+      [4, 10],
+      [12, 48],
+      [40, 500],
+    ]) {
+      const p = computeRatings({
+        attempts: strong,
+        hubBank: { "sat/linear-equations-one-variable": { solvedForms: forms, solvedProblems: problems } },
+        now: NOW,
+      });
+      expect(
+        attr(p, "algebra").score,
+        `algebra dropped at ${forms} forms / ${problems} problems`,
+      ).toBeGreaterThanOrEqual(attr(baseline, "algebra").score);
+      expect(p.overall).toBeGreaterThanOrEqual(baseline.overall);
+    }
+  });
+
+  it("SAT practice credit needs breadth AND volume, like every other bank", () => {
+    const C = RATING_CONSTANTS;
+    const credit = (solvedForms: number, solvedProblems: number) =>
+      practiceCredit({ solvedForms, solvedProblems });
+    expect(credit(1, 200)).toBeCloseTo(1 / C.N_PRACTICE_FORMS, 6); // no breadth
+    expect(credit(C.N_PRACTICE_FORMS, 6)).toBeCloseTo(6 / C.N_PRACTICE_PROBLEMS, 6); // no volume
+    expect(credit(C.N_PRACTICE_FORMS, C.N_PRACTICE_PROBLEMS)).toBe(1);
+    expect(credit(99, 999)).toBe(1); // never more than full
+    expect(practiceCredit(undefined)).toBe(0);
+  });
+
+  it("unhelpful practice never cancels out unit credit that WAS helping", () => {
+    // The two bank sources are weighed independently. A student with useful
+    // /math bank credit plus SAT drilling below their level must keep the
+    // benefit of the former.
+    const [proven, fresh] = geometryUnits();
+    const attempts = [
+      ...lessonAttempts("course:geometry", proven.slug, 12),
+      ...testAttempts("course:geometry", proven.slug, 9, 9),
+      ...eshAttempts("geometry", 40, 38),
+    ];
+    const unitBankOnly = computeRatings({
+      attempts,
+      bank: { [`course:geometry/${proven.slug}`]: { solvedForms: 6, solvedProblems: 24 } },
+      now: NOW,
+    });
+    const plusWeakPractice = computeRatings({
+      attempts,
+      bank: { [`course:geometry/${proven.slug}`]: { solvedForms: 6, solvedProblems: 24 } },
+      hubBank: { "sat/lines-angles-and-triangles": { solvedForms: 1, solvedProblems: 1 } },
+      now: NOW,
+    });
+    expect(attr(plusWeakPractice, "geometry").score).toBeGreaterThanOrEqual(
+      attr(unitBankOnly, "geometry").score,
+    );
+  });
+
+  it("practice a strong student has outgrown simply does nothing", () => {
+    // A 95% ЭЕШ record plus a little SAT drilling: the practice stream would
+    // argue for a LOWER number than the exams already earned. The guard keeps
+    // the higher one, so the card reads "no change" rather than punishing the
+    // student for practising.
+    const strong = eshAttempts("algebra", 40, 38);
+    const baseline = computeRatings({ attempts: strong, now: NOW });
+    const withPractice = computeRatings({
+      attempts: strong,
+      hubBank: { "sat/linear-equations-one-variable": { solvedForms: 1, solvedProblems: 2 } },
+      now: NOW,
+    });
+    expect(attr(withPractice, "algebra").score).toBe(attr(baseline, "algebra").score);
+    expect(
+      attr(withPractice, "algebra").evidence.streams.some((s) => s.kind === "practice"),
+      "the rejected practice stream should not be shown as the reason for the score",
+    ).toBe(false);
   });
 });

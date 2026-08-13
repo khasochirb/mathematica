@@ -222,6 +222,39 @@ export const SAT_DOMAIN_ATTRIBUTE: Record<string, AttributeKey> = {
   "geometry-trig": "geometry",
 };
 
+// SAT problem-bank units → attribute. The SAT bank is organized by the 20
+// Digital SAT skill domains rather than by course units, so unlike the /math
+// and IB banks its work has no rated UNIT to attach to and lands on the
+// attribute directly (the "practice" evidence stream in computeRatings).
+//
+// Finer-grained than SAT_DOMAIN_ATTRIBUTE above, which maps the four exam
+// domains that SAT test attempts carry. Both must agree where they overlap.
+// scripts/verify-sat-bank-attributes.test.ts pins that every shipped SAT bank
+// unit appears here, so adding a domain to the bank cannot silently drop its
+// practice out of the ratings.
+export const SAT_BANK_ATTRIBUTE: Record<string, AttributeKey> = {
+  "linear-equations-one-variable": "algebra",
+  "linear-equations-two-variables": "algebra",
+  "systems-of-linear-equations": "algebra",
+  "linear-inequalities": "algebra",
+  "equivalent-expressions": "algebra",
+  "nonlinear-equations-one-variable": "algebra",
+  "systems-nonlinear-two-variables": "algebra",
+  "linear-functions": "functions",
+  "nonlinear-functions": "functions",
+  "ratios-rates-proportions-units": "numbers",
+  percentages: "numbers",
+  "one-variable-data": "probstats",
+  "two-variable-data": "probstats",
+  "probability-and-conditional-probability": "probstats",
+  "inference-and-margin-of-error": "probstats",
+  "evaluating-statistical-claims": "probstats",
+  "area-and-volume": "geometry",
+  "lines-angles-and-triangles": "geometry",
+  circles: "geometry",
+  "right-triangles-and-trigonometry": "trigonometry",
+};
+
 // IB syllabus topics (subtopic on context:"ib" attempts) → attribute.
 export const IB_TOPIC_ATTRIBUTE: Record<string, AttributeKey> = {
   number_algebra: "algebra",
@@ -327,6 +360,11 @@ export const RATING_CONSTANTS = {
   // number stops meaning anything (owner decision, 2026-08-13).
   N_BANK_FORMS: 6, // distinct forms solved for full bank breadth
   N_BANK_PROBLEMS: 24, // problems solved for full bank volume
+  // The SAT bank lands on the ATTRIBUTE rather than on a unit, and an
+  // attribute spans several SAT domains, so full practice credit costs
+  // proportionally more than a single unit's worth.
+  N_PRACTICE_FORMS: 12,
+  N_PRACTICE_PROBLEMS: 48,
   // Attributes are the niche, must-be-accurate feature: a skill is only shown
   // (RATED) once there is enough evidence to grade it fairly — roughly five
   // full mock tests' worth of questions, OR one completed adaptive placement
@@ -358,6 +396,9 @@ export const RATING_CONSTANTS = {
   W_EXAM: 0.5,
   W_PLACEMENT: 0.35,
   W_COURSE: 0.15,
+  // Hub-bank practice (SAT). The smallest weight of the four, and the only
+  // stream that does not COUNT TOWARDS being rated — see computeRatings.
+  W_PRACTICE: 0.12,
   PLACEMENT_DIFF: 0.9, // a placement is adaptive/accurate but not ЭЕШ-hard:
   // a perfect placement rates ~90, leaving the top reserved for real exams.
 } as const;
@@ -449,9 +490,36 @@ export interface PlacementEvidence {
   topicScores: { slug: string; seen: number; correct: number }[];
 }
 
+/**
+ * Hub-bank evidence, keyed "<hub>/<bank unit id>" — today only "sat/…".
+ *
+ * Separate from BankEvidence because these units are exam domains, not course
+ * units: there is no rated unit to attach them to, so they aggregate onto the
+ * attribute instead. Same solved-only shape, same monotonicity.
+ */
+export type HubBankEvidence = Record<string, { solvedForms: number; solvedProblems: number }>;
+
+/**
+ * An attribute's hub-bank practice credit, 0..1 — breadth × volume, the same
+ * shape as bankCredit() but with attribute-level targets, since an attribute
+ * spans several SAT domains.
+ */
+export function practiceCredit(
+  b: { solvedForms: number; solvedProblems: number } | undefined,
+): number {
+  if (!b) return 0;
+  const C = RATING_CONSTANTS;
+  return (
+    conf(b.solvedForms, C.N_PRACTICE_FORMS) * conf(b.solvedProblems, C.N_PRACTICE_PROBLEMS)
+  );
+}
+
 export interface RatingsInput {
   attempts: RatingAttempt[];
+  /** Banks whose units ARE course units — /math and IB. */
   bank?: BankEvidence;
+  /** Banks organized by exam domain — SAT. */
+  hubBank?: HubBankEvidence;
   placements?: PlacementEvidence[];
   now: number;
 }
@@ -504,12 +572,22 @@ export interface ImprovementStep {
 // One evidence stream feeding an attribute, exposed so the UI can answer
 // "why is my number what it is?" instead of leaving the formula a black box.
 export interface EvidenceStream {
-  kind: "exam" | "placement" | "course";
-  n: number; // decayed question count (course: units touched)
-  acc: number; // 0..1 accuracy (course: mastery of touched units)
+  kind: "exam" | "placement" | "course" | "practice";
+  n: number; // decayed question count (course: units touched; practice: problems solved)
+  acc: number; // 0..1 accuracy (course: mastery of touched units; practice: credit)
   perf: number; // the 0–100 score this stream argues for, after difficulty
   conf: number; // 0..1 — how much of this stream's full weight is earned
-  weight: number; // the blend weight (W_EXAM / W_PLACEMENT / W_COURSE)
+  weight: number; // the blend weight (W_EXAM / W_PLACEMENT / W_COURSE / W_PRACTICE)
+  /**
+   * Does this stream count towards being RATED at all?
+   *
+   * False for "practice": self-paced, retryable bank work can raise the
+   * number an attribute shows, but it must never be the reason the attribute
+   * has a number. A rating is a placement signal and has to be accurate
+   * (see this file's header); practice volume is not evidence of exam
+   * ability, however much of it there is.
+   */
+  certifying: boolean;
 }
 
 export interface AttributeEvidence {
@@ -566,6 +644,23 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   const { attempts, now } = input;
   const bank = input.bank ?? {};
   const placements = input.placements ?? [];
+
+  // Hub-bank practice, folded onto attributes. A SAT bank unit is an exam
+  // domain, so it has no rated unit to strengthen — it argues about the
+  // attribute directly. Unknown unit ids are dropped rather than guessed at.
+  const practiceByAttr = new Map<AttributeKey, { solvedForms: number; solvedProblems: number }>();
+  for (const [key, v] of Object.entries(input.hubBank ?? {})) {
+    const slash = key.indexOf("/");
+    if (slash < 0) continue;
+    const hub = key.slice(0, slash);
+    const unit = key.slice(slash + 1);
+    const attr = hub === "sat" ? SAT_BANK_ATTRIBUTE[unit] : undefined;
+    if (!attr) continue;
+    const t = practiceByAttr.get(attr) ?? { solvedForms: 0, solvedProblems: 0 };
+    t.solvedForms += v.solvedForms;
+    t.solvedProblems += v.solvedProblems;
+    practiceByAttr.set(attr, t);
+  }
   const halfLifeMs = C.HALF_LIFE_DAYS * DAY_MS;
   const decay = (t: number) => Math.pow(0.5, Math.max(0, now - t) / halfLifeMs);
 
@@ -696,15 +791,17 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     attrUnits: UnitRating[],
     examAgg: ExamAgg | undefined,
     placeAgg: { seen: number; correct: number } | undefined,
-    withBank: boolean,
+    practiceAgg: { solvedForms: number; solvedProblems: number } | undefined,
+    useUnitBank: boolean,
+    usePractice: boolean,
   ) => {
     const unitsTotal = attrUnits.length;
     const hasUnitTest = attrUnits.some((u) => u.hasTest);
-    const scoreOf = (u: UnitRating) => (withBank ? u.score : u.scoreNoBank);
+    const scoreOf = (u: UnitRating) => (useUnitBank ? u.score : u.scoreNoBank);
 
     // Displayed "worked N of M units" — bank practice counts as having
     // worked a unit, because it is work.
-    const unitsTouched = attrUnits.filter((u) => (withBank ? u.touched : u.touchedNoBank)).length;
+    const unitsTouched = attrUnits.filter((u) => (useUnitBank ? u.touched : u.touchedNoBank)).length;
 
     // EVIDENCE, which is a stricter thing. The bank STRENGTHENS a unit the
     // student has studied; it does not on its own certify one. Only units
@@ -734,17 +831,40 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     const pAcc = pn > 0 ? placeAgg!.correct / pn : 0;
     const placeConf = conf(pn, C.N_PLACEMENT_FULL);
 
+    // Hub-bank practice (SAT). Breadth × volume like every other bank
+    // credit, just aggregated over the attribute's exam domains.
+    const practice = usePractice ? practiceCredit(practiceAgg) : 0;
+
     const streams: EvidenceStream[] = [];
     if (en > 0)
-      streams.push({ kind: "exam", n: en, acc: ea, perf: 100 * ea * eD, conf: examConf, weight: C.W_EXAM });
+      streams.push({ kind: "exam", n: en, acc: ea, perf: 100 * ea * eD, conf: examConf, weight: C.W_EXAM, certifying: true });
     if (pn > 0)
-      streams.push({ kind: "placement", n: pn, acc: pAcc, perf: 100 * pAcc * C.PLACEMENT_DIFF, conf: placeConf, weight: C.W_PLACEMENT });
+      streams.push({ kind: "placement", n: pn, acc: pAcc, perf: 100 * pAcc * C.PLACEMENT_DIFF, conf: placeConf, weight: C.W_PLACEMENT, certifying: true });
     if (streamUnits.length > 0)
-      streams.push({ kind: "course", n: streamUnits.length, acc: courseMastery, perf: C.RATING_FLOOR + RANGE * courseMastery, conf: courseConf, weight: C.W_COURSE });
+      streams.push({ kind: "course", n: streamUnits.length, acc: courseMastery, perf: C.RATING_FLOOR + RANGE * courseMastery, conf: courseConf, weight: C.W_COURSE, certifying: true });
+    if (practice > 0)
+      streams.push({
+        kind: "practice",
+        n: practiceAgg!.solvedProblems,
+        acc: practice,
+        // Capped at the same ceiling a UNIT gets when it has no test behind
+        // it: practice without a test tops out in Developing. Uncapped, full
+        // bank credit would argue for a 100, which is not something
+        // self-paced retryable drilling can establish however much of it
+        // there is.
+        perf: Math.min(C.RATING_FLOOR + RANGE * practice, C.CAP_NO_UNIT_TEST),
+        conf: practice,
+        weight: C.W_PRACTICE,
+        certifying: false,
+      });
 
     const ewTot = streams.reduce((s, x) => s + x.conf * x.weight, 0);
     const perf = ewTot > 0 ? streams.reduce((s, x) => s + x.perf * x.conf * x.weight, 0) / ewTot : C.RATING_FLOOR;
-    const combinedConf = 1 - streams.reduce((prod, x) => prod * (1 - x.conf), 1);
+    // Only CERTIFYING streams settle a rating. With practice alone this is 0,
+    // so the score stays at the floor and the attribute stays "—" no matter
+    // how many SAT bank problems have been ground out.
+    const combinedConf =
+      1 - streams.filter((x) => x.certifying).reduce((prod, x) => prod * (1 - x.conf), 1);
     let score = C.RATING_FLOOR + (perf - C.RATING_FLOOR) * combinedConf;
     // Pure course work (no test of any kind) caps below Near-mastery.
     const courseOnly = en === 0 && pn === 0 && streamUnits.length > 0;
@@ -753,7 +873,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     score = Math.max(C.RATING_FLOOR, Math.min(100, score));
     return {
       score,
-      rated: streams.length > 0 && combinedConf >= C.RATED_CONF,
+      rated: streams.some((x) => x.certifying) && combinedConf >= C.RATED_CONF,
       combinedConf,
       unitsTotal,
       unitsTouched,
@@ -787,12 +907,23 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     attrUnits: UnitRating[],
     examAgg: ExamAgg | undefined,
     placeAgg: { seen: number; correct: number } | undefined,
+    practiceAgg?: { solvedForms: number; solvedProblems: number },
   ) => {
-    const withBank = scoreAttrOneWay(attrUnits, examAgg, placeAgg, true);
-    const anyBank = attrUnits.some((u) => u.bankCredit > 0);
-    if (!anyBank) return withBank;
-    const noBank = scoreAttrOneWay(attrUnits, examAgg, placeAgg, false);
-    return withBank.score >= noBank.score ? withBank : noBank;
+    const hasUnitBank = attrUnits.some((u) => u.bankCredit > 0);
+    const hasPractice = practiceCredit(practiceAgg) > 0;
+    const full = scoreAttrOneWay(attrUnits, examAgg, placeAgg, practiceAgg, true, true);
+    if (!hasUnitBank && !hasPractice) return full;
+
+    // The two bank sources are weighed INDEPENDENTLY, not as one lump.
+    // Practice is blended into `perf`, so it can argue for a lower number
+    // than a student's other evidence already supports (a strong exam record
+    // plus modest SAT drilling). Taking the best of "no bank at all", "unit
+    // credit only" and "both" means unhelpful practice shows up as no change
+    // instead of cancelling out unit credit that WAS helping.
+    const candidates = [full];
+    if (hasPractice) candidates.push(scoreAttrOneWay(attrUnits, examAgg, placeAgg, undefined, true, false));
+    if (hasUnitBank) candidates.push(scoreAttrOneWay(attrUnits, examAgg, placeAgg, undefined, false, false));
+    return candidates.reduce((best, x) => (x.score > best.score ? x : best));
   };
 
   // The attribute's primary course placement — the accurate way to get rated.
@@ -815,6 +946,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     attrUnits: UnitRating[],
     examAgg: ExamAgg | undefined,
     placeAgg: { seen: number; correct: number } | undefined,
+    practiceAgg: { solvedForms: number; solvedProblems: number } | undefined,
     current: number,
     rated: boolean,
     provisional: boolean,
@@ -847,7 +979,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
             }
           : x,
       );
-      const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg).score);
+      const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg, practiceAgg).score);
       const delta = proj - current;
       if (delta >= 1) {
         const titleEn = COURSE_TITLES_EN[rungCtx] ?? rungCtx;
@@ -876,7 +1008,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
           correct: examAgg.correct + add * 0.9,
           diffWeight: examAgg.diffWeight + add * 1.0,
         };
-        const proj = Math.round(scoreAttr(attrUnits, boosted, placeAgg).score);
+        const proj = Math.round(scoreAttr(attrUnits, boosted, placeAgg, practiceAgg).score);
         const delta = proj - current;
         if (delta >= 1) {
           const harder = eDiff < 0.95; // SAT-heavy evidence → point at the hard pair
@@ -916,7 +1048,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
             }
           : x,
       );
-      const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg).score);
+      const proj = Math.round(scoreAttr(simUnits, examAgg, placeAgg, practiceAgg).score);
       const delta = proj - current;
       if (delta < 1) continue;
       const base = contextHref(u.context) ?? "/math";
@@ -938,7 +1070,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
         correct: C.N_EXAM_FULL * 0.9,
         diffWeight: C.N_EXAM_FULL * 1.0,
       };
-      const proj = Math.round(scoreAttr(attrUnits, mock, placeAgg).score);
+      const proj = Math.round(scoreAttr(attrUnits, mock, placeAgg, practiceAgg).score);
       const delta = proj - current;
       if (delta >= 1) {
         steps.push({
@@ -966,7 +1098,8 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
     const mine = units.filter((u) => u.attribute === info.key);
     const examAgg = examByAttr.get(info.key);
     const placeAgg = placementByAttr.get(info.key);
-    const r = scoreAttr(mine, examAgg, placeAgg);
+    const practiceAgg = practiceByAttr.get(info.key);
+    const r = scoreAttr(mine, examAgg, placeAgg, practiceAgg);
     const rounded = Math.round(r.score);
     const provisional = r.rated && r.combinedConf < C.PROVISIONAL_CONF;
     return {
@@ -982,7 +1115,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       examN: r.examN,
       hasUnitTest: r.hasUnitTest,
       evidence: r.evidence,
-      improvements: improvementsFor(info.key, mine, examAgg, placeAgg, rounded, r.rated, provisional),
+      improvements: improvementsFor(info.key, mine, examAgg, placeAgg, practiceAgg, rounded, r.rated, provisional),
     };
   });
 
