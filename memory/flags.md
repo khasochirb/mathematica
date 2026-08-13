@@ -100,6 +100,16 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-13** — Probe after deploy `b113b96` (the ministry-strand gate:
+  each ЭЕШ course's main topic is now checked against the strand А/492
+  assigns its sections, with the three deliberate exceptions named in the
+  test; plus the previous deploy's flag-log entry): `anthropic_api_key:
+  configured`, `migration_009: applied`, `migration_008_student_profiles:
+  unknown` (FLAG-002 unchanged — read that flag's "Reading a non-`applied`
+  result" row before acting). FLAG-003 still optional/unset. Test- and
+  docs-only diff: no user-visible surface, no migrations, no auth or API
+  touched, nothing depended on either open flag; prod runtime errors clean
+  over the 2h window.
 - **2026-08-12** — Probe after deploy `a039c21` (the public ЭЕШ Study by
   Topic page rebuilt on the five-main-topic structure with measured exam
   weights; /practice hub grid grouped the same way): `anthropic_api_key:
