@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import BankGate from "@/components/bank/BankGate";
 import BankRunner from "@/components/bank/BankRunner";
 import { IB_BANK_CHROME } from "@/components/bank/bank-chrome";
 import { getIbBankTopic, type IbBankTier } from "@/lib/bank-data";
@@ -24,5 +25,9 @@ export default function IbBankUnitPracticePage({ params }: { params: { tier: str
   const topic = getIbBankTopic(tier);
   const unit = getBankUnit(topic, params.unit);
   if (!unit) notFound();
-  return <BankRunner topic={topic} unit={unit} chrome={IB_BANK_CHROME[tier]} />;
+  return (
+    <BankGate topic={topic} unitId={unit.id} backHref={IB_BANK_CHROME[tier].topicBase}>
+      <BankRunner topic={topic} unit={unit} chrome={IB_BANK_CHROME[tier]} />
+    </BankGate>
+  );
 }

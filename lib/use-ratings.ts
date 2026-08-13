@@ -12,11 +12,12 @@ import { useAuth } from "./auth-context";
 // units, and this hook runs on every dashboard/catalog render — importing
 // lib/bank-data here would put ~9 MB back into the shared client chunk.
 import { loadBankProgress } from "./problem-bank";
-import { courseLadderManifest } from "./bank-manifest";
+import { bankManifest, type BankTopicMeta } from "./bank-manifest";
 import { loadPlacement } from "./placement-result";
 import {
   computeRatings,
   type BankEvidence,
+  type HubBankEvidence,
   type PlacementEvidence,
   type RatingsProfile,
 } from "./ratings";
@@ -53,23 +54,50 @@ export default function useRatings(): {
 
   // localStorage sources load after mount so server and client renders match.
   const [bank, setBank] = useState<BankEvidence>({});
+  const [hubBank, setHubBank] = useState<HubBankEvidence>({});
   const [placements, setPlacements] = useState<PlacementEvidence[]>([]);
 
   useEffect(() => {
+    // SOLVED work only — a form the student attempted but never got right
+    // contributes nothing rather than counting against them (lib/ratings
+    // BankEvidence). Both tallies only ever grow.
+    //
+    // Two destinations, decided by whether a bank's units ARE course units:
+    //   • the /math ladder and the IB tiers mirror real course units, so
+    //     their work lands on those units precisely (`bank`);
+    //   • the SAT bank is organized by exam domain with no unit to attach
+    //     to, so it lands on the attribute as practice (`hubBank`).
     const evidence: BankEvidence = {};
-    for (const topic of courseLadderManifest()) {
+    const hub: HubBankEvidence = {};
+
+    const collect = (topic: BankTopicMeta, keyFor: (unit: string) => string, into: BankEvidence) => {
       const progress = loadBankProgress(topic.slug, userId);
       for (const form of topic.forms) {
         const p = progress.forms[form.id];
-        if (!p || p.attempts <= 0) continue;
-        const key = `course:${topic.slug}/${form.unit}`;
-        const e = evidence[key] ?? { mastered: 0, attempted: 0 };
-        e.attempted++;
-        if (p.mastered) e.mastered++;
-        evidence[key] = e;
+        if (!p || p.correct <= 0) continue;
+        const key = keyFor(form.unit);
+        const e = into[key] ?? { solvedForms: 0, solvedProblems: 0 };
+        e.solvedForms++;
+        e.solvedProblems += p.correct;
+        into[key] = e;
+      }
+    };
+
+    for (const topic of bankManifest()) {
+      if (topic.courseLadder) {
+        // Bank slug === /math course segment.
+        collect(topic, (unit) => `course:${topic.slug}/${unit}`, evidence);
+      } else if (topic.slug === "ib-sl" || topic.slug === "ib-hl") {
+        // The IB banks' unit ids equal their course's unit slugs, so their
+        // work counts exactly like course-ladder bank work.
+        collect(topic, (unit) => `course:${topic.slug}/${unit}`, evidence);
+      } else if (topic.slug === "sat") {
+        collect(topic, (unit) => `sat/${unit}`, hub);
       }
     }
+
     setBank(evidence);
+    setHubBank(hub);
 
     setPlacements(
       RATING_PLACEMENT_NAMESPACES.flatMap((ns) => {
@@ -95,10 +123,11 @@ export default function useRatings(): {
       computeRatings({
         attempts: perf.attempts,
         bank,
+        hubBank,
         placements,
         now: Date.now(),
       }),
-    [perf.attempts, bank, placements],
+    [perf.attempts, bank, hubBank, placements],
   );
 
   return { profile, status: perf.status };

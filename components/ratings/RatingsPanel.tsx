@@ -15,6 +15,7 @@ import {
   UNRATED_LABEL,
   type AttributeRating,
   type Band,
+  type EvidenceStream,
   type RatingsProfile,
 } from "@/lib/ratings";
 import { useLang } from "@/lib/lang-context";
@@ -41,6 +42,12 @@ const i18n = {
   evExam: { en: "Mock exams", mn: "Бүтэн шалгалтууд" },
   evPlacement: { en: "Placement test", mn: "Түвшин тогтоох тест" },
   evCourse: { en: "Course work", mn: "Хичээлийн ажил" },
+  evPractice: { en: "Bank practice", mn: "Бодлогын сангийн дасгал" },
+  evCredit: { en: "credit", mn: "оноо" },
+  evPracticeNote: {
+    en: "Bank practice can raise this number but never settles it — a test or a placement does that.",
+    mn: "Бодлогын сангийн дасгал энэ оноог өсгөж чадна ч тогтоохгүй — үүнийг тест эсвэл түвшин тогтоох шалгалт хийнэ.",
+  },
   questions: { en: "questions", mn: "асуулт" },
   accuracy: { en: "accuracy", mn: "оновчтой" },
   arguesFor: { en: "argues", mn: "заана" },
@@ -174,8 +181,16 @@ function AttributeExplainer({ a, L }: { a: AttributeRating; L: "en" | "mn" }) {
   const hasPlacement = ev.streams.some((s) => s.kind === "placement");
   const gainSteps = a.improvements.filter((s) => (s.delta ?? 0) > 0).slice(0, 3);
 
-  const streamLabel = (kind: "exam" | "placement" | "course") =>
-    kind === "exam" ? t("evExam") : kind === "placement" ? t("evPlacement") : t("evCourse");
+  const hasPractice = ev.streams.some((s) => s.kind === "practice");
+
+  const streamLabel = (kind: EvidenceStream["kind"]) =>
+    kind === "exam"
+      ? t("evExam")
+      : kind === "placement"
+        ? t("evPlacement")
+        : kind === "practice"
+          ? t("evPractice")
+          : t("evCourse");
 
   return (
     <div
@@ -193,7 +208,9 @@ function AttributeExplainer({ a, L }: { a: AttributeRating; L: "en" | "mn" }) {
               {" — "}
               {s.kind === "course"
                 ? `${a.unitsTouched}/${a.unitsTotal} ${i18n.units[L]}`
-                : `${pct(s.acc)}% ${t("accuracy")} · ~${Math.round(s.n)} ${t("questions")}`}
+                : s.kind === "practice"
+                  ? `${Math.round(s.n)} ${t("questions")} · ${pct(s.acc)}% ${t("evCredit")}`
+                  : `${pct(s.acc)}% ${t("accuracy")} · ~${Math.round(s.n)} ${t("questions")}`}
             </span>
             <span className="mono tabular text-[11px] shrink-0" style={{ color: "var(--fg-3)" }}>
               {t("arguesFor")} {Math.round(s.perf)}/100

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import BankBrowser from "@/components/bank/BankBrowser";
+import BankGate from "@/components/bank/BankGate";
 import { getBankTopic, getBankTopics } from "@/lib/bank-data";
 import { getBankUnit } from "@/lib/problem-bank";
-import ContentGate from "@/components/genmath/ContentGate";
 
 export function generateStaticParams() {
   return getBankTopics().flatMap((t) =>
@@ -29,13 +29,8 @@ export default function BankUnitPage({ params }: { params: { topic: string; unit
   const unit = getBankUnit(topic, params.unit);
   if (!unit) notFound();
   return (
-    <ContentGate
-      courseKey={params.topic}
-      topicSlug={params.unit}
-      backHref={`/math/problem-bank/${params.topic}`}
-      backLabel="Back to the bank"
-    >
+    <BankGate topic={topic} unitId={unit.id} backHref={`/math/problem-bank/${params.topic}`}>
       <BankBrowser topic={topic} unit={unit} />
-    </ContentGate>
+    </BankGate>
   );
 }

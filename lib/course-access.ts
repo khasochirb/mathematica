@@ -159,14 +159,30 @@ export function isExamFree(examId: string): boolean {
 }
 
 /**
- * Is this problem-bank unit readable without Premium? The bank mirrors the
- * course units, so it follows the same rule — otherwise a locked topic's
- * practice would be free through the bank's back door.
+ * Is this problem-bank unit readable without Premium? The bank is Premium
+ * material like the rest of the course content, with the same single free
+ * sample per subject — otherwise a locked topic's practice would be free
+ * through the bank's back door.
+ *
+ * Two kinds of bank, one rule ("the first unit is the sample"):
+ *   - COURSE-LADDER banks ("5", "algebra-1", "ib-sl") mirror a course, so
+ *     freeness is read off that course's spine and the bank can never drift
+ *     open relative to the course it shadows.
+ *   - HUB-OWNED banks ("sat") have no course spine to mirror. Pass the
+ *     topic's unit ids as `unitOrder` and the FIRST one is the sample.
+ *
+ * Omitting `unitOrder` for a hub-owned bank fails CLOSED (everything
+ * locked), so a new bank wired up without it can never leak.
  */
-export function isBankUnitFree(bankSlug: string, unitId: string): boolean {
-  // Bank slugs mirror course keys ("5", "integrated-3", "algebra-1"); hub
-  // banks (sat, ib-sl, ib-hl) key straight through too.
-  return isTopicFree(bankSlug, unitId);
+export function isBankUnitFree(
+  bankSlug: string,
+  unitId: string,
+  unitOrder?: readonly string[],
+): boolean {
+  const courseFree = freeTopicSlug(bankSlug);
+  if (courseFree !== null) return courseFree === unitId;
+  if (unitOrder && unitOrder.length > 0) return unitOrder[0] === unitId;
+  return false;
 }
 
 /**

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Lock } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
+import { useUpgradeModal, type UpgradeSource } from "@/lib/upgrade-modal-context";
 import { useLang } from "@/lib/lang-context";
 import { isTopicFree } from "@/lib/course-access";
 
@@ -24,6 +24,8 @@ export default function TopicLink({
   children,
   onMouseEnter,
   onMouseLeave,
+  free,
+  upgradeSource = "course_topic_lock",
 }: {
   courseKey: string;
   topicSlug: string;
@@ -36,13 +38,21 @@ export default function TopicLink({
   // through to the topic.
   onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLAnchorElement>;
+  /**
+   * Precomputed freeness, for catalogs whose policy is not the plain course
+   * lookup — the problem bank's hub-owned banks (SAT) have no course spine
+   * to read. Omit it and the course policy decides, as before.
+   */
+  free?: boolean;
+  /** Which locked catalog this is, for upgrade analytics. */
+  upgradeSource?: UpgradeSource;
 }) {
   const { isSubscribed } = useAuth();
   const { open: openUpgrade } = useUpgradeModal();
   const { lang } = useLang();
   const mn = lang === "mn";
 
-  const locked = !isSubscribed && !isTopicFree(courseKey, topicSlug);
+  const locked = !isSubscribed && !(free ?? isTopicFree(courseKey, topicSlug));
 
   if (!locked) {
     return (
@@ -79,7 +89,7 @@ export default function TopicLink({
       </span>
       <button
         type="button"
-        onClick={() => openUpgrade({ source: "course_topic_lock" })}
+        onClick={() => openUpgrade({ source: upgradeSource })}
         className={`${className ?? ""} w-full text-left`}
         style={{ ...style, opacity: 0.55, cursor: "pointer" }}
         aria-label={`${mn ? "Премиум эрхээр нээнэ" : "Unlock with Premium"}`}
