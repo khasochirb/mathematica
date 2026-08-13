@@ -24,7 +24,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, withfig,  # noqa: E402
+                     fig_barchart, fig_groups, fig_numline,
+                     funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic)
 
 
@@ -112,11 +114,11 @@ def lesson_adding():
              "check": ["Eq(618 + 382, 1000)", "Eq(618 + 254 + 382, 1254)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The carry is a trade", [
+            withfig(teach("Concept A", "The carry is a trade", [
                 "Column addition adds place by place, starting from the ones — the place-value ladder doing bookkeeping.",
                 "When a column passes $9$, you cannot write two digits in one place. TRADE ten of it for one of the next place: $6 + 7 = 13$ → write $3$, carry $1$.",
                 "The carry is not a rule to memorise — it is ten ones becoming one ten, the Topic 1 trade in action.",
-            ]),
+            ]), fig_groups((10, "10 ones become...", C_WARM), (1, "...1 ten", C_ACCENT))),
             workedset("Carries in action",
                       "Ones first; trade every overflow upward.", [
                 wex("Add $4\\,586 + 2\\,747$.",
@@ -151,11 +153,11 @@ def lesson_adding():
                  ["Eq(8 + 5, 13)", "Eq(13, 10 + 3)"]),
             funfact("The abacus carries the same way",
                     "On a Mongolian abacus (самбар тоолуур), when a rod fills past nine you clear it and push one bead on the next rod — a physical carry. The written algorithm is the abacus move in pencil form; both are the ten-for-one trade."),
-            teach("Concept B", "Three numbers? Choose your order", [
+            withfig(teach("Concept B", "Three numbers? Choose your order", [
                 "Addition doesn't care about order or grouping — so with several numbers, YOU choose the friendliest path.",
                 "$618 + 254 + 382$: spot the pair that makes a round number — $618 + 382 = 1\\,000$ — then $1\\,000 + 254 = 1\\,254$.",
                 "Hunting for pairs that make tens, hundreds or thousands turns long sums into short ones.",
-            ]),
+            ]), fig_groups((7, "7", C_ACCENT), (3, "3 — pairs to 10", C_WARM), (8, "8", C_GREEN))),
             workedset("Friendly pairs first",
                       "Reorder to build round numbers, then finish.", [
                 wex("Compute $618 + 254 + 382$.",
@@ -312,11 +314,11 @@ def lesson_subtracting():
                        "Eq(3616 + 2384, 6000)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Borrowing is the carry, backwards", [
+            withfig(teach("Concept A", "Borrowing is the carry, backwards", [
                 "When a column's top digit is too small — $2 - 8$ won't go — BREAK one of the next place into ten of this one.",
                 "$52 - 38$: break a ten. The $5$ tens become $4$, the $2$ ones become $12$: now $12 - 8 = 4$ and $4 - 3 = 1$. Answer $14$.",
                 "It is exactly the addition carry run in reverse: there you traded ten-for-one going up; here one breaks into ten coming down.",
-            ]),
+            ]), fig_groups((1, "1 ten breaks into...", C_ACCENT), (10, "...10 ones", C_WARM))),
             workedset("Breaks in action",
                       "Mark every break — the lender shrinks by one.", [
                 wex("Subtract $8\\,254 - 3\\,478$.",
@@ -351,11 +353,11 @@ def lesson_subtracting():
                  ["Eq(63 - 47, 16)", "Eq(24 + 47, 71)", "Ne(71, 63)"]),
             funfact("Cashiers subtract by adding",
                     "Old-school market change-making runs subtraction as addition: for a $6\\,350$ tögrög purchase paid with $10\\,000$, the seller counts UP — \"$6\\,350$, $6\\,400$ ($50$), $7\\,000$ ($600$), $10\\,000$ ($3\\,000$)\" — handing you $3\\,650$. Adding up IS subtraction; next lesson makes it a strategy."),
-            teach("Concept B", "Zeros, and the receipt", [
+            withfig(teach("Concept B", "Zeros, and the receipt", [
                 "Subtracting from a number full of zeros — $5\\,003 - 1\\,647$ — sends the break TRAVELLING: the thousand breaks into ten hundreds, one hundred into ten tens, one ten into ten ones.",
                 "After the travelling break, $5\\,003$ reads as $4$ thousands, $9$ hundreds, $9$ tens, $13$ ones — and the subtraction runs smoothly.",
                 "Always collect the receipt: answer $+$ subtracted $=$ original. $3\\,356 + 1\\,647 = 5\\,003$ — if the receipt fails, the subtraction was wrong.",
-            ]),
+            ]), fig_groups((3, "3 zeros to cross", C_NEUTRAL), (10, "each becomes 10", C_WARM))),
             workedset("Across the zeros",
                       "Let the break travel, then subtract column by column.", [
                 wex("Subtract $5\\,003 - 1\\,647$.",
@@ -512,11 +514,11 @@ def lesson_mental():
              "check": ["Eq(47 + 53, 100)", "Eq(47 + 38 + 53, 138)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Compensation — borrow a round number", [
+            withfig(teach("Concept A", "Compensation — borrow a round number", [
                 "Round numbers are easy numbers. Compensation trades your problem for a round one, then repays: $499 + 276 \\to 500 + 276 = 776$, repay $1$: $775$.",
                 "The repay direction follows the trade: rounded UP means you added too much — subtract it back. Rounded the subtracted number up? You took too much — add it back.",
                 "$3\\,000 - 1\\,998$: round $1\\,998 \\to 2\\,000$, get $1\\,000$, repay the extra $2$ you took: $1\\,002$.",
-            ]),
+            ]), fig_numline([(0, "start"), (998, "998"), (1000, "round up"), (1002, "give back 2")], lo=0, hi=1100)),
             workedset("Round, compute, repay",
                       "Say the repay out loud — direction is everything.", [
                 wex("Compute $499 + 276$.",
@@ -550,11 +552,11 @@ def lesson_mental():
                  ["Eq(825 - 500, 325)", "Eq(825 - 498, 327)"]),
             funfact("The 99-price trick",
                     "Shops price things at $1\\,990$ or $9\\,900$ partly because the leading digit reads small. Mental compensators are immune: you instantly see $1\\,990$ as \"$2\\,000$ minus $10$\" — and the till total stops being a surprise."),
-            teach("Concept B", "Making tens, and counting up", [
+            withfig(teach("Concept B", "Making tens, and counting up", [
                 "**Make a ten:** split one addend to complete the other. $47 + 38$: move $3$ across — $50 + 35 = 85$. Nothing was rounded, so nothing to repay.",
                 "**Count up** turns subtraction into a journey: $1\\,000 - 674$ climbs $674 \\to 700$ ($+26$) $\\to 1\\,000$ ($+300$): difference $326$. Two easy hops instead of three borrows.",
                 "Choose by the numbers: near a round number → compensate; digits that complete each other → make tens; subtracting from a round number → count up.",
-            ]),
+            ]), fig_numline([(47, "47"), (50, "+3 to 50"), (80, "+30 to 80")], lo=40, hi=90)),
             workedset("Two more tools",
                       "Split to complete; climb to compare.", [
                 wex("Compute $47 + 38$ by making a ten.",
@@ -705,11 +707,11 @@ def lesson_families():
              "check": ["Eq(5000 - 2340, 2660)", "Eq(2340 + 2660, 5000)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "One relationship, four facts", [
+            withfig(teach("Concept A", "One relationship, four facts", [
                 "Three numbers where two parts build a whole — $456$, $789$, $1\\,245$ — make a FACT FAMILY: two additions and two subtractions, all saying the same thing.",
                 "$456 + 789 = 1\\,245$, $789 + 456 = 1\\,245$, $1\\,245 - 456 = 789$, $1\\,245 - 789 = 456$.",
                 "This is why addition CHECKS subtraction (last lesson's receipt): they are the same relationship read in opposite directions.",
-            ]),
+            ]), fig_groups((8, "part", C_ACCENT), (5, "part", C_WARM), (13, "whole", C_GREEN))),
             workedset("Families at work",
                       "The whole ends the additions and leads the subtractions.", [
                 wex("Check $7\\,254 - 3\\,867 = 3\\,387$ via the family.",
@@ -745,11 +747,11 @@ def lesson_families():
                  ["Eq(1647 + 3356, 5003)"]),
             funfact("Algebra is impatient fact families",
                     "In a few grades you'll write x − 456 = 789 and \"add 456 to both sides\". That's exactly today's move — the unknown is the whole, rebuild it by adding — wearing algebra's clothes. You're doing algebra already; it just doesn't have letters yet."),
-            teach("Concept B", "Whole or part? Then solve", [
+            withfig(teach("Concept B", "Whole or part? Then solve", [
                 "Every missing-number equation asks ONE question: is the box the WHOLE or a PART?",
                 "$\\square - 456 = 789$: the box had $456$ removed and $789$ remains — the box is the whole. Rebuild: $789 + 456 = 1\\,245$.",
                 "$350 + \\square = 1\\,000$: the box is a part of $1\\,000$. Take the other part away: $1\\,000 - 350 = 650$. Name the unknown; the operation follows.",
-            ]),
+            ]), fig_groups((12, "known part", C_ACCENT), (0, "unknown part", C_NEUTRAL), (20, "whole", C_GREEN))),
             workedset("Solve for the box",
                       "Name whole-or-part BEFORE choosing the operation.", [
                 wex("Solve $\\square - 456 = 789$.",
@@ -912,11 +914,11 @@ def lesson_word_problems():
              "check": ["Eq(4320 - 3485, 835)", "Eq(835 + 3485, 4320)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "One event, one operation", [
+            withfig(teach("Concept A", "One event, one operation", [
                 "A multi-step story is single steps in a queue. Read it and LIST the events in order: gained → $+$, lost → $-$.",
                 "Then compute a RUNNING TOTAL, one event at a time: till $12\\,450$, $+3\\,780 \\to 16\\,230$, $+4\\,265 \\to 20\\,495$, $-8\\,900 \\to 11\\,595$.",
                 "Never juggle two steps at once — the queue exists so each move is easy.",
-            ]),
+            ]), fig_numline([(0, "start"), (35, "+35"), (60, "-25")], lo=0, hi=80)),
             workedset("Running totals",
                       "Sign the events first; then it's just arithmetic.", [
                 wex("Till $12\\,450$; takings $3\\,780$ and $4\\,265$; a bill of $8\\,900$ paid. Final till?",
@@ -954,11 +956,11 @@ def lesson_word_problems():
                   "Eq(12450 - 8045, 4405)"]),
             funfact("Accountants call it a ledger",
                     "A business's account book is exactly your running total: every gain and loss on its own line, the balance recomputed after each. Five-hundred-year-old Venetian bookkeeping and your word-problem method are the same technology."),
-            teach("Concept B", "Comparisons, and the estimate guardrail", [
+            withfig(teach("Concept B", "Comparisons, and the estimate guardrail", [
                 "\"How many MORE\", \"how much LESS\", \"what's LEFT\" — comparison words always ask for a DIFFERENCE: larger minus smaller.",
                 "Two schools collect $4\\,320$ and $3\\,485$ kg: \"how much more\" $= 4\\,320 - 3\\,485 = 835$ kg.",
                 "Guardrail every answer with an estimate: run the SAME event queue on rounded numbers. Exact and rough must land together — if not, hunt the dropped step.",
-            ]),
+            ]), fig_barchart([("estimate", 40, C_NEUTRAL), ("exact", 38, C_ACCENT)], step=10)),
             workedset("Compare and check",
                       "Differences for comparisons; estimates as guardrails.", [
                 wex("Schools collect $4\\,320$ kg and $3\\,485$ kg. How much more did the first gather?",

@@ -101,7 +101,28 @@
               "Millimetres for a coin's thickness, centimetres for a pencil, metres for a ger, kilometres for a road — units are tools sized to jobs.",
               "The ladder: $1$ cm $= 10$ mm, $1$ m $= 100$ cm, $1$ km $= 1\\,000$ m — every rung a power of ten.",
               "DOWN the ladder multiplies: the same length re-counted in smaller units needs more of them. $3$ m $= 300$ cm; and $3$ m $45$ cm unfolds to $345$ cm."
-            ]
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0 cm"
+                  },
+                  {
+                    "value": 100,
+                    "label": "1 m = 100 cm"
+                  },
+                  {
+                    "value": 345,
+                    "label": "3 m 45 cm"
+                  }
+                ],
+                "min": 0,
+                "max": 400
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -210,7 +231,24 @@
               "UP the ladder divides — bigger units, fewer of them: $2\\,500$ m $= 2.5$ km, or $2$ km $500$ m.",
               "The decimals topic pays off here: $\\div 1\\,000$ walks the digits three steps — $460$ cm $= 4.6$ m.",
               "Which form to use is a communication choice: the carpenter's $345$ cm, the runner's $2.5$ km — same lengths, different audiences."
-            ]
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0"
+                  },
+                  {
+                    "value": 1000,
+                    "label": "1 km = 1000 m"
+                  }
+                ],
+                "min": 0,
+                "max": 1000
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -508,7 +546,22 @@
               "Mass climbs by thousands: $1$ kg $= 1\\,000$ g, $1$ tonne $= 1\\,000$ kg. A tea packet is grams, a flour sack kilograms, a loaded truck tonnes.",
               "Mixed forms unfold as with length: $2$ kg $350$ g $= 2\\,350$ g; and the staircase renames upward: $2\\,350$ g $= 2.35$ kg.",
               "Same design as metres — only the factors changed. Say the rung (\"kg to g, times a thousand\") and the length habits transfer whole."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "1 kg"
+                },
+                {
+                  "count": 10,
+                  "color": "#d97706",
+                  "label": "= 1000 g"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -619,7 +672,22 @@
               "Capacity — how much a container holds — runs one rung: $1$ L $= 1\\,000$ ml. A cup is $250$ ml; a kettle, $1.7$ L.",
               "How-many-fit questions are divisions in disguise: a $2$ L jug into $250$ ml cups — convert first ($2\\,000$ ml), then divide: $8$ cups.",
               "Leftovers behave like Topic 3: $1\\,500 \\div 200 = 7$ r $100$ — seven full glasses and $100$ ml left, receipt and all."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "4 full jugs"
+                },
+                {
+                  "count": 1,
+                  "color": "#d97706",
+                  "label": "100 ml left"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -917,7 +985,15 @@
               "Time's rungs: $60$ s to the minute, $60$ min to the hour, $24$ h to the day, $7$ days to the week. Not a ten in sight.",
               "Down the ladder still multiplies — by the RUNG'S factor: $2$ h $15$ min $= 2 \\times 60 + 15 = 135$ min.",
               "Up the ladder is division with remainders: $200$ s $= 3$ min $20$ s ($200 \\div 60 = 3$ r $20$) — and the remainder must stay under sixty."
-            ]
+            ],
+            "figure": {
+              "mode": "clockFace",
+              "clockFace": {
+                "hour": 1,
+                "minute": 0,
+                "label": "60 minutes = 1 hour"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1030,7 +1106,15 @@
               "An hour splits like any whole: half $= 30$ min, a quarter $= 15$, three-quarters $= 45$ — the fraction multiplies SIXTY.",
               "The decimal trap: $1.5$ h is $1$ h $+ 0.5 \\times 60 = 90$ min. The $\\times 100$ reflex says $150$ — and lies.",
               "Mixed hours convert the same way: $2\\frac{1}{4}$ h $= 120 + 15 = 135$ min. Fractions of a minute too: $\\frac{1}{2}$ min $= 30$ s."
-            ]
+            ],
+            "figure": {
+              "mode": "clockFace",
+              "clockFace": {
+                "hour": 3,
+                "minute": 30,
+                "label": "half past 3 = 30 min"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1329,7 +1413,20 @@
               "Elapsed time is a journey between clock readings — and the fastest route climbs through the ROUND HOURS.",
               "$9{:}45 \\to 11{:}20$: fifteen to the hour, sixty across, twenty beyond — $95$ min $= 1$ h $35$.",
               "Column subtraction on clock faces invites a base-ten borrow into a base-sixty world; the climb never breaks an hour wrong."
-            ]
+            ],
+            "figure": {
+              "mode": "clockFace",
+              "clockFace": {
+                "hour": 7,
+                "minute": 50,
+                "until": {
+                  "hour": 9,
+                  "minute": 15
+                },
+                "label": "7:50 start",
+                "untilLabel": "9:15 finish"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1443,7 +1540,20 @@
               "Start $+$ duration: add hours first, then minutes — and minutes past sixty trade UP: $8{:}40 + 1$ h $50$ → $9{:}40$, then $40 + 50 = 90 = 60 + 30$ → $10{:}30$.",
               "Backwards works too: to arrive at $11{:}00$ after a $35$-min walk, leave by $10{:}25$.",
               "A timetable is rows of this arithmetic: departure, duration, arrival — one of them always missing, the other two rebuilding it."
-            ]
+            ],
+            "figure": {
+              "mode": "clockFace",
+              "clockFace": {
+                "hour": 10,
+                "minute": 20,
+                "until": {
+                  "hour": 11,
+                  "minute": 5
+                },
+                "label": "depart 10:20",
+                "untilLabel": "arrive 11:05"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1747,7 +1857,28 @@
               "Before ANY arithmetic, ask: do all my numbers speak the same unit? $1.2$ m $+ 45$ cm — not yet. Convert: $120 + 45 = 165$ cm.",
               "Either direction works ($1.20 + 0.45 = 1.65$ m) — the sin is mixing, not the choice of unit.",
               "After conversion it's old arithmetic: event queues, receipts, remainders — Topics 2 and 3 wearing unit names."
-            ]
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "0 cm"
+                  },
+                  {
+                    "value": 250,
+                    "label": "2.5 m"
+                  },
+                  {
+                    "value": 400,
+                    "label": "4 m"
+                  }
+                ],
+                "min": 0,
+                "max": 400
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1859,7 +1990,26 @@
               "Real problems chain steps: convert, run the event queue, then CLIMB BACK to a sensible unit. Three parcels of $1$ kg $200$ g: $3 \\times 1\\,200 = 3\\,600$ g — reported as $3.6$ kg.",
               "Division joins in: a $3$ m ribbon into $40$ cm pieces — $300 \\div 40 = 7$ r $20$: seven pieces, $20$ cm left.",
               "The guardrail travels too: estimate in round units ($3$ parcels ≈ $1$ kg each ≈ $3.6$... about $3$–$4$ kg ✓) and the exact answer must land beside it."
-            ]
+            ],
+            "figure": {
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "estimate",
+                    "value": 12,
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "label": "exact",
+                    "value": 11,
+                    "color": "#3b82f6"
+                  }
+                ],
+                "step": 3,
+                "unit": "m"
+              }
+            }
           },
           {
             "kind": "workedSet",

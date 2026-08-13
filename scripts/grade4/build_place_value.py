@@ -26,7 +26,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, near, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, withfig,  # noqa: E402
+                     fig_groups, fig_numline,
+                     funfact, near, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic)
 
 
@@ -109,11 +111,11 @@ def lesson_reading():
              "check": ["Eq(80000 + 9000 + 40 + 1, 89041)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Read in groups of three", [
+            withfig(teach("Concept A", "Read in groups of three", [
                 "A long number is hard to read digit by digit — so we split it into **groups of three from the right**, called periods: ones, thousands, millions.",
                 "$4\\,708\\,215$ splits as $4$ | $708$ | $215$: **four million**, **seven hundred eight thousand**, **two hundred fifteen**.",
                 "Inside a group you never read past $999$ — then you just say the group's name. Big numbers are three-digit numbers wearing name tags.",
-            ]),
+            ]), fig_groups((4, "millions", C_ACCENT), (7, "thousands", C_WARM), (8, "ones", C_GREEN))),
             workedset("Between words and numerals",
                       "Split into periods, read each group, say its name.", [
                 wex("Write the numeral for *three hundred forty-five thousand, six hundred two*.",
@@ -146,11 +148,11 @@ def lesson_reading():
                  ["Eq(5*1000000 + 214*1000 + 830, 5214830)"]),
             funfact("Mongolian reads numbers the same way",
                     "Мянга (thousand) and сая (million) are period names too: $4\\,708\\,215$ is *дөрвөн сая долоон зуун найман мянга хоёр зуун арван тав*. Different words, exactly the same groups of three — the system is international."),
-            teach("Concept B", "Expanded form — what each digit is worth", [
+            withfig(teach("Concept B", "Expanded form — what each digit is worth", [
                 "**Expanded form** stretches a number into a sum showing what every digit is worth: $52\\,304 = 50\\,000 + 2\\,000 + 300 + 4$.",
                 "A **zero digit adds nothing** to the sum — but it still holds its place. Skip it in the sum, never in the numeral.",
                 "Expanded form is the x-ray of a number: it shows the skeleton that place value builds.",
-            ]),
+            ]), fig_groups((3, "3 thousands", C_ACCENT), (0, "0 hundreds", C_NEUTRAL), (4, "4 tens", C_WARM), (2, "2 ones", C_GREEN))),
             workedset("Stretching and rebuilding",
                       "Digit times place, added up — or the reverse.", [
                 wex("Write $52\\,304$ in expanded form.",
@@ -303,11 +305,11 @@ def lesson_digit_value():
              "check": ["Eq(3*10, 30)", "Eq(3*100, 300)", "Eq(300, 10*30)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Place decides worth", [
+            withfig(teach("Concept A", "Place decides worth", [
                 "Every position in a numeral is a **place**: ones, tens, hundreds, thousands, and so on, counted from the RIGHT.",
                 "A digit's **value** is the digit times its place. The $7$ in $4\\,708$ stands in the hundreds place — it is worth $7 \\times 100 = 700$, not $7$.",
                 "Move the same digit one place left and it is worth ten times as much: in $7\\,048$ the $7$ is worth $7\\,000$.",
-            ]),
+            ]), fig_groups((7, "7 thousands", C_ACCENT), (0, "0 hundreds", C_NEUTRAL), (4, "4 tens", C_WARM), (8, "8 ones", C_GREEN))),
             workedset("Digit times place",
                       "Name the place first — the multiplication is the easy part.", [
                 wex("Find the value of the $7$ in $4\\,708$ and in $7\\,048$.",
@@ -340,11 +342,11 @@ def lesson_digit_value():
                  ["Eq(3*100, 300)", "Eq(300, 10*30)"]),
             funfact("Why ten?",
                     "Our number system is base ten almost certainly because we count on ten fingers. Computers, with their two-state switches, use base two — where the number $13$ is written $1101$. Same idea, different trade: each place is worth TWO of the place before."),
-            teach("Concept B", "The ten-times ladder", [
+            withfig(teach("Concept B", "The ten-times ladder", [
                 "Neighbouring places always differ by a factor of **ten**: ten ones make a ten, ten tens make a hundred, ten hundreds make a thousand — the same trade at every rung.",
                 "So one step left multiplies a digit's value by $10$; two steps left multiply it by $100$; three steps by $1\\,000$.",
                 "This is why $10 \\times$ any number just shifts its digits one place left: $10 \\times 372 = 3\\,720$. The digits keep their order; every one of them gets ten times richer.",
-            ]),
+            ]), fig_numline([(1, "1"), (10, "10"), (100, "100"), (1000, "1000")], lo=0, hi=1000)),
             workedset("Climbing the ladder",
                       "Each step left is a ×10 — count the steps.", [
                 wex("How many times the value of the $8$ in $283$ is the $8$ in $86\\,000$?",
@@ -493,11 +495,11 @@ def lesson_comparing():
              "check": ["45760 > 45670", "45670 > 9999"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "More digits wins", [
+            withfig(teach("Concept A", "More digits wins", [
                 "Comparing starts with a count: a number with MORE DIGITS is always larger — $84\\,210 > 9\\,875$ before you read a single digit.",
                 "Why: the shortest five-digit number ($10\\,000$) already beats the longest four-digit one ($9\\,999$).",
                 "The symbols: the small pointed end aims at the smaller number — $9\\,875 < 84\\,210$.",
-            ]),
+            ]), fig_numline([(9875, "9 875"), (84210, "84 210")], lo=0, hi=100000)),
             workedset("Count first",
                       "Digit count settles most comparisons instantly.", [
                 wex("Compare $84\\,210$ and $9\\,875$.",
@@ -529,11 +531,11 @@ def lesson_comparing():
                  ["50000 > 49999"]),
             funfact("The judge only needs one difference",
                     "Dictionaries order words exactly the way we order numbers: compare letter by letter from the left and stop at the first difference. That's why this method is called LEXICOGRAPHIC — the dictionary method. Numbers of equal length sort like words."),
-            teach("Concept B", "Same length? Scan from the left", [
+            withfig(teach("Concept B", "Same length? Scan from the left", [
                 "Equal digit counts: march through the digits TOGETHER from the left and stop at the first difference — the bigger digit there decides.",
                 "$56\\,342$ vs $56\\,297$: $5=5$, $6=6$, then hundreds $3 > 2$ — done. $56\\,342$ is larger.",
                 "Digits after the first difference can never overturn it: everything to the right is worth less than that one place difference.",
-            ]),
+            ]), fig_groups((5, "same: 5 ten-thousands", C_NEUTRAL), (2, "2 thousands", C_ACCENT), (7, "vs 7 thousands", C_WARM))),
             workedset("The left-to-right scan",
                       "Stop at the first difference — the rest is noise.", [
                 wex("Compare $56\\,342$ and $56\\,297$.",
@@ -688,11 +690,11 @@ def lesson_rounding():
              "check": ["Eq(Abs(450 - 500), 50)", "Eq(Abs(450 - 400), 50)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Jump to the nearest landmark", [
+            withfig(teach("Concept A", "Jump to the nearest landmark", [
                 "Rounding to a place means jumping to the NEAREST multiple of that place — the two multiples either side are your landmarks.",
                 "$4\\,683$, nearest hundred: landmarks $4\\,600$ and $4\\,700$. It sits $83$ past one and $17$ short of the other — jump to $4\\,700$.",
                 "Rounding trades a little exactness for a lot of convenience: \"about $4\\,700$ tickets\" is the useful truth.",
-            ]),
+            ]), fig_numline([(4600, "4 600"), (4700, "4 700"), (4800, "4 800")], lo=4600, hi=4800)),
             workedset("Landmarks either side",
                       "Find the two multiples, measure which is nearer.", [
                 wex("Round $4\\,683$ to the nearest hundred.",
@@ -727,11 +729,11 @@ def lesson_rounding():
                  ["Eq(4700 - 4683, 17)", "Eq(4683 - 4600, 83)", "17 < 83"]),
             funfact("Attendance figures are almost always rounded",
                     "When a stadium announces 20,000 spectators, the turnstiles counted something like 19,738. News, populations, and prices round constantly — one of the most-used pieces of math in daily life is exactly this lesson."),
-            teach("Concept B", "The digit rule (and the halfway tie)", [
+            withfig(teach("Concept B", "The digit rule (and the halfway tie)", [
                 "You don't need to measure distances — the digit ONE place right of the rounding place tells the direction: $0$–$4$ round down, $5$–$9$ round up.",
                 "After the jump, every digit right of the rounding place becomes a zero: $349\\,502$ to the nearest ten-thousand → thousands digit $9$ → up → $350\\,000$.",
                 "Exactly halfway ($450$ to the nearest hundred) is a genuine tie — the agreed rule breaks it UPWARD: $450 \\to 500$.",
-            ]),
+            ]), fig_numline([(400, "400"), (450, "450 — the tie"), (500, "500")], lo=400, hi=500)),
             workedset("Rule in action",
                       "One glance at the decider digit.", [
                 wex("Round $349\\,502$ to the nearest ten-thousand.",
@@ -882,11 +884,11 @@ def lesson_estimation():
                        "9573 < 9600", "9600 < 10000"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Round first, compute second", [
+            withfig(teach("Concept A", "Round first, compute second", [
                 "An estimate replaces each number with a nearby landmark, THEN computes: $4\\,683 + 2\\,298 \\approx 4\\,700 + 2\\,300 = 7\\,000$.",
                 "The exact sum is $6\\,981$ — the estimate landed within $19$, in a fraction of the time.",
                 "The order matters: round FIRST so the arithmetic becomes easy. Computing exactly and then rounding is just... the exact computation.",
-            ]),
+            ]), fig_numline([(300, "300"), (312, "312"), (400, "400")], lo=300, hi=400)),
             workedset("Fast sums and differences",
                       "Landmark arithmetic — pick a friendly rounding place.", [
                 wex("Estimate $4\\,683 + 2\\,298$ (nearest hundred).",
@@ -924,11 +926,11 @@ def lesson_estimation():
                  ["Eq(4683 + 2298, 6981)", "Eq(4700 + 2300, 7000)", "26981 > 3*7000"]),
             funfact("Engineers estimate before every calculation",
                     "A bridge engineer computes a beam's load exactly — but FIRST estimates it roughly. If the precise computer answer disagrees wildly with the rough one, they hunt the error before trusting anything. The habit you're learning here is professional practice."),
-            teach("Concept B", "Direction — when estimates over- and under-shoot", [
+            withfig(teach("Concept B", "Direction — when estimates over- and under-shoot", [
                 "Round both numbers UP and the estimated sum is guaranteed TOO BIG; round both DOWN and it is too small. The direction of the error is knowable.",
                 "That's a tool: to be SURE your money covers the bill, round the prices UP — if the safe estimate fits, the true total fits better.",
                 "Mixed roundings (one up, one down) tend to cancel — which is why nearest-landmark estimates usually land so close.",
-            ]),
+            ]), fig_numline([(0, "under"), (50, "exact"), (100, "over")], lo=0, hi=100)),
             workedset("Safe estimates",
                       "Choose the rounding direction to match the decision.", [
                 wex("You have $10\\,000$; items cost $4\\,683$ and $4\\,890$. Enough?",

@@ -27,7 +27,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, withfig,  # noqa: E402
+                     P, ang, fig_geo, poly, seg,
+                     funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic)
 
 
@@ -116,11 +118,11 @@ def lesson_angles():
              "check": ["Eq(Rational(180,2), 90)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Turn, measured in degrees", [
+            withfig(teach("Concept A", "Turn, measured in degrees", [
                 "An angle is an amount of TURN — the ger door swinging open, the clock hand sweeping. Degrees count the turn: a full spin is $360^\\circ$.",
                 "The benchmarks: quarter spin $= 90^\\circ$ (the RIGHT angle — the page's corner), half spin $= 180^\\circ$ (a straight line).",
                 "Classify against them: acute $< 90^\\circ$, obtuse between $90^\\circ$ and $180^\\circ$. Arm length is irrelevant — only the turn counts.",
-            ]),
+            ]), fig_geo([P("O", 0, 0, ""), P("A", 3, 0, ""), P("B", 0, 3, "")], [seg("O", "A"), seg("O", "B"), ang("O", "A", "B", "90°", right=True)], height=150)),
             workedset("Naming turns",
                       "Compare with 90 and 180; the arms' length never votes.", [
                 wex("Classify $38^\\circ$, $90^\\circ$, $155^\\circ$, $180^\\circ$.",
@@ -157,11 +159,11 @@ def lesson_angles():
                  ["130 > 70"]),
             funfact("Why 360?",
                     "The Babylonians again (time's sixty-traders): $360$ divides cleanly by $2, 3, 4, 5, 6, 8, 9, 10, 12$ and more — so halves, thirds, quarters and fifths of a turn all come out whole. A decimal circle of $100^\\circ$ would make a third of a turn $33.33\\ldots$ — forever."),
-            teach("Concept B", "The two great sums", [
+            withfig(teach("Concept B", "The two great sums", [
                 "Angles filling a STRAIGHT LINE total $180^\\circ$ — so a missing one is $180$ minus the known: $180 - 65 = 115^\\circ$.",
                 "Angles filling a FULL TURN total $360^\\circ$: $360 - 140 - 90 = 130^\\circ$.",
                 "Ask 'line or turn?' before subtracting — the totals are the whole method, and picking the wrong one doubles or halves everything.",
-            ]),
+            ]), fig_geo([P("L", 0, 0, ""), P("M", 4, 0, ""), P("N", 2, 0, ""), P("T", 3.4, 2, "")], [seg("L", "M"), seg("N", "T"), ang("N", "L", "T", "125°"), ang("N", "T", "M", "55°")], height=150)),
             workedset("Subtraction machines",
                       "Total minus known = missing.", [
                 wex("Two angles on a line; one is $65^\\circ$. The other?",
@@ -316,11 +318,11 @@ def lesson_shapes():
              "check": ["Eq(Rational(180,3), 60)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Triangles and their 180", [
+            withfig(teach("Concept A", "Triangles and their 180", [
                 "Tear the corners off any paper triangle and line them up: a straight line — $180^\\circ$, always. That's the triangle's angle budget.",
                 "Missing angles fall out by subtraction: a right triangle with a $35^\\circ$ corner keeps $180 - 90 - 35 = 55^\\circ$ for the third.",
                 "Names: by sides — equilateral (three equal), isosceles (two), scalene (none); by angles — right, acute, obtuse. Every triangle gets one of each.",
-            ]),
+            ]), fig_geo([P("A", 0, 0), P("B", 4, 0), P("C", 1.2, 2.6)], [seg("A", "B"), seg("B", "C"), seg("C", "A"), ang("A", "B", "C", "65°"), ang("B", "C", "A", "50°"), ang("C", "A", "B", "65°")], height=170)),
             workedset("Spending the 180",
                       "Budget minus known corners.", [
                 wex("A right triangle has a $35^\\circ$ angle. The third?",
@@ -355,11 +357,11 @@ def lesson_shapes():
                  ["Eq(7, 7)", "7 > 4"]),
             funfact("The torn-corners proof",
                     "The corner-tearing trick isn't just a demonstration — it IS the idea behind the real proof: the three angles reassemble along a straight line through the top vertex. You can do honest mathematics with a piece of paper and torn corners."),
-            teach("Concept B", "The quadrilateral family", [
+            withfig(teach("Concept B", "The quadrilateral family", [
                 "Four sides, four corners, $360^\\circ$ to spend. Missing angles: $360$ minus the rest — $360 - 90 - 90 - 110 = 70^\\circ$.",
                 "The family nests: a PARALLELOGRAM has two parallel pairs; make its angles right and it's a RECTANGLE; make a rectangle's sides equal and it's a SQUARE. A RHOMBUS is a parallelogram with equal sides; a TRAPEZOID has just one parallel pair.",
                 "Nesting means membership: every square IS a rectangle and IS a parallelogram — special cases don't leave the family, they lead it.",
-            ]),
+            ]), fig_geo([P("P", 0, 0, ""), P("Q", 4, 0, ""), P("R", 5, 2.4, ""), P("S", 1, 2.4, "")], poly(["P", "Q", "R", "S"]) + [ang("P", "Q", "S", "70°")], height=170)),
             workedset("Four corners, 360",
                       "Budgets and family memberships.", [
                 wex("Angles $90^\\circ$, $90^\\circ$, $110^\\circ$ — the fourth?",
@@ -510,11 +512,11 @@ def lesson_perimeter():
              "check": ["Eq(Rational(36,4), 9)", "Eq(4*9, 36)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Walk the boundary", [
+            withfig(teach("Concept A", "Walk the boundary", [
                 "Perimeter is the walk around the edge — every side once, in linear units (m, cm).",
                 "Rectangles shortcut the walk: opposite sides match, so $P = 2(l + w)$ — the $8 \\times 5$ paddock takes $2 \\times 13 = 26$ m of fence.",
                 "Squares compress it further: four equal sides, $P = 4s$.",
-            ]),
+            ]), fig_geo([P("A", 0, 0, ""), P("B", 5, 0, ""), P("C", 5, 3, ""), P("D", 0, 3, "")], poly(["A", "B", "C", "D"]) + [seg("A", "B", "5 cm"), seg("B", "C", "3 cm")], height=160)),
             workedset("Fences and frames",
                       "Walk, or shortcut — same wire.", [
                 wex("Perimeter of an $8 \\times 5$ paddock and a $7$ m square pen.",
@@ -550,11 +552,11 @@ def lesson_perimeter():
                  ["Eq(2*(8 + 5), 26)", "Ne(13, 26)"]),
             funfact("The fence-post problem",
                     "Fencing a $26$ m perimeter with posts every metre needs exactly $26$ posts, not $27$ — on a CLOSED loop the last post is the first one. On a straight $26$ m fence you'd need $27$. Boundary problems care whether the walk comes home."),
-            teach("Concept B", "Backwards, and around the notch", [
+            withfig(teach("Concept B", "Backwards, and around the notch", [
                 "Missing sides run the shortcut backwards: $P = 30$, $l = 9$ — halve first ($l + w = 15$), then $w = 6$.",
                 "Squares: $P = 36$ gives $s = 9$ in one division.",
                 "Composite shapes have no shortcut — walk EVERY edge, notches included. An L-shaped walk turns six corners, and each little edge counts.",
-            ]),
+            ]), fig_geo([P("A", 0, 0, ""), P("B", 6, 0, ""), P("C", 6, 2, ""), P("D", 3.5, 2, ""), P("E", 3.5, 4, ""), P("F", 0, 4, "")], poly(["A", "B", "C", "D", "E", "F"]) + [seg("A", "B", "6"), seg("E", "F", "3.5")], height=180)),
             workedset("Running it backwards",
                       "Halve, subtract; or divide by four.", [
                 wex("$P = 30$ cm, length $9$ cm — the width?",
@@ -709,11 +711,11 @@ def lesson_area():
              "check": ["Eq(Rational(72,9), 8)", "Eq(9*8, 72)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Count the tiles", [
+            withfig(teach("Concept A", "Count the tiles", [
                 "Cover a floor with $1$-metre squares: $8$ per row, $5$ rows — $40$ tiles. AREA is that count: $A = l \\times w = 40$ m².",
                 "The unit is a SQUARE metre — a tile one metre on each side. The little $^2$ records what was counted.",
                 "Squares tile as $s \\times s = s^2$: a $15$ cm square tile covers $225$ cm².",
-            ]),
+            ]), fig_geo([P("A", 0, 0, ""), P("B", 5, 0, ""), P("C", 5, 3, ""), P("D", 0, 3, "")], poly(["A", "B", "C", "D"]) + [seg("A", "B", "15 cm"), seg("B", "C", "15 cm")], height=160)),
             workedset("Tiling floors",
                       "Rows times row-length; units squared.", [
                 wex("Area and perimeter of an $8 \\times 5$ m room.",
@@ -749,11 +751,11 @@ def lesson_area():
                  ["Eq(6*9, 54)"]),
             funfact("A hectare is a square you can see",
                     "Land is measured in hectares: one hectare is a $100 \\times 100$ m square — $10\\,000$ m², about a large sports field. A herder family's winter pasture might span hundreds of them."),
-            teach("Concept B", "Same fence, different fields", [
+            withfig(teach("Concept B", "Same fence, different fields", [
                 "Two rectangles can share a fence and disagree about their fields: $6 \\times 4$ and $8 \\times 2$ both take $20$ m — but hold $24$ m² and $16$ m².",
                 "Stretch a rectangle thinner at fixed perimeter and its area DRAINS: $9 \\times 1$ holds just $9$ m² of the same $20$ m fence.",
                 "Among equal-perimeter rectangles the SQUARE holds the most: $5 \\times 5 = 25$ m² tops them all. Fence constrains; shape decides.",
-            ]),
+            ]), fig_geo([P("A", 0, 0, ""), P("B", 7, 0, ""), P("C", 7, 1, ""), P("D", 0, 1, ""), P("E", 9, 0, ""), P("F", 13, 0, ""), P("G", 13, 4, ""), P("H", 9, 4, "")], poly(["A", "B", "C", "D"]) + poly(["E", "F", "G", "H"]) + [seg("A", "B", "7"), seg("B", "C", "1"), seg("E", "F", "4"), seg("F", "G", "4")], height=170)),
             workedset("The 20-metre family",
                       "One fence, many fields.", [
                 wex("Compare $6 \\times 4$ and $8 \\times 2$ on a $20$ m fence.",
@@ -922,11 +924,11 @@ def lesson_composite():
              "check": ["Eq(12 - 7, 5)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Two roads to one answer", [
+            withfig(teach("Concept A", "Two roads to one answer", [
                 "An L-shape has no formula — but two roads reach it. SPLIT: cut into rectangles, add the pieces: $8 \\times 4$ plus $5 \\times 2$ gives $32 + 10 = 42$ m².",
                 "FILL AND SUBTRACT: restore the whole $8 \\times 6$ ($48$), remove the $3 \\times 2$ bite ($6$): $42$ m².",
                 "The roads MUST agree — and when they do, you've proof-read your own answer. Take both roads whenever the stakes are real.",
-            ]),
+            ]), fig_geo([P("A", 0, 0, ""), P("B", 6, 0, ""), P("C", 6, 2, ""), P("D", 3.5, 2, ""), P("E", 3.5, 4, ""), P("F", 0, 4, "")], poly(["A", "B", "C", "D", "E", "F"]) + [seg("D", "A", dashed=True, color="accent")], height=180)),
             workedset("Both roads, every time",
                       "Split-and-add against fill-and-subtract.", [
                 wex("The $8 \\times 6$ room with a $3 \\times 2$ bite.",
@@ -962,11 +964,11 @@ def lesson_composite():
                  ["Eq(8*6, 48)", "Eq(48 - 6, 42)"]),
             funfact("Architects live in composite figures",
                     "Almost no real floor plan is a single rectangle — kitchens notch into living rooms, closets bite corners. Architects compute floor areas exactly as you just did: split into rectangles, add, and cross-check by subtracting from the outline. Same two roads, drawn to scale."),
-            teach("Concept B", "Missing edges, and keeping perimeter separate", [
+            withfig(teach("Concept B", "Missing edges, and keeping perimeter separate", [
                 "Composite figures hide some labels — but opposite spans must MATCH: if the whole top is $8$ and one bottom piece is $3$, the other is $8 - 3 = 5$.",
                 "Recover every edge before computing; each missing one is a difference of labelled ones.",
                 "And keep the two measures apart: cutting a bite from a rectangle REDUCES its area but (for a corner bite) the perimeter stays the same walk — the boundary just turns more corners. Area and perimeter move independently.",
-            ]),
+            ]), fig_geo([P("A", 0, 0, ""), P("B", 6, 0, ""), P("C", 6, 2, ""), P("D", 3.5, 2, ""), P("E", 3.5, 4, ""), P("F", 0, 4, "")], poly(["A", "B", "C", "D", "E", "F"]) + [seg("B", "C", "?", color="accent")], height=180)),
             workedset("Recovering the hidden labels",
                       "Differences first, areas second.", [
                 wex("Top edge $12$; lower-right piece spans $7$. The unlabelled span?",

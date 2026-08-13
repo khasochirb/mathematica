@@ -112,7 +112,7 @@ export interface FigureGroupSpec {
   glyph?: string;
 }
 export interface FigureSpec {
-  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine" | "integerAdd" | "geo" | "barChart" | "pictograph";
+  mode: "groups" | "partToPart" | "partToWhole" | "cross" | "compareMix" | "fractionBar" | "decimalGrid" | "numberLine" | "decimalColumn" | "decimalArea" | "divideChain" | "percentBar" | "percentChange" | "percentChangeFinder" | "integerLine" | "integerAdd" | "geo" | "barChart" | "pictograph" | "lineGraph" | "clockFace";
   groups?: FigureGroupSpec[];
   highlightIndex?: number; // the highlighted "part" in partToWhole (default 0)
   // "cross" — a cross-multiply diagram for a:b vs c:d (draws the two diagonals + products).
@@ -156,6 +156,25 @@ export interface FigureSpec {
     step?: number; // gridline spacing (default 1)
     unit?: string;
     highlight?: number; // index of a bar to emphasise (the one the question asks about)
+  };
+  // "lineGraph" — a plotted line over labelled points in time. The primary
+  // band's line-graph lesson used to hand a child a comma-separated list of
+  // numbers and call it a graph; this draws the graph the lesson is about.
+  lineGraph?: {
+    points: { label: string; value: number }[];
+    max?: number;
+    step?: number;
+    unit?: string;
+    color?: string;
+  };
+  // "clockFace" — an analogue clock at a given time, for reading the clock
+  // and for elapsed-time problems (two faces when `until` is given).
+  clockFace?: {
+    hour: number; // 1..12
+    minute: number; // 0..59
+    until?: { hour: number; minute: number }; // draws a second face
+    label?: string;
+    untilLabel?: string;
   };
   // "pictograph" — rows of repeated symbols with a key ("⚫ = 2 books").
   // Half-symbols are real pictograph vocabulary, so value may be a

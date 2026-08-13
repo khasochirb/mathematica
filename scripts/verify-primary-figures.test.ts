@@ -10,6 +10,8 @@ import { createElement as h } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import BarChartView from "@/components/genmath/interactive/BarChartView";
 import PictographView from "@/components/genmath/interactive/PictographView";
+import LineGraphView from "@/components/genmath/interactive/LineGraphView";
+import ClockFaceView from "@/components/genmath/interactive/ClockFaceView";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import type { FigureSpec } from "@/lib/genmath-interactive";
 
@@ -61,6 +63,54 @@ describe("pictograph figure", () => {
       h(RatioFigure, { figure: { mode: "pictograph", pictograph: { rows: [{ label: "x", value: 4 }], key: 2 } } }),
     );
     expect(html).toContain("Pictograph");
+  });
+});
+
+describe("lineGraph figure", () => {
+  it("plots a point per reading, with the value beside it", () => {
+    const spec = {
+      points: [{ label: "Mon", value: 4 }, { label: "Tue", value: 7 }, { label: "Wed", value: 11 }],
+      step: 2,
+    };
+    const html = renderToStaticMarkup(h(LineGraphView, { spec }));
+    expect((html.match(/<circle/g) ?? []).length).toBe(3);
+    expect(html).toMatch(/<path[^>]+d="M /); // one polyline through the readings
+    for (const s of ["Mon", "Wed", ">11<", ">4<"]) expect(html).toContain(s);
+  });
+
+  it("reaches the renderer through the FigureSpec dispatcher", () => {
+    const html = renderToStaticMarkup(
+      h(RatioFigure, {
+        figure: { mode: "lineGraph", lineGraph: { points: [{ label: "a", value: 1 }, { label: "b", value: 3 }] } },
+      }),
+    );
+    expect(html).toContain("Line graph");
+  });
+});
+
+describe("clockFace figure", () => {
+  it("draws one face, with the hour hand carried by the minutes", () => {
+    // At 7:50 the hour hand sits nearly on 8 — a clock that points flat at
+    // 7 teaches a child to misread every clock after it.
+    const html = renderToStaticMarkup(h(ClockFaceView, { spec: { hour: 7, minute: 50 } }));
+    expect(html).toContain("Clock showing 7:50");
+    expect((html.match(/<circle/g) ?? []).length).toBe(2); // rim + centre pin
+    expect((html.match(/<text/g) ?? []).length).toBe(12); // the 12 numerals
+  });
+
+  it("draws two faces for an elapsed-time question", () => {
+    const html = renderToStaticMarkup(
+      h(ClockFaceView, { spec: { hour: 7, minute: 50, until: { hour: 9, minute: 15 } } }),
+    );
+    expect(html).toContain("Clock showing 7:50");
+    expect(html).toContain("Clock showing 9:15");
+  });
+
+  it("reaches the renderer through the FigureSpec dispatcher", () => {
+    const html = renderToStaticMarkup(
+      h(RatioFigure, { figure: { mode: "clockFace", clockFace: { hour: 3, minute: 30 } } }),
+    );
+    expect(html).toContain("Clock showing 3:30");
   });
 });
 

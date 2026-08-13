@@ -111,7 +111,32 @@
               "$4 \\times 2\\,357$ is four $2\\,000$s, four $300$s, four $50$s and four $7$s — the factor VISITS each place, and the pieces add: $8\\,000 + 1\\,200 + 200 + 28 = 9\\,428$.",
               "This is the distributive idea, and it is the engine under every multiplication algorithm you will ever meet.",
               "The column method writes the same visits compactly, ones first, carrying like addition: multiply, then ADD the carry."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 6,
+                  "color": "#3b82f6",
+                  "label": "6"
+                },
+                {
+                  "count": 6,
+                  "color": "#3b82f6",
+                  "label": "6"
+                },
+                {
+                  "count": 6,
+                  "color": "#3b82f6",
+                  "label": "6"
+                },
+                {
+                  "count": 6,
+                  "color": "#3b82f6",
+                  "label": "4 groups of 6"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -221,7 +246,27 @@
               "$4 \\times 700$: the $700$ is $7$ hundreds, so the product is $28$ hundreds — $2\\,800$. Multiply the digits, RE-ATTACH the zeros.",
               "$3 \\times 6\\,000 = 18\\,000$: three zeros in, three zeros out (the $18$ supplies its own extra digit).",
               "This is Topic 1's ten-times ladder at work: each zero is a place shift, and multiplication respects places."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#3b82f6",
+                  "label": "3 hundreds"
+                },
+                {
+                  "count": 0,
+                  "color": "#94a3b8",
+                  "label": "0 tens"
+                },
+                {
+                  "count": 0,
+                  "color": "#94a3b8",
+                  "label": "0 ones"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -518,7 +563,22 @@
               "$24 \\times 36$: split the $36$ into $30 + 6$. Then $24 \\times 30 = 720$ and $24 \\times 6 = 144$ — add: $864$.",
               "The pieces are called PARTIAL PRODUCTS: the tens part and the ones part, each a one-digit multiplication you already own.",
               "$24 \\times 30$ itself is $24 \\times 3$ shifted: $72 \\to 720$. Nothing here is new — it is last lesson twice, plus an addition."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 20,
+                  "color": "#3b82f6",
+                  "label": "20 of them"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "and 3 more"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -632,7 +692,32 @@
               "Stack the work: multiply by the ONES digit first (one full row), then by the TENS digit starting one place left — that shift is the attached zero.",
               "$138 \\times 26$: ones row $138 \\times 6 = 828$; tens row $138 \\times 2 = 276$, written from the tens place ($2\\,760$). Add: $3\\,588$.",
               "Two rows, two partial products, one sum — the coat that keeps every digit-pair meeting exactly once."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "tens x tens"
+                },
+                {
+                  "count": 4,
+                  "color": "#d97706",
+                  "label": "tens x ones"
+                },
+                {
+                  "count": 4,
+                  "color": "#059669",
+                  "label": "ones x tens"
+                },
+                {
+                  "count": 4,
+                  "color": "#94a3b8",
+                  "label": "ones x ones"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -934,7 +1019,32 @@
               "$58 \\div 9$: how many whole $9$s fit in $58$? Six of them use $54$; the $4$ left can't make a seventh — QUOTIENT $6$, REMAINDER $4$.",
               "Same numbers, other reading: $58$ sweets shared among $9$ friends — $6$ each, $4$ left in the bag.",
               "Write it $58 \\div 9 = 6$ r $4$ — the remainder is part of the answer, not an apology."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "share"
+                },
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "share"
+                },
+                {
+                  "count": 4,
+                  "color": "#3b82f6",
+                  "label": "share"
+                },
+                {
+                  "count": 2,
+                  "color": "#d97706",
+                  "label": "left over"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1049,7 +1159,22 @@
               "A remainder as big as the divisor is a division that STOPPED EARLY: $50 \\div 6 = 7$ r $8$ leaves an $8$ — but a whole $6$ still fits in it.",
               "Push on: $50 \\div 6 = 8$ r $2$. The rule: the remainder is always SMALLER than the divisor, $r < d$.",
               "So every answer gets two checks: the receipt ($q \\times d + r = n$) AND the rule ($r < d$). Both must hold."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 5,
+                  "color": "#3b82f6",
+                  "label": "divisor 5"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "remainder 3 — smaller"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1360,7 +1485,27 @@
               "Long division shares the biggest places first: DIVIDE, MULTIPLY back, SUBTRACT the used amount, BRING DOWN the next digit — then the cycle turns again.",
               "$5\\,208 \\div 4$: thousands $5 \\div 4 = 1$ r $1$ — the leftover thousand becomes ten hundreds and joins the $2$: next up is $12$.",
               "Leftovers always slide one place right and stay in the game; nothing is ever thrown away until the ones are done."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 8,
+                  "color": "#3b82f6",
+                  "label": "8 hundreds"
+                },
+                {
+                  "count": 4,
+                  "color": "#d97706",
+                  "label": "4 tens"
+                },
+                {
+                  "count": 6,
+                  "color": "#059669",
+                  "label": "6 ones"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1472,7 +1617,22 @@
               "When a step divides to nothing — $0 \\div 4$, or a brought-down number smaller than the divisor — the quotient still takes a digit: $0$, in that place.",
               "$3\\,048 \\div 6$: $30 \\to 5$; bring down $4$ — but $4 < 6$, so write $0$ and bring down the $8$: $48 \\to 8$. Quotient $508$, not $58$ — skipping the zero shrinks the answer tenfold.",
               "If the ones step leaves something, that's the final remainder — and both old checks apply: receipt and $r < d$."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 0,
+                  "color": "#94a3b8",
+                  "label": "0 in the quotient"
+                },
+                {
+                  "count": 7,
+                  "color": "#3b82f6",
+                  "label": "carry on"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1772,7 +1932,27 @@
               "Stories don't name their operation. Look for the STRUCTURE: the same-size group repeated — \"$12$ boxes of $145$\" — multiplies.",
               "A total being split — \"share $1\\,740$ among $29$ classes\" — divides. So does grouping: \"how many $40$s fit in $130$?\"",
               "Signal words lie: \"each\" appears in both kinds. Ask what is HAPPENING — combining equal groups, or splitting a total?"
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 6,
+                  "color": "#3b82f6",
+                  "label": "one group"
+                },
+                {
+                  "count": 6,
+                  "color": "#d97706",
+                  "label": "another"
+                },
+                {
+                  "count": 6,
+                  "color": "#059669",
+                  "label": "and another"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1883,7 +2063,22 @@
               "The division gives $q$ r $r$; the STORY says what to do with it. Buses for $130$ students at $40$ a bus: $3$ r $10$ — the ten still travel, so ROUND UP: $4$ buses.",
               "FULL boxes from $130$ eggs by dozens: $10$ r $10$ — the loose eggs don't fill a box: DROP, answer $10$.",
               "\"How much rope is LEFT?\": the remainder itself is the answer — REPORT it. Three readings, one rule: re-read the question after dividing."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 7,
+                  "color": "#3b82f6",
+                  "label": "full buses"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "left — need one more"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
