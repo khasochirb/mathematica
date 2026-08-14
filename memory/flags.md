@@ -100,6 +100,17 @@ the admin key and is disabled without it.
 
 ## Session log
 
+- **2026-08-14** — THE OWED PROBE, RUN. Vercel MCP is back, so the debt from
+  the two deploys below is settled: both production deployments are `READY`
+  (`5f8e3c4` → `dpl_FYP8K71YAgKYnbSANmVWMBdFRYTA`, `6c2f25a` →
+  `dpl_AkFqsExk7G6hEam3jG2bMmWRFeWA`, the current production). Flag probe:
+  `GET /api/health/flags` → `anthropic_api_key: configured`,
+  `migration_009_attempts_context: applied`,
+  `migration_008_student_profiles: unknown` (unchanged, its own row above).
+  Route check on the renumber that shipped in `5f8e3c4`:
+  `/math/2/numbers-to-1000` serves the Grade 2 unit, 200, five lessons — the
+  ministry labels are live on production. Flag state is verified again; the
+  gap ran from `b113b96` to here.
 - **2026-08-13** — Deploy `6c2f25a` pushed to main (grade 4 re-figured: the
   band's figure vocabulary extracted to scripts/primary/figures.py, lineGraph
   and clockFace renderers added, 80 figures across its 40 lessons, and
