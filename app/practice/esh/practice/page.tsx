@@ -27,6 +27,7 @@ import {
   isAnonPracticeGated,
 } from "@/lib/anon-practice-gate";
 import usePerformance from "@/lib/use-performance";
+import { useQuestionTimer } from "@/lib/use-question-timer";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import {
   getQuestionsForUser,
@@ -76,6 +77,8 @@ export default function PracticePage() {
   }, []);
 
   const perf = usePerformance();
+  // One question on screen at a time; answering ends it.
+  const drillTimer = useQuestionTimer(practiceQuestions[currentIndex]?.source ?? null);
   const flaggedHook = useFlaggedQuestions();
   const { isAuthenticated, isSubscribed } = useAuth();
   const upgrade = useUpgradeModal();
@@ -153,6 +156,7 @@ export default function PracticePage() {
       correctAnswer: correct,
       isCorrect,
       source: "drill",
+      timeSpentSeconds: drillTimer.seconds(),
     });
     // Anonymous users: bump the per-topic counter. Hits the gate at the next
     // question render once the topic crosses ANON_PRACTICE_LIMIT.

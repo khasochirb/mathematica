@@ -31,6 +31,12 @@ export interface AttemptRecord {
   // (weak-topic recommendation, tests-completed count). New writes always
   // populate this.
   source?: "test" | "drill" | "lesson";
+  // Seconds of VISIBLE time on this question before it was answered
+  // (lib/use-question-timer). Optional: absent means "not measured", which
+  // is what every row written before Phase 0 carries. Never write 0 to mean
+  // "unknown" — the learning engine reads fast-and-right differently from
+  // no-data-at-all.
+  timeSpentSeconds?: number;
   // Which section of the platform produced this attempt: "esh" (default),
   // "course:geometry", "course:grade-6", later "sat"/"ib". Absent means
   // "esh" — every row written before contexts existed was ЭЕШ. Stats NEVER
@@ -105,7 +111,7 @@ function toServerRow(attempt: AttemptRecord, userId: string) {
     topic: isEsh ? canonicalizeTopic(attempt.topic) : attempt.topic,
     subtopic: isEsh ? canonicalizeSubtopic(attempt.subtopic) : attempt.subtopic || null,
     answered_at: new Date(attempt.timestamp).toISOString(),
-    time_spent_seconds: null,
+    time_spent_seconds: attempt.timeSpentSeconds ?? null,
     source: attempt.source ?? null,
     context: contextOf(attempt),
   };
@@ -121,6 +127,7 @@ type ServerRow = {
   answered_at: string;
   source: string | null;
   context?: string | null;
+  time_spent_seconds?: number | null;
 };
 
 function fromServerRow(r: ServerRow): AttemptRecord {
@@ -136,6 +143,8 @@ function fromServerRow(r: ServerRow): AttemptRecord {
     timestamp: new Date(r.answered_at).getTime(),
     source: src,
     context: r.context && r.context !== DEFAULT_CONTEXT ? r.context : undefined,
+    timeSpentSeconds:
+      typeof r.time_spent_seconds === "number" ? r.time_spent_seconds : undefined,
   };
 }
 
@@ -405,7 +414,7 @@ export default function usePerformance() {
           supabase
             .from("attempts")
             .select(
-              "question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source" +
+              "question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source,time_spent_seconds" +
                 (withContext ? ",context" : ""),
             )
             .eq("user_id", uid)

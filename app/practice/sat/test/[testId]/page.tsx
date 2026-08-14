@@ -9,6 +9,7 @@ import MathText from "@/components/esh/MathText";
 import EshFigure from "@/components/esh/EshFigure";
 import TestTimer from "@/components/esh/TestTimer";
 import usePerformance from "@/lib/use-performance";
+import { useQuestionTimers } from "@/lib/use-question-timer";
 import { hubTopicLabel } from "@/lib/hub-analytics";
 import {
   EASY_MODULE2_CAP,
@@ -69,6 +70,9 @@ export default function SatTestRunnerPage() {
   const testId = params.testId as string;
   const test = getSatTest(testId);
   const perf = usePerformance();
+  // Per-question accumulator: SAT modules are navigable and recorded in one
+  // pass at module end, so a question's time is the sum of its visits.
+  const timers = useQuestionTimers();
 
   const [mounted, setMounted] = useState(false);
   const [run, setRun] = useState<RunState>(FRESH);
@@ -108,6 +112,11 @@ export default function SatTestRunnerPage() {
   const answers = run.phase === "m1" ? run.m1Answers : run.m2Answers;
   const answersField = run.phase === "m1" ? "m1Answers" : "m2Answers";
 
+  // Move the clock to whichever question is on screen.
+  useEffect(() => {
+    timers.focus(questions[run.index]?.source ?? null);
+  }, [questions, run.index, timers]);
+
   const recordModule = useCallback(
     (qs: SatQuestion[], given: Record<string, string>) => {
       for (const q of qs) {
@@ -121,10 +130,11 @@ export default function SatTestRunnerPage() {
           isCorrect: gradeSatQuestion(q, input),
           source: "test",
           context: "sat",
+          timeSpentSeconds: timers.secondsFor(q.source),
         });
       }
     },
-    [perf],
+    [perf, timers],
   );
 
   const submitModule = useCallback(() => {

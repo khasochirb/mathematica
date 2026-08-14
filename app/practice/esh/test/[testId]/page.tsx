@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import useScrollToTop from "@/lib/use-scroll-to-top";
+import { useQuestionTimers } from "@/lib/use-question-timer";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
@@ -47,6 +48,10 @@ export default function TestRunnerPage() {
   const testSession = useTestSession();
   const flaggedHook = useFlaggedQuestions();
   const perf = usePerformance();
+  // Per-question timing. A test runner lets the student jump around and only
+  // records attempts at submit, so each question's time is the SUM of its
+  // visits — hence the accumulator rather than one stopwatch.
+  const timers = useQuestionTimers();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   // A long question leaves the page scrolled down; the next one must start
@@ -144,6 +149,13 @@ export default function TestRunnerPage() {
   const flagged = session?.flagged ?? [];
   const section2Answers = session?.section2Answers ?? {};
 
+  // Move the clock whenever the visible question changes. Section 2 screens
+  // focus null: one screen holds several sub-answers, so per-item time is not
+  // something this runner can honestly measure (see the Phase 0 report).
+  useEffect(() => {
+    timers.focus(currentQuestion?.source ?? null);
+  }, [currentQuestion?.source, timers]);
+
   const handleSelectAnswer = useCallback(
     (letter: string) => {
       if (!sessionId || !currentQuestion) return;
@@ -219,6 +231,7 @@ export default function TestRunnerPage() {
             correctAnswer: q.answer,
             isCorrect: answer === q.answer,
             source: "test",
+            timeSpentSeconds: timers.secondsFor(q.source),
           });
         }
       }

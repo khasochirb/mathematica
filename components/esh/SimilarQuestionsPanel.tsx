@@ -7,6 +7,7 @@ import QuestionCard from "./QuestionCard";
 import { getSimilarQuestions, getTestInfo } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import usePerformance from "@/lib/use-performance";
+import { useLapTimer } from "@/lib/use-question-timer";
 import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 import useRefinementLoop from "@/lib/use-refinement-loop";
@@ -24,6 +25,9 @@ export default function SimilarQuestionsPanel({
   const { isSubscribed, isAuthenticated } = useAuth();
   const upgrade = useUpgradeModal();
   const perf = usePerformance();
+  // A panel of similar problems is a worksheet: each answer laps rather than
+  // claiming the whole panel's time. Reopening the panel starts a fresh set.
+  const lapTimer = useLapTimer(expanded ? question.source : null);
   const loop = useRefinementLoop();
   const router = useRouter();
 
@@ -147,6 +151,7 @@ export default function SimilarQuestionsPanel({
                 correctAnswer: correct,
                 isCorrect,
                 source: "drill",
+                timeSpentSeconds: lapTimer.lap(),
               })
             }
             solutionsLocked={solutionsLocked}

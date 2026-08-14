@@ -24,6 +24,7 @@ import TutorPanel from "@/components/tutor/TutorPanel";
 import { useLang } from "@/lib/lang-context";
 import { getAllQuestions, getQuestionBySource } from "@/lib/esh-questions";
 import usePerformance from "@/lib/use-performance";
+import { useLapTimer } from "@/lib/use-question-timer";
 import type { Question } from "@/lib/esh-questions";
 import useRefinementLoop from "@/lib/use-refinement-loop";
 import {
@@ -84,6 +85,9 @@ export default function RefinementLoop() {
   const { session, loading, dispatch } = useRefinementLoop();
   const perf = usePerformance();
   const pool = useMemo(() => getAllQuestions(), []);
+  // The loop shows a SET of questions per state (similars, drills, mini-test),
+  // so each answer takes a lap rather than owning the whole screen's time.
+  const lapTimer = useLapTimer(session?.state ?? null);
 
   // Every answered question inside the loop also lands in the main attempt
   // stream as a drill (never "test" — loop mini-tests must not masquerade as
@@ -106,6 +110,7 @@ export default function RefinementLoop() {
       correctAnswer: correct,
       isCorrect,
       source: "drill",
+      timeSpentSeconds: lapTimer.lap(),
     });
   const [answers, setAnswers] = useState<Record<string, string>>({});
 
