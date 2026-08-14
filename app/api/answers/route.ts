@@ -57,6 +57,21 @@ export async function POST(req: NextRequest) {
 
   const admin = createAdminClient();
 
+  // Verify the session belongs to the caller BEFORE recording anything against
+  // it. sessionId comes from the request body, so ownership must be proven
+  // server-side — otherwise a user could submit answers into another user's
+  // session and move its counters and XP (IDOR).
+  const { data: session, error: sessErr } = await admin
+    .from("practice_sessions")
+    .select("total_correct, total_questions, session_xp")
+    .eq("id", sessionId)
+    .eq("user_id", user.id)
+    .single();
+
+  if (sessErr || !session) {
+    return NextResponse.json({ error: "Session not found" }, { status: 404 });
+  }
+
   // Fetch the problem
   const { data: problem, error: probErr } = await admin
     .from("problems")
@@ -81,22 +96,14 @@ export async function POST(req: NextRequest) {
     hints_used: hintsUsed,
   });
 
-  // Update practice_sessions counters
-  const { data: session } = await admin
+  // Update practice_sessions counters (session ownership verified above)
+  await admin
     .from("practice_sessions")
-    .select("total_correct, total_questions, session_xp")
-    .eq("id", sessionId)
-    .single();
-
-  if (session) {
-    await admin
-      .from("practice_sessions")
-      .update({
-        total_questions: session.total_questions + 1,
-        total_correct: session.total_correct + (isCorrect ? 1 : 0),
-      })
-      .eq("id", sessionId);
-  }
+    .update({
+      total_questions: session.total_questions + 1,
+      total_correct: session.total_correct + (isCorrect ? 1 : 0),
+    })
+    .eq("id", sessionId);
 
   // Calculate XP
   let xpDelta = 0;
@@ -196,13 +203,11 @@ export async function POST(req: NextRequest) {
       .update({ global_xp: newGlobalXp, global_level: newGlobalLevel })
       .eq("id", user.id);
 
-    // Also update session XP
-    if (session) {
-      await admin
-        .from("practice_sessions")
-        .update({ session_xp: session.session_xp + xpDelta })
-        .eq("id", sessionId);
-    }
+    // Also update session XP (session ownership verified above)
+    await admin
+      .from("practice_sessions")
+      .update({ session_xp: session.session_xp + xpDelta })
+      .eq("id", sessionId);
   }
 
   return NextResponse.json({
