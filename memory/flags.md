@@ -24,6 +24,41 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ## OPEN
 
+### FLAG-004 — migration `010_skill_graph.sql` not applied (BLOCKED on Stream C)
+
+| | |
+|---|---|
+| **Since** | Phase 0 spine (this task) |
+| **Blocked by** | **Stream C must sign the migration before it is run.** It is not a "run when convenient" flag. |
+| **Dormant** | the whole skill graph: `skills`, `skill_prerequisites`, `skill_state`, and `attempts.skill_id` / `confidence` / `session_kind` / `mode` |
+| **Degradation** | Nothing reads these yet. `attempts` keeps writing the existing columns (including `time_spent_seconds`, wired this phase), so no student-facing behaviour depends on it. |
+| **Owner action** | Get Stream C's sign-off, then run the file in the Supabase SQL editor. |
+| **Verify** | `verify:flags` shows `migration_010_skill_graph: applied` (sentinel: `attempts.skill_id`). |
+
+**Runbook**
+
+1. **Do not skip:** Stream C signs off on `supabase/migrations/010_skill_graph.sql` first.
+2. Supabase dashboard → project → SQL Editor → New query.
+3. Paste the entire file and Run. It is one transaction and it will ABORT
+   rather than drop anything whose real `count(*)` is not 0 — that guard is
+   deliberate, because Supabase `list_tables` reported 0 rows for `topics`,
+   `problems` and `streaks` and was wrong about all three.
+4. Verify:
+   ```sql
+   select column_name from information_schema.columns
+   where table_name = 'attempts'
+     and column_name in ('skill_id','confidence','session_kind','mode');
+   -- expect 4 rows
+   select count(*) from attempts where session_kind is null;  -- expect 0
+   ```
+5. Move this entry to Resolved with the date.
+
+**Not in this migration, on purpose:** `topics` (13 rows) and `problems` (20
+rows) are NOT dropped — they are exported to `data/legacy-export/` and
+`problems` goes to Stream B first. The drop is written commented-out at the
+bottom of 010 for a follow-up migration 011.
+
+---
 ### FLAG-002 — migration `008_student_profiles.sql` not applied
 
 | | |

@@ -10,6 +10,14 @@ const primaryRenumber = JSON.parse(
   readFileSync(new URL("./data/primary/renumber-redirects.json", import.meta.url), "utf-8"),
 ).redirects;
 
+// Phase 0 unpublish (2026-08-14): IB, AP, the standalone topic courses and
+// grades 6–7 leave navigation and go noindex, but every file stays in place —
+// IB returns in 2027. Same list the app reads through lib/unpublished.ts;
+// this file cannot import TypeScript, hence the shared JSON.
+const unpublishedPrefixes = JSON.parse(
+  readFileSync(new URL("./data/unpublished-routes.json", import.meta.url), "utf-8"),
+).prefixes;
+
 // Service worker (PWA offline support). Compiles app/sw.ts → public/sw.js at
 // build; disabled in `next dev` by default to avoid stale-cache confusion.
 const withSerwist = withSerwistInit({
@@ -23,10 +31,24 @@ const nextConfig = {
     remotePatterns: [],
   },
   async headers() {
+    // Unpublished areas: noindex at the header, which covers every nested
+    // route in one place and does not touch a single content file. `nofollow`
+    // stops the crawler walking deeper from any link that survives.
+    const noindex = unpublishedPrefixes.flatMap((prefix) => [
+      {
+        source: prefix,
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: `${prefix}/:path*`,
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ]);
     // The SW and manifest must never be long-cached, or users get stuck on a
     // stale service worker after a deploy. _next/static keeps its immutable
     // content-hashed caching (handled by Next).
     return [
+      ...noindex,
       {
         source: "/sw.js",
         headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],

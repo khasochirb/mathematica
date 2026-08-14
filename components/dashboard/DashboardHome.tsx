@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import usePerformance from "@/lib/use-performance";
 import { contextHref, contextLabel, contextProgressHref } from "@/lib/perf-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
+import { publishedOnly } from "@/lib/unpublished";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 import useRefinementLoop, { useRecentlyMastered } from "@/lib/use-refinement-loop";
@@ -147,7 +148,9 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
   >([]);
   useEffect(() => {
     setPlacements(
-      PLACEMENT_NAMESPACES.flatMap((ns) => {
+      // Unpublished courses keep their stored placement on the device but
+      // stop appearing on the dashboard (rule 7).
+      publishedOnly(PLACEMENT_NAMESPACES).flatMap((ns) => {
         const data = loadPlacement(user?.id, ns.namespace);
         return data ? [{ ...ns, data }] : [];
       }),

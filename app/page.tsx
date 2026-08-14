@@ -13,8 +13,6 @@ type Bi = { en: string; mn: string };
 const CURRICULA: { label: Bi; href: string; live: boolean }[] = [
   { label: { en: "School math", mn: "Сургуулийн математик" }, href: "/math", live: true },
   { label: { en: "SAT Math", mn: "SAT Math" }, href: "/practice/sat", live: false },
-  { label: { en: "AP Calculus", mn: "AP Calculus" }, href: "/practice/ap", live: false },
-  { label: { en: "IB Math", mn: "IB Math" }, href: "/practice/ib", live: false },
   { label: { en: "ЭЕШ", mn: "ЭЕШ" }, href: "/practice/esh", live: true },
 ];
 

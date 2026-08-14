@@ -36,6 +36,12 @@ export const MIGRATION_SENTINELS: MigrationSentinel[] = [
     table: "attempts",
     column: "context",
   },
+  {
+    key: "migration_010_skill_graph",
+    migration: "010_skill_graph.sql",
+    table: "attempts",
+    column: "skill_id",
+  },
 ];
 
 export type ProbeStatus = "applied" | "missing" | "unknown";
@@ -93,4 +99,5 @@ export const HEALTHY: Record<string, string> = {
   anthropic_api_key: "configured",
   migration_008_student_profiles: "applied",
   migration_009_attempts_context: "applied",
+  migration_010_skill_graph: "applied",
 };
