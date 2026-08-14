@@ -38,6 +38,10 @@ const LIMITS: Record<string, number> = {
   // route itself enforces (FREE_DAILY_AI_LIMIT). A student never sends 15
   // questions in a minute; a script does.
   "/api/tutor": 15,
+  // Diagnostic placement: one call per MISS plus one closing report, and a
+  // student cannot answer questions faster than this. Tighter than the tutor
+  // because the per-sitting ceiling is AI_CALL_BUDGET (6) to begin with.
+  "/api/placement/next": 10,
 };
 const DEFAULT_LIMIT = 10;
 
