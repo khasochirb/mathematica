@@ -24,6 +24,41 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ## OPEN
 
+### FLAG-004 — migration `010_profiles_column_grants.sql` not applied (SECURITY)
+
+| | |
+|---|---|
+| **Since** | 2026-08-14 security audit (branch `claude/website-security-audit-qb8ceu`) |
+| **Priority** | **HIGH — closes a live privilege-escalation hole.** Until applied, any signed-in student can PATCH their own `profiles` row through PostgREST with the public anon key and set `is_subscribed = true` (free Premium), inflate `global_xp`/`global_level`, or overwrite teacher-set `grade`/`focus`. RLS limits the row, not the columns; only column grants close it. Apply as soon as convenient — ideally before/with the next deploy of this branch, but the migration stands alone and needs no code beside it. |
+| **Dormant** | Nothing ships dark here — this is a pure DB hardening migration, not a feature behind a flag. The vulnerability is open on prod *now*; the fix is the migration. |
+| **Degradation** | None. Verified 2026-08-14 that no browser-side code updates `profiles` (every `getSupabaseClient()` caller is in `lib/use-performance.ts`, none touch profiles), so revoking the broad UPDATE breaks no current feature. Server routes write privilege columns via the service-role client, which these grants do not affect. |
+| **Owner action** | ~2 minutes, below |
+| **Verify** | Manual — see runbook step 3. NOT covered by `/api/health/flags`: the column-sentinel probe model (lib/flags.ts) checks for an added *column*, and this migration adds none. Best mechanical probe is the `role_column_grants` query below; treat "no automated probe" as a known gap, acceptable because the check is a one-line SQL the owner runs once. |
+
+**Runbook**
+
+1. Supabase dashboard → project → SQL Editor → New query.
+2. Paste the entire contents of
+   `supabase/migrations/010_profiles_column_grants.sql` and Run.
+   (Idempotent — safe to run twice.)
+3. Verify in the same editor that `authenticated` can update ONLY the three
+   safe columns:
+   ```sql
+   select column_name from information_schema.role_column_grants
+   where grantee = 'authenticated'
+     and table_schema = 'public' and table_name = 'profiles'
+     and privilege_type = 'UPDATE'
+   order by column_name;
+   ```
+   Expect exactly 3 rows: `avatar_url`, `display_name`, `username`.
+   (Before the migration this returns every column, including
+   `is_subscribed` and `global_xp` — that is the bug.)
+4. Optional but recommended first: a snapshot via
+   `scripts/backup-prod.sh` (needs `~/.mp-backup-env`).
+5. Move this entry to Resolved with the date and the 3-row result.
+
+---
+
 ### FLAG-002 — migration `008_student_profiles.sql` not applied
 
 | | |
