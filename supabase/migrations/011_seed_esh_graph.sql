@@ -9,16 +9,19 @@
 -- DATA ONLY, NO DDL. `skills` and `skill_prerequisites` already exist in
 -- production (confirmed by the owner, both empty). This migration fills them.
 --
--- WHY DELETE-THEN-INSERT rather than upsert: the ON CONFLICT form needs the
--- unique constraints to be named as expected, and this file is generated
--- without being able to inspect the live schema. Deleting the hub's own rows
--- first is idempotent without depending on constraint names, and it also
--- removes skills that a later graph revision drops — an upsert would leave
--- those behind forever as invisible orphans.
---   Scoped to hub = 'esh', so SAT and IB rows are never touched.
---   SAFE TO RE-RUN while nothing references skills.id. Once items or attempts
---   carry a skill_id foreign key, switch this to an upsert or the delete will
---   cascade. That is a deliberate future decision, flagged here, not a trap.
+-- WHY SKILLS ARE UPSERTED AND NEVER DELETED. Migration 010 defines
+--   skill_state.skill_id REFERENCES skills(id) ON DELETE CASCADE
+-- so deleting a skill deletes every student's mastery state for it. An
+-- earlier draft of this file did delete-then-insert; against this schema
+-- that would silently destroy learner records on any re-run. Skills are
+-- therefore upserted on the primary key and never removed here.
+--   attempts.skill_id also references skills(id), without CASCADE, so a
+--   delete would additionally ERROR once attempts carry skill ids.
+-- EDGES are different: nothing references skill_prerequisites, so the hub's
+-- edges are cleared and rewritten. That keeps a revision that DROPS an edge
+-- from leaving it behind, which an upsert alone cannot do.
+-- A skill that a later revision drops is REPORTED at the end, not deleted —
+-- removing it is a decision with student data attached.
 --
 -- name_mn is NULL on every row by design: Mongolian is authored in Phase 3 by a
 -- Mongolian-speaking maths teacher expressing the idea, never translated from
@@ -49,7 +52,7 @@ begin
   end if;
 
   select string_agg(c, ', ') into missing from (
-    select c from unnest(array['skill_id','prereq_skill_id','strength']) as c
+    select c from unnest(array['skill_id','requires_id','strength']) as c
     where not exists (
       select 1 from information_schema.columns
       where table_schema = 'public' and table_name = 'skill_prerequisites'
@@ -61,198 +64,206 @@ begin
 end $$;
 
 delete from skill_prerequisites
- where skill_id in (select id from skills where hub = 'esh')
-    or prereq_skill_id in (select id from skills where hub = 'esh');
-delete from skills where hub = 'esh';
+ where skill_id in (select id from skills where hub = 'eysh')
+    or requires_id in (select id from skills where hub = 'eysh');
 
 insert into skills (id, hub, strand, name_en, name_mn, exam_weight, typical_difficulty, display_order)
 values
-  ('integer-operations', 'esh', 'algebra', 'Signed integer arithmetic and order of operations', NULL, 0.3, 1, 1),
-  ('decimal-arithmetic', 'esh', 'algebra', 'Decimal place value, rounding and estimation', NULL, 0.4, 1, 2),
-  ('fraction-arithmetic', 'esh', 'algebra', 'Add, subtract, multiply and divide fractions', NULL, 0.3, 1, 3),
-  ('divisibility-rules', 'esh', 'algebra', 'Divisibility tests and remainder reasoning', NULL, 0.2, 2, 4),
-  ('integer-powers', 'esh', 'algebra', 'Powers with integer exponents, including negatives', NULL, 0.3, 2, 5),
-  ('percent-and-proportion', 'esh', 'algebra', 'Percent of, percent change, ratio and proportion', NULL, 0.3, 2, 6),
-  ('prime-factorisation', 'esh', 'algebra', 'Prime factorisation, HCF and LCM', NULL, 0.2, 2, 7),
-  ('radicals-simplification', 'esh', 'algebra', 'Simplify surds and nth roots', NULL, 0.3, 2, 8),
-  ('real-number-sets', 'esh', 'algebra', 'Rational vs irrational; ordering and comparing reals', NULL, 0.2, 2, 9),
-  ('scientific-notation', 'esh', 'algebra', 'Write and compute in standard form', NULL, 0.2, 2, 10),
-  ('algebraic-expressions', 'esh', 'algebra', 'Evaluate and simplify algebraic expressions', NULL, 0.6632, 1, 11),
-  ('like-terms-and-distribution', 'esh', 'algebra', 'Collect like terms and expand brackets', NULL, 0.6632, 1, 12),
-  ('linear-equation-one-variable', 'esh', 'algebra', 'Solve a linear equation in one variable', NULL, 0.8291, 1, 13),
-  ('repeating-decimal-to-fraction', 'esh', 'algebra', 'Convert a repeating decimal to a fraction', NULL, 0.2, 3, 14),
-  ('polynomial-arithmetic', 'esh', 'algebra', 'Add, subtract and multiply polynomials', NULL, 0.6632, 2, 15),
-  ('factoring-common-factor', 'esh', 'algebra', 'Factor out the highest common factor', NULL, 0.6632, 2, 16),
-  ('rearranging-formulas', 'esh', 'algebra', 'Change the subject of a formula', NULL, 0.4974, 2, 17),
-  ('special-products', 'esh', 'algebra', 'Square of a binomial and difference of two squares', NULL, 0.6632, 2, 18),
-  ('factoring-quadratic-trinomial', 'esh', 'algebra', 'Factor a quadratic trinomial', NULL, 0.8291, 2, 19),
-  ('quadratic-by-factoring', 'esh', 'algebra', 'Solve a quadratic equation by factoring', NULL, 0.6632, 2, 20),
-  ('quadratic-formula', 'esh', 'algebra', 'Solve a quadratic with the quadratic formula', NULL, 0.6632, 2, 21),
-  ('systems-two-linear', 'esh', 'algebra', 'Solve a system of two linear equations', NULL, 0.6632, 2, 22),
-  ('absolute-value-equations', 'esh', 'algebra', 'Solve equations containing absolute value', NULL, 0.4974, 3, 23),
-  ('completing-the-square', 'esh', 'algebra', 'Complete the square', NULL, 0.4974, 3, 24),
-  ('discriminant', 'esh', 'algebra', 'Use the discriminant to determine the nature of the roots', NULL, 0.6632, 3, 25),
-  ('factoring-by-grouping', 'esh', 'algebra', 'Factor a four-term expression by grouping', NULL, 0.4974, 3, 26),
-  ('factoring-cubes', 'esh', 'algebra', 'Sum and difference of two cubes', NULL, 0.4974, 3, 27),
-  ('mixture-and-ratio-problems', 'esh', 'algebra', 'Set up and solve mixture and ratio word problems', NULL, 0.4974, 3, 28),
-  ('polynomial-division', 'esh', 'algebra', 'Divide polynomials by long or synthetic division', NULL, 0.4974, 3, 29),
-  ('radical-equations', 'esh', 'algebra', 'Solve equations containing a square root', NULL, 0.4974, 3, 30),
-  ('rational-expressions', 'esh', 'algebra', 'Simplify and combine rational expressions', NULL, 1.1607, 3, 31),
-  ('rational-equations', 'esh', 'algebra', 'Solve equations with the unknown in a denominator', NULL, 0.4974, 3, 32),
-  ('rate-and-work-problems', 'esh', 'algebra', 'Set up and solve speed, distance and work problems', NULL, 0.4974, 3, 33),
-  ('systems-three-linear', 'esh', 'algebra', 'Solve a system of three linear equations', NULL, 0.3316, 3, 34),
-  ('vieta-formulas', 'esh', 'algebra', 'Relate the sum and product of roots to the coefficients', NULL, 0.6632, 3, 35),
-  ('binomial-theorem', 'esh', 'algebra', 'Expand a binomial power and find a specific term', NULL, 0.6632, 4, 36),
-  ('systems-nonlinear', 'esh', 'algebra', 'Solve a system with one non-linear equation', NULL, 0.4974, 4, 37),
-  ('set-notation', 'esh', 'algebra', 'Set notation, membership and set-builder form', NULL, 0.3158, 1, 38),
-  ('interval-notation', 'esh', 'algebra', 'Intervals on the real line and their unions', NULL, 0.3158, 2, 39),
-  ('linear-inequality-one-variable', 'esh', 'algebra', 'Solve a linear inequality and list its integer solutions', NULL, 0.9949, 2, 40),
-  ('absolute-value-inequalities', 'esh', 'algebra', 'Solve inequalities containing absolute value', NULL, 0.4974, 3, 41),
-  ('quadratic-inequalities', 'esh', 'algebra', 'Solve a quadratic inequality', NULL, 0.6632, 3, 42),
-  ('set-operations', 'esh', 'algebra', 'Union, intersection, complement and Venn diagrams', NULL, 0.6316, 2, 43),
-  ('subsets-and-power-sets', 'esh', 'algebra', 'Subsets, proper subsets and counting subsets', NULL, 0.3158, 2, 44),
-  ('inclusion-exclusion', 'esh', 'algebra', 'Inclusion–exclusion for two and three sets', NULL, 0.4211, 3, 45),
-  ('function-notation', 'esh', 'algebra', 'Function notation and evaluating f(x)', NULL, 0.9889, 1, 46),
-  ('remainder-theorem', 'esh', 'algebra', 'Find a remainder by evaluating the polynomial', NULL, 0.8291, 3, 47),
-  ('factor-theorem', 'esh', 'algebra', 'Use the factor theorem to factor a cubic', NULL, 0.4974, 3, 48),
-  ('quadratic-function-vertex', 'esh', 'algebra', 'Vertex, axis of symmetry and direction of a parabola', NULL, 1.5822, 2, 49),
-  ('composite-functions', 'esh', 'algebra', 'Form and evaluate a composite function', NULL, 0.7911, 3, 50),
-  ('domain-of-a-function', 'esh', 'algebra', 'Find the domain of a function', NULL, 0.7911, 3, 51),
-  ('graph-transformations', 'esh', 'algebra', 'Translate, stretch and reflect a graph, including |f(x)|', NULL, 0.9889, 3, 52),
-  ('increasing-decreasing-intervals', 'esh', 'algebra', 'Identify intervals where a function increases or decreases', NULL, 0.7911, 3, 53),
-  ('inverse-functions', 'esh', 'algebra', 'Find and verify an inverse function', NULL, 0.5933, 3, 54),
-  ('piecewise-functions', 'esh', 'algebra', 'Evaluate and sketch a piecewise function', NULL, 0.3956, 3, 55),
-  ('range-of-a-function', 'esh', 'algebra', 'Find the range of a function', NULL, 0.7911, 3, 56),
-  ('rational-function-asymptotes', 'esh', 'algebra', 'Find vertical and horizontal asymptotes', NULL, 0.5933, 4, 57),
-  ('exponent-rules', 'esh', 'algebra', 'Product, quotient and power rules for exponents', NULL, 0.0903, 2, 58),
-  ('exponential-equations', 'esh', 'algebra', 'Solve equations by matching bases', NULL, 0.0677, 3, 59),
-  ('logarithm-definition', 'esh', 'algebra', 'The definition of a logarithm and conversion to exponential form', NULL, 0.0903, 3, 60),
-  ('exponential-and-log-graphs', 'esh', 'algebra', 'Recognise and sketch exponential and logarithmic graphs', NULL, 0.5933, 3, 61),
-  ('log-power-rule', 'esh', 'algebra', 'log(a^n) = n log a', NULL, 0.0677, 3, 62),
-  ('log-product-rule', 'esh', 'algebra', 'log(ab) = log a + log b', NULL, 0.0677, 3, 63),
-  ('log-quotient-rule', 'esh', 'algebra', 'log(a/b) = log a − log b', NULL, 0.0452, 3, 64),
-  ('rational-exponents', 'esh', 'algebra', 'Fractional exponents and their radical form', NULL, 0.0677, 3, 65),
-  ('change-of-base', 'esh', 'algebra', 'Change the base of a logarithm', NULL, 0.0452, 4, 66),
-  ('logarithmic-equations', 'esh', 'algebra', 'Solve logarithmic equations', NULL, 0.0903, 4, 67),
-  ('logarithmic-inequalities', 'esh', 'algebra', 'Solve logarithmic inequalities', NULL, 0.0677, 5, 68),
-  ('arithmetic-sequence', 'esh', 'algebra', 'nth term of an arithmetic sequence', NULL, 0.2133, 2, 69),
-  ('arithmetic-series', 'esh', 'algebra', 'Sum of an arithmetic series', NULL, 0.16, 3, 70),
-  ('geometric-sequence', 'esh', 'algebra', 'nth term of a geometric sequence', NULL, 0.2133, 3, 71),
-  ('geometric-series', 'esh', 'algebra', 'Sum of a geometric series, finite and infinite', NULL, 0.2133, 3, 72),
-  ('imaginary-unit', 'esh', 'algebra', 'The imaginary unit and powers of i', NULL, 0.28, 2, 73),
-  ('complex-arithmetic', 'esh', 'algebra', 'Add, subtract and multiply complex numbers', NULL, 0.3733, 3, 74),
-  ('complex-conjugate-division', 'esh', 'algebra', 'Divide complex numbers using the conjugate', NULL, 0.3733, 3, 75),
-  ('complex-roots-of-quadratics', 'esh', 'algebra', 'Quadratics with complex roots', NULL, 0.3733, 3, 76),
-  ('limit-concept', 'esh', 'analysis', 'Evaluate a limit, including indeterminate quotients', NULL, 0.6, 3, 1),
-  ('derivative-definition', 'esh', 'analysis', 'The derivative as a limit of the difference quotient', NULL, 0.4, 3, 2),
-  ('derivative-power-rule', 'esh', 'analysis', 'Differentiate powers and polynomials', NULL, 1.0, 2, 3),
-  ('antiderivative-power', 'esh', 'analysis', 'Antiderivatives of powers and polynomials', NULL, 1.0, 2, 4),
-  ('chain-rule', 'esh', 'analysis', 'Differentiate a composite function', NULL, 0.8, 3, 5),
-  ('definite-integral', 'esh', 'analysis', 'Evaluate a definite integral', NULL, 1.0, 3, 6),
-  ('area-under-curve', 'esh', 'analysis', 'Area between a curve and the x-axis', NULL, 0.8, 3, 7),
-  ('derivative-exp-log', 'esh', 'analysis', 'Differentiate exponential and logarithmic functions', NULL, 0.6, 3, 8),
-  ('derivative-product-quotient', 'esh', 'analysis', 'Product and quotient rules', NULL, 0.8, 3, 9),
-  ('derivative-trig', 'esh', 'analysis', 'Differentiate trigonometric functions', NULL, 0.6, 3, 10),
-  ('antiderivative-trig-exp', 'esh', 'analysis', 'Antiderivatives of trigonometric and exponential functions', NULL, 0.6, 3, 11),
-  ('higher-order-derivatives', 'esh', 'analysis', 'Second and higher derivatives', NULL, 0.6, 3, 12),
-  ('monotonicity-from-derivative', 'esh', 'analysis', 'Use the sign of f′ to find increasing and decreasing intervals', NULL, 0.8, 3, 13),
-  ('stationary-points-and-extrema', 'esh', 'analysis', 'Find and classify stationary points', NULL, 1.0, 3, 14),
-  ('tangent-line', 'esh', 'analysis', 'Equation of the tangent to a curve at a point', NULL, 0.8, 3, 15),
-  ('normal-line', 'esh', 'analysis', 'Equation of the normal to a curve', NULL, 0.6, 3, 16),
-  ('area-between-curves', 'esh', 'analysis', 'Area between two curves', NULL, 0.8, 4, 17),
-  ('concavity-and-inflection', 'esh', 'analysis', 'Concavity and points of inflection', NULL, 0.4, 4, 18),
-  ('definite-integral-absolute', 'esh', 'analysis', 'Definite integral of a function containing absolute value', NULL, 0.6, 4, 19),
-  ('integration-by-substitution', 'esh', 'analysis', 'Integrate by substitution', NULL, 0.6, 4, 20),
-  ('differential-equations-separable', 'esh', 'analysis', 'Solve a separable differential equation', NULL, 0.8, 4, 21),
-  ('optimisation', 'esh', 'analysis', 'Optimisation word problems', NULL, 0.6, 4, 22),
-  ('volume-of-revolution', 'esh', 'analysis', 'Volume generated by rotating a region', NULL, 0.4, 4, 23),
-  ('counting-principle', 'esh', 'combinatorics', 'The multiplication principle for counting', NULL, 0.4545, 2, 1),
-  ('permutations', 'esh', 'combinatorics', 'Permutations and factorial notation', NULL, 0.4545, 3, 2),
-  ('combinations', 'esh', 'combinatorics', 'Combinations and when order does not matter', NULL, 0.4545, 3, 3),
-  ('permutations-with-restrictions', 'esh', 'combinatorics', 'Permutations with restrictions or repeated items', NULL, 0.3636, 4, 4),
-  ('stars-and-bars', 'esh', 'combinatorics', 'Count non-negative integer solutions of an equation', NULL, 0.2727, 5, 5),
-  ('angles-and-parallel-lines', 'esh', 'geometry-trig', 'Angles on lines and with parallels', NULL, 0.515, 1, 1),
-  ('circle-parts', 'esh', 'geometry-trig', 'Radius, chord, arc, sector and segment', NULL, 0.515, 1, 2),
-  ('triangle-angle-sum', 'esh', 'geometry-trig', 'Angle sum, exterior angle and isosceles triangles', NULL, 0.8583, 1, 3),
-  ('circle-area-and-arc', 'esh', 'geometry-trig', 'Circumference, area, arc length and sector area', NULL, 0.6867, 2, 4),
-  ('line-equation', 'esh', 'geometry-trig', 'Equation of a straight line in its various forms', NULL, 0.6867, 2, 5),
-  ('parallel-perpendicular-lines', 'esh', 'geometry-trig', 'Gradient conditions for parallel and perpendicular lines', NULL, 0.515, 2, 6),
-  ('polygon-angles', 'esh', 'geometry-trig', 'Interior and exterior angles of a polygon', NULL, 0.3433, 2, 7),
-  ('pythagoras', 'esh', 'geometry-trig', 'Pythagoras'' theorem and its converse', NULL, 0.6867, 2, 8),
-  ('coordinate-distance', 'esh', 'geometry-trig', 'Distance between two points', NULL, 0.515, 1, 9),
-  ('coordinate-midpoint', 'esh', 'geometry-trig', 'Midpoint and the section formula in coordinates', NULL, 0.515, 2, 10),
-  ('quadrilateral-properties', 'esh', 'geometry-trig', 'Parallelograms, rectangles, rhombuses and squares', NULL, 0.515, 2, 11),
-  ('reflection', 'esh', 'geometry-trig', 'Reflect a point or figure in a line or through a point', NULL, 0.515, 2, 12),
-  ('special-right-triangles', 'esh', 'geometry-trig', '30–60–90 and 45–45–90 triangles', NULL, 0.515, 2, 13),
-  ('sphere', 'esh', 'geometry-trig', 'Volume and surface area of a sphere', NULL, 0.3433, 2, 14),
-  ('triangle-similarity', 'esh', 'geometry-trig', 'Similar triangles and the ratio of sides', NULL, 0.6867, 2, 15),
-  ('circle-equation', 'esh', 'geometry-trig', 'Equation of a circle, centre and radius', NULL, 0.6867, 3, 16),
-  ('circle-tangent', 'esh', 'geometry-trig', 'Tangent–radius perpendicularity and tangent length', NULL, 0.6867, 3, 17),
-  ('homothety', 'esh', 'geometry-trig', 'Enlargement about a centre with a scale factor', NULL, 0.515, 3, 18),
-  ('inscribed-angle', 'esh', 'geometry-trig', 'Inscribed angle and angle at the centre', NULL, 0.6867, 3, 19),
-  ('triangle-altitude', 'esh', 'geometry-trig', 'Altitudes, including the altitude to the hypotenuse', NULL, 0.515, 3, 20),
-  ('triangle-medians', 'esh', 'geometry-trig', 'Medians, the centroid and the median-length formula', NULL, 0.6867, 3, 21),
-  ('chords-and-power-of-a-point', 'esh', 'geometry-trig', 'Intersecting chords and secant–tangent relations', NULL, 0.515, 4, 22),
-  ('line-circle-intersection', 'esh', 'geometry-trig', 'Intersection of a line and a circle; tangency condition', NULL, 0.515, 4, 23),
-  ('right-triangle-ratios', 'esh', 'geometry-trig', 'Sine, cosine and tangent in a right triangle', NULL, 0.36, 2, 24),
-  ('triangle-area', 'esh', 'geometry-trig', 'Area of a triangle by base–height and by ½ab sin C', NULL, 0.6867, 2, 25),
-  ('prism-volume-surface', 'esh', 'geometry-trig', 'Volume and surface area of prisms and cuboids', NULL, 0.6867, 2, 26),
-  ('cylinder', 'esh', 'geometry-trig', 'Volume and surface area of a cylinder', NULL, 0.515, 2, 27),
-  ('trapezoid-properties', 'esh', 'geometry-trig', 'Trapezoid properties and area', NULL, 0.515, 2, 28),
-  ('cone', 'esh', 'geometry-trig', 'Volume, surface area and the sector-to-cone relation', NULL, 0.6867, 3, 29),
-  ('pyramid-volume-surface', 'esh', 'geometry-trig', 'Volume and surface area of a pyramid', NULL, 0.6867, 3, 30),
-  ('solid-of-revolution-geometric', 'esh', 'geometry-trig', 'Identify the solid generated by rotating a plane figure', NULL, 0.3433, 3, 31),
-  ('inscribed-circumscribed-circles', 'esh', 'geometry-trig', 'Incircles and circumcircles of triangles and quadrilaterals', NULL, 0.6867, 4, 32),
-  ('space-geometry-angles', 'esh', 'geometry-trig', 'Angles and distances between lines and planes in space', NULL, 0.515, 4, 33),
-  ('exact-trig-values', 'esh', 'geometry-trig', 'Exact values at 0°, 30°, 45°, 60° and 90°', NULL, 0.36, 2, 34),
-  ('rotation', 'esh', 'geometry-trig', 'Rotate a figure about a point', NULL, 0.515, 3, 35),
-  ('cosine-rule', 'esh', 'geometry-trig', 'The cosine rule', NULL, 0.36, 3, 36),
-  ('sine-rule', 'esh', 'geometry-trig', 'The sine rule, including the ambiguous case', NULL, 0.36, 3, 37),
-  ('unit-circle-and-radians', 'esh', 'geometry-trig', 'The unit circle, radians and signs by quadrant', NULL, 0.36, 3, 38),
-  ('trig-pythagorean-identity', 'esh', 'geometry-trig', 'sin²θ + cos²θ = 1 and its rearrangements', NULL, 0.36, 3, 39),
-  ('trig-equations', 'esh', 'geometry-trig', 'Solve a trigonometric equation over a given interval', NULL, 0.36, 4, 40),
-  ('trig-graphs', 'esh', 'geometry-trig', 'Amplitude, period and shifts of trigonometric graphs', NULL, 0.18, 4, 41),
-  ('trig-sum-difference', 'esh', 'geometry-trig', 'Sine and cosine of a sum or difference', NULL, 0.27, 4, 42),
-  ('double-angle-formulas', 'esh', 'geometry-trig', 'Double-angle formulas', NULL, 0.27, 4, 43),
-  ('trig-simplification', 'esh', 'geometry-trig', 'Simplify a trigonometric expression using identities', NULL, 0.36, 4, 44),
-  ('matrix-dimensions', 'esh', 'geometry-trig', 'Matrix notation, dimensions and when a product exists', NULL, 0.3612, 1, 45),
-  ('determinant-2x2', 'esh', 'geometry-trig', 'Determinant of a 2×2 matrix', NULL, 0.3612, 2, 46),
-  ('matrix-addition-scalar', 'esh', 'geometry-trig', 'Add matrices and multiply by a scalar', NULL, 0.3612, 2, 47),
-  ('vector-components', 'esh', 'geometry-trig', 'Vectors in component form and position vectors', NULL, 0.4816, 2, 48),
-  ('translation', 'esh', 'geometry-trig', 'Translate a figure by a vector', NULL, 0.515, 2, 49),
-  ('vector-arithmetic', 'esh', 'geometry-trig', 'Add, subtract and scale vectors; equal and opposite vectors', NULL, 0.7224, 2, 50),
-  ('vector-magnitude', 'esh', 'geometry-trig', 'Magnitude of a vector and unit vectors', NULL, 0.3612, 2, 51),
-  ('determinant-3x3', 'esh', 'geometry-trig', 'Determinant of a 3×3 matrix and Cramer''s rule', NULL, 0.3612, 3, 52),
-  ('dot-product', 'esh', 'geometry-trig', 'Scalar product and the angle between vectors', NULL, 0.4816, 3, 53),
-  ('matrix-multiplication', 'esh', 'geometry-trig', 'Multiply matrices', NULL, 0.4816, 3, 54),
-  ('transformation-matrices', 'esh', 'geometry-trig', 'Represent and compose transformations as 2×2 matrices', NULL, 1.03, 4, 55),
-  ('inverse-matrix-2x2', 'esh', 'geometry-trig', 'Inverse of a 2×2 matrix and singularity', NULL, 0.4816, 3, 56),
-  ('vectors-in-polygons', 'esh', 'geometry-trig', 'Express a vector in a polygon in terms of given vectors', NULL, 0.4816, 3, 57),
-  ('gaussian-elimination', 'esh', 'geometry-trig', 'Solve a linear system by row reduction', NULL, 0.2408, 4, 58),
-  ('vector-section-formula', 'esh', 'geometry-trig', 'Divide a segment in a given ratio using vectors', NULL, 0.3612, 4, 59),
-  ('cayley-hamilton', 'esh', 'geometry-trig', 'Apply the Cayley–Hamilton theorem to a 2×2 matrix', NULL, 0.3612, 5, 60),
-  ('sample-space-and-events', 'esh', 'probability-statistics', 'Sample spaces, events and listing outcomes', NULL, 0.8583, 1, 1),
-  ('classical-probability', 'esh', 'probability-statistics', 'Probability as favourable over total outcomes', NULL, 1.0729, 2, 2),
-  ('complementary-events', 'esh', 'probability-statistics', 'The complement rule', NULL, 0.6438, 2, 3),
-  ('addition-rule', 'esh', 'probability-statistics', 'P(A ∪ B) and mutually exclusive events', NULL, 0.8583, 3, 4),
-  ('discrete-random-variable', 'esh', 'probability-statistics', 'Discrete random variables and probability distributions', NULL, 1.0729, 3, 5),
-  ('expected-value', 'esh', 'probability-statistics', 'Expected value of a discrete random variable', NULL, 1.0729, 3, 6),
-  ('geometric-probability', 'esh', 'probability-statistics', 'Probability from length, area or volume', NULL, 0.8583, 3, 7),
-  ('independent-events', 'esh', 'probability-statistics', 'Multiplication rule for independent events', NULL, 0.8583, 3, 8),
-  ('binomial-distribution', 'esh', 'probability-statistics', 'Binomial probabilities', NULL, 0.6438, 4, 9),
-  ('conditional-probability', 'esh', 'probability-statistics', 'Conditional probability and dependent events', NULL, 0.6438, 4, 10),
-  ('counting-based-probability', 'esh', 'probability-statistics', 'Probability problems that need permutations or combinations', NULL, 0.8583, 4, 11),
-  ('variance-of-random-variable', 'esh', 'probability-statistics', 'Variance and standard deviation of a random variable', NULL, 0.8583, 4, 12),
-  ('data-representation', 'esh', 'probability-statistics', 'Read bar charts, histograms and frequency tables', NULL, 0.5032, 1, 13),
-  ('mean-median-mode', 'esh', 'probability-statistics', 'Mean, median and mode of a data set', NULL, 0.8387, 1, 14),
-  ('grouped-frequency-mean', 'esh', 'probability-statistics', 'Estimate the mean from a grouped frequency table', NULL, 0.671, 3, 15),
-  ('quartiles-and-iqr', 'esh', 'probability-statistics', 'Range, quartiles and the interquartile range', NULL, 1.0065, 3, 16),
-  ('box-plots', 'esh', 'probability-statistics', 'Construct and interpret a box plot', NULL, 0.3355, 2, 17),
-  ('cumulative-frequency', 'esh', 'probability-statistics', 'Cumulative frequency curves and reading a median from one', NULL, 0.5032, 3, 18),
-  ('variance-and-sd', 'esh', 'probability-statistics', 'Variance and standard deviation of a data set', NULL, 0.8387, 3, 19),
-  ('combined-standard-deviation', 'esh', 'probability-statistics', 'Combine the means and standard deviations of two groups', NULL, 0.5032, 5, 20);
+  ('integer-operations', 'eysh', 'algebra', 'Signed integer arithmetic and order of operations', NULL, 0.3, 1, 1),
+  ('decimal-arithmetic', 'eysh', 'algebra', 'Decimal place value, rounding and estimation', NULL, 0.4, 1, 2),
+  ('fraction-arithmetic', 'eysh', 'algebra', 'Add, subtract, multiply and divide fractions', NULL, 0.3, 1, 3),
+  ('divisibility-rules', 'eysh', 'algebra', 'Divisibility tests and remainder reasoning', NULL, 0.2, 2, 4),
+  ('integer-powers', 'eysh', 'algebra', 'Powers with integer exponents, including negatives', NULL, 0.3, 2, 5),
+  ('percent-and-proportion', 'eysh', 'algebra', 'Percent of, percent change, ratio and proportion', NULL, 0.3, 2, 6),
+  ('prime-factorisation', 'eysh', 'algebra', 'Prime factorisation, HCF and LCM', NULL, 0.2, 2, 7),
+  ('radicals-simplification', 'eysh', 'algebra', 'Simplify surds and nth roots', NULL, 0.3, 2, 8),
+  ('real-number-sets', 'eysh', 'algebra', 'Rational vs irrational; ordering and comparing reals', NULL, 0.2, 2, 9),
+  ('scientific-notation', 'eysh', 'algebra', 'Write and compute in standard form', NULL, 0.2, 2, 10),
+  ('algebraic-expressions', 'eysh', 'algebra', 'Evaluate and simplify algebraic expressions', NULL, 0.6632, 1, 11),
+  ('like-terms-and-distribution', 'eysh', 'algebra', 'Collect like terms and expand brackets', NULL, 0.6632, 1, 12),
+  ('linear-equation-one-variable', 'eysh', 'algebra', 'Solve a linear equation in one variable', NULL, 0.8291, 1, 13),
+  ('repeating-decimal-to-fraction', 'eysh', 'algebra', 'Convert a repeating decimal to a fraction', NULL, 0.2, 3, 14),
+  ('polynomial-arithmetic', 'eysh', 'algebra', 'Add, subtract and multiply polynomials', NULL, 0.6632, 2, 15),
+  ('factoring-common-factor', 'eysh', 'algebra', 'Factor out the highest common factor', NULL, 0.6632, 2, 16),
+  ('rearranging-formulas', 'eysh', 'algebra', 'Change the subject of a formula', NULL, 0.4974, 2, 17),
+  ('special-products', 'eysh', 'algebra', 'Square of a binomial and difference of two squares', NULL, 0.6632, 2, 18),
+  ('factoring-quadratic-trinomial', 'eysh', 'algebra', 'Factor a quadratic trinomial', NULL, 0.8291, 2, 19),
+  ('quadratic-by-factoring', 'eysh', 'algebra', 'Solve a quadratic equation by factoring', NULL, 0.6632, 2, 20),
+  ('quadratic-formula', 'eysh', 'algebra', 'Solve a quadratic with the quadratic formula', NULL, 0.6632, 2, 21),
+  ('systems-two-linear', 'eysh', 'algebra', 'Solve a system of two linear equations', NULL, 0.6632, 2, 22),
+  ('absolute-value-equations', 'eysh', 'algebra', 'Solve equations containing absolute value', NULL, 0.4974, 3, 23),
+  ('completing-the-square', 'eysh', 'algebra', 'Complete the square', NULL, 0.4974, 3, 24),
+  ('discriminant', 'eysh', 'algebra', 'Use the discriminant to determine the nature of the roots', NULL, 0.6632, 3, 25),
+  ('factoring-by-grouping', 'eysh', 'algebra', 'Factor a four-term expression by grouping', NULL, 0.4974, 3, 26),
+  ('factoring-cubes', 'eysh', 'algebra', 'Sum and difference of two cubes', NULL, 0.4974, 3, 27),
+  ('mixture-and-ratio-problems', 'eysh', 'algebra', 'Set up and solve mixture and ratio word problems', NULL, 0.4974, 3, 28),
+  ('polynomial-division', 'eysh', 'algebra', 'Divide polynomials by long or synthetic division', NULL, 0.4974, 3, 29),
+  ('radical-equations', 'eysh', 'algebra', 'Solve equations containing a square root', NULL, 0.4974, 3, 30),
+  ('rational-expressions', 'eysh', 'algebra', 'Simplify and combine rational expressions', NULL, 1.1607, 3, 31),
+  ('rational-equations', 'eysh', 'algebra', 'Solve equations with the unknown in a denominator', NULL, 0.4974, 3, 32),
+  ('rate-and-work-problems', 'eysh', 'algebra', 'Set up and solve speed, distance and work problems', NULL, 0.4974, 3, 33),
+  ('systems-three-linear', 'eysh', 'algebra', 'Solve a system of three linear equations', NULL, 0.3316, 3, 34),
+  ('vieta-formulas', 'eysh', 'algebra', 'Relate the sum and product of roots to the coefficients', NULL, 0.6632, 3, 35),
+  ('binomial-theorem', 'eysh', 'algebra', 'Expand a binomial power and find a specific term', NULL, 0.6632, 4, 36),
+  ('systems-nonlinear', 'eysh', 'algebra', 'Solve a system with one non-linear equation', NULL, 0.4974, 4, 37),
+  ('set-notation', 'eysh', 'algebra', 'Set notation, membership and set-builder form', NULL, 0.3158, 1, 38),
+  ('interval-notation', 'eysh', 'algebra', 'Intervals on the real line and their unions', NULL, 0.3158, 2, 39),
+  ('linear-inequality-one-variable', 'eysh', 'algebra', 'Solve a linear inequality and list its integer solutions', NULL, 0.9949, 2, 40),
+  ('absolute-value-inequalities', 'eysh', 'algebra', 'Solve inequalities containing absolute value', NULL, 0.4974, 3, 41),
+  ('quadratic-inequalities', 'eysh', 'algebra', 'Solve a quadratic inequality', NULL, 0.6632, 3, 42),
+  ('set-operations', 'eysh', 'algebra', 'Union, intersection, complement and Venn diagrams', NULL, 0.6316, 2, 43),
+  ('subsets-and-power-sets', 'eysh', 'algebra', 'Subsets, proper subsets and counting subsets', NULL, 0.3158, 2, 44),
+  ('inclusion-exclusion', 'eysh', 'algebra', 'Inclusion–exclusion for two and three sets', NULL, 0.4211, 3, 45),
+  ('function-notation', 'eysh', 'algebra', 'Function notation and evaluating f(x)', NULL, 0.9889, 1, 46),
+  ('remainder-theorem', 'eysh', 'algebra', 'Find a remainder by evaluating the polynomial', NULL, 0.8291, 3, 47),
+  ('factor-theorem', 'eysh', 'algebra', 'Use the factor theorem to factor a cubic', NULL, 0.4974, 3, 48),
+  ('quadratic-function-vertex', 'eysh', 'algebra', 'Vertex, axis of symmetry and direction of a parabola', NULL, 1.5822, 2, 49),
+  ('composite-functions', 'eysh', 'algebra', 'Form and evaluate a composite function', NULL, 0.7911, 3, 50),
+  ('domain-of-a-function', 'eysh', 'algebra', 'Find the domain of a function', NULL, 0.7911, 3, 51),
+  ('graph-transformations', 'eysh', 'algebra', 'Translate, stretch and reflect a graph, including |f(x)|', NULL, 0.9889, 3, 52),
+  ('increasing-decreasing-intervals', 'eysh', 'algebra', 'Identify intervals where a function increases or decreases', NULL, 0.7911, 3, 53),
+  ('inverse-functions', 'eysh', 'algebra', 'Find and verify an inverse function', NULL, 0.5933, 3, 54),
+  ('piecewise-functions', 'eysh', 'algebra', 'Evaluate and sketch a piecewise function', NULL, 0.3956, 3, 55),
+  ('range-of-a-function', 'eysh', 'algebra', 'Find the range of a function', NULL, 0.7911, 3, 56),
+  ('rational-function-asymptotes', 'eysh', 'algebra', 'Find vertical and horizontal asymptotes', NULL, 0.5933, 4, 57),
+  ('exponent-rules', 'eysh', 'algebra', 'Product, quotient and power rules for exponents', NULL, 0.0903, 2, 58),
+  ('exponential-equations', 'eysh', 'algebra', 'Solve equations by matching bases', NULL, 0.0677, 3, 59),
+  ('logarithm-definition', 'eysh', 'algebra', 'The definition of a logarithm and conversion to exponential form', NULL, 0.0903, 3, 60),
+  ('exponential-and-log-graphs', 'eysh', 'algebra', 'Recognise and sketch exponential and logarithmic graphs', NULL, 0.5933, 3, 61),
+  ('log-power-rule', 'eysh', 'algebra', 'log(a^n) = n log a', NULL, 0.0677, 3, 62),
+  ('log-product-rule', 'eysh', 'algebra', 'log(ab) = log a + log b', NULL, 0.0677, 3, 63),
+  ('log-quotient-rule', 'eysh', 'algebra', 'log(a/b) = log a − log b', NULL, 0.0452, 3, 64),
+  ('rational-exponents', 'eysh', 'algebra', 'Fractional exponents and their radical form', NULL, 0.0677, 3, 65),
+  ('change-of-base', 'eysh', 'algebra', 'Change the base of a logarithm', NULL, 0.0452, 4, 66),
+  ('logarithmic-equations', 'eysh', 'algebra', 'Solve logarithmic equations', NULL, 0.0903, 4, 67),
+  ('logarithmic-inequalities', 'eysh', 'algebra', 'Solve logarithmic inequalities', NULL, 0.0677, 5, 68),
+  ('arithmetic-sequence', 'eysh', 'algebra', 'nth term of an arithmetic sequence', NULL, 0.2133, 2, 69),
+  ('arithmetic-series', 'eysh', 'algebra', 'Sum of an arithmetic series', NULL, 0.16, 3, 70),
+  ('geometric-sequence', 'eysh', 'algebra', 'nth term of a geometric sequence', NULL, 0.2133, 3, 71),
+  ('geometric-series', 'eysh', 'algebra', 'Sum of a geometric series, finite and infinite', NULL, 0.2133, 3, 72),
+  ('imaginary-unit', 'eysh', 'algebra', 'The imaginary unit and powers of i', NULL, 0.28, 2, 73),
+  ('complex-arithmetic', 'eysh', 'algebra', 'Add, subtract and multiply complex numbers', NULL, 0.3733, 3, 74),
+  ('complex-conjugate-division', 'eysh', 'algebra', 'Divide complex numbers using the conjugate', NULL, 0.3733, 3, 75),
+  ('complex-roots-of-quadratics', 'eysh', 'algebra', 'Quadratics with complex roots', NULL, 0.3733, 3, 76),
+  ('limit-concept', 'eysh', 'analysis', 'Evaluate a limit, including indeterminate quotients', NULL, 0.6, 3, 1),
+  ('derivative-definition', 'eysh', 'analysis', 'The derivative as a limit of the difference quotient', NULL, 0.4, 3, 2),
+  ('derivative-power-rule', 'eysh', 'analysis', 'Differentiate powers and polynomials', NULL, 1.0, 2, 3),
+  ('antiderivative-power', 'eysh', 'analysis', 'Antiderivatives of powers and polynomials', NULL, 1.0, 2, 4),
+  ('chain-rule', 'eysh', 'analysis', 'Differentiate a composite function', NULL, 0.8, 3, 5),
+  ('definite-integral', 'eysh', 'analysis', 'Evaluate a definite integral', NULL, 1.0, 3, 6),
+  ('area-under-curve', 'eysh', 'analysis', 'Area between a curve and the x-axis', NULL, 0.8, 3, 7),
+  ('derivative-exp-log', 'eysh', 'analysis', 'Differentiate exponential and logarithmic functions', NULL, 0.6, 3, 8),
+  ('derivative-product-quotient', 'eysh', 'analysis', 'Product and quotient rules', NULL, 0.8, 3, 9),
+  ('derivative-trig', 'eysh', 'analysis', 'Differentiate trigonometric functions', NULL, 0.6, 3, 10),
+  ('antiderivative-trig-exp', 'eysh', 'analysis', 'Antiderivatives of trigonometric and exponential functions', NULL, 0.6, 3, 11),
+  ('higher-order-derivatives', 'eysh', 'analysis', 'Second and higher derivatives', NULL, 0.6, 3, 12),
+  ('monotonicity-from-derivative', 'eysh', 'analysis', 'Use the sign of f′ to find increasing and decreasing intervals', NULL, 0.8, 3, 13),
+  ('stationary-points-and-extrema', 'eysh', 'analysis', 'Find and classify stationary points', NULL, 1.0, 3, 14),
+  ('tangent-line', 'eysh', 'analysis', 'Equation of the tangent to a curve at a point', NULL, 0.8, 3, 15),
+  ('normal-line', 'eysh', 'analysis', 'Equation of the normal to a curve', NULL, 0.6, 3, 16),
+  ('area-between-curves', 'eysh', 'analysis', 'Area between two curves', NULL, 0.8, 4, 17),
+  ('concavity-and-inflection', 'eysh', 'analysis', 'Concavity and points of inflection', NULL, 0.4, 4, 18),
+  ('definite-integral-absolute', 'eysh', 'analysis', 'Definite integral of a function containing absolute value', NULL, 0.6, 4, 19),
+  ('integration-by-substitution', 'eysh', 'analysis', 'Integrate by substitution', NULL, 0.6, 4, 20),
+  ('differential-equations-separable', 'eysh', 'analysis', 'Solve a separable differential equation', NULL, 0.8, 4, 21),
+  ('optimisation', 'eysh', 'analysis', 'Optimisation word problems', NULL, 0.6, 4, 22),
+  ('volume-of-revolution', 'eysh', 'analysis', 'Volume generated by rotating a region', NULL, 0.4, 4, 23),
+  ('counting-principle', 'eysh', 'combinatorics', 'The multiplication principle for counting', NULL, 0.4545, 2, 1),
+  ('permutations', 'eysh', 'combinatorics', 'Permutations and factorial notation', NULL, 0.4545, 3, 2),
+  ('combinations', 'eysh', 'combinatorics', 'Combinations and when order does not matter', NULL, 0.4545, 3, 3),
+  ('permutations-with-restrictions', 'eysh', 'combinatorics', 'Permutations with restrictions or repeated items', NULL, 0.3636, 4, 4),
+  ('stars-and-bars', 'eysh', 'combinatorics', 'Count non-negative integer solutions of an equation', NULL, 0.2727, 5, 5),
+  ('angles-and-parallel-lines', 'eysh', 'geometry-trig', 'Angles on lines and with parallels', NULL, 0.515, 1, 1),
+  ('circle-parts', 'eysh', 'geometry-trig', 'Radius, chord, arc, sector and segment', NULL, 0.515, 1, 2),
+  ('triangle-angle-sum', 'eysh', 'geometry-trig', 'Angle sum, exterior angle and isosceles triangles', NULL, 0.8583, 1, 3),
+  ('circle-area-and-arc', 'eysh', 'geometry-trig', 'Circumference, area, arc length and sector area', NULL, 0.6867, 2, 4),
+  ('line-equation', 'eysh', 'geometry-trig', 'Equation of a straight line in its various forms', NULL, 0.6867, 2, 5),
+  ('parallel-perpendicular-lines', 'eysh', 'geometry-trig', 'Gradient conditions for parallel and perpendicular lines', NULL, 0.515, 2, 6),
+  ('polygon-angles', 'eysh', 'geometry-trig', 'Interior and exterior angles of a polygon', NULL, 0.3433, 2, 7),
+  ('pythagoras', 'eysh', 'geometry-trig', 'Pythagoras'' theorem and its converse', NULL, 0.6867, 2, 8),
+  ('coordinate-distance', 'eysh', 'geometry-trig', 'Distance between two points', NULL, 0.515, 1, 9),
+  ('coordinate-midpoint', 'eysh', 'geometry-trig', 'Midpoint and the section formula in coordinates', NULL, 0.515, 2, 10),
+  ('quadrilateral-properties', 'eysh', 'geometry-trig', 'Parallelograms, rectangles, rhombuses and squares', NULL, 0.515, 2, 11),
+  ('reflection', 'eysh', 'geometry-trig', 'Reflect a point or figure in a line or through a point', NULL, 0.515, 2, 12),
+  ('special-right-triangles', 'eysh', 'geometry-trig', '30–60–90 and 45–45–90 triangles', NULL, 0.515, 2, 13),
+  ('sphere', 'eysh', 'geometry-trig', 'Volume and surface area of a sphere', NULL, 0.3433, 2, 14),
+  ('triangle-similarity', 'eysh', 'geometry-trig', 'Similar triangles and the ratio of sides', NULL, 0.6867, 2, 15),
+  ('circle-equation', 'eysh', 'geometry-trig', 'Equation of a circle, centre and radius', NULL, 0.6867, 3, 16),
+  ('circle-tangent', 'eysh', 'geometry-trig', 'Tangent–radius perpendicularity and tangent length', NULL, 0.6867, 3, 17),
+  ('homothety', 'eysh', 'geometry-trig', 'Enlargement about a centre with a scale factor', NULL, 0.515, 3, 18),
+  ('inscribed-angle', 'eysh', 'geometry-trig', 'Inscribed angle and angle at the centre', NULL, 0.6867, 3, 19),
+  ('triangle-altitude', 'eysh', 'geometry-trig', 'Altitudes, including the altitude to the hypotenuse', NULL, 0.515, 3, 20),
+  ('triangle-medians', 'eysh', 'geometry-trig', 'Medians, the centroid and the median-length formula', NULL, 0.6867, 3, 21),
+  ('chords-and-power-of-a-point', 'eysh', 'geometry-trig', 'Intersecting chords and secant–tangent relations', NULL, 0.515, 4, 22),
+  ('line-circle-intersection', 'eysh', 'geometry-trig', 'Intersection of a line and a circle; tangency condition', NULL, 0.515, 4, 23),
+  ('right-triangle-ratios', 'eysh', 'geometry-trig', 'Sine, cosine and tangent in a right triangle', NULL, 0.36, 2, 24),
+  ('triangle-area', 'eysh', 'geometry-trig', 'Area of a triangle by base–height and by ½ab sin C', NULL, 0.6867, 2, 25),
+  ('prism-volume-surface', 'eysh', 'geometry-trig', 'Volume and surface area of prisms and cuboids', NULL, 0.6867, 2, 26),
+  ('cylinder', 'eysh', 'geometry-trig', 'Volume and surface area of a cylinder', NULL, 0.515, 2, 27),
+  ('trapezoid-properties', 'eysh', 'geometry-trig', 'Trapezoid properties and area', NULL, 0.515, 2, 28),
+  ('cone', 'eysh', 'geometry-trig', 'Volume, surface area and the sector-to-cone relation', NULL, 0.6867, 3, 29),
+  ('pyramid-volume-surface', 'eysh', 'geometry-trig', 'Volume and surface area of a pyramid', NULL, 0.6867, 3, 30),
+  ('solid-of-revolution-geometric', 'eysh', 'geometry-trig', 'Identify the solid generated by rotating a plane figure', NULL, 0.3433, 3, 31),
+  ('inscribed-circumscribed-circles', 'eysh', 'geometry-trig', 'Incircles and circumcircles of triangles and quadrilaterals', NULL, 0.6867, 4, 32),
+  ('space-geometry-angles', 'eysh', 'geometry-trig', 'Angles and distances between lines and planes in space', NULL, 0.515, 4, 33),
+  ('exact-trig-values', 'eysh', 'geometry-trig', 'Exact values at 0°, 30°, 45°, 60° and 90°', NULL, 0.36, 2, 34),
+  ('rotation', 'eysh', 'geometry-trig', 'Rotate a figure about a point', NULL, 0.515, 3, 35),
+  ('cosine-rule', 'eysh', 'geometry-trig', 'The cosine rule', NULL, 0.36, 3, 36),
+  ('sine-rule', 'eysh', 'geometry-trig', 'The sine rule, including the ambiguous case', NULL, 0.36, 3, 37),
+  ('unit-circle-and-radians', 'eysh', 'geometry-trig', 'The unit circle, radians and signs by quadrant', NULL, 0.36, 3, 38),
+  ('trig-pythagorean-identity', 'eysh', 'geometry-trig', 'sin²θ + cos²θ = 1 and its rearrangements', NULL, 0.36, 3, 39),
+  ('trig-equations', 'eysh', 'geometry-trig', 'Solve a trigonometric equation over a given interval', NULL, 0.36, 4, 40),
+  ('trig-graphs', 'eysh', 'geometry-trig', 'Amplitude, period and shifts of trigonometric graphs', NULL, 0.18, 4, 41),
+  ('trig-sum-difference', 'eysh', 'geometry-trig', 'Sine and cosine of a sum or difference', NULL, 0.27, 4, 42),
+  ('double-angle-formulas', 'eysh', 'geometry-trig', 'Double-angle formulas', NULL, 0.27, 4, 43),
+  ('trig-simplification', 'eysh', 'geometry-trig', 'Simplify a trigonometric expression using identities', NULL, 0.36, 4, 44),
+  ('matrix-dimensions', 'eysh', 'geometry-trig', 'Matrix notation, dimensions and when a product exists', NULL, 0.3612, 1, 45),
+  ('determinant-2x2', 'eysh', 'geometry-trig', 'Determinant of a 2×2 matrix', NULL, 0.3612, 2, 46),
+  ('matrix-addition-scalar', 'eysh', 'geometry-trig', 'Add matrices and multiply by a scalar', NULL, 0.3612, 2, 47),
+  ('vector-components', 'eysh', 'geometry-trig', 'Vectors in component form and position vectors', NULL, 0.4816, 2, 48),
+  ('translation', 'eysh', 'geometry-trig', 'Translate a figure by a vector', NULL, 0.515, 2, 49),
+  ('vector-arithmetic', 'eysh', 'geometry-trig', 'Add, subtract and scale vectors; equal and opposite vectors', NULL, 0.7224, 2, 50),
+  ('vector-magnitude', 'eysh', 'geometry-trig', 'Magnitude of a vector and unit vectors', NULL, 0.3612, 2, 51),
+  ('determinant-3x3', 'eysh', 'geometry-trig', 'Determinant of a 3×3 matrix and Cramer''s rule', NULL, 0.3612, 3, 52),
+  ('dot-product', 'eysh', 'geometry-trig', 'Scalar product and the angle between vectors', NULL, 0.4816, 3, 53),
+  ('matrix-multiplication', 'eysh', 'geometry-trig', 'Multiply matrices', NULL, 0.4816, 3, 54),
+  ('transformation-matrices', 'eysh', 'geometry-trig', 'Represent and compose transformations as 2×2 matrices', NULL, 1.03, 4, 55),
+  ('inverse-matrix-2x2', 'eysh', 'geometry-trig', 'Inverse of a 2×2 matrix and singularity', NULL, 0.4816, 3, 56),
+  ('vectors-in-polygons', 'eysh', 'geometry-trig', 'Express a vector in a polygon in terms of given vectors', NULL, 0.4816, 3, 57),
+  ('gaussian-elimination', 'eysh', 'geometry-trig', 'Solve a linear system by row reduction', NULL, 0.2408, 4, 58),
+  ('vector-section-formula', 'eysh', 'geometry-trig', 'Divide a segment in a given ratio using vectors', NULL, 0.3612, 4, 59),
+  ('cayley-hamilton', 'eysh', 'geometry-trig', 'Apply the Cayley–Hamilton theorem to a 2×2 matrix', NULL, 0.3612, 5, 60),
+  ('sample-space-and-events', 'eysh', 'probability-statistics', 'Sample spaces, events and listing outcomes', NULL, 0.8583, 1, 1),
+  ('classical-probability', 'eysh', 'probability-statistics', 'Probability as favourable over total outcomes', NULL, 1.0729, 2, 2),
+  ('complementary-events', 'eysh', 'probability-statistics', 'The complement rule', NULL, 0.6438, 2, 3),
+  ('addition-rule', 'eysh', 'probability-statistics', 'P(A ∪ B) and mutually exclusive events', NULL, 0.8583, 3, 4),
+  ('discrete-random-variable', 'eysh', 'probability-statistics', 'Discrete random variables and probability distributions', NULL, 1.0729, 3, 5),
+  ('expected-value', 'eysh', 'probability-statistics', 'Expected value of a discrete random variable', NULL, 1.0729, 3, 6),
+  ('geometric-probability', 'eysh', 'probability-statistics', 'Probability from length, area or volume', NULL, 0.8583, 3, 7),
+  ('independent-events', 'eysh', 'probability-statistics', 'Multiplication rule for independent events', NULL, 0.8583, 3, 8),
+  ('binomial-distribution', 'eysh', 'probability-statistics', 'Binomial probabilities', NULL, 0.6438, 4, 9),
+  ('conditional-probability', 'eysh', 'probability-statistics', 'Conditional probability and dependent events', NULL, 0.6438, 4, 10),
+  ('counting-based-probability', 'eysh', 'probability-statistics', 'Probability problems that need permutations or combinations', NULL, 0.8583, 4, 11),
+  ('variance-of-random-variable', 'eysh', 'probability-statistics', 'Variance and standard deviation of a random variable', NULL, 0.8583, 4, 12),
+  ('data-representation', 'eysh', 'probability-statistics', 'Read bar charts, histograms and frequency tables', NULL, 0.5032, 1, 13),
+  ('mean-median-mode', 'eysh', 'probability-statistics', 'Mean, median and mode of a data set', NULL, 0.8387, 1, 14),
+  ('grouped-frequency-mean', 'eysh', 'probability-statistics', 'Estimate the mean from a grouped frequency table', NULL, 0.671, 3, 15),
+  ('quartiles-and-iqr', 'eysh', 'probability-statistics', 'Range, quartiles and the interquartile range', NULL, 1.0065, 3, 16),
+  ('box-plots', 'eysh', 'probability-statistics', 'Construct and interpret a box plot', NULL, 0.3355, 2, 17),
+  ('cumulative-frequency', 'eysh', 'probability-statistics', 'Cumulative frequency curves and reading a median from one', NULL, 0.5032, 3, 18),
+  ('variance-and-sd', 'eysh', 'probability-statistics', 'Variance and standard deviation of a data set', NULL, 0.8387, 3, 19),
+  ('combined-standard-deviation', 'eysh', 'probability-statistics', 'Combine the means and standard deviations of two groups', NULL, 0.5032, 5, 20)
+on conflict (id) do update set
+  hub = excluded.hub,
+  strand = excluded.strand,
+  name_en = excluded.name_en,
+  exam_weight = excluded.exam_weight,
+  typical_difficulty = excluded.typical_difficulty,
+  display_order = excluded.display_order;
+-- name_mn is deliberately NOT in the update list: once a Mongolian
+-- teacher writes it in Phase 3, re-running this seed must not blank it.
 
-insert into skill_prerequisites (skill_id, prereq_skill_id, strength)
+insert into skill_prerequisites (skill_id, requires_id, strength)
 values
   ('absolute-value-equations', 'integer-operations', 0.8),
   ('absolute-value-equations', 'linear-equation-one-variable', 1.0),
@@ -620,7 +631,8 @@ values
   ('vieta-formulas', 'quadratic-formula', 0.8),
   ('volume-of-revolution', 'area-under-curve', 0.8),
   ('volume-of-revolution', 'cylinder', 0.4),
-  ('volume-of-revolution', 'definite-integral', 1.0);
+  ('volume-of-revolution', 'definite-integral', 1.0)
+on conflict (skill_id, requires_id) do update set strength = excluded.strength;
 
 -- Post-conditions. If any of these fail the whole migration rolls back, so a
 -- partially-seeded graph can never reach a student.
@@ -630,13 +642,13 @@ declare
   n_edges int;
   n_dangling int;
 begin
-  select count(*) into n_skills from skills where hub = 'esh';
-  if n_skills <> 184 then
-    raise exception 'expected 184 ЭЕШ skills, found %', n_skills;
+  select count(*) into n_skills from skills where hub = 'eysh';
+  if n_skills < 184 then
+    raise exception 'expected at least 184 ЭЕШ skills, found %', n_skills;
   end if;
 
   select count(*) into n_edges from skill_prerequisites p
-    join skills s on s.id = p.skill_id where s.hub = 'esh';
+    join skills s on s.id = p.skill_id where s.hub = 'eysh';
   if n_edges <> 367 then
     raise exception 'expected 367 prerequisite edges, found %', n_edges;
   end if;
@@ -645,7 +657,7 @@ begin
   -- inference walk silently skip a whole branch.
   select count(*) into n_dangling from skill_prerequisites p
    where not exists (select 1 from skills s where s.id = p.skill_id)
-      or not exists (select 1 from skills s where s.id = p.prereq_skill_id);
+      or not exists (select 1 from skills s where s.id = p.requires_id);
   if n_dangling > 0 then
     raise exception '% prerequisite edge(s) point at a skill that does not exist',
       n_dangling;

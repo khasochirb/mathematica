@@ -101,7 +101,9 @@ describe("classifyRowProbe — the sentinel shape for SEED migrations", () => {
   it("the 011 sentinel counts rows, scoped to the ЭЕШ hub", () => {
     const s = MIGRATION_SENTINELS.find((x) => x.key === "migration_011_seed_esh_graph")!;
     expect(s.expectRows).toBeDefined();
-    expect(s.expectRows!.where).toEqual({ column: "hub", value: "esh" });
+    // 'eysh', matching the CHECK constraint in migration 010. A sentinel on
+    // the wrong hub value would report "missing" forever after a clean seed.
+    expect(s.expectRows!.where).toEqual({ column: "hub", value: "eysh" });
     // The floor must sit below the shipped count or a graph revision reds it.
     expect(s.expectRows!.atLeast).toBeLessThan(184);
   });

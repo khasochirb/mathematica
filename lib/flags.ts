@@ -56,7 +56,7 @@ export const MIGRATION_SENTINELS: MigrationSentinel[] = [
     // 184 ЭЕШ skills ship in 011. The floor is deliberately well below that:
     // the question this answers is "did the seed run at all", and a graph
     // revision that merges two skills must not turn the flag red.
-    expectRows: { atLeast: 150, where: { column: "hub", value: "esh" } },
+    expectRows: { atLeast: 150, where: { column: "hub", value: "eysh" } },
   },
 ];
 
