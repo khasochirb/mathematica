@@ -330,3 +330,11 @@ left NULL**; `skill_state` holds no INSERT/UPDATE/DELETE grant for `anon` or
 
 `topics` (13 rows) and `problems` (20 rows) were deliberately NOT dropped —
 exported to `data/legacy-export/`, and `problems` still goes to Stream B.
+
+Two security migrations landed alongside it, both applied and verified:
+`012_profiles_update_lockdown.sql` (the free-premium hole) and
+`013_client_write_lockdown.sql` (the same shape on `daily_problem_counts`
+and `streaks`, plus TRUNCATE revoked from `anon`/`authenticated`
+schema-wide). Neither leaves an open flag — there is nothing for the owner
+to do. `011` is intentionally unused locally: it is reserved for Stream B's
+`011_seed_esh_graph.sql`.
