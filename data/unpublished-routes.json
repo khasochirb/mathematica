@@ -1,7 +1,8 @@
 {
-  "note": "Phase 0 UNPUBLISH list. These routes still exist and still build — every file is left in place — but they are removed from navigation and internal links, and served noindex. IB comes back in 2027; re-publishing is deleting entries from this file.",
+  "note": "Phase 0 UNPUBLISH list. /practice/session is the orphaned legacy runner whose tables (practice_sessions, session_answers, topic_progress) migration 010 dropped; it had no inbound links and every one of those tables held 0 rows. These routes still exist and still build — every file is left in place — but they are removed from navigation and internal links, and served noindex. IB comes back in 2027; re-publishing is deleting entries from this file.",
   "since": "2026-08-14",
   "prefixes": [
+    "/practice/session",
     "/practice/ib",
     "/practice/ap",
     "/ib-analytics",

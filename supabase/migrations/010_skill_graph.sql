@@ -126,15 +126,19 @@ CREATE POLICY "skill_state_select_own" ON skill_state
 ALTER TABLE attempts
   ADD COLUMN skill_id     text REFERENCES skills(id),
   ADD COLUMN confidence   text,   -- 'sure' | 'unsure'
-  ADD COLUMN session_kind text,   -- 'centre'|'timed_test'|'checkpoint'|'practice_test'|'drill'
+  ADD COLUMN session_kind text,   -- 'centre'|'timed_test'|'checkpoint'|'practice_test'|'drill'|'lesson'
   ADD COLUMN mode         text;   -- 'learn' | 'test'
 
 ALTER TABLE attempts
   ADD CONSTRAINT attempts_confidence_check
     CHECK (confidence IS NULL OR confidence IN ('sure','unsure')),
+  -- Six kinds. 'lesson' was added to the doc's five (owner ruling,
+  -- 2026-08-14): lesson checks are learn-mode with help available, so they
+  -- carry evidence weight 0.3 — the same as 'drill'. Without it those rows
+  -- had no honest bucket at all.
   ADD CONSTRAINT attempts_session_kind_check
     CHECK (session_kind IS NULL OR session_kind IN
-      ('centre','timed_test','checkpoint','practice_test','drill')),
+      ('centre','timed_test','checkpoint','practice_test','drill','lesson')),
   ADD CONSTRAINT attempts_mode_check
     CHECK (mode IS NULL OR mode IN ('learn','test'));
 
@@ -152,14 +156,12 @@ CREATE INDEX attempts_user_skill_answered_at_idx
 -- All 93 existing rows are source='test' (49 eysh, 44 sat); verified before
 -- writing this file.
 --
--- 'lesson' has NO session_kind in the doc's five. Those rows keep a NULL
--- session_kind rather than being forced into a bucket they do not belong in
--- (there are none today). Flagged in the session report.
 UPDATE attempts
    SET session_kind = CASE source
-                        WHEN 'test'  THEN 'practice_test'
-                        WHEN 'drill' THEN 'drill'
-                        ELSE NULL          -- 'lesson' and anything unknown
+                        WHEN 'test'   THEN 'practice_test'
+                        WHEN 'drill'  THEN 'drill'
+                        WHEN 'lesson' THEN 'lesson'
+                        ELSE NULL           -- unknown source: no guess
                       END,
        mode        = CASE source
                         WHEN 'test' THEN 'test'
