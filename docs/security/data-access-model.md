@@ -327,3 +327,25 @@ Required before real academic records arrive:
 
 A deletion request from a parent has to be honourable in full, on demand.
 Today it would fail partway and leave the account in an inconsistent state.
+
+### Status of §3 (updated 2026-08-15)
+
+| # | Requirement | State |
+|---|---|---|
+| 1 | Six `NO ACTION` FKs → `CASCADE` / `SET NULL` | **Written**, `011_deletion_cascade.sql`. Not applied to prod — FLAG-005. |
+| 2 | New tables in §1/§2 use `ON DELETE CASCADE` | Specified above; no such table built yet. |
+| 3 | Server-side deletion routine (delete auth user + verify zero residual rows) | **NOT BUILT.** Still the largest open gap in §3. |
+| 4 | `lib/data-erase.ts` inventory covers server tables | **Done.** The module header now names every server table holding student work and where each is erased. |
+
+On #4, writing it down immediately found one: `section2_attempts` shipped in
+migration 006 with no DELETE policy and was in no erase path, so a student's
+"erase everything" left their graded Section 2 answers on the server. It is
+now swept by `POST /api/attempts/erase`, along with
+`refinement_loop_sessions` on a full erase.
+
+That route is scoped erase of *answer history*, not account deletion — it
+does not touch `profiles`, the auth user, streaks, achievements or
+subscription rows. #3 still needs building, and it is the requirement a
+guardian's "delete my child's account" actually depends on. Its verify-don't-
+assume step is the pattern the erase route already demonstrates: re-count
+after deleting and fail loudly on a non-zero residual.

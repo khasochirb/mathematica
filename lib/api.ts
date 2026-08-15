@@ -1,3 +1,5 @@
+import type { EraseScope } from "./data-erase";
+
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
 const TOKEN_KEY = "mp_token";
 
@@ -207,6 +209,20 @@ export const api = {
         method: "POST",
         body: JSON.stringify(body),
       }).catch(() => ({ success: false })),
+  },
+  attempts: {
+    // Scoped erase of the server-side answer history. The client names a
+    // scope; the server derives the row filter and applies it to the JWT
+    // subject's rows only (app/api/attempts/erase/route.ts explains why the
+    // browser may no longer build this delete itself).
+    erase: (body: { scope: EraseScope }) =>
+      apiCall<{
+        attemptsDeleted: number;
+        section2Deleted: number;
+        refinementLoopsDeleted: number;
+        /** Rows still matching the scope after the delete. Must be 0. */
+        residual: number;
+      }>("/api/attempts/erase", { method: "POST", body: JSON.stringify(body) }),
   },
   section2: {
     submitAttempts: (body: {

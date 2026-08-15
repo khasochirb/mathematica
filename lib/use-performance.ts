@@ -3,14 +3,13 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useAuth } from "./auth-context";
 import { getSupabaseClient } from "./supabase";
-import { getMpToken } from "./api";
+import { api, getMpToken } from "./api";
 import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource, TOPIC_LABELS } from "./esh-questions";
 import { getSection2ItemBySource } from "./esh-section2";
 import { skillLabel } from "./skill-study-map";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 import { parseTestId } from "./test-history";
 import {
-  attemptContextsForScope,
   attemptInScope,
   reconcileFetchedAttempts,
   type EraseScope,
@@ -851,30 +850,18 @@ export default function usePerformance() {
       const token = getMpToken();
       if (!token) return { localRemoved, serverOk: false };
 
+      // The server owns this delete. The browser sends a scope NAME and gets
+      // back a verified count; it no longer builds a row filter of its own,
+      // because a client-built filter can delete just the wrong answers and
+      // inflate every accuracy figure downstream. See the route's header and
+      // migration 013, which revokes the client's DELETE on attempts.
       try {
-        const supabase = getSupabaseClient();
-        let query = supabase.from("attempts").delete().eq("user_id", userId);
-
-        if (scope === "courses") {
-          query = query.like("context", "course:%");
-        } else if (scope !== "all") {
-          const contexts = attemptContextsForScope(scope) ?? [];
-          const named = contexts.filter((c): c is string => c !== null);
-          // ЭЕШ owns the context-less rows written before the column existed;
-          // without the is.null branch the oldest attempts are undeletable.
-          query = contexts.includes(null)
-            ? query.or(`context.is.null,context.in.(${named.join(",")})`)
-            : query.in("context", named);
-        }
-
-        const { error } = await query;
-        if (error) {
-          if (IS_DEV) console.warn("[attempts sync] clearScope delete failed:", error.message);
-          return { localRemoved, serverOk: false };
-        }
-        return { localRemoved, serverOk: true };
+        const res = await api.attempts.erase({ scope });
+        // The route re-counts after deleting; a non-zero residual means the
+        // erase did not fully land, and it must not be reported as success.
+        return { localRemoved, serverOk: res.residual === 0 };
       } catch (err) {
-        if (IS_DEV) console.warn("[attempts sync] clearScope network error:", err);
+        if (IS_DEV) console.warn("[attempts sync] clearScope erase failed:", err);
         return { localRemoved, serverOk: false };
       }
     },

@@ -131,6 +131,44 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ---
 
+### FLAG-007 — migration `013_attempts_server_delete.sql` not applied (SECURITY)
+
+| | |
+|---|---|
+| **Since** | 2026-08-14 security audit (branch `claude/website-security-audit-qb8ceu`) |
+| **Priority** | MEDIUM-HIGH — closes a grade-integrity hole. `attempts` has `attempts_delete_own` plus the default broad grant, so the browser deletes rows itself over PostgREST with the student's own JWT and **writes its own filter**. `delete().eq("user_id", me).eq("is_correct", false)` removes only the wrong answers, leaving a perfect record behind and inflating accuracy, mastery, the weakness model, the ratings card and the predicted grade — the numbers a parent is shown and pays for. |
+| **SEQUENCING — read before applying** | **Apply only AFTER the deploy containing `/api/attempts/erase` is live.** The order is safe in one direction only: applying it early loses no data, it just makes the old bundle's "clear my data" button fail (the panel reports the failure honestly rather than claiming success) until the new code ships. Applying it before that deploy is a broken feature, not a broken database. |
+| **Dormant** | The replacement route (`POST /api/attempts/erase`) works whether or not the migration is applied — it holds the service-role client, which RLS and these grants do not affect. So the code ships fully functional; the migration only removes the *old* path. |
+| **Degradation** | None once the deploy is live. `SELECT` and `INSERT` are deliberately unchanged — the client still writes and reads its own attempts. Only the removal of evidence moves behind the server, and whole-scope erase remains available to the student through the route. |
+| **Owner action** | ~2 minutes, below |
+| **Verify** | Manual — see runbook step 4. Not probeable by `/api/health/flags` (adds no column). |
+
+**Runbook**
+
+1. Confirm first that production is running a build that contains
+   `/api/attempts/erase` (Vercel → imathhub → latest Production deployment
+   includes this branch). If it does not, **stop** — see SEQUENCING above.
+2. Supabase dashboard → project → SQL Editor → New query.
+3. Paste the entire contents of
+   `supabase/migrations/013_attempts_server_delete.sql` and Run.
+   (Idempotent.)
+4. Verify in the same editor that clients can no longer delete attempts:
+   ```sql
+   select privilege_type
+   from information_schema.role_table_grants
+   where grantee = 'authenticated' and table_schema = 'public'
+     and table_name = 'attempts'
+   order by privilege_type;
+   ```
+   Expect exactly 2 rows: `INSERT`, `SELECT`. (Before the migration this
+   also returns `DELETE` — that is the hole.)
+5. Smoke-test the replacement: sign in as a test account, use the erase
+   panel on one scope, confirm the panel reports success and the rows are
+   gone from `attempts`.
+6. Move this entry to Resolved with the date and the 2-row result.
+
+---
+
 ### FLAG-002 — migration `008_student_profiles.sql` not applied
 
 | | |
