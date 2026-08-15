@@ -221,3 +221,87 @@ out = {
 with open(os.path.join(ROOT, "data", "skills", "esh-patch-and-orphans.json"), "w") as f:
     json.dump(out, f, ensure_ascii=False, indent=2)
     f.write("\n")
+
+# --- Part 3 -----------------------------------------------------------------
+# SECOND-PASS candidates, added after the first report. These come from the
+# long tail and are included ONLY where the string names one thing and that
+# thing is one of the 73 empty skills — the question Khas actually asked is
+# "which of the 73 are already covered", so the tail is worth scanning for
+# exactly those and nothing else.
+EXTRA_GAP_CANDIDATES = {
+    ("functions", "тодорхойлогдох муж"): "domain-of-a-function",
+    ("functions", "функцийн тодорхойлогдох муж"): "domain-of-a-function",
+    ("algebra", "олон гишүүнт хуваах"): "polynomial-division",
+    ("arithmetic", "анхны тоо"): "prime-factorisation",
+    ("geometry", "пифагорын теорем"): "pythagoras",
+    ("algebra", "absolute_value_equation"): "absolute-value-equations",
+    ("algebra", "абсолют утгатай тэгшитгэл"): "absolute-value-equations",
+    ("algebra", "absolute value inequality"): "absolute-value-inequalities",
+    ("algebra", "quadratic_inequality"): "quadratic-inequalities",
+    ("algebra", "quadratic_inequality_parameter"): "quadratic-inequalities",
+    ("algebra", "polynomial_factoring"): "factoring-quadratic-trinomial",
+    ("algebra", "matrix_operations"): "matrix-addition-scalar",
+    ("algebra", "exponential_system"): "exponential-equations",
+    ("algebra", "илтгэгч тэгшитгэл"): "exponential-equations",
+    ("algebra", "экспоненциал тэгшитгэл"): "exponential-equations",
+    ("functions", "урвуу функц"): "inverse-functions",
+    ("functions", "экспоненциал функц"): "exponential-and-log-graphs",
+    ("geometry", "гурвалжны талбай"): "triangle-area",
+    ("geometry", "трапец"): "trapezoid-properties",
+    ("geometry", "гурвалжны өнцөг"): "triangle-angle-sum",
+    ("trigonometry", "радиан"): "unit-circle-and-radians",
+    ("algebra", "квадратуудын ялгавар"): "special-products",
+    ("algebra", "систем тэгшитгэл"): "systems-two-linear",
+    ("functions", "график унших"): "data-representation",
+}
+
+gap_skills = set(AUDIT["skillsWithoutItems"])
+counts = {(o["topic"], o["subtopic"]): o["questions"] for o in AUDIT["orphanStrings"]}
+
+covered: dict[str, list[tuple[str, int, str]]] = {}
+for key, cand in list(CANDIDATES.items()):
+    skill = cand[0]
+    if skill in gap_skills and key in counts:
+        covered.setdefault(skill, []).append((key[1], counts[key], cand[1]))
+for key, skill in EXTRA_GAP_CANDIDATES.items():
+    if skill in gap_skills and key in counts:
+        covered.setdefault(skill, []).append((key[1], counts[key], "second-pass"))
+
+print("\n" + "=" * 78)
+print("PART 3 — WHICH OF THE 73 EMPTY SKILLS THE ORPHANS ALREADY COVER")
+print("=" * 78)
+print("Asked for before writing new items. I wrote them first and cross-referenced")
+print("after, so this is retrospective: it says where the 219 new items DUPLICATE")
+print("questions the bank already owns.\n")
+tot_q = sum(n for v in covered.values() for _, n, _ in v)
+tot_w = sum(SKILLS[s]["exam_weight"] for s in covered)
+for skill in sorted(covered, key=lambda s: -sum(n for _, n, _ in covered[s])):
+    n = sum(x[1] for x in covered[skill])
+    print(f"  {n:3d} q  {SKILLS[skill]['exam_weight']:5.2f}%  {skill}")
+    for sub, q, conf in sorted(covered[skill], key=lambda x: -x[1]):
+        print(f"          <- {q:2d}  {sub}  [{conf}]")
+print(f"\n  {len(covered)} of the 73 already have bank questions hiding in orphans:")
+print(f"    {tot_q} questions, {tot_w:.2f}% of the exam.")
+print(f"  {73 - len(covered)} skills ({36.57 - tot_w:.2f}%) had nothing — the new items are")
+print(f"    the only coverage they have.")
+print(f"\n  So {3 * len(covered)} of the 219 new items ({100*3*len(covered)/219:.0f}%) duplicate")
+print( "    existing coverage. They are not wasted — bank orphans carry no difficulty")
+print( "    tier and no named distractors, which the adaptive test needs — but if the")
+print( "    order had been reversed these skills would have been authored last, not")
+print( "    first.")
+
+untriaged = sum(o["questions"] for o in AUDIT["orphanStrings"]
+                if (o["topic"], o["subtopic"]) not in CANDIDATES
+                and (o["topic"], o["subtopic"]) not in EXTRA_GAP_CANDIDATES)
+print(f"\n  BOUND ON THIS ANSWER: {untriaged} orphan questions remain untriaged, in a")
+print( "  tail of 1-2 question strings. More of the 73 could be covered there, so")
+print(f"  {len(covered)} is a floor, not a final count.")
+
+out["gapSkillsCoveredByOrphans"] = {
+    s: [{"subtopic": sub, "questions": q, "confidence": c} for sub, q, c in v]
+    for s, v in covered.items()
+}
+out["untriagedOrphanQuestions"] = untriaged
+with open(os.path.join(ROOT, "data", "skills", "esh-patch-and-orphans.json"), "w") as f:
+    json.dump(out, f, ensure_ascii=False, indent=2)
+    f.write("\n")

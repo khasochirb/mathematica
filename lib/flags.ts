@@ -14,10 +14,22 @@ export interface MigrationSentinel {
   key: string;
   // The migration file this stands in for (supabase/migrations/…).
   migration: string;
+  table: string;
   // A column the migration adds. Selecting it (HEAD, no rows) succeeds
   // once applied and fails with "column … does not exist" until then.
-  table: string;
   column: string;
+  /**
+   * SEED migrations add no column, so the column probe cannot see them: 011
+   * fills `skills` and `skill_prerequisites`, which both already existed and
+   * were empty. For those the sentinel is a ROW COUNT instead — the table is
+   * there either way, so "applied" means "has the rows it should".
+   *
+   * Still HEAD-only with `count: "exact"`: a number comes back, never a row,
+   * so the endpoint stays safe to expose. `atLeast` rather than an exact
+   * count because a later graph revision changes the total and this check
+   * should keep answering "seeded", not go red on every re-author.
+   */
+  expectRows?: { atLeast: number; where?: { column: string; value: string } };
 }
 
 // One sentinel per migration whose applied-state has ever been in doubt.
@@ -35,6 +47,16 @@ export const MIGRATION_SENTINELS: MigrationSentinel[] = [
     migration: "009_attempts_context.sql",
     table: "attempts",
     column: "context",
+  },
+  {
+    key: "migration_011_seed_esh_graph",
+    migration: "011_seed_esh_graph.sql",
+    table: "skills",
+    column: "id",
+    // 184 ЭЕШ skills ship in 011. The floor is deliberately well below that:
+    // the question this answers is "did the seed run at all", and a graph
+    // revision that merges two skills must not turn the flag red.
+    expectRows: { atLeast: 150, where: { column: "hub", value: "esh" } },
   },
 ];
 
@@ -93,4 +115,22 @@ export const HEALTHY: Record<string, string> = {
   anthropic_api_key: "configured",
   migration_008_student_profiles: "applied",
   migration_009_attempts_context: "applied",
+  migration_011_seed_esh_graph: "applied",
 };
+
+/**
+ * Read a row-count probe. Separate from classifyProbe because the failure
+ * modes differ: a column probe fails when the column is absent, a seed probe
+ * succeeds structurally and still reports "missing" when the count is zero.
+ * Splitting them keeps "the table isn't there" from being reported as "the
+ * seed hasn't run", which would send Design to the wrong runbook.
+ */
+export function classifyRowProbe(
+  error: { code?: string; message?: string } | null,
+  count: number | null,
+  atLeast: number,
+): ProbeResult {
+  if (error) return classifyProbe(error);
+  if (count === null) return { status: "unknown", code: "no-count" };
+  return count >= atLeast ? { status: "applied" } : { status: "missing" };
+}

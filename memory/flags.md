@@ -24,6 +24,19 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ## OPEN
 
+### FLAG-004 — migration `011_seed_esh_graph.sql` not applied
+
+| | |
+|---|---|
+| **Raised** | 2026-08-15 |
+| **Owner action** | Apply `supabase/migrations/011_seed_esh_graph.sql` in Supabase. Design owns applying it; this session owns generating it. |
+| **What it seeds** | 184 ЭЕШ skills + 367 prerequisite edges into `skills` and `skill_prerequisites`. Both tables already exist and were empty (owner-confirmed 2026-08-15). |
+| **Blocks** | Everything downstream of the graph — adaptive placement, recommendations, mastery, score prediction. Design is blocked on it now. |
+| **Ships dark?** | Yes. Nothing in the app reads `skills` yet, so an unapplied migration changes no behaviour; it just leaves the graph invisible to other agents. |
+| **Sentinel** | `migration_011_seed_esh_graph` in `lib/flags.ts`. This is the first ROW-COUNT sentinel: 011 adds no column, so the usual column probe would report "applied" against an empty table. It counts `skills` rows with `hub='esh'` and wants ≥150 (184 ship; the floor sits low so a later graph revision does not turn it red). |
+| **Verify** | `npm run verify:flags -- https://www.mongolpotential.com`, or `GET /api/health/flags` → `"migration_011_seed_esh_graph":"applied"`. |
+| **Notes** | The migration is DATA ONLY — no DDL. It deletes and re-inserts the `hub='esh'` rows, so it is idempotent and safe to re-run **while nothing references `skills.id`**. Once items or attempts carry a `skill_id` foreign key that delete would cascade; switch to an upsert then. It also opens with a schema assertion that names any missing column instead of failing with a raw Postgres error, and closes with post-conditions (184 skills, 367 edges, no dangling endpoints) that roll the whole thing back rather than leave a half-seeded graph. |
+
 ### FLAG-002 — migration `008_student_profiles.sql` not applied
 
 | | |
