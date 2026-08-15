@@ -59,6 +59,78 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ---
 
+### FLAG-005 — migration `011_deletion_cascade.sql` not applied (PRIVACY)
+
+| | |
+|---|---|
+| **Since** | 2026-08-14 security audit (branch `claude/website-security-audit-qb8ceu`) |
+| **Priority** | **HIGH — must be applied before the September intake.** Verified on production 2026-08-14: **6 of 19 accounts cannot be deleted at all.** Six tables reference `profiles` with `ON DELETE NO ACTION` (`streaks`, `user_achievements`, `events`, `premium_waitlist`, `daily_problem_counts`, `subscription_events`), so deleting the auth user cascades into `profiles` and is then refused with a foreign-key violation (SQLSTATE 23503) — the delete fails partway and leaves the account inconsistent. From 1 September the database holds real academic records for minors, and a guardian's deletion request has to be honourable in full, on demand. |
+| **Dormant** | Nothing ships dark — a pure DB hardening migration, no code beside it. |
+| **Degradation** | None. The migration deletes no rows; it only changes what happens on FUTURE deletes. `events` gets `SET NULL` (de-identified analytics survives, the person does not); the other five get `CASCADE`. `premium_waitlist` is deliberately CASCADE and not SET NULL because it stores an `email` column — nulling `user_id` there would leave a child's email behind after an erasure request. |
+| **Owner action** | ~2 minutes, below |
+| **Verify** | Manual — see runbook step 3. NOT covered by `/api/health/flags`: the sentinel probe model (`lib/flags.ts`) checks for an added *column*, and this migration adds none. Same known gap as FLAG-004. |
+
+**Runbook**
+
+1. Supabase dashboard → project → SQL Editor → New query.
+2. Paste the entire contents of
+   `supabase/migrations/011_deletion_cascade.sql` and Run.
+   (Idempotent — `DROP CONSTRAINT IF EXISTS` before each `ADD`.)
+3. Verify in the same editor that no child of `profiles` is left on
+   `NO ACTION`:
+   ```sql
+   select tc.table_name, rc.delete_rule
+   from information_schema.table_constraints tc
+   join information_schema.referential_constraints rc
+     on rc.constraint_name = tc.constraint_name
+   join information_schema.constraint_column_usage ccu
+     on ccu.constraint_name = tc.constraint_name
+   where tc.constraint_type = 'FOREIGN KEY'
+     and ccu.table_name = 'profiles' and ccu.column_name = 'id'
+   order by tc.table_name;
+   ```
+   Expect every row to read `CASCADE`, except `events` which must read
+   `SET NULL`. Any row still reading `NO ACTION` is an account that cannot
+   be deleted.
+4. Optional but recommended first: a snapshot via
+   `scripts/backup-prod.sh` (needs `~/.mp-backup-env`).
+5. Move this entry to Resolved with the date and the query result.
+
+---
+
+### FLAG-006 — migration `012_revoke_client_writes.sql` not applied (SECURITY)
+
+| | |
+|---|---|
+| **Since** | 2026-08-14 security audit (branch `claude/website-security-audit-qb8ceu`) |
+| **Priority** | **HIGH — closes four live client-write holes.** With the public anon key, any signed-in student can today write their own rows in four tables: `daily_problem_counts` (reset the AI-tutor quota to 0 and spend the owner's Anthropic budget without limit), `streaks` (set any streak/longest_streak), `user_achievements` (grant themselves any achievement), `subscription_events` (forge entries in the billing audit log). RLS stopped them touching *another* student's rows and never stopped them rewriting their own. |
+| **Dormant** | Nothing ships dark — a pure DB hardening migration, no code beside it. |
+| **Degradation** | None. Verified 2026-08-14 that no browser code touches any of the four: the only client-side Supabase caller is `lib/use-performance.ts` and it references `attempts` alone. Every legitimate write already goes through an API route on the service-role client (`lib/subscription.ts`, `app/api/sessions/[id]/complete`, `app/api/streaks`, `app/api/subscription/activate`), which these grants do not affect. `SELECT` stays, so students still read their own streak, achievements, quota and billing history. |
+| **Owner action** | ~2 minutes, below |
+| **Verify** | Manual — see runbook step 3. Not probeable by `/api/health/flags` (adds no column). |
+
+**Runbook**
+
+1. Supabase dashboard → project → SQL Editor → New query.
+2. Paste the entire contents of
+   `supabase/migrations/012_revoke_client_writes.sql` and Run.
+   (Idempotent — `IF EXISTS` on every drop; REVOKE/GRANT are no-ops when
+   already in the target state.)
+3. Verify in the same editor that the four tables are read-only for clients:
+   ```sql
+   select table_name, privilege_type
+   from information_schema.role_table_grants
+   where grantee in ('anon','authenticated') and table_schema = 'public'
+     and table_name in ('daily_problem_counts','streaks',
+                        'user_achievements','subscription_events')
+   order by table_name, privilege_type;
+   ```
+   Expect exactly four rows, all `SELECT`, all for `authenticated` — no
+   `INSERT`/`UPDATE`/`DELETE`, and nothing at all for `anon`.
+4. Move this entry to Resolved with the date and the 4-row result.
+
+---
+
 ### FLAG-002 — migration `008_student_profiles.sql` not applied
 
 | | |
