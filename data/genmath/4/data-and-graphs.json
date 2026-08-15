@@ -100,7 +100,32 @@
               "A tally records one mark per thing counted — but the fifth mark is struck ACROSS the previous four, making a bundle worth $5$.",
               "Reading is then arithmetic, not recounting: $5 \\times \\text{bundles} + \\text{singles}$. Three bundles and two singles: $5 \\times 3 + 2 = 17$.",
               "This is why tallying survives: your eye counts fives, and losing your place costs one bundle, not the whole flock."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 5,
+                  "color": "#3b82f6",
+                  "label": "bundle of 5"
+                },
+                {
+                  "count": 5,
+                  "color": "#3b82f6",
+                  "label": "bundle of 5"
+                },
+                {
+                  "count": 5,
+                  "color": "#3b82f6",
+                  "label": "bundle of 5"
+                },
+                {
+                  "count": 2,
+                  "color": "#d97706",
+                  "label": "2 singles"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -212,7 +237,31 @@
               "A frequency table gives each category one row and one number: how many times it appeared. Tallies are field notes; the table is the fair copy.",
               "The TOTAL row is a receipt. Add every frequency; it must equal the number of things counted altogether.",
               "When the receipt fails, the data is wrong — not the arithmetic. Recount before you graph, because a graph makes a mistake look official."
-            ]
+            ],
+            "figure": {
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "sheep",
+                    "value": 17,
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "label": "goats",
+                    "value": 12,
+                    "color": "#d97706"
+                  },
+                  {
+                    "label": "horses",
+                    "value": 9,
+                    "color": "#059669"
+                  }
+                ],
+                "step": 5,
+                "unit": "animals"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -514,7 +563,23 @@
               "A pictograph draws data as repeated symbols — and a KEY line says what one symbol is worth: 'one sheep $= 10$ sheep'.",
               "Reading is multiplication: $4$ symbols with a key of $10$ means $4 \\times 10 = 40$. The row of pictures is shorthand, not the number.",
               "Skip the key and every comparison collapses: two rows of $4$ and $2$ symbols might be $40$ against $20$, or $8$ against $4$ — the key decides."
-            ]
+            ],
+            "figure": {
+              "mode": "pictograph",
+              "pictograph": {
+                "rows": [
+                  {
+                    "label": "5A",
+                    "value": 40
+                  },
+                  {
+                    "label": "5B",
+                    "value": 20
+                  }
+                ],
+                "key": 10
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -626,7 +691,23 @@
               "Half a symbol carries half the key: with a key of $10$, four and a half symbols mean $4 \\times 10 + 5 = 45$.",
               "Drawing runs the multiplication backwards — divide by the key: $70$ with a key of $10$ needs $70 \\div 10 = 7$ symbols.",
               "Choose the key to fit the data: a key of $10$ turns $35$ into a tidy three and a half symbols, while a key of $1$ would need thirty-five drawings."
-            ]
+            ],
+            "figure": {
+              "mode": "pictograph",
+              "pictograph": {
+                "rows": [
+                  {
+                    "label": "Class 3",
+                    "value": 45
+                  },
+                  {
+                    "label": "Class 4",
+                    "value": 70
+                  }
+                ],
+                "key": 10
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -926,7 +1007,31 @@
               "A bar graph turns amounts into heights: taller bar, bigger number. Which is largest is visible from across the room.",
               "The numbers come from the vertical scale. If gridlines are marked every $5$, a bar at the seventh gridline stands at $7 \\times 5 = 35$.",
               "Read the scale FIRST. The same drawing with steps of $20$ instead of $5$ would make that bar $140$ — the picture is identical, the data is not."
-            ]
+            ],
+            "figure": {
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "wrestling",
+                    "value": 20,
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "label": "archery",
+                    "value": 15,
+                    "color": "#d97706"
+                  },
+                  {
+                    "label": "racing",
+                    "value": 25,
+                    "color": "#059669"
+                  }
+                ],
+                "step": 5,
+                "unit": "children"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1041,7 +1146,36 @@
               "'How many MORE?' subtracts: bars of $45$ and $15$ differ by $45 - 15 = 30$.",
               "'How many TIMES as many?' divides: $45 \\div 15 = 3$. Same two bars, different question, different answer.",
               "Drawing: choose a step so the tallest bar fits and values land on gridlines, start every bar at zero, and keep the widths equal."
-            ]
+            ],
+            "figure": {
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "Mon",
+                    "value": 12,
+                    "color": "#3b82f6"
+                  },
+                  {
+                    "label": "Tue",
+                    "value": 18,
+                    "color": "#d97706"
+                  },
+                  {
+                    "label": "Wed",
+                    "value": 9,
+                    "color": "#059669"
+                  },
+                  {
+                    "label": "Thu",
+                    "value": 15,
+                    "color": "#94a3b8"
+                  }
+                ],
+                "step": 3,
+                "unit": "visitors"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1344,7 +1478,36 @@
               "A line graph puts TIME on the horizontal axis and the measured quantity up the side; each dot is one measurement.",
               "Reading a point uses both axes: across to week $3$, up to $11$ — the sunflower was $11$ cm tall in week three.",
               "Joining the dots is what makes it a line graph: the connecting segments show what happened BETWEEN measurements."
-            ]
+            ],
+            "figure": {
+              "mode": "lineGraph",
+              "lineGraph": {
+                "points": [
+                  {
+                    "label": "Mon",
+                    "value": 4
+                  },
+                  {
+                    "label": "Tue",
+                    "value": 7
+                  },
+                  {
+                    "label": "Wed",
+                    "value": 11
+                  },
+                  {
+                    "label": "Thu",
+                    "value": 12
+                  },
+                  {
+                    "label": "Fri",
+                    "value": 12
+                  }
+                ],
+                "step": 2,
+                "unit": "cm"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1463,7 +1626,36 @@
               "Change between two readings is subtraction: from $4$ cm to $12$ cm is $12 - 4 = 8$ cm of growth.",
               "Week by week the growths were $3$, $4$, $1$, $0$ — and $3 + 4 + 1 + 0 = 8$, the receipt that the steps re-add to the whole.",
               "Steeper means faster. The $4$ cm week is the steepest stretch; the $0$ cm week is flat. Falling lines are negative change — the value went down."
-            ]
+            ],
+            "figure": {
+              "mode": "lineGraph",
+              "lineGraph": {
+                "points": [
+                  {
+                    "label": "Jan",
+                    "value": 8
+                  },
+                  {
+                    "label": "Feb",
+                    "value": 14
+                  },
+                  {
+                    "label": "Mar",
+                    "value": 20
+                  },
+                  {
+                    "label": "Apr",
+                    "value": 15
+                  },
+                  {
+                    "label": "May",
+                    "value": 6
+                  }
+                ],
+                "step": 4,
+                "unit": "°C"
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1775,7 +1967,27 @@
               "Pour every value into one pile, then deal it back out equally: $12 + 15 + 9 + 16 = 52$ sweets among $4$ friends is $13$ each.",
               "That is the MEAN — the level the bars would sit at if the tall ones were scraped into the short ones.",
               "The mean need not be one of the values. Nobody brought $13$ sweets, yet $13$ is exactly the fair share."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 11,
+                  "color": "#3b82f6",
+                  "label": "Bat"
+                },
+                {
+                  "count": 16,
+                  "color": "#d97706",
+                  "label": "Suvd"
+                },
+                {
+                  "count": 12,
+                  "color": "#059669",
+                  "label": "Nomin"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1889,7 +2101,26 @@
               "The RANGE is largest minus smallest: from $9$ to $16$ is $16 - 9 = 7$. It describes how spread out the data is, not where its centre sits.",
               "Mean and range are independent. $13, 13, 13, 13$ and $9, 12, 15, 16$ both have mean $13$, but ranges of $0$ and $7$.",
               "So report both: the mean says what level, the range says how much the values disagree with each other."
-            ]
+            ],
+            "figure": {
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "lowest",
+                    "value": 6,
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "label": "highest",
+                    "value": 21,
+                    "color": "#3b82f6"
+                  }
+                ],
+                "step": 3,
+                "unit": "marks"
+              }
+            }
           },
           {
             "kind": "workedSet",

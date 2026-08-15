@@ -24,7 +24,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, withfig,  # noqa: E402
+                     fig_bar, fig_numline,
+                     funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic)
 
 
@@ -113,11 +115,11 @@ def lesson_meaning():
              "check": ["Eq(Rational(20,5), 4)", "Eq(Rational(2,5)*20, 8)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Bottom names, top counts", [
+            withfig(teach("Concept A", "Bottom names, top counts", [
                 "Cut a whole into EQUAL parts: the denominator (bottom) says how many parts make the whole — that's the piece's NAME. Eighths: eight per whole.",
                 "The numerator (top) counts how many pieces you have: $\\frac{3}{8}$ is three pieces of the eighth size.",
                 "Every fraction is a stack of unit fractions — $\\frac{3}{8} = \\frac{1}{8} + \\frac{1}{8} + \\frac{1}{8}$ — and all the pieces together rebuild the whole: $\\frac{8}{8} = 1$.",
-            ]),
+            ]), fig_bar(3, 8, "3 of 8 equal pieces")),
             workedset("Reading fractions",
                       "Name the piece, count the pieces.", [
                 wex("A bread in $8$ equal pieces: you eat $3$, your brother $5$. Fractions?",
@@ -154,11 +156,11 @@ def lesson_meaning():
                  ["Eq(4*Rational(1,4), 1)"]),
             funfact("Fractions are older than the alphabet",
                     "Egyptian scribes four thousand years ago wrote almost everything using UNIT fractions — amounts like $\\frac{2}{5}$ had to be expressed as sums such as $\\frac{1}{3} + \\frac{1}{15}$. Check it: that sum really is $\\frac{2}{5}$. Your notation is friendlier — but the unit-fraction atoms are the same ones."),
-            teach("Concept B", "Sets and the number line", [
+            withfig(teach("Concept B", "Sets and the number line", [
                 "Fractions measure SETS too: $\\frac{3}{4}$ of $12$ apples — split the set into $4$ equal groups ($3$ each), take $3$ groups: $9$ apples.",
                 "And fractions are POINTS: on the number line, $\\frac{3}{4}$ lives between $0$ and $1$ — split the unit into four, count three marks.",
                 "One notation, three pictures — shape, set, point. The denominator names the split in all three.",
-            ]),
+            ]), fig_numline([(0, "0"), (0.75, "3/4"), (1, "1")], lo=0, hi=1)),
             workedset("Fractions of sets",
                       "Split into denominator-many groups; take numerator-many.", [
                 wex("Find $\\frac{3}{4}$ of $12$.",
@@ -313,11 +315,11 @@ def lesson_equivalent():
              "check": ["Eq(Rational(45,60), Rational(3,4))"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Split the pieces, keep the amount", [
+            withfig(teach("Concept A", "Split the pieces, keep the amount", [
                 "Cut every piece of $\\frac{1}{2}$ into three: now there are $3$ pieces of the $6$-per-whole size — $\\frac{1}{2} = \\frac{3}{6}$. The bread never moved.",
                 "The rule underneath: multiply numerator AND denominator by the same number. $\\frac{1 \\times 3}{2 \\times 3} = \\frac{3}{6}$.",
                 "It must be the SAME number top and bottom — that's what keeps the splitting honest.",
-            ]),
+            ]), fig_bar(1, 2, "1/2 = 2/4 = 3/6 — same shading")),
             workedset("Scaling up",
                       "Find what scaled the denominator; scale the numerator to match.", [
                 wex("Fill the blank: $\\frac{2}{3} = \\frac{\\square}{12}$.",
@@ -356,11 +358,11 @@ def lesson_equivalent():
                  ["Rational(1,2) < Rational(2,3)"]),
             funfact("Why 75/100 shows up everywhere",
                     "Percent is just an equivalent-fraction convention: every amount renamed with denominator $100$. \"$75\\%$\" IS $\\frac{75}{100}$, which is $\\frac{3}{4}$ in simplest form. When you meet percents next year, you already know the whole trick."),
-            teach("Concept B", "Merging, and the simplest name", [
+            withfig(teach("Concept B", "Merging, and the simplest name", [
                 "Run the splitting backwards: if top and bottom share a factor, DIVIDE it out — merge small pieces into big ones. $\\frac{9}{12} \\to \\frac{3}{4}$ (divide by $3$).",
                 "Keep merging until nothing but $1$ divides both — that's SIMPLEST FORM, the fraction's shortest name.",
                 "Any road works: $\\frac{12}{16} \\to \\frac{6}{8} \\to \\frac{3}{4}$, or straight there dividing by $4$. The end is the same because the simplest name is unique.",
-            ]),
+            ]), fig_bar(2, 4, "2/4 merges to 1/2")),
             workedset("Down to simplest form",
                       "Divide out shared factors until none remain.", [
                 wex("Simplify $\\frac{18}{24}$.",
@@ -516,11 +518,11 @@ def lesson_comparing():
                        "Rational(7,12) > Rational(5,11)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Count, or size — never both blindly", [
+            withfig(teach("Concept A", "Count, or size — never both blindly", [
                 "Same DENOMINATOR: the pieces match, so the count decides — $\\frac{5}{8} > \\frac{3}{8}$.",
                 "Same NUMERATOR: the counts match, so piece size decides — and it compares BACKWARDS: $\\frac{3}{5} > \\frac{3}{8}$, because a whole cut into five gives bigger pieces than one cut into eight.",
                 "The backwards rule surprises everyone once: more pieces per whole = smaller pieces. Say it until it stops surprising.",
-            ]),
+            ]), fig_bar(5, 9, "5/9")),
             workedset("Matching pieces or matching counts",
                       "Spot which part matches; the other part decides.", [
                 wex("Compare $\\frac{3}{5}$ and $\\frac{3}{8}$.",
@@ -557,11 +559,11 @@ def lesson_comparing():
                  ["Rational(1,10) < Rational(1,4)"]),
             funfact("The quarter-pound lesson",
                     "A famous marketing failure: a chain sold third-pound burgers against quarter-pounders at the same price — and customers refused, reasoning that $3 < 4$ meant less meat. The backwards rule in the wild: $\\frac{1}{3}$ of a pound is MORE than $\\frac{1}{4}$."),
-            teach("Concept B", "Benchmarks — park against a half", [
+            withfig(teach("Concept B", "Benchmarks — park against a half", [
                 "Different numerators AND denominators? Park each fraction against $\\frac{1}{2}$: double the numerator and compare with the denominator. $\\frac{4}{9}$: $8 < 9$ — under half. $\\frac{5}{8}$: $10 > 8$ — over half.",
                 "Under beats over is settled instantly: $\\frac{4}{9} < \\frac{5}{8}$, no common name needed.",
                 "The other great benchmark is $1$: $\\frac{7}{8}$ misses one whole by a thin $\\frac{1}{8}$, while $\\frac{5}{4}$ has already passed it.",
-            ]),
+            ]), fig_numline([(0, "0"), (0.5, "1/2"), (1.25, "5/4 — past 1"), (2, "2")], lo=0, hi=2)),
             workedset("Benchmark comparisons",
                       "Double the top; compare with the bottom.", [
                 wex("Compare $\\frac{4}{9}$ and $\\frac{5}{8}$.",
@@ -719,11 +721,11 @@ def lesson_mixed():
              "check": ["Eq(2*9 + 5, 23)", "Eq(2 + Rational(5,9), Rational(23,9))"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Past the whole", [
+            withfig(teach("Concept A", "Past the whole", [
                 "When the numerator reaches the denominator, you hold exactly one whole: $\\frac{3}{3} = 1$. Past it, the fraction is TOP-HEAVY — improper: $\\frac{7}{3}$ is more than $2$, less than $3$.",
                 "Its second name counts wholes first: $\\frac{7}{3} = 2\\frac{1}{3}$ — two wholes and a third.",
                 "The converter is division with remainders, which you own: $7 \\div 3 = 2$ r $1$ — quotient counts wholes, the remainder keeps its denominator.",
-            ]),
+            ]), fig_numline([(0, "0"), (1, "1"), (1.75, "7/4"), (2, "2")], lo=0, hi=2)),
             workedset("Improper to mixed",
                       "Divide; wholes from the quotient, pieces from the remainder.", [
                 wex("Write $\\frac{23}{6}$ as a mixed number.",
@@ -757,11 +759,11 @@ def lesson_mixed():
                  ["Rational(7,3) > 2", "Rational(7,3) < 3"]),
             funfact("\"Improper\" is a terrible name",
                     "There is nothing wrong with a top-heavy fraction — mathematicians prefer them, because they add and multiply more cleanly than mixed numbers. The name is a fossil from centuries-old textbooks. Use whichever name serves the moment: mixed to SAY an amount, improper to COMPUTE with it."),
-            teach("Concept B", "Mixed to improper — the receipt refolded", [
+            withfig(teach("Concept B", "Mixed to improper — the receipt refolded", [
                 "To turn $3\\frac{2}{5}$ improper, turn the wholes into fifths first: each whole is $\\frac{5}{5}$, so three wholes are $\\frac{15}{5}$.",
                 "Add the loose pieces: $\\frac{15}{5} + \\frac{2}{5} = \\frac{17}{5}$. In one line: wholes × denominator + numerator, over the same denominator.",
                 "That formula IS the division receipt ($3 \\times 5 + 2 = 17$) — the two conversions are one fact, read in both directions.",
-            ]),
+            ]), fig_numline([(0, "0"), (2, "2"), (2.75, "2 3/4 = 11/4"), (3, "3")], lo=0, hi=3)),
             workedset("Refolding the receipt",
                       "Wholes × pieces-per-whole + loose pieces.", [
                 wex("Write $4\\frac{3}{8}$ as an improper fraction.",
@@ -922,11 +924,11 @@ def lesson_add_subtract():
                        "Eq(1 + Rational(3,8) + Rational(5,8), 2)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Count the pieces, keep the name", [
+            withfig(teach("Concept A", "Count the pieces, keep the name", [
                 "When denominators match, the pieces are the same size — so adding is COUNTING: $\\frac{3}{8} + \\frac{2}{8} = \\frac{5}{8}$, exactly like $3$ sheep $+ 2$ sheep.",
                 "The denominator is the pieces' NAME. Adding names ($\\frac{5}{16}$) claims someone recut the bread — and produces a \"sum\" smaller than one of the addends. An addition that shrinks is an alarm bell.",
                 "Subtraction counts the other way: $\\frac{7}{10} - \\frac{3}{10} = \\frac{4}{10}$ — then simplify: $\\frac{2}{5}$.",
-            ]),
+            ]), fig_bar(2, 5, "3/5 - 1/5 = 2/5")),
             workedset("Matching pieces",
                       "Add or subtract the counts; the name rides along.", [
                 wex("Add $\\frac{3}{8} + \\frac{2}{8}$.",
@@ -964,11 +966,11 @@ def lesson_add_subtract():
                   "Rational(3,8) < Rational(2,4)"]),
             funfact("Same rule, every size",
                     "\"Three eighths plus two eighths is five eighths\" works for exactly the same reason as \"three metres plus two metres is five metres\" — you can only count things that share a unit. Next year, adding $\\frac{1}{2} + \\frac{1}{3}$ will start by MAKING the units match (sixths) — equivalent fractions again."),
-            teach("Concept B", "Past the whole, and back from it", [
+            withfig(teach("Concept B", "Past the whole, and back from it", [
                 "Sums can pass a whole: $\\frac{5}{6} + \\frac{4}{6} = \\frac{9}{6}$ — top-heavy. Convert: $1\\frac{3}{6} = 1\\frac{1}{2}$.",
                 "To subtract FROM a whole, dress it in the needed name first: $1 = \\frac{4}{4}$, so $1 - \\frac{3}{4} = \\frac{1}{4}$. For $2 - \\frac{5}{8}$: take the eighths from ONE of the wholes — $1\\frac{8}{8} - \\frac{5}{8} = 1\\frac{3}{8}$.",
                 "Receipt thinking still applies: $1\\frac{3}{8} + \\frac{5}{8} = 2$ ✓ — additions check subtractions here exactly as with whole numbers.",
-            ]),
+            ]), fig_numline([(0, "0"), (1, "1"), (1.667, "5/3"), (2, "2")], lo=0, hi=2)),
             workedset("Crossing one",
                       "Convert top-heavy sums; rename wholes before subtracting.", [
                 wex("Compute $\\frac{5}{6} + \\frac{4}{6}$.",

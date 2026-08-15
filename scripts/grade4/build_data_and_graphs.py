@@ -27,7 +27,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, fig_barchart,  # noqa: E402
+                     fig_groups, fig_linegraph, fig_pictograph, withfig,
+                     funfact, prob, recap, tapq, teach, tip, tp,
                      tryitset, wex, workedset, write_topic)
 
 
@@ -117,11 +119,11 @@ def lesson_tallies():
              "check": ["Eq(9 + 14 + 7, 30)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Counting in fives", [
+            withfig(teach("Concept A", "Counting in fives", [
                 "A tally records one mark per thing counted — but the fifth mark is struck ACROSS the previous four, making a bundle worth $5$.",
                 "Reading is then arithmetic, not recounting: $5 \\times \\text{bundles} + \\text{singles}$. Three bundles and two singles: $5 \\times 3 + 2 = 17$.",
                 "This is why tallying survives: your eye counts fives, and losing your place costs one bundle, not the whole flock.",
-            ]),
+            ]), fig_groups((5, "bundle of 5", C_ACCENT), (5, "bundle of 5", C_ACCENT), (5, "bundle of 5", C_ACCENT), (2, "2 singles", C_WARM))),
             workedset("Reading bundles",
                       "Multiply the fences, then add what's left over.", [
                 wex("$4$ bundles and $3$ singles.",
@@ -155,11 +157,11 @@ def lesson_tallies():
                  ["Eq(5*8 + 4, 44)", "Ne(44, 12)"]),
             funfact("The oldest data format still in use",
                     "Tally marks are older than writing: notched bones tens of thousands of years old carry them in groups. England's treasury ran on split wooden tally sticks — each debt notched, then split so both halves had to match — until 1826. When the leftover sticks were finally burned in 1834, the furnace set the Houses of Parliament on fire."),
-            teach("Concept B", "The table and its receipt", [
+            withfig(teach("Concept B", "The table and its receipt", [
                 "A frequency table gives each category one row and one number: how many times it appeared. Tallies are field notes; the table is the fair copy.",
                 "The TOTAL row is a receipt. Add every frequency; it must equal the number of things counted altogether.",
                 "When the receipt fails, the data is wrong — not the arithmetic. Recount before you graph, because a graph makes a mistake look official.",
-            ]),
+            ]), fig_barchart([("sheep", 17, C_ACCENT), ("goats", 12, C_WARM), ("horses", 9, C_GREEN)], step=5, unit="animals")),
             workedset("Balancing a table",
                       "Add the rows and compare with what you counted.", [
                 wex("Wrestling $12$, horse racing $15$, archery $8$, in a class of $35$ where everyone voted once.",
@@ -312,11 +314,11 @@ def lesson_pictographs():
              "check": ["Eq(2*20 + 10, 50)", "Eq(Rational(20,2), 10)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The key is the whole story", [
+            withfig(teach("Concept A", "The key is the whole story", [
                 "A pictograph draws data as repeated symbols — and a KEY line says what one symbol is worth: 'one sheep $= 10$ sheep'.",
                 "Reading is multiplication: $4$ symbols with a key of $10$ means $4 \\times 10 = 40$. The row of pictures is shorthand, not the number.",
                 "Skip the key and every comparison collapses: two rows of $4$ and $2$ symbols might be $40$ against $20$, or $8$ against $4$ — the key decides.",
-            ]),
+            ]), fig_pictograph([("5A", 40), ("5B", 20)], 10)),
             workedset("Reading with a key",
                       "Symbols times key, every time.", [
                 wex("Key: one tent $= 20$. A row of $3$ tents.",
@@ -350,11 +352,11 @@ def lesson_pictographs():
                  ["Eq(4*25, 100)"]),
             funfact("How pictures mislead",
                     "When a designer doubles a symbol to show 'twice as much', they usually double its width AND its height — which multiplies the ink by $2 \\times 2 = 4$. The eye reads area, so a doubling looks like a quadrupling. Honest pictographs repeat one fixed-size symbol instead of growing it, which is exactly why yours should too."),
-            teach("Concept B", "Part symbols, and drawing your own", [
+            withfig(teach("Concept B", "Part symbols, and drawing your own", [
                 "Half a symbol carries half the key: with a key of $10$, four and a half symbols mean $4 \\times 10 + 5 = 45$.",
                 "Drawing runs the multiplication backwards — divide by the key: $70$ with a key of $10$ needs $70 \\div 10 = 7$ symbols.",
                 "Choose the key to fit the data: a key of $10$ turns $35$ into a tidy three and a half symbols, while a key of $1$ would need thirty-five drawings.",
-            ]),
+            ]), fig_pictograph([("Class 3", 45), ("Class 4", 70)], 10)),
             workedset("Halves and drawing",
                       "Divide by the key; the leftover becomes a part symbol.", [
                 wex("Key $= 20$. A row of $3$ and a half symbols.",
@@ -511,11 +513,11 @@ def lesson_bar_graphs():
              "check": ["Eq(24 - 8, 16)", "Eq(Rational(24,8), 3)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The scale decides everything", [
+            withfig(teach("Concept A", "The scale decides everything", [
                 "A bar graph turns amounts into heights: taller bar, bigger number. Which is largest is visible from across the room.",
                 "The numbers come from the vertical scale. If gridlines are marked every $5$, a bar at the seventh gridline stands at $7 \\times 5 = 35$.",
                 "Read the scale FIRST. The same drawing with steps of $20$ instead of $5$ would make that bar $140$ — the picture is identical, the data is not.",
-            ]),
+            ]), fig_barchart([("wrestling", 20, C_ACCENT), ("archery", 15, C_WARM), ("racing", 25, C_GREEN)], step=5, unit="children")),
             workedset("Reading heights",
                       "Gridlines times step.", [
                 wex("Steps of $5$; a bar reaches the seventh gridline.",
@@ -552,11 +554,11 @@ def lesson_bar_graphs():
                  ["Eq(3*5, 15)", "Eq(3*50, 150)", "Eq(150, 10*15)"]),
             funfact("Who invented the bar chart",
                     "The Scottish engineer William Playfair drew the first bar chart in 1786, to show Scotland's imports and exports when he had no year-by-year figures to plot. He invented the line graph in the same book and the pie chart fifteen years later. Nearly every chart in this topic traces back to one restless man with a printing press."),
-            teach("Concept B", "Comparing, and drawing your own", [
+            withfig(teach("Concept B", "Comparing, and drawing your own", [
                 "'How many MORE?' subtracts: bars of $45$ and $15$ differ by $45 - 15 = 30$.",
                 "'How many TIMES as many?' divides: $45 \\div 15 = 3$. Same two bars, different question, different answer.",
                 "Drawing: choose a step so the tallest bar fits and values land on gridlines, start every bar at zero, and keep the widths equal.",
-            ]),
+            ]), fig_barchart([("Mon", 12, C_ACCENT), ("Tue", 18, C_WARM), ("Wed", 9, C_GREEN), ("Thu", 15, C_NEUTRAL)], step=3, unit="visitors")),
             workedset("Two kinds of comparison",
                       "The wording picks the operation.", [
                 wex("Bars of $45$ and $15$: how many more?",
@@ -714,11 +716,11 @@ def lesson_line_graphs():
              "check": ["Eq(30 - 30, 0)", "Ne(30, 0)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Time along the bottom", [
+            withfig(teach("Concept A", "Time along the bottom", [
                 "A line graph puts TIME on the horizontal axis and the measured quantity up the side; each dot is one measurement.",
                 "Reading a point uses both axes: across to week $3$, up to $11$ — the sunflower was $11$ cm tall in week three.",
                 "Joining the dots is what makes it a line graph: the connecting segments show what happened BETWEEN measurements.",
-            ]),
+            ]), fig_linegraph([("Mon", 4), ("Tue", 7), ("Wed", 11), ("Thu", 12), ("Fri", 12)], step=2, unit="cm")),
             workedset("Reading points",
                       "Across for the time, up for the value.", [
                 wex("The sunflower graph reads $4, 7, 11, 12, 12$ cm for weeks $1$ to $5$. How tall in week $3$?",
@@ -755,11 +757,11 @@ def lesson_line_graphs():
                  ["Eq(30 - 30, 0)", "Ne(30, 0)", "Ne(30, 60)"]),
             funfact("The graph that changed a war",
                     "In 1858 Florence Nightingale drew data from the Crimean War as a circular cousin of the bar chart, showing month by month that far more soldiers were dying of preventable disease than of wounds. Officials who had ignored her tables could not ignore the picture, and army sanitation was overhauled. She was elected the first woman member of the Royal Statistical Society."),
-            teach("Concept B", "Change, and how fast", [
+            withfig(teach("Concept B", "Change, and how fast", [
                 "Change between two readings is subtraction: from $4$ cm to $12$ cm is $12 - 4 = 8$ cm of growth.",
                 "Week by week the growths were $3$, $4$, $1$, $0$ — and $3 + 4 + 1 + 0 = 8$, the receipt that the steps re-add to the whole.",
                 "Steeper means faster. The $4$ cm week is the steepest stretch; the $0$ cm week is flat. Falling lines are negative change — the value went down.",
-            ]),
+            ]), fig_linegraph([("Jan", 8), ("Feb", 14), ("Mar", 20), ("Apr", 15), ("May", 6)], step=4, unit="°C")),
             workedset("Measuring change",
                       "Later minus earlier, then check the steps add up.", [
                 wex("Sunflower: $4, 7, 11, 12, 12$. Which week grew fastest?",
@@ -920,11 +922,11 @@ def lesson_mean_and_range():
              "check": ["Eq(41 - 19, 22)", "41 > 34", "19 < 28"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The mean is the fair share", [
+            withfig(teach("Concept A", "The mean is the fair share", [
                 "Pour every value into one pile, then deal it back out equally: $12 + 15 + 9 + 16 = 52$ sweets among $4$ friends is $13$ each.",
                 "That is the MEAN — the level the bars would sit at if the tall ones were scraped into the short ones.",
                 "The mean need not be one of the values. Nobody brought $13$ sweets, yet $13$ is exactly the fair share.",
-            ]),
+            ]), fig_groups((11, "Bat", C_ACCENT), (16, "Suvd", C_WARM), (12, "Nomin", C_GREEN))),
             workedset("Sharing the pile",
                       "Add everything, divide by how many.", [
                 wex("Mean of $12$, $15$, $9$, $16$.",
@@ -958,11 +960,11 @@ def lesson_mean_and_range():
                  ["Eq(7*6, 42)", "Eq(Rational(42,6), 7)"]),
             funfact("Nobody has 2.4 children",
                     "Family sizes are often reported as a mean — 'the average family has $2.4$ children' — yet no family anywhere contains four tenths of a child. A mean is a balance point, not a person. It is the most useful number in statistics and the one most often mistaken for a description of somebody real."),
-            teach("Concept B", "The range measures spread", [
+            withfig(teach("Concept B", "The range measures spread", [
                 "The RANGE is largest minus smallest: from $9$ to $16$ is $16 - 9 = 7$. It describes how spread out the data is, not where its centre sits.",
                 "Mean and range are independent. $13, 13, 13, 13$ and $9, 12, 15, 16$ both have mean $13$, but ranges of $0$ and $7$.",
                 "So report both: the mean says what level, the range says how much the values disagree with each other.",
-            ]),
+            ]), fig_barchart([("lowest", 6, C_NEUTRAL), ("highest", 21, C_ACCENT)], step=3, unit="marks")),
             workedset("Spread, and why it is separate",
                       "Largest minus smallest — the middle plays no part.", [
                 wex("Range of $12$, $15$, $9$, $16$.",

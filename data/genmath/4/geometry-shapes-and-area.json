@@ -104,7 +104,53 @@
               "An angle is an amount of TURN — the ger door swinging open, the clock hand sweeping. Degrees count the turn: a full spin is $360^\\circ$.",
               "The benchmarks: quarter spin $= 90^\\circ$ (the RIGHT angle — the page's corner), half spin $= 180^\\circ$ (a straight line).",
               "Classify against them: acute $< 90^\\circ$, obtuse between $90^\\circ$ and $180^\\circ$. Arm length is irrelevant — only the turn counts."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "O",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "A",
+                    "x": 3.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 0.0,
+                    "y": 3.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "O",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "O",
+                    "from": "A",
+                    "to": "B",
+                    "label": "90°",
+                    "right": true
+                  }
+                ],
+                "height": 150
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -217,7 +263,65 @@
               "Angles filling a STRAIGHT LINE total $180^\\circ$ — so a missing one is $180$ minus the known: $180 - 65 = 115^\\circ$.",
               "Angles filling a FULL TURN total $360^\\circ$: $360 - 140 - 90 = 130^\\circ$.",
               "Ask 'line or turn?' before subtracting — the totals are the whole method, and picking the wrong one doubles or halves everything."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "L",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "M",
+                    "x": 4.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "N",
+                    "x": 2.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "T",
+                    "x": 3.4,
+                    "y": 2.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "L",
+                    "to": "M"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "N",
+                    "to": "T"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "N",
+                    "from": "L",
+                    "to": "T",
+                    "label": "125°"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "N",
+                    "from": "T",
+                    "to": "M",
+                    "label": "55°"
+                  }
+                ],
+                "height": 150
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -510,7 +614,71 @@
               "Tear the corners off any paper triangle and line them up: a straight line — $180^\\circ$, always. That's the triangle's angle budget.",
               "Missing angles fall out by subtraction: a right triangle with a $35^\\circ$ corner keeps $180 - 90 - 35 = 55^\\circ$ for the third.",
               "Names: by sides — equilateral (three equal), isosceles (two), scalene (none); by angles — right, acute, obtuse. Every triangle gets one of each."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": "A"
+                  },
+                  {
+                    "id": "B",
+                    "x": 4.0,
+                    "y": 0.0,
+                    "label": "B"
+                  },
+                  {
+                    "id": "C",
+                    "x": 1.2,
+                    "y": 2.6,
+                    "label": "C"
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "A",
+                    "from": "B",
+                    "to": "C",
+                    "label": "65°"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "B",
+                    "from": "C",
+                    "to": "A",
+                    "label": "50°"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "C",
+                    "from": "A",
+                    "to": "B",
+                    "label": "65°"
+                  }
+                ],
+                "height": 170
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -622,7 +790,68 @@
               "Four sides, four corners, $360^\\circ$ to spend. Missing angles: $360$ minus the rest — $360 - 90 - 90 - 110 = 70^\\circ$.",
               "The family nests: a PARALLELOGRAM has two parallel pairs; make its angles right and it's a RECTANGLE; make a rectangle's sides equal and it's a SQUARE. A RHOMBUS is a parallelogram with equal sides; a TRAPEZOID has just one parallel pair.",
               "Nesting means membership: every square IS a rectangle and IS a parallelogram — special cases don't leave the family, they lead it."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "P",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "Q",
+                    "x": 4.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "R",
+                    "x": 5.0,
+                    "y": 2.4,
+                    "label": ""
+                  },
+                  {
+                    "id": "S",
+                    "x": 1.0,
+                    "y": 2.4,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "P",
+                    "to": "Q"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "Q",
+                    "to": "R"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "R",
+                    "to": "S"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "S",
+                    "to": "P"
+                  },
+                  {
+                    "kind": "angle",
+                    "at": "P",
+                    "from": "Q",
+                    "to": "S",
+                    "label": "70°"
+                  }
+                ],
+                "height": 170
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -920,7 +1149,73 @@
               "Perimeter is the walk around the edge — every side once, in linear units (m, cm).",
               "Rectangles shortcut the walk: opposite sides match, so $P = 2(l + w)$ — the $8 \\times 5$ paddock takes $2 \\times 13 = 26$ m of fence.",
               "Squares compress it further: four equal sides, $P = 4s$."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 5.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.0,
+                    "y": 3.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 0.0,
+                    "y": 3.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "label": "5 cm"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "label": "3 cm"
+                  }
+                ],
+                "height": 160
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1032,7 +1327,95 @@
               "Missing sides run the shortcut backwards: $P = 30$, $l = 9$ — halve first ($l + w = 15$), then $w = 6$.",
               "Squares: $P = 36$ gives $s = 9$ in one division.",
               "Composite shapes have no shortcut — walk EVERY edge, notches included. An L-shaped walk turns six corners, and each little edge counts."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 6.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 6.0,
+                    "y": 2.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 3.5,
+                    "y": 2.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "E",
+                    "x": 3.5,
+                    "y": 4.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "F",
+                    "x": 0.0,
+                    "y": 4.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "E"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "label": "6"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F",
+                    "label": "3.5"
+                  }
+                ],
+                "height": 180
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1334,7 +1717,73 @@
               "Cover a floor with $1$-metre squares: $8$ per row, $5$ rows — $40$ tiles. AREA is that count: $A = l \\times w = 40$ m².",
               "The unit is a SQUARE metre — a tile one metre on each side. The little $^2$ records what was counted.",
               "Squares tile as $s \\times s = s^2$: a $15$ cm square tile covers $225$ cm²."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 5.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 5.0,
+                    "y": 3.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 0.0,
+                    "y": 3.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "label": "15 cm"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "label": "15 cm"
+                  }
+                ],
+                "height": 160
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1446,7 +1895,129 @@
               "Two rectangles can share a fence and disagree about their fields: $6 \\times 4$ and $8 \\times 2$ both take $20$ m — but hold $24$ m² and $16$ m².",
               "Stretch a rectangle thinner at fixed perimeter and its area DRAINS: $9 \\times 1$ holds just $9$ m² of the same $20$ m fence.",
               "Among equal-perimeter rectangles the SQUARE holds the most: $5 \\times 5 = 25$ m² tops them all. Fence constrains; shape decides."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 7.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 7.0,
+                    "y": 1.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 0.0,
+                    "y": 1.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "E",
+                    "x": 9.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "F",
+                    "x": 13.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "G",
+                    "x": 13.0,
+                    "y": 4.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "H",
+                    "x": 9.0,
+                    "y": 4.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "G"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "G",
+                    "to": "H"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "H",
+                    "to": "E"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B",
+                    "label": "7"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "label": "1"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F",
+                    "label": "4"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "G",
+                    "label": "4"
+                  }
+                ],
+                "height": 170
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1766,7 +2337,90 @@
               "An L-shape has no formula — but two roads reach it. SPLIT: cut into rectangles, add the pieces: $8 \\times 4$ plus $5 \\times 2$ gives $32 + 10 = 42$ m².",
               "FILL AND SUBTRACT: restore the whole $8 \\times 6$ ($48$), remove the $3 \\times 2$ bite ($6$): $42$ m².",
               "The roads MUST agree — and when they do, you've proof-read your own answer. Take both roads whenever the stakes are real."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 6.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 6.0,
+                    "y": 2.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 3.5,
+                    "y": 2.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "E",
+                    "x": 3.5,
+                    "y": 4.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "F",
+                    "x": 0.0,
+                    "y": 4.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "E"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "A",
+                    "dashed": true,
+                    "color": "accent"
+                  }
+                ],
+                "height": 180
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1877,7 +2531,90 @@
               "Composite figures hide some labels — but opposite spans must MATCH: if the whole top is $8$ and one bottom piece is $3$, the other is $8 - 3 = 5$.",
               "Recover every edge before computing; each missing one is a difference of labelled ones.",
               "And keep the two measures apart: cutting a bite from a rectangle REDUCES its area but (for a corner bite) the perimeter stays the same walk — the boundary just turns more corners. Area and perimeter move independently."
-            ]
+            ],
+            "figure": {
+              "mode": "geo",
+              "geo": {
+                "points": [
+                  {
+                    "id": "A",
+                    "x": 0.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "B",
+                    "x": 6.0,
+                    "y": 0.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "C",
+                    "x": 6.0,
+                    "y": 2.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "D",
+                    "x": 3.5,
+                    "y": 2.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "E",
+                    "x": 3.5,
+                    "y": 4.0,
+                    "label": ""
+                  },
+                  {
+                    "id": "F",
+                    "x": 0.0,
+                    "y": 4.0,
+                    "label": ""
+                  }
+                ],
+                "objects": [
+                  {
+                    "kind": "segment",
+                    "from": "A",
+                    "to": "B"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "C",
+                    "to": "D"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "D",
+                    "to": "E"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "E",
+                    "to": "F"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "F",
+                    "to": "A"
+                  },
+                  {
+                    "kind": "segment",
+                    "from": "B",
+                    "to": "C",
+                    "label": "?",
+                    "color": "accent"
+                  }
+                ],
+                "height": 180
+              }
+            }
           },
           {
             "kind": "workedSet",

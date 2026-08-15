@@ -60,6 +60,19 @@ ministry asks for it at EVERY grade, we never do.
 
 ## Execution order (each step gated like the ЭЕШ alignment)
 
+DONE 2026-08-13: step 0 (owner chose ministry numbering), step 1 (figure
+modes: barChart, pictograph, lineGraph, clockFace — all with renderers and
+render tests), the renumber itself with a generated redirect map, and step 2
+(grade 4 re-figured: 80 figures, every one of its 40 lessons now teaches
+with a picture). `npm run verify:figure-first` makes the rule mechanical for
+the whole band — a prose-only primary lesson now fails the build.
+
+REMAINING: step 3 (per-grade objective gaps), step 4 (author grades 1 and 5),
+step 5 (banks/exams/placement/mn-terms). Also still open from the audit:
+figure-based PRACTICE — teaching is now figure-led in every primary lesson,
+but most practice items are still text, which is the second half of the
+owner's criterion.
+
 0. OWNER DECISION (blocking step 1, asked 2026-08-13): renumber the band
    so platform grade N = ministry grade N (recommended; existing G3→G2,
    G4→G3, G5→G4, author new G1 + G5), or keep platform numbering and

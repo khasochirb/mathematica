@@ -25,7 +25,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, withfig,  # noqa: E402
+                     fig_barchart, fig_clock, fig_groups, fig_numline,
+                     funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic)
 
 
@@ -110,11 +112,11 @@ def lesson_length():
              "check": ["Eq(4*100 + 60, 460)", "Rational(46,10) > Rational(45,10)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Pick the tool, know the ladder", [
+            withfig(teach("Concept A", "Pick the tool, know the ladder", [
                 "Millimetres for a coin's thickness, centimetres for a pencil, metres for a ger, kilometres for a road — units are tools sized to jobs.",
                 "The ladder: $1$ cm $= 10$ mm, $1$ m $= 100$ cm, $1$ km $= 1\\,000$ m — every rung a power of ten.",
                 "DOWN the ladder multiplies: the same length re-counted in smaller units needs more of them. $3$ m $= 300$ cm; and $3$ m $45$ cm unfolds to $345$ cm.",
-            ]),
+            ]), fig_numline([(0, "0 cm"), (100, "1 m = 100 cm"), (345, "3 m 45 cm")], lo=0, hi=400)),
             workedset("Down the ladder",
                       "Convert the big part; add the small part.", [
                 wex("Express $3$ m $45$ cm in centimetres, then as decimal metres.",
@@ -147,11 +149,11 @@ def lesson_length():
                  ["Eq(220*1000*100, 22000000)"]),
             funfact("The metre lives in Paris",
                     "For over a century the metre WAS a physical platinum bar kept in a Paris vault — every ruler on earth a copy of it. Today it's defined by the speed of light, so no fire or thief can change how long a metre is."),
-            teach("Concept B", "Up the ladder, and mixed decisions", [
+            withfig(teach("Concept B", "Up the ladder, and mixed decisions", [
                 "UP the ladder divides — bigger units, fewer of them: $2\\,500$ m $= 2.5$ km, or $2$ km $500$ m.",
                 "The decimals topic pays off here: $\\div 1\\,000$ walks the digits three steps — $460$ cm $= 4.6$ m.",
                 "Which form to use is a communication choice: the carpenter's $345$ cm, the runner's $2.5$ km — same lengths, different audiences.",
-            ]),
+            ]), fig_numline([(0, "0"), (1000, "1 km = 1000 m")], lo=0, hi=1000)),
             workedset("Up the ladder",
                       "Divide out the rung; the remainder keeps the small unit.", [
                 wex("Express $2\\,500$ m two ways.",
@@ -302,11 +304,11 @@ def lesson_mass_capacity():
              "check": ["Eq(Rational(15,10)*1000, 1500)", "Eq(7*200 + 100, 1500)", "100 < 200"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The thousand-step ladders", [
+            withfig(teach("Concept A", "The thousand-step ladders", [
                 "Mass climbs by thousands: $1$ kg $= 1\\,000$ g, $1$ tonne $= 1\\,000$ kg. A tea packet is grams, a flour sack kilograms, a loaded truck tonnes.",
                 "Mixed forms unfold as with length: $2$ kg $350$ g $= 2\\,350$ g; and the staircase renames upward: $2\\,350$ g $= 2.35$ kg.",
                 "Same design as metres — only the factors changed. Say the rung (\"kg to g, times a thousand\") and the length habits transfer whole.",
-            ]),
+            ]), fig_groups((1, "1 kg", C_ACCENT), (10, "= 1000 g", C_WARM))),
             workedset("Mass conversions",
                       "Thousand-steps, both directions.", [
                 wex("Express $2$ kg $350$ g in grams and decimal kilograms.",
@@ -340,11 +342,11 @@ def lesson_mass_capacity():
                  ["Eq(50*1000, 50000)"]),
             funfact("A litre of water weighs a kilogram",
                     "The metric system's secret handshake: $1$ litre of water has a mass of almost exactly $1$ kilogram — the units were DESIGNED to match. A $2$ L bottle of water: about $2$ kg. No other measurement system ever linked its ladders so neatly."),
-            teach("Concept B", "Capacity, and how-many-fit", [
+            withfig(teach("Concept B", "Capacity, and how-many-fit", [
                 "Capacity — how much a container holds — runs one rung: $1$ L $= 1\\,000$ ml. A cup is $250$ ml; a kettle, $1.7$ L.",
                 "How-many-fit questions are divisions in disguise: a $2$ L jug into $250$ ml cups — convert first ($2\\,000$ ml), then divide: $8$ cups.",
                 "Leftovers behave like Topic 3: $1\\,500 \\div 200 = 7$ r $100$ — seven full glasses and $100$ ml left, receipt and all.",
-            ]),
+            ]), fig_groups((4, "4 full jugs", C_ACCENT), (1, "100 ml left", C_WARM))),
             workedset("Capacity work",
                       "One unit, then divide with receipts.", [
                 wex("How many $250$ ml cups fill a $2$ L jug?",
@@ -499,11 +501,11 @@ def lesson_time_units():
              "check": ["Eq(Rational(3,4)*60, 45)", "Eq(2*60 + 15, 135)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The ladder that refuses tens", [
+            withfig(teach("Concept A", "The ladder that refuses tens", [
                 "Time's rungs: $60$ s to the minute, $60$ min to the hour, $24$ h to the day, $7$ days to the week. Not a ten in sight.",
                 "Down the ladder still multiplies — by the RUNG'S factor: $2$ h $15$ min $= 2 \\times 60 + 15 = 135$ min.",
                 "Up the ladder is division with remainders: $200$ s $= 3$ min $20$ s ($200 \\div 60 = 3$ r $20$) — and the remainder must stay under sixty.",
-            ]),
+            ]), fig_clock(1, 0, label="60 minutes = 1 hour")),
             workedset("Trading by sixties",
                       "×60 down; ÷60 with remainders up.", [
                 wex("Convert $2$ h $15$ min to minutes; $200$ s to min-and-s.",
@@ -540,11 +542,11 @@ def lesson_time_units():
                  ["Eq(2*60 + 50, 170)", "50 < 60"]),
             funfact("Blame Babylon",
                     "Sixty survives from Babylonian astronomy: $60$ divides evenly by $2, 3, 4, 5, 6, 10, 12, 15, 20$ and $30$ — perfect for splitting hours into clean parts. A decimal clock was actually tried during the French Revolution ($10$-hour days!); it lasted about two years."),
-            teach("Concept B", "Fractions of an hour, and the trap", [
+            withfig(teach("Concept B", "Fractions of an hour, and the trap", [
                 "An hour splits like any whole: half $= 30$ min, a quarter $= 15$, three-quarters $= 45$ — the fraction multiplies SIXTY.",
                 "The decimal trap: $1.5$ h is $1$ h $+ 0.5 \\times 60 = 90$ min. The $\\times 100$ reflex says $150$ — and lies.",
                 "Mixed hours convert the same way: $2\\frac{1}{4}$ h $= 120 + 15 = 135$ min. Fractions of a minute too: $\\frac{1}{2}$ min $= 30$ s.",
-            ]),
+            ]), fig_clock(3, 30, label="half past 3 = 30 min")),
             workedset("Hour fractions",
                       "The fraction multiplies sixty, never a hundred.", [
                 wex("How many minutes in $1.5$ h?",
@@ -693,11 +695,11 @@ def lesson_elapsed():
              "check": ["Eq(35 + 45, 80)", "Eq(80, 60 + 20)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Climb, don't subtract", [
+            withfig(teach("Concept A", "Climb, don't subtract", [
                 "Elapsed time is a journey between clock readings — and the fastest route climbs through the ROUND HOURS.",
                 "$9{:}45 \\to 11{:}20$: fifteen to the hour, sixty across, twenty beyond — $95$ min $= 1$ h $35$.",
                 "Column subtraction on clock faces invites a base-ten borrow into a base-sixty world; the climb never breaks an hour wrong.",
-            ]),
+            ]), fig_clock(7, 50, until=(9, 15), label="7:50 start", until_label="9:15 finish")),
             workedset("Climbing the clock",
                       "To the hour, across the hours, past the hour.", [
                 wex("How long from $9{:}45$ to $11{:}20$?",
@@ -734,11 +736,11 @@ def lesson_elapsed():
                  ["Eq(80 - 45, 35)", "Eq(15 + 60 + 20, 95)", "Eq(95, 60 + 35)"]),
             funfact("The 24-hour clock skips the guesswork",
                     "Timetables use $16{:}35$ instead of \"4:35 in the afternoon\" so that no journey ever looks like it ends before it starts. Reading both clocks — $16{:}35$ IS $4{:}35$ pm — is a five-second skill worth having before every train you'll ever catch."),
-            teach("Concept B", "End times and timetables", [
+            withfig(teach("Concept B", "End times and timetables", [
                 "Start $+$ duration: add hours first, then minutes — and minutes past sixty trade UP: $8{:}40 + 1$ h $50$ → $9{:}40$, then $40 + 50 = 90 = 60 + 30$ → $10{:}30$.",
                 "Backwards works too: to arrive at $11{:}00$ after a $35$-min walk, leave by $10{:}25$.",
                 "A timetable is rows of this arithmetic: departure, duration, arrival — one of them always missing, the other two rebuilding it.",
-            ]),
+            ]), fig_clock(10, 20, until=(11, 5), label="depart 10:20", until_label="arrive 11:05")),
             workedset("Start + duration",
                       "Hours, then minutes; trade at sixty.", [
                 wex("A lesson starts $8{:}40$ and lasts $1$ h $50$ min. End time?",
@@ -888,11 +890,11 @@ def lesson_word_problems():
              "check": ["Eq(3400 + 2800, 6200)", "Eq(Rational(6200,1000), Rational(62,10))"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Convert first — the one commandment", [
+            withfig(teach("Concept A", "Convert first — the one commandment", [
                 "Before ANY arithmetic, ask: do all my numbers speak the same unit? $1.2$ m $+ 45$ cm — not yet. Convert: $120 + 45 = 165$ cm.",
                 "Either direction works ($1.20 + 0.45 = 1.65$ m) — the sin is mixing, not the choice of unit.",
                 "After conversion it's old arithmetic: event queues, receipts, remainders — Topics 2 and 3 wearing unit names.",
-            ]),
+            ]), fig_numline([(0, "0 cm"), (250, "2.5 m"), (400, "4 m")], lo=0, hi=400)),
             workedset("Unit alignment",
                       "One unit in, familiar arithmetic after.", [
                 wex("Join a $1.2$ m board and a $45$ cm ledge.",
@@ -929,11 +931,11 @@ def lesson_word_problems():
                  ["Eq(200 + 75, 275)", "Ne(77, 275)"]),
             funfact("A spacecraft died of mixed units",
                     "In 1999 NASA's Mars Climate Orbiter burned up because one team computed thrust in metric units and another in imperial — nobody converted first. The cardinal sin of this lesson, at a cost of $327$ million dollars. Your fence arithmetic and their orbit arithmetic fail the same way."),
-            teach("Concept B", "Multi-step, and the sensible finish", [
+            withfig(teach("Concept B", "Multi-step, and the sensible finish", [
                 "Real problems chain steps: convert, run the event queue, then CLIMB BACK to a sensible unit. Three parcels of $1$ kg $200$ g: $3 \\times 1\\,200 = 3\\,600$ g — reported as $3.6$ kg.",
                 "Division joins in: a $3$ m ribbon into $40$ cm pieces — $300 \\div 40 = 7$ r $20$: seven pieces, $20$ cm left.",
                 "The guardrail travels too: estimate in round units ($3$ parcels ≈ $1$ kg each ≈ $3.6$... about $3$–$4$ kg ✓) and the exact answer must land beside it.",
-            ]),
+            ]), fig_barchart([("estimate", 12, C_NEUTRAL), ("exact", 11, C_ACCENT)], step=3, unit="m")),
             workedset("Full-shape problems",
                       "Convert → compute → report sensibly.", [
                 wex("Three parcels of $1$ kg $200$ g — total, sensibly.",

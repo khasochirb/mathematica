@@ -26,7 +26,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, withfig,  # noqa: E402
+                     fig_numline,
+                     funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic)
 
 
@@ -117,11 +119,11 @@ def lesson_tenths():
              "check": ["Eq(Rational(8,10), 10*Rational(8,100))"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The staircase keeps going", [
+            withfig(teach("Concept A", "The staircase keeps going", [
                 "Topic 1's ladder climbed LEFT by tens: ones, tens, hundreds. The decimal point marks where the ones stand — and the ladder continues RIGHT, dividing by ten per step: tenths, hundredths.",
                 "$1.35$: one whole, $3$ tenths, $5$ hundredths — $1 + \\frac{3}{10} + \\frac{5}{100} = \\frac{135}{100}$.",
                 "Digit × place still gives the value; nothing about the rule changed, only the direction of travel.",
-            ]),
+            ]), {"mode": "decimalGrid", "decimal": {"value": 0.37, "label": "0.37 of one whole"}}),
             workedset("Reading the places",
                       "Name each digit's place; add the values.", [
                 wex("Break $1.35$ into place values.",
@@ -158,11 +160,11 @@ def lesson_tenths():
                  ["Eq(27 + Rational(4,10), Rational(274,10))"]),
             funfact("The point that wanders the world",
                     "Mongolia and most of Europe write the decimal separator as a comma — $1{,}35$ — while English-language mathematics uses the point. Same ladder, different ink. On this site we write the point, because that's what calculators and programming languages the world over use."),
-            teach("Concept B", "Zeros on the decimal side", [
+            withfig(teach("Concept B", "Zeros on the decimal side", [
                 "A zero between the point and a digit pushes that digit down the ladder: $0.5$ is five tenths, $0.05$ five hundredths — ten times smaller.",
                 "But a zero at the END changes nothing: $0.5$ and $0.50$ are the same amount ($\\frac{5}{10} = \\frac{50}{100}$) — the ladder just got described one step finer.",
                 "The two zero rules — inside matters, trailing doesn't — do all the work in the comparing lesson ahead.",
-            ]),
+            ]), {"mode": "decimalGrid", "decimal": {"value": 0.3, "label": "0.3 = 0.30"}}),
             workedset("The two zero rules",
                       "Inside pushes down; trailing changes nothing.", [
                 wex("Compare the $5$ in $0.5$ and $0.05$.",
@@ -313,11 +315,11 @@ def lesson_conversion():
              "check": ["Eq(Rational(9,25), Rational(36,100))"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Decimals undress to fractions", [
+            withfig(teach("Concept A", "Decimals undress to fractions", [
                 "Read the LAST place: that's the denominator. $0.7$ ends in tenths — $\\frac{7}{10}$; $0.25$ ends in hundredths — $\\frac{25}{100}$.",
                 "Then Topic 4 takes over: simplify. $\\frac{25}{100} = \\frac{1}{4}$.",
                 "So $0.25$ and a quarter were the same amount all along — the decimal was a fraction on the staircase.",
-            ]),
+            ]), {"mode": "decimalGrid", "decimal": {"value": 0.6, "label": "0.6 = 6/10"}}),
             workedset("Decimal to fraction",
                       "Last place names the denominator; then merge.", [
                 wex("Convert $0.25$ and $0.6$.",
@@ -354,11 +356,11 @@ def lesson_conversion():
                  ["Eq(Rational(9,10), Rational(90,100))"]),
             funfact("Batting averages and shooting percentages",
                     "Sports statistics are this lesson at work: a basketball player who makes $\\frac{3}{4}$ of free throws \"shoots 0.750\" — three quarters renamed to thousandths. Every sports page is a fraction-to-decimal conversion table."),
-            teach("Concept B", "Fractions dress as decimals", [
+            withfig(teach("Concept B", "Fractions dress as decimals", [
                 "To put a fraction on the staircase, rename it to tenths or hundredths with the splitting move: $\\frac{3}{5} = \\frac{6}{10} = 0.6$.",
                 "Denominators that divide $100$ — halves, quarters, fifths, tenths, twentieths, twenty-fifths, fiftieths — all reach the staircase: $\\frac{3}{4} = \\frac{75}{100} = 0.75$.",
                 "Digits never transfer directly — AMOUNTS do. $\\frac{1}{4}$ is not $0.14$; rename first, then read.",
-            ]),
+            ]), {"mode": "decimalGrid", "decimal": {"value": 0.14, "label": "14/100 = 0.14"}}),
             workedset("Fraction to decimal",
                       "Split to tenths or hundredths; read the staircase.", [
                 wex("Convert $\\frac{3}{4}$ and $\\frac{7}{20}$.",
@@ -514,11 +516,11 @@ def lesson_comparing():
              "check": ["Rational(6,10) < Rational(63,100)", "Rational(63,100) < Rational(7,10)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Pad, then march left to right", [
+            withfig(teach("Concept A", "Pad, then march left to right", [
                 "Trailing zeros are free — $0.5 = 0.50$ — so give both numbers the same decimal length before comparing.",
                 "$0.5$ vs $0.47$: padded, $0.50$ vs $0.47$ — fifty hundredths beat forty-seven. $0.5$ wins.",
                 "Then march as always: wholes, tenths, hundredths — the leftmost difference decides, exactly like Topic 1.",
-            ]),
+            ]), fig_numline([(0.4, "0.4"), (0.45, "0.45"), (0.5, "0.5")], lo=0.4, hi=0.5)),
             workedset("Padded comparisons",
                       "Equal lengths first; then it's Topic 1 again.", [
                 wex("Compare $0.5$ and $0.47$.",
@@ -555,11 +557,11 @@ def lesson_comparing():
                  ["Rational(5,10) > Rational(399,1000)"]),
             funfact("Photo finishes live in the hundredths",
                     "Olympic sprints are timed to $0.01$ s: a $9.58$ against a $9.63$ is a five-hundredths gap — about the length of a forearm at full speed. Padding decimals to equal places is literally how race results are ranked."),
-            teach("Concept B", "Neighbours on the number line", [
+            withfig(teach("Concept B", "Neighbours on the number line", [
                 "Every decimal lives between two neighbours one place coarser: $0.63$ sits between $0.6$ and $0.7$ — split the tenth into ten hundredths, count three.",
                 "Neighbour-thinking orders fast: $0.63$, $0.7$, $0.59$ — which tenths do they live in? $0.59$ below $0.6$; $0.63$ in the sixties; $0.7$ on the line above.",
                 "It also sets up rounding: the nearer neighbour is exactly where a decimal rounds (next lesson's business).",
-            ]),
+            ]), fig_numline([(0, "0"), (0.25, "0.25"), (0.5, "0.5"), (0.75, "0.75"), (1, "1")], lo=0, hi=1)),
             workedset("Between the tenths",
                       "Name the tenth below and above.", [
                 wex("Between which tenths does $0.63$ sit — and nearer which?",
@@ -721,11 +723,11 @@ def lesson_arithmetic():
                        "Eq(Rational(245,100) + Rational(175,100), Rational(42,10))"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "One new habit: point under point", [
+            withfig(teach("Concept A", "One new habit: point under point", [
                 "Whole-number columns aligned on the right edge. Decimal columns align on the POINT — tenths under tenths, hundredths under hundredths.",
                 "$2.35 + 1.4$: pad to $1.40$ so the alignment is visible, then add columns as always: $3.75$.",
                 "Right-aligning would drop the $4$ under the $5$ — adding tenths to hundredths, the one error decimals invent. Padding makes it impossible.",
-            ]),
+            ]), {"mode": "decimalColumn", "column": {"a": 3.4, "b": 1.25, "op": "add"}}),
             workedset("Adding on the staircase",
                       "Align points, pad, and let the old carries work.", [
                 wex("Add $2.35 + 1.4$.",
@@ -764,11 +766,11 @@ def lesson_arithmetic():
                   "Rational(249,100) < 3"]),
             funfact("Cash registers add in hundredths",
                     "Every till on earth runs this lesson: prices are stored as whole HUNDREDTHS (cents, möngö) precisely so machines can add them like whole numbers and place the point at the end — the pad-and-align trick, industrialised."),
-            teach("Concept B", "Subtraction, and the invisible point", [
+            withfig(teach("Concept B", "Subtraction, and the invisible point", [
                 "Subtracting works the same: align points, pad, borrow as in Topic 2 — ten hundredths trade for a tenth, ten tenths for a whole.",
                 "Whole numbers carry invisible decimal places: $5 = 5.00$. So $5 - 1.36$ becomes $5.00 - 1.36$, borrows travelling across the zeros: $3.64$.",
                 "Keep the receipt habit: $3.64 + 1.36 = 5$ ✓ — additions still check subtractions on the staircase.",
-            ]),
+            ]), {"mode": "decimalColumn", "column": {"a": 5.0, "b": 2.35, "op": "sub"}}),
             workedset("Borrowing past the point",
                       "Pad, borrow, receipt.", [
                 wex("Subtract $4.2 - 1.75$.",
@@ -923,11 +925,11 @@ def lesson_measurement():
              "check": ["Eq(Rational(207,100)*100, 207)", "Eq(Rational(450,100), Rational(45,10))"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Rounding, one staircase down", [
+            withfig(teach("Concept A", "Rounding, one staircase down", [
                 "Rounding decimals is Topic 1's rule on finer landmarks. Nearest TENTH: the landmarks are neighbouring tenths, and the HUNDREDTHS digit decides — $3.47 \\to 3.5$.",
                 "Nearest WHOLE: the tenths digit decides — $3.47 \\to 3$ (four tenths falls short of half).",
                 "Always one place below the target: that digit, and only that digit, casts the vote.",
-            ]),
+            ]), fig_numline([(2.0, "2"), (2.4, "2.4"), (2.5, "2.5 — the tie"), (3.0, "3")], lo=2, hi=3)),
             workedset("Landmark practice",
                       "Name the two landmarks; let the digit below vote.", [
                 wex("Round $3.47$ both ways.",
@@ -963,11 +965,11 @@ def lesson_measurement():
                  ["Abs(Rational(638,100) - Rational(64,10)) < Abs(Rational(638,100) - Rational(63,10))"]),
             funfact("Scales round for you",
                     "A kitchen scale showing $1.3$ kg has already rounded — the true weight might be anywhere from $1.25$ to $1.35$ kg. Every measuring device rounds at the limit of its display; knowing the landmark-width tells you how much to trust the last digit."),
-            teach("Concept B", "Measurements ride the ladder", [
+            withfig(teach("Concept B", "Measurements ride the ladder", [
                 "Unit conversions are place shifts. Metres to centimetres: $\\times 100$ — two ladder steps: $1.35$ m $= 135$ cm. Back again: $\\div 100$ — $450$ cm $= 4.5$ m.",
                 "Kilograms to grams: $\\times 1\\,000$ — three steps: $2.5$ kg $= 2\\,500$ g.",
                 "And the estimate guardrail survives: $3.9 + 2.1 \\approx 4 + 2 = 6$ — the exact $6.0$ lands on it. Round, compute, compare — at every scale.",
-            ]),
+            ]), fig_numline([(0, "0 m"), (1.75, "1.75 m"), (2, "2 m")], lo=0, hi=2)),
             workedset("Converting and estimating",
                       "Shifts for units; rounds for guardrails.", [
                 wex("Convert $1.35$ m to cm, and find the shortfall from $2$ m.",

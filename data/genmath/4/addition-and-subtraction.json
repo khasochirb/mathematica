@@ -104,7 +104,22 @@
               "Column addition adds place by place, starting from the ones — the place-value ladder doing bookkeeping.",
               "When a column passes $9$, you cannot write two digits in one place. TRADE ten of it for one of the next place: $6 + 7 = 13$ → write $3$, carry $1$.",
               "The carry is not a rule to memorise — it is ten ones becoming one ten, the Topic 1 trade in action."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 10,
+                  "color": "#d97706",
+                  "label": "10 ones become..."
+                },
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "...1 ten"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -217,7 +232,27 @@
               "Addition doesn't care about order or grouping — so with several numbers, YOU choose the friendliest path.",
               "$618 + 254 + 382$: spot the pair that makes a round number — $618 + 382 = 1\\,000$ — then $1\\,000 + 254 = 1\\,254$.",
               "Hunting for pairs that make tens, hundreds or thousands turns long sums into short ones."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 7,
+                  "color": "#3b82f6",
+                  "label": "7"
+                },
+                {
+                  "count": 3,
+                  "color": "#d97706",
+                  "label": "3 — pairs to 10"
+                },
+                {
+                  "count": 8,
+                  "color": "#059669",
+                  "label": "8"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -523,7 +558,22 @@
               "When a column's top digit is too small — $2 - 8$ won't go — BREAK one of the next place into ten of this one.",
               "$52 - 38$: break a ten. The $5$ tens become $4$, the $2$ ones become $12$: now $12 - 8 = 4$ and $4 - 3 = 1$. Answer $14$.",
               "It is exactly the addition carry run in reverse: there you traded ten-for-one going up; here one breaks into ten coming down."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 1,
+                  "color": "#3b82f6",
+                  "label": "1 ten breaks into..."
+                },
+                {
+                  "count": 10,
+                  "color": "#d97706",
+                  "label": "...10 ones"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -641,7 +691,22 @@
               "Subtracting from a number full of zeros — $5\\,003 - 1\\,647$ — sends the break TRAVELLING: the thousand breaks into ten hundreds, one hundred into ten tens, one ten into ten ones.",
               "After the travelling break, $5\\,003$ reads as $4$ thousands, $9$ hundreds, $9$ tens, $13$ ones — and the subtraction runs smoothly.",
               "Always collect the receipt: answer $+$ subtracted $=$ original. $3\\,356 + 1\\,647 = 5\\,003$ — if the receipt fails, the subtraction was wrong."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 3,
+                  "color": "#94a3b8",
+                  "label": "3 zeros to cross"
+                },
+                {
+                  "count": 10,
+                  "color": "#d97706",
+                  "label": "each becomes 10"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -951,7 +1016,32 @@
               "Round numbers are easy numbers. Compensation trades your problem for a round one, then repays: $499 + 276 \\to 500 + 276 = 776$, repay $1$: $775$.",
               "The repay direction follows the trade: rounded UP means you added too much — subtract it back. Rounded the subtracted number up? You took too much — add it back.",
               "$3\\,000 - 1\\,998$: round $1\\,998 \\to 2\\,000$, get $1\\,000$, repay the extra $2$ you took: $1\\,002$."
-            ]
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "start"
+                  },
+                  {
+                    "value": 998,
+                    "label": "998"
+                  },
+                  {
+                    "value": 1000,
+                    "label": "round up"
+                  },
+                  {
+                    "value": 1002,
+                    "label": "give back 2"
+                  }
+                ],
+                "min": 0,
+                "max": 1100
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1065,7 +1155,28 @@
               "**Make a ten:** split one addend to complete the other. $47 + 38$: move $3$ across — $50 + 35 = 85$. Nothing was rounded, so nothing to repay.",
               "**Count up** turns subtraction into a journey: $1\\,000 - 674$ climbs $674 \\to 700$ ($+26$) $\\to 1\\,000$ ($+300$): difference $326$. Two easy hops instead of three borrows.",
               "Choose by the numbers: near a round number → compensate; digits that complete each other → make tens; subtracting from a round number → count up."
-            ]
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 47,
+                    "label": "47"
+                  },
+                  {
+                    "value": 50,
+                    "label": "+3 to 50"
+                  },
+                  {
+                    "value": 80,
+                    "label": "+30 to 80"
+                  }
+                ],
+                "min": 40,
+                "max": 90
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1369,7 +1480,27 @@
               "Three numbers where two parts build a whole — $456$, $789$, $1\\,245$ — make a FACT FAMILY: two additions and two subtractions, all saying the same thing.",
               "$456 + 789 = 1\\,245$, $789 + 456 = 1\\,245$, $1\\,245 - 456 = 789$, $1\\,245 - 789 = 456$.",
               "This is why addition CHECKS subtraction (last lesson's receipt): they are the same relationship read in opposite directions."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 8,
+                  "color": "#3b82f6",
+                  "label": "part"
+                },
+                {
+                  "count": 5,
+                  "color": "#d97706",
+                  "label": "part"
+                },
+                {
+                  "count": 13,
+                  "color": "#059669",
+                  "label": "whole"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1485,7 +1616,27 @@
               "Every missing-number equation asks ONE question: is the box the WHOLE or a PART?",
               "$\\square - 456 = 789$: the box had $456$ removed and $789$ remains — the box is the whole. Rebuild: $789 + 456 = 1\\,245$.",
               "$350 + \\square = 1\\,000$: the box is a part of $1\\,000$. Take the other part away: $1\\,000 - 350 = 650$. Name the unknown; the operation follows."
-            ]
+            ],
+            "figure": {
+              "mode": "groups",
+              "groups": [
+                {
+                  "count": 12,
+                  "color": "#3b82f6",
+                  "label": "known part"
+                },
+                {
+                  "count": 0,
+                  "color": "#94a3b8",
+                  "label": "unknown part"
+                },
+                {
+                  "count": 20,
+                  "color": "#059669",
+                  "label": "whole"
+                }
+              ]
+            }
           },
           {
             "kind": "workedSet",
@@ -1786,7 +1937,28 @@
               "A multi-step story is single steps in a queue. Read it and LIST the events in order: gained → $+$, lost → $-$.",
               "Then compute a RUNNING TOTAL, one event at a time: till $12\\,450$, $+3\\,780 \\to 16\\,230$, $+4\\,265 \\to 20\\,495$, $-8\\,900 \\to 11\\,595$.",
               "Never juggle two steps at once — the queue exists so each move is easy."
-            ]
+            ],
+            "figure": {
+              "mode": "numberLine",
+              "numberLine": {
+                "points": [
+                  {
+                    "value": 0,
+                    "label": "start"
+                  },
+                  {
+                    "value": 35,
+                    "label": "+35"
+                  },
+                  {
+                    "value": 60,
+                    "label": "-25"
+                  }
+                ],
+                "min": 0,
+                "max": 80
+              }
+            }
           },
           {
             "kind": "workedSet",
@@ -1899,7 +2071,25 @@
               "\"How many MORE\", \"how much LESS\", \"what's LEFT\" — comparison words always ask for a DIFFERENCE: larger minus smaller.",
               "Two schools collect $4\\,320$ and $3\\,485$ kg: \"how much more\" $= 4\\,320 - 3\\,485 = 835$ kg.",
               "Guardrail every answer with an estimate: run the SAME event queue on rounded numbers. Exact and rough must land together — if not, hunt the dropped step."
-            ]
+            ],
+            "figure": {
+              "mode": "barChart",
+              "barChart": {
+                "categories": [
+                  {
+                    "label": "estimate",
+                    "value": 40,
+                    "color": "#94a3b8"
+                  },
+                  {
+                    "label": "exact",
+                    "value": 38,
+                    "color": "#3b82f6"
+                  }
+                ],
+                "step": 10
+              }
+            }
           },
           {
             "kind": "workedSet",

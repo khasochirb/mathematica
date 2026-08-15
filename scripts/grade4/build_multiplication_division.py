@@ -25,7 +25,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from g5build import (funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
+from g5build import (C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, withfig,  # noqa: E402
+                     fig_groups,
+                     funfact, prob, recap, tapq, teach, tip, tp,  # noqa: E402
                      tryitset, wex, workedset, write_topic)
 
 
@@ -123,11 +125,11 @@ def lesson_one_digit():
              "check": ["Eq(3*6000, 18000)", "Eq(5*800, 4000)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The factor visits every place", [
+            withfig(teach("Concept A", "The factor visits every place", [
                 "$4 \\times 2\\,357$ is four $2\\,000$s, four $300$s, four $50$s and four $7$s — the factor VISITS each place, and the pieces add: $8\\,000 + 1\\,200 + 200 + 28 = 9\\,428$.",
                 "This is the distributive idea, and it is the engine under every multiplication algorithm you will ever meet.",
                 "The column method writes the same visits compactly, ones first, carrying like addition: multiply, then ADD the carry.",
-            ]),
+            ]), fig_groups((6, "6", C_ACCENT), (6, "6", C_ACCENT), (6, "6", C_ACCENT), (6, "4 groups of 6", C_ACCENT))),
             workedset("Parts, then columns",
                       "Same multiplication, two notations.", [
                 wex("Compute $4 \\times 2\\,357$ by parts.",
@@ -161,11 +163,11 @@ def lesson_one_digit():
                  ["Eq(24 + 3, 27)"]),
             funfact("Times tables end at 9 on purpose",
                     "Every multiplication you will ever do — however enormous — reduces to one-digit products plus place shifts plus addition. The 81 facts of the times table are the complete alphabet; algorithms just spell with them."),
-            teach("Concept B", "Zeros ride along", [
+            withfig(teach("Concept B", "Zeros ride along", [
                 "$4 \\times 700$: the $700$ is $7$ hundreds, so the product is $28$ hundreds — $2\\,800$. Multiply the digits, RE-ATTACH the zeros.",
                 "$3 \\times 6\\,000 = 18\\,000$: three zeros in, three zeros out (the $18$ supplies its own extra digit).",
                 "This is Topic 1's ten-times ladder at work: each zero is a place shift, and multiplication respects places.",
-            ]),
+            ]), fig_groups((3, "3 hundreds", C_ACCENT), (0, "0 tens", C_NEUTRAL), (0, "0 ones", C_NEUTRAL))),
             workedset("Round-number products",
                       "Digits times digits, zeros re-attached.", [
                 wex("Compute $4 \\times 700$ and $5 \\times 800$.",
@@ -311,11 +313,11 @@ def lesson_two_digit():
              "check": ["Eq(60*40, 2400)"]},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Two products in a coat", [
+            withfig(teach("Concept A", "Two products in a coat", [
                 "$24 \\times 36$: split the $36$ into $30 + 6$. Then $24 \\times 30 = 720$ and $24 \\times 6 = 144$ — add: $864$.",
                 "The pieces are called PARTIAL PRODUCTS: the tens part and the ones part, each a one-digit multiplication you already own.",
                 "$24 \\times 30$ itself is $24 \\times 3$ shifted: $72 \\to 720$. Nothing here is new — it is last lesson twice, plus an addition.",
-            ]),
+            ]), fig_groups((20, "20 of them", C_ACCENT), (3, "and 3 more", C_WARM))),
             workedset("Partial products",
                       "Tens row, ones row, add.", [
                 wex("Compute $24 \\times 36$.",
@@ -352,11 +354,11 @@ def lesson_two_digit():
                  ["Eq(24*30, 720)", "Eq(720 + 144, 864)", "Ne(216, 864)"]),
             funfact("The lattice method",
                     "Medieval merchants multiplied on a drawn lattice — a grid where every digit-pair got its own cell and the diagonals did the carrying. Same partial products, different furniture. Our two-row layout won because it fits on a till receipt."),
-            teach("Concept B", "The column layout", [
+            withfig(teach("Concept B", "The column layout", [
                 "Stack the work: multiply by the ONES digit first (one full row), then by the TENS digit starting one place left — that shift is the attached zero.",
                 "$138 \\times 26$: ones row $138 \\times 6 = 828$; tens row $138 \\times 2 = 276$, written from the tens place ($2\\,760$). Add: $3\\,588$.",
                 "Two rows, two partial products, one sum — the coat that keeps every digit-pair meeting exactly once.",
-            ]),
+            ]), fig_groups((4, "tens x tens", C_ACCENT), (4, "tens x ones", C_WARM), (4, "ones x tens", C_GREEN), (4, "ones x ones", C_NEUTRAL))),
             workedset("Rows and shifts",
                       "Ones row, shifted tens row, add.", [
                 wex("Compute $138 \\times 26$ in the column layout.",
@@ -507,11 +509,11 @@ def lesson_remainders():
              "check": dchecks(67, 7, 9, 4)},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "What's left when sharing stops", [
+            withfig(teach("Concept A", "What's left when sharing stops", [
                 "$58 \\div 9$: how many whole $9$s fit in $58$? Six of them use $54$; the $4$ left can't make a seventh — QUOTIENT $6$, REMAINDER $4$.",
                 "Same numbers, other reading: $58$ sweets shared among $9$ friends — $6$ each, $4$ left in the bag.",
                 "Write it $58 \\div 9 = 6$ r $4$ — the remainder is part of the answer, not an apology.",
-            ]),
+            ]), fig_groups((4, "share", C_ACCENT), (4, "share", C_ACCENT), (4, "share", C_ACCENT), (2, "left over", C_WARM))),
             workedset("Fit, then count the leftover",
                       "Find the biggest multiple that fits; subtract for the remainder.", [
                 wex("Compute $75 \\div 8$.",
@@ -545,11 +547,11 @@ def lesson_remainders():
                  ["Eq(9*8 + 3, 75)"]),
             funfact("Remainders run the calendar",
                     "\"What day of the week is it in 30 days?\" is a remainder question: $30 \\div 7 = 4$ r $2$ — four full weeks pass and the answer is two weekdays along. Clocks, calendars and rotas all count in remainders."),
-            teach("Concept B", "The remainder rule", [
+            withfig(teach("Concept B", "The remainder rule", [
                 "A remainder as big as the divisor is a division that STOPPED EARLY: $50 \\div 6 = 7$ r $8$ leaves an $8$ — but a whole $6$ still fits in it.",
                 "Push on: $50 \\div 6 = 8$ r $2$. The rule: the remainder is always SMALLER than the divisor, $r < d$.",
                 "So every answer gets two checks: the receipt ($q \\times d + r = n$) AND the rule ($r < d$). Both must hold.",
-            ]),
+            ]), fig_groups((5, "divisor 5", C_ACCENT), (3, "remainder 3 — smaller", C_WARM))),
             workedset("Catching stopped-early divisions",
                       "Receipt alone is not enough — check r < d too.", [
                 wex("Judge the claim $50 \\div 6 = 7$ r $8$.",
@@ -703,11 +705,11 @@ def lesson_long_division():
              "check": dchecks(6037, 8, 754, 5)},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "The cycle, place by place", [
+            withfig(teach("Concept A", "The cycle, place by place", [
                 "Long division shares the biggest places first: DIVIDE, MULTIPLY back, SUBTRACT the used amount, BRING DOWN the next digit — then the cycle turns again.",
                 "$5\\,208 \\div 4$: thousands $5 \\div 4 = 1$ r $1$ — the leftover thousand becomes ten hundreds and joins the $2$: next up is $12$.",
                 "Leftovers always slide one place right and stay in the game; nothing is ever thrown away until the ones are done.",
-            ]),
+            ]), fig_groups((8, "8 hundreds", C_ACCENT), (4, "4 tens", C_WARM), (6, "6 ones", C_GREEN))),
             workedset("Turning the cycle",
                       "One quotient digit per turn.", [
                 wex("Compute $5\\,208 \\div 4$.",
@@ -746,11 +748,11 @@ def lesson_long_division():
                  ["Eq(10 + 2, 12)"]),
             funfact("Why it's called LONG",
                     "The name distinguishes it from \"short division\", where the leftovers are held in your head and only the quotient is written. Long division writes every subtract step down — slower, but it never overloads anyone's memory, which is why schools teach it first."),
-            teach("Concept B", "Zeros on duty, remainders at the end", [
+            withfig(teach("Concept B", "Zeros on duty, remainders at the end", [
                 "When a step divides to nothing — $0 \\div 4$, or a brought-down number smaller than the divisor — the quotient still takes a digit: $0$, in that place.",
                 "$3\\,048 \\div 6$: $30 \\to 5$; bring down $4$ — but $4 < 6$, so write $0$ and bring down the $8$: $48 \\to 8$. Quotient $508$, not $58$ — skipping the zero shrinks the answer tenfold.",
                 "If the ones step leaves something, that's the final remainder — and both old checks apply: receipt and $r < d$.",
-            ]),
+            ]), fig_groups((0, "0 in the quotient", C_NEUTRAL), (7, "carry on", C_ACCENT))),
             workedset("The zero's post",
                       "Every bring-down writes a digit — zeros included.", [
                 wex("Compute $3\\,048 \\div 6$.",
@@ -910,11 +912,11 @@ def lesson_choosing():
              "check": dchecks(75, 9, 8, 3)},
         ],
         "interactive": {"steps": [
-            teach("Concept A", "Structure picks the operation", [
+            withfig(teach("Concept A", "Structure picks the operation", [
                 "Stories don't name their operation. Look for the STRUCTURE: the same-size group repeated — \"$12$ boxes of $145$\" — multiplies.",
                 "A total being split — \"share $1\\,740$ among $29$ classes\" — divides. So does grouping: \"how many $40$s fit in $130$?\"",
                 "Signal words lie: \"each\" appears in both kinds. Ask what is HAPPENING — combining equal groups, or splitting a total?",
-            ]),
+            ]), fig_groups((6, "one group", C_ACCENT), (6, "another", C_WARM), (6, "and another", C_GREEN))),
             workedset("Read the structure",
                       "Name the structure aloud, then compute.", [
                 wex("$12$ boxes of $145$ pencils, shared among $29$ classes — each class gets?",
@@ -949,11 +951,11 @@ def lesson_choosing():
                  ["Eq(12*13, 156)", "Eq(12*156, 1872)"]),
             funfact("Word problems are the oldest math homework",
                     "A Babylonian clay tablet nearly 4,000 years old asks how many workers are needed to dig a canal — given the volume each worker digs per day. Choosing the operation from a story is literally the oldest exercise in mathematics."),
-            teach("Concept B", "What the remainder means", [
+            withfig(teach("Concept B", "What the remainder means", [
                 "The division gives $q$ r $r$; the STORY says what to do with it. Buses for $130$ students at $40$ a bus: $3$ r $10$ — the ten still travel, so ROUND UP: $4$ buses.",
                 "FULL boxes from $130$ eggs by dozens: $10$ r $10$ — the loose eggs don't fill a box: DROP, answer $10$.",
                 "\"How much rope is LEFT?\": the remainder itself is the answer — REPORT it. Three readings, one rule: re-read the question after dividing.",
-            ]),
+            ]), fig_groups((7, "full buses", C_ACCENT), (3, "left — need one more", C_WARM))),
             workedset("Three remainders, three fates",
                       "Round up, drop, or report — the story decides.", [
                 wex("$130$ students, $40$-seat buses. Buses needed?",

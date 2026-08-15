@@ -9,8 +9,21 @@ nothing written.
 """
 import json
 import os
+import sys
 
 from sympy import sympify
+
+# The primary band's shared figure vocabulary. Until 2026-08-13 this module
+# had none, and the year built on it shipped forty lessons without a single
+# figure — the audit's worst finding. Importing it here is what lets a
+# grade-4 builder reach for a picture at all.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "primary"))
+from figures import (  # noqa: E402,F401
+    C_ACCENT, C_GREEN, C_NEUTRAL, C_WARM, P, ang, fig_bar, fig_barchart,
+    fig_clock, fig_geo, fig_groups, fig_linegraph, fig_numline,
+    fig_pictograph, poly, seg, withfig, withprobfig,
+)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "genmath", "4")

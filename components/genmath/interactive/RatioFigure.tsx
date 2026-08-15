@@ -14,6 +14,8 @@ import IntegerAddView from "@/components/genmath/interactive/IntegerAddView";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 import BarChartView from "@/components/genmath/interactive/BarChartView";
 import PictographView from "@/components/genmath/interactive/PictographView";
+import LineGraphView from "@/components/genmath/interactive/LineGraphView";
+import ClockFaceView from "@/components/genmath/interactive/ClockFaceView";
 
 function Token({ color }: { color: string }) {
   return (
@@ -148,6 +150,12 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
   }
   if (mode === "pictograph" && figure.pictograph) {
     return <PictographView spec={figure.pictograph} />;
+  }
+  if (mode === "lineGraph" && figure.lineGraph) {
+    return <LineGraphView spec={figure.lineGraph} />;
+  }
+  if (mode === "clockFace" && figure.clockFace) {
+    return <ClockFaceView spec={figure.clockFace} />;
   }
   if (mode === "cross" && figure.cross) {
     return <CrossFigure {...figure.cross} />;
