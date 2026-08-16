@@ -24,34 +24,17 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ## OPEN
 
-### FLAG-008 — migration `015_attempts_server_delete.sql` not applied (SECURITY)
+### FLAG-009 — `ADMIN_DELETION_KEY` not set in Vercel (PRIVACY)
 
 | | |
 |---|---|
-| **Raised** | 2026-08-14 security audit (branch `claude/website-security-audit-qb8ceu`) |
-| **Priority** | MEDIUM-HIGH — a grade-integrity hole. `attempts` still carries `attempts_delete_own` plus the full default grant, so the browser deletes rows itself over PostgREST with the student's own JWT and **writes its own filter**. `delete().eq("user_id", me).eq("is_correct", false)` removes only the wrong answers, leaving a perfect record and inflating accuracy, mastery, the weakness model, the ratings card and the predicted grade — the numbers a parent is shown and pays for. |
-| **SEQUENCING — read before applying** | **Apply only AFTER the deploy containing `/api/attempts/erase` is live.** Safe in one direction only: applying it early loses no data, it just makes the old bundle's "clear my data" button fail (the panel reports the failure rather than claiming success) until the new code ships. |
-| **Ships dark?** | Yes. The replacement route works whether or not the migration is applied — it holds the service-role client, which RLS and these grants do not affect. The migration only removes the *old* path. |
-| **Degradation** | None once the deploy is live. `SELECT` and `INSERT` are deliberately unchanged; whole-scope erase stays available through the route. |
-| **Sentinel** | None. Adds no column and no rows, so neither the column probe nor the row-count probe of `lib/flags.ts` can see it. Known gap, same as the other grant migrations — the manual probe below is a one-line SQL. |
-| **Verify** | The SQL in runbook step 3 below. Expect exactly 2 rows: `INSERT`, `SELECT`. Probed 2026-08-16: returns `DELETE, INSERT, REFERENCES, SELECT, TRIGGER, UPDATE` for BOTH `authenticated` and `anon` — unapplied. |
-
-**Runbook**
-
-1. Confirm production runs a build containing `/api/attempts/erase`. If not, **stop** — see SEQUENCING.
-2. Supabase dashboard → SQL Editor → paste `supabase/migrations/015_attempts_server_delete.sql` → Run. (Idempotent.)
-3. Verify in the same editor:
-   ```sql
-   select privilege_type from information_schema.role_table_grants
-   where grantee = 'authenticated' and table_schema = 'public'
-     and table_name = 'attempts'
-   order by privilege_type;
-   ```
-   Expect exactly 2 rows: `INSERT`, `SELECT`. (Before the migration this also
-   returns `DELETE` — that is the hole — plus `UPDATE`, `REFERENCES` and
-   `TRIGGER` from Supabase's default grant.)
-4. Smoke-test: sign in as a test account, erase one scope, confirm the panel reports success and the rows are gone.
-5. Move to Resolved with the date and the 2-row result.
+| **Raised** | 2026-08-16, with the account-deletion route |
+| **What it unlocks** | The **guardian path** on `POST /api/account/delete`. With the key set, the owner can delete a student's account on a parent's request by sending `x-admin-deletion-key` plus `{ userId, confirm: "DELETE" }`. Without it that path returns 503 and only the student's own password-authenticated deletion works. |
+| **Why it matters before September** | The intake is minors with guardians. A parent asking for their child's data to be erased will usually not have the student's password, and teacher-provisioned accounts make that more likely, not less. Self-service deletion alone does not make a deletion request honourable on demand. |
+| **Ships dark?** | Yes, and fail-closed: with the variable unset the admin path does not exist rather than degrading to something weaker. Self-service deletion is unaffected. |
+| **Owner action** | ~2 min: Vercel → imathhub → Settings → Environment Variables → add `ADMIN_DELETION_KEY` = a long random string (`openssl rand -hex 32`), Production, Sensitive. Redeploy. |
+| **Do NOT reuse `ADMIN_ACTIVATION_KEY`** | Different power, different blast radius. Activation grants a subscription; this one erases a child's academic record irreversibly. One key for both means anyone who can do the harmless thing can do the unrecoverable one. |
+| **Verify** | `curl -s -o /dev/null -w '%{http_code}' -X POST https://www.mongolpotential.com/api/account/delete -H 'content-type: application/json' -H 'x-admin-deletion-key: wrong' -d '{"confirm":"DELETE","userId":"00000000-0000-0000-0000-000000000000"}'` → **401** = key set (path armed, wrong key rejected) · **503** = unset (self-service only). Note both are safe to run: neither deletes anything. |
 
 ---
 
@@ -119,18 +102,29 @@ the admin key and is disabled without it.
 
 ### Four tables still carry the default `GRANT ALL`, protected only by absent policies
 
-Probed 2026-08-16. `attempts`, `section2_attempts`, `refinement_loop_sessions`,
-`events` and `premium_waitlist` all still grant
+Probed 2026-08-16, **re-checked after `015` was applied the same day.**
+`section2_attempts`, `refinement_loop_sessions`, `events` and
+`premium_waitlist` still grant
 `DELETE, INSERT, REFERENCES, SELECT, TRIGGER, UPDATE` to **both** `anon` and
 `authenticated` — Supabase's default `GRANT ALL ON ALL TABLES`.
+(`attempts` was the fifth; `015` narrowed it to `INSERT, SELECT` for
+`authenticated` and nothing for `anon`, so it is off this list.)
 
 Nothing here is exploitable today: `events` and `premium_waitlist` have zero
 policies (RLS fail-closed), and the verbs with no matching policy are
 default-denied on the others. But this is exactly the "correct by accident"
 shape §0 of `docs/security/data-access-model.md` warns about — one future
 `CREATE POLICY ... FOR UPDATE` silently opens a write path, because the grant
-behind it was never narrowed. `015` fixes `attempts`; the other four want the
+behind it was never narrowed. `015` is the template; the other four want the
 same treatment in a follow-up migration.
+
+One of the four is more than theoretical. `refinement_loop_sessions` has a
+live `UPDATE` policy `TO public` (`refinement_loops_update_own`) **and** the
+update grant, so a student can rewrite their own loop rows directly from the
+browser today. Migration 007 made that table mutable by design and the API
+route drives the state machine, so this is not a hole in the same sense as the
+others — but the loop's progress columns feed mastery, which puts it on the
+wrong side of Rule 2. Worth deciding deliberately rather than inheriting.
 
 Also noted: every policy on `attempts`, `section2_attempts`,
 `refinement_loop_sessions`, `subscription_events` and `user_achievements` is
@@ -143,6 +137,16 @@ accident rather than by statement.
 ## RESOLVED
 
 *(move entries here with date + verification evidence; never delete)*
+
+### FLAG-008 — migration `015_attempts_server_delete.sql` — RESOLVED
+
+| | |
+|---|---|
+| **Raised** | 2026-08-14 — a grade-integrity hole. `attempts` carried `attempts_delete_own` plus the default `GRANT ALL`, so the browser deleted rows itself over PostgREST with the student's own JWT and **wrote its own filter**. `delete().eq("user_id", me).eq("is_correct", false)` removes only the wrong answers, leaving a perfect record and inflating accuracy, mastery, the weakness model, the ratings card and the predicted grade. |
+| **Resolved** | 2026-08-16, applied and probed against production |
+| **Sequencing honoured** | The deploy went first, as required. Production was confirmed to be serving the build containing the replacement route — `GET /api/attempts/erase` returned **405 Method Not Allowed** (route present, POST-only; a missing route would 404) on deployment `dpl_9KsdJYeD6C87QiBwTjpmsSD6eXMB`, main @ `3c1dd9b`, state READY — and only then was the migration applied. |
+| **Evidence** | Grants: `authenticated` → **`INSERT, SELECT`** and `anon` → **no row at all**. Policies on `attempts`: `attempts_insert_own` (INSERT), `attempts_select_own` (SELECT) — `attempts_delete_own` is gone. Both locks are in place: the policy is dropped so RLS default-denies DELETE, and the grant is revoked so a future permissive policy cannot re-open it alone. |
+| **Replacement** | `POST /api/attempts/erase` — takes a scope NAME, derives the predicate server-side, applies it with `user_id` = the JWT subject, then re-counts and refuses to report success on a non-zero residual. |
 
 ### FLAG-005 — migration `012_profiles_column_grants.sql` — RESOLVED
 

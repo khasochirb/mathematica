@@ -224,6 +224,22 @@ export const api = {
         residual: number;
       }>("/api/attempts/erase", { method: "POST", body: JSON.stringify(body) }),
   },
+  account: {
+    // Deletes the whole account and everything attached to it. Requires the
+    // password re-entered — the Bearer token is JS-readable, and this is the
+    // one action that cannot be undone. The server verifies the erase was
+    // complete and returns a per-table receipt.
+    delete: (body: { password: string }) =>
+      apiCall<{
+        deleted: true;
+        userId: string;
+        removed: Array<{ table: string; what: string; rule: string; rows: number }>;
+        residual: number;
+      }>("/api/account/delete", {
+        method: "POST",
+        body: JSON.stringify({ ...body, confirm: "DELETE" }),
+      }),
+  },
   section2: {
     submitAttempts: (body: {
       sessionId: string;

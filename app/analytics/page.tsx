@@ -8,6 +8,7 @@ import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 import DataErasePanel from "@/components/settings/DataErasePanel";
+import DeleteAccountPanel from "@/components/settings/DeleteAccountPanel";
 import EshStudyReport from "@/components/esh/progress/EshStudyReport";
 import { getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
@@ -904,8 +905,11 @@ export default function AnalyticsPage() {
         <EshStudyReport />
 
         {/* Erasure lives here, at the account level, because this page is the
-            only one that sees every hub at once. */}
+            only one that sees every hub at once. Account deletion sits below
+            it as a separate card — same page, deliberately not the same
+            control, since one keeps the account and the other ends it. */}
         <DataErasePanel />
+        <DeleteAccountPanel />
       </section>
     </div>
   );

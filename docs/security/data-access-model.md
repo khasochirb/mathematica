@@ -336,7 +336,7 @@ Today it would fail partway and leave the account in an inconsistent state.
 |---|---|---|
 | 1 | Six `NO ACTION` FKs → `CASCADE` / `SET NULL` | **DONE and verified on prod.** `013_deletion_cascade.sql` is applied: every FK to `profiles(id)` reads CASCADE, except `events` = SET NULL. Zero `NO ACTION` remain. FLAG-006 resolved. |
 | 2 | New tables in §1/§2 use `ON DELETE CASCADE` | **Holding so far.** `skill_state` shipped from Stream A between this spec and today, and cascades correctly. |
-| 3 | Server-side deletion routine (delete auth user + verify zero residual rows) | **NOT BUILT.** The largest open gap in §3. |
+| 3 | Server-side deletion routine (delete auth user + verify zero residual rows) | **BUILT.** `POST /api/account/delete` — deletes the auth user, then re-counts all 11 user-scoped tables and returns a per-table receipt. A non-zero residual is a 500 naming the tables, never a success. Two paths: student self-service (password re-auth) and a guardian path for the owner (`ADMIN_DELETION_KEY`, FLAG-009). Not yet deployed. |
 | 4 | `lib/data-erase.ts` inventory covers server tables | **Done.** The module header now names every server table holding student work and where each is erased. |
 
 On #4, writing it down immediately found one: `section2_attempts` shipped in
@@ -345,9 +345,20 @@ migration 006 with no DELETE policy and was in no erase path, so a student's
 now swept by `POST /api/attempts/erase`, along with
 `refinement_loop_sessions` on a full erase.
 
-That route is scoped erase of *answer history*, not account deletion — it
-does not touch `profiles`, the auth user, streaks, achievements or
-subscription rows. #3 still needs building, and it is the requirement a
-guardian's "delete my child's account" actually depends on. Its verify-don't-
-assume step is the pattern the erase route already demonstrates: re-count
-after deleting and fail loudly on a non-zero residual.
+That route is scoped erase of *answer history*. Account deletion is the
+separate `POST /api/account/delete`, and the inventory it sweeps
+(`SERVER_USER_TABLES`) is guarded by
+`scripts/verify-account-delete-inventory.test.ts`, which fails the build when
+a migration adds a table referencing `profiles(id)` that never reached the
+list — the failure mode being that deletion silently skips it.
+
+That gate immediately found a divergence worth recording: migration 001 still
+creates `practice_sessions`, `session_answers` and `topic_progress`, but all
+three were dropped from production out-of-band before this audit. They are
+listed in `LEGACY_DROPPED_TABLES` so deletion does not query tables that no
+longer exist. The consequence beyond deletion is that `/api/answers`,
+`/api/sessions`, `/api/progress` and `/api/problems/next` all still reference
+them and are therefore already broken against production, and no DROP
+migration exists in the repo — so the schema is reproducible from scratch only
+up to this point. Both are worth a follow-up; neither is caused by anything in
+this audit.
