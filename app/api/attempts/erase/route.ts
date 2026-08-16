@@ -20,7 +20,7 @@
 // So the client now names a SCOPE and the server derives the predicate
 // (lib/data-erase.ts). The only filters that can reach the database are the
 // five whole-scope ones, always conjoined with the JWT subject's user_id.
-// Migration 013 removes the client's DELETE privilege on attempts entirely,
+// Migration 015 removes the client's DELETE privilege on attempts entirely,
 // making this route the only way rows leave the table.
 //
 // Deletion must also be COMPLETE — the module comment in lib/data-erase.ts

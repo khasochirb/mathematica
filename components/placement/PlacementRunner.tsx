@@ -1,24 +1,38 @@
 "use client";
 
-import { useMemo, useState } from "react";
+// The placement sitting, for every course hub. Since 2026-08-13 it is driven
+// by lib/diagnostic-engine.ts rather than a fixed question grid: a tutor
+// working problem by problem, reading WHICH wrong answer you picked, choosing
+// what to hand you next, and stopping the moment it knows where you should
+// start. See that module's header for the reasoning.
+//
+// The model is an upgrade, never a dependency. Every failure path — no API
+// key, signed out, quota spent, slow network — silently drops to the
+// deterministic engine, and the student sees a normal placement.
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, X, Sparkles, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, X, Sparkles, RotateCcw, Search } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import { useAuth } from "@/lib/auth-context";
+import { useLang } from "@/lib/lang-context";
+import { getMpToken } from "@/lib/api";
 import { displayQuestion, type PlacementQuestion } from "@/lib/placement-bank";
 import {
-  initPlacement,
-  pickNext,
-  applyAnswer,
-  isComplete,
-  totalQuestions,
-  summarize,
-  type PlacementState,
-} from "@/lib/placement-engine";
+  initDiagnostic,
+  recordAnswer,
+  deterministicNext,
+  stopCheck,
+  buildReport,
+  toPlacementResult,
+  MAX_QUESTIONS,
+  type DiagnosticState,
+} from "@/lib/diagnostic-engine";
+import { consultTutor } from "@/lib/diagnostic-client";
 import { savePlacement, type StoredPlacement } from "@/lib/placement-result";
 
-type Phase = "intro" | "quiz" | "done";
+type Phase = "intro" | "quiz" | "thinking" | "done";
 
 export type PlacementVerdictCard = {
   title: string; // e.g. "Start in Grade 8"
@@ -41,53 +55,100 @@ export type PlacementConfig = {
   verdict?: (result: StoredPlacement) => PlacementVerdictCard | null;
 };
 
+/** Course label for the tutor's grounding — never a student identifier. */
+function courseLabel(config: PlacementConfig): string {
+  // "Courses · Grade 11 · Placement" -> "Grade 11"
+  const parts = config.crumb.split("·").map((s) => s.trim());
+  return parts.length >= 2 ? parts[parts.length - 2] : config.subjectNoun;
+}
+
 export default function PlacementRunner({ config }: { config: PlacementConfig }) {
   const { bank } = config;
   const { user } = useAuth();
+  const { lang } = useLang();
 
   const [phase, setPhase] = useState<Phase>("intro");
-  const [state, setState] = useState<PlacementState>(() => initPlacement(bank, 2));
+  const [state, setState] = useState<DiagnosticState>(() => initDiagnostic(bank));
   const [current, setCurrent] = useState<PlacementQuestion | null>(null);
   const [picked, setPicked] = useState<number | null>(null);
   const [result, setResult] = useState<StoredPlacement | null>(null);
-  // Placement swaps one question for the next in place — same scroll trap.
+  // A sitting in flight must not be resurrected by a late model reply after
+  // the student hits "retake" — every consult is tagged with the run it began.
+  const runId = useRef(0);
   useScrollToTop(current?.id ?? phase);
 
-  const total = totalQuestions(state);
-  const answered = state.answers.length;
   const disp = useMemo(() => (current ? displayQuestion(current) : null), [current]);
+  const answered = state.answers.length;
+  const tutorOpts = useMemo(
+    () => ({ course: courseLabel(config), lang: lang === "mn" ? ("mn" as const) : ("en" as const) }),
+    [config, lang],
+  );
 
-  function start() {
-    // A fresh seed per sitting: every take (and retake) draws a different
-    // variant of the test wherever the bank has spare questions at the same
-    // topic × difficulty.
-    const fresh = initPlacement(bank, 2, Date.now() >>> 0);
+  const start = useCallback(() => {
+    runId.current += 1;
+    // A fresh seed per sitting, so a retake draws different variants wherever
+    // the bank has spares at the same topic × difficulty.
+    const fresh = initDiagnostic(bank, Date.now() >>> 0);
     setState(fresh);
-    setCurrent(pickNext(fresh, bank));
+    setCurrent(deterministicNext(fresh, bank));
     setPicked(null);
     setResult(null);
     setPhase("quiz");
-  }
+  }, [bank]);
 
-  function choose(i: number) {
-    if (picked !== null) return;
-    setPicked(i);
-  }
-
-  function next() {
+  // Everything that happens between answering one question and seeing the
+  // next: record the answer, then either finish (consulting the tutor for the
+  // closing report) or choose what to ask next. The tutor is consulted ONLY on
+  // a miss — a correct answer needs no diagnosis, it needs a harder question —
+  // which is what keeps a whole sitting inside a handful of model calls.
+  async function advance() {
     if (current === null || picked === null || disp === null) return;
-    const advanced = applyAnswer(state, current, disp.toOriginal[picked]);
-    setState(advanced);
+    const myRun = runId.current;
+    const after = recordAnswer(state, current, disp.toOriginal[picked]);
+    const missed = !after.answers[after.answers.length - 1].correct;
     setPicked(null);
-    if (isComplete(advanced)) {
-      const r = summarize(advanced, bank);
-      setResult(savePlacement(r, user?.id, config.namespace));
-      setCurrent(null);
+    setCurrent(null);
+    setPhase("thinking");
+    setState(after);
+
+    const token = getMpToken();
+    const { stop } = stopCheck(after, bank);
+
+    if (stop) {
+      const consult = token
+        ? await consultTutor(after, bank, { ...tutorOpts, token, finalReport: true })
+        : null;
+      if (myRun !== runId.current) return;
+      const finalState = consult?.state ?? after;
+      setState(finalState);
+      const report = buildReport(finalState, bank, { narrative: consult?.narrative ?? null });
+      setResult(savePlacement(toPlacementResult(report), user?.id, config.namespace));
       setPhase("done");
-    } else {
-      setCurrent(pickNext(advanced, bank));
+      return;
     }
+
+    let next: PlacementQuestion | null = null;
+    if (missed && token) {
+      const consult = await consultTutor(after, bank, { ...tutorOpts, token });
+      if (myRun !== runId.current) return;
+      setState(consult.state);
+      next = consult.question;
+    }
+    // The tutor's pick when there is one, otherwise the engine's. Both draw
+    // from the same bank, so the student cannot tell which path ran.
+    setCurrent(next ?? deterministicNext(after, bank));
+    setPhase("quiz");
   }
+
+  // The engine can also decide the sitting is over before a question is drawn
+  // (an exhausted bank on a tiny course); never strand the student on a blank.
+  useEffect(() => {
+    if (phase === "quiz" && current === null && state.answers.length > 0) {
+      const report = buildReport(state, bank);
+      setResult(savePlacement(toPlacementResult(report), user?.id, config.namespace));
+      setPhase("done");
+    }
+  }, [phase, current, state, bank, user?.id, config.namespace]);
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -99,9 +160,18 @@ export default function PlacementRunner({ config }: { config: PlacementConfig })
           <div className="eyebrow">{config.crumb}</div>
         </div>
 
-        {phase === "intro" && <Intro onStart={start} total={total} isAuthed={!!user} config={config} />}
+        {phase === "intro" && <Intro onStart={start} isAuthed={!!user} config={config} />}
+        {phase === "thinking" && <Thinking />}
         {phase === "quiz" && current && disp && (
-          <Quiz q={current} options={disp.options} correctIndex={disp.correctIndex} picked={picked} onChoose={choose} onNext={next} index={answered} total={total} level={state.level} />
+          <Quiz
+            q={current}
+            options={disp.options}
+            correctIndex={disp.correctIndex}
+            picked={picked}
+            onChoose={(i) => picked === null && setPicked(i)}
+            onNext={advance}
+            index={answered}
+          />
         )}
         {phase === "done" && result && <Results result={result} onRetake={start} config={config} />}
       </div>
@@ -109,7 +179,7 @@ export default function PlacementRunner({ config }: { config: PlacementConfig })
   );
 }
 
-function Intro({ onStart, total, isAuthed, config }: { onStart: () => void; total: number; isAuthed: boolean; config: PlacementConfig }) {
+function Intro({ onStart, isAuthed, config }: { onStart: () => void; isAuthed: boolean; config: PlacementConfig }) {
   return (
     <div>
       <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] mb-4" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
@@ -119,13 +189,16 @@ function Intro({ onStart, total, isAuthed, config }: { onStart: () => void; tota
         {config.title}
       </h1>
       <p className="mt-4" style={{ color: "var(--fg-1)", fontSize: 16, lineHeight: 1.6 }}>
-        About <b className="tabular">{total}</b> questions that start easy and get harder as you go. We'll place you at a level and build a plan that tells you exactly which {config.homeLabel} to focus on first.
+        Not a fixed test — a tutor working through problems with you. It reads
+        the answer you picked, not just whether it was right, and it stops as
+        soon as it knows where you should start. Usually well under{" "}
+        <b className="tabular">{MAX_QUESTIONS}</b> questions.
       </p>
       <ul className="mt-5 space-y-2" style={{ color: "var(--fg-2)", fontSize: 14 }}>
         {[
-          "Adapts to you — right answers unlock harder questions.",
-          `Covers every ${config.subjectNoun} so we can spot your weak spots.`,
-          "Ends with a plan and “important for you” marks on what needs attention.",
+          "Chooses your next problem from how you answered the last one.",
+          `Finds the earliest ${config.subjectNoun} that isn't solid yet — that's where you begin.`,
+          "Ends by naming the specific thing to fix first, not just a score.",
         ].map((t) => (
           <li key={t} className="flex items-start gap-2">
             <Check className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
@@ -137,7 +210,7 @@ function Intro({ onStart, total, isAuthed, config }: { onStart: () => void; tota
         {isAuthed ? (
           <>Your result and plan will be saved to <b>your account</b> on this device.</>
         ) : (
-          <>You can take it now — <Link href="/sign-in" style={{ color: "var(--accent)" }}>sign in</Link> to save the plan to your account so it's always here.</>
+          <>You can take it now — <Link href="/sign-in" style={{ color: "var(--accent)" }}>sign in</Link> to save the plan and get the tutor&apos;s read on your answers.</>
         )}
       </div>
       <button type="button" onClick={onStart} className="btn btn-primary mt-6 inline-flex items-center gap-1.5">
@@ -147,22 +220,31 @@ function Intro({ onStart, total, isAuthed, config }: { onStart: () => void; tota
   );
 }
 
+// Shown while the tutor decides. Honest about what is happening: the pause is
+// someone looking at your answer, which is the point of the whole feature.
+function Thinking() {
+  return (
+    <div className="flex items-center gap-3 py-16" style={{ color: "var(--fg-2)" }}>
+      <Search className="h-4 w-4 animate-pulse" style={{ color: "var(--accent)" }} />
+      <span style={{ fontSize: 15 }}>Looking at your answer…</span>
+    </div>
+  );
+}
+
 function Quiz({
-  q, options, correctIndex, picked, onChoose, onNext, index, total, level,
+  q, options, correctIndex, picked, onChoose, onNext, index,
 }: {
-  q: PlacementQuestion; options: string[]; correctIndex: number; picked: number | null; onChoose: (i: number) => void; onNext: () => void; index: number; total: number; level: number;
+  q: PlacementQuestion; options: string[]; correctIndex: number; picked: number | null; onChoose: (i: number) => void; onNext: () => void; index: number;
 }) {
-  const pct = total > 0 ? (index / total) * 100 : 0;
   const answered = picked !== null;
   const diffLabel = ["", "Easier", "Medium", "Harder"][q.difficulty] ?? "";
   return (
     <div>
-      <div className="flex items-center justify-between mb-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
-        <span className="mono">Question {index + 1} / {total}</span>
-        <span className="mono">{diffLabel} · level {level}</span>
-      </div>
-      <div className="h-1.5 w-full overflow-hidden rounded-full mb-6" style={{ background: "var(--bg-2)" }}>
-        <div className="h-full rounded-full" style={{ width: `${pct}%`, background: "var(--accent)", transition: "width 0.4s cubic-bezier(0.22,1,0.36,1)" }} />
+      <div className="flex items-center justify-between mb-6 text-[12px]" style={{ color: "var(--fg-3)" }}>
+        {/* No "x of N": the length is an OUTCOME here, and a fake denominator
+            would be the one dishonest number on the screen. */}
+        <span className="mono">Question {index + 1}</span>
+        <span className="mono">{diffLabel}</span>
       </div>
 
       <div className="eyebrow mb-1">{q.topicTitle}</div>
@@ -206,7 +288,7 @@ function Quiz({
           )}
           <div className="mt-5 flex justify-end">
             <button type="button" onClick={onNext} className="btn btn-primary inline-flex items-center gap-1.5">
-              {index + 1 >= total ? "See my results" : "Next question"} <ArrowRight className="h-4 w-4" />
+              Continue <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </>
@@ -216,12 +298,15 @@ function Quiz({
 }
 
 function Results({ result, onRetake, config }: { result: StoredPlacement; onRetake: () => void; config: PlacementConfig }) {
+  const d = result.diagnosis;
+  const seen = result.topicScores.filter((t) => t.seen > 0);
   const priority = result.priorityTopics
     .map((slug) => result.topicScores.find((t) => t.slug === slug))
     .filter((t): t is NonNullable<typeof t> => !!t);
-  const strong = result.topicScores.filter((t) => t.accuracy >= 0.75).sort((a, b) => b.accuracy - a.accuracy);
+  const strong = seen.filter((t) => t.accuracy >= 0.75).sort((a, b) => b.accuracy - a.accuracy);
   const pct = Math.round(result.overallAccuracy * 100);
   const verdict = config.verdict?.(result) ?? null;
+  const findingTitle = (slug: string) => result.topicScores.find((t) => t.slug === slug)?.title ?? slug;
 
   return (
     <div>
@@ -229,12 +314,44 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
         <Sparkles className="h-3.5 w-3.5" /> Your plan is ready
       </div>
       <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(28px, 5vw, 44px)", letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--fg)" }}>
-        You're at the <span style={{ color: "var(--accent)" }}>{result.level}</span> level
+        {d?.startTitle ? (
+          <>Start with <span style={{ color: "var(--accent)" }}>{d.startTitle}</span></>
+        ) : (
+          <>You&apos;re at the <span style={{ color: "var(--accent)" }}>{result.level}</span> level</>
+        )}
       </h1>
       <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15 }}>
-        You answered <b className="tabular">{pct}%</b> correct across the {config.homeLabel} we tested.
+        {d
+          ? <>We got there in <b className="tabular">{d.questionsAsked}</b> question{d.questionsAsked === 1 ? "" : "s"} — you answered <b className="tabular">{pct}%</b> of them correctly.</>
+          : <>You answered <b className="tabular">{pct}%</b> correct across the {config.homeLabel} we tested.</>}
       </p>
-      <p className="mt-2 text-[13px]" style={{ color: "var(--fg-3)" }}>
+
+      {d?.narrative && (
+        <div className="mt-5 card-edit p-4" style={{ borderColor: "var(--accent-line)" }}>
+          <div className="eyebrow mb-1.5" style={{ color: "var(--accent)" }}>What I noticed</div>
+          <p className="font-sans" style={{ fontSize: 15, lineHeight: 1.6, color: "var(--fg-1)" }}>
+            <MathText text={d.narrative} />
+          </p>
+        </div>
+      )}
+
+      {d && d.findings.length > 0 && (
+        <div className="mt-6">
+          <div className="eyebrow mb-3">The specific thing to fix</div>
+          <div className="space-y-2">
+            {d.findings.map((f) => (
+              <div key={f.topicSlug} className="card-edit p-3.5">
+                <p className="mono text-[11px] uppercase" style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}>{findingTitle(f.topicSlug)}</p>
+                <p className="mt-1" style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--fg-1)" }}>
+                  <MathText text={f.hypothesis} />
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <p className="mt-4 text-[13px]" style={{ color: "var(--fg-3)" }}>
         On your dashboard this placement rates a skill up to 90 — real mocks
         (ЭЕШ, IB, SAT) and unit tests are what push it beyond. Retakes draw a
         fresh mix of questions.
@@ -280,7 +397,7 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
 
       {strong.length > 0 && (
         <div className="mt-8">
-          <div className="eyebrow mb-3">You're already solid on</div>
+          <div className="eyebrow mb-3">You&apos;re already solid on</div>
           <div className="flex flex-wrap gap-2">
             {strong.map((t) => (
               <Link key={t.slug} href={config.topicHref(t.slug)} className="rounded-full px-3 py-1.5 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)", textDecoration: "none" }}>
@@ -292,11 +409,11 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
       )}
 
       <div className="mt-10 flex items-center gap-3">
-        <Link href={config.homeHref} className="btn btn-primary inline-flex items-center gap-1.5">
-          Go to my {config.homeLabel} <ArrowRight className="h-4 w-4" />
+        <Link href={d?.startSlug ? config.topicHref(d.startSlug) : config.homeHref} className="btn btn-primary inline-flex items-center gap-1.5">
+          {d?.startSlug ? "Start here" : `Go to my ${config.homeLabel}`} <ArrowRight className="h-4 w-4" />
         </Link>
         <button type="button" onClick={onRetake} className="btn btn-line inline-flex items-center gap-1.5">
-          <RotateCcw className="h-4 w-4" /> Retake with new questions
+          <RotateCcw className="h-4 w-4" /> Retake
         </button>
       </div>
     </div>

@@ -238,8 +238,8 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
   const premiumLiveFeatures = useMemo(
     () => [
       {
-        en: "Every course unlocked — 900+ lessons across grades 4–12, Integrated Math and the named courses",
-        mn: "Бүх хичээл нээлттэй — 4–12-р анги, Нэгдсэн математик, нэрлэсэн хичээлүүдийн 900+ хичээл",
+        en: "Every course unlocked — 900+ lessons across grades 6–12, Integrated Math and the named courses",
+        mn: "Бүх хичээл нээлттэй — 6–12-р анги, Нэгдсэн математик, нэрлэсэн хичээлүүдийн 900+ хичээл",
       },
       {
         en: "Every topic's practice set, test-yourself and course exam",

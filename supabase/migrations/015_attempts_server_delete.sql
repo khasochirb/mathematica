@@ -1,5 +1,5 @@
 -- ============================================================
--- 013: attempts may only be deleted by the server
+-- 015: attempts may only be deleted by the server
 -- ============================================================
 -- APPLY THIS ONLY AFTER the deploy containing /api/attempts/erase is live.
 -- Order matters in one direction only: applying this first does not lose

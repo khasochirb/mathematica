@@ -146,10 +146,12 @@ narrow policy for that, and expose only `id, name` — never `teacher_id`
 plus roster.
 
 **Do not identify teachers with a `profiles.role` column that the client can
-write.** Migration `010` restricts client `UPDATE` on `profiles` to
-`username, display_name, avatar_url`, so a future `role` column is
-server-only by default — but `cohorts.teacher_id` is a stronger and simpler
-statement of the same fact. Prefer it.
+write.** Migration `012_profiles_column_grants.sql` narrows client `UPDATE` on
+`profiles` to `username, display_name, avatar_url` — and production is
+stricter still: probed 2026-08-16, `authenticated` has **no** UPDATE grant on
+`profiles` at any column. Either way a future `role` column is server-only by
+default. But `cohorts.teacher_id` is a stronger and simpler statement of the
+same fact. Prefer it.
 
 ### `guardians` — strictest table in the system
 
@@ -328,13 +330,13 @@ Required before real academic records arrive:
 A deletion request from a parent has to be honourable in full, on demand.
 Today it would fail partway and leave the account in an inconsistent state.
 
-### Status of §3 (updated 2026-08-15)
+### Status of §3 (probed against production 2026-08-16)
 
 | # | Requirement | State |
 |---|---|---|
-| 1 | Six `NO ACTION` FKs → `CASCADE` / `SET NULL` | **Written**, `011_deletion_cascade.sql`. Not applied to prod — FLAG-005. |
-| 2 | New tables in §1/§2 use `ON DELETE CASCADE` | Specified above; no such table built yet. |
-| 3 | Server-side deletion routine (delete auth user + verify zero residual rows) | **NOT BUILT.** Still the largest open gap in §3. |
+| 1 | Six `NO ACTION` FKs → `CASCADE` / `SET NULL` | **DONE and verified on prod.** `013_deletion_cascade.sql` is applied: every FK to `profiles(id)` reads CASCADE, except `events` = SET NULL. Zero `NO ACTION` remain. FLAG-006 resolved. |
+| 2 | New tables in §1/§2 use `ON DELETE CASCADE` | **Holding so far.** `skill_state` shipped from Stream A between this spec and today, and cascades correctly. |
+| 3 | Server-side deletion routine (delete auth user + verify zero residual rows) | **NOT BUILT.** The largest open gap in §3. |
 | 4 | `lib/data-erase.ts` inventory covers server tables | **Done.** The module header now names every server table holding student work and where each is erased. |
 
 On #4, writing it down immediately found one: `section2_attempts` shipped in

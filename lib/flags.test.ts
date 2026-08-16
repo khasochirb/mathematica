@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { classifyProbe, HEALTHY, MIGRATION_SENTINELS } from "./flags";
+import { classifyProbe, HEALTHY, MIGRATION_SENTINELS, classifyRowProbe } from "./flags";
 
 describe("classifyProbe", () => {
   it("no error means the sentinel column exists — migration applied", () => {
@@ -67,5 +67,44 @@ describe("sentinel wiring", () => {
 
   it("the anthropic key check has a healthy state registered", () => {
     expect(HEALTHY.anthropic_api_key).toBe("configured");
+  });
+});
+
+describe("classifyRowProbe — the sentinel shape for SEED migrations", () => {
+  it("reports applied once the row count reaches the floor", () => {
+    expect(classifyRowProbe(null, 184, 150)).toEqual({ status: "applied" });
+    expect(classifyRowProbe(null, 150, 150)).toEqual({ status: "applied" });
+  });
+
+  it("reports MISSING on an empty table rather than applied", () => {
+    // The failure this exists to catch: `skills` exists and is empty, so a
+    // column probe would happily say "applied" while the graph is not there.
+    expect(classifyRowProbe(null, 0, 150)).toEqual({ status: "missing" });
+    expect(classifyRowProbe(null, 149, 150)).toEqual({ status: "missing" });
+  });
+
+  it("defers to the error classifier when the probe itself failed", () => {
+    expect(classifyRowProbe({ code: "42P01" }, null, 150).status).toBe("unknown");
+    expect(classifyRowProbe({ code: "42501" }, null, 150).code).toBe("42501");
+  });
+
+  it("does not guess when the count is absent", () => {
+    expect(classifyRowProbe(null, null, 150)).toEqual({ status: "unknown", code: "no-count" });
+  });
+
+  it("every sentinel key has a HEALTHY entry", () => {
+    for (const s of MIGRATION_SENTINELS) {
+      expect(HEALTHY[s.key], `${s.key} missing from HEALTHY`).toBe("applied");
+    }
+  });
+
+  it("the 011 sentinel counts rows, scoped to the ЭЕШ hub", () => {
+    const s = MIGRATION_SENTINELS.find((x) => x.key === "migration_011_seed_esh_graph")!;
+    expect(s.expectRows).toBeDefined();
+    // 'eysh', matching the CHECK constraint in migration 010. A sentinel on
+    // the wrong hub value would report "missing" forever after a clean seed.
+    expect(s.expectRows!.where).toEqual({ column: "hub", value: "eysh" });
+    // The floor must sit below the shipped count or a graph revision reds it.
+    expect(s.expectRows!.atLeast).toBeLessThan(184);
   });
 });

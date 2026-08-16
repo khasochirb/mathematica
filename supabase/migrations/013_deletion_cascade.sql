@@ -1,5 +1,5 @@
 -- ============================================================
--- 011: make account deletion actually work
+-- 013: make account deletion actually work
 -- ============================================================
 -- PROBLEM (verified on production 2026-08-14): 6 of 19 accounts could not
 -- be deleted at all. Six tables referenced profiles with ON DELETE NO

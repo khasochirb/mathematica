@@ -1,5 +1,5 @@
 -- ============================================================
--- 010: column-level UPDATE grants on profiles (privilege-escalation fix)
+-- 012: column-level UPDATE grants on profiles (privilege-escalation fix)
 -- ============================================================
 -- THREAT: the profiles UPDATE policy (000_profiles_bootstrap.sql) is
 --

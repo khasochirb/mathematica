@@ -854,7 +854,7 @@ export default function usePerformance() {
       // back a verified count; it no longer builds a row filter of its own,
       // because a client-built filter can delete just the wrong answers and
       // inflate every accuracy figure downstream. See the route's header and
-      // migration 013, which revokes the client's DELETE on attempts.
+      // migration 015, which revokes the client's DELETE on attempts.
       try {
         const res = await api.attempts.erase({ scope });
         // The route re-counts after deleting; a non-zero residual means the

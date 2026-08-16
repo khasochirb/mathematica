@@ -1,5 +1,5 @@
 -- ============================================================
--- 012: make gamification and billing state server-write-only
+-- 014: make gamification and billing state server-write-only
 -- ============================================================
 -- These four tables were client-writable through the public anon key:
 --
