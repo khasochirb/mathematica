@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import LogoMark from "@/components/layout/LogoMark";
 
 const links = {
   Programs: [
@@ -70,8 +71,7 @@ export default function Footer() {
                 className="inline-block w-2 h-2 rounded-sm"
                 style={{ background: "var(--accent)" }}
               />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/mp.png" alt="Mongol Potential" className="h-8 w-8 rounded-md" />
+              <LogoMark className="h-8 w-8" />
               <span
                 className="font-semibold text-[15px] tracking-tight"
                 style={{ color: "var(--fg)" }}

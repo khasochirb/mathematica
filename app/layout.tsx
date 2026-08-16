@@ -55,8 +55,17 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "Mongol Potential",
   },
+  // Favicon set. Before this the tab icon was icon-192.png — the old mascot
+  // with the "MP ACADEMY" wordmark baked in, squeezed to 16px by the browser.
+  // SVG first (browsers that support it scale it perfectly and it carries its
+  // own prefers-color-scheme rule, so the mark lifts against dark chrome);
+  // 32/64 PNGs for the ones that don't.
   icons: {
-    icon: "/icons/icon-192.png",
+    icon: [
+      { url: "/icons/favicon.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-64.png", sizes: "64x64", type: "image/png" },
+    ],
     apple: "/icons/apple-touch-icon.png",
   },
 };

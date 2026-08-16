@@ -17,9 +17,17 @@ never "babyish".
 
 ## Current brand inventory (ground truth)
 
-- Logos: `public/images/logo.png`, `public/images/mp.png` (mark),
-  used by `components/layout/Header.tsx`. Other photos in
-  `public/images/` are page content, not brand assets.
+- Logos, all derived from ONE master — `assets/brand/lockup-master.png`,
+  the designer's 2000x2000 export (mark + "mongol potential academy"
+  wordmark). `scripts/gen-logo-assets.py` cuts everything from it:
+  `public/images/mp.png` (mark, 1024 square, transparent),
+  `public/images/logo.png` (full lockup, transparent),
+  `public/images/mp-adaptive.svg` (vector, `fill="currentColor"`),
+  `components/layout/LogoMark.tsx` (the same vector inline) and the
+  favicons in `public/icons/`. A new export means: replace the master,
+  re-run that script, then `scripts/gen-pwa-icons.py`. Never hand-edit a
+  derived file. Other photos in `public/images/` are page content, not
+  brand assets.
 - Color system: CSS variables in `app/globals.css`, oklch-based, dark
   theme default + light theme, consumed through `tailwind.config.ts`
   (`primary`, `accent`, `surface`, `navy`, `gray` scales). The accent is
@@ -61,13 +69,23 @@ never "babyish".
 
 - Clear space: one "M"-height around the mark; never stretch, recolor
   outside theme tokens, or place on low-contrast photography.
-- Header uses the horizontal lockup; favicons/app icons use the `mp.png`
-  mark. Mobile app icons (see `mobile-app`) derive from the mark with
+- Header and footer use the MARK ALONE, via `<LogoMark />`, beside the
+  wordmark set in HTML text — not the lockup, which would print the
+  wordmark twice. The lockup (`logo.png`) is for contexts with no
+  surrounding type: social cards, print, partner decks.
+- Render the mark through `<LogoMark />` rather than `<img src>`. An
+  SVG loaded through `<img>` is its own document, so `currentColor`
+  resolves against nothing and the mark comes out black. Inline, it
+  follows `--accent` in both themes off one asset.
+- Favicons are their own files (`public/icons/favicon.svg`,
+  `favicon-{32,64}.png`), NOT a shrunken app icon. Measured at 16px, the
+  full figure loses its eyes into the head stroke and its legs close up;
+  a head-only drawing is the intended fix and is still outstanding.
+- Mobile app icons (see `mobile-app`) derive from the mark with
   proper padding per platform (iOS: no transparency; Android adaptive:
   keep the mark inside the 66% safe zone).
-- If regenerating logo assets: export SVG master + PNG at 1x/2x/3x,
-  optimize (svgo / squoosh), keep masters in `public/images/` with
-  suffixed sizes.
+- If regenerating logo assets: replace the master, re-run the two
+  scripts, and commit the derived files (Vercel has no Python at build).
 
 ## Mascot — design brief (build to this)
 

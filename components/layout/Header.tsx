@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Menu,
@@ -20,6 +19,7 @@ import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 import { useIsNativeShell } from "@/lib/use-native-shell";
+import LogoMark from "@/components/layout/LogoMark";
 
 // THE TWO HUBS. Phase 0 collapsed the site to ЭЕШ and SAT; IB and AP are
 // unpublished (data/unpublished-routes.json) and the Courses hub left
@@ -250,7 +250,7 @@ export default function Header() {
               className="inline-block w-2 h-2 rounded-sm"
               style={{ background: "var(--accent)", transform: "translateY(-1px)" }}
             />
-            <Image src="/images/mp.png" alt="Mongol Potential" width={32} height={32} className="rounded-md" />
+            <LogoMark className="h-8 w-8" />
             <span
               className="font-display font-semibold text-[15.5px] tracking-tight hidden sm:block"
               style={{ color: "var(--fg)" }}
