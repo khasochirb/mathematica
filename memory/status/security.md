@@ -1,10 +1,77 @@
 # Status — Website security audit
 
-Owns RLS specs, policy review, audits. Never applies migrations (see THE
-DATABASE RULE in `CLAUDE.md`) and never touches app logic.
+Owns RLS specs, policy review, audits. **Writes migrations and gates them;
+never applies them** — that is Build's, and the owner confirmed it on
+2026-08-17 as a standing rule, not a default to be waived.
 
-Write **only this file**; read all four. Newest entry at the top. Format is
+Two chats now: **Build** (formerly Content Creation — owns the whole repo and
+is the only chat that applies migrations) and this one. Design and structure
+is closed; Pricing has left Claude Code. Anything below addressed to
+"Design" or "QA" is now Build's.
+
+Write **only this file**; read both. Newest entry at the top. Format is
 the template in `CLAUDE.md` § "End every session with this".
+
+---
+
+## 2026-08-17 06:30 UTC
+
+**Did:** Merged main and re-verified the tree (811 tests, 56 files, tsc
+clean); corrected two documents of mine that had gone false — NUMBERING.md
+claimed there is no migration ledger (there is,
+`supabase_migrations.schema_migrations`, and it keys on NAME not file number,
+which is the actual reason renumbering an applied migration is safe here) and
+claimed `010_skill_graph.sql` was not on main (it is now); recorded the
+owner's ruling that this chat never applies migrations.
+
+**Landed where:** branch `claude/website-security-audit-qb8ceu`. Nothing
+applied to production this session.
+
+**Blocked on:** nothing. Owner owes FLAG-009 (`ADMIN_DELETION_KEY`) — the
+guardian deletion path is dark until it is set, and that is the path a
+parent's erasure request actually needs.
+
+**Others should know:**
+
+- **The migration question from my last entry is settled: I never apply, no
+  exceptions, including when instructed.** I write them, gate them, and hand
+  them to Build. `015_attempts_server_delete` (ledger `20260816060028`) was
+  applied by me before that ruling — it is in the ledger as a teammate, not
+  drift, and it is verified: `attempts` grants are `INSERT, SELECT` for
+  `authenticated`, nothing for `anon`, `attempts_delete_own` dropped.
+
+- **Build: the new CLAUDE.md is not in the repository.** The owner described
+  it (two chats, Build owns the repo and applies migrations, Design closed)
+  but the file at the root is still the four-chat version from `550fd74` —
+  checked against every ref on origin. Until it is replaced, a fresh session
+  loads a working agreement that routes migrations to a chat that no longer
+  exists. Worth fixing before it misdirects someone.
+
+- **Build: thank you for the regex fix in the deletion-inventory gate.** It
+  was a real bug of mine, not a false alarm — the unbounded `[\s\S]` walked
+  past the statement boundary into `skill_state`'s `REFERENCES profiles(id)`
+  and reported `skills` as user-scoped. The bounded `[^;]` is right. Noting
+  it because the failure mode was pointed the wrong way: that gate demands
+  you ADD the named table to the deletion inventory, so a false positive
+  there would have quietly put a content table on the erase path.
+
+- **Build (was Design): `012_profiles_column_grants.sql` is dead weight.**
+  Your `016_profiles_update_lockdown` did the job and did it harder —
+  production has NO update grant on `profiles` at any column, where my file
+  grants three. Delete mine or keep it as documentation, but note the live
+  consequence either way: `profiles_update_own` still exists as a policy with
+  no grant behind it. Inert today; rule 4's exact shape if anyone re-grants.
+
+- **Still open, unchanged from my last entry:** four tables carry the default
+  `GRANT ALL` (`section2_attempts`, `refinement_loop_sessions`, `events`,
+  `premium_waitlist`), with `refinement_loop_sessions` the sharp one — live
+  `UPDATE` policy plus the grant, so a student can rewrite loop rows that
+  feed mastery. And three legacy tables (`practice_sessions`,
+  `session_answers`, `topic_progress`) exist in migration 001 but not in the
+  database, which leaves `/api/answers`, `/api/sessions`, `/api/progress` and
+  `/api/problems/next` broken against production with no DROP migration in
+  the repo. Both are Build's call now; details in `memory/flags.md` WATCH and
+  `docs/security/data-access-model.md` §3.
 
 ---
 

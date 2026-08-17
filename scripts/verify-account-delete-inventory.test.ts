@@ -10,13 +10,15 @@
 // the inventory. This test is the reason a new migration cannot quietly
 // introduce one.
 //
-// KNOWN LIMIT: it can only see migrations that live in this repo. skill_state
-// arrived from Stream A's 010_skill_graph.sql, which is applied on production
-// but whose file is on another branch (see supabase/migrations/NUMBERING.md).
-// It is in the inventory because the live schema was probed directly on
-// 2026-08-16 — not because this test found it. When a table comes from
-// outside, the probe is the only backstop, which is exactly why the erase
-// route refuses to report success on a table it could not read.
+// KNOWN LIMIT: it can only see migrations that live in this repo. That was
+// not hypothetical — `skill_state` reached production while its migration
+// (`010_skill_graph.sql`) sat on another chat's branch, so for two days the
+// only reason it was in the inventory is that the live schema was probed
+// directly on 2026-08-16. The file has since merged to main and this test now
+// covers it, but the gap it demonstrated is permanent: a table can exist in
+// the database before its migration exists here. The backstop for that case
+// is the erase route refusing to report success on a table it could not read
+// — never this test.
 
 import { describe, it, expect } from "vitest";
 import { readdirSync, readFileSync } from "node:fs";
