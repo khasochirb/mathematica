@@ -17,12 +17,20 @@ import { useAuth } from "@/lib/auth-context";
 // Real contact details (provided 2026-06-16, authorized for public use).
 const FACEBOOK_URL = "https://www.facebook.com/khasochirb";
 const WHATSAPP_URL = "https://wa.me/14153367764";
-// Mongolia number leads everywhere the site asks to be called. The centre is
-// in Ulaanbaatar, a UB parent reads +1 as "not local", and Google cross-checks
-// the phone here against the Business Profile — a mismatch weakens both. The
-// international line stays reachable, on the contact page.
-const PHONE_TEL = "tel:+97688627927";
-const PHONE_DISPLAY = "+976 8862 7927";
+// THIS PAGE KEEPS THE +1 LINE, and it is not an oversight.
+//
+// The +976 number leads everywhere else — footer, contact page — because the
+// Ulaanbaatar centre is the local business and Google cross-checks that
+// number against the Business Profile. But 1-on-1 tutoring is the ONLINE
+// side: it is sold across timezones, and a diaspora family in the US or
+// Europe calling about online lessons should reach the international line.
+// The two are different businesses sharing a site, so they carry different
+// numbers on purpose. Do not "fix" this to match the footer.
+//
+// The Facebook, WhatsApp and email contacts here are deliberately unchanged
+// for the same reason (owner's call, 17 Aug 2026).
+const PHONE_TEL = "tel:+14159818165";
+const PHONE_DISPLAY = "+1 (415) 981-8165";
 const EMAIL = "khasochir@uni.minerva.edu";
 
 type Bi = { en: string; mn: string };
