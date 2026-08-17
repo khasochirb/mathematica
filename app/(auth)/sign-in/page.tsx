@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import LogoMark from "@/components/layout/LogoMark";
+import LogoLockup from "@/components/layout/LogoLockup";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import { api, setToken } from "@/lib/api";
@@ -144,12 +144,8 @@ function SignInInner() {
 
       <div className="w-full max-w-md relative">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2.5 group">
-            <span className="inline-block w-2 h-2 rounded-sm" style={{ background: "var(--accent)" }} />
-            <LogoMark className="h-8 w-8" />
-            <span className="font-semibold text-[15px] tracking-tight" style={{ color: "var(--fg)" }}>
-              Mongol Potential
-            </span>
+          <Link href="/" className="inline-flex items-center group">
+            <LogoLockup className="h-12 w-auto" />
           </Link>
         </div>
 

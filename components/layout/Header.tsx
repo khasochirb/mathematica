@@ -20,6 +20,7 @@ import { useTheme } from "@/lib/theme-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 import { useIsNativeShell } from "@/lib/use-native-shell";
 import LogoMark from "@/components/layout/LogoMark";
+import LogoLockup from "@/components/layout/LogoLockup";
 
 // THE TWO HUBS. Phase 0 collapsed the site to ЭЕШ and SAT; IB and AP are
 // unpublished (data/unpublished-routes.json) and the Courses hub left
@@ -245,18 +246,12 @@ export default function Header() {
           <div className={cn("mx-auto transition-all duration-300 motion-reduce:transition-none", scrolled ? "max-w-6xl px-4 sm:px-5" : "max-w-7xl px-4 sm:px-6 lg:px-8")}>
         <div className={cn("flex items-center justify-between transition-all duration-300 motion-reduce:transition-none", scrolled ? "h-14" : "h-16")}>
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <span
-              className="inline-block w-2 h-2 rounded-sm"
-              style={{ background: "var(--accent)", transform: "translateY(-1px)" }}
-            />
-            <LogoMark className="h-8 w-8" />
-            <span
-              className="font-display font-semibold text-[15.5px] tracking-tight hidden sm:block"
-              style={{ color: "var(--fg)" }}
-            >
-              Mongol Potential
-            </span>
+          {/* The wordmark now lives in the artwork (LogoLockup), so there is
+              no HTML brand text and no accent square beside it. Below sm the
+              old design hid the text — keep that: mark alone on phones. */}
+          <Link href="/" className="flex items-center flex-shrink-0 group">
+            <LogoMark className="h-8 w-8 sm:hidden" />
+            <LogoLockup className="hidden sm:block h-11 w-auto" />
           </Link>
 
           {/* Desktop Nav */}

@@ -69,14 +69,18 @@ never "babyish".
 
 - Clear space: one "M"-height around the mark; never stretch, recolor
   outside theme tokens, or place on low-contrast photography.
-- Header and footer use the MARK ALONE, via `<LogoMark />`, beside the
-  wordmark set in HTML text — not the lockup, which would print the
-  wordmark twice. The lockup (`logo.png`) is for contexts with no
-  surrounding type: social cards, print, partner decks.
-- Render the mark through `<LogoMark />` rather than `<img src>`. An
-  SVG loaded through `<img>` is its own document, so `currentColor`
-  resolves against nothing and the mark comes out black. Inline, it
-  follows `--accent` in both themes off one asset.
+- Header, footer and the auth pages use the FULL LOCKUP via
+  `<LogoLockup />` (owner decision, 2026-08-16) — the wordmark is part of
+  the artwork, so there is no HTML brand text and no accent square beside
+  it. Below `sm` the header falls back to `<LogoMark />` alone, keeping
+  the old mobile behaviour. `logo.png` (the raster lockup) is for
+  contexts outside the app: social cards, print, partner decks.
+- Render both through the components rather than `<img src>`. An SVG
+  loaded through `<img>` is its own document, so `currentColor`/CSS vars
+  resolve against nothing and the artwork's own colours come back — for
+  the lockup that means a BLACK wordmark, invisible on the dark theme.
+  Inline, the mark follows `--accent` and the wordmark follows `--fg`
+  (the token the old HTML text used) in both themes off one asset.
 - Favicons are their own files (`public/icons/favicon.svg`,
   `favicon-{32,64}.png`), NOT a shrunken app icon. Measured at 16px, the
   full figure loses its eyes into the head stroke and its legs close up;

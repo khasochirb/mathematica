@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import LogoMark from "@/components/layout/LogoMark";
+import LogoLockup from "@/components/layout/LogoLockup";
 
 const links = {
   Programs: [
@@ -66,18 +66,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-              <span
-                className="inline-block w-2 h-2 rounded-sm"
-                style={{ background: "var(--accent)" }}
-              />
-              <LogoMark className="h-8 w-8" />
-              <span
-                className="font-semibold text-[15px] tracking-tight"
-                style={{ color: "var(--fg)" }}
-              >
-                Mongol Potential
-              </span>
+            <Link href="/" className="inline-flex items-center mb-4 group">
+              <LogoLockup className="h-11 w-auto" />
             </Link>
             <p
               className="text-sm leading-relaxed mb-5"
