@@ -15,7 +15,7 @@ import { CourseSpineList } from "@/components/course/CourseShell";
 import { eshCourseDef, getEshTopicCourse, liveUnitCount } from "@/lib/esh-course";
 import topicsData from "@/data/learn/topics.json";
 
-// One ЭЕШ exam topic. The course spine comes FIRST — this page used to be a
+// One ЭШ exam topic. The course spine comes FIRST — this page used to be a
 // formula sheet, and the formula sheet is now the reference you keep open
 // beside the course rather than the whole of what the topic offers.
 
@@ -71,7 +71,7 @@ export default function TopicLearnPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">ЭЕШ · Суралцах · {questionCount} бодлого</div>
+          <div className="eyebrow">ЭШ · Суралцах · {questionCount} бодлого</div>
         </div>
 
         <h1
@@ -140,7 +140,7 @@ export default function TopicLearnPage() {
           </Link>
         </Section>
 
-        {/* The hand-authored ЭЕШ lesson, where one exists for this topic. */}
+        {/* The hand-authored ЭШ lesson, where one exists for this topic. */}
         {lesson && (
           <>
             <Section n={num()} label="Зорилго">

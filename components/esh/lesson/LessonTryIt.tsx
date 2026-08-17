@@ -8,7 +8,7 @@ import { getFreeQuestions } from "@/lib/esh-questions";
 
 const LABELS = { reveal: "Шийд", hide: "Нуух", revealAria: "Шийд харах", hideAria: "Шийдийг нуух" };
 
-// ЭЕШ adapter: pulls try-it questions from the free question bank by skill_tag,
+// ЭШ adapter: pulls try-it questions from the free question bank by skill_tag,
 // renders each via the shared reveal card, plus the "practice more" deep-link.
 export default function LessonTryIt({ lesson }: { lesson: Lesson }) {
   const pool = getFreeQuestions();

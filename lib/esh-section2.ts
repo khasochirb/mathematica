@@ -147,7 +147,7 @@ export function parseSlotLabel(label: string): {
 // Rationale: the previous all-or-nothing rule was discouraging for
 // students who got most of a subproblem right but missed one letter
 // (e.g. 4 of 5 letters correct → 0 points). Per-letter scoring matches
-// the practice-mode framing better. The real ЭЕШ may grade more strictly;
+// the practice-mode framing better. The real ЭШ may grade more strictly;
 // the results page surfaces this caveat via a footnote.
 //
 // See memory/section2-design.md decision #3 for the original design and

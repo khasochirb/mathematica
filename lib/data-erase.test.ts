@@ -13,8 +13,8 @@ import {
 } from "./data-erase";
 
 describe("attemptInScope", () => {
-  it("treats a context-less attempt as ЭЕШ — the oldest rows must stay deletable", () => {
-    // Every attempt written before the context column existed is ЭЕШ
+  it("treats a context-less attempt as ЭШ — the oldest rows must stay deletable", () => {
+    // Every attempt written before the context column existed is ЭШ
     // (lib/perf-context.ts). If this returned false those rows could never be
     // erased by any scope.
     expect(attemptInScope(undefined, "esh")).toBe(true);
@@ -30,11 +30,11 @@ describe("attemptInScope", () => {
     expect(attemptInScope("esh", "esh")).toBe(true);
   });
 
-  it("matches every course context by prefix, including the ЭЕШ prep courses", () => {
+  it("matches every course context by prefix, including the ЭШ prep courses", () => {
     expect(attemptInScope("course:geometry", "courses")).toBe(true);
     expect(attemptInScope("course:grade-6", "courses")).toBe(true);
     expect(attemptInScope("course:esh", "courses")).toBe(true);
-    // ...and a course attempt is NOT ЭЕШ exam work, even the ЭЕШ prep one
+    // ...and a course attempt is NOT ЭШ exam work, even the ЭШ prep one
     expect(attemptInScope("course:esh", "esh")).toBe(false);
   });
 
@@ -55,8 +55,8 @@ describe("attemptInScope", () => {
 });
 
 describe("attemptDeleteFilter", () => {
-  it("reaches pre-context rows on an ЭЕШ erase", () => {
-    // Rows written before the context column existed are ЭЕШ and are stored
+  it("reaches pre-context rows on an ЭШ erase", () => {
+    // Rows written before the context column existed are ЭШ and are stored
     // as NULL. An IN ('esh') filter alone would leave the oldest attempts
     // permanently undeletable.
     expect(attemptDeleteFilter("esh")).toEqual({
@@ -112,8 +112,8 @@ describe("attemptDeleteFilter", () => {
 });
 
 describe("server-table sweeps", () => {
-  it("takes Section 2 on an ЭЕШ or full erase — and only there", () => {
-    // Section 2 is a ЭЕШ-only paper, so no other hub's erase should touch it.
+  it("takes Section 2 on an ЭШ or full erase — and only there", () => {
+    // Section 2 is a ЭШ-only paper, so no other hub's erase should touch it.
     expect(eraseTakesSection2("esh")).toBe(true);
     expect(eraseTakesSection2("all")).toBe(true);
     expect(eraseTakesSection2("sat")).toBe(false);
@@ -183,7 +183,7 @@ describe("eraseLocalScope", () => {
     localStorage.setItem("mongol-potential-performance:user-1", "1");
   });
 
-  it("erasing ЭЕШ leaves SAT, IB and course data standing", () => {
+  it("erasing ЭШ leaves SAT, IB and course data standing", () => {
     const removed = eraseLocalScope("esh");
     expect(removed.sort()).toEqual(
       ["esh-flagged-questions", "esh-test-sessions", "mongol-potential-section2-queue"].sort(),
@@ -251,7 +251,7 @@ describe("eraseSummary", () => {
       expect(lines.length, scope).toBeGreaterThan(0);
       for (const l of lines) expect(l.trim().length).toBeGreaterThan(0);
     }
-    // the ЭЕШ dialog must not promise to delete SAT data
+    // the ЭШ dialog must not promise to delete SAT data
     expect(eraseSummary("esh").join(" ")).not.toMatch(/SAT|IB/);
     expect(eraseSummary("all").join(" ")).toMatch(/бүх/i);
   });

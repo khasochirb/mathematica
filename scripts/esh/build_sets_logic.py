@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Sets & Logic — the three ЭЕШ-authored units under data/genmath/esh/.
+"""Sets & Logic — the three ЭШ-authored units under data/genmath/esh/.
 
-The one ЭЕШ exam topic with no source anywhere in the platform catalog, so
+The one ЭШ exam topic with no source anywhere in the platform catalog, so
 these units are authored here rather than curated. English-first per the
 owner decision recorded in memory/expansion-vision.md §4.7 (2026-07-28), and
 pitched at a student already scoring ~650/800: notation is introduced
@@ -326,7 +326,7 @@ def build_sets_and_operations():
             "independent binary choices, so there are $2^n$ subsets in total. The count "
             "includes $\\varnothing$ (all switches off) and $A$ itself (all on).",
             "A **proper subset** excludes $A$ itself, leaving $2^n - 1$. Some texts also "
-            "exclude $\\varnothing$; ЭЕШ items say explicitly which is meant — read the stem.",
+            "exclude $\\varnothing$; ЭШ items say explicitly which is meant — read the stem.",
             "Constraints pin switches: subsets that MUST contain a given element leave "
             "$n-1$ free choices, so $2^{n-1}$ of them; must-contain-two leaves $2^{n-2}$. "
             "Subsets avoiding an element are the subsets of the other $n-1$ elements — "

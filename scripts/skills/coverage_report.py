@@ -184,7 +184,7 @@ def main():
     covered = [r for r in rows if r["state"] == "covered"]
 
     print("=" * 74)
-    print("ЭЕШ SKILL COVERAGE — depth, not presence")
+    print("ЭШ SKILL COVERAGE — depth, not presence")
     print("=" * 74)
     print(f"  skills in graph        {len(rows)}")
     print(f"  COVERED (>=3, spread)  {len(covered)}")

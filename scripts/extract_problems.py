@@ -18,7 +18,7 @@ from collections import deque
 import anthropic
 
 
-SYSTEM_PROMPT = """You are an expert at reading Mongolian math exam papers. You will be given a scanned page image from a Mongolian ЭЕШ (university entrance exam) practice booklet.
+SYSTEM_PROMPT = """You are an expert at reading Mongolian math exam papers. You will be given a scanned page image from a Mongolian ЭШ (university entrance exam) practice booklet.
 
 Your job is to extract EVERY math problem visible on the page into structured JSON.
 

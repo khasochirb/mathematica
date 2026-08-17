@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalize the `topic` field of every ЭЕШ question to a canonical key.
+"""Normalize the `topic` field of every ЭШ question to a canonical key.
 
 The 54 files under data/questions/ accumulated 57 different spellings of the
 14 topics — "Алгебр", "Coordinate Geometry", "Matrices", "linear algebra",

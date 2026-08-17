@@ -107,7 +107,7 @@ The memory file's banner claims the audit was resolved with 9 fixes shipped. **T
 Also present (out of scope for body extraction, kept as reference for Section 2 answer keys): `2021 part 2 answer key.png`, `2022 part 2 answer key.png`, `2023 answer key.png`, `2024 part 2 answer key.png`.
 
 **Practice tests — `~/Desktop/ESH-nom.pdf` (4.5 MB, 1 file):**
-Single textbook ("ЭЕШ-д бэлтгэх МАТЕМАТИКИЙН ТЕСТ, ДЭВТЭР" 6th ed., 2022). Contains all 14 practice tests. Per the prior audit, page 11 ≈ Test 2A start, page 12 ≈ Test 2A mid, page 13 ≈ Test 2A end + Test 2B start. Full per-test page mapping is partial in the memory file — completing it is part of Step 3.
+Single textbook ("ЭШ-д бэлтгэх МАТЕМАТИКИЙН ТЕСТ, ДЭВТЭР" 6th ed., 2022). Contains all 14 practice tests. Per the prior audit, page 11 ≈ Test 2A start, page 12 ≈ Test 2A mid, page 13 ≈ Test 2A end + Test 2B start. Full per-test page mapping is partial in the memory file — completing it is part of Step 3.
 
 Alternate source observed at `~/Desktop/testbook/` — directories `1b/`, `2a/` … `11b/` with 4 PNG screenshots each. Covers tests beyond the 14 in JSON (8a/8b through 11b are unwired). **Out of scope for Phase 2** — recording its existence in case Phase 3 expands the test catalogue.
 

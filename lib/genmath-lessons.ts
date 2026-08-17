@@ -4,7 +4,7 @@
 // one per course/grade, so each course's pages bundle only their own
 // content. This module re-exports every per-course API under the old names
 // and adds the genuinely cross-course surface (slug lookup across all
-// grades, ЭЕШ/SAT curation, dashboard lesson totals). Importing THIS module
+// grades, ЭШ/SAT curation, dashboard lesson totals). Importing THIS module
 // pulls the entire corpus — pages must import their own course's data
 // module instead (enforced by lib/genmath-split.test.ts); the only app
 // entry points allowed here are server shells that pass plain props.

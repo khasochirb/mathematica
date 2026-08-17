@@ -9,7 +9,7 @@ import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Trigonometry course hub — the most figure-rich course on the ladder:
 // right triangles, the special pair, radians and the unit circle, the wave
-// graphs, identities, and the laws that solve EVERY triangle. Full ЭЕШ
+// graphs, identities, and the laws that solve EVERY triangle. Full ЭШ
 // trigonometry scope; SAT right-triangle trig and IB core ride along.
 export default function TrigCoursePage() {
   const spine = getTrigSpine();

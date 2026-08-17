@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Convert 2024/2025 ЭЕШ CSVs into the Question JSON format used by the practice site.
+"""Convert 2024/2025 ЭШ CSVs into the Question JSON format used by the practice site.
 
 Input CSVs sit at ~/Desktop/{2024,2025}{A,B,C,D}.csv.
 Output JSON files are written to data/questions/{2024,2025}{a,b,c,d}.json.

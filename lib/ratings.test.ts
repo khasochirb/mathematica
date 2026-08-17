@@ -218,8 +218,8 @@ describe("computeRatings — the 40–100 scale", () => {
     expect(a.band).toBe("beginner");
   });
 
-  it("exam performance drives the rating: a strong ЭЕШ record earns a high number", () => {
-    // Perfect, well-sampled ЭЕШ record on one attribute — the placement is in.
+  it("exam performance drives the rating: a strong ЭШ record earns a high number", () => {
+    // Perfect, well-sampled ЭШ record on one attribute — the placement is in.
     const p = computeRatings({
       attempts: eshAttempts("trigonometry", 40, 40),
       now: NOW,
@@ -227,15 +227,15 @@ describe("computeRatings — the 40–100 scale", () => {
     const a = attr(p, "trigonometry");
     expect(a.rated).toBe(true);
     expect(a.hasUnitTest).toBe(false);
-    // ЭЕШ difficulty 1.0, full confidence → rating ≈ the score itself (100),
+    // ЭШ difficulty 1.0, full confidence → rating ≈ the score itself (100),
     // NOT stuck at a Developing cap. This is the whole point of the change.
     expect(a.score).toBe(100);
     expect(a.band).toBe("mastery");
   });
 
-  it("exam difficulty: 100% SAT tops out at 80; ЭЕШ and IB reach 100 and match", () => {
+  it("exam difficulty: 100% SAT tops out at 80; ЭШ and IB reach 100 and match", () => {
     // Compare the SAME attribute (algebra) across the three hubs, since every
-    // hub tags algebra the same (SAT 'algebra', ЭЕШ 'algebra', IB
+    // hub tags algebra the same (SAT 'algebra', ЭШ 'algebra', IB
     // 'number_algebra' → algebra).
     const sat = computeRatings({
       attempts: Array.from({ length: 40 }, () => ({
@@ -254,10 +254,10 @@ describe("computeRatings — the 40–100 scale", () => {
       })),
       now: NOW,
     });
-    // ЭЕШ and IB are the hard pair — same difficulty, same rating.
+    // ЭШ and IB are the hard pair — same difficulty, same rating.
     expect(attr(esh, "algebra").score).toBe(100);
     expect(attr(ib, "algebra").score).toBe(100);
-    // And a 100% SAT rates strictly below a 100% ЭЕШ.
+    // And a 100% SAT rates strictly below a 100% ЭШ.
     expect(attr(sat, "algebra").score).toBeLessThan(attr(esh, "algebra").score);
   });
 
@@ -282,13 +282,13 @@ describe("computeRatings — the 40–100 scale", () => {
 
   it("weak exam performance floors at 40, not below", () => {
     const p = computeRatings({ attempts: eshAttempts("trigonometry", 40, 6), now: NOW });
-    const a = attr(p, "trigonometry"); // 15% on ЭЕШ
+    const a = attr(p, "trigonometry"); // 15% on ЭШ
     expect(a.rated).toBe(true);
     expect(a.score).toBe(FLOOR);
     expect(a.band).toBe("beginner");
   });
 
-  it("the owner's scenario: two ЭЕШ tests — not enough to rate, so route to placement", () => {
+  it("the owner's scenario: two ЭШ tests — not enough to rate, so route to placement", () => {
     // Two 36-question mocks spread over the common topics. That's below the
     // ~5-test bar, so attributes stay UNRATED ("—") — but we still see the
     // weakness signal and route the focus topic to its adaptive placement.
@@ -888,7 +888,7 @@ describe("SAT and IB bank practice", () => {
   });
 
   it("practice a strong student has outgrown simply does nothing", () => {
-    // A 95% ЭЕШ record plus a little SAT drilling: the practice stream would
+    // A 95% ЭШ record plus a little SAT drilling: the practice stream would
     // argue for a LOWER number than the exams already earned. The guard keeps
     // the higher one, so the card reads "no change" rather than punishing the
     // student for practising.

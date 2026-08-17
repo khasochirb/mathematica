@@ -27,7 +27,7 @@ export default function ExamPrepPage() {
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       {/* Hero — title + 3 facts */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-14">
-        <div className="eyebrow mb-3">{t("ЭЕШ Exam Prep · Overview", "ЭЕШ Шалгалтын бэлтгэл · Тойм")}</div>
+        <div className="eyebrow mb-3">{t("ЭШ Exam Prep · Overview", "ЭШ Шалгалтын бэлтгэл · Тойм")}</div>
         <h1
           className="serif"
           style={{
@@ -102,7 +102,7 @@ export default function ExamPrepPage() {
               color: "var(--fg)",
             }}
           >
-            {t("Start your ЭЕШ prep ", "ЭЕШ бэлтгэлээ ")}
+            {t("Start your ЭШ prep ", "ЭШ бэлтгэлээ ")}
             <em className="serif-italic" style={{ color: "var(--accent)" }}>
               {t("today", "өнөөдөр")}
             </em>

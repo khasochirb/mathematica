@@ -38,7 +38,7 @@ export interface AttemptRecord {
   timeSpentSeconds?: number;
   // Which section of the platform produced this attempt: "esh" (default),
   // "course:geometry", "course:grade-6", later "sat"/"ib". Absent means
-  // "esh" — every row written before contexts existed was ЭЕШ. Stats NEVER
+  // "esh" — every row written before contexts existed was ЭШ. Stats NEVER
   // blend across contexts (see lib/perf-context.ts).
   context?: string;
 }
@@ -96,7 +96,7 @@ function queueKeyFor(userId: string): string {
 // parseTestId lives in lib/test-history.ts (shared with run derivation).
 
 function toServerRow(attempt: AttemptRecord, userId: string) {
-  // Topic canonicalization is an ЭЕШ vocabulary; course attempts carry unit/
+  // Topic canonicalization is an ЭШ vocabulary; course attempts carry unit/
   // lesson slugs that must pass through untouched (canonicalizing would
   // collapse them all to "other").
   const isEsh = contextOf(attempt) === DEFAULT_CONTEXT;
@@ -153,7 +153,7 @@ function fromServerRow(r: ServerRow): AttemptRecord {
 // fail. Every fetch probes the column and records the verdict here; writes
 // consult it. Missing column: esh rows are written WITHOUT context (the
 // column's default makes that equivalent), while course rows stay in the
-// offline queue — a course row stored context-less would masquerade as ЭЕШ
+// offline queue — a course row stored context-less would masquerade as ЭШ
 // and corrupt exam stats, so holding it back is the only safe move.
 // ---------------------------------------------------------------------------
 
@@ -611,7 +611,7 @@ export default function usePerformance() {
 
   // Every stat getter aggregates ONE context (default esh) — accuracy is
   // never blended across sections. For course contexts the topic key is the
-  // raw unit slug (no ЭЕШ canonicalization).
+  // raw unit slug (no ЭШ canonicalization).
   const getTopicStats = useCallback((context: string = DEFAULT_CONTEXT): TopicStats[] => {
     const isEsh = context === DEFAULT_CONTEXT;
     const map: Record<string, { correct: number; total: number }> = {};
@@ -647,7 +647,7 @@ export default function usePerformance() {
   const getSkillStats = useCallback((): SkillStats[] => {
     const map: Record<string, { correct: number; total: number }> = {};
     for (const a of attempts) {
-      if (contextOf(a) !== DEFAULT_CONTEXT) continue; // skill tags are ЭЕШ vocabulary
+      if (contextOf(a) !== DEFAULT_CONTEXT) continue; // skill tags are ЭШ vocabulary
       const tag =
         getQuestionBySource(a.questionSource)?.skill_tag ??
         getSection2ItemBySource(a.questionSource)?.skill_tag;

@@ -28,7 +28,7 @@ against them by the figures reviewer**. Never draw "roughly right".
    `GeoDiagram`/`GeoCanvas`.
 2. **Static lesson diagram** (no interaction) → still an SVG component or
    a `figure` config consumed by an existing primitive — never a raster.
-3. **Practice-test figure** (ЭЕШ/SAT/IB) → static SVG/PNG under
+3. **Practice-test figure** (ЭШ/SAT/IB) → static SVG/PNG under
    `public/section1-figures/` or `public/section2-figures/`, wired by the
    question's figure field and validated by `verify:figures-wired` /
    `verify:figure-extraction`. Follow `practice-test-authoring` for

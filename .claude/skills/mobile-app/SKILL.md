@@ -134,7 +134,7 @@ Endpoints today (`app/api/**/route.ts`):
   `GET /api/progress`, `GET /api/progress/weak-topics`,
   `GET /api/streaks`, `GET /api/achievements`, `GET /api/topics`,
   `GET /api/problems/next`.
-- **ЭЕШ Section 2**: `POST /api/section2/attempts`.
+- **ЭШ Section 2**: `POST /api/section2/attempts`.
 - **Refinement loop**: `/api/refinement-loop` (miss → mastery state machine).
 - **Subscription**: `GET /api/subscription/status`,
   `POST /api/subscription/activate`.
@@ -183,9 +183,9 @@ web flow runs as-is, and this is the fastest path. Harden it for native:
   1.5M, `data/learn` 28K). Lessons/tests are **statically imported** into
   the bundle (82 static imports in `lib/genmath-lessons.ts`), so in a wrap
   they ship inside the app and render offline with zero API calls.
-- Figures (ЭЕШ) are PNGs in `public/section1-figures` +
+- Figures (ЭШ) are PNGs in `public/section1-figures` +
   `public/section2-figures` (~3 MB) — precache them in the service worker
-  if you want offline ЭЕШ tests.
+  if you want offline ЭШ tests.
 - **Do not fork the content into an app-specific format.** The web build is
   the source of truth; the wrap consumes the same bundle. If content grows
   large enough to hurt install size, move to on-demand fetch of the JSON
@@ -199,7 +199,7 @@ web flow runs as-is, and this is the fastest path. Harden it for native:
 
 - Language is `mp_lang` in `localStorage` (`lib/lang-context.tsx`), values
   `en` | `mn`. **Content language is a property of the hub, not the toggle**
-  (ЭЕШ = Mongolian content; Courses = per-topic EN/MN mirror; SAT/IB
+  (ЭШ = Mongolian content; Courses = per-topic EN/MN mirror; SAT/IB
   hubs = English) — see `memory/expansion-vision.md` §4.7. The app inherits
   this for free in a wrap.
 - In a WebView, `localStorage` persists, so the language choice survives.
@@ -269,7 +269,7 @@ web flow runs as-is, and this is the fastest path. Harden it for native:
 [ ] app/manifest.ts (name, icons 192/512 maskable, standalone, theme colors)
 [ ] layout.tsx viewport + themeColor + appleWebApp metadata
 [ ] service worker (next-pwa/serwist): precache shell + static; network-first API GET
-[ ] Figures precached if offline ЭЕШ wanted
+[ ] Figures precached if offline ЭШ wanted
 [ ] Lighthouse PWA audit green; real install tested iOS Safari + Android Chrome
 [ ] Deploy; verify offline lesson load
 ```

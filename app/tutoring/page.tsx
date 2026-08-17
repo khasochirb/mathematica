@@ -4,7 +4,7 @@
 //
 // Audience: Mongolian families whose children study in the U.S. — so the page
 // is BILINGUAL (English / Mongolian via the global lang toggle) and does NOT
-// mention ЭЕШ; it sells general, personalized math support, not exam prep.
+// mention ЭШ; it sells general, personalized math support, not exam prep.
 // The whole purpose is the contact CTA, repeated in the hero and a dedicated
 // contact section. Testimonials are real parent messages: English mode shows a
 // faithful translation, Mongolian mode shows the parents' original words.

@@ -33,8 +33,8 @@ const i18n = {
   provisional: { en: "provisional", mn: "урьдчилсан" },
   units: { en: "units", mn: "нэгж" },
   hint: {
-    en: "Rated skills run 40–100 and count only when accurate: it takes about five full tests, or one placement test, to rate a skill (\"—\" until then). Harder exams count for more — a 100% on ЭЕШ or IB outranks a 100% on the easier SAT. Tap a rated skill to see exactly why it's the number it is.",
-    mn: "Үнэлгээ 40–100 хооронд, зөвхөн үнэн зөв үед л тооцогдоно: чадварыг үнэлэхэд ойролцоогоор таван бүтэн тест эсвэл нэг түвшин тогтоох тест шаардлагатай (түүнээс өмнө \"—\"). Хүнд шалгалт илүү үнэ цэнэтэй — ЭЕШ эсвэл IB-д 100% авах нь илүү хялбар SAT-д 100% авахаас дээгүүр. Үнэлгээтэй чадвар дээр дарж яагаад ийм оноотойгоо хараарай.",
+    en: "Rated skills run 40–100 and count only when accurate: it takes about five full tests, or one placement test, to rate a skill (\"—\" until then). Harder exams count for more — a 100% on ЭШ or IB outranks a 100% on the easier SAT. Tap a rated skill to see exactly why it's the number it is.",
+    mn: "Үнэлгээ 40–100 хооронд, зөвхөн үнэн зөв үед л тооцогдоно: чадварыг үнэлэхэд ойролцоогоор таван бүтэн тест эсвэл нэг түвшин тогтоох тест шаардлагатай (түүнээс өмнө \"—\"). Хүнд шалгалт илүү үнэ цэнэтэй — ЭШ эсвэл IB-д 100% авах нь илүү хялбар SAT-д 100% авахаас дээгүүр. Үнэлгээтэй чадвар дээр дарж яагаад ийм оноотойгоо хараарай.",
   },
   whyTitle: { en: "Why this number", mn: "Яагаад ийм оноотой вэ" },
   toRaise: { en: "To raise it", mn: "Өсгөхийн тулд" },
@@ -52,8 +52,8 @@ const i18n = {
   accuracy: { en: "accuracy", mn: "оновчтой" },
   arguesFor: { en: "argues", mn: "заана" },
   satCeiling: {
-    en: "Your exam evidence is mostly SAT — a perfect SAT alone tops out at 80. ЭЕШ and IB mocks can take this to 100.",
-    mn: "Таны шалгалтын нотолгоо голдуу SAT — SAT дангаараа дээд тал нь 80. ЭЕШ болон IB-ийн шалгалтууд 100 хүртэл өсгөнө.",
+    en: "Your exam evidence is mostly SAT — a perfect SAT alone tops out at 80. ЭШ and IB mocks can take this to 100.",
+    mn: "Таны шалгалтын нотолгоо голдуу SAT — SAT дангаараа дээд тал нь 80. ЭШ болон IB-ийн шалгалтууд 100 хүртэл өсгөнө.",
   },
   placementCeiling: {
     en: "A placement rates up to 90 — real mocks and unit tests go beyond.",

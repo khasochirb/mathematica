@@ -24,7 +24,7 @@ scratch directory.
 | Courses / Geometry content JSON | `npm run verify:genmath` (+ tsc if registry changed) |
 | MN mirrors | `verify:genmath` + tsc + regen proof (see `mn-translation`) |
 | Interactive lesson configs | `npm run verify:genmath-interactive` + `verify:lessons` |
-| Practice tests (ЭЕШ/SAT/IB) | `npm run verify:ptest` (`--strict` for new content) + `verify:figures-wired` + `verify:figure-extraction` if figures |
+| Practice tests (ЭШ/SAT/IB) | `npm run verify:ptest` (`--strict` for new content) + `verify:figures-wired` + `verify:figure-extraction` if figures |
 | Grading/session logic | the relevant `verify:section2-*` / `verify:refinement-loop*` / `verify:canonicalize` suites + vitest |
 | Placement | `verify:skill-tag-coverage` + vitest |
 | Any page/route/layout | all of the above that apply + `npm run build` |
@@ -122,7 +122,7 @@ New content class = new gate, in the same PR as the content:
    in the PR description, then fix the fixture.
 4. Known legacy violations go in an explicit `KNOWN_ISSUES` allowlist in
    the script with a comment per entry — new violations stay hard errors.
-   (Pattern established in `verify-practice-test.py` for a legacy ЭЕШ
+   (Pattern established in `verify-practice-test.py` for a legacy ЭШ
    duplicate-option.)
 
 ## Verification statement format
@@ -143,7 +143,7 @@ A figure can pass every gate and still be invisible, because only some
 renderers read the field it was written to. This has bitten twice:
 
 - **`figure` on a practice/testYourself bank problem.** That field is the
-  ЭЕШ hub's IMAGE shape (`src`/`width`/`height`); `RevealProblemCard`
+  ЭШ hub's IMAGE shape (`src`/`width`/`height`); `RevealProblemCard`
   renders `geoFigure` and `courseFigure`, never `figure`. Twenty of Grade
   4's practice figures shipped invisibly, taking their questions down with
   them — "the picture shows the bundles for a number" is unanswerable with

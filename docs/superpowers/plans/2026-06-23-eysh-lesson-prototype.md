@@ -765,7 +765,7 @@ export default function TopicLearnPage() {
               style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
               <ArrowLeft className="w-4 h-4" />
             </Link>
-            <div className="eyebrow">ЭЕШ · Суралцах · {questionCount} бодлого</div>
+            <div className="eyebrow">ЭШ · Суралцах · {questionCount} бодлого</div>
           </div>
 
           <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(36px, 5vw, 56px)", letterSpacing: "-0.04em", lineHeight: 1, color: "var(--fg)" }}>
@@ -848,7 +848,7 @@ export default function TopicLearnPage() {
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">ЭЕШ · Суралцах · {questionCount} бодлого</div>
+          <div className="eyebrow">ЭШ · Суралцах · {questionCount} бодлого</div>
         </div>
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(36px, 5vw, 56px)", letterSpacing: "-0.04em", lineHeight: 1, color: "var(--fg)" }}>
           {data.title}

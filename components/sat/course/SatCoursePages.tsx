@@ -13,7 +13,7 @@ import {
 import { satCourseDef } from "@/lib/sat-course";
 
 // The SAT course routes carry the domain as a URL segment, so the CourseDef
-// is resolved per request — same thin-wrapper pattern as the ЭЕШ courses
+// is resolved per request — same thin-wrapper pattern as the ЭШ courses
 // (components/esh/course/EshCoursePages.tsx), English chrome throughout.
 
 function DomainMissing() {

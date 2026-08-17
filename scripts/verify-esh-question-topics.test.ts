@@ -1,4 +1,4 @@
-// Every ЭЕШ question — the 20 past papers and the 14 Premium tests — carries
+// Every ЭШ question — the 20 past papers and the 14 Premium tests — carries
 // two marks: a MAIN topic (one of the five ministry strands) and a SUBTOPIC
 // (one of the 14 canonical topic keys, each of which is a course in the
 // learn hub). This gate holds three claims at once:
@@ -38,7 +38,7 @@ function allQuestions(): { file: string; source: string; topic: unknown }[] {
   return out;
 }
 
-describe("ЭЕШ question taxonomy (5 main topics × 14 subtopics)", () => {
+describe("ЭШ question taxonomy (5 main topics × 14 subtopics)", () => {
   it("partitions the 14 subtopics across the 5 main topics", () => {
     expect(ESH_DOMAINS.map((d) => d.key)).toEqual([
       "algebra",

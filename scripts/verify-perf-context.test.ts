@@ -46,7 +46,7 @@ describe("performance contexts", () => {
   });
 
   it("labels and hrefs cover every context shape", () => {
-    expect(contextLabel("esh")).toBe("ЭЕШ бэлтгэл");
+    expect(contextLabel("esh")).toBe("ЭШ бэлтгэл");
     expect(contextLabel("course:prob-stats")).toBe("Магадлал ба Статистик");
     expect(contextLabel("course:grade-8")).toBe("8-р анги");
     expect(contextLabel("mystery")).toBe("mystery");

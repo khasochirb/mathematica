@@ -3,7 +3,7 @@
 // Account-wide data erasure, in one place, with an honest report.
 //
 // Deliberately NOT a single "delete everything" button: a student who wants
-// their SAT history gone rarely wants their two years of ЭЕШ work gone with
+// their SAT history gone rarely wants their two years of ЭШ work gone with
 // it. Each scope names exactly what it removes and what it leaves alone, and
 // a server failure is surfaced rather than swallowed — the local copy going
 // away while the server keeps the rows means the data reappears at the next
@@ -21,7 +21,7 @@ import { useLang } from "@/lib/lang-context";
 type Offered = Exclude<EraseScope, never>;
 
 const SCOPE_LABEL: Record<Offered, { en: string; mn: string }> = {
-  esh: { en: "ЭЕШ", mn: "ЭЕШ" },
+  esh: { en: "ЭШ", mn: "ЭШ" },
   sat: { en: "SAT", mn: "SAT" },
   ib: { en: "IB", mn: "IB" },
   courses: { en: "Courses", mn: "Курсууд" },
@@ -88,7 +88,7 @@ export default function DataErasePanel({
     setBusy(true);
     const { localRemoved, serverOk } = await perf.clearScope(scope);
     eraseLocalScope(scope);
-    // These two hooks own ЭЕШ-only stores and hold their own React state, so
+    // These two hooks own ЭШ-only stores and hold their own React state, so
     // they need clearing through the hook rather than by key alone — otherwise
     // the page keeps rendering from memory until a reload.
     if (scope === "esh" || scope === "all") {

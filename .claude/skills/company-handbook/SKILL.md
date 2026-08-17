@@ -11,7 +11,7 @@ description: >
 # Mongol Potential — Company Handbook
 
 Mongol Potential (www.mongolpotential.com) is a bilingual (English/Mongolian)
-math education platform: grades 6–12 + Geometry courses, ЭЕШ/SAT/IB exam
+math education platform: grades 6–12 + Geometry courses, ЭШ/SAT/IB exam
 prep, placement tests, and student accounts. This handbook is the top of the
 org chart: it tells you how we work and which specialist manual to open.
 
@@ -79,7 +79,7 @@ the more specific one wins for its domain; this handbook wins on process.
   Topics are JSON under `data/genmath/<grade>/` with Mongolian mirrors in
   `data/genmath/<grade>-mn/`. `GENMATH_TOPICS_MN` maps slugs → MN topics;
   `getGenMathTopicLocalized(slug, lang)` resolves per-request.
-- **Exam prep:** ЭЕШ under `lib/esh-*`, practice tests under
+- **Exam prep:** ЭШ under `lib/esh-*`, practice tests under
   `data/practice-test/` hubs (esh/sat/ib), figures in
   `public/section1-figures/` and `public/section2-figures/`.
 - **Interactives:** ~100 SVG/React primitives in
@@ -89,7 +89,7 @@ the more specific one wins for its domain; this handbook wins on process.
   calls via `lib/api.ts` `apiCall` with `Authorization: Bearer`.
 - **Theming:** CSS variables in `app/globals.css` (oklch), consumed by
   Tailwind via `tailwind.config.ts`. Light + dark are first-class.
-- **i18n:** `lib/lang-context.tsx`, `mp_lang` in localStorage; ЭЕШ hub is
+- **i18n:** `lib/lang-context.tsx`, `mp_lang` in localStorage; ЭШ hub is
   Mongolian, SAT/IB English, Courses per-topic mirrored.
 
 ## Standard workflows
@@ -126,7 +126,7 @@ These are baked into the specialist manuals, but the pattern matters:
   (`mn-translation`).
 - sympy returns `BooleanTrue`, not Python `True` — equality checks in
   verify scripts must handle both (`qa-verification`).
-- A duplicate MCQ option shipped in a legacy ЭЕШ test → the gate now scans
+- A duplicate MCQ option shipped in a legacy ЭШ test → the gate now scans
   for duplicate options; known legacy issues live in an allowlist, new ones
   are hard errors (`practice-test-authoring`).
 - Playwright false-failures on cold dev servers → warm routes first, use

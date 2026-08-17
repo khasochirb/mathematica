@@ -3,7 +3,7 @@ import EshFigure from "@/components/esh/EshFigure";
 import type { LessonProblem } from "@/lib/lesson-types";
 
 // One worked example: index, badges, optional figure, statement, teaching note, solution.
-// Markup matches the original ЭЕШ worked-example card so render is identical across hubs.
+// Markup matches the original ЭШ worked-example card so render is identical across hubs.
 export default function WorkedExampleCard({
   problem,
   index,

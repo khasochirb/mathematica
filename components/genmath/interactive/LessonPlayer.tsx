@@ -1526,7 +1526,7 @@ export default function LessonPlayer({
 
       {/* NO AI tutor here — owner decision 2026-08-01: courses teach on
           their own; the AI's job is post-exam, explaining missed exam
-          problems and pointing at where to practice (it lives in the ЭЕШ
+          problems and pointing at where to practice (it lives in the ЭШ
           RefinementLoop). Do not re-add it to lesson surfaces. */}
 
       {/* Bottom nav */}

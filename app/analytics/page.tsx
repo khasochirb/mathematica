@@ -67,7 +67,7 @@ const i18n = {
   nav_recent:     { en: "Recent attempts",   mn: "Сүүлийн дасгалууд" },
   nav_mistakes:   { en: "Mistakes",          mn: "Алдаа" },
   nav_actions:    { en: "Quick actions",     mn: "Шуурхай үйлдэл" },
-  nav_take_eesh:  { en: "Take an ЭЕШ test",  mn: "ЭЕШ тест өгөх" },
+  nav_take_eesh:  { en: "Take an ЭШ test",  mn: "ЭШ тест өгөх" },
   nav_prev:       { en: "Previous year tests", mn: "Өмнөх жилийн тестүүд" },
   nav_hub:        { en: "Dashboard",         mn: "Хяналтын самбар" },
 
@@ -75,7 +75,7 @@ const i18n = {
   head_eyebrow:   { en: "Performance analytics", mn: "Дэлгэрэнгүй мэдээлэл" },
   head_projected: { en: "Projected",         mn: "Таамагласан" },
   head_no_tests:  { en: "No tests yet",      mn: "Одоогоор тест байхгүй" },
-  cta_eesh:       { en: "Take an ЭЕШ test",  mn: "ЭЕШ тест өгөх" },
+  cta_eesh:       { en: "Take an ЭШ test",  mn: "ЭШ тест өгөх" },
   cta_prev:       { en: "Previous years",    mn: "Өмнөх жилүүд" },
 
   // Empty state
@@ -83,11 +83,11 @@ const i18n = {
   empty_t:        { en: "Take a test to see your analytics.", mn: "Тест өгснөөр дэлгэрэнгүй мэдээллээ үзнэ үү." },
   empty_s:        { en: "Your projected score, weak topics, and mistakes show up here as soon as you complete a test.",
                     mn: "Тестээ дуусгасны дараа таамагласан оноо, сул сэдэв, алдааны жагсаалт энд харагдана." },
-  empty_cta1:     { en: "Start an ЭЕШ test", mn: "ЭЕШ тест эхлэх" },
+  empty_cta1:     { en: "Start an ЭШ test", mn: "ЭШ тест эхлэх" },
   empty_cta2:     { en: "Previous year tests", mn: "Өмнөх жилийн тестүүд" },
 
   // KPI band
-  kpi_projected:  { en: "Projected ЭЕШ score", mn: "Таамагласан ЭЕШ оноо" },
+  kpi_projected:  { en: "Projected ЭШ score", mn: "Таамагласан ЭШ оноо" },
   kpi_basis_pre:  { en: "Based on your last", mn: "Сүүлийн" },
   kpi_basis_post: { en: "tests",              mn: "тестийн дундаж" },
   kpi_basis_one:  { en: "test",               mn: "тест" },
@@ -114,7 +114,7 @@ const i18n = {
   // Recommendations
   rec_eye:        { en: "Recommended next", mn: "Дараагийнх" },
   rec_focus:      { en: "Focus on",         mn: "Анхаарлаа төвлөрүүлэх сэдэв:" },
-  rec_first:      { en: "Take your first ЭЕШ test.", mn: "Анхны ЭЕШ тестээ өгөөрэй." },
+  rec_first:      { en: "Take your first ЭШ test.", mn: "Анхны ЭШ тестээ өгөөрэй." },
   rec_solid:      { en: "You're solid across the board.", mn: "Бүх сэдэв дээр сайн байна." },
   rec_no_data:    { en: "We'll start tracking weak topics and trends as soon as you complete one.",
                     mn: "Тестээ дуусгасны дараа сул сэдэв, чиглэлийг бид хянаж эхэлнэ." },
@@ -237,7 +237,7 @@ export default function AnalyticsPage() {
   // fresh-device login still surfaces the user's projected score. Averaging
   // across sessions smooths out single-test variance — one bad test no
   // longer drags it down, one lucky test no longer inflates. Floor at 400
-  // to match the ЭЕШ 400–800 reporting scale.
+  // to match the ЭШ 400–800 reporting scale.
   const PROJECTION_WINDOW = 5;
   const recentN = Math.min(testSessions.length, PROJECTION_WINDOW);
   const recentAvgPct = testSessions.length
@@ -359,7 +359,7 @@ export default function AnalyticsPage() {
 
       {/* Main */}
       <section className="px-6 md:px-10 py-9 md:py-12 min-w-0">
-        {/* History-back: this report is reached from the dashboard, the ЭЕШ
+        {/* History-back: this report is reached from the dashboard, the ЭШ
             hub, and test results — back returns wherever the student came
             from. Also the only escape on mobile, where the side nav is hidden. */}
         <div className="mb-5">
@@ -899,9 +899,9 @@ export default function AnalyticsPage() {
           </>
         )}
 
-        {/* The ЭЕШ study report — per-sitting review, topic mastery, and the
+        {/* The ЭШ study report — per-sitting review, topic mastery, and the
             weak-topic → course routing. Moved here from the hub's own progress
-            page so ЭЕШ has ONE report reached from two doors, like SAT and IB. */}
+            page so ЭШ has ONE report reached from two doors, like SAT and IB. */}
         <EshStudyReport />
 
         {/* Erasure lives here, at the account level, because this page is the

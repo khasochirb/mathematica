@@ -496,7 +496,7 @@ export default function PracticePage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">ЭЕШ · Дадлага</div>
+          <div className="eyebrow">ЭШ · Дадлага</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-0.04em", lineHeight: 0.98, color: "var(--fg)" }}>

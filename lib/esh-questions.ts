@@ -100,30 +100,30 @@ const TESTS: TestInfo[] = [
   { key: "7B", label: "Тест 7Б", data: test7bData as Question[], isPremium: true, solutionsRequirePremium: true },
 ];
 
-// 20 real ЭЕШ past papers (2021–2025). Free for all users.
+// 20 real ЭШ past papers (2021–2025). Free for all users.
 // Full step-by-step solutions free on every 2021–2025 variant (20 tests).
 // Premium-gated solutions remain only on the 14 legacy practice tests (1A–7B).
 const PREVIOUS_YEAR_TESTS: TestInfo[] = [
-  { key: "2025A", label: "ЭЕШ 2025 · Хувилбар А", data: test2025aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2025B", label: "ЭЕШ 2025 · Хувилбар Б", data: test2025bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2025C", label: "ЭЕШ 2025 · Хувилбар В", data: test2025cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2025D", label: "ЭЕШ 2025 · Хувилбар Г", data: test2025dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024A", label: "ЭЕШ 2024 · Хувилбар А", data: test2024aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024B", label: "ЭЕШ 2024 · Хувилбар Б", data: test2024bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024C", label: "ЭЕШ 2024 · Хувилбар В", data: test2024cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024D", label: "ЭЕШ 2024 · Хувилбар Г", data: test2024dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023A", label: "ЭЕШ 2023 · Хувилбар А", data: test2023aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023B", label: "ЭЕШ 2023 · Хувилбар Б", data: test2023bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023C", label: "ЭЕШ 2023 · Хувилбар В", data: test2023cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023D", label: "ЭЕШ 2023 · Хувилбар Г", data: test2023dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022A", label: "ЭЕШ 2022 · Хувилбар А", data: test2022aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022B", label: "ЭЕШ 2022 · Хувилбар Б", data: test2022bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022C", label: "ЭЕШ 2022 · Хувилбар В", data: test2022cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022D", label: "ЭЕШ 2022 · Хувилбар Г", data: test2022dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021A", label: "ЭЕШ 2021 · Хувилбар А", data: test2021aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021B", label: "ЭЕШ 2021 · Хувилбар Б", data: test2021bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021C", label: "ЭЕШ 2021 · Хувилбар В", data: test2021cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021D", label: "ЭЕШ 2021 · Хувилбар Г", data: test2021dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2025A", label: "ЭШ 2025 · Хувилбар А", data: test2025aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2025B", label: "ЭШ 2025 · Хувилбар Б", data: test2025bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2025C", label: "ЭШ 2025 · Хувилбар В", data: test2025cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2025D", label: "ЭШ 2025 · Хувилбар Г", data: test2025dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2024A", label: "ЭШ 2024 · Хувилбар А", data: test2024aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2024B", label: "ЭШ 2024 · Хувилбар Б", data: test2024bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2024C", label: "ЭШ 2024 · Хувилбар В", data: test2024cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2024D", label: "ЭШ 2024 · Хувилбар Г", data: test2024dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2023A", label: "ЭШ 2023 · Хувилбар А", data: test2023aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2023B", label: "ЭШ 2023 · Хувилбар Б", data: test2023bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2023C", label: "ЭШ 2023 · Хувилбар В", data: test2023cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2023D", label: "ЭШ 2023 · Хувилбар Г", data: test2023dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022A", label: "ЭШ 2022 · Хувилбар А", data: test2022aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022B", label: "ЭШ 2022 · Хувилбар Б", data: test2022bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022C", label: "ЭШ 2022 · Хувилбар В", data: test2022cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2022D", label: "ЭШ 2022 · Хувилбар Г", data: test2022dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021A", label: "ЭШ 2021 · Хувилбар А", data: test2021aData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021B", label: "ЭШ 2021 · Хувилбар Б", data: test2021bData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021C", label: "ЭШ 2021 · Хувилбар В", data: test2021cData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2021D", label: "ЭШ 2021 · Хувилбар Г", data: test2021dData as Question[], isPremium: false, solutionsRequirePremium: false },
 ];
 
 export const TOPIC_LABELS: Record<string, string> = {
@@ -213,7 +213,7 @@ const TOPIC_ALIASES: Record<string, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// The five MAIN topics (domains) of the ЭЕШ hub, mirroring the strands of the
+// The five MAIN topics (domains) of the ЭШ hub, mirroring the strands of the
 // ministry curriculum А/492 (data/esh/moe-curriculum.json): АЛГЕБР, ГЕОМЕТР
 // БА ТРИГОНОМЕТР, АНАЛИЗЫН ЭХЛЭЛ, МАГАДЛАЛ/СТАТИСТИК. The one deliberate
 // deviation: the ministry files комбинаторик under МАГАДЛАЛ, СТАТИСТИК, but
@@ -319,7 +319,7 @@ export function getAllTests(): TestInfo[] {
   return TESTS;
 }
 
-// The 20 real ЭЕШ past papers (2021–2025). Free for all users.
+// The 20 real ЭШ past papers (2021–2025). Free for all users.
 export function getPreviousYearTests(): TestInfo[] {
   return PREVIOUS_YEAR_TESTS;
 }

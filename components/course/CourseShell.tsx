@@ -22,8 +22,8 @@ import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 // the course chrome lands once rather than once per course.
 //
 // Two things are parameterized beyond the content getters, because the exam
-// hubs need them: `basePath` (an ЭЕШ course lives under /practice/esh/learn,
-// not /math) and `labels` (ЭЕШ content is Mongolian by hub policy, never by
+// hubs need them: `basePath` (an ЭШ course lives under /practice/esh/learn,
+// not /math) and `labels` (ЭШ content is Mongolian by hub policy, never by
 // the site toggle — see memory/expansion-vision.md §4.7).
 
 /** Every visible string in the shell, so a hub can serve its own language. */
@@ -189,7 +189,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 }
 
 // --- The ordered unit list -------------------------------------------------
-// Exported on its own because the ЭЕШ hub embeds a course spine inside a page
+// Exported on its own because the ЭШ hub embeds a course spine inside a page
 // that also carries the topic's formula sheet, rather than on a bare hub page.
 export function CourseSpineList({ course }: { course: CourseDef }) {
   const spine = course.spine();

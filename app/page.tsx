@@ -7,13 +7,13 @@ import MathText from "@/components/esh/MathText";
 
 type Bi = { en: string; mn: string };
 
-// Curriculum hubs surfaced on the homepage. ЭЕШ + general school math are live;
+// Curriculum hubs surfaced on the homepage. ЭШ + general school math are live;
 // SAT/AP/IB link to their coming-soon hub pages. Used by the exam strip and the
 // "multiple curricula" launchpad chips so every curriculum name is navigable.
 const CURRICULA: { label: Bi; href: string; live: boolean }[] = [
   { label: { en: "School math", mn: "Сургуулийн математик" }, href: "/math", live: true },
   { label: { en: "SAT Math", mn: "SAT Math" }, href: "/practice/sat", live: false },
-  { label: { en: "ЭЕШ", mn: "ЭЕШ" }, href: "/practice/esh", live: true },
+  { label: { en: "ЭШ", mn: "ЭШ" }, href: "/practice/esh", live: true },
 ];
 
 const i18n = {
@@ -143,8 +143,8 @@ export default function HomePage() {
             style={{ fontSize: 12, color: "var(--fg-3)", maxWidth: "40ch", letterSpacing: "0.02em" }}
           >
             {lang === "mn"
-              ? "Аль ч хөтөлбөр · SAT · AP Calculus · IB · ЭЕШ"
-              : "Any curriculum · SAT · AP Calculus · IB · ЭЕШ"}
+              ? "Аль ч хөтөлбөр · SAT · AP Calculus · IB · ЭШ"
+              : "Any curriculum · SAT · AP Calculus · IB · ЭШ"}
           </div>
         </div>
 

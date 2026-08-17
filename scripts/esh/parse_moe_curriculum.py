@@ -8,7 +8,7 @@ ministry's grade 10-12 mathematics standard.
 The ministry numbers every learning objective (суралцахуйн зорилт) as
 <grade>.<section><letter>, e.g. `10.5б`, and marks the ones only the
 elective ("сонгон судлах") programme covers with a star. That numbering is
-the spine of the whole document, so it is what we key on: every ЭЕШ course
+the spine of the whole document, so it is what we key on: every ЭШ course
 unit records the codes it teaches, and lib/esh-course.test.ts fails if a
 core objective has no unit behind it.
 

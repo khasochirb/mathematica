@@ -4,7 +4,7 @@
 Companion to scripts/pb/grade9.py (see its header for the why): the verified
 MCQ pool that the High band's exit exams select from, and Grade 12's own
 topic-practice surface. Unit ids equal the Grade-12 topic slugs so bank units
-link into /math/12/<slug>. Grade 12 is the ЭЕШ transition year — level 3
+link into /math/12/<slug>. Grade 12 is the ЭШ transition year — level 3
 items sit at exam difficulty.
 """
 import os
@@ -849,7 +849,7 @@ def build():
         "title": "Grade 12",
         "titleMn": "12-р анги",
         "blurb": "The High school band's exit level, drilled by topic — trig identities "
-                 "and limits through calculus, vectors and conics. Level 3 sits at ЭЕШ "
+                 "and limits through calculus, vectors and conics. Level 3 sits at ЭШ "
                  "difficulty.",
         "units": UNITS,
         "forms": forms,

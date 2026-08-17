@@ -1,4 +1,4 @@
-"""Audit existing ЭЕШ content against Rule 1: one skill_id per item.
+"""Audit existing ЭШ content against Rule 1: one skill_id per item.
 
 Two lists out, as asked: what maps cleanly, and what is an orphan. NOTHING
 IS DELETED and nothing is auto-tagged — an orphan here is a decision for
@@ -329,7 +329,7 @@ def main():
 
     total = len(clean) + len(orphan)
     print("=" * 74)
-    print("ЭЕШ QUESTION BANK vs THE SKILL GRAPH  (Rule 1: one skill_id per item)")
+    print("ЭШ QUESTION BANK vs THE SKILL GRAPH  (Rule 1: one skill_id per item)")
     print("=" * 74)
     print(f"  items scanned      {total}")
     print(f"  MAP CLEANLY        {len(clean)}  ({100*len(clean)/total:.1f}%)")

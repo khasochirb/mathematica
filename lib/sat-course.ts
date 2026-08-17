@@ -202,7 +202,7 @@ export function satCourseDef(domain: string): CourseDef | null {
     intro: course.intro,
     basePath: `/practice/sat/learn/${domain}`,
     rootHref: "/practice/sat/learn",
-    // Same reason as the ЭЕШ courses: all SAT course attempts share one
+    // Same reason as the ЭШ courses: all SAT course attempts share one
     // context, so the per-unit ratings plan would mislead here.
     personalize: false,
     spine: () => course.units,

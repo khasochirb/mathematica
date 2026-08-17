@@ -35,7 +35,7 @@ import {
 import { parseTestId } from "@/lib/test-history";
 
 // The full analytics report for an exam hub (SAT / IB) — the same design as
-// the ЭЕШ report at /analytics, deliberately: side-nav sections, a projected
+// the ЭШ report at /analytics, deliberately: side-nav sections, a projected
 // native score averaged over the most recent sittings, the score-trajectory
 // graph, per-domain mastery, every sitting reviewable question by question
 // with the full problem and solution, a recent-attempts feed, and the
@@ -47,7 +47,7 @@ import { parseTestId } from "@/lib/test-history";
 // devices, logouts, and cleared browsers.
 
 // Average the native metric over the most recent sittings so one lucky or
-// unlucky paper doesn't swing the headline — mirrors the ЭЕШ projection.
+// unlucky paper doesn't swing the headline — mirrors the ЭШ projection.
 const PROJECTION_WINDOW = 5;
 
 interface Projection {
@@ -183,7 +183,7 @@ export default function HubProgress({
       className="grid min-h-[calc(100vh-64px)] pt-16 grid-cols-1 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)]"
       style={{ background: "var(--bg)" }}
     >
-      {/* Side nav — same shape as the ЭЕШ report. Buttons scroll without
+      {/* Side nav — same shape as the ЭШ report. Buttons scroll without
           touching the URL, so browser-back leaves the page instead of
           replaying every scroll jump. */}
       <aside
@@ -223,7 +223,7 @@ export default function HubProgress({
           <BackButton fallback={hubHome} className="gm-press p-2 rounded-md" />
         </div>
 
-        {/* Head — projected native score, like the ЭЕШ /800 headline. */}
+        {/* Head — projected native score, like the ЭШ /800 headline. */}
         <div
           id="overview"
           className="flex items-end justify-between flex-wrap gap-6 pb-7"

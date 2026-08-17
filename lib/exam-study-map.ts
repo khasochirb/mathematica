@@ -1,7 +1,7 @@
 // Exam-results → course-content bridge.
 //
 // The whole reason topic courses exist on this platform: when a student's
-// ЭЕШ (and later SAT/IB) practice-test results show a weak topic, the result
+// ЭШ (and later SAT/IB) practice-test results show a weak topic, the result
 // screen must point at the exact course material that repairs it. This map
 // takes the CANONICAL topic keys produced by canonicalizeTopic() /
 // TOPIC_LABELS (lib/esh-questions.ts) and returns concrete study
@@ -11,7 +11,7 @@
 // this map and cross-checks each target against the content registry.
 
 export interface StudyLink {
-  label: string; // Mongolian, shown on the ЭЕШ progress page
+  label: string; // Mongolian, shown on the ЭШ progress page
   href: string;
 }
 
@@ -20,7 +20,7 @@ export interface StudyTarget {
   links: StudyLink[]; // deeper unit/topic links, most exam-relevant first
 }
 
-// Canonical ЭЕШ topic key → where to study on Mongol Potential.
+// Canonical ЭШ topic key → where to study on Mongol Potential.
 export const EXAM_STUDY_MAP: Record<string, StudyTarget> = {
   probability: {
     primary: { label: "Магадлал ба Статистик курс", href: "/math/prob-stats" },

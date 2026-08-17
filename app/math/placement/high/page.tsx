@@ -24,9 +24,9 @@ export default function HighBandPlacementPage() {
             return v.clearedBand
               ? {
                   title: "You've cleared High school material",
-                  body: "Every grade we sampled was solid. You're in ЭЕШ territory — the exam hub's tests and prep courses are the right next step.",
+                  body: "Every grade we sampled was solid. You're in ЭШ territory — the exam hub's tests and prep courses are the right next step.",
                   href: "/practice/esh",
-                  cta: "Open the ЭЕШ hub",
+                  cta: "Open the ЭШ hub",
                 }
               : {
                   title: `Start in Grade ${v.grade}`,

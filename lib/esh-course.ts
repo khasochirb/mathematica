@@ -1,7 +1,7 @@
-// ЭЕШ prep courses — the taught curriculum inside the ЭЕШ hub.
+// ЭШ prep courses — the taught curriculum inside the ЭШ hub.
 //
 // Coverage goal, set by the owner: a student who completes these fourteen
-// courses should be able to score 800/800 on any ЭЕШ paper. That target
+// courses should be able to score 800/800 on any ЭШ paper. That target
 // shapes two decisions that differ from the rest of the platform:
 //
 //   1. ENGLISH FIRST (owner decision, 2026-07-28, amending the hub-language
@@ -51,7 +51,7 @@ import {
 import type { CourseDef } from "@/components/course/CourseShell";
 import { ESH_DOMAINS, type EshDomain } from "@/lib/esh-questions";
 
-// The three ЭЕШ-authored units — the one exam topic with no source in the
+// The three ЭШ-authored units — the one exam topic with no source in the
 // /math catalog. Built by scripts/esh/build_sets_logic.py; never hand-edited.
 import eshSets from "@/data/genmath/esh/sets-and-operations.json";
 import eshVenn from "@/data/genmath/esh/venn-diagrams-and-counting.json";
@@ -94,7 +94,7 @@ function resolveSource(source: string): CourseUnit | null {
   if (home === "esh") return ESH_AUTHORED[slug] ?? null;
   if (/^\d+$/.test(home)) {
     // Grade-ladder topic. GenMathTopic has no `unit` number; the caller
-    // stamps the ЭЕШ position on top.
+    // stamps the ЭШ position on top.
     const topic = getGenMathTopic(slug);
     return topic ? (topic as unknown as CourseUnit) : null;
   }
@@ -116,7 +116,7 @@ export interface EshUnitEntry extends GeometrySpineEntry {
 }
 
 export interface EshTopicCourse {
-  /** Canonical ЭЕШ topic key from lib/esh-questions (TOPICS). */
+  /** Canonical ЭШ topic key from lib/esh-questions (TOPICS). */
   topic: string;
   /** Course title shown in the hub and crumbs. English-first (see header). */
   title: string;
@@ -163,7 +163,7 @@ function live(unit: number, slug: string, source: string, buildsOn?: string): Es
  *
  * An EMPTY array is a deliberate statement: the unit is here for the exam,
  * not for the ministry's list. Percent applications, congruence proofs and
- * study design are all tested on ЭЕШ papers without appearing as a grade
+ * study design are all tested on ЭШ papers without appearing as a grade
  * 10-12 objective, because the ministry places them earlier.
  */
 export const MOE_COVERAGE: Record<string, string[]> = {
@@ -275,7 +275,7 @@ export const MOE_COVERAGE: Record<string, string[]> = {
  * removed. Silence about a gap is the thing the list exists to prevent.
  *
  * EVERY remaining entry is elective (сонгон судлах, starred in the
- * ministry's own text), which the ЭЕШ paper reaches for far less often.
+ * ministry's own text), which the ЭШ paper reaches for far less often.
  * The core list is empty, and lib/esh-course.test.ts asserts that: the last
  * six core gaps — section 10.11 (transformations as matrices) and 11.2г
  * (Gauss's method) — were closed on 2026-08-12 by Vectors & Matrices units
@@ -396,7 +396,7 @@ export const ESH_COURSES: EshTopicCourse[] = [
     titleMn: "Тригонометр",
     moeSections: ["10.10", "11.6", "11.7", "12.6"],
     intro:
-      "From right-triangle ratios to the unit circle, exact values, graphs, identities, trig equations, and the sine and cosine rules — nearly every ЭЕШ trig question lives inside these six units.",
+      "From right-triangle ratios to the unit circle, exact values, graphs, identities, trig equations, and the sine and cosine rules — nearly every ЭШ trig question lives inside these six units.",
     units: [
       live(1, "right-triangle-trigonometry", "trigonometry/right-triangle-trigonometry"),
       live(2, "special-triangles-and-exact-values", "trigonometry/special-triangles-and-exact-values"),
@@ -492,7 +492,7 @@ export const ESH_COURSES: EshTopicCourse[] = [
     titleMn: "Өгөгдлийн шинжилгээ",
     moeSections: ["10.13", "11.11", "12.13"],
     intro:
-      "Describing data, position and distribution (z-scores, the normal curve), two-variable data with regression, and inference — ЭЕШ statistics rewards interpretation over computation.",
+      "Describing data, position and distribution (z-scores, the normal curve), two-variable data with regression, and inference — ЭШ statistics rewards interpretation over computation.",
     units: [
       live(1, "describing-data", "prob-stats/describing-data"),
       live(2, "distributions-and-position", "prob-stats/distributions-and-position"),
@@ -506,7 +506,7 @@ export const ESH_COURSES: EshTopicCourse[] = [
     titleMn: "Анализын эхлэл",
     moeSections: ["11.9", "11.10", "12.7", "12.8"],
     intro:
-      "Limits, the derivative and its techniques, applications (monotonicity, extrema, optimization), then integrals and their applications — ЭЕШ analysis questions concentrate on derivative applications, so that unit deserves the most repetitions.",
+      "Limits, the derivative and its techniques, applications (monotonicity, extrema, optimization), then integrals and their applications — ЭШ analysis questions concentrate on derivative applications, so that unit deserves the most repetitions.",
     units: [
       live(1, "limits-and-continuity", "calculus/limits-and-continuity"),
       live(2, "the-derivative", "calculus/the-derivative"),
@@ -555,7 +555,7 @@ export function getEshUnit(topic: string, unitSlug: string): CourseUnit | null {
   if (!entry || !entry.live) return null;
   const data = resolveSource(entry.source);
   if (!data) return null;
-  // Stamp the ЭЕШ position and REPLACE buildsOn: the data's buildsOn names
+  // Stamp the ЭШ position and REPLACE buildsOn: the data's buildsOn names
   // unit numbers of its home course, which would be wrong on this spine.
   return { ...data, unit: entry.unit, buildsOn: entry.buildsOn };
 }
@@ -593,7 +593,7 @@ export function eshCourseDef(topic: string): CourseDef | null {
     intro: course.intro,
     basePath: `/practice/esh/learn/${topic}`,
     rootHref: "/practice/esh/learn",
-    // The ratings-driven plan reads /math course contexts; ЭЕШ course
+    // The ratings-driven plan reads /math course contexts; ЭШ course
     // attempts land under a single context, so the per-unit plan would be
     // misleading here until ratings are namespaced per topic.
     personalize: false,

@@ -56,7 +56,7 @@ rendering encodes them:
 
 - Run `npm run verify:figures-wired` and `verify:figure-extraction` —
   both must pass; they catch orphans and missing wires mechanically.
-- Figure language matches hub language (ЭЕШ figures Mongolian, SAT/IB
+- Figure language matches hub language (ЭШ figures Mongolian, SAT/IB
   English). Mixed-language figures are MAJOR.
 - The figure must not leak the answer (a diagram drawn so precisely that
   measuring it with a ruler solves the problem is a MAJOR for

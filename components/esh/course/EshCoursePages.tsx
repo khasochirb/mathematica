@@ -11,7 +11,7 @@ import {
 } from "@/components/course/CourseShell";
 import { eshCourseDef } from "@/lib/esh-course";
 
-// The ЭЕШ course routes are one level deeper than the /math ones — the topic
+// The ЭШ course routes are one level deeper than the /math ones — the topic
 // is a URL segment, so the CourseDef has to be resolved per request rather
 // than imported as a constant. These thin wrappers do that resolution and
 // hand the shared shell its course.

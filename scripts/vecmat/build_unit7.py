@@ -17,7 +17,7 @@ national standard: the Geometry course taught rigid motions synthetically
 (slide, flip, turn on a grid) and Unit 6 of this course mentioned in passing
 that a matrix's columns are destinations, but nowhere did a student write a
 reflection, a rotation, an enlargement or a translation AS A MATRIX and use
-it — which is exactly how the ministry and the ЭЕШ paper pose the topic.
+it — which is exactly how the ministry and the ЭШ paper pose the topic.
 
 The unit's through-line: A TRANSFORMATION IS FOUR NUMBERS, AND THE FOUR
 NUMBERS ARE TWO DESTINATIONS. Ask where (1,0) and (0,1) go, stand the answers

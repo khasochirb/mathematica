@@ -1,6 +1,6 @@
 // Nothing may link to /practice. The page is gone.
 //
-// /practice was the pre-hub practice landing — one page, ЭЕШ-only, behind a
+// /practice was the pre-hub practice landing — one page, ЭШ-only, behind a
 // sign-in wall — superseded by the four hubs but never unwired. It stayed the
 // destination of the home page's PRIMARY calls to action: "Take a diagnostic"
 // (twice), "Start practicing", and "Next problem →" in the AI-tutor demo. The

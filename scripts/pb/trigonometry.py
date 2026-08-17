@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Problem-bank generator for the Trigonometry topic (ЭЕШ).
+"""Problem-bank generator for the Trigonometry topic (ЭШ).
 
 Produces ~36 machine-verified variants for each of 8 exam-archetype forms.
 Every `check` string sympifies to a Python-bool True.

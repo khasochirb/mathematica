@@ -1,7 +1,7 @@
 ---
 name: skill-taxonomy
 description: >
-  Governance manual for skill tags across all hubs (ЭЕШ, SAT, IB, General
+  Governance manual for skill tags across all hubs (ЭШ, SAT, IB, General
   Math) — how taxonomies are designed, locked, applied to questions,
   verified, and evolved. Tags are what make performance analysis and gap
   detection accurate. Read before tagging any question bank, proposing a
@@ -17,9 +17,9 @@ entire analytics stack — weak-skill detection, drill cohorts, the
 refinement loop, dashboards — is only as accurate as the tags. This
 manual is how we keep that promise.
 
-## The precedent (ЭЕШ — study it before designing anything)
+## The precedent (ЭШ — study it before designing anything)
 
-The ЭЕШ taxonomy is the house style: **51 locked tags** over 1,224
+The ЭШ taxonomy is the house style: **51 locked tags** over 1,224
 Section-1 questions, documented with per-tag justification in
 `memory/skill-tag-taxonomy.md`, designed in `memory/refinement-loop-
 design.md`, enforced by `scripts/verify-skill-tag-coverage.test.ts`
@@ -28,7 +28,7 @@ design.md`, enforced by `scripts/verify-skill-tag-coverage.test.ts`
 trigonometry, arithmetic, functions, combinatorics).
 
 Hub tag formats (each locked in its course manual):
-- ЭЕШ: `quadratic_equation` style, 51 tags (`memory/skill-tag-taxonomy.md`)
+- ЭШ: `quadratic_equation` style, 51 tags (`memory/skill-tag-taxonomy.md`)
 - SAT: `sat-<skill>` kebab, 23 tags = College Board skill areas (`sat-course`)
 - IB: `ib-<track>-<tier>-<code>` syllabus codes (`ib-course`)
 - Courses: topic/subtopic slugs serve as coarse tags today;
@@ -46,7 +46,7 @@ A tag earns its place by passing ALL of:
    refinement loop's DRILL_MODE minimum). A tag you can't drill is a
    label, not a lever.
 3. **Trigger viability** — enough questions across tests that weak-tag
-   signals can actually fire (ЭЕШ rule of thumb: tags with ≥68
+   signals can actually fire (ЭШ rule of thumb: tags with ≥68
    questions across 34 tests are reliably auto-triggerable; scale the
    ratio to your bank).
 4. **Mutual exclusivity at the primary level** — a competent tagger
@@ -60,7 +60,7 @@ to localize gaps; above ~60 the drill pools starve and the UI drowns.
 
 1. **Draft** the full list with a one-line scope + example questions +
    estimated question count per tag, in a `memory/` doc. Inventory the
-   existing bank FIRST (the ЭЕШ draft collapsed 369 noisy subtopics
+   existing bank FIRST (the ЭШ draft collapsed 369 noisy subtopics
    into 50 tags — start from data, not from a textbook's table of
    contents).
 2. **Owner review** — hard stop. The taxonomy is a product decision
@@ -94,7 +94,7 @@ to localize gaps; above ~60 the drill pools starve and the UI drowns.
   per-tag-relative (a "hard" linear equation is still easier than a
   "hard" differential equation — that's fine, mastery math is per-tag).
 - Tags are DATA, never display strings: UI labels live in a separate
-  label map per locale (Mongolian dashboard labels for ЭЕШ tags,
+  label map per locale (Mongolian dashboard labels for ЭШ tags,
   English for SAT/IB) so renaming a label never touches attempt data.
 
 ## Consuming tags (contracts for builders)

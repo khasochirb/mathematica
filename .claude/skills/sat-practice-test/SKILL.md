@@ -158,7 +158,7 @@ data/sat/<testId>.json          e.g. data/sat/sat-practice-1.json
 }
 ```
 
-Question object (same field philosophy as the ЭЕШ bank so tooling and
+Question object (same field philosophy as the ЭШ bank so tooling and
 the refinement loop can be reused):
 
 ```jsonc

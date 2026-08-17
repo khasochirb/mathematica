@@ -21,7 +21,7 @@ const SELF_GRADE = {
 };
 
 // A practice/try-it problem with a self-managed reveal toggle for its solution.
-// Markup matches the original ЭЕШ try-it card; labels are passed in for i18n.
+// Markup matches the original ЭШ try-it card; labels are passed in for i18n.
 //
 // When `onSelfGrade` is provided, revealing the solution asks the student to
 // self-grade ("worked example" reveals never do — pass no handler there).

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Problem-bank generator for the ЭЕШ 'Geometry' topic.
+"""Problem-bank generator for the ЭШ 'Geometry' topic.
 
 Exposes build() returning ~36 machine-verified variants for each of 8 forms.
 Every 'check' string sympifies to boolean True; every variant has exactly 4

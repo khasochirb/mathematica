@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure the real ЭЕШ topic weights from the past papers.
+"""Measure the real ЭШ topic weights from the past papers.
 
 The old /practice/esh/topics page shipped hand-invented weights ("Algebra
 ~25%") that were never checked against anything. Every question now carries a

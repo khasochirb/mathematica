@@ -3,7 +3,7 @@
 // Polished "coming soon / get notified" page for curriculum hubs that aren't
 // built yet (SAT / IB / AP). Bilingual via the global lang toggle. The email
 // form posts to the existing waitlist API so interest is actually captured, and
-// the page cross-links to tutoring (available now) + the live ЭЕШ hub so it's
+// the page cross-links to tutoring (available now) + the live ЭШ hub so it's
 // never a dead end.
 
 import { useState } from "react";
@@ -61,7 +61,7 @@ const T = {
   done: { en: "You're on the list — thank you!", mn: "Жагсаалтад бүртгэгдлээ — баярлалаа!" },
   errorMsg: { en: "Something went wrong. Please try again.", mn: "Алдаа гарлаа. Дахин оролдоно уу." },
   tutorNow: { en: "Need help now? Get 1-on-1 tutoring", mn: "Одоо тусламж хэрэгтэй юу? Ганцаарчилсан хичээл" },
-  eshLive: { en: "Explore the ЭЕШ hub — live now", mn: "ЭЕШ төвийг үзэх — нээлттэй" },
+  eshLive: { en: "Explore the ЭШ hub — live now", mn: "ЭШ төвийг үзэх — нээлттэй" },
 } satisfies Record<string, Bi>;
 
 export default function ComingSoonHub({ slug }: { slug: HubKey }) {

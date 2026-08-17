@@ -13,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Mongol Potential",
     short_name: "Mongol Potential",
     description:
-      "World-class math education for Mongolian students — courses, interactive lessons, and ЭЕШ/SAT/IB practice.",
+      "World-class math education for Mongolian students — courses, interactive lessons, and ЭШ/SAT/IB practice.",
     start_url: "/",
     scope: "/",
     display: "standalone",

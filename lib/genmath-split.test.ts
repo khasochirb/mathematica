@@ -96,7 +96,7 @@ describe("per-course data modules keep the corpus split", () => {
   // course's corpus; pages import their own course's module so webpack chunks
   // the corpus per course instead of shipping one ~10 MB registry chunk. The
   // aggregator (lib/genmath-lessons.ts) still imports everything — it exists
-  // for the genuinely cross-course consumers (ЭЕШ/SAT curation, cross-grade
+  // for the genuinely cross-course consumers (ЭШ/SAT curation, cross-grade
   // slug lookup, dashboard lesson totals) and the server shells that pass
   // plain props.
   const DATA_DIR = path.join(ROOT, "lib/genmath-data");

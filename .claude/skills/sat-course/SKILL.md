@@ -105,7 +105,7 @@ tutor:
 
 - Every attempt (drill or mock) records `{questionId, tag, difficulty,
   isCorrect, timeSpent, source: "drill" | "test"}` through the same
-  attempts pipeline as ЭЕШ (`lib/use-performance.ts` model).
+  attempts pipeline as ЭШ (`lib/use-performance.ts` model).
 - Mastery, weak-tag detection, and re-drill routing follow
   `performance-analytics` — the course's job is only to keep tags
   accurate and drill pools deep enough (≥5 questions per tag per

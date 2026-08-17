@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Practice-test verification gate (ЭЕШ / SAT / IB).
+Practice-test verification gate (ЭШ / SAT / IB).
 
 Companion to the authoring skills in .claude/skills/practice-test-authoring/
 (core manual) + esh-practice-test / sat-practice-test / ib-practice-test.
@@ -153,7 +153,7 @@ def letter_balance(label: str, answers: list[str], letters: str, strict: bool) -
             warn(f"{label}: run of 4+ consecutive answer letter {b!r}", strict)
 
 
-# ─── ЭЕШ Section 1 ─────────────────────────────────────────────────────
+# ─── ЭШ Section 1 ─────────────────────────────────────────────────────
 
 # Hard fields break the product if absent; soft fields are metadata some
 # legacy files miss (warn by default, error with --strict).
@@ -226,7 +226,7 @@ def check_esh_s1(path: Path, data, strict: bool) -> None:
     letter_balance(name, answers, "ABCDE", strict)
 
 
-# ─── ЭЕШ Section 2 ─────────────────────────────────────────────────────
+# ─── ЭШ Section 2 ─────────────────────────────────────────────────────
 
 ESH_S2_REQUIRED = ("source", "test", "section", "problem", "subproblem",
                    "type", "context", "instruction", "slots", "points",

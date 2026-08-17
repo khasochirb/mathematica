@@ -105,7 +105,7 @@ describe("classifyRowProbe — the sentinel shape for SEED migrations", () => {
     expect(classifyRowProbe(null, 184, 150).observed).toBeUndefined();
   });
 
-  it("the 011 sentinel counts rows, scoped to the ЭЕШ hub", () => {
+  it("the 011 sentinel counts rows, scoped to the ЭШ hub", () => {
     const s = MIGRATION_SENTINELS.find((x) => x.key === "migration_011_seed_esh_graph")!;
     expect(s.expectRows).toBeDefined();
     // 'eysh', matching the CHECK constraint in migration 010. A sentinel on

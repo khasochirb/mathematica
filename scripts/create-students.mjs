@@ -23,7 +23,7 @@
  *
  * Roster entry fields (see scripts/students-roster.example.json):
  *   displayName  required   Shown in the app greeting.
- *   grade        required   "6".."12" or a track like "ЭЕШ" / "SAT" / "IB".
+ *   grade        required   "6".."12" or a track like "ЭШ" / "SAT" / "IB".
  *   focus        optional   Human label, e.g. "Geometry · circles".
  *   focusHref    optional   In-app link for the "Focus on this" shortcut.
  *   username     optional   Defaults to a slug of displayName (+ number if taken).

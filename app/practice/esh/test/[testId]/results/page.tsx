@@ -182,7 +182,7 @@ export default function TestResultsPage() {
   const duration = session.completedAt ? session.completedAt - session.startedAt : 0;
 
   // Integrated overall score across Section 1 (MCQ) + Section 2 (fill-ins).
-  // Official ЭЕШ scoring: 72 pts max from Section 1 (2 pts × 36 MCQs) + 28 pts
+  // Official ЭШ scoring: 72 pts max from Section 1 (2 pts × 36 MCQs) + 28 pts
   // max from Section 2 (4 problems @ 7 pts) = 100 pts total. For tests without
   // Section 2 (legacy 1A-7B), the headline falls back to 72-max framing.
   const section1Earned = score.correct * 2;

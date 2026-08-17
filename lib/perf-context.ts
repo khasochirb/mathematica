@@ -4,14 +4,14 @@
 //
 // Rules the whole analytics layer leans on:
 //   - undefined/absent context on an attempt means "esh" (every row written
-//     before contexts existed was ЭЕШ).
-//   - accuracy is NEVER blended across contexts — an ЭЕШ exam MCQ and a
+//     before contexts existed was ЭШ).
+//   - accuracy is NEVER blended across contexts — an ЭШ exam MCQ and a
 //     grade-6 lesson check are incomparable populations. Only additive
 //     activity counts (attempts this week, streaks, XP) may cross contexts.
 
 export const ESH_CONTEXT = "esh";
 
-// The taught ЭЕШ courses at /practice/esh/learn. Kept apart from ESH_CONTEXT
+// The taught ЭШ courses at /practice/esh/learn. Kept apart from ESH_CONTEXT
 // (past papers and topic drills) so neither pollutes the other's accuracy.
 export const ESH_COURSE_CONTEXT = "course:esh";
 
@@ -24,7 +24,7 @@ export const SAT_COURSE_CONTEXT = "course:sat";
 // /math/6/... → "course:grade-6". Non-course paths return null (record
 // nothing rather than guess).
 export function contextFromPathname(pathname: string): string | null {
-  // The ЭЕШ prep courses live inside the exam hub, not under /math. They are
+  // The ЭШ prep courses live inside the exam hub, not under /math. They are
   // course work, not exam practice, so they get their own course context
   // rather than folding into "esh" — accuracy on a taught lesson and accuracy
   // on a past-paper MCQ are not comparable populations.
@@ -64,8 +64,8 @@ export function lessonSlugsFromPathname(
 
 // Student-facing Mongolian name for a context (dashboard section titles).
 export function contextLabel(context: string): string {
-  if (context === ESH_CONTEXT) return "ЭЕШ бэлтгэл";
-  if (context === ESH_COURSE_CONTEXT) return "ЭЕШ курс";
+  if (context === ESH_CONTEXT) return "ЭШ бэлтгэл";
+  if (context === ESH_COURSE_CONTEXT) return "ЭШ курс";
   if (context === SAT_COURSE_CONTEXT) return "SAT курс";
   if (context === "course:geometry") return "Геометр";
   if (context === "course:prob-stats") return "Магадлал ба Статистик";
@@ -120,14 +120,14 @@ export function contextHref(context: string): string | null {
 // deep-dive pages; courses share one report page keyed by query param.
 // The dashboard only ever links, never inlines.
 export function contextProgressHref(context: string): string | null {
-  // ЭЕШ has ONE report, at /analytics; the hub route redirects there.
+  // ЭШ has ONE report, at /analytics; the hub route redirects there.
   if (context === ESH_CONTEXT) return "/analytics";
   // Course-shaped, but it lives in the exam hub — must not fall through to
   // /math/progress?course=esh, which is not a course /math knows about.
   if (context === ESH_COURSE_CONTEXT) return "/analytics";
   if (context === SAT_COURSE_CONTEXT) return "/sat-analytics";
   // Each exam hub has ONE analytics report; the hub's /progress route
-  // redirects to it. Same rule as ЭЕШ above.
+  // redirects to it. Same rule as ЭШ above.
   if (context === "sat") return "/sat-analytics";
   if (context === "ib") return "/ib-analytics";
   if (context.startsWith("course:") && contextHref(context)) {

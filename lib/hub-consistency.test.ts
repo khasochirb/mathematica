@@ -2,22 +2,22 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 
-// STANDING OWNER REQUIREMENT, direction corrected 2026-08-01: the ЭЕШ hub's
+// STANDING OWNER REQUIREMENT, direction corrected 2026-08-01: the ЭШ hub's
 // ORIGINAL design is the reference, and SAT and IB are built to match IT —
 // wide shell, bordered stats header, accent progress banner, 2×2 icon action
-// cards (components/hub/HubKit.tsx). An earlier pass flattened ЭЕШ into a
+// cards (components/hub/HubKit.tsx). An earlier pass flattened ЭШ into a
 // simpler row-link style instead; the owner rejected that. This test keeps
 // all three hubs on the kit and keeps the reference direction honest.
 
 const ROOT = path.resolve(__dirname, "..");
 
 const HUBS = [
-  { name: "ЭЕШ", file: "app/practice/esh/page.tsx" },
+  { name: "ЭШ", file: "app/practice/esh/page.tsx" },
   { name: "SAT", file: "app/practice/sat/page.tsx" },
   { name: "IB", file: "app/practice/ib/page.tsx" },
 ];
 
-describe("hub landing pages share the ЭЕШ design idiom", () => {
+describe("hub landing pages share the ЭШ design idiom", () => {
   for (const hub of HUBS) {
     const src = fs.readFileSync(path.join(ROOT, hub.file), "utf8");
 
@@ -36,9 +36,9 @@ describe("hub landing pages share the ЭЕШ design idiom", () => {
     });
   }
 
-  it("the kit itself keeps the ЭЕШ dimensions (wide shell, card grid)", () => {
+  it("the kit itself keeps the ЭШ dimensions (wide shell, card grid)", () => {
     const kit = fs.readFileSync(path.join(ROOT, "components/hub/HubKit.tsx"), "utf8");
-    expect(kit, "HubShell must stay max-w-5xl (the ЭЕШ width)").toContain("max-w-5xl");
+    expect(kit, "HubShell must stay max-w-5xl (the ЭШ width)").toContain("max-w-5xl");
     expect(kit, "action grid must stay the 2-col card grid").toContain("sm:grid-cols-2");
   });
 
@@ -59,7 +59,7 @@ describe("hub landing pages share the ЭЕШ design idiom", () => {
 
   it("no course lesson surface mounts the AI tutor", () => {
     // Owner decision 2026-08-01: the AI explains missed EXAM problems (the
-    // ЭЕШ RefinementLoop) and routes to practice — it does not chat inside
+    // ЭШ RefinementLoop) and routes to practice — it does not chat inside
     // course lessons. LessonPlayer must stay tutor-free.
     const player = fs.readFileSync(
       path.join(ROOT, "components/genmath/interactive/LessonPlayer.tsx"),

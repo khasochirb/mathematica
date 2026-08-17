@@ -6,7 +6,7 @@ description: >
   minimum-sample honesty rules, and report formats for students, parents,
   and the owner. Read before building any dashboard, recommendation,
   progress report, or analytics feature, and when interpreting a student's
-  data for any hub (ЭЕШ, SAT, IB, Courses).
+  data for any hub (ЭШ, SAT, IB, Courses).
 ---
 
 # Performance Analytics — Operating Manual
@@ -71,7 +71,7 @@ Per (student, primary tag):
 - ≥5 attempts (the drill-pool minimum, not a coincidence): full
   reporting.
 - Weak-skill RANKING (what the dashboard headlines) additionally
-  requires ≥2 misses — one bad click is noise (mirrors the ЭЕШ
+  requires ≥2 misses — one bad click is noise (mirrors the ЭШ
   auto-trigger "≥2 missed" rule).
 - Aggregates roll up honestly: a unit's mastery = attempt-weighted
   mean of its tags' data, and a unit with half its tags at "not enough
@@ -121,12 +121,12 @@ gaps (weak tags whose drill pools are thin = authoring priorities).
 ## Known blind spot: untimed attempt rows
 
 `attempts.time_spent_seconds` is wired everywhere a question owns its own
-screen (both test runners, the ЭЕШ drill, the refinement loop, the
+screen (both test runners, the ЭШ drill, the refinement loop, the
 similar-questions panel, both lesson surfaces — lib/question-clock.ts).
 
 Two surfaces deliberately write NULL, because one screen there produces
 several attempt rows and any per-row number would be a guess:
-  - **ЭЕШ Section 2** — one screen holds several sub-answers;
+  - **ЭШ Section 2** — one screen holds several sub-answers;
   - **IB papers** — rows come from a self-MARKING pass, which is not
     thinking time at all.
 

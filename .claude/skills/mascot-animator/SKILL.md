@@ -30,7 +30,7 @@ its bytes and its milliseconds.
 | Loading over 400ms | idle bounce | suspense | loop until loaded |
 
 Anti-placements (never): during problem reading, next to KaTeX being
-studied, over figure diagrams, during test-mode timed sections (ЭЕШ/SAT
+studied, over figure diagrams, during test-mode timed sections (ЭШ/SAT
 mock exams get ZERO mascot — exam mode is sacred), or any autoplaying
 loop beside body text.
 

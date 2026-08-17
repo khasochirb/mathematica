@@ -1,6 +1,6 @@
 "use client";
 
-// Readiness advisory for the ЭЕШ prep courses.
+// Readiness advisory for the ЭШ prep courses.
 //
 // The prep courses are pitched at a student already scoring ~650/800
 // (lib/esh-course.ts, ESH_COURSE_READY_SCORE). A student projecting below
@@ -43,7 +43,7 @@ export default function EshLevelAdvisor() {
         <Compass className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--accent)" }} />
         <p className="text-[13px] leading-relaxed" style={{ color: "var(--fg-1)" }}>
           Эдгээр курс ~{ESH_COURSE_READY_SCORE}+/800 оноотой сурагчид зориулагдсан. Түвшнээ мэдэхийн тулд
-          эхлээд нэг жинхэнэ ЭЕШ тест бодоорой —{" "}
+          эхлээд нэг жинхэнэ ЭШ тест бодоорой —{" "}
           <Link href="/practice/esh/test?type=previous" className="underline underline-offset-2" style={{ color: "var(--accent)" }}>
             тест сонгох
           </Link>

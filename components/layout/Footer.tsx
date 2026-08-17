@@ -5,9 +5,9 @@ import LogoLockup from "@/components/layout/LogoLockup";
 
 const links = {
   Programs: [
-    { label: "ЭЕШ Hub", href: "/practice/esh" },
+    { label: "ЭШ Hub", href: "/practice/esh" },
     { label: "Previous Year Tests", href: "/practice/esh/test?type=previous" },
-    { label: "ЭЕШ Study by Topic", href: "/practice/esh/topics" },
+    { label: "ЭШ Study by Topic", href: "/practice/esh/topics" },
     { label: "Courses", href: "/math" },
     { label: "Practice by Topic", href: "/practice/esh/practice" },
     { label: "1-on-1 Tutoring", href: "/tutoring" },
@@ -73,7 +73,7 @@ export default function Footer() {
               className="text-sm leading-relaxed mb-5"
               style={{ color: "var(--fg-2)" }}
             >
-              ЭЕШ exam prep and world-class math education for Mongolian students everywhere.
+              ЭШ exam prep and world-class math education for Mongolian students everywhere.
             </p>
             <div className="space-y-2 mb-6">
               <div className="eyebrow">Contact</div>

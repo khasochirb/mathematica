@@ -1,6 +1,6 @@
 "use client";
 
-// ЭЕШ Study by Topic — the public map of the exam's mathematics.
+// ЭШ Study by Topic — the public map of the exam's mathematics.
 //
 // FIVE MAIN TOPICS (the ministry's strands, lib/esh-questions ESH_DOMAINS),
 // each opening into its subtopic courses. Until 2026-08-12 this page was a
@@ -59,7 +59,7 @@ export default function TopicsPage() {
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
-        <div className="eyebrow mb-3">{t("ЭЕШ Topics · Math", "ЭЕШ Сэдвүүд · Математик")}</div>
+        <div className="eyebrow mb-3">{t("ЭШ Topics · Math", "ЭШ Сэдвүүд · Математик")}</div>
         <h1
           className="serif"
           style={{

@@ -1,7 +1,7 @@
 // The single inventory of everything this product stores about a student,
 // and the only correct way to delete any of it.
 //
-// Why this module exists: the "clear my data" button on the ЭЕШ progress page
+// Why this module exists: the "clear my data" button on the ЭШ progress page
 // used to call three unrelated clears — one of which (the attempts table)
 // holds EVERY hub's work, and none of which touched the SAT/IB run state, the
 // problem-bank mastery, or the placement results. Pressing it wiped SAT and IB
@@ -152,7 +152,7 @@ export function attemptDeleteFilter(scope: EraseScope): AttemptDeleteFilter {
     case "courses":
       return { kind: "prefix", prefix: "course:" };
     case "esh":
-      // ЭЕШ owns the context-less rows written before the column existed
+      // ЭШ owns the context-less rows written before the column existed
       // (see lib/perf-context.ts); without the NULL branch the oldest
       // attempts would be undeletable.
       return { kind: "in-or-null", contexts: ["esh"] };
@@ -165,7 +165,7 @@ export function attemptDeleteFilter(scope: EraseScope): AttemptDeleteFilter {
 
 /**
  * Scopes whose erase must also take the student's Section 2 (fill-in) rows.
- * Section 2 exists only in the ЭЕШ exam, so an ЭЕШ or full erase owns it.
+ * Section 2 exists only in the ЭШ exam, so an ЭШ or full erase owns it.
  *
  * These rows have never had a DELETE policy (migration 006 — "attempts are
  * immutable"), so the old client-side erase could not touch them at all: an
@@ -186,7 +186,7 @@ export function eraseTakesSection2(scope: EraseScope): boolean {
  * module comment above exists to prevent. "Erase everything" has no such
  * ambiguity, so it takes them all.
  *
- * If the loop is ever offered outside ЭЕШ, give the table a `context` column
+ * If the loop is ever offered outside ЭШ, give the table a `context` column
  * and scope this the way attempts are scoped.
  */
 export function eraseTakesRefinementLoops(scope: EraseScope): boolean {
@@ -222,8 +222,8 @@ interface StoreSpec {
 // scope, so it is filtered in place rather than removed (see usePerformance's
 // clearScope). Removing the key would delete the other hubs' work.
 export const LOCAL_STORES: StoreSpec[] = [
-  // ЭЕШ
-  { scope: "esh", key: "esh-test-sessions", what: "ЭЕШ тестийн сессүүд" },
+  // ЭШ
+  { scope: "esh", key: "esh-test-sessions", what: "ЭШ тестийн сессүүд" },
   { scope: "esh", key: "esh-flagged-questions", what: "тэмдэглэсэн бодлогууд" },
   { scope: "esh", key: "mongol-potential-section2-queue", what: "илгээгээгүй 2-р хэсгийн хариултууд" },
   // SAT — a finished paper lives in its run state, which is why a paper the

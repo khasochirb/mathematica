@@ -46,7 +46,7 @@ each student gets a personalized start with full access to the whole site.
    | field | required | notes |
    |---|---|---|
    | `displayName` | yes | Shown in the app greeting |
-   | `grade` | yes | `"6"`..`"12"` or a track like `"ЭЕШ"`, `"SAT"`, `"IB"` |
+   | `grade` | yes | `"6"`..`"12"` or a track like `"ЭШ"`, `"SAT"`, `"IB"` |
    | `focus` | no | Human label, e.g. `"Geometry · circles"` |
    | `focusHref` | no | In-app link for the shortcut, e.g. `"/math/geometry"` |
    | `username` | no | Defaults to a slug of the name |

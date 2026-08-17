@@ -6,7 +6,7 @@
 // and to the tab's visibility.
 //
 // Which one to use:
-//   useQuestionTimers()   navigable test runners (ЭЕШ, SAT): a question's
+//   useQuestionTimers()   navigable test runners (ЭШ, SAT): a question's
 //                         time is the sum of its visits, read at submit.
 //   useLapTimer(key)      worksheet screens showing several questions at
 //                         once (refinement loop sets, similar-questions

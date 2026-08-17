@@ -316,7 +316,7 @@
       "objective": "Count all subsets, proper subsets, and subsets constrained to contain or avoid particular elements.",
       "concept": [
         "Each element of an $n$-element set is either IN a subset or OUT — $n$ independent binary choices, so there are $2^n$ subsets in total. The count includes $\\varnothing$ (all switches off) and $A$ itself (all on).",
-        "A **proper subset** excludes $A$ itself, leaving $2^n - 1$. Some texts also exclude $\\varnothing$; ЭЕШ items say explicitly which is meant — read the stem.",
+        "A **proper subset** excludes $A$ itself, leaving $2^n - 1$. Some texts also exclude $\\varnothing$; ЭШ items say explicitly which is meant — read the stem.",
         "Constraints pin switches: subsets that MUST contain a given element leave $n-1$ free choices, so $2^{n-1}$ of them; must-contain-two leaves $2^{n-2}$. Subsets avoiding an element are the subsets of the other $n-1$ elements — also $2^{n-1}$. Pin the forced switches, count the free ones."
       ],
       "keyIdea": "Subsets are binary choices: $2^n$ total, and every constraint just pins switches — count $2^{\\text{free}}$.",

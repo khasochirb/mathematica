@@ -24,14 +24,14 @@ import LogoLockup from "@/components/layout/LogoLockup";
 
 // Curriculum hubs shown in the Resources menu.
 //
-// Phase 0 collapsed this to ЭЕШ · SAT and dropped the Resources dropdown.
+// Phase 0 collapsed this to ЭШ · SAT and dropped the Resources dropdown.
 // The owner reversed that on 2026-08-17: students were using the courses,
 // and IB was wanted back. Every file had stayed in place, so restoring them
 // was deleting lines from data/unpublished-routes.json.
 //
 // `live` is not decoration — it is checked against what is actually behind
 // the link, so the menu never promises a product that isn't there:
-//   ЭЕШ  real hub, the reference implementation
+//   ЭШ  real hub, the reference implementation
 //   SAT  real hub with content
 //   IB   real hub (app/practice/ib) over three courses that each carry
 //        content — /math/ib-sl, /math/ib-hl, /math/ib-ai-sl
@@ -39,7 +39,7 @@ import LogoLockup from "@/components/layout/LogoLockup";
 //        so it keeps the "Soon" badge and a real notify page, exactly as it
 //        had before Phase 0. Promote it the day AP has lessons.
 const mathHubs = [
-  { en: "ЭЕШ Hub", mn: "ЭЕШ төв", href: "/practice/esh", live: true },
+  { en: "ЭШ Hub", mn: "ЭШ төв", href: "/practice/esh", live: true },
   { en: "SAT Math Hub", mn: "SAT Math төв", href: "/practice/sat", live: true },
   { en: "IB Math Hub", mn: "IB Math төв", href: "/practice/ib", live: true },
   { en: "AP Calculus Hub", mn: "AP Calculus төв", href: "/practice/ap", live: false },
@@ -338,7 +338,7 @@ export default function Header() {
 
   const nav = {
     home: lang === "mn" ? "Нүүр" : "Home",
-    esh: "ЭЕШ",
+    esh: "ЭШ",
     dashboard: lang === "mn" ? "Хяналтын самбар" : "Dashboard",
     tutoring: lang === "mn" ? "Ганцаарчилсан хичээл" : "1-on-1 Tutoring",
     resources: lang === "mn" ? "Эх сурвалж" : "Resources",
@@ -353,7 +353,7 @@ export default function Header() {
   const onPath = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
   const onAnyPath = (hrefs: string[]) => hrefs.some(onPath);
-  // Resources groups the math hubs (ЭЕШ + SAT/IB/AP) and Courses.
+  // Resources groups the math hubs (ЭШ + SAT/IB/AP) and Courses.
   const resourcesActive = onAnyPath([
     "/math",
     "/practice/esh",

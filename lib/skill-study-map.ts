@@ -3,7 +3,7 @@
 // exam-study-map routes a weak TOPIC (probability, geometry, ...) to course
 // units. This map routes a weak SKILL (geometric_probability,
 // matrix_inverse, ...) to the exact LESSONS that teach it — possible now
-// that every one of the 1,484 ЭЕШ questions carries a skill_tag.
+// that every one of the 1,484 ЭШ questions carries a skill_tag.
 //
 // Contract, enforced by scripts/verify-skill-study-map.test.ts:
 //   - every skill_tag appearing in data/questions/*.json has an entry here

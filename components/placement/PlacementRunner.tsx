@@ -353,7 +353,7 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
 
       <p className="mt-4 text-[13px]" style={{ color: "var(--fg-3)" }}>
         On your dashboard this placement rates a skill up to 90 — real mocks
-        (ЭЕШ, IB, SAT) and unit tests are what push it beyond. Retakes draw a
+        (ЭШ, IB, SAT) and unit tests are what push it beyond. Retakes draw a
         fresh mix of questions.
       </p>
 

@@ -254,8 +254,8 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
         mn: "AI багш — өдөрт 30 асуулт (үнэгүй эрхэд 3)",
       },
       {
-        en: "Additional ЭЕШ practice tests by experienced teachers, with full solutions",
-        mn: "Туршлагатай багш нарын зохиосон нэмэлт ЭЕШ дадлага тестүүд, бүрэн бодолттой",
+        en: "Additional ЭШ practice tests by experienced teachers, with full solutions",
+        mn: "Туршлагатай багш нарын зохиосон нэмэлт ЭШ дадлага тестүүд, бүрэн бодолттой",
       },
     ],
     [],

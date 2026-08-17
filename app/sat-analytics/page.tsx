@@ -1,6 +1,6 @@
 import HubProgress from "@/components/hub/HubProgress";
 
-// The SAT analytics report — same design as the ЭЕШ report at /analytics:
+// The SAT analytics report — same design as the ЭШ report at /analytics:
 // projected score from recent sittings, trajectory graph, domain mastery,
 // per-question sitting review, recent attempts, and the mistake bank.
 export default function SatAnalyticsPage() {

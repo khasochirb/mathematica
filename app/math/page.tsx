@@ -37,12 +37,12 @@ const TOPIC_COUNTS: Record<number, number> = {
 
 // Transition grades (owner's structure diagram, 2026-07-31): the final grade
 // of each school band, when families switch schools and prep for competitive
-// entrance tests. 12th is served by the ЭЕШ hub; the badge makes the moment
+// entrance tests. 12th is served by the ЭШ hub; the badge makes the moment
 // visible on the catalog.
 const TRANSITION: Record<number, string> = {
   5: "Transition year — school entrance",
   9: "Transition year — high-school entrance",
-  12: "Transition year — ЭЕШ",
+  12: "Transition year — ЭШ",
 };
 
 type CourseCardDef = {
@@ -59,9 +59,9 @@ type CourseCardDef = {
 };
 
 // The topic ladder, easiest first. One course serves every exam — instead of
-// per-exam duplicates ("Algebra ЭЕШ level"), each card carries a level (1–3)
+// per-exam duplicates ("Algebra ЭШ level"), each card carries a level (1–3)
 // and chips for the exams it prepares. This is the shared "Study by topic"
-// destination the ЭЕШ/SAT/IB hubs link to (/math#topics); per the resource
+// destination the ЭШ/SAT/IB hubs link to (/math#topics); per the resource
 // blueprint these named topic courses LIVE inside the High school band.
 const TOPIC_COURSES: CourseCardDef[] = [
   {
@@ -71,7 +71,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "Expressions, equations, inequalities, functions, lines, systems, factoring, and quadratics — the whole first course.",
     units: 8,
     level: 1,
-    exams: ["ЭЕШ", "SAT"],
+    exams: ["ЭШ", "SAT"],
   },
   {
     href: "/math/geometry",
@@ -80,7 +80,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "From points and lines to proof, circles, and trigonometry — taught from zero, one continuous track.",
     units: 13,
     level: 2,
-    exams: ["ЭЕШ", "SAT"],
+    exams: ["ЭШ", "SAT"],
   },
   {
     href: "/math/trigonometry",
@@ -89,7 +89,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "Right-triangle ratios, the special triangles, the unit circle and its waves, identities — and the laws that solve any triangle. A diagram at nearly every step.",
     units: 6,
     level: 2,
-    exams: ["ЭЕШ", "SAT", "IB"],
+    exams: ["ЭШ", "SAT", "IB"],
     isNew: true,
   },
   {
@@ -99,7 +99,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "Geometry 2, off the page: lines and planes in space, prisms to spheres, cross-sections, and the k-k²-k³ scaling law — every 3D problem reduced to a flat triangle you can see.",
     units: 6,
     level: 2,
-    exams: ["ЭЕШ", "SAT", "IB"],
+    exams: ["ЭШ", "SAT", "IB"],
     isNew: true,
   },
   {
@@ -109,7 +109,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "Transformations, complex numbers, polynomials, radicals, exponentials and logs, rationals, and sequences — the bridge to precalculus.",
     units: 8,
     level: 2,
-    exams: ["ЭЕШ", "SAT", "IB"],
+    exams: ["ЭШ", "SAT", "IB"],
     isNew: true,
   },
   {
@@ -119,7 +119,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "Count first, then measure chance, then read data honestly — one continuous track in three acts.",
     units: 12,
     level: 2,
-    exams: ["ЭЕШ", "SAT", "IB"],
+    exams: ["ЭШ", "SAT", "IB"],
   },
   {
     href: "/math/precalculus",
@@ -128,7 +128,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "The bridge to calculus, graph-first: transformations, polynomials, rationals, exponentials and logs, the unit circle, trig waves, and conics.",
     units: 8,
     level: 3,
-    exams: ["ЭЕШ", "IB"],
+    exams: ["ЭШ", "IB"],
   },
   {
     href: "/math/vectors-matrices",
@@ -137,7 +137,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "Arrows made of numbers, then the grids that move them — components, dot products, space, determinants, inverses.",
     units: 6,
     level: 3,
-    exams: ["ЭЕШ", "IB"],
+    exams: ["ЭШ", "IB"],
   },
   {
     href: "/math/calculus",
@@ -146,7 +146,7 @@ const TOPIC_COURSES: CourseCardDef[] = [
       "The mathematics of change: limits, derivatives and optimization, integrals and the Fundamental Theorem — the ladder's capstone.",
     units: 6,
     level: 3,
-    exams: ["ЭЕШ", "IB"],
+    exams: ["ЭШ", "IB"],
     isNew: true,
   },
 ];
@@ -213,7 +213,7 @@ function TransitionChip({ grade }: { grade: number }) {
         letterSpacing: "0.06em",
       }}
     >
-      {grade === 12 ? "ЭЕШ year" : "Entrance year"}
+      {grade === 12 ? "ЭШ year" : "Entrance year"}
     </span>
   );
 }
@@ -413,7 +413,7 @@ export default function MathLandingPage() {
         <p className="mt-4 mb-10" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
           Find your <strong>school band</strong> below — Primary, Mid school or
           High school on the Mongol curriculum — or take the Integrated Math
-          pathway beside them. Preparing for ЭЕШ, SAT or IB? Those have their
+          pathway beside them. Preparing for ЭШ, SAT or IB? Those have their
           own hubs.
         </p>
 
@@ -490,7 +490,7 @@ export default function MathLandingPage() {
           <div className="eyebrow mb-1.5">High school · Mongol curriculum</div>
           <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
             Grades 10–12 year by year — and the full topic courses that live in
-            this band. Grade 12 is the ЭЕШ year; the ЭЕШ hub has the exam prep.
+            this band. Grade 12 is the ЭШ year; the ЭШ hub has the exam prep.
           </p>
           <BandPlacementCard
             href="/math/placement/high"
@@ -503,7 +503,7 @@ export default function MathLandingPage() {
           </div>
           <BandExamCard
             href="/math/12/exam"
-            body="Finish the band with a full Grade 12 exam — three papers, every topic represented, the same map ЭЕШ prep starts from."
+            body="Finish the band with a full Grade 12 exam — three papers, every topic represented, the same map ЭШ prep starts from."
           />
 
           {/* `#topics` stays on the topic-course catalog so the exam hubs'

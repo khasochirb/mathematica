@@ -10,7 +10,7 @@ description: >
 
 # Mongolian Translation — Operating Manual
 
-Mongolian is half the product: ЭЕШ prep is Mongolian-first, and General
+Mongolian is half the product: ЭШ prep is Mongolian-first, and General
 Math mirrors serve students who learn better in their own language.
 Status: Grades 6, 7, 8 fully mirrored; Grades 9–12 and Geometry pending.
 

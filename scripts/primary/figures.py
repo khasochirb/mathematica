@@ -33,7 +33,7 @@ def withfig(item, figure):
     `figure`.
 
     NOT for practice/testYourself bank problems: those render through
-    RevealProblemCard, whose `figure` field is the ЭЕШ hub's image type.
+    RevealProblemCard, whose `figure` field is the ЭШ hub's image type.
     Use withprobfig() there. check_grade3/4 fails the build either way, so
     a figure can never again be authored somewhere nothing draws it."""
     assert isinstance(item, dict) and figure, "withfig: bad arguments"
@@ -44,7 +44,7 @@ def withprobfig(problem, figure):
     """Attach a figure to a practice/testYourself bank problem.
 
     Writes `courseFigure`, which RevealProblemCard renders with RatioFigure.
-    The plain `figure` key is the ЭЕШ image shape (src/width/height) and a
+    The plain `figure` key is the ЭШ image shape (src/width/height) and a
     genmath spec placed there draws nothing at all."""
     assert isinstance(problem, dict) and figure, "withprobfig: bad arguments"
     assert "statement" in problem, "withprobfig: not a bank problem"

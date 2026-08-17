@@ -1,4 +1,4 @@
-// Hub-agnostic lesson rendering types. Shared by the ЭЕШ hub (question-bank-backed)
+// Hub-agnostic lesson rendering types. Shared by the ЭШ hub (question-bank-backed)
 // and the Courses hub (authored-inline). Components in components/lesson/ render
 // these shapes; each hub maps its own data into them. This is the seam that lets both
 // hubs reuse one lesson system without one depending on the other.
@@ -18,7 +18,7 @@ export interface LessonProblemBadge {
 
 // A worked example or practice/test problem, normalized across hubs.
 export interface LessonProblem {
-  id: string; // unique key: ЭЕШ question source, or an authored id
+  id: string; // unique key: ЭШ question source, or an authored id
   statement: string; // problem body (MathText: $...$, $$...$$, **bold**)
   solution: string; // worked solution (MathText)
   note?: string; // optional teaching note shown before the solution
@@ -31,7 +31,7 @@ export interface LessonProblem {
   // A declarative genmath figure (groups / fraction bar / number line / geo)
   // rendered by RatioFigure — the same spec the interactive player draws.
   //
-  // Deliberately NOT `figure` above: that field is the ЭЕШ hub's IMAGE
+  // Deliberately NOT `figure` above: that field is the ЭШ hub's IMAGE
   // (src/width/height), and a genmath spec put there renders as a broken
   // <img>. The primary-band builders wrote practice-bank figures into it for
   // months and every one was invisible, which left statements like "the
@@ -39,7 +39,7 @@ export interface LessonProblem {
   courseFigure?: import("@/lib/genmath-interactive").FigureSpec;
   // Sympy-verifiable boolean expressions. Each must evaluate True. Required for
   // every authored (Courses) problem — enforced by scripts/verify-genmath.py.
-  // Not used by ЭЕШ (bank-backed) problems.
+  // Not used by ЭШ (bank-backed) problems.
   check?: string[];
 }
 

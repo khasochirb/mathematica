@@ -42,7 +42,7 @@ function hrefExists(href: string): boolean {
 }
 
 describe("exam study map", () => {
-  it("every canonical ЭЕШ topic except 'other' has a study target", () => {
+  it("every canonical ЭШ topic except 'other' has a study target", () => {
     for (const key of Object.keys(TOPIC_LABELS)) {
       if (key === "other") continue;
       expect(getStudyTarget(key), `missing study target for topic "${key}"`).not.toBeNull();

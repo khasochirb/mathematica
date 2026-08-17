@@ -2,15 +2,15 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-// THE hub design system — and the direction matters: the ЭЕШ hub's original
+// THE hub design system — and the direction matters: the ЭШ hub's original
 // design is the REFERENCE (owner, 2026-08-01: "make SAT and IB hubs like the
-// old ЭЕШ design"). These primitives are extracted from that page so SAT and
+// old ЭШ design"). These primitives are extracted from that page so SAT and
 // IB render in its idiom — wide shell, bordered stats header, accent
 // progress banner, 2×2 icon action cards. Never the reverse: do not flatten
-// the ЭЕШ hub to fit a simpler kit.
+// the ЭШ hub to fit a simpler kit.
 //
-// Content language stays a HUB property (ЭЕШ Mongolian, SAT/IB English) —
-// the kit carries no copy. Server-safe: no hooks; client hubs (ЭЕШ) can
+// Content language stays a HUB property (ЭШ Mongolian, SAT/IB English) —
+// the kit carries no copy. Server-safe: no hooks; client hubs (ЭШ) can
 // pass live values as props/children.
 
 export function HubShell({ children }: { children: React.ReactNode }) {
@@ -22,7 +22,7 @@ export function HubShell({ children }: { children: React.ReactNode }) {
 }
 
 // Bordered header: eyebrow · big serif title · mono stats line, with an
-// optional right-side block (the ЭЕШ hub puts the live average there).
+// optional right-side block (the ЭШ hub puts the live average there).
 export function HubHeader({
   eyebrow,
   title,

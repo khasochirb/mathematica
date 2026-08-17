@@ -25,7 +25,7 @@
 //
 // Deletion must also be COMPLETE — the module comment in lib/data-erase.ts
 // explains why a partial wipe is worse than none: the leftovers keep scoring.
-// So an ЭЕШ or full erase also takes section2_attempts, and a full erase
+// So an ЭШ or full erase also takes section2_attempts, and a full erase
 // takes refinement_loop_sessions. Neither was reachable from the old client
 // erase — section2_attempts has had no DELETE policy since migration 006, so
 // "erase everything" left a student's graded Section 2 answers standing on

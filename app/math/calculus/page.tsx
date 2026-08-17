@@ -9,7 +9,7 @@ import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
 // The Calculus course hub — the capstone of the topic ladder: limits,
 // derivatives and their applications, integrals and theirs, ending at the
-// Fundamental Theorem in action. The full ЭЕШ calculus scope (and IB core).
+// Fundamental Theorem in action. The full ЭШ calculus scope (and IB core).
 export default function CalcCoursePage() {
   const spine = getCalcSpine();
 

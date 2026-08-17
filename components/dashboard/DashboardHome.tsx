@@ -49,7 +49,7 @@ const i18n = {
   },
 
   // Unified module cards — one vocabulary for every section of the platform
-  // (courses, ЭЕШ, SAT, IB) so the dashboard reads the same no matter what
+  // (courses, ЭШ, SAT, IB) so the dashboard reads the same no matter what
   // mix a student is working on.
   continue_p: {
     en: "Pick up where you left off",
@@ -68,7 +68,7 @@ const i18n = {
   weakest_topic: { en: "Weakest topic", mn: "Хамгийн сул сэдэв" },
   focus_btn_master: { en: "Master this topic", mn: "Бүрэн эзэмших" },
   open: { en: "Open", mn: "Нээх" },
-  // One click, one full report page (ЭЕШ → /analytics with the projected
+  // One click, one full report page (ЭШ → /analytics with the projected
   // score and mistake bank; SAT/IB/courses → their progress pages). The
   // report pages carry a history-back button, so returning always lands
   // right back here.
@@ -138,7 +138,7 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
   // (esh, each course, sat, ib), stats computed ONLY from that context's
   // attempts, sorted by most-recent activity. This IS the dashboard: every
   // entry renders as the same module card, so a student mixing courses,
-  // ЭЕШ prep, and SAT sees one uniform, scannable grid — never one section
+  // ЭШ prep, and SAT sees one uniform, scannable grid — never one section
   // dominating the others.
   const contextSummaries = perf.getContextSummaries();
   // Placement results are device-local (localStorage) — load after mount to
@@ -183,7 +183,7 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
   // even if its accuracy still lags (stats trail the actual learning).
   const masteredTopics = useRecentlyMastered();
   const weakTopics = testTopicStats.filter((t) => t.accuracy < 70 && !masteredTopics.has(t.topic));
-  const weakest = weakTopics[0]; // already sorted asc by accuracy — ЭЕШ card only
+  const weakest = weakTopics[0]; // already sorted asc by accuracy — ЭШ card only
 
   const greeting =
     lang === "mn" ? (
@@ -391,7 +391,7 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
             )}
 
             {/* One identical card per module the student works in — course,
-                ЭЕШ, SAT, IB — newest activity first. Same shape everywhere:
+                ЭШ, SAT, IB — newest activity first. Same shape everywhere:
                 what it is, how far along, accuracy, weakest spot, one Open
                 link. Depth lives in each module's own progress page. */}
             <section className="mt-8">
@@ -404,7 +404,7 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
                   const isCourse = s.context.startsWith("course:");
                   const isEsh = s.context === "esh";
                   const openHref = contextHref(s.context) ?? "/math";
-                  // Full report: ЭЕШ → /analytics (projected score, trajectory,
+                  // Full report: ЭШ → /analytics (projected score, trajectory,
                   // mistake bank); SAT/IB/courses → their progress pages.
                   const detailsHref = isEsh
                     ? "/analytics"

@@ -10,7 +10,7 @@
 // test (which starts easy and goes deeper to pinpoint the level). Until then
 // it's "—" and the rest of the dashboard carries the analysis. Exam difficulty
 // is the strictness dial — the same accuracy is worth more on a harder exam, so
-// a 100% on the easy SAT tops out at 80 while a 100% on ЭЕШ/IB (the hard pair,
+// a 100% on the easy SAT tops out at 80 while a 100% on ЭШ/IB (the hard pair,
 // treated the same) can reach 100. Every attribute also carries a ranked,
 // personalized "how to raise this" — each step re-scored against this formula
 // so the "+N points" is honest, pointing only at the units the student actually
@@ -195,7 +195,7 @@ export const UNIT_ATTRIBUTE_OVERRIDES: Record<string, AttributeKey> = {
   "course:ib-ai-sl/calculus": "calculus",
 };
 
-// ЭЕШ canonical topics (lib/esh-questions TOPIC_LABELS) → attribute.
+// ЭШ canonical topics (lib/esh-questions TOPIC_LABELS) → attribute.
 // "other" is unmappable by definition and excluded from exam evidence.
 export const ESH_TOPIC_ATTRIBUTE: Record<string, AttributeKey> = {
   algebra: "algebra",
@@ -399,12 +399,12 @@ export const RATING_CONSTANTS = {
   // Hub-bank practice (SAT). The smallest weight of the four, and the only
   // stream that does not COUNT TOWARDS being rated — see computeRatings.
   W_PRACTICE: 0.12,
-  PLACEMENT_DIFF: 0.9, // a placement is adaptive/accurate but not ЭЕШ-hard:
+  PLACEMENT_DIFF: 0.9, // a placement is adaptive/accurate but not ЭШ-hard:
   // a perfect placement rates ~90, leaving the top reserved for real exams.
 } as const;
 
 // Exam difficulty — the same accuracy is worth more on a harder exam, so the
-// rating a test yields is scaled by its difficulty. ЭЕШ and IB are the hard
+// rating a test yields is scaled by its difficulty. ЭШ and IB are the hard
 // pair (a perfect paper can reach 100); the Digital SAT is the easiest, so
 // even a 100% SAT tops out at 80. This is the "sat is easiest, so 100 on sat
 // should rate lower; eysh and IB should be treated similarly" dial.
@@ -670,7 +670,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
   const unitLesson = new Map<string, DecayedTally>();
   const unitTest = new Map<string, DecayedTally>();
   // Exams also track a difficulty-weighted sum so the attribute score reflects
-  // WHICH exam the evidence came from (ЭЕШ/IB harder than SAT).
+  // WHICH exam the evidence came from (ЭШ/IB harder than SAT).
   const examByAttr = new Map<AttributeKey, { weight: number; correct: number; diffWeight: number }>();
 
   const bump = (map: Map<string, DecayedTally>, key: string, w: number, correct: boolean) => {
@@ -694,7 +694,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
       continue;
     }
 
-    // Exam contexts. Lessons inside an exam hub (ЭЕШ learn pages) are not
+    // Exam contexts. Lessons inside an exam hub (ЭШ learn pages) are not
     // exam evidence.
     if (a.source === "lesson") continue;
     let attr: AttributeKey | undefined;
@@ -997,7 +997,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
 
     // Exam evidence exists but isn't elite or isn't from the hard exams —
     // simulate one more strong mock's worth (24 questions at 90% on an
-    // ЭЕШ/IB-difficulty paper) so the step carries an honest projection.
+    // ЭШ/IB-difficulty paper) so the step carries an honest projection.
     if (examAgg && examAgg.weight > 0) {
       const eAcc = examAgg.correct / examAgg.weight;
       const eDiff = examAgg.diffWeight / examAgg.weight;
@@ -1016,10 +1016,10 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
             kind: "mock-exam",
             href: "/practice/esh/test?type=previous",
             labelEn: harder
-              ? "Score ~90% on a harder mock (ЭЕШ or IB) — the SAT alone tops out at 80"
+              ? "Score ~90% on a harder mock (ЭШ or IB) — the SAT alone tops out at 80"
               : "Score ~90% on your next full mock — recent papers count most",
             labelMn: harder
-              ? "Илүү хүнд шалгалтад (ЭЕШ, IB) ~90% аваарай — SAT дангаараа дээд тал нь 80"
+              ? "Илүү хүнд шалгалтад (ЭШ, IB) ~90% аваарай — SAT дангаараа дээд тал нь 80"
               : "Дараагийн бүтэн шалгалтдаа ~90% аваарай — сүүлийн оролдлого хамгийн их жинтэй",
             projectedScore: proj,
             delta,
@@ -1313,7 +1313,7 @@ export function recommendedUnits(profile: RatingsProfile, context: string): Unit
 }
 
 // ---------------------------------------------------------------------------
-// ЭЕШ severity — "how much help do you need on this topic?" Judged on raw
+// ЭШ severity — "how much help do you need on this topic?" Judged on raw
 // exam ACCURACY (its own thresholds — the 40–100 rating scale does not
 // apply to accuracy percentages). Returns null below the minimum sample
 // (one bad question is noise, not a diagnosis).

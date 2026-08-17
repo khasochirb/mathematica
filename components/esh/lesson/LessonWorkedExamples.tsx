@@ -6,7 +6,7 @@ import type { LessonProblem } from "@/lib/lesson-types";
 
 const TIER_LABEL: Record<string, string> = { easy: "хялбар", medium: "дунд", hard: "хүнд" };
 
-// ЭЕШ adapter: resolves worked examples from the question bank and maps each
+// ЭШ adapter: resolves worked examples from the question bank and maps each
 // into the shared LessonProblem shape, then renders via the shared card.
 export default function LessonWorkedExamples({ lesson }: { lesson: Lesson }) {
   const examples = resolveWorkedExamples(lesson);

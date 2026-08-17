@@ -10,7 +10,7 @@ import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 // The Solid Geometry (stereometry) course hub — Geometry 2: lines & planes
 // in space, then the five solid families (prism, pyramid, cylinder, cone,
 // sphere), cross-sections, similar-solid scaling, and the extract-the-flat-
-// triangle exam strategy. Full ЭЕШ stereometry scope; SAT/IB volume and
+// triangle exam strategy. Full ЭШ stereometry scope; SAT/IB volume and
 // surface questions ride along. A diagram on nearly every step.
 export default function SolidGeoCoursePage() {
   const spine = getSolidGeoSpine();

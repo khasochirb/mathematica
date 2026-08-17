@@ -150,9 +150,9 @@ this paper is here to find out what to teach you, not to rank you.</div>`;
         `</div></div>`;
     }
   }
-  b += `<div class="foot">Mongol Potential · ЭЕШ diagnostic · item text pending Mongolian
+  b += `<div class="foot">Mongol Potential · ЭШ diagnostic · item text pending Mongolian
 authoring (Phase 3)</div>`;
-  return page("ЭЕШ Diagnostic — Question Sheet", b);
+  return page("ЭШ Diagnostic — Question Sheet", b);
 }
 
 // ------------------------------------------------------------- 2. answer key
@@ -188,7 +188,7 @@ guessed — so this table is worth reading before you re-teach anything.</p>`;
     }
     b += `</table>`;
   }
-  return page("ЭЕШ Diagnostic — Answer Key", b);
+  return page("ЭШ Diagnostic — Answer Key", b);
 }
 
 // ----------------------------------------------------------- 3. marking sheet
@@ -253,7 +253,7 @@ results to lean on.</div>
 student per STRAND. They do not give a per-skill profile — for that a student
 needs the adaptive test, which asks a different next question depending on what
 they just did. Do not read a single item as evidence about a single skill.</div>`;
-  return page("ЭЕШ Diagnostic — Marking Sheet", b);
+  return page("ЭШ Diagnostic — Marking Sheet", b);
 }
 
 // -------------------------------------------------------------- 4. entry form
@@ -281,7 +281,7 @@ before resolving the bracket".</div>
 Prob &amp; Stats ☐ &nbsp; Combinatorics ☐</p>
 <div class="foot">Item ids are stable. If the question sheet is regenerated the
 numbers may move but the ids will not, so enter by ID where the two disagree.</div>`;
-  return page("ЭЕШ Diagnostic — Entry Form", b);
+  return page("ЭШ Diagnostic — Entry Form", b);
 }
 
 const DOCS = [

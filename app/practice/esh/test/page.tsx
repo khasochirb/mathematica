@@ -36,12 +36,12 @@ const HEADER_COPY: Record<
     subtitle: "Тест сонгоод шалгалтын горимд бодоорой",
   },
   premium: {
-    eyebrow: "ЭЕШ · Premium",
+    eyebrow: "ЭШ · Premium",
     title: "Дадлага тестүүд",
     subtitle: "Premium · 14 тест",
   },
   previous: {
-    eyebrow: "ЭЕШ · Шалгалт",
+    eyebrow: "ЭШ · Шалгалт",
     title: "Өмнө жилийн тестүүд",
     subtitle: "Шалгалт · 20 тест",
   },

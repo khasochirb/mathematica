@@ -73,7 +73,7 @@ const PROFILES: { name: string; note: string; rows: (now: number) => AttemptReco
   },
   {
     name: "Breadth",
-    note: "Across ЭЕШ, a course and IB — the explorer badge",
+    note: "Across ЭШ, a course and IB — the explorer badge",
     rows: (now) => [
       ...Array.from({ length: 8 }, (_, i) => mk(now - i * 60_000, true, i, "esh", "algebra")),
       ...Array.from({ length: 8 }, (_, i) => mk(now - DAY - i * 60_000, true, 100 + i, "course:geometry", "circles")),

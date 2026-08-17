@@ -38,7 +38,7 @@ BAND_COURSES = [
         "minutes": 45,
         "intro": ("The High school band's exit exam: every Grade 12 topic is "
                   "represented, so the result shows exactly which topics still need "
-                  "another pass — the same map ЭЕШ prep starts from."),
+                  "another pass — the same map ЭШ prep starts from."),
     },
 ]
 

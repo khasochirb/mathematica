@@ -33,7 +33,7 @@ describe("parseTestId / runQuestionLabel", () => {
     expect(parseTestId("SAT-P3-M2H-Q22")).toBe("SAT-P3");
     expect(parseTestId("SAT-P2-M2E-Q01")).toBe("SAT-P2");
   });
-  it("keeps IB paper prefixes and ЭЕШ test keys distinct", () => {
+  it("keeps IB paper prefixes and ЭШ test keys distinct", () => {
     expect(parseTestId("IB-AASL-P1-T2-Q3(a)")).toBe("IB-AASL-P1-T2");
     expect(parseTestId("IB-AASL-P2-T2-Q3(a)")).toBe("IB-AASL-P2-T2");
     expect(parseTestId("Test-2025A-Q12")).toBe("Test-2025A");

@@ -305,7 +305,7 @@ describe("badges", () => {
     expect(computeBadges(e).find((b) => b.slug === "explorer")!.earned).toBe(true);
   });
 
-  it("treats a context-less attempt as ЭЕШ, matching the data model", () => {
+  it("treats a context-less attempt as ЭШ, matching the data model", () => {
     const e = buildEvidence([attempt(1), attempt(2, true, { context: "esh" })], now);
     expect(e.distinctContexts).toBe(1);
   });

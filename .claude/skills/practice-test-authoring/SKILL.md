@@ -1,7 +1,7 @@
 ---
 name: practice-test-authoring
 description: >
-  Core operating manual for generating practice tests (ЭЕШ, SAT, IB) with
+  Core operating manual for generating practice tests (ЭШ, SAT, IB) with
   zero mistakes — questions, solutions, and figures. Read this FIRST, then
   the hub-specific skill (esh-practice-test, sat-practice-test,
   ib-practice-test). Use when authoring, editing, or verifying any practice
@@ -20,7 +20,7 @@ building:
 
 | Hub | Skill | Fidelity target |
 |---|---|---|
-| ЭЕШ (`/practice/esh`) | `.claude/skills/esh-practice-test/SKILL.md` | As rich as the 20 real past papers on the site, same difficulty curve |
+| ЭШ (`/practice/esh`) | `.claude/skills/esh-practice-test/SKILL.md` | As rich as the 20 real past papers on the site, same difficulty curve |
 | SAT (`/practice/sat`) | `.claude/skills/sat-practice-test/SKILL.md` | Indistinguishable in format/difficulty from the real Digital SAT Math section |
 | IB (`/practice/ib`) | `.claude/skills/ib-practice-test/SKILL.md` | Indistinguishable in format/marking from real IB Mathematics papers |
 
@@ -35,7 +35,7 @@ building:
    problems. This is both a copyright requirement and a product decision.
 2. **Content language is a property of the hub, not the user's toggle.**
    (Locked decision, `memory/expansion-vision.md` §4.7.)
-   - ЭЕШ hub: ALL content in Mongolian (problems, options, solutions).
+   - ЭШ hub: ALL content in Mongolian (problems, options, solutions).
    - SAT / IB hubs: ALL content in English — realism is the point.
    - Navigation chrome is what the EN/MN toggle controls, never content.
 3. **No unverified math ships.** Every answer and every numeric claim in
@@ -162,7 +162,7 @@ that must `sympify(...)` to `True`.
 5. No "all/none of the above", no "cannot be determined" (unless the
    real exam uses it — it doesn't, in any of our three hubs).
 6. Numeric options sorted per hub convention (see hub skills — SAT
-   sorts ascending; ЭЕШ past papers do not sort consistently).
+   sorts ascending; ЭШ past papers do not sort consistently).
 7. The answer key across a full test must be roughly balanced across
    letters, with no run of 4+ identical letters. The gate warns on
    imbalance.
@@ -178,14 +178,14 @@ the full path:
 2. Every number that appears must be derivable from the previous line
    and covered by `verify[]`.
 3. End by restating the result and the key:
-   - ЭЕШ: `Хариу: **D**.` (solution starts `**Бодолт.**`)
+   - ЭШ: `Хариу: **D**.` (solution starts `**Бодолт.**`)
    - SAT: `The correct answer is **C**.` (or the SPR value)
    - IB: final line matches the markscheme's final A-mark.
 4. Mention the trap when a distractor is popular ("Хэрэв ... гэж
    андуурвал B гарна" / "Choosing the diameter instead of the radius
    gives choice B").
 5. Solutions are in the hub's content language, full sentences, exam
-   register — match the richness of the existing 2021–2025 ЭЕШ
+   register — match the richness of the existing 2021–2025 ЭШ
    solutions (multi-step, displayed equations), not one-liners.
 
 ## 7. Adversarial re-solve protocol
@@ -236,7 +236,7 @@ Rules:
    `plt.savefig(path, dpi=200, bbox_inches="tight", facecolor="white")`.
    Target ≤ 50 KB per figure; record intrinsic `width`/`height` px in
    the JSON `figure` object (read them back with PIL, don't guess).
-7. Naming + location per hub skill (ЭЕШ: `public/section1-figures/`,
+7. Naming + location per hub skill (ЭШ: `public/section1-figures/`,
    `public/section2-figures/`). `alt_mn`/`alt_en` describe the figure
    ("Radius 6 cone with slant height labeled l"), not the answer.
 8. **Figure–statement consistency check**: after generating, re-read

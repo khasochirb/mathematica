@@ -12,8 +12,8 @@ import {
 export const metadata = { title: "SAT Math Hub" };
 
 // SAT hub content is ENGLISH by design — realism is the point
-// (memory/expansion-vision.md §4.7). Built in the ЭЕШ hub's design idiom
-// via components/hub/HubKit.tsx: the ЭЕШ page is the reference.
+// (memory/expansion-vision.md §4.7). Built in the ЭШ hub's design idiom
+// via components/hub/HubKit.tsx: the ЭШ page is the reference.
 export default function SatHubPage() {
   const tests = listSatTests();
   const firstTest = tests[0];

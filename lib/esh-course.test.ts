@@ -21,7 +21,7 @@ import {
   contextProgressHref,
 } from "./perf-context";
 
-describe("ЭЕШ course registry", () => {
+describe("ЭШ course registry", () => {
   it("covers every exam topic, so no topic in the hub is a dead end", () => {
     const covered = new Set(ESH_COURSES.map((c) => c.topic));
     for (const t of TOPICS) {
@@ -71,8 +71,8 @@ describe("ЭЕШ course registry", () => {
 
   it("course content is English-first (owner decision 2026-07-28)", () => {
     // Content ships in English until the translation pass; the exam's own
-    // name (ЭЕШ) is the one Cyrillic token allowed in English prose.
-    const cyrillic = (s: string) => /[Ѐ-ӿ]/.test(s.replace(/ЭЕШ/g, ""));
+    // name (ЭШ) is the one Cyrillic token allowed in English prose.
+    const cyrillic = (s: string) => /[Ѐ-ӿ]/.test(s.replace(/ЭШ/g, ""));
     for (const course of ESH_COURSES) {
       expect(cyrillic(course.title), `${course.topic} title`).toBe(false);
       expect(cyrillic(course.intro), `${course.topic} intro`).toBe(false);
@@ -88,7 +88,7 @@ describe("ЭЕШ course registry", () => {
     }
   });
 
-  it("stamps the ЭЕШ position and strips the home course's buildsOn", () => {
+  it("stamps the ЭШ position and strips the home course's buildsOn", () => {
     // A unit's own buildsOn names unit numbers of its HOME course
     // ("Factoring (Unit 7)") — shipped once as an English sentence citing
     // the wrong units. On this spine, buildsOn comes only from the entry.
@@ -123,7 +123,7 @@ describe("ЭЕШ course registry", () => {
     expect(totalUnitCount("nope")).toBe(0);
   });
 
-  it("builds a CourseDef rooted in the ЭЕШ hub, with English chrome", () => {
+  it("builds a CourseDef rooted in the ЭШ hub, with English chrome", () => {
     const def = eshCourseDef("algebra")!;
     expect(def.basePath).toBe("/practice/esh/learn/algebra");
     expect(def.rootHref).toBe("/practice/esh/learn");
@@ -141,7 +141,7 @@ describe("ЭЕШ course registry", () => {
   });
 });
 
-describe("ЭЕШ course performance context", () => {
+describe("ЭШ course performance context", () => {
   it("attributes lesson pages to the course context, not to exam practice", () => {
     expect(contextFromPathname("/practice/esh/learn/algebra/quadratic-equations/graphs-of-quadratic-functions")).toBe(
       ESH_COURSE_CONTEXT,
@@ -154,7 +154,7 @@ describe("ЭЕШ course performance context", () => {
     expect(contextFromPathname("/practice/esh/test/2024")).toBeNull();
   });
 
-  it("reads unit and lesson slugs out of the deeper ЭЕШ path", () => {
+  it("reads unit and lesson slugs out of the deeper ЭШ path", () => {
     expect(
       lessonSlugsFromPathname("/practice/esh/learn/algebra/quadratic-equations/the-discriminant"),
     ).toEqual({ unit: "quadratic-equations", lesson: "the-discriminant" });
@@ -172,7 +172,7 @@ describe("ЭЕШ course performance context", () => {
     });
   });
 
-  it("links the course context into the ЭЕШ hub, and its report to the single ЭЕШ report", () => {
+  it("links the course context into the ЭШ hub, and its report to the single ЭШ report", () => {
     expect(contextHref(ESH_COURSE_CONTEXT)).toBe("/practice/esh/learn");
     expect(contextProgressHref(ESH_COURSE_CONTEXT)).toBe("/analytics");
   });

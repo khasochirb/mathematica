@@ -30,7 +30,7 @@ import {
   type HubActionCardDef,
 } from "@/components/hub/HubKit";
 
-// The ЭЕШ hub — THE reference hub design (see components/hub/HubKit.tsx:
+// The ЭШ hub — THE reference hub design (see components/hub/HubKit.tsx:
 // SAT and IB are built to look like this page, never the reverse).
 // Content is Mongolian by design.
 export default function ESHHubPage() {
@@ -76,7 +76,7 @@ export default function ESHHubPage() {
     {
       href: "/practice/esh/topics",
       title: "Сэдвээр суралцах",
-      subtitle: "ЭЕШ-ийн сэдвүүд · Жингээр эрэмбэлсэн",
+      subtitle: "ЭШ-ийн сэдвүүд · Жингээр эрэмбэлсэн",
       icon: BookOpen,
     },
   ];
@@ -84,7 +84,7 @@ export default function ESHHubPage() {
   return (
     <HubShell>
       <HubHeader
-        eyebrow="ЭЕШ Математик"
+        eyebrow="ЭШ Математик"
         title="Математикийн дадлага"
         statsLine={
           <>

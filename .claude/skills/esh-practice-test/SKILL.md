@@ -1,18 +1,18 @@
 ---
 name: esh-practice-test
 description: >
-  Generate a full ЭЕШ (Mongolian university entrance exam) math practice
+  Generate a full ЭШ (Mongolian university entrance exam) math practice
   test for the /practice/esh hub — Section 1 (36 MCQ) + Section 2 (4
   fill-in problems), in Mongolian, matching the richness and difficulty of
   the 2021–2025 past papers already on the site. Read
   practice-test-authoring (core manual) first.
 ---
 
-# ЭЕШ Practice Test — Hub Skill
+# ЭШ Practice Test — Hub Skill
 
 Prerequisite: read `.claude/skills/practice-test-authoring/SKILL.md`
 (pipeline, verify[], figures, distractors, rendering). This file adds
-everything ЭЕШ-specific. The fidelity anchors are the 20 real past
+everything ЭШ-specific. The fidelity anchors are the 20 real past
 papers in `data/questions/2021*–2025*` — when in doubt, open the
 matching year/topic/position and imitate its footprint.
 
@@ -243,7 +243,7 @@ subproblem, flat array sorted by problem then subproblem):
 ## 7. Figures
 
 Core-manual §8 applies in full (matplotlib, monochrome, invert-safe,
-from shared variables). ЭЕШ-specific:
+from shared variables). ЭШ-specific:
 
 - Naming: `public/section1-figures/<year>-Q<num>-<variant>.png` and
   `public/section2-figures/<year>-<problem>-<variant>.png`
@@ -261,7 +261,7 @@ from shared variables). ЭЕШ-specific:
 2. `lib/esh-questions.ts`: add the two imports; append a `TestInfo`
    entry to `TESTS` (self-authored practice set) or
    `PREVIOUS_YEAR_TESTS` (real past paper). Label style:
-   `"Тест 8А"` / `"ЭЕШ 2026 · Хувилбар А"`. Gating flags: past papers
+   `"Тест 8А"` / `"ЭШ 2026 · Хувилбар А"`. Gating flags: past papers
    ship `isPremium: false, solutionsRequirePremium: false`; legacy
    practice tests ship `true/true` — for a NEW self-authored set,
    confirm the gating with Khas (pricing is currently free-for-launch,

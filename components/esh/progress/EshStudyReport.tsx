@@ -1,16 +1,16 @@
 "use client";
 
-// The ЭЕШ study report — everything the hub's progress page used to own that
+// The ЭШ study report — everything the hub's progress page used to own that
 // the dashboard report did not: per-sitting question-by-question review, the
 // topic breakdown chart, severity-graded study routing, weak-skill routing,
 // flagged questions, and the next-test recommendation.
 //
-// It lives as a component because ЭЕШ used to have TWO progress pages — the
+// It lives as a component because ЭШ used to have TWO progress pages — the
 // dashboard report at /analytics and this one at /practice/esh/progress —
 // while SAT and IB each had one page reached from two doors. Moving this block
-// into /analytics makes ЭЕШ match: one report, two entry points.
+// into /analytics makes ЭШ match: one report, two entry points.
 //
-// Mongolian throughout, like the rest of the ЭЕШ hub: the language is a
+// Mongolian throughout, like the rest of the ЭШ hub: the language is a
 // property of the hub, not of the site toggle (memory/expansion-vision.md §4.7).
 
 import { useState } from "react";
@@ -211,7 +211,7 @@ export default function EshStudyReport() {
                         </>
                       ) : sev === "mastery" ? (
                         <>
-                          Бараг эзэмшсэн — дахиад нэг ЭЕШ тест бодоорой:{" "}
+                          Бараг эзэмшсэн — дахиад нэг ЭШ тест бодоорой:{" "}
                           <Link
                             href="/practice/esh/test?type=previous"
                             className="underline underline-offset-2"

@@ -1,4 +1,4 @@
-// Every ЭЕШ skill must be PROBEABLE, not merely non-empty.
+// Every ЭШ skill must be PROBEABLE, not merely non-empty.
 //
 // The first content audit asked a binary question — does this skill have any
 // item? — and closed all 73 zeroes. That was not enough. lib/diagnostic-engine.ts
@@ -27,7 +27,7 @@ const read = (f: string) => JSON.parse(fs.readFileSync(path.join(D, f), "utf-8")
 // the two must convert, or a "4" silently fails `=== 3` and the item is invisible.
 const GAP_TO_ENGINE: Record<number, number> = { 1: 1, 2: 1, 3: 2, 4: 3, 5: 3 };
 
-describe("every ЭЕШ skill can actually be probed", () => {
+describe("every ЭШ skill can actually be probed", () => {
   const graph = read("esh-skills.json");
   const coverage = read("esh-coverage.json");
   const rungs = read("esh-rung-items.json");

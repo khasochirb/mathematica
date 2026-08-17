@@ -96,7 +96,7 @@ export default function LearnPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">ЭЕШ · Суралцах</div>
+          <div className="eyebrow">ЭШ · Суралцах</div>
         </div>
 
         <h1

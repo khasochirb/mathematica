@@ -6,7 +6,7 @@
 // delegating question rendering to QuestionCard (review / instant / test modes)
 // and selection to lib/refinement-loop-select.
 //
-// Language: question CONTENT stays in its own language (ЭЕШ = Mongolian), but
+// Language: question CONTENT stays in its own language (ЭШ = Mongolian), but
 // all chrome — buttons, headings, instructions — follows the global EN/MN
 // toggle (per the §4 Q7 rule: navigation is bilingual, content is not).
 //
@@ -159,7 +159,7 @@ export default function RefinementLoop() {
         <TutorPanel
           context={{
             kind: "question",
-            course: "ЭЕШ",
+            course: "ЭШ",
             unit: trigger.topic,
             question: trigger.body,
             options: trigger.options,

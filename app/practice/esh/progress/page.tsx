@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
 
-// ЭЕШ used to have TWO progress reports: this one, reached from the hub, and
+// ЭШ used to have TWO progress reports: this one, reached from the hub, and
 // /analytics, reached from the dashboard — while SAT and IB each had ONE page
-// reached from both places. The two ЭЕШ pages held different things, so a
+// reached from both places. The two ЭШ pages held different things, so a
 // student saw a different report depending on which door they came through.
 //
 // The dashboard report won, and everything this page owned that it lacked

@@ -15,7 +15,7 @@ import type { LessonProblem } from "@/lib/lesson-types";
 //
 // Honesty note: these are self-reported, same trust model as flashcard
 // grading. They live in course contexts only, so they can never touch the
-// ЭЕШ exam stats.
+// ЭШ exam stats.
 export default function GradedProblemList({
   problems,
   labels,

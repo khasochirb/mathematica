@@ -11,8 +11,8 @@ import {
 export const metadata = { title: "IB Math Hub" };
 
 // IB hub content is ENGLISH by design, like the SAT hub (exam realism).
-// Built in the ЭЕШ hub's design idiom via components/hub/HubKit.tsx: the
-// ЭЕШ page is the reference.
+// Built in the ЭШ hub's design idiom via components/hub/HubKit.tsx: the
+// ЭШ page is the reference.
 export default function IbHubPage() {
   const cards: HubActionCardDef[] = [
     {
