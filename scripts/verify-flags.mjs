@@ -49,11 +49,24 @@ for (const [key, healthy] of Object.entries(HEALTHY)) {
   const actual = checks[key] ?? "(absent)";
   const ok = actual === healthy;
   if (!ok) open += 1;
-  // On a non-healthy probe the endpoint reports the error code it saw
-  // ("42703", "PGRST205", "42501", …). Printing it here is the difference
-  // between "unknown" and knowing which runbook to open.
-  const why = !ok && details[key] ? `, code ${details[key]}` : "";
-  console.log(`  ${ok ? "✓" : "✗"} ${key}: ${actual}${ok ? "" : `  (healthy: ${healthy}${why})`}`);
+  // On a non-healthy probe the endpoint reports what it SAW, not just a
+  // verdict — the error code, the observed row count, the floor it was
+  // compared against, and the raw message. Printing it here is the difference
+  // between "unknown" and knowing which runbook to open, and it is what would
+  // have stopped FLAG-010 being read as "the seed never ran" when the table
+  // held 184 rows. `details[key]` became an object when that landed; printing
+  // it as a bare string would render "[object Object]".
+  console.log(`  ${ok ? "✓" : "✗"} ${key}: ${actual}${ok ? "" : `  (healthy: ${healthy})`}`);
+  if (!ok) {
+    const d = details[key];
+    if (d && typeof d === "object") {
+      for (const [k, v] of Object.entries(d)) {
+        if (v !== undefined && v !== null) console.log(`        ${k}: ${v}`);
+      }
+    } else if (d) {
+      console.log(`        code: ${d}`); // pre-change endpoint, still readable
+    }
+  }
 }
 
 // Surface any checks the endpoint reports that this script doesn't know —

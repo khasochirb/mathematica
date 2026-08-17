@@ -77,6 +77,39 @@ export interface ProbeResult {
   // can tell "the service role can't see this table" (42501) from "no
   // network" without opening the dashboard.
   code?: string;
+  // WHAT THE PROBE ACTUALLY SAW, present on every non-"applied" result.
+  //
+  // FLAG-010 is why this exists. On 17 Aug the endpoint answered
+  // `"migration_011_seed_esh_graph":"missing"` about a table holding 184
+  // rows, and the response carried no code and no evidence — so the verdict
+  // was indistinguishable from a true negative, and the obvious next action
+  // was to re-apply a migration that had already run. A bare verdict that
+  // can be wrong is worse than no verdict, because it is actionable in the
+  // wrong direction.
+  //
+  // With this, one GET separates the three explanations that all collapse
+  // into "missing": the probe saw zero rows, or it saw plenty but the floor
+  // is set wrong, or the filter matched nothing while the table is full.
+  observed?: ProbeObservation;
+}
+
+export interface ProbeObservation {
+  /** Rows the probe counted through its filter. null = no count came back. */
+  rowCount?: number | null;
+  /** The same count with the filter dropped — distinguishes an empty table
+   *  from a filter that matches nothing. Only taken when the filtered count
+   *  fell short, so the healthy path stays one request. */
+  unfilteredRowCount?: number | null;
+  /** The floor `rowCount` was compared against. */
+  expectedAtLeast?: number;
+  /** Raw PostgREST/Postgres message, verbatim and untruncated. Schema prose
+   *  only — these sentinels probe table and column names, never user data,
+   *  which is the same reasoning that already makes this endpoint public. */
+  message?: string;
+  table?: string;
+  column?: string;
+  /** e.g. "hub=eysh", or absent when the probe is unfiltered. */
+  filter?: string;
 }
 
 // Codes that mean the sentinel COLUMN is definitively absent, i.e. the
@@ -110,9 +143,16 @@ export function classifyProbe(error: { code?: string; message?: string } | null)
     // PostgREST sometimes surfaces the prose without the code.
     /column .* does not exist/i.test(message) ||
     /could not find the '?[\w.]+'? column/i.test(message);
-  if (columnAbsent && !TABLE_ABSENT.has(code)) return { status: "missing", code: code || undefined };
+  // The raw message rides along on every non-applied verdict. Migration 008
+  // has been answering "unknown" with NO code at all, which tells the reader
+  // nothing they can act on; whatever PostgREST is actually saying there is
+  // the fastest way to the cause.
+  const observed = message ? { message } : undefined;
+  if (columnAbsent && !TABLE_ABSENT.has(code)) {
+    return { status: "missing", code: code || undefined, observed };
+  }
 
-  return { status: "unknown", code: code || undefined };
+  return { status: "unknown", code: code || undefined, observed };
 }
 
 // The states in which every flag is considered CLOSED. verify-flags.mjs
@@ -136,8 +176,24 @@ export function classifyRowProbe(
   error: { code?: string; message?: string } | null,
   count: number | null,
   atLeast: number,
+  observed: ProbeObservation = {},
 ): ProbeResult {
-  if (error) return classifyProbe(error);
-  if (count === null) return { status: "unknown", code: "no-count" };
-  return count >= atLeast ? { status: "applied" } : { status: "missing" };
+  // PASS/FAIL LOGIC IS UNCHANGED — deliberately. The instruction was to make
+  // the probe honest first and fix what it reports second, so this still
+  // says "missing" in exactly the cases it said "missing" before. All that
+  // is new is that it now shows its working.
+  const evidence: ProbeObservation = {
+    ...observed,
+    rowCount: count,
+    expectedAtLeast: atLeast,
+  };
+  if (error) {
+    const result = classifyProbe(error);
+    return { ...result, observed: { ...evidence, message: error.message } };
+  }
+  if (count === null) {
+    return { status: "unknown", code: "no-count", observed: evidence };
+  }
+  if (count >= atLeast) return { status: "applied" };
+  return { status: "missing", observed: evidence };
 }

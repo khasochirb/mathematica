@@ -35,24 +35,54 @@ import {
 // probe uses HEAD so no table rows ever transit.
 
 async function probeMigration(s: MigrationSentinel): Promise<ProbeResult> {
+  const where = s.expectRows?.where;
+  const site = {
+    table: s.table,
+    column: s.column,
+    filter: where ? `${where.column}=${where.value}` : undefined,
+  };
   try {
     const admin = createAdminClient();
     // Seed migrations add no column, so their sentinel counts ROWS instead.
     // Still HEAD-only — a count comes back, never a row.
     if (s.expectRows) {
       let q = admin.from(s.table).select(s.column, { head: true, count: "exact" });
-      if (s.expectRows.where) {
-        q = q.eq(s.expectRows.where.column, s.expectRows.where.value);
-      }
+      if (where) q = q.eq(where.column, where.value);
       const { error, count } = await q;
-      return classifyRowProbe(error, count ?? null, s.expectRows.atLeast);
+      const result = classifyRowProbe(error, count ?? null, s.expectRows.atLeast, site);
+
+      // Only when the filtered count fell short: ask again without the
+      // filter. "0 of 184 matched hub=eysh" and "the table is empty" are the
+      // same verdict and completely different problems, and FLAG-010 is
+      // exactly a case where the verdict was believed and the distinction
+      // was never available. One extra HEAD, on the failure path only.
+      if (result.status !== "applied" && where) {
+        const { count: total, error: totalError } = await admin
+          .from(s.table)
+          .select(s.column, { head: true, count: "exact" });
+        return {
+          ...result,
+          observed: {
+            ...result.observed,
+            unfilteredRowCount: totalError ? null : total ?? null,
+          },
+        };
+      }
+      return result;
     }
     const { error } = await admin.from(s.table).select(s.column, { head: true, count: "exact" });
-    return classifyProbe(error);
-  } catch {
+    const result = classifyProbe(error);
+    if (result.status === "applied") return result;
+    return { ...result, observed: { ...result.observed, ...site } };
+  } catch (err) {
     // No SUPABASE env in this environment (e.g. a bare local checkout) —
-    // can't tell either way.
-    return { status: "unknown", code: "no-client" };
+    // can't tell either way. The thrown message is carried too: "no-client"
+    // alone cannot distinguish a missing env var from a malformed URL.
+    return {
+      status: "unknown",
+      code: "no-client",
+      observed: { ...site, message: err instanceof Error ? err.message : String(err) },
+    };
   }
 }
 
@@ -63,12 +93,27 @@ export async function GET() {
   const checks: Record<string, string> = {
     anthropic_api_key: process.env.ANTHROPIC_API_KEY ? "configured" : "missing",
   };
-  const details: Record<string, string> = {};
+  // `details` used to be a flat key→code map. It is now key→object, because a
+  // code alone could not explain FLAG-010: the endpoint said "missing" about a
+  // table holding 184 rows and offered nothing to contradict it. Consumers
+  // that only read `checks` (scripts/verify-flags.mjs) are unaffected — this
+  // is why the diagnostics were kept beside `checks` and not inside it.
+  const details: Record<string, Record<string, unknown>> = {};
 
   for (const s of MIGRATION_SENTINELS) {
     const result = await probeMigration(s);
     checks[s.key] = result.status;
-    if (result.code) details[s.key] = result.code;
+    const entry: Record<string, unknown> = {};
+    if (result.code) entry.code = result.code;
+    if (result.observed) Object.assign(entry, result.observed);
+    // An "applied" verdict needs no defence; anything else must show its
+    // working, even if all it can say is which table it looked at.
+    if (result.status !== "applied") {
+      entry.migration = s.migration;
+      if (Object.keys(entry).length > 0) details[s.key] = entry;
+    } else if (Object.keys(entry).length > 0) {
+      details[s.key] = entry;
+    }
   }
 
   return NextResponse.json(

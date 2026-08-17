@@ -120,16 +120,42 @@ The full architecture lives in `/docs/plan/01-ARCHITECTURE.md`. The seven
 rules there are binding and override local judgement about what would be
 cleaner. In brief:
 
-1. Every piece of content attaches to exactly one `skill_id`.
+1. Every piece of content attaches to exactly one `skill_id`. **Orphan
+   content is listed, never deleted.** (Amended 17 Aug 2026.)
 2. Every attempt writes `skill_id`, never a free-text topic name.
 3. Every hub has the same five tabs: Plan · Learn · Practice · Tests ·
    Progress.
-4. No new top-level route without deleting one.
+4. **No new top-level route. The route budget is fixed at what exists
+   today. Existing routes stay. Adding one requires Khas's explicit call.**
+   (Replaces "no new top-level route without deleting one", 17 Aug 2026.)
 5. Max two levels: Hub → Skill.
 6. All mastery, recommendation and prediction logic lives in one module and
    reads `skill_state`.
-7. Nothing enters navigation until it is attached to the graph and has
-   content.
+7. **Every door declares which brain it is on. Nothing is promoted until it
+   is graph-backed. Two tiers: graph-backed (attached to `skill_id`, writes
+   `skill_state`; eligible for Today, recommendations, prediction, parent
+   reports) and legacy (still on the old free-text model; stays visible,
+   stays honest, never recommended by the engine, never counted as
+   evidence). Half-built things are legacy, not hidden. A door leaves
+   navigation only on Khas's explicit call.** (Replaces "nothing enters
+   navigation until it is attached to the graph and has content",
+   17 Aug 2026 — that wording is what justified the Phase 0 cut, now
+   reversed.)
+
+> **Rules 4 and 7 were rewritten on 17 Aug 2026, and rule 1 amended.** The
+> owner's canonical text lives in `/docs/plan/01-ARCHITECTURE.md`, which is
+> **not in this repository** (see the note above). The verbatim replacements
+> are reproduced here because this file is the working copy every session
+> actually reads. Two corrections the owner still needs to make in their own
+> copy of that document:
+>
+> - Its **"Dropped — all zero rows"** section is wrong and currently reads as
+>   an instruction to delete live data. `topics` = 13 rows, `problems` = 20
+>   rows, `streaks` = 2 rows. All three are **live and kept**: the legacy
+>   course pages run on `topics`/`problems` until each door is migrated.
+>   Any pending drop migration for them is **cancelled**.
+> - Rule 1's amendment (orphans listed, never removed) needs the same edit
+>   there.
 
 > **`/docs/plan/` is not in this repository** — checked on 16 Aug 2026
 > against every branch on `origin`, including `main`. The document is held
