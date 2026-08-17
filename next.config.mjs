@@ -70,8 +70,17 @@ const nextConfig = {
   async redirects() {
     return [
       ...primaryRenumber,
-      { source: "/ai", destination: "/practice", permanent: false },
-      { source: "/ai/:path*", destination: "/practice", permanent: false },
+      // /practice was the pre-hub practice landing: one page, ЭЕШ-only, behind
+      // a sign-in wall, superseded by the four hubs. Removed on the owner's
+      // explicit call (17 Aug 2026) because the home page's primary CTAs were
+      // still landing students on it. Redirected rather than left to 404 — it
+      // is linked from outside the repo and from old sessions. 302, not 301:
+      // if /practice ever becomes a real hub chooser, a cached permanent
+      // redirect would be very hard to take back.
+      { source: "/practice", destination: "/practice/esh", permanent: false },
+      // These two used to point at /practice, so they moved with it.
+      { source: "/ai", destination: "/practice/esh", permanent: false },
+      { source: "/ai/:path*", destination: "/practice/esh", permanent: false },
       { source: "/progress", destination: "/dashboard", permanent: false },
       { source: "/progress/:path*", destination: "/dashboard", permanent: false },
       { source: "/upgrade", destination: "/", permanent: false },

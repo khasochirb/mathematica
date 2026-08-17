@@ -98,7 +98,7 @@ export default function HubProgress({
   const [openRun, setOpenRun] = useState<Record<string, boolean>>({});
   const overall = perf.getOverallStats(context);
   const topicStats = perf.getTopicStats(context);
-  const hubHome = contextHref(context) ?? "/practice";
+  const hubHome = contextHref(context) ?? "/practice/esh";
   const hasData = overall.total > 0;
 
   const runs = useMemo(() => deriveTestRuns(perf.attempts, context), [perf.attempts, context]);

@@ -131,7 +131,7 @@ export default function HomePage() {
             {t("hero_sub")}
           </p>
           <div className="flex gap-3">
-            <Link href="/practice" className="btn btn-primary">
+            <Link href="/math/placement/high" className="btn btn-primary">
               {t("hero_cta")}
             </Link>
             <Link href="/analytics" className="btn btn-line">
@@ -401,7 +401,7 @@ export default function HomePage() {
               <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15, lineHeight: 1.6, flex: 1 }}>
                 {t("way1_s")}
               </p>
-              <Link href="/practice" className="btn btn-primary mt-6 self-start">
+              <Link href="/practice/esh" className="btn btn-primary mt-6 self-start">
                 {t("way1_cta")} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -615,7 +615,7 @@ export default function HomePage() {
                   {lang === "mn" ? "Өөрөөр тайлбарлах" : "Explain differently"}
                 </button>
                 <Link
-                  href="/practice"
+                  href="/practice/esh/practice"
                   className="btn btn-line ml-auto"
                   style={{ fontSize: 12, padding: "7px 12px" }}
                 >
@@ -707,7 +707,7 @@ export default function HomePage() {
           {t("cta_s")}
         </p>
         <div className="flex gap-3 justify-center">
-          <Link href="/practice" className="btn btn-primary">
+          <Link href="/math/placement/high" className="btn btn-primary">
             {t("hero_cta")}
           </Link>
           <Link href="/analytics" className="btn btn-line">

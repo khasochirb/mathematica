@@ -1014,7 +1014,7 @@ export function computeRatings(input: RatingsInput): RatingsProfile {
           const harder = eDiff < 0.95; // SAT-heavy evidence → point at the hard pair
           steps.push({
             kind: "mock-exam",
-            href: "/practice",
+            href: "/practice/esh/test?type=previous",
             labelEn: harder
               ? "Score ~90% on a harder mock (ЭЕШ or IB) — the SAT alone tops out at 80"
               : "Score ~90% on your next full mock — recent papers count most",
