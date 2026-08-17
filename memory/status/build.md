@@ -14,6 +14,90 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-08-17 08:30 UTC — mode: ship
+
+**Did:** Finished `CLAUDE.md` as the master (two-chat ownership, one mode per
+session). Removed the `/practice` landing and retargeted the home page's four
+primary CTAs, which all pointed at it. Moved contact details to Ulaanbaatar.
+Found and fixed BOTH lead forms silently discarding submissions. Wrote
+migration 018 for the contact backlog — **written, not applied**.
+
+**Landed where:** merged to main and deployed. Production is `29925f0`.
+Migration 018 is on main and **not applied to production** — FLAG-011.
+
+**Blocked on:** **MCP approval.** `apply_migration`, `execute_sql` and the
+Vercel URL fetch all return `MCP tool call requires approval`, which arrives
+as a tool error, not a prompt — this session is non-interactive, so nothing
+can reach the owner to click. I own migrations now and still cannot apply
+one. Everything else this session was unblocked; the next database task is
+not.
+
+**Others should know:**
+
+- **SECURITY — your deletion-inventory gate caught a real mistake of mine,
+  and I want that on the record.** I gave `contact_messages.user_id`
+  `ON DELETE SET NULL`, reasoning that erasing an account should not destroy
+  a conversation. Wrong: the row holds the sender's name, email and message
+  body, so nulling the link would have unlinked the account and left every
+  piece of personal data behind — an erase that erases nothing anyone cares
+  about. `verify-account-delete-inventory` rejected it before it shipped. It
+  is `CASCADE` now, matching `premium_waitlist`, and registered in
+  `SERVER_USER_TABLES`. The table is RLS-on with no policy AND grants revoked
+  from `anon`/`authenticated`, both locks per the rule, asserted inside the
+  migration's own post-conditions.
+
+- **TWO FORMS WERE LOSING LEADS, in the same shape, and neither could be
+  seen from outside.** The contact form's submit handler was
+  `await new Promise(r => setTimeout(r, 1000))` followed by the success
+  screen — no request, no storage. Every message ever sent through that page
+  was discarded while its sender was thanked. And `/api/waitlist` ran its
+  upsert, discarded the result, and returned `success: true` unconditionally,
+  so a failed Premium purchase request was indistinguishable from a
+  successful one. **That is why "premium_waitlist has 2 rows since May"
+  cannot be read either way** — the modal does call the API and the table is
+  correct, so the row count alone cannot separate "nobody asked" from "every
+  request failed". Both now check and surface their errors.
+
+- **The `events` table is the outstanding cross-check.**
+  `select name, count(*) from events where name in ('purchase_request',
+  'upgrade_modal_opened') and created_at > '2026-05-31' group by name;`
+  Events with no matching waitlist rows would prove requests were lost.
+
+- **Contact details are now split on purpose, and it will look like a bug.**
+  `+976 8862 7927` leads in the footer and on the contact page — the
+  Ulaanbaatar centre is the local business and Google cross-checks that
+  number against the Business Profile. `/tutoring` keeps
+  `+1 (415) 981-8165` because 1-on-1 lessons are the online business sold
+  across timezones. Two numbers, deliberately, with a comment on the constant
+  saying so. Do not "fix" the tutoring page to match the footer.
+
+- **`hello@mongolpotential.com` replaced `imathhub@gmail.com`** in its three
+  places (contact page, footer ×2). Privacy and terms already used the new
+  address; there is no structured data or email template anywhere holding a
+  stale one. `khasochir@uni.minerva.edu` and the WhatsApp number on
+  `/tutoring` are untouched at the owner's instruction.
+
+- **The Mongolian SLA string was deliberately left without a timezone.**
+  Adding one is Mongolian copy, and Mongolian copy is written by a human
+  teacher, never translated by me. Queued for that pass alongside the
+  diagnostic rewrite.
+
+- **FLAG-010's filter hypothesis was wrong, and the misleading field was
+  mine.** `details.filter` printed `hub=eysh`, which is not a PostgREST
+  filter — a reader took it for the query and concluded the syntax was the
+  root cause. The query was always right: `.eq("hub","eysh")` serialises to
+  `hub=eq.eysh`, proved by building the request and reading its URL. The
+  field now prints what goes on the wire. **FLAG-010 still has no root
+  cause** — the endpoint read that would give it one is blocked with
+  everything else.
+
+- **The Vercel deployment API lies about `state`.** It reported `BUILDING`
+  for 30–45 minutes on three deploys today that had each finished in under
+  four. I called one of them stalled and had to retract it. Do not diagnose a
+  deploy from `state` alone; `lambdaRuntimeStats` appearing in the response
+  is the reliable tell that it is nearly done, and the alias list flipping to
+  `www.mongolpotential.com` is proof it landed.
+
 ## 2026-08-17 06:45 UTC — mode: ship
 
 **Did:** Took the handover from Design and structure. Reported the nav state
