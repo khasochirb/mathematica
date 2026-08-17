@@ -36,7 +36,7 @@ PREV_TESTS_DIR = Path.home() / "Desktop" / "prev_tests"
 JSON_DIR = Path("data/questions")
 
 PAST_PAPER_VARIANTS = [
-    (f"{y}{v}", f"{y}{v}.pdf" if y != 2025 else f"ЭШ-{y}-Математик-{v}-хувилбар.pdf")
+    (f"{y}{v}", f"{y}{v}.pdf" if y != 2025 else f"ЭЕШ-{y}-Математик-{v}-хувилбар.pdf")
     for y in [2022, 2023, 2024, 2025]
     for v in ["A", "B", "C", "D"]
 ]

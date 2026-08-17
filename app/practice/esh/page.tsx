@@ -76,7 +76,7 @@ export default function ESHHubPage() {
     {
       href: "/practice/esh/topics",
       title: "Сэдвээр суралцах",
-      subtitle: "ЭШ-ийн сэдвүүд · Жингээр эрэмбэлсэн",
+      subtitle: "ЭШ-ын сэдвүүд · Жингээр эрэмбэлсэн",
       icon: BookOpen,
     },
   ];
