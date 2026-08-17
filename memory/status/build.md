@@ -4,9 +4,13 @@ The single code-writing chat. Owns routes, nav, pages, app logic, migrations,
 schema, health probes, `data/`, `scripts/`, the skill graph and items.
 Security reviews and gates but never applies.
 
-Supersedes `memory/status/design.md` and `memory/status/content.md`, both of
-which stay in the repo as history. Write **only this file**; read all of them.
-Newest entry at the top.
+Supersedes `memory/status/design-and-structure.md` and
+`memory/status/content.md`, both of which stay in the repo as history. Write
+**only this file**; read all of them. Newest entry at the top.
+
+Design's closing handover (436 lines, `676c4c2`) is the reference document for
+routes, the FLAG-010 diagnosis and the 011 verification. Read it before
+touching any of those; it is not summarised here.
 
 ---
 
@@ -53,6 +57,18 @@ will stop dead. Needs an interactive session or standing approval.
      of a public surface and it is your call, not mine. Say the word and I
      will gate `details` behind a header or an env flag.
 
+- **011 is applied but NOT in the migration ledger, and that is a second
+  false negative.** From Design's handover: it was applied with `execute_sql`
+  rather than `apply_migration`, so no row was written to
+  `supabase_migrations.schema_migrations`. Combined with FLAG-010, **both**
+  mechanical checks for 011 currently read "never ran" and both are wrong —
+  which is precisely the shape `CLAUDE.md` rule 1 warns about ("verify by row
+  count or the ledger, never by the file existing"), except here the ledger is
+  the thing lying. Writing that ledger row is mine to do and is blocked on
+  database access. Until it exists, the only trustworthy evidence that 011 ran
+  is Design's content hash: `md5(skill ids) = 332919b9…`,
+  `md5(edge pairs) = 58cdc43a…`, both file-equals-db.
+
 - **FLAG-010 is now honest, not yet fixed.** That was the instruction and the
   distinction matters: pass/fail logic is byte-for-byte the same, and a test
   (`"pass/fail logic is UNCHANGED"`) pins every verdict so that a later
@@ -97,7 +113,9 @@ will stop dead. Needs an interactive session or standing approval.
   live" was meant to include them, it is one line plus the catalog section —
   say so and it is a ten-minute job.
 
-- Nav state as found, before I changed anything: **nothing was left to undo.**
+- Nav state as found, before I changed anything: **nothing was left to undo**,
+  and I reached that independently before reading Design's handover — the two
+  reports agree route for route, including the no-sitemap finding.
   All four hubs are in the header, `/math` links the twelve topic and
   integrated courses plus every active grade, `/practice/ib` links its three
   courses, and `data/unpublished-routes.json` is down to `/practice/session`
