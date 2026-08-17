@@ -43,3 +43,27 @@ Renaming an already-applied migration is acceptable *here* precisely because
 the database has no filename-keyed ledger. If that ever changes — a real
 migration runner, `supabase db push`, a `schema_migrations` table — this rule
 inverts and applied files must become immutable.
+
+## Cancelled: the `topics` / `problems` drop
+
+`010_skill_graph.sql` §5 carries a commented-out drop for `topics` (13 rows)
+and `problems` (20 rows), with the instruction "uncomment as its own
+migration (011) once that is signed off".
+
+**That is cancelled (owner's call, 17 Aug 2026). Do not uncomment it.** Both
+tables are load-bearing: the legacy course pages run on them until each door
+is migrated onto the skill graph, and the navigation cut that assumed those
+doors were going away has itself been reversed. `streaks` (2 rows) is kept
+for the same reason.
+
+Two further traps in that comment block, left in place because an applied
+migration file is not edited after the fact:
+
+- **011 is taken.** It is `011_seed_esh_graph.sql`, applied 17 Aug. A drop
+  written as "011" would collide.
+- The sign-off it waits on was Stream B's, and Stream B no longer exists as
+  a separate chat.
+
+If these tables are ever genuinely retired, it needs a fresh number, a fresh
+row count (`010`'s guard asserts 20 and 13 — re-measure, never trust the
+comment), and Khas's explicit call.
