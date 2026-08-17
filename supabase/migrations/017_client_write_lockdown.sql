@@ -1,9 +1,9 @@
 -- ============================================================
--- 013: take write privileges off every client-facing table
+-- 017: take write privileges off every client-facing table
 -- ============================================================
--- SECURITY. The second half of the finding in 012.
+-- SECURITY. The second half of the finding in 016.
 --
--- 012 closed the profiles free-premium hole. The sweep that followed found
+-- 016 closed the profiles free-premium hole. The sweep that followed found
 -- the SAME SHAPE on two more tables: an UPDATE policy whose only constraint
 -- is row ownership, on a table where owning the row is not the point.
 --
@@ -21,7 +21,7 @@
 --   daily_problem_counts: lib/subscription.ts (getDailyCount, and the
 --     increment_daily_count RPC)
 --   streaks: app/api/streaks, app/api/sessions/[id]/complete
--- so revoking costs nothing and closes it properly. As in 012, a corrected
+-- so revoking costs nothing and closes it properly. As in 016, a corrected
 -- WITH CHECK would NOT have been enough: RLS gates rows, never columns.
 --
 -- The policies go too, not just the grants. A permissive policy sitting
