@@ -70,9 +70,15 @@ async function selfCheck() {
   await p.goto(BASE + "/", { waitUntil: "domcontentloaded" });
   const me = await p.evaluate(() => fetch("/api/auth/me").then((r) => r.json()));
   if (!me?.data?.isSubscribed) throw new Error("self-check: auth mock defeated — crawl would be vacuous");
-  for (const [url, want] of [["/math/5/does-not-exist", true],
-                             ["/math/5/does-not-exist/nope", true],
-                             ["/math/5/multiplication-and-division/multiplying-by-one-digit", false]]) {
+  // The fixtures must live on an ACTIVE grade. They used to point at
+  // /math/5/…, which stopped meaning anything when the primary band was
+  // withdrawn on 2026-08-13 — and because the self-check throws before the
+  // crawl, that silently disabled this entire gate rather than reporting a
+  // broken link. Grade 6 is the lowest active grade, so it is the stable
+  // choice; if the band ever comes back, these do not need to move.
+  for (const [url, want] of [["/math/6/does-not-exist", true],
+                             ["/math/6/does-not-exist/nope", true],
+                             ["/math/6/ratios-and-rates/what-is-a-ratio", false]]) {
     await p.goto(BASE + url, { waitUntil: "domcontentloaded" });
     const got = NOT_FOUND.test(await settledText(p, url));
     if (got !== want) throw new Error(`self-check: ${url} expected soft404=${want}, got ${got}`);

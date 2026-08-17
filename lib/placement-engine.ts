@@ -3,6 +3,20 @@
 // learner: a correct answer nudges the level up, a wrong one down, so a strong
 // student quickly meets harder questions and a struggling one stays supported.
 // The result places the learner at a level and flags the topics to prioritize.
+//
+// SUPERSEDED 2026-08-13 for driving a sitting: PlacementRunner now runs
+// lib/diagnostic-engine.ts, which reads WHICH wrong option was chosen and
+// stops as soon as the start point is located, instead of marching a fixed
+// topics x 2 grid and bucketing on overall accuracy. What is still live here
+// is the RESULT vocabulary — PlacementResult, TopicScore, PLACEMENT_LEVELS —
+// which the course hubs, CoursePlacementCta, band verdicts and the ratings
+// engine all read, and which the diagnostic engine converts into.
+//
+// The reducers below (initPlacement / pickNext / applyAnswer / summarize) are
+// no longer wired to a page. They are kept, tested and working rather than
+// deleted, for the same reason the primary band was withdrawn rather than
+// removed: this changed the behaviour of every placement page on the site, and
+// reverting should be re-pointing one import, not rewriting an engine.
 
 import type { PlacementQuestion } from "@/lib/placement-bank";
 
@@ -118,6 +132,29 @@ export type PlacementResult = {
   level: PlacementLevel;
   topicScores: TopicScore[];
   priorityTopics: string[]; // slugs, weakest first — the "important for you" set
+  /**
+   * Present when the sitting ran through the diagnostic engine
+   * (lib/diagnostic-engine.ts): the tutor's read of WHERE to start and WHAT is
+   * broken, on top of the scores. Optional so every existing reader — the
+   * course hubs, CoursePlacementCta, the ratings engine, results already in a
+   * student's localStorage — keeps working untouched.
+   */
+  diagnosis?: PlacementDiagnosis;
+};
+
+export type PlacementDiagnosis = {
+  /** Topic slug to start at; null when the student is solid across the course. */
+  startSlug: string | null;
+  startTitle: string | null;
+  questionsAsked: number;
+  /** Why the sitting ended, so a six-question placement never looks like a bug. */
+  stopReason: "located" | "cap" | "exhausted";
+  /** Named misconceptions, one per topic, newest read kept. */
+  findings: { topicSlug: string; hypothesis: string }[];
+  /** The tutor's closing paragraph to the student. Null when no model ran. */
+  narrative: string | null;
+  /** True when a model shaped this sitting — the UI says so rather than implying it. */
+  aiAssisted: boolean;
 };
 
 export function summarize(state: PlacementState, bank: PlacementQuestion[]): PlacementResult {

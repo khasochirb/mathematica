@@ -2,13 +2,22 @@ export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase";
-import { MIGRATION_SENTINELS, classifyProbe, type ProbeResult } from "@/lib/flags";
+import {
+  MIGRATION_SENTINELS,
+  classifyProbe,
+  classifyRowProbe,
+  type MigrationSentinel,
+  type ProbeResult,
+} from "@/lib/flags";
 
 // Ops-flags health check — the mechanical half of memory/flags.md.
 //
 // Reports, as enums only (never values, never rows):
 //   anthropic_api_key            "configured" | "missing"
 //   migration_<nnn>_<name>       "applied" | "missing" | "unknown"
+//
+// Two sentinel shapes: DDL migrations probe for a COLUMN they add, seed
+// migrations (011) probe for a ROW COUNT, because they add no column.
 //
 // plus a `details` map carrying the error CODE (an enum such as "42501" or
 // "PGRST205") for any migration probe that did not come back "applied", so
@@ -25,10 +34,20 @@ import { MIGRATION_SENTINELS, classifyProbe, type ProbeResult } from "@/lib/flag
 // additive migration has run is schema metadata, not data. The migration
 // probe uses HEAD so no table rows ever transit.
 
-async function probeMigration(table: string, column: string): Promise<ProbeResult> {
+async function probeMigration(s: MigrationSentinel): Promise<ProbeResult> {
   try {
     const admin = createAdminClient();
-    const { error } = await admin.from(table).select(column, { head: true, count: "exact" });
+    // Seed migrations add no column, so their sentinel counts ROWS instead.
+    // Still HEAD-only — a count comes back, never a row.
+    if (s.expectRows) {
+      let q = admin.from(s.table).select(s.column, { head: true, count: "exact" });
+      if (s.expectRows.where) {
+        q = q.eq(s.expectRows.where.column, s.expectRows.where.value);
+      }
+      const { error, count } = await q;
+      return classifyRowProbe(error, count ?? null, s.expectRows.atLeast);
+    }
+    const { error } = await admin.from(s.table).select(s.column, { head: true, count: "exact" });
     return classifyProbe(error);
   } catch {
     // No SUPABASE env in this environment (e.g. a bare local checkout) —
@@ -47,7 +66,7 @@ export async function GET() {
   const details: Record<string, string> = {};
 
   for (const s of MIGRATION_SENTINELS) {
-    const result = await probeMigration(s.table, s.column);
+    const result = await probeMigration(s);
     checks[s.key] = result.status;
     if (result.code) details[s.key] = result.code;
   }

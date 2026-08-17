@@ -1,3 +1,5 @@
+import type { EraseScope } from "./data-erase";
+
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
 const TOKEN_KEY = "mp_token";
 
@@ -43,7 +45,11 @@ export function setToken(token: string) {
     return;
   }
   const maxAge = 60 * 60 * 24 * 7; // 7 days
-  document.cookie = `mp_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
+  // Secure in production so the bearer token never rides a plaintext http://
+  // request (shared school/family Wi-Fi). Gated on NODE_ENV — mirrors the
+  // refresh cookie in lib/auth-cookies.ts — so local http dev still works.
+  const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
+  document.cookie = `mp_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax${secure}`;
 }
 
 // Clears only the JS-readable access token. On web the refresh-token cookie is
@@ -203,6 +209,20 @@ export const api = {
         method: "POST",
         body: JSON.stringify(body),
       }).catch(() => ({ success: false })),
+  },
+  attempts: {
+    // Scoped erase of the server-side answer history. The client names a
+    // scope; the server derives the row filter and applies it to the JWT
+    // subject's rows only (app/api/attempts/erase/route.ts explains why the
+    // browser may no longer build this delete itself).
+    erase: (body: { scope: EraseScope }) =>
+      apiCall<{
+        attemptsDeleted: number;
+        section2Deleted: number;
+        refinementLoopsDeleted: number;
+        /** Rows still matching the scope after the delete. Must be 0. */
+        residual: number;
+      }>("/api/attempts/erase", { method: "POST", body: JSON.stringify(body) }),
   },
   section2: {
     submitAttempts: (body: {

@@ -12,34 +12,94 @@
 //
 // Every new store MUST be added here in the same commit that introduces it.
 // lib/data-erase.test.ts asserts the inventory stays in step with the code.
+//
+// "Store" means SERVER TABLES TOO, not just localStorage. That was left
+// implicit and it cost us: section2_attempts shipped in migration 006 with no
+// DELETE policy and was never added to any erase path, so for months an
+// "erase everything" left a student's graded Section 2 answers sitting on the
+// server. It is now swept by /api/attempts/erase (see eraseTakesSection2).
+// When you add a table that holds student work, decide in the SAME commit
+// which scope owns it and wire it into that route — a table nobody can delete
+// is a table that outlives the student's request to be forgotten.
+//
+// Server tables holding student work, and where each is erased:
+//   attempts            — /api/attempts/erase, filtered by scope
+//   section2_attempts   — /api/attempts/erase, on "esh" and "all"
+//   refinement_loop_sessions — /api/attempts/erase, on "all" only (the table
+//                         has no `context` column, so there is no honest way
+//                         to tell one hub's loops from another's; see
+//                         eraseTakesRefinementLoops).
 
 export type EraseScope = "esh" | "sat" | "ib" | "courses" | "all";
 
 export const ERASE_SCOPES: EraseScope[] = ["esh", "sat", "ib", "courses", "all"];
 
 /**
- * Attempt `context` values belonging to a scope. `null` stands for a row with
- * no context at all — every attempt written before contexts existed is ЭЕШ
- * (see lib/perf-context.ts), so an ЭЕШ erase has to sweep those too or the
- * oldest data becomes undeletable.
+ * How the SERVER selects the attempt rows a scope owns.
  *
- * `all` returns null, meaning "no filter — every row".
+ * The client used to build this filter itself and send it to PostgREST with
+ * its own JWT. That let a student delete any subset they liked — most
+ * usefully, only their wrong answers, which raises every accuracy figure the
+ * ratings card and the parent report are computed from. Deletion is now a
+ * scope name POSTed to /api/attempts/erase; the server turns the name into
+ * this filter and applies it with `user_id = <JWT subject>`. The client can
+ * name a scope, never a predicate.
+ *
+ * Kept beside the inventory above so the two cannot drift: adding a scope
+ * without a filter here is a type error.
  */
-export function attemptContextsForScope(scope: EraseScope): (string | null)[] | null {
+export type AttemptDeleteFilter =
+  | { kind: "all" }
+  | { kind: "prefix"; prefix: string }
+  | { kind: "in"; contexts: string[] }
+  | { kind: "in-or-null"; contexts: string[] };
+
+export function attemptDeleteFilter(scope: EraseScope): AttemptDeleteFilter {
   switch (scope) {
-    case "esh":
-      return ["esh", null];
-    case "sat":
-      return ["sat"];
-    case "ib":
-      return ["ib"];
-    case "courses":
-      // Every course context is "course:<slug>", including the ЭЕШ prep
-      // courses in the exam hub. Matched by prefix at call sites.
-      return null;
     case "all":
-      return null;
+      return { kind: "all" };
+    case "courses":
+      return { kind: "prefix", prefix: "course:" };
+    case "esh":
+      // ЭЕШ owns the context-less rows written before the column existed
+      // (see lib/perf-context.ts); without the NULL branch the oldest
+      // attempts would be undeletable.
+      return { kind: "in-or-null", contexts: ["esh"] };
+    case "sat":
+      return { kind: "in", contexts: ["sat"] };
+    case "ib":
+      return { kind: "in", contexts: ["ib"] };
   }
+}
+
+/**
+ * Scopes whose erase must also take the student's Section 2 (fill-in) rows.
+ * Section 2 exists only in the ЭЕШ exam, so an ЭЕШ or full erase owns it.
+ *
+ * These rows have never had a DELETE policy (migration 006 — "attempts are
+ * immutable"), so the old client-side erase could not touch them at all: an
+ * "erase everything" left a student's graded Section 2 answers on the server.
+ * The server route deletes them because it holds the service-role client.
+ */
+export function eraseTakesSection2(scope: EraseScope): boolean {
+  return scope === "all" || scope === "esh";
+}
+
+/**
+ * Scopes whose erase must also take the student's refinement-loop sessions.
+ *
+ * "all" only, and that limit is deliberate rather than lazy:
+ * refinement_loop_sessions has no `context` column, so nothing in the row
+ * says which hub the loop belongs to. Guessing from `topic` would silently
+ * delete the wrong hub's work on a scoped erase — the exact failure the
+ * module comment above exists to prevent. "Erase everything" has no such
+ * ambiguity, so it takes them all.
+ *
+ * If the loop is ever offered outside ЭЕШ, give the table a `context` column
+ * and scope this the way attempts are scoped.
+ */
+export function eraseTakesRefinementLoops(scope: EraseScope): boolean {
+  return scope === "all";
 }
 
 /** True when an attempt with this context belongs to the scope. */

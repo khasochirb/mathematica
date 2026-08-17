@@ -28,17 +28,22 @@ export interface GeometrySpineEntry {
   live: boolean;
 }
 
-// Primary band renumbered 2026-08-13 to MINISTRY grade labels (Baga core
-// curriculum, data/primary/moe-baga-curriculum.json): what shipped as
-// grades 3/4/5 was ministry grade 2/3/4 content, so the labels moved down
-// to match the national standard. Grades 1 and 5 are pending authoring
-// (memory/primary-band-alignment.md) and stay inactive until their courses
-// exist — active:false keeps them off the band page without special cases.
+// PRIMARY BAND WITHDRAWN 2026-08-13. The owner's priority is high school and
+// the AI tutor; elementary is "the last last thing we worry about", so grades
+// 1-5 are inactive and /math no longer lists them. The content, builders,
+// banks and the ministry alignment stay in the repo and under their gates —
+// this is a withdrawal from the SITE, not a deletion of the work, and
+// reversing it is flipping these flags plus restoring the section in
+// app/math/page.tsx.
+//
+// (The band had just been renumbered onto the ministry's labels: what shipped
+// as grades 3/4/5 was ministry grade 2/3/4 content. That renumber stands, so
+// whenever the band returns it returns correctly labelled.)
 const ALL_GRADES: GradeInfo[] = [
   { grade: 1, active: false },
-  { grade: 2, active: true },
-  { grade: 3, active: true },
-  { grade: 4, active: true },
+  { grade: 2, active: false },
+  { grade: 3, active: false },
+  { grade: 4, active: false },
   { grade: 5, active: false },
   { grade: 6, active: true },
   { grade: 7, active: true },

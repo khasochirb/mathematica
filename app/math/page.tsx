@@ -4,7 +4,7 @@ import { isUnpublished, publishedOnly } from "@/lib/unpublished";
 import Link from "next/link";
 // Spines, not the registry: the catalog lists courses, it renders no
 // lesson, so it must not ship the course corpus (lib/genmath-spines.ts).
-import { listGrades, GRADE2_SPINE, GRADE3_SPINE, GRADE4_SPINE, GRADE6_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
+import { listGrades, GRADE6_SPINE, GRADE7_SPINE, GRADE8_SPINE, GRADE9_SPINE, GRADE10_SPINE, GRADE11_SPINE, GRADE12_SPINE } from "@/lib/genmath-spines";
 import useRatings from "@/lib/use-ratings";
 import {
   COURSE_DEFAULT_ATTRIBUTE,
@@ -23,10 +23,9 @@ const BAND_COLOR: Record<Band, string> = {
 };
 
 const TOPIC_COUNTS: Record<number, number> = {
-  // Primary grades go live topic by topic — count only what a student can open.
-  3: GRADE2_SPINE.filter((t) => t.live).length,
-  4: GRADE3_SPINE.filter((t) => t.live).length,
-  5: GRADE4_SPINE.filter((t) => t.live).length,
+  // Grades 1-5 are absent because the primary band is withdrawn from the site
+  // (see lib/genmath-spines.ts). Restoring the band restores their rows here,
+  // counting only `live` topics as the primary spines did.
   6: GRADE6_SPINE.length,
   7: GRADE7_SPINE.length,
   8: GRADE8_SPINE.length,
@@ -456,22 +455,14 @@ export default function MathLandingPage() {
             grades 6–9; High school is grades 10–12 PLUS the named topic
             courses. Transition grades (5th/9th/12th) carry a badge. */}
 
-        <section id="primary" className="mb-12" style={{ scrollMarginTop: 96 }}>
-          <div className="eyebrow mb-1.5">Primary school · Mongol curriculum</div>
-          <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
-            Grades 1–5, year by year, on the ministry's own grade labels
-            (renumbered 2026-08 to match the national core curriculum).
-            Grades 2, 3 and 4 are complete and open; grades 1 and 5 are
-            being authored against the same standard and follow next.
-          </p>
-          <div className="grid gap-4" style={gridStyle}>
-            <GradeCard grade={5} active={isActive(5)} />
-            <GradeCard grade={4} active={isActive(4)} />
-            <GradeCard grade={3} active={isActive(3)} />
-            <GradeCard grade={2} active={isActive(2)} />
-            <GradeCard grade={1} active={isActive(1)} />
-          </div>
-        </section>
+        {/* PRIMARY BAND WITHDRAWN 2026-08-13 (owner: "elementary is the last
+            last thing we worry about — you can even remove them from the
+            website now"). The grades 2-4 courses, their builders, banks and
+            the ministry alignment all remain in the repo and in the gates;
+            only the public entry point is gone, so bringing the band back is
+            re-adding this section, not re-authoring a year. lib/genmath-spines
+            ALL_GRADES marks 1-5 inactive, which is what keeps their routes
+            and the placement/ratings wiring off the site with them. */}
 
         <section id="mid-school" className="mb-12" style={{ scrollMarginTop: 96 }}>
           <div className="eyebrow mb-1.5">Mid school · Mongol curriculum</div>
