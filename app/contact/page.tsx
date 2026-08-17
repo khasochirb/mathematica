@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
+import { api } from "@/lib/api";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -31,13 +32,33 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
+  // This used to be `await new Promise(r => setTimeout(r, 1000))` followed by
+  // the success screen — no request, no storage. Every message was discarded
+  // and every sender was told it had arrived. Now it is stored
+  // (contact_messages, migration 018), and a failure says so instead of
+  // pretending.
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (loading) return;
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    setSubmitted(true);
-    setLoading(false);
+    setError(null);
+    try {
+      await api.contact.send({ ...form, lang });
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error && err.message
+          ? err.message
+          : t(
+              "Could not send your message. Please email or call us instead.",
+              "Мессеж илгээгдсэнгүй. Имэйл эсвэл утсаар холбогдоно уу.",
+            ),
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -77,8 +98,12 @@ export default function ContactPage() {
           <aside className="lg:col-span-1 space-y-5">
             <div className="eyebrow">{t("Channels · Direct", "Холбоо · Шууд")}</div>
             {[
-              { icon: Phone, label: t("Phone", "Утас"), value: "+1 (415) 981-8165", href: "tel:+14159818165" },
-              { icon: Mail, label: t("Email", "Имэйл"), value: "imathhub@gmail.com", href: "mailto:imathhub@gmail.com" },
+              // Labelled by WHERE the line is, not by rank: a diaspora family
+              // needs to see the international number is real, and a UB parent
+              // needs to see we are local. "Secondary" would say neither.
+              { icon: Phone, label: t("Phone · Mongolia", "Утас · Монгол"), value: "+976 8862 7927", href: "tel:+97688627927" },
+              { icon: Phone, label: t("Phone · International", "Утас · Олон улс"), value: "+1 (415) 981-8165", href: "tel:+14159818165" },
+              { icon: Mail, label: t("Email", "Имэйл"), value: "hello@mongolpotential.com", href: "mailto:hello@mongolpotential.com" },
             ].map(({ icon: Icon, label, value, href }) => (
               <a key={label} href={href} className="card-edit p-4 flex items-start gap-3 group">
                 <div
@@ -107,9 +132,14 @@ export default function ContactPage() {
                 <div className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
                   {t("Location", "Байршил")}
                 </div>
-                <div className="text-[13px] mt-0.5" style={{ color: "var(--fg)" }}>San Francisco, CA</div>
+                <div className="text-[13px] mt-0.5" style={{ color: "var(--fg)" }}>
+                  {t("Ulaanbaatar, Mongolia", "Улаанбаатар, Монгол")}
+                </div>
+                {/* Was "Online · worldwide", which read as "we are nowhere"
+                    next to a city. Online tutoring is still offered — it is
+                    just no longer the thing the address line claims. */}
                 <div className="mono text-[11px] mt-0.5" style={{ color: "var(--fg-3)" }}>
-                  {t("Online · worldwide", "Онлайн · дэлхий даяар")}
+                  {t("In person · online", "Танхимаар · онлайнаар")}
                 </div>
               </div>
             </div>
@@ -123,7 +153,13 @@ export default function ContactPage() {
               </div>
               <p className="serif text-[14px] leading-snug" style={{ color: "var(--fg)" }}>
                 {t(
-                  "We typically respond within a few hours during business days (PT). Urgent? Call directly.",
+                  // "Mon–Fri, Ulaanbaatar time" rather than an offset: parents
+                  // do not think in UTC, and naming the city does the timezone
+                  // work while reinforcing that we are local. The Mongolian
+                  // string is deliberately NOT given a timezone here — that is
+                  // Mongolian copy, and Mongolian copy is written by a human
+                  // teacher, never translated by me. Logged for that pass.
+                  "We typically respond within a few hours, Mon–Fri, Ulaanbaatar time. Urgent? Call directly.",
                   "Ажлын өдрүүдэд хэдэн цагт хариулдаг. Яаралтай бол шууд залгаарай.",
                 )}
               </p>
@@ -203,6 +239,22 @@ export default function ContactPage() {
                     style={{ ...inputStyle, resize: "none" }}
                   />
                 </div>
+                {/* A failure has to be visible, or we are back to the silent
+                    loss this whole change exists to end. The fallback names
+                    the phone and email so a lost message still has a route. */}
+                {error && (
+                  <div
+                    role="alert"
+                    className="p-3 rounded-md text-[13px]"
+                    style={{
+                      background: "var(--accent-wash)",
+                      border: "1px solid var(--accent-line)",
+                      color: "var(--fg)",
+                    }}
+                  >
+                    {error}
+                  </div>
+                )}
                 <button
                   type="submit"
                   disabled={loading}

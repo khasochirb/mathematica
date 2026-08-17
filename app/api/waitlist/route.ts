@@ -21,7 +21,14 @@ export async function POST(req: NextRequest) {
   const user = await getAuthUser(req);
   const admin = createAdminClient();
 
-  await admin
+  // THE RESULT IS CHECKED. It used to be discarded — `await admin.from(...)`
+  // with nothing destructured — so the route answered `success: true` whether
+  // the row landed or not, and the modal showed its confirmation either way.
+  // A Premium purchase request is the most valuable thing this site collects;
+  // it must not be possible for one to disappear while the buyer is told it
+  // arrived. If this insert fails the caller now hears about it and can try
+  // again or phone instead.
+  const { error } = await admin
     .from("premium_waitlist")
     .upsert(
       {
@@ -32,6 +39,13 @@ export async function POST(req: NextRequest) {
       },
       { onConflict: "email,source" },
     );
+
+  if (error) {
+    // Logged with the source but never the email: the address is the lead and
+    // logs are not where leads should live.
+    console.error("[waitlist] upsert failed", { source, code: error.code, message: error.message });
+    return NextResponse.json({ error: "Could not save your request" }, { status: 500 });
+  }
 
   return NextResponse.json({ data: { success: true } });
 }

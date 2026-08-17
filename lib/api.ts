@@ -196,6 +196,19 @@ export const api = {
     // header) and deliberately has no client binding — activation happens
     // after out-of-band payment, never from the browser.
   },
+  contact: {
+    send: (body: {
+      name: string;
+      email: string;
+      subject?: string;
+      message: string;
+      lang?: string;
+    }) =>
+      apiCall<{ success: boolean }>("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
+  },
   waitlist: {
     join: (body: { email: string; source: string; interestedExams?: string[] }) =>
       apiCall<{ success: boolean }>("/api/waitlist", {

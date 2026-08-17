@@ -78,18 +78,18 @@ export default function Footer() {
             <div className="space-y-2 mb-6">
               <div className="eyebrow">Contact</div>
               <a
-                href="tel:+14159818165"
+                href="tel:+97688627927"
                 className="block mono tabular text-sm transition-colors"
                 style={{ color: "var(--accent)" }}
               >
-                +1 (415) 981-8165
+                +976 8862 7927
               </a>
               <a
-                href="mailto:imathhub@gmail.com"
+                href="mailto:hello@mongolpotential.com"
                 className="block text-sm transition-colors"
                 style={{ color: "var(--fg-1)" }}
               >
-                imathhub@gmail.com
+                hello@mongolpotential.com
               </a>
             </div>
             {/* Social icons */}

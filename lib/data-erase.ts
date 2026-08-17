@@ -86,6 +86,10 @@ export const SERVER_USER_TABLES: UserTableSpec[] = [
   { table: "subscription_events", column: "user_id", rule: "cascade", what: "billing history" },
   // Holds a signup email, so the whole row goes rather than being de-identified.
   { table: "premium_waitlist", column: "user_id", rule: "cascade", what: "waitlist entry" },
+  // Holds the sender's name, email and message text, so the whole row goes —
+  // same reasoning as premium_waitlist. Anonymous messages have no user_id and
+  // no account behind them, so nothing links them to an erase request.
+  { table: "contact_messages", column: "user_id", rule: "cascade", what: "contact messages" },
   // De-identified analytics: the row survives with user_id nulled.
   { table: "events", column: "user_id", rule: "set-null", what: "analytics events" },
   // The account row itself. Cascades from auth.users(id), and everything above

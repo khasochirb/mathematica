@@ -24,6 +24,18 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ## OPEN
 
+### FLAG-011 — migration `018_contact_messages.sql` not applied (LEAD LOSS)
+
+| | |
+|---|---|
+| **Raised** | 2026-08-17, Build |
+| **Status** | **OPEN — blocking the contact form** |
+| **What** | `018_contact_messages.sql` creates the table the contact form now writes to. It is written, gated and committed, but **not applied**: `apply_migration` through the Supabase MCP returns `MCP tool call requires approval`, and this session is non-interactive so no prompt can reach the owner. |
+| **Owner action** | Grant MCP approval (claude.ai connector settings, or `/mcp` in an interactive session) so Build can apply it — Build owns migrations per CLAUDE.md. Applying it by hand in the dashboard also works but skips the ledger; prefer the MCP. |
+| **Until then** | **Do not deploy the contact-form wiring.** With the table absent the route returns 500 and the form shows "Could not send your message. Please email or call us instead." That is honest — and strictly better than the silent discard it replaces — but it is a visibly broken form. The two ship together or not at all. |
+| **Verify** | `select count(*) from contact_messages;` succeeds (0 rows is correct), and the migration's own post-conditions ran: 10 columns, RLS enabled, no `anon`/`authenticated` grants. |
+| **Notes** | Row holds a sender's name, email and message body, so `user_id` CASCADEs on account deletion and the table is registered in `SERVER_USER_TABLES` (`lib/data-erase.ts`). The security stream's `verify-account-delete-inventory` gate caught the first draft, which used `SET NULL` and would have left the personal data behind after an erase. |
+
 ### FLAG-009 — `ADMIN_DELETION_KEY` not set in Vercel (PRIVACY)
 
 | | |

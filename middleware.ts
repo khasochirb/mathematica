@@ -2,8 +2,8 @@
 // Runs before the route handler; on limit-exceeded it returns 429 and the
 // handler never executes. Everything else passes straight through untouched.
 //
-// Scope is deliberately narrow (login/register/resend) — the brute-force /
-// spam targets. Frequently-polled auth routes (/api/auth/me, /refresh,
+// Scope is deliberately narrow (login/register/resend/contact) — the
+// brute-force / spam targets. Frequently-polled auth routes (/api/auth/me, /refresh,
 // /logout) are intentionally NOT limited: legit clients hit them on every
 // mount and token rotation, and they aren't credential oracles.
 
@@ -17,6 +17,7 @@ export const config = {
     "/api/auth/resend",
     "/api/tutor",
     "/api/placement/next",
+    "/api/contact",
   ],
 };
 

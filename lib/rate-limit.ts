@@ -42,6 +42,11 @@ const LIMITS: Record<string, number> = {
   // student cannot answer questions faster than this. Tighter than the tutor
   // because the per-sitting ceiling is AI_CALL_BUDGET (6) to begin with.
   "/api/placement/next": 10,
+  // Contact form: an unauthenticated public write. Nobody sends five distinct
+  // messages in a minute; a spam script does. Deliberately not tighter — a
+  // parent who mistypes their email and resubmits must not be locked out of
+  // reaching us at all.
+  "/api/contact": 5,
 };
 const DEFAULT_LIMIT = 10;
 
