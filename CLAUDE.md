@@ -1,29 +1,76 @@
 # Mongol Potential — working agreement
 
-Four Claude Code chats work on this repo in parallel. You are one of them.
-You cannot see the others' conversations. This file and the status files are
-the only shared memory that exists.
+**This file is the master.** Nothing governing how these chats work comes
+from outside it. If a briefing, a plan document or an earlier session
+contradicts this file, this file wins and the contradiction is worth
+reporting. (Established 17 Aug 2026, when the working rules had drifted
+across four chats, three status files and a document not in the repository.)
+
+Two Claude Code chats work on this repo. You are one of them. You cannot see
+the other's conversation. This file and the status files are the only shared
+memory that exists.
 
 ## Who owns what
 
-| Chat | Owns | Never touches |
+| Chat | Owns | Never does |
 |---|---|---|
-| Design and structure | routes, nav, migrations, schema | lesson/problem content |
-| Content Creation | `data/`, `scripts/skills/`, the skill graph, items | routes, migrations |
-| Website security audit | RLS specs, policy review, audits | applying migrations, app logic |
-| QA and release | tests, smoke checks, the deploy gate | features, refactors |
+| **Build** | The entire repository: routes, nav, pages, app logic, migrations, schema, health probes, `data/`, `scripts/`, the skill graph, items, tests, the deploy gate | Ships without the gates in `qa-verification` passing; deploys without being asked |
+| **Security** | RLS specs, policy review, audits, the threat model | **Applies migrations. Ever.** Touches app logic |
+
+Build writes the code and applies the migrations. Security reads, reviews and
+gates, and hands findings over — it never applies anything itself.
+
+**Closed:** *Design and structure* (17 Aug 2026 — its routes/nav/migrations
+ownership moved to Build; its handover is `memory/status/design-and-structure.md`,
+which stays in the repo as history). *Content Creation* and *QA and release*
+also folded into Build. **Pricing has left Claude Code entirely** — do not
+expect a chat behind it and do not pick its work up uninvited.
+
+## One mode per session
+
+Every session is **ship** or **content**. Never both, and the mode is
+declared on the first line of that session's status entry:
+`## <date> <time> — mode: ship`.
+
+- **ship** — routes, nav, app logic, migrations, probes, deploys, fixes.
+  Work that changes what production does.
+- **content** — the skill graph, items, the orphan backlog, authoring.
+  Work that changes what the product knows.
+
+The split exists because the two have incompatible failure modes. Ship work
+is judged on whether production still stands and wants a short diff and a
+fast rollback; content work is long, cumulative, and its mistakes are
+invisible until a student meets them. Interleaving them means a deploy
+carries half-authored content, and a rollback throws away authoring that was
+never the problem. It also makes a status entry legible at a glance: one
+kind of risk per session.
+
+If work in the other mode turns out to be needed, write it down for the next
+session rather than starting it. The owner sets the mode; if a session's
+instructions do not say, ask before assuming.
 
 ## THE DATABASE RULE
 
-**Only "Design and structure" applies migrations to production.** No
-exceptions, no matter how small the change.
+**Only Build applies migrations to production.** No exceptions, no matter
+how small the change. (Was "only Design and structure" until 17 Aug 2026;
+that chat is closed and the ownership moved, but the rule itself has not
+changed shape — exactly one chat applies.)
 
-Everyone else writes migrations and hands them over. If you are not Design
-and structure and you are about to run a migration, stop.
+Security writes migrations and hands them over. If you are Security and you
+are about to run one, stop.
 
 *Why this rule exists: on 15 Aug 2026 two chats applied the same
 client-write lockdown eight minutes apart without knowing, and a third
-reported a teammate's migration as unexplained database drift.*
+reported a teammate's migration as unexplained database drift. With two
+chats instead of four the collision is less likely, not impossible — and
+the failure is silent, so the rule stays absolute.*
+
+**Apply migrations with `apply_migration`, not `execute_sql`.** Only the
+former writes a row to `supabase_migrations.schema_migrations`. `011` was
+applied with `execute_sql` on 17 Aug and is therefore absent from the
+ledger, so the ledger says it never ran and rule 1 below points at a ledger
+that is lying. One migration applied the wrong way costs every future reader
+that check.
 
 > **Supersedes:** `.claude/skills/release-deploy` §Database changes and
 > `.claude/skills/ops-flags` both say the *owner* applies migrations by
@@ -57,8 +104,9 @@ order by version;
 
 ## End every session with this
 
-Update `memory/status/<your-stream>.md` — write only your own file, read all
-of them — then push to main.
+Update your own status file — Build writes `memory/status/build.md`,
+Security writes `memory/status/security.md` — read all of them, including the
+closed chats' files, then push to main.
 
 **Push the status file only.** On this repo a push to `main` *is* a
 production deploy: Vercel auto-deploys from `main`, and
@@ -70,23 +118,27 @@ asks for it. Concretely:
 
 ```bash
 git checkout main && git pull
-# edit memory/status/<your-stream>.md
-git add memory/status/<your-stream>.md
-git commit -m "status: <stream> <date>"
+# edit memory/status/build.md   (or security.md)
+git add memory/status/build.md
+git commit -m "status: build <date> (ship|content)"
 git push -u origin main
 git checkout <your-branch>        # work continues here
 ```
 
 ```markdown
-## <date> <time>
+## <date> <time> — mode: ship | content
 **Did:** one line each
 **Landed where:** branch / merged to main / applied to production
 **Blocked on:** who or what, or "nothing"
 **Others should know:** anything that changes their work
 ```
 
-One file per stream, never a shared one: four agents appending to a single
-file produces constant merge conflicts; one file each produces none.
+One file per chat, never a shared one: agents appending to a single file
+produce constant merge conflicts; one file each produces none. The closed
+chats' files (`design-and-structure.md`, `content.md`, `qa.md`) stay in the
+repo — they are the only record of why several things are the way they are,
+and `design-and-structure.md` in particular carries the route inventory and
+the FLAG-010 diagnosis. Read them; never write to them.
 
 ## Rules that exist because they were broken
 
@@ -165,11 +217,17 @@ cleaner. In brief:
 > applies to the extracts you are given.)
 
 **Not building, by decision:** school admin accounts, class rosters, bulk
-licensing, mobile app, AI tutor chat, IB/AP (until 2027).
+licensing, mobile app, AI tutor chat.
+
+> **IB and AP were on that list until 17 Aug 2026 and are not any more.**
+> Both are live doors that stay in navigation and get upgraded over time
+> (rule 7's legacy tier — AP keeps its "Soon" badge because there is no
+> curriculum behind it yet). The old "IB/AP (until 2027)" wording is what
+> justified cutting them, and that cut is reversed.
 
 ## Where the manuals live
 
-This file is the working agreement between the four chats. The operating
+This file is the working agreement between the two chats. The operating
 manuals — how to actually do each job — are skills in `.claude/skills/`,
 auto-discovered by Claude Code:
 

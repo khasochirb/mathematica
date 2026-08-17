@@ -39,7 +39,14 @@ async function probeMigration(s: MigrationSentinel): Promise<ProbeResult> {
   const site = {
     table: s.table,
     column: s.column,
-    filter: where ? `${where.column}=${where.value}` : undefined,
+    // The filter EXACTLY as PostgREST receives it, operator included. This
+    // read `hub=eysh` for a day, which is not a PostgREST filter at all —
+    // and it cost a reader a wrong root cause for FLAG-010, because a bare
+    // `hub=eysh` really would match nothing. The query itself was always
+    // right: `.eq(col, val)` serialises to `hub=eq.eysh`. A diagnostic field
+    // that has to be mentally translated is a diagnostic field that will be
+    // misread, so it now prints what actually goes on the wire.
+    filter: where ? `${where.column}=eq.${where.value}` : undefined,
   };
   try {
     const admin = createAdminClient();
