@@ -34,6 +34,93 @@ export type EraseScope = "esh" | "sat" | "ib" | "courses" | "all";
 
 export const ERASE_SCOPES: EraseScope[] = ["esh", "sat", "ib", "courses", "all"];
 
+// ---------------------------------------------------------------------------
+// Account deletion — the server-table inventory
+// ---------------------------------------------------------------------------
+
+/**
+ * How a table's rows are expected to disappear when the account goes.
+ *
+ * `cascade`  — the FK to profiles(id) is ON DELETE CASCADE, so deleting the
+ *              auth user removes the rows outright.
+ * `set-null` — the FK is ON DELETE SET NULL. The ROW survives, de-identified;
+ *              only the link to the person is cut. Applied to `events` alone,
+ *              whose payload is a single non-personal `source` string.
+ *
+ * Either way the post-delete assertion is identical — zero rows still carrying
+ * this user's id — which is what makes one uniform residual sweep correct.
+ */
+export type AccountDeleteRule = "cascade" | "set-null";
+
+export interface UserTableSpec {
+  table: string;
+  /** Column holding the account's uuid. */
+  column: string;
+  rule: AccountDeleteRule;
+  /** What the row is, for the deletion receipt. */
+  what: string;
+}
+
+/**
+ * EVERY table in the public schema that stores a row belonging to a specific
+ * account, verified against production 2026-08-16.
+ *
+ * This list is the whole safety property of account deletion. §3.3 of
+ * docs/security/data-access-model.md requires the deletion routine to VERIFY
+ * zero residual rows rather than assume the cascade worked, and it can only
+ * verify what it knows to look at — so a table missing from this list is a
+ * table that silently survives an erasure request.
+ *
+ * ADD A NEW TABLE HERE IN THE SAME COMMIT THAT CREATES IT.
+ * scripts/verify-account-delete-inventory.test.ts fails the build if a
+ * migration introduces a user-scoped table that never reached this list.
+ */
+export const SERVER_USER_TABLES: UserTableSpec[] = [
+  { table: "attempts", column: "user_id", rule: "cascade", what: "answer history" },
+  { table: "section2_attempts", column: "user_id", rule: "cascade", what: "Section 2 answers" },
+  { table: "refinement_loop_sessions", column: "user_id", rule: "cascade", what: "refinement loops" },
+  { table: "skill_state", column: "user_id", rule: "cascade", what: "mastery state" },
+  { table: "streaks", column: "user_id", rule: "cascade", what: "streaks" },
+  { table: "user_achievements", column: "user_id", rule: "cascade", what: "achievements" },
+  { table: "daily_problem_counts", column: "user_id", rule: "cascade", what: "daily quota counters" },
+  { table: "subscription_events", column: "user_id", rule: "cascade", what: "billing history" },
+  // Holds a signup email, so the whole row goes rather than being de-identified.
+  { table: "premium_waitlist", column: "user_id", rule: "cascade", what: "waitlist entry" },
+  // De-identified analytics: the row survives with user_id nulled.
+  { table: "events", column: "user_id", rule: "set-null", what: "analytics events" },
+  // The account row itself. Cascades from auth.users(id), and everything above
+  // cascades from it in turn.
+  { table: "profiles", column: "id", rule: "cascade", what: "the profile" },
+];
+
+/**
+ * Tables that migration 001 still creates but that NO LONGER EXIST in
+ * production — the legacy problem-serving schema, dropped out-of-band before
+ * the 2026-08-14 audit (their contents were archived first, see
+ * data/db-archive/2026-08-14-pre-drop/). Confirmed absent by probing the live
+ * schema on 2026-08-16.
+ *
+ * They are listed rather than deleted from this file because the repo and
+ * production genuinely disagree here, and the disagreement is worth stating
+ * once in a place code can read:
+ *
+ *   - Account deletion must NOT query them. A missing table reads as
+ *     "unreadable", and the route refuses to confirm an erase it could not
+ *     verify — so including them would break deletion outright.
+ *   - The inventory gate must not demand them either, or it fails forever.
+ *
+ * Note the app still has routes referencing these tables — /api/answers,
+ * /api/sessions, /api/progress, /api/problems/next — which means those routes
+ * are already broken against production, independently of anything here. No
+ * DROP migration exists in this repo; the schema is reproducible from scratch
+ * only up to this divergence.
+ */
+export const LEGACY_DROPPED_TABLES: string[] = [
+  "practice_sessions",
+  "session_answers",
+  "topic_progress",
+];
+
 /**
  * How the SERVER selects the attempt rows a scope owns.
  *
