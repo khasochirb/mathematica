@@ -48,13 +48,22 @@ export default function ContactPage() {
       await api.contact.send({ ...form, lang });
       setSubmitted(true);
     } catch (err) {
+      // The way out ALWAYS comes with the failure. A bare "Could not send your
+      // message" tells a parent nothing they can act on, and the server's own
+      // wording (validation detail, or a 500) is only ever half the answer —
+      // so it is shown as detail and the phone and address are appended, never
+      // replaced. This matters more than usual right now: until migration 018
+      // is applied the table does not exist and every submission fails, so
+      // this text is the whole contact path.
+      const detail = err instanceof Error && err.message ? err.message : "";
+      const reach = t(
+        "Please call +976 8862 7927 or email hello@mongolpotential.com and we'll pick it up from there.",
+        "+976 8862 7927 дугаарт залгах эсвэл hello@mongolpotential.com хаягаар илгээнэ үү.",
+      );
       setError(
-        err instanceof Error && err.message
-          ? err.message
-          : t(
-              "Could not send your message. Please email or call us instead.",
-              "Мессеж илгээгдсэнгүй. Имэйл эсвэл утсаар холбогдоно уу.",
-            ),
+        detail
+          ? `${detail}. ${reach}`
+          : `${t("Could not send your message", "Мессеж илгээгдсэнгүй")}. ${reach}`,
       );
     } finally {
       setLoading(false);
