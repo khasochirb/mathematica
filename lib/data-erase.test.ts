@@ -3,10 +3,12 @@ import { describe, it, expect, beforeEach } from "vitest";
 import {
   ERASE_SCOPES,
   LOCAL_STORES,
-  attemptContextsForScope,
+  attemptDeleteFilter,
   attemptInScope,
   eraseLocalScope,
   eraseSummary,
+  eraseTakesRefinementLoops,
+  eraseTakesSection2,
   type EraseScope,
 } from "./data-erase";
 
@@ -52,20 +54,89 @@ describe("attemptInScope", () => {
   });
 });
 
-describe("attemptContextsForScope", () => {
-  it("includes null for ЭЕШ so the server delete reaches pre-context rows", () => {
-    expect(attemptContextsForScope("esh")).toContain(null);
-    expect(attemptContextsForScope("esh")).toContain("esh");
+describe("attemptDeleteFilter", () => {
+  it("reaches pre-context rows on an ЭЕШ erase", () => {
+    // Rows written before the context column existed are ЭЕШ and are stored
+    // as NULL. An IN ('esh') filter alone would leave the oldest attempts
+    // permanently undeletable.
+    expect(attemptDeleteFilter("esh")).toEqual({
+      kind: "in-or-null",
+      contexts: ["esh"],
+    });
   });
 
-  it("returns a single named context for the exam hubs", () => {
-    expect(attemptContextsForScope("sat")).toEqual(["sat"]);
-    expect(attemptContextsForScope("ib")).toEqual(["ib"]);
+  it("matches one named context per exam hub", () => {
+    expect(attemptDeleteFilter("sat")).toEqual({ kind: "in", contexts: ["sat"] });
+    expect(attemptDeleteFilter("ib")).toEqual({ kind: "in", contexts: ["ib"] });
   });
 
-  it("returns null (no IN filter) where a prefix match is required", () => {
-    expect(attemptContextsForScope("courses")).toBeNull();
-    expect(attemptContextsForScope("all")).toBeNull();
+  it("matches course work by prefix, and 'all' by no filter at all", () => {
+    expect(attemptDeleteFilter("courses")).toEqual({ kind: "prefix", prefix: "course:" });
+    expect(attemptDeleteFilter("all")).toEqual({ kind: "all" });
+  });
+
+  it("gives every scope a filter — a scope with none would erase nothing", () => {
+    for (const scope of ERASE_SCOPES) {
+      expect(attemptDeleteFilter(scope), scope).toBeTruthy();
+    }
+  });
+
+  it("agrees with attemptInScope, which decides the LOCAL half of the erase", () => {
+    // The two halves run against the same student data — local rows filtered
+    // in the browser, server rows deleted by the route. If they disagree, an
+    // erase leaves the server holding rows the UI has already forgotten.
+    const contexts = [null, "esh", "sat", "ib", "course:geometry", "course:esh"];
+    const matchesFilter = (context: string | null, scope: EraseScope): boolean => {
+      const f = attemptDeleteFilter(scope);
+      switch (f.kind) {
+        case "all":
+          return true;
+        case "prefix":
+          return context !== null && context.startsWith(f.prefix);
+        case "in":
+          return context !== null && f.contexts.includes(context);
+        case "in-or-null":
+          return context === null || f.contexts.includes(context);
+      }
+    };
+
+    for (const scope of ERASE_SCOPES) {
+      for (const context of contexts) {
+        expect(
+          matchesFilter(context, scope),
+          `${scope} / ${String(context)}`,
+        ).toBe(attemptInScope(context ?? undefined, scope));
+      }
+    }
+  });
+});
+
+describe("server-table sweeps", () => {
+  it("takes Section 2 on an ЭЕШ or full erase — and only there", () => {
+    // Section 2 is a ЭЕШ-only paper, so no other hub's erase should touch it.
+    expect(eraseTakesSection2("esh")).toBe(true);
+    expect(eraseTakesSection2("all")).toBe(true);
+    expect(eraseTakesSection2("sat")).toBe(false);
+    expect(eraseTakesSection2("ib")).toBe(false);
+    expect(eraseTakesSection2("courses")).toBe(false);
+  });
+
+  it("takes refinement loops on a full erase only", () => {
+    // The table has no context column, so a scoped erase cannot tell one
+    // hub's loops from another's and must not guess.
+    expect(eraseTakesRefinementLoops("all")).toBe(true);
+    for (const scope of ERASE_SCOPES.filter((s) => s !== "all")) {
+      expect(eraseTakesRefinementLoops(scope), scope).toBe(false);
+    }
+  });
+
+  it("'all' leaves nothing behind on any server table", () => {
+    // The whole point of "erase everything". If a future table is added to
+    // the route without a sweep for "all", this is the test that should have
+    // caught it — keep the list in step with the module header's inventory.
+    expect(attemptDeleteFilter("all")).toEqual({ kind: "all" });
+    expect(eraseTakesSection2("all")).toBe(true);
+    expect(eraseTakesRefinementLoops("all")).toBe(true);
   });
 });
 

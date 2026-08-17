@@ -4,6 +4,15 @@ const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    // lib/ is mostly logic, but a few modules render JSX — the upgrade modal
+    // lives in lib/upgrade-modal-context.tsx because it is a context provider.
+    // Leaving lib/ out of this list purged EVERY Tailwind class in it, so that
+    // modal shipped with no max-width, no padding, no z-index, no overflow and
+    // an unpositioned close button: a full-bleed panel that could not be
+    // scrolled or dismissed, with its close button painted under the fixed
+    // header. Purged classes fail silently — nothing errors, the styles just
+    // are not there — so keep this glob as wide as the code that renders.
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {

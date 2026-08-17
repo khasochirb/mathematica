@@ -12,34 +12,181 @@
 //
 // Every new store MUST be added here in the same commit that introduces it.
 // lib/data-erase.test.ts asserts the inventory stays in step with the code.
+//
+// "Store" means SERVER TABLES TOO, not just localStorage. That was left
+// implicit and it cost us: section2_attempts shipped in migration 006 with no
+// DELETE policy and was never added to any erase path, so for months an
+// "erase everything" left a student's graded Section 2 answers sitting on the
+// server. It is now swept by /api/attempts/erase (see eraseTakesSection2).
+// When you add a table that holds student work, decide in the SAME commit
+// which scope owns it and wire it into that route — a table nobody can delete
+// is a table that outlives the student's request to be forgotten.
+//
+// Server tables holding student work, and where each is erased:
+//   attempts            — /api/attempts/erase, filtered by scope
+//   section2_attempts   — /api/attempts/erase, on "esh" and "all"
+//   refinement_loop_sessions — /api/attempts/erase, on "all" only (the table
+//                         has no `context` column, so there is no honest way
+//                         to tell one hub's loops from another's; see
+//                         eraseTakesRefinementLoops).
 
 export type EraseScope = "esh" | "sat" | "ib" | "courses" | "all";
 
 export const ERASE_SCOPES: EraseScope[] = ["esh", "sat", "ib", "courses", "all"];
 
+// ---------------------------------------------------------------------------
+// Account deletion — the server-table inventory
+// ---------------------------------------------------------------------------
+
 /**
- * Attempt `context` values belonging to a scope. `null` stands for a row with
- * no context at all — every attempt written before contexts existed is ЭЕШ
- * (see lib/perf-context.ts), so an ЭЕШ erase has to sweep those too or the
- * oldest data becomes undeletable.
+ * How a table's rows are expected to disappear when the account goes.
  *
- * `all` returns null, meaning "no filter — every row".
+ * `cascade`  — the FK to profiles(id) is ON DELETE CASCADE, so deleting the
+ *              auth user removes the rows outright.
+ * `set-null` — the FK is ON DELETE SET NULL. The ROW survives, de-identified;
+ *              only the link to the person is cut. Applied to `events` alone,
+ *              whose payload is a single non-personal `source` string.
+ *
+ * Either way the post-delete assertion is identical — zero rows still carrying
+ * this user's id — which is what makes one uniform residual sweep correct.
  */
-export function attemptContextsForScope(scope: EraseScope): (string | null)[] | null {
+export type AccountDeleteRule = "cascade" | "set-null";
+
+export interface UserTableSpec {
+  table: string;
+  /** Column holding the account's uuid. */
+  column: string;
+  rule: AccountDeleteRule;
+  /** What the row is, for the deletion receipt. */
+  what: string;
+}
+
+/**
+ * EVERY table in the public schema that stores a row belonging to a specific
+ * account, verified against production 2026-08-16.
+ *
+ * This list is the whole safety property of account deletion. §3.3 of
+ * docs/security/data-access-model.md requires the deletion routine to VERIFY
+ * zero residual rows rather than assume the cascade worked, and it can only
+ * verify what it knows to look at — so a table missing from this list is a
+ * table that silently survives an erasure request.
+ *
+ * ADD A NEW TABLE HERE IN THE SAME COMMIT THAT CREATES IT.
+ * scripts/verify-account-delete-inventory.test.ts fails the build if a
+ * migration introduces a user-scoped table that never reached this list.
+ */
+export const SERVER_USER_TABLES: UserTableSpec[] = [
+  { table: "attempts", column: "user_id", rule: "cascade", what: "answer history" },
+  { table: "section2_attempts", column: "user_id", rule: "cascade", what: "Section 2 answers" },
+  { table: "refinement_loop_sessions", column: "user_id", rule: "cascade", what: "refinement loops" },
+  { table: "skill_state", column: "user_id", rule: "cascade", what: "mastery state" },
+  { table: "streaks", column: "user_id", rule: "cascade", what: "streaks" },
+  { table: "user_achievements", column: "user_id", rule: "cascade", what: "achievements" },
+  { table: "daily_problem_counts", column: "user_id", rule: "cascade", what: "daily quota counters" },
+  { table: "subscription_events", column: "user_id", rule: "cascade", what: "billing history" },
+  // Holds a signup email, so the whole row goes rather than being de-identified.
+  { table: "premium_waitlist", column: "user_id", rule: "cascade", what: "waitlist entry" },
+  // De-identified analytics: the row survives with user_id nulled.
+  { table: "events", column: "user_id", rule: "set-null", what: "analytics events" },
+  // The account row itself. Cascades from auth.users(id), and everything above
+  // cascades from it in turn.
+  { table: "profiles", column: "id", rule: "cascade", what: "the profile" },
+];
+
+/**
+ * Tables that migration 001 still creates but that NO LONGER EXIST in
+ * production — the legacy problem-serving schema, dropped out-of-band before
+ * the 2026-08-14 audit (their contents were archived first, see
+ * data/db-archive/2026-08-14-pre-drop/). Confirmed absent by probing the live
+ * schema on 2026-08-16.
+ *
+ * They are listed rather than deleted from this file because the repo and
+ * production genuinely disagree here, and the disagreement is worth stating
+ * once in a place code can read:
+ *
+ *   - Account deletion must NOT query them. A missing table reads as
+ *     "unreadable", and the route refuses to confirm an erase it could not
+ *     verify — so including them would break deletion outright.
+ *   - The inventory gate must not demand them either, or it fails forever.
+ *
+ * Note the app still has routes referencing these tables — /api/answers,
+ * /api/sessions, /api/progress, /api/problems/next — which means those routes
+ * are already broken against production, independently of anything here. No
+ * DROP migration exists in this repo; the schema is reproducible from scratch
+ * only up to this divergence.
+ */
+export const LEGACY_DROPPED_TABLES: string[] = [
+  "practice_sessions",
+  "session_answers",
+  "topic_progress",
+];
+
+/**
+ * How the SERVER selects the attempt rows a scope owns.
+ *
+ * The client used to build this filter itself and send it to PostgREST with
+ * its own JWT. That let a student delete any subset they liked — most
+ * usefully, only their wrong answers, which raises every accuracy figure the
+ * ratings card and the parent report are computed from. Deletion is now a
+ * scope name POSTed to /api/attempts/erase; the server turns the name into
+ * this filter and applies it with `user_id = <JWT subject>`. The client can
+ * name a scope, never a predicate.
+ *
+ * Kept beside the inventory above so the two cannot drift: adding a scope
+ * without a filter here is a type error.
+ */
+export type AttemptDeleteFilter =
+  | { kind: "all" }
+  | { kind: "prefix"; prefix: string }
+  | { kind: "in"; contexts: string[] }
+  | { kind: "in-or-null"; contexts: string[] };
+
+export function attemptDeleteFilter(scope: EraseScope): AttemptDeleteFilter {
   switch (scope) {
-    case "esh":
-      return ["esh", null];
-    case "sat":
-      return ["sat"];
-    case "ib":
-      return ["ib"];
-    case "courses":
-      // Every course context is "course:<slug>", including the ЭЕШ prep
-      // courses in the exam hub. Matched by prefix at call sites.
-      return null;
     case "all":
-      return null;
+      return { kind: "all" };
+    case "courses":
+      return { kind: "prefix", prefix: "course:" };
+    case "esh":
+      // ЭЕШ owns the context-less rows written before the column existed
+      // (see lib/perf-context.ts); without the NULL branch the oldest
+      // attempts would be undeletable.
+      return { kind: "in-or-null", contexts: ["esh"] };
+    case "sat":
+      return { kind: "in", contexts: ["sat"] };
+    case "ib":
+      return { kind: "in", contexts: ["ib"] };
   }
+}
+
+/**
+ * Scopes whose erase must also take the student's Section 2 (fill-in) rows.
+ * Section 2 exists only in the ЭЕШ exam, so an ЭЕШ or full erase owns it.
+ *
+ * These rows have never had a DELETE policy (migration 006 — "attempts are
+ * immutable"), so the old client-side erase could not touch them at all: an
+ * "erase everything" left a student's graded Section 2 answers on the server.
+ * The server route deletes them because it holds the service-role client.
+ */
+export function eraseTakesSection2(scope: EraseScope): boolean {
+  return scope === "all" || scope === "esh";
+}
+
+/**
+ * Scopes whose erase must also take the student's refinement-loop sessions.
+ *
+ * "all" only, and that limit is deliberate rather than lazy:
+ * refinement_loop_sessions has no `context` column, so nothing in the row
+ * says which hub the loop belongs to. Guessing from `topic` would silently
+ * delete the wrong hub's work on a scoped erase — the exact failure the
+ * module comment above exists to prevent. "Erase everything" has no such
+ * ambiguity, so it takes them all.
+ *
+ * If the loop is ever offered outside ЭЕШ, give the table a `context` column
+ * and scope this the way attempts are scoped.
+ */
+export function eraseTakesRefinementLoops(scope: EraseScope): boolean {
+  return scope === "all";
 }
 
 /** True when an attempt with this context belongs to the scope. */

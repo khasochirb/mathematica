@@ -49,6 +49,12 @@ export const MIGRATION_SENTINELS: MigrationSentinel[] = [
     column: "context",
   },
   {
+    key: "migration_010_skill_graph",
+    migration: "010_skill_graph.sql",
+    table: "attempts",
+    column: "skill_id",
+  },
+  {
     key: "migration_011_seed_esh_graph",
     migration: "011_seed_esh_graph.sql",
     table: "skills",
@@ -115,6 +121,7 @@ export const HEALTHY: Record<string, string> = {
   anthropic_api_key: "configured",
   migration_008_student_profiles: "applied",
   migration_009_attempts_context: "applied",
+  migration_010_skill_graph: "applied",
   migration_011_seed_esh_graph: "applied",
 };
 

@@ -1,0 +1,43 @@
+-- ============================================================
+-- 012: column-level UPDATE grants on profiles (privilege-escalation fix)
+-- ============================================================
+-- THREAT: the profiles UPDATE policy (000_profiles_bootstrap.sql) is
+--
+--   CREATE POLICY "Users can update own profile" ON profiles
+--     FOR UPDATE USING (auth.uid() = id);
+--
+-- RLS decides WHICH ROW a user may update (their own) but cannot decide
+-- WHICH COLUMNS. Supabase's default grants hand the anon/authenticated
+-- roles table-level UPDATE, so any signed-in student could PATCH their own
+-- profiles row straight through PostgREST with the public anon key and set
+-- privilege columns the app treats as authoritative:
+--
+--   is_subscribed / subscription_expires_at  → free Premium (read back by
+--                                               lib/subscription.ts as truth)
+--   global_xp / global_level                 → fake progress / leaderboard
+--   grade / focus / focus_href               → overwrite teacher-set fields
+--
+-- This walks around the ADMIN_ACTIVATION_KEY gate on
+-- /api/subscription/activate entirely — that route is not the only path to
+-- the column it protects.
+--
+-- FIX: revoke the broad table-level UPDATE and re-grant UPDATE on ONLY the
+-- columns a user may legitimately self-edit. The server API routes write the
+-- privilege columns through the service-role client, which is a different
+-- role and is unaffected by these grants, so nothing on the server breaks.
+-- Verified 2026-08-14: no browser-side code updates profiles (every
+-- getSupabaseClient() caller is in lib/use-performance.ts and none touch the
+-- profiles table), so revoking the broad grant breaks no current feature.
+--
+-- Idempotent: REVOKE/GRANT are no-ops when already in the target state, so
+-- this file is safe to run twice.
+
+-- Take away the default broad UPDATE (this is what today's exploit rides on).
+REVOKE UPDATE ON public.profiles FROM anon, authenticated;
+
+-- Give back UPDATE on only the safe, user-owned display columns. Combined
+-- with the existing RLS policy (auth.uid() = id) a user may still edit their
+-- own username / display name / avatar and nothing else. Everything omitted
+-- here (global_xp, global_level, is_subscribed, subscription_expires_at,
+-- grade, focus, focus_href, role, notes) is now server-write-only.
+GRANT UPDATE (username, display_name, avatar_url) ON public.profiles TO authenticated;

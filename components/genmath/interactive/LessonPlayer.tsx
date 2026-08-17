@@ -116,6 +116,7 @@ import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-types";
 import { useLang } from "@/lib/lang-context";
 import usePerformance from "@/lib/use-performance";
+import { useLapTimer } from "@/lib/use-question-timer";
 import { contextFromPathname, lessonSlugsFromPathname } from "@/lib/perf-context";
 import { type InteractiveStep, type WorkedItem, getLessonProblem } from "@/lib/genmath-interactive";
 
@@ -1450,6 +1451,9 @@ export default function LessonPlayer({
   const C = CHROME[lang];
   const pathname = usePathname();
   const perf = usePerformance();
+  // A lesson step can hold several tap questions, so each answer laps within
+  // the step rather than claiming the whole step's time.
+  const lapTimer = useLapTimer(String(i));
   // Every first-attempt tapQuestion answer becomes a performance event in
   // this course's context ("course:prob-stats", "course:grade-6", ...),
   // with the unit slug as topic and lesson slug as subtopic — the raw
@@ -1470,9 +1474,10 @@ export default function LessonPlayer({
           isCorrect: correct,
           source: "lesson",
           context,
+          timeSpentSeconds: lapTimer.lap(),
         });
       },
-    [pathname, perf, topicSlug, lesson.slug],
+    [pathname, perf, topicSlug, lesson.slug, lapTimer],
   );
 
   // On every step change, start the learner at the new step's heading rather

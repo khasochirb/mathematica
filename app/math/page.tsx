@@ -1,5 +1,6 @@
 "use client";
 
+import { isUnpublished, publishedOnly } from "@/lib/unpublished";
 import Link from "next/link";
 // Spines, not the registry: the catalog lists courses, it renders no
 // lesson, so it must not ship the course corpus (lib/genmath-spines.ts).
@@ -475,7 +476,7 @@ export default function MathLandingPage() {
             body="Not sure which grade to start in? A short adaptive test samples every grade 6–9 and names your starting grade."
           />
           <div className="grid gap-4" style={gridStyle}>
-            {[6, 7, 8, 9].map((g) => (
+            {[6, 7, 8, 9].filter((g) => !isUnpublished(`/math/${g}`)).map((g) => (
               <GradeCard key={g} grade={g} active={isActive(g)} />
             ))}
           </div>
@@ -496,7 +497,7 @@ export default function MathLandingPage() {
             body="Not sure which grade to start in? A short adaptive test samples every grade 10–12 and names your starting grade."
           />
           <div className="grid gap-4" style={gridStyle}>
-            {[10, 11, 12].map((g) => (
+            {[10, 11, 12].filter((g) => !isUnpublished(`/math/${g}`)).map((g) => (
               <GradeCard key={g} grade={g} active={isActive(g)} />
             ))}
           </div>
@@ -507,7 +508,15 @@ export default function MathLandingPage() {
 
           {/* `#topics` stays on the topic-course catalog so the exam hubs'
               existing deep links still land here rather than the page top. */}
-          <div id="topics" className="mt-8" style={{ scrollMarginTop: 96 }}>
+          {/* Phase 0 unpublished every standalone topic course, so this
+              catalog can be empty. An eyebrow over an empty grid reads as a
+              broken page, not as a deliberate cut — hide the whole block.
+              `#topics` keeps its anchor for the hubs' existing deep links. */}
+          <div
+            id="topics"
+            className="mt-8"
+            style={{ scrollMarginTop: 96, display: publishedOnly(TOPIC_COURSES).length ? undefined : "none" }}
+          >
             <div className="eyebrow mb-1.5">Topic courses</div>
             <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
               The high-school material taught subject by subject, from zero —
@@ -516,12 +525,16 @@ export default function MathLandingPage() {
               it prepares.
             </p>
             <div className="grid gap-4" style={gridStyle}>
-              {TOPIC_COURSES.map(renderCourseCard)}
+              {publishedOnly(TOPIC_COURSES).map(renderCourseCard)}
             </div>
           </div>
         </section>
 
-        <section id="integrated" className="mb-12" style={{ scrollMarginTop: 96 }}>
+        <section
+          id="integrated"
+          className="mb-12"
+          style={{ scrollMarginTop: 96, display: publishedOnly(IM_COURSES).length ? undefined : "none" }}
+        >
           <div className="eyebrow mb-1.5">Integrated Math pathway</div>
           <p className="text-[13px] mb-4" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
             The pathway beside the bands — each year mixes algebra, geometry
@@ -529,7 +542,7 @@ export default function MathLandingPage() {
             → IM3, then Precalculus.
           </p>
           <div className="grid gap-4" style={gridStyle}>
-            {IM_COURSES.map(renderCourseCard)}
+            {publishedOnly(IM_COURSES).map(renderCourseCard)}
           </div>
         </section>
       </div>

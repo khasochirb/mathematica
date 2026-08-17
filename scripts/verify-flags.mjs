@@ -14,10 +14,16 @@
 // — fetch the same URL through the Vercel MCP (web_fetch_vercel_url) and
 // read the JSON by eye instead.
 
+// Mirrors HEALTHY in lib/flags.ts — ops-flags rule 2 says a new sentinel
+// lands in both. 010 and 011 were missing here, so the two newest migrations
+// were reported by the endpoint but gated by nothing; the `?` self-check
+// below is what surfaced it rather than a red build.
 const HEALTHY = {
   anthropic_api_key: "configured",
   migration_008_student_profiles: "applied",
   migration_009_attempts_context: "applied",
+  migration_010_skill_graph: "applied",
+  migration_011_seed_esh_graph: "applied",
 };
 
 const base = (process.argv[2] || process.env.BASE_URL || "http://localhost:3000").replace(/\/$/, "");

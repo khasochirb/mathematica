@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Menu,
@@ -20,18 +19,34 @@ import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 import { useIsNativeShell } from "@/lib/use-native-shell";
+import LogoMark from "@/components/layout/LogoMark";
+import LogoLockup from "@/components/layout/LogoLockup";
 
-// Curriculum hubs shown in the Resources menu. ЭЕШ is live; the rest link to
-// their own polished "coming soon / get notified" hub pages so the menu is
-// fully navigable (no dead, greyed-out items) and the site reads as complete.
+// Curriculum hubs shown in the Resources menu.
+//
+// Phase 0 collapsed this to ЭЕШ · SAT and dropped the Resources dropdown.
+// The owner reversed that on 2026-08-17: students were using the courses,
+// and IB was wanted back. Every file had stayed in place, so restoring them
+// was deleting lines from data/unpublished-routes.json.
+//
+// `live` is not decoration — it is checked against what is actually behind
+// the link, so the menu never promises a product that isn't there:
+//   ЭЕШ  real hub, the reference implementation
+//   SAT  real hub with content
+//   IB   real hub (app/practice/ib) over three courses that each carry
+//        content — /math/ib-sl, /math/ib-hl, /math/ib-ai-sl
+//   AP   <ComingSoonHub slug="ap" />, seven lines, no curriculum behind it —
+//        so it keeps the "Soon" badge and a real notify page, exactly as it
+//        had before Phase 0. Promote it the day AP has lessons.
 const mathHubs = [
   { en: "ЭЕШ Hub", mn: "ЭЕШ төв", href: "/practice/esh", live: true },
-  { en: "SAT Math Hub", mn: "SAT Math төв", href: "/practice/sat", live: false },
-  { en: "IB Math Hub", mn: "IB Math төв", href: "/practice/ib", live: false },
+  { en: "SAT Math Hub", mn: "SAT Math төв", href: "/practice/sat", live: true },
+  { en: "IB Math Hub", mn: "IB Math төв", href: "/practice/ib", live: true },
   { en: "AP Calculus Hub", mn: "AP Calculus төв", href: "/practice/ap", live: false },
 ];
 
-// The Courses hub (grades 6–12) is active and lives at /math.
+// The Courses hub (grades 6–12 plus the named and integrated courses) is
+// active and lives at /math.
 const genMathItems = [
   { en: "Courses (Grades 6–12)", mn: "Хичээлүүд (6–12 анги)", href: "/math" },
 ];
@@ -375,18 +390,12 @@ export default function Header() {
           <div className={cn("mx-auto transition-all duration-300 motion-reduce:transition-none", scrolled ? "max-w-6xl px-4 sm:px-5" : "max-w-7xl px-4 sm:px-6 lg:px-8")}>
         <div className={cn("flex items-center justify-between transition-all duration-300 motion-reduce:transition-none", scrolled ? "h-14" : "h-16")}>
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <span
-              className="inline-block w-2 h-2 rounded-sm"
-              style={{ background: "var(--accent)", transform: "translateY(-1px)" }}
-            />
-            <Image src="/images/mp.png" alt="Mongol Potential" width={32} height={32} className="rounded-md" />
-            <span
-              className="font-display font-semibold text-[15.5px] tracking-tight hidden sm:block"
-              style={{ color: "var(--fg)" }}
-            >
-              Mongol Potential
-            </span>
+          {/* The wordmark now lives in the artwork (LogoLockup), so there is
+              no HTML brand text and no accent square beside it. Below sm the
+              old design hid the text — keep that: mark alone on phones. */}
+          <Link href="/" className="flex items-center flex-shrink-0 group">
+            <LogoMark className="h-8 w-8 sm:hidden" />
+            <LogoLockup className="hidden sm:block h-11 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -405,6 +414,12 @@ export default function Header() {
                   opacity: indicator.visible ? 1 : 0,
                 }}
               />
+              {/* Home · Dashboard · Tutoring · Resources · About — restored
+                  2026-08-17. Phase 0 had cut Home (the logo carried it) and
+                  the Resources dropdown; the owner asked for both back. The
+                  hubs live under Resources again rather than sitting
+                  top-level, which is what keeps the bar short enough to add
+                  Home back without it wrapping. */}
               <NavLink href="/" active={onPath("/")}>
                 {nav.home}
               </NavLink>

@@ -1,0 +1,519 @@
+{
+  "exported_note": "Pre-drop export of the two NON-EMPTY legacy tables, taken 2026-08-14 from the production project (gsvfcnfbrzysaiiwgchf) before any Phase 0 drop. Real count(*) at export: topics 13, problems 20. Supabase list_tables reported 0 for both -- stale planner estimates, do not trust them.",
+  "source_project": "gsvfcnfbrzysaiiwgchf",
+  "topics_count": 13,
+  "problems_count": 20,
+  "topics": [
+    {
+      "id": "a0000000-0000-0000-0000-000000000001",
+      "name": "Алгебр",
+      "slug": "algebra",
+      "parent_id": null,
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 1
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000002",
+      "name": "Геометр",
+      "slug": "geometry",
+      "parent_id": null,
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 2
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000003",
+      "name": "Анализ",
+      "slug": "calculus",
+      "parent_id": null,
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 3
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000004",
+      "name": "Магадлал ба Статистик",
+      "slug": "statistics",
+      "parent_id": null,
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 4
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000005",
+      "name": "Тоон онол",
+      "slug": "number-theory",
+      "parent_id": null,
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 5
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000001",
+      "name": "Шугаман тэгшитгэл",
+      "slug": "linear-equations",
+      "parent_id": "a0000000-0000-0000-0000-000000000001",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 1
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000002",
+      "name": "Квадрат тэгшитгэл",
+      "slug": "quadratic-equations",
+      "parent_id": "a0000000-0000-0000-0000-000000000001",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 2
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000003",
+      "name": "Гурвалжин",
+      "slug": "triangles",
+      "parent_id": "a0000000-0000-0000-0000-000000000002",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 1
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000004",
+      "name": "Тойрог",
+      "slug": "circles",
+      "parent_id": "a0000000-0000-0000-0000-000000000002",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 2
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000005",
+      "name": "Уламжлал",
+      "slug": "derivatives",
+      "parent_id": "a0000000-0000-0000-0000-000000000003",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 1
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000006",
+      "name": "Интеграл",
+      "slug": "integrals",
+      "parent_id": "a0000000-0000-0000-0000-000000000003",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 2
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000007",
+      "name": "Магадлал",
+      "slug": "probability",
+      "parent_id": "a0000000-0000-0000-0000-000000000004",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 1
+    },
+    {
+      "id": "b0000000-0000-0000-0000-000000000008",
+      "name": "Хуваагдах чанар",
+      "slug": "divisibility",
+      "parent_id": "a0000000-0000-0000-0000-000000000005",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "display_order": 1
+    }
+  ],
+  "problems": [
+    {
+      "id": "026ab116-52c7-48cc-bf8a-9dc7535fa41f",
+      "hints": [
+        "Хаалтыг задал: 3x - 6 + 4 = 2x + 5",
+        "3x - 2 = 2x + 5"
+      ],
+      "options": null,
+      "question": "3(x - 2) + 4 = 2x + 5 тэгшитгэлийг бод.",
+      "topic_id": "b0000000-0000-0000-0000-000000000001",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 2,
+      "answer_type": "NUMERIC",
+      "explanation": "3x - 6 + 4 = 2x + 5 → 3x - 2 = 2x + 5 → x = 7",
+      "question_meta": {
+        "format": "latex",
+        "expression": "3(x-2)+4 = 2x+5"
+      },
+      "correct_answer": "7"
+    },
+    {
+      "id": "3eb39ed5-b427-4021-891e-d8464a2cf7e7",
+      "hints": [
+        "Энэ бол бүрэн квадрат",
+        "(x+2)² = 0"
+      ],
+      "options": null,
+      "question": "x² + 4x + 4 = 0 тэгшитгэлийн шийд хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000002",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 3,
+      "answer_type": "NUMERIC",
+      "explanation": "(x+2)² = 0 → x = -2 (давхар язгуур)",
+      "question_meta": {
+        "format": "latex",
+        "expression": "x^2 + 4x + 4 = 0"
+      },
+      "correct_answer": "-2"
+    },
+    {
+      "id": "4aad4263-a26f-4f3e-8307-dba0e2fe5ea0",
+      "hints": [
+        "S = πr²",
+        "S = 3.14 × 49"
+      ],
+      "options": [
+        "153.86",
+        "43.96",
+        "49",
+        "21.98"
+      ],
+      "question": "Радиус нь 7 нэгж бол тойргийн талбай хэд вэ? (π = 3.14 гэж тооц)",
+      "topic_id": "b0000000-0000-0000-0000-000000000004",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 1,
+      "answer_type": "MCQ",
+      "explanation": "S = π × 7² = 3.14 × 49 = 153.86",
+      "question_meta": {
+        "format": "latex",
+        "expression": "S = \\pi r^2"
+      },
+      "correct_answer": "153.86"
+    },
+    {
+      "id": "5460c5e8-e930-4bfa-b689-71452652978f",
+      "hints": [
+        "3-аас их: 4, 5, 6",
+        "3 тохиромжтой үр дүн / 6 нийт"
+      ],
+      "options": [
+        "0.5",
+        "0.33",
+        "0.67",
+        "0.17"
+      ],
+      "question": "Шоог нэг удаа хаяхад 3-аас их тоо буух магадлал хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000007",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 1,
+      "answer_type": "MCQ",
+      "explanation": "4, 5, 6 гэсэн 3 тохиромжтой үр дүн. P = 3/6 = 0.5",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "0.5"
+    },
+    {
+      "id": "54e62f67-c5a2-490b-8f4e-ad7d73ba962c",
+      "hints": [
+        "Баруун талыг задал: 2x + 12",
+        "5x - 2x = 12 + 3"
+      ],
+      "options": null,
+      "question": "Хэрэв 5x - 3 = 2(x + 6) бол x-ийн утгыг ол.",
+      "topic_id": "b0000000-0000-0000-0000-000000000001",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 3,
+      "answer_type": "NUMERIC",
+      "explanation": "5x - 3 = 2x + 12 → 3x = 15 → x = 5",
+      "question_meta": {
+        "format": "latex",
+        "expression": "5x - 3 = 2(x+6)"
+      },
+      "correct_answer": "5"
+    },
+    {
+      "id": "5803c152-51da-457b-9373-1f505d49a55a",
+      "hints": [
+        "Пифагорын теорем: a² + b² = c²",
+        "9 + 16 = 25"
+      ],
+      "options": null,
+      "question": "Тэгш өнцөгт гурвалжны катетууд 3 ба 4 бол гипотенуз хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000003",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 3,
+      "answer_type": "NUMERIC",
+      "explanation": "c = √(3² + 4²) = √25 = 5",
+      "question_meta": {
+        "format": "latex",
+        "expression": "a=3, b=4, c=?"
+      },
+      "correct_answer": "5"
+    },
+    {
+      "id": "631f1932-56f6-48a5-9d61-1e45bd673902",
+      "hints": [
+        "Хоёр талаас 5-ыг хас",
+        "2x = 8 болно"
+      ],
+      "options": null,
+      "question": "2x + 5 = 13 тэгшитгэлийг бод.",
+      "topic_id": "b0000000-0000-0000-0000-000000000001",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 1,
+      "answer_type": "NUMERIC",
+      "explanation": "x = (13 - 5) / 2 = 4",
+      "question_meta": {
+        "format": "latex",
+        "expression": "2x + 5 = 13"
+      },
+      "correct_answer": "4"
+    },
+    {
+      "id": "83ea727f-75d5-4e12-907e-2c2c58a6c1ff",
+      "hints": [
+        "Зэрэг бууруулах дүрэм: (xⁿ)' = nxⁿ⁻¹"
+      ],
+      "options": [
+        "6x + 2",
+        "6x - 1",
+        "3x + 2",
+        "6x² + 2"
+      ],
+      "question": "f(x) = 3x² + 2x - 1 функцийн уламжлалыг ол.",
+      "topic_id": "b0000000-0000-0000-0000-000000000005",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 2,
+      "answer_type": "MCQ",
+      "explanation": "f'(x) = 6x + 2",
+      "question_meta": {
+        "format": "latex",
+        "expression": "f(x) = 3x^2 + 2x - 1"
+      },
+      "correct_answer": "6x + 2"
+    },
+    {
+      "id": "8731ed73-ef79-47ed-84d5-0267b88046ce",
+      "hints": [
+        "4 маст байдаг",
+        "Улаан маст = 13 хөзөр"
+      ],
+      "options": [
+        "0.25",
+        "0.5",
+        "0.13",
+        "0.33"
+      ],
+      "question": "52 хөзрийн багцаас нэг хөзөр сугалахад улаан масттай байх магадлал хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000007",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 2,
+      "answer_type": "MCQ",
+      "explanation": "P = 13/52 = 1/4 = 0.25",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "0.25"
+    },
+    {
+      "id": "875f101f-e151-4c55-aad7-8edee02b232e",
+      "hints": [
+        "C = 2πr"
+      ],
+      "options": null,
+      "question": "Тойргийн уртыг ол: r = 10 (π = 3.14)",
+      "topic_id": "b0000000-0000-0000-0000-000000000004",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 2,
+      "answer_type": "NUMERIC",
+      "explanation": "C = 2 × 3.14 × 10 = 62.8",
+      "question_meta": {
+        "format": "latex",
+        "expression": "C = 2\\pi r"
+      },
+      "correct_answer": "62.8"
+    },
+    {
+      "id": "a24e789c-75a6-4d2a-82a1-1834bc4fa879",
+      "hints": [
+        "24 = 2³×3",
+        "36 = 2²×3²",
+        "Нийтлэг хүчин зүйлүүдийн бага зэргийг ав"
+      ],
+      "options": null,
+      "question": "24 ба 36-ийн ХИЕХ (GCD) хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000008",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 1,
+      "answer_type": "NUMERIC",
+      "explanation": "GCD(24,36) = 2²×3 = 12",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "12"
+    },
+    {
+      "id": "acd34e9e-d75e-4e90-bd66-e8d08aed1071",
+      "hints": [
+        "Бүх гурвалжинд хамаарна"
+      ],
+      "options": null,
+      "question": "Гурвалжны дотоод өнцгүүдийн нийлбэр хэдэн градус вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000003",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 1,
+      "answer_type": "NUMERIC",
+      "explanation": "Гурвалжны дотоод өнцгүүдийн нийлбэр үргэлж 180° байна.",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "180"
+    },
+    {
+      "id": "be56a141-656a-4bc3-9be0-6f12b9325f65",
+      "hints": [
+        "Нийт үр дүн: 6×6 = 36",
+        "7 гарах хослолууд: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6"
+      ],
+      "options": null,
+      "question": "2 шоог зэрэг хаяхад нийлбэр нь 7 байх магадлал хэд вэ? (Бутархайгаар хариул)",
+      "topic_id": "b0000000-0000-0000-0000-000000000007",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 3,
+      "answer_type": "TEXT",
+      "explanation": "6 тохиромжтой хослол / 36 нийт = 6/36 = 1/6",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "1/6"
+    },
+    {
+      "id": "bf3c2e2d-d4f3-4111-b41e-67aa0a5a8956",
+      "hints": [
+        "Суурийн 2 өнцөг тэнцүү",
+        "180 - 70 - 70 = ?"
+      ],
+      "options": null,
+      "question": "Тэнцүү хажуут гурвалжны суурийн өнцөг 70° бол оройн өнцөг хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000003",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 2,
+      "answer_type": "NUMERIC",
+      "explanation": "180° - 70° - 70° = 40°",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "40"
+    },
+    {
+      "id": "ccb79e2b-2b31-4ad4-af5c-3e4f35391c8b",
+      "hints": [
+        "Зэрэг нэмэх дүрэм"
+      ],
+      "options": [
+        "x² + 3x + C",
+        "2x² + 3x + C",
+        "x² + 3 + C",
+        "2x + 3 + C"
+      ],
+      "question": "∫(2x + 3)dx интегралыг бод.",
+      "topic_id": "b0000000-0000-0000-0000-000000000006",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 3,
+      "answer_type": "MCQ",
+      "explanation": "∫(2x+3)dx = x² + 3x + C",
+      "question_meta": {
+        "format": "latex",
+        "expression": "\\int (2x+3)\\,dx"
+      },
+      "correct_answer": "x² + 3x + C"
+    },
+    {
+      "id": "d587dc7f-0f71-473a-a40b-d270e306871f",
+      "hints": [
+        "Виетийн теорем: шийдүүдийн нийлбэр = -b/a",
+        "a=1, b=-5 учир нийлбэр = 5"
+      ],
+      "options": null,
+      "question": "x² - 5x + 6 = 0 тэгшитгэлийн шийдүүдийн нийлбэр хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000002",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 2,
+      "answer_type": "NUMERIC",
+      "explanation": "Виетийн теоремоор: x₁ + x₂ = -(-5)/1 = 5",
+      "question_meta": {
+        "format": "latex",
+        "expression": "x^2 - 5x + 6 = 0"
+      },
+      "correct_answer": "5"
+    },
+    {
+      "id": "db5f0b90-24bc-40f2-b8a2-5fec3cba1f38",
+      "hints": [
+        "f'(x) = 3x² - 12x + 9",
+        "3(x² - 4x + 3) = 0"
+      ],
+      "options": [
+        "1, 3",
+        "0, 3",
+        "2, 3",
+        "1, 6"
+      ],
+      "question": "f(x) = x³ - 6x² + 9x бол f'(x) = 0 үед x = ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000005",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 3,
+      "answer_type": "MCQ",
+      "explanation": "f'(x) = 3x² - 12x + 9 = 3(x-1)(x-3) = 0 → x = 1, x = 3",
+      "question_meta": {
+        "format": "latex",
+        "expression": "f(x) = x^3 - 6x^2 + 9x"
+      },
+      "correct_answer": "1, 3"
+    },
+    {
+      "id": "e9c8c13c-c199-46f5-946c-474843393d02",
+      "hints": [
+        "Виетийн теорем: үржвэр = c/a",
+        "c=3, a=2"
+      ],
+      "options": [
+        "1.5",
+        "3",
+        "6",
+        "7"
+      ],
+      "question": "2x² - 7x + 3 = 0 тэгшитгэлийн шийдүүдийн үржвэр хэд вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000002",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 4,
+      "answer_type": "MCQ",
+      "explanation": "Виетийн теоремоор: x₁·x₂ = c/a = 3/2 = 1.5",
+      "question_meta": {
+        "format": "latex",
+        "expression": "2x^2 - 7x + 3 = 0"
+      },
+      "correct_answer": "1.5"
+    },
+    {
+      "id": "f9b9ba1e-cc58-442c-af29-78417a082b30",
+      "hints": [
+        "6-д хуваагддаг: 6, 12, 18, ..., 96",
+        "floor(100/6) = ?"
+      ],
+      "options": null,
+      "question": "1-ээс 100 хүртэлх тоонуудаас 6-д хуваагддаг тоо хэд байна вэ?",
+      "topic_id": "b0000000-0000-0000-0000-000000000008",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 3,
+      "answer_type": "NUMERIC",
+      "explanation": "floor(100/6) = 16. Тоонууд: 6, 12, 18, ..., 96",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "16"
+    },
+    {
+      "id": "feba4545-ca67-4707-8b21-1520ed3ac4c7",
+      "hints": [
+        "12 = 2²×3",
+        "18 = 2×3²",
+        "Бүх хүчин зүйлүүдийн их зэргийг ав"
+      ],
+      "options": null,
+      "question": "12 ба 18-ийн ХБЕХ (LCM) хэд вэд?",
+      "topic_id": "b0000000-0000-0000-0000-000000000008",
+      "created_at": "2026-04-08T09:51:22.827982+00:00",
+      "difficulty": 2,
+      "answer_type": "NUMERIC",
+      "explanation": "LCM(12,18) = 2²×3² = 36",
+      "question_meta": {
+        "format": "plain"
+      },
+      "correct_answer": "36"
+    }
+  ]
+}

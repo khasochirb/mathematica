@@ -118,6 +118,24 @@ volume, population accuracy, difficulty-inversion flags (see
 bugs, check taxonomy health before doubting the math), and content
 gaps (weak tags whose drill pools are thin = authoring priorities).
 
+## Known blind spot: untimed attempt rows
+
+`attempts.time_spent_seconds` is wired everywhere a question owns its own
+screen (both test runners, the ЭЕШ drill, the refinement loop, the
+similar-questions panel, both lesson surfaces — lib/question-clock.ts).
+
+Two surfaces deliberately write NULL, because one screen there produces
+several attempt rows and any per-row number would be a guess:
+  - **ЭЕШ Section 2** — one screen holds several sub-answers;
+  - **IB papers** — rows come from a self-MARKING pass, which is not
+    thinking time at all.
+
+Owner ruling (2026-08-14): accept the NULLs, and **exclude those rows from
+careless/fragile classification entirely** rather than guessing at them. A
+NULL here means "not measured", never "instant" — never coerce it to 0, and
+never let it fall into a fast-and-wrong bucket. Any speed-based feature
+filters on `time_spent_seconds IS NOT NULL` first.
+
 ## Builder checklist (any analytics feature)
 
 - [ ] Reads primary tags only; handles untagged legacy rows by exclusion

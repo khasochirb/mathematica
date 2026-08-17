@@ -24,17 +24,44 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ## OPEN
 
-### FLAG-004 — migration `011_seed_esh_graph.sql` not applied
+### FLAG-009 — `ADMIN_DELETION_KEY` not set in Vercel (PRIVACY)
+
+| | |
+|---|---|
+| **Raised** | 2026-08-16, with the account-deletion route |
+| **What it unlocks** | The **guardian path** on `POST /api/account/delete`. With the key set, the owner can delete a student's account on a parent's request by sending `x-admin-deletion-key` plus `{ userId, confirm: "DELETE" }`. Without it that path returns 503 and only the student's own password-authenticated deletion works. |
+| **Why it matters before September** | The intake is minors with guardians. A parent asking for their child's data to be erased will usually not have the student's password, and teacher-provisioned accounts make that more likely, not less. Self-service deletion alone does not make a deletion request honourable on demand. |
+| **Ships dark?** | Yes, and fail-closed: with the variable unset the admin path does not exist rather than degrading to something weaker. Self-service deletion is unaffected. |
+| **Owner action** | ~2 min: Vercel → imathhub → Settings → Environment Variables → add `ADMIN_DELETION_KEY` = a long random string (`openssl rand -hex 32`), Production, Sensitive. Redeploy. |
+| **Do NOT reuse `ADMIN_ACTIVATION_KEY`** | Different power, different blast radius. Activation grants a subscription; this one erases a child's academic record irreversibly. One key for both means anyone who can do the harmless thing can do the unrecoverable one. |
+| **Verify** | `curl -s -o /dev/null -w '%{http_code}' -X POST https://www.mongolpotential.com/api/account/delete -H 'content-type: application/json' -H 'x-admin-deletion-key: wrong' -d '{"confirm":"DELETE","userId":"00000000-0000-0000-0000-000000000000"}'` → **401** = key set (path armed, wrong key rejected) · **503** = unset (self-service only). Note both are safe to run: neither deletes anything. |
+
+---
+
+### FLAG-010 — `/api/health/flags` reports a FALSE `missing` for 011
+
+| | |
+|---|---|
+| **Raised** | 2026-08-17, immediately after seeding 011 |
+| **Priority** | MEDIUM — nothing user-facing, but a lying probe is worse than no probe. The next session to read this endpoint will conclude the ЭЕШ graph is unseeded and may re-apply it. The re-run is safe (upserts, never deletes) but the wrong conclusion is not. |
+| **Symptom** | `skills` holds 184 rows with `hub='eysh'`; the sentinel wants ≥150; the endpoint answers `missing` with an EMPTY `details` map, so it is not even reporting a code. |
+| **Ruled out on the database side** | Row count 184 (as superuser AND under `set role` for `service_role`, `anon` and `authenticated` — all three read it). RLS on with a permissive `skills_select_all` SELECT policy. `service_role` has SELECT and `rolbypassrls=true`. No duplicate `skills` table in another schema. `notify pgrst, 'reload schema'` issued; no change. The deployed build is `a532ae4` and its `lib/flags.ts` carries the right sentinel (`table: skills`, `column: id`, `where hub='eysh'`, `atLeast: 150`) — its sibling `migration_010_skill_graph` sentinel only exists in that build and reports `applied`, which also proves the app is pointed at THIS project. |
+| **Also unexplained, same shape** | `migration_008_student_profiles` reports `unknown` with no code. Per `classifyProbe` that means an error object with a falsy `code` and a message matching none of the patterns. Both failing probes are on `profiles`/`skills`; both passing ones are on `attempts`. That split is the strongest lead. |
+| **Why it was not diagnosed further** | The exact PostgREST call could not be reproduced from a Claude cloud session: the sandbox proxy answers 403 to CONNECT for both `www.mongolpotential.com` and `*.supabase.co`, so the only view of the probe is its own verdict. |
+| **Next step** | Make the probe honest before making it right: have the route put the observed count (and the raw PostgREST `message`, not just `code`) into `details` for any non-`applied` result. One small change to `app/api/health/flags/route.ts`; the answer will be in the next response. |
+
+### FLAG-004 — `011_seed_esh_graph.sql` APPLIED 2026-08-17 — probe disagrees, see FLAG-010
 
 | | |
 |---|---|
 | **Raised** | 2026-08-15 |
-| **Owner action** | Apply `supabase/migrations/011_seed_esh_graph.sql` in Supabase. Design owns applying it; this session owns generating it. |
+| **Owner action** | DONE. Applied to production 2026-08-17 by Design (THE DATABASE RULE), on the owner's instruction. |
+| **Verified by row count, not by the file existing** | `select count(*) from skills` → **184**; `select count(*) from skill_prerequisites` → **367**. Also checked beyond the counts, because the SQL had to be retyped through a tool parameter and a mistyped weight would seed a wrong graph silently: `md5(string_agg(id order by id))` = `332919b9f7c0bee9c5875547aba1eddc` and `md5(string_agg(skill_id||'>'||requires_id order by skill_id, requires_id))` = `58cdc43a41defba848a7fd37346aff2a`, both matching the same hashes computed from the file on disk. `sum(exam_weight)`=99.8983, `sum(strength)`=316.4, `sum(typical_difficulty)`=505, `sum(display_order)`=5257 — all matching. 0 dangling edges, 0 self-edges, 0 rows with `hub<>'eysh'`, `name_mn` NULL on all 184 (Phase 3 writes it). The file's own post-conditions ran and did not raise. `skill_state` was empty before and after, so no learner state was at risk. |
 | **What it seeds** | 184 ЭЕШ skills + 367 prerequisite edges into `skills` and `skill_prerequisites`. Both tables already exist and were empty (owner-confirmed 2026-08-15). |
 | **Blocks** | Everything downstream of the graph — adaptive placement, recommendations, mastery, score prediction. Design is blocked on it now. |
 | **Ships dark?** | Yes. Nothing in the app reads `skills` yet, so an unapplied migration changes no behaviour; it just leaves the graph invisible to other agents. |
 | **Sentinel** | `migration_011_seed_esh_graph` in `lib/flags.ts`. This is the first ROW-COUNT sentinel: 011 adds no column, so the usual column probe would report "applied" against an empty table. It counts `skills` rows with `hub='eysh'` and wants ≥150 (184 ship; the floor sits low so a later graph revision does not turn it red). |
-| **Verify** | `npm run verify:flags -- https://www.mongolpotential.com`, or `GET /api/health/flags` → `"migration_011_seed_esh_graph":"applied"`. |
+| **Verify** | ⚠️ The endpoint still answers `"migration_011_seed_esh_graph":"missing"` after the seed. That is a PROBE defect, not an unapplied migration — see FLAG-010. Trust the row counts above; per CLAUDE.md rule 1 the count is the verification, and re-running the seed on the strength of the endpoint would be acting on a false negative. |
 | **Notes** | DATA ONLY — no DDL. The tables come from Stream A's `010_skill_graph.sql`, which deliberately left 011 free for this seed. Skills are UPSERTED and never deleted, because 010 defines `skill_state.skill_id REFERENCES skills(id) ON DELETE CASCADE` — a delete-then-insert (which this file originally used) would wipe every student's mastery state on a re-run, and `attempts.skill_id` references it too, without cascade. Edges are cleared and rewritten, since nothing references `skill_prerequisites`. `name_mn` is excluded from the upsert so a Phase-3 Mongolian pass survives re-seeding. Opens with a schema assertion naming any missing column, closes with post-conditions (≥184 skills, 367 edges, no dangling endpoints) inside the transaction. |
 | **Schema corrections found by reading 010** | Two, both fatal, neither guessable: the hub value is `'eysh'` (a CHECK constraint, not `'esh'`), and the edge column is `requires_id` (not `prereq_skill_id`). Confirmed against `origin/claude/problem-bank-premium-design-osj7de`. |
 
@@ -86,13 +113,81 @@ the admin key and is disabled without it.
 
 ## WATCH (not blocking, verified by the same endpoint)
 
-*(none open — 009 confirmed applied, see Resolved)*
+### Four tables still carry the default `GRANT ALL`, protected only by absent policies
+
+Probed 2026-08-16, **re-checked after `015` was applied the same day.**
+`section2_attempts`, `refinement_loop_sessions`, `events` and
+`premium_waitlist` still grant
+`DELETE, INSERT, REFERENCES, SELECT, TRIGGER, UPDATE` to **both** `anon` and
+`authenticated` — Supabase's default `GRANT ALL ON ALL TABLES`.
+(`attempts` was the fifth; `015` narrowed it to `INSERT, SELECT` for
+`authenticated` and nothing for `anon`, so it is off this list.)
+
+Nothing here is exploitable today: `events` and `premium_waitlist` have zero
+policies (RLS fail-closed), and the verbs with no matching policy are
+default-denied on the others. But this is exactly the "correct by accident"
+shape §0 of `docs/security/data-access-model.md` warns about — one future
+`CREATE POLICY ... FOR UPDATE` silently opens a write path, because the grant
+behind it was never narrowed. `015` is the template; the other four want the
+same treatment in a follow-up migration.
+
+One of the four is more than theoretical. `refinement_loop_sessions` has a
+live `UPDATE` policy `TO public` (`refinement_loops_update_own`) **and** the
+update grant, so a student can rewrite their own loop rows directly from the
+browser today. Migration 007 made that table mutable by design and the API
+route drives the state machine, so this is not a hole in the same sense as the
+others — but the loop's progress columns feed mastery, which puts it on the
+wrong side of Rule 2. Worth deciding deliberately rather than inheriting.
+
+Also noted: every policy on `attempts`, `section2_attempts`,
+`refinement_loop_sessions`, `subscription_events` and `user_achievements` is
+still `TO public` rather than `TO authenticated`. Safe only because
+`auth.uid()` is NULL for `anon` and `NULL = user_id` is NULL — correct, but by
+accident rather than by statement.
 
 ---
 
 ## RESOLVED
 
 *(move entries here with date + verification evidence; never delete)*
+
+### FLAG-008 — migration `015_attempts_server_delete.sql` — RESOLVED
+
+| | |
+|---|---|
+| **Raised** | 2026-08-14 — a grade-integrity hole. `attempts` carried `attempts_delete_own` plus the default `GRANT ALL`, so the browser deleted rows itself over PostgREST with the student's own JWT and **wrote its own filter**. `delete().eq("user_id", me).eq("is_correct", false)` removes only the wrong answers, leaving a perfect record and inflating accuracy, mastery, the weakness model, the ratings card and the predicted grade. |
+| **Resolved** | 2026-08-16, applied and probed against production |
+| **Sequencing honoured** | The deploy went first, as required. Production was confirmed to be serving the build containing the replacement route — `GET /api/attempts/erase` returned **405 Method Not Allowed** (route present, POST-only; a missing route would 404) on deployment `dpl_9KsdJYeD6C87QiBwTjpmsSD6eXMB`, main @ `3c1dd9b`, state READY — and only then was the migration applied. |
+| **Evidence** | Grants: `authenticated` → **`INSERT, SELECT`** and `anon` → **no row at all**. Policies on `attempts`: `attempts_insert_own` (INSERT), `attempts_select_own` (SELECT) — `attempts_delete_own` is gone. Both locks are in place: the policy is dropped so RLS default-denies DELETE, and the grant is revoked so a future permissive policy cannot re-open it alone. |
+| **Replacement** | `POST /api/attempts/erase` — takes a scope NAME, derives the predicate server-side, applies it with `user_id` = the JWT subject, then re-counts and refuses to report success on a non-zero residual. |
+
+### FLAG-005 — migration `012_profiles_column_grants.sql` — RESOLVED
+
+| | |
+|---|---|
+| **Raised** | 2026-08-14 — live privilege escalation: any signed-in student could PATCH their own `profiles` row through PostgREST and set `is_subscribed = true`, inflate `global_xp`/`global_level`, or overwrite teacher-set `grade`/`focus`. RLS limits the row, not the columns. |
+| **Resolved** | 2026-08-16, probed directly against production (project `gsvfcnfbrzysaiiwgchf`) |
+| **Evidence** | `role_column_grants` for `grantee='authenticated', table='profiles', privilege='UPDATE'` → **0 rows**. `role_table_grants` for `profiles` → `anon: REFERENCES,SELECT,TRIGGER` and `authenticated: REFERENCES,SELECT,TRIGGER`. No UPDATE at table or column level: the hole is closed. |
+| **Applied STRICTER than the file** | The migration grants UPDATE on three safe columns (`username`, `display_name`, `avatar_url`); production has **no** UPDATE grant at all. So the original runbook's "expect exactly 3 rows" is wrong against the live database — it returns 0. Recorded here rather than silently reconciled, because the two are not the same state. |
+| **Live consequence** | Policy `profiles_update_own` (UPDATE, `{authenticated}`) still exists but is inert without a grant — the belt with no braces, harmless but misleading to a future reader. If self-service profile editing is ever built, it needs the three column grants back; today no browser code updates `profiles`, so nothing is broken. |
+
+### FLAG-006 — migration `013_deletion_cascade.sql` — RESOLVED
+
+| | |
+|---|---|
+| **Raised** | 2026-08-14 — 6 of 19 production accounts could not be deleted at all. Six tables referenced `profiles` with `ON DELETE NO ACTION`, so deleting the auth user cascaded into `profiles` and was refused with SQLSTATE 23503, failing partway and leaving the account inconsistent. |
+| **Resolved** | 2026-08-16, probed directly against production |
+| **Evidence** | Every FK pointing at `profiles(id)` now reads: `attempts` CASCADE · `daily_problem_counts` CASCADE · `events` **SET NULL** · `premium_waitlist` CASCADE · `refinement_loop_sessions` CASCADE · `section2_attempts` CASCADE · `skill_state` CASCADE · `streaks` CASCADE · `subscription_events` CASCADE · `user_achievements` CASCADE. **Zero `NO ACTION` remain.** |
+| **Note** | `skill_state` (Stream A's `010_skill_graph.sql`) already cascades correctly, so the graph work did not reintroduce the defect. `events` is SET NULL by design — de-identified analytics survives, the person does not. |
+
+### FLAG-007 — migration `014_revoke_client_writes.sql` — RESOLVED
+
+| | |
+|---|---|
+| **Raised** | 2026-08-14 — four tables were writable from the browser with the public anon key: `daily_problem_counts` (reset the AI-tutor quota and spend the owner's Anthropic budget without limit), `streaks`, `user_achievements`, `subscription_events` (forge the billing audit log). |
+| **Resolved** | 2026-08-16, probed directly against production |
+| **Evidence** | `role_table_grants` → all four tables show `authenticated: SELECT` and **nothing at all for `anon`**. Surviving policies are read-only: `daily_counts_select_own`, `streaks_select_own`, `user_achievements_select`, `sub_events_select`. No INSERT/UPDATE policy remains on any of the four. |
+| **Note** | Production's policy names differ from the file's (`daily_counts_select_own` vs the repo's `daily_counts_select`), so this was applied via an equivalent rewrite rather than the file verbatim. The end state matches what the migration intends; re-running the file would be a harmless no-op. |
 
 ### FLAG-001 — `ANTHROPIC_API_KEY` — RESOLVED
 
@@ -366,3 +461,29 @@ the admin key and is disabled without it.
   that flag's "Reading a non-`applied` result" row before acting).
   FLAG-003 still optional/unset. Nothing in this deploy depended on
   either open flag; prod runtime errors clean.
+
+## Resolved
+
+### FLAG-004 — migration `010_skill_graph.sql` — RESOLVED 2026-08-14
+
+Applied to production after Security's sign-off, together with the
+`011_profiles_update_lockdown.sql` security fix (applied first, by priority).
+
+Verified immediately after: `skills` / `skill_prerequisites` / `skill_state`
+exist; `practice_sessions`, `session_answers` and `topic_progress` are gone
+(all three re-checked at 0 rows by the migration's own runtime guard);
+`attempts` carries `skill_id`, `confidence`, `session_kind`, `mode`; all 93
+rows backfilled to `session_kind='practice_test'`, `mode='test'`, **0 rows
+left NULL**; `skill_state` holds no INSERT/UPDATE/DELETE grant for `anon` or
+`authenticated`, so it is server-write only as the architecture requires.
+
+`topics` (13 rows) and `problems` (20 rows) were deliberately NOT dropped —
+exported to `data/legacy-export/`, and `problems` still goes to Stream B.
+
+Two security migrations landed alongside it, both applied and verified:
+`016_profiles_update_lockdown.sql` (the free-premium hole) and
+`017_client_write_lockdown.sql` (the same shape on `daily_problem_counts`
+and `streaks`, plus TRUNCATE revoked from `anon`/`authenticated`
+schema-wide). Neither leaves an open flag — there is nothing for the owner
+to do. `011` is intentionally unused locally: it is reserved for Stream B's
+`011_seed_esh_graph.sql`.

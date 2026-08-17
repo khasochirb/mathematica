@@ -284,264 +284,291 @@ export function UpgradeModalProvider({ children }: { children: React.ReactNode }
   return (
     <Ctx.Provider value={{ open, openSolutionUpgrade, close, isOpen }}>
       {children}
+      {/*
+        The OVERLAY scrolls, not the page. Without that the panel was centred
+        with no way out: content taller than the viewport (long plan, small
+        laptop, or any browser zoom) overflowed BOTH ends at once, so the
+        top-right close button sat above the screen and nothing scrolled to
+        reach it — body overflow is hidden while the modal is open. Reported
+        from a laptop at 100%: "I can't see the close button unless I zoom
+        out to 50%".
+      */}
       {isOpen &&
         createPortal(
           <div
             role="dialog"
             aria-modal="true"
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] overflow-y-auto overscroll-contain"
             style={{ background: "color-mix(in oklch, black 55%, transparent)" }}
             onClick={close}
           >
-            <div
-              className="relative w-full max-w-lg rounded-xl p-6 sm:p-8"
-              style={{ background: "var(--bg)", border: "1px solid var(--line)" }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={close}
-                aria-label="Close"
-                className="absolute top-3 right-3 rounded-md p-1.5"
-                style={{ color: "var(--fg-3)" }}
-              >
-                <X className="h-4 w-4" />
-              </button>
-
+            {/* min-h-full centres a short modal and lets a tall one scroll
+                from the top instead of being clipped at both ends. */}
+            <div className="flex min-h-full items-center justify-center p-4">
               <div
-                className="w-10 h-10 rounded-md flex items-center justify-center mb-4"
-                style={
-                  isComingSoon
-                    ? {
-                        background: "var(--bg-2)",
-                        border: "1px solid var(--line-strong)",
-                        color: "var(--fg-2)",
-                      }
-                    : {
-                        background: "var(--accent-wash)",
-                        border: "1px solid var(--accent-line)",
-                        color: "var(--accent)",
-                      }
-                }
-              >
-                {isComingSoon ? (
-                  <Clock className="h-4 w-4" />
-                ) : (
-                  <Sparkles className="h-4 w-4" />
-                )}
-              </div>
-
-              <div className="eyebrow mb-1.5">
-                {isComingSoon ? t("Coming soon", "Удахгүй") : t("Premium", "Премиум")}
-              </div>
-              <h2
-                className="serif"
+                className="relative flex w-full max-w-lg flex-col rounded-xl"
                 style={{
-                  fontWeight: 400,
-                  fontSize: 28,
-                  letterSpacing: "-0.02em",
-                  color: "var(--fg)",
-                  lineHeight: 1.1,
+                  background: "var(--bg)",
+                  border: "1px solid var(--line)",
+                  // Never taller than the viewport, so the close button below
+                  // — positioned against the PANEL, which does not scroll —
+                  // stays put while the body scrolls under it.
+                  maxHeight: "calc(100dvh - 2rem)",
                 }}
+                onClick={(e) => e.stopPropagation()}
               >
-                {opts?.title ?? defaultTitle}
-              </h2>
-              <p className="text-[14px] mt-2.5" style={{ color: "var(--fg-2)" }}>
-                {opts?.description ?? defaultDesc}
-              </p>
-
-              {!isComingSoon && (
-                <>
-                  {/* Plan picker — prices from lib/pricing.ts, nowhere else. */}
-                  <div className="grid grid-cols-2 gap-2 mt-5">
-                    {PRICING_PLANS.map((p) => {
-                      const selected = plan === p.key;
-                      return (
-                        <button
-                          key={p.key}
-                          type="button"
-                          onClick={() => setPlan(p.key)}
-                          className="relative text-left rounded-lg p-3.5 transition-colors"
-                          style={{
-                            border: `1px solid ${selected ? "var(--accent)" : "var(--line)"}`,
-                            background: selected ? "var(--accent-wash)" : "var(--bg-1)",
-                          }}
-                        >
-                          {p.badge && (
-                            <span
-                              className="absolute -top-2 right-2 mono text-[9px] uppercase rounded-full px-1.5 py-[1px]"
-                              style={{
-                                background: "var(--accent)",
-                                color: "var(--accent-ink, white)",
-                                letterSpacing: "0.06em",
-                              }}
-                            >
-                              {lang === "mn" ? p.badge.mn : p.badge.en}
-                            </span>
-                          )}
-                          <div className="text-[12px] mb-1" style={{ color: "var(--fg-2)" }}>
-                            {lang === "mn" ? p.label.mn : p.label.en}
-                          </div>
-                          <div
-                            className="mono tabular"
-                            style={{
-                              fontSize: 20,
-                              letterSpacing: "-0.02em",
-                              color: selected ? "var(--accent)" : "var(--fg)",
-                            }}
-                          >
-                            {formatMnt(p.priceMnt)}
-                          </div>
-                          <div className="text-[11px] mt-0.5" style={{ color: "var(--fg-3)" }}>
-                            {lang === "mn" ? p.note.mn : p.note.en}
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div
-                    className="eyebrow mt-5 mb-2"
-                    style={{ color: "var(--accent)" }}
-                  >
-                    {t("Unlocks today", "Яг одоо нээгдэх")}
-                  </div>
-                  <ul className="space-y-2">
-                    {premiumLiveFeatures.map((f) => (
-                      <li
-                        key={f.en}
-                        className="flex items-start gap-2 text-[13.5px]"
-                        style={{ color: "var(--fg-1)" }}
-                      >
-                        <Check
-                          className="h-3.5 w-3.5 mt-[4px] flex-shrink-0"
-                          style={{ color: "var(--accent)" }}
-                        />
-                        <span>{lang === "mn" ? f.mn : f.en}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* What they already have. Naming the free tier at the
-                      point of purchase is the honest thing to do, and it
-                      tells a hesitant buyer where to go look first. */}
-                  <p className="mt-2.5 text-[12px]" style={{ color: "var(--fg-3)" }}>
-                    {t(
-                      "The first topic of every course stays free, always.",
-                      "Хичээл бүрийн эхний сэдэв үргэлж үнэгүй хэвээр.",
-                    )}
-                  </p>
-
-                  <div
-                    className="eyebrow mt-4 mb-2"
-                    style={{ color: "var(--fg-3)" }}
-                  >
-                    {t("On the way", "Удахгүй нэмэгдэнэ")}
-                  </div>
-                  <ul className="space-y-1.5">
-                    {COMING_SOON_FEATURES.map((f) => (
-                      <li
-                        key={f.key}
-                        className="flex items-start gap-2 text-[13px]"
-                        style={{ color: "var(--fg-2)" }}
-                      >
-                        <Clock
-                          className="h-3.5 w-3.5 mt-[4px] flex-shrink-0"
-                          style={{ color: "var(--fg-3)" }}
-                        />
-                        <span className="flex-1">
-                          {lang === "mn" ? f.title.mn : f.title.en}
-                        </span>
-                        <span
-                          className="mono text-[9px] uppercase rounded-full px-1.5 py-[1px] shrink-0"
-                          style={{
-                            background: "var(--bg-2)",
-                            border: "1px solid var(--line)",
-                            color: "var(--fg-3)",
-                            letterSpacing: "0.08em",
-                          }}
-                        >
-                          {t("Soon", "Удахгүй")}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
-
-              {status === "ok" ? (
-                <div
-                  className="mt-6 rounded-md p-4 text-[13px]"
+                <button
+                  onClick={close}
+                  aria-label="Close"
+                  className="absolute top-3 right-3 z-10 grid h-8 w-8 place-items-center rounded-md"
                   style={{
-                    background: "var(--accent-wash)",
-                    border: "1px solid var(--accent-line)",
-                    color: "var(--accent-ink)",
+                    color: "var(--fg-1)",
+                    background: "var(--bg-2)",
+                    border: "1px solid var(--line)",
                   }}
                 >
-                  <p className="mono text-[10px] uppercase mb-1" style={{ letterSpacing: "0.08em" }}>
-                    {isComingSoon
-                      ? t("You're on the list", "Та жагсаалтад орлоо")
-                      : t("Request received", "Хүсэлт хүлээн авлаа")}
-                  </p>
-                  <p>
-                    {isComingSoon
-                      ? t(
-                          "We'll email you the moment this ships. Keep practicing in the meantime.",
-                          "Гарсан даруй имэйлээр мэдэгдэнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
-                        )
-                      : t(
-                          "We'll contact you within 24 hours to arrange payment and activate Premium. Keep practicing in the meantime.",
-                          "24 цагийн дотор холбогдож төлбөрийг баталгаажуулан Premium эрхийг тань нээнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
-                        )}
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="mt-6 flex flex-col sm:flex-row gap-2">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={t("your@email.com", "таны@имэйл.com")}
-                    className="flex-1 outline-none"
-                    style={{
-                      padding: "10px 12px",
-                      fontSize: 14,
-                      background: "var(--bg-1)",
-                      border: "1px solid var(--line)",
-                      borderRadius: 8,
-                      color: "var(--fg)",
-                    }}
-                  />
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
-                    className="btn btn-primary whitespace-nowrap"
-                    style={{ opacity: status === "sending" ? 0.6 : 1 }}
+                  <X className="h-4 w-4" />
+                </button>
+
+                <div className="overflow-y-auto p-6 sm:p-8">
+
+                  <div
+                    className="w-10 h-10 rounded-md flex items-center justify-center mb-4"
+                    style={
+                      isComingSoon
+                        ? {
+                            background: "var(--bg-2)",
+                            border: "1px solid var(--line-strong)",
+                            color: "var(--fg-2)",
+                          }
+                        : {
+                            background: "var(--accent-wash)",
+                            border: "1px solid var(--accent-line)",
+                            color: "var(--accent)",
+                          }
+                    }
                   >
-                    {status === "sending"
-                      ? t("Sending…", "Илгээж байна…")
-                      : isComingSoon
-                        ? t("Notify me", "Надад мэдэгд")
-                        : t("Request Premium", "Premium авах")}
-                  </button>
-                </form>
-              )}
+                    {isComingSoon ? (
+                      <Clock className="h-4 w-4" />
+                    ) : (
+                      <Sparkles className="h-4 w-4" />
+                    )}
+                  </div>
 
-              {status === "error" && (
-                <p className="mono text-[11px] mt-2" style={{ color: "var(--danger)" }}>
-                  {errorMsg ?? t("Something went wrong. Try again.", "Алдаа гарлаа. Дахин оролдоно уу.")}
-                </p>
-              )}
+                  <div className="eyebrow mb-1.5">
+                    {isComingSoon ? t("Coming soon", "Удахгүй") : t("Premium", "Премиум")}
+                  </div>
+                  <h2
+                    className="serif"
+                    style={{
+                      fontWeight: 400,
+                      fontSize: 28,
+                      letterSpacing: "-0.02em",
+                      color: "var(--fg)",
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {opts?.title ?? defaultTitle}
+                  </h2>
+                  <p className="text-[14px] mt-2.5" style={{ color: "var(--fg-2)" }}>
+                    {opts?.description ?? defaultDesc}
+                  </p>
 
-              <div
-                className="mt-5 flex items-center gap-1.5 mono text-[10px]"
-                style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
-              >
-                <Lock className="h-3 w-3" />
-                {t(
-                  "NO SPAM · UNSUBSCRIBE ANY TIME",
-                  "СПАМ БАЙХГҮЙ · ХЭЗЭЭ Ч УСТГАЖ БОЛНО",
-                )}
+                  {!isComingSoon && (
+                    <>
+                      {/* Plan picker — prices from lib/pricing.ts, nowhere else. */}
+                      <div className="grid grid-cols-2 gap-2 mt-5">
+                        {PRICING_PLANS.map((p) => {
+                          const selected = plan === p.key;
+                          return (
+                            <button
+                              key={p.key}
+                              type="button"
+                              onClick={() => setPlan(p.key)}
+                              className="relative text-left rounded-lg p-3.5 transition-colors"
+                              style={{
+                                border: `1px solid ${selected ? "var(--accent)" : "var(--line)"}`,
+                                background: selected ? "var(--accent-wash)" : "var(--bg-1)",
+                              }}
+                            >
+                              {p.badge && (
+                                <span
+                                  className="absolute -top-2 right-2 mono text-[9px] uppercase rounded-full px-1.5 py-[1px]"
+                                  style={{
+                                    background: "var(--accent)",
+                                    color: "var(--accent-ink, white)",
+                                    letterSpacing: "0.06em",
+                                  }}
+                                >
+                                  {lang === "mn" ? p.badge.mn : p.badge.en}
+                                </span>
+                              )}
+                              <div className="text-[12px] mb-1" style={{ color: "var(--fg-2)" }}>
+                                {lang === "mn" ? p.label.mn : p.label.en}
+                              </div>
+                              <div
+                                className="mono tabular"
+                                style={{
+                                  fontSize: 20,
+                                  letterSpacing: "-0.02em",
+                                  color: selected ? "var(--accent)" : "var(--fg)",
+                                }}
+                              >
+                                {formatMnt(p.priceMnt)}
+                              </div>
+                              <div className="text-[11px] mt-0.5" style={{ color: "var(--fg-3)" }}>
+                                {lang === "mn" ? p.note.mn : p.note.en}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div
+                        className="eyebrow mt-5 mb-2"
+                        style={{ color: "var(--accent)" }}
+                      >
+                        {t("Unlocks today", "Яг одоо нээгдэх")}
+                      </div>
+                      <ul className="space-y-2">
+                        {premiumLiveFeatures.map((f) => (
+                          <li
+                            key={f.en}
+                            className="flex items-start gap-2 text-[13.5px]"
+                            style={{ color: "var(--fg-1)" }}
+                          >
+                            <Check
+                              className="h-3.5 w-3.5 mt-[4px] flex-shrink-0"
+                              style={{ color: "var(--accent)" }}
+                            />
+                            <span>{lang === "mn" ? f.mn : f.en}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* What they already have. Naming the free tier at the
+                          point of purchase is the honest thing to do, and it
+                          tells a hesitant buyer where to go look first. */}
+                      <p className="mt-2.5 text-[12px]" style={{ color: "var(--fg-3)" }}>
+                        {t(
+                          "The first topic of every course stays free, always.",
+                          "Хичээл бүрийн эхний сэдэв үргэлж үнэгүй хэвээр.",
+                        )}
+                      </p>
+
+                      <div
+                        className="eyebrow mt-4 mb-2"
+                        style={{ color: "var(--fg-3)" }}
+                      >
+                        {t("On the way", "Удахгүй нэмэгдэнэ")}
+                      </div>
+                      <ul className="space-y-1.5">
+                        {COMING_SOON_FEATURES.map((f) => (
+                          <li
+                            key={f.key}
+                            className="flex items-start gap-2 text-[13px]"
+                            style={{ color: "var(--fg-2)" }}
+                          >
+                            <Clock
+                              className="h-3.5 w-3.5 mt-[4px] flex-shrink-0"
+                              style={{ color: "var(--fg-3)" }}
+                            />
+                            <span className="flex-1">
+                              {lang === "mn" ? f.title.mn : f.title.en}
+                            </span>
+                            <span
+                              className="mono text-[9px] uppercase rounded-full px-1.5 py-[1px] shrink-0"
+                              style={{
+                                background: "var(--bg-2)",
+                                border: "1px solid var(--line)",
+                                color: "var(--fg-3)",
+                                letterSpacing: "0.08em",
+                              }}
+                            >
+                              {t("Soon", "Удахгүй")}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+
+                  {status === "ok" ? (
+                    <div
+                      className="mt-6 rounded-md p-4 text-[13px]"
+                      style={{
+                        background: "var(--accent-wash)",
+                        border: "1px solid var(--accent-line)",
+                        color: "var(--accent-ink)",
+                      }}
+                    >
+                      <p className="mono text-[10px] uppercase mb-1" style={{ letterSpacing: "0.08em" }}>
+                        {isComingSoon
+                          ? t("You're on the list", "Та жагсаалтад орлоо")
+                          : t("Request received", "Хүсэлт хүлээн авлаа")}
+                      </p>
+                      <p>
+                        {isComingSoon
+                          ? t(
+                              "We'll email you the moment this ships. Keep practicing in the meantime.",
+                              "Гарсан даруй имэйлээр мэдэгдэнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
+                            )
+                          : t(
+                              "We'll contact you within 24 hours to arrange payment and activate Premium. Keep practicing in the meantime.",
+                              "24 цагийн дотор холбогдож төлбөрийг баталгаажуулан Premium эрхийг тань нээнэ. Тэр хүртэл дадлагаа үргэлжлүүлээрэй.",
+                            )}
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="mt-6 flex flex-col sm:flex-row gap-2">
+                      <input
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder={t("your@email.com", "таны@имэйл.com")}
+                        className="flex-1 outline-none"
+                        style={{
+                          padding: "10px 12px",
+                          fontSize: 14,
+                          background: "var(--bg-1)",
+                          border: "1px solid var(--line)",
+                          borderRadius: 8,
+                          color: "var(--fg)",
+                        }}
+                      />
+                      <button
+                        type="submit"
+                        disabled={status === "sending"}
+                        className="btn btn-primary whitespace-nowrap"
+                        style={{ opacity: status === "sending" ? 0.6 : 1 }}
+                      >
+                        {status === "sending"
+                          ? t("Sending…", "Илгээж байна…")
+                          : isComingSoon
+                            ? t("Notify me", "Надад мэдэгд")
+                            : t("Request Premium", "Premium авах")}
+                      </button>
+                    </form>
+                  )}
+
+                  {status === "error" && (
+                    <p className="mono text-[11px] mt-2" style={{ color: "var(--danger)" }}>
+                      {errorMsg ?? t("Something went wrong. Try again.", "Алдаа гарлаа. Дахин оролдоно уу.")}
+                    </p>
+                  )}
+
+                  <div
+                    className="mt-5 flex items-center gap-1.5 mono text-[10px]"
+                    style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
+                  >
+                    <Lock className="h-3 w-3" />
+                    {t(
+                      "NO SPAM · UNSUBSCRIBE ANY TIME",
+                      "СПАМ БАЙХГҮЙ · ХЭЗЭЭ Ч УСТГАЖ БОЛНО",
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>,

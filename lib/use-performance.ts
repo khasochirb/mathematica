@@ -3,14 +3,13 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useAuth } from "./auth-context";
 import { getSupabaseClient } from "./supabase";
-import { getMpToken } from "./api";
+import { api, getMpToken } from "./api";
 import { canonicalizeTopic, canonicalizeSubtopic, getQuestionBySource, TOPIC_LABELS } from "./esh-questions";
 import { getSection2ItemBySource } from "./esh-section2";
 import { skillLabel } from "./skill-study-map";
 import { clearAllAnonPracticeCounts } from "./anon-practice-gate";
 import { parseTestId } from "./test-history";
 import {
-  attemptContextsForScope,
   attemptInScope,
   reconcileFetchedAttempts,
   type EraseScope,
@@ -31,6 +30,12 @@ export interface AttemptRecord {
   // (weak-topic recommendation, tests-completed count). New writes always
   // populate this.
   source?: "test" | "drill" | "lesson";
+  // Seconds of VISIBLE time on this question before it was answered
+  // (lib/use-question-timer). Optional: absent means "not measured", which
+  // is what every row written before Phase 0 carries. Never write 0 to mean
+  // "unknown" — the learning engine reads fast-and-right differently from
+  // no-data-at-all.
+  timeSpentSeconds?: number;
   // Which section of the platform produced this attempt: "esh" (default),
   // "course:geometry", "course:grade-6", later "sat"/"ib". Absent means
   // "esh" — every row written before contexts existed was ЭЕШ. Stats NEVER
@@ -105,7 +110,7 @@ function toServerRow(attempt: AttemptRecord, userId: string) {
     topic: isEsh ? canonicalizeTopic(attempt.topic) : attempt.topic,
     subtopic: isEsh ? canonicalizeSubtopic(attempt.subtopic) : attempt.subtopic || null,
     answered_at: new Date(attempt.timestamp).toISOString(),
-    time_spent_seconds: null,
+    time_spent_seconds: attempt.timeSpentSeconds ?? null,
     source: attempt.source ?? null,
     context: contextOf(attempt),
   };
@@ -121,6 +126,7 @@ type ServerRow = {
   answered_at: string;
   source: string | null;
   context?: string | null;
+  time_spent_seconds?: number | null;
 };
 
 function fromServerRow(r: ServerRow): AttemptRecord {
@@ -136,6 +142,8 @@ function fromServerRow(r: ServerRow): AttemptRecord {
     timestamp: new Date(r.answered_at).getTime(),
     source: src,
     context: r.context && r.context !== DEFAULT_CONTEXT ? r.context : undefined,
+    timeSpentSeconds:
+      typeof r.time_spent_seconds === "number" ? r.time_spent_seconds : undefined,
   };
 }
 
@@ -405,7 +413,7 @@ export default function usePerformance() {
           supabase
             .from("attempts")
             .select(
-              "question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source" +
+              "question_id,user_answer,correct_answer,is_correct,topic,subtopic,answered_at,source,time_spent_seconds" +
                 (withContext ? ",context" : ""),
             )
             .eq("user_id", uid)
@@ -851,30 +859,18 @@ export default function usePerformance() {
       const token = getMpToken();
       if (!token) return { localRemoved, serverOk: false };
 
+      // The server owns this delete. The browser sends a scope NAME and gets
+      // back a verified count; it no longer builds a row filter of its own,
+      // because a client-built filter can delete just the wrong answers and
+      // inflate every accuracy figure downstream. See the route's header and
+      // migration 015, which revokes the client's DELETE on attempts.
       try {
-        const supabase = getSupabaseClient();
-        let query = supabase.from("attempts").delete().eq("user_id", userId);
-
-        if (scope === "courses") {
-          query = query.like("context", "course:%");
-        } else if (scope !== "all") {
-          const contexts = attemptContextsForScope(scope) ?? [];
-          const named = contexts.filter((c): c is string => c !== null);
-          // ЭЕШ owns the context-less rows written before the column existed;
-          // without the is.null branch the oldest attempts are undeletable.
-          query = contexts.includes(null)
-            ? query.or(`context.is.null,context.in.(${named.join(",")})`)
-            : query.in("context", named);
-        }
-
-        const { error } = await query;
-        if (error) {
-          if (IS_DEV) console.warn("[attempts sync] clearScope delete failed:", error.message);
-          return { localRemoved, serverOk: false };
-        }
-        return { localRemoved, serverOk: true };
+        const res = await api.attempts.erase({ scope });
+        // The route re-counts after deleting; a non-zero residual means the
+        // erase did not fully land, and it must not be reported as success.
+        return { localRemoved, serverOk: res.residual === 0 };
       } catch (err) {
-        if (IS_DEV) console.warn("[attempts sync] clearScope network error:", err);
+        if (IS_DEV) console.warn("[attempts sync] clearScope erase failed:", err);
         return { localRemoved, serverOk: false };
       }
     },

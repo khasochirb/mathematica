@@ -118,6 +118,34 @@ fraction of those.
   advisories promptly (framework CVEs are the realistic worst case).
 - Pin exact versions in package.json for anything security-relevant.
 
+## Failure modes we have actually hit
+
+- **RLS gates ROWS, never COLUMNS** (profiles, 2026-08-14, live in
+  production). `profiles` carries `is_subscribed` and
+  `subscription_expires_at`, and the UPDATE policy was
+  `USING (auth.uid() = id)` with no `WITH CHECK`, granted to `public`. Row
+  ownership was the only constraint, so any signed-in student could send
+  `update profiles set is_subscribed = true where id = auth.uid()` from the
+  browser with the anon key and be premium. Free-premium hole, open for
+  months.
+
+  The lesson that generalises: **adding `WITH CHECK (auth.uid() = id)` would
+  NOT have fixed it** — it still only proves you own the row. When a table
+  mixes user-editable columns with privileged ones (subscription, XP, role,
+  quota), RLS alone cannot protect the privileged ones. Use one of:
+    1. revoke the privilege from `anon`/`authenticated` entirely and write
+       only through the service role (what we did — every profiles write
+       was already server-side, so nothing needed the grant);
+    2. column-level `GRANT UPDATE (col, …)`;
+    3. a BEFORE UPDATE trigger rejecting privileged-column changes from
+       non-service roles (we added this too, so a future re-GRANT cannot
+       silently reopen it).
+
+  Check for this shape whenever a table holds both kinds of column. Supabase
+  grants `ALL` on every public table to `anon` and `authenticated` by
+  default, so RLS is usually the ONLY thing standing between a client and a
+  write — a permissive policy is therefore a full write privilege.
+
 ## Incident response (short version)
 
 1. **Contain:** rotate affected credentials (Supabase keys, then force

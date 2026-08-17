@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import RevealProblemCard, { type RevealLabels } from "@/components/lesson/RevealProblemCard";
 import usePerformance from "@/lib/use-performance";
+import { useLapTimer } from "@/lib/use-question-timer";
 import { contextFromPathname } from "@/lib/perf-context";
 import type { LessonProblem } from "@/lib/lesson-types";
 
@@ -26,6 +27,10 @@ export default function GradedProblemList({
 }) {
   const pathname = usePathname();
   const perf = usePerformance();
+  // The whole set renders at once and each card is graded in turn, so each
+  // grade laps. Note this measures reveal-to-grade for a self-graded list,
+  // not clean solve time — see the Phase 0 report.
+  const lapTimer = useLapTimer(kind);
 
   const recordFor = (problem: LessonProblem) => (correct: boolean) => {
     const context = contextFromPathname(pathname ?? "");
@@ -40,6 +45,7 @@ export default function GradedProblemList({
       isCorrect: correct,
       source: kind === "test" ? "test" : "drill",
       context,
+      timeSpentSeconds: lapTimer.lap(),
     });
   };
 

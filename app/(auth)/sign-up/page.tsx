@@ -2,9 +2,9 @@
 
 import { Suspense, useState } from "react";
 import Link from "next/link";
+import LogoLockup from "@/components/layout/LogoLockup";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
-import Image from "next/image";
 import { api, setToken } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 
@@ -80,12 +80,8 @@ function SignUpInner() {
 
       <div className="w-full max-w-md relative">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2.5 group">
-            <span className="inline-block w-2 h-2 rounded-sm" style={{ background: "var(--accent)" }} />
-            <Image src="/images/mp.png" alt="Mongol Potential" width={32} height={32} className="rounded-md" />
-            <span className="font-semibold text-[15px] tracking-tight" style={{ color: "var(--fg)" }}>
-              Mongol Potential
-            </span>
+          <Link href="/" className="inline-flex items-center group">
+            <LogoLockup className="h-12 w-auto" />
           </Link>
         </div>
 
