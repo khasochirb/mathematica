@@ -78,32 +78,55 @@ describe("rule 3 — the five-tab contract", () => {
 
 describe("unpublished routes", () => {
   it("matches on path boundaries, never on a prefix of a longer segment", () => {
-    expect(isUnpublished("/math/6")).toBe(true);
-    expect(isUnpublished("/math/6/fractions")).toBe(true);
-    expect(isUnpublished("/math/6/")).toBe(true);
-    expect(isUnpublished("/practice/ib/bank/sl")).toBe(true);
-    // The renumbered primary band is NOT unpublished; /math/60 is not /math/6.
-    expect(isUnpublished("/math/60")).toBe(false);
-    expect(isUnpublished("/math/9")).toBe(false);
+    expect(isUnpublished("/practice/session")).toBe(true);
+    expect(isUnpublished("/practice/session/12")).toBe(true);
+    expect(isUnpublished("/practice/session/")).toBe(true);
+    // Boundary, not prefix: /practice/sessions would be a different route.
+    expect(isUnpublished("/practice/sessions")).toBe(false);
     expect(isUnpublished("/practice/esh")).toBe(false);
     expect(isUnpublished("/practice/sat/bank")).toBe(false);
-    expect(isUnpublished("https://example.com/math/6")).toBe(false);
+    expect(isUnpublished("https://example.com/practice/session")).toBe(false);
   });
 
-  it("covers IB, AP, the standalone courses and grades 6–7", () => {
-    for (const p of ["/practice/ib", "/practice/ap", "/math/6", "/math/7", "/math/algebra-1", "/math/geometry"]) {
-      expect(UNPUBLISHED_PREFIXES).toContain(p);
-    }
-    // Grades that Phase 0 keeps.
-    for (const p of ["/math/8", "/math/9", "/math/10", "/math/11", "/math/12"]) {
-      expect(UNPUBLISHED_PREFIXES).not.toContain(p);
+  it("holds ONLY the legacy runner, whose tables no longer exist", () => {
+    // Phase 0 also cut IB, AP, the standalone courses and grades 6–7. The
+    // owner republished all of those on 2026-08-17 — students were using the
+    // courses — and every file had been left in place, so it was a deletion
+    // from the JSON and nothing else.
+    //
+    // /practice/session is NOT a product decision and must not be republished
+    // with them: migration 010 DROPPED practice_sessions, session_answers and
+    // topic_progress, so the route would throw on load. It stays until
+    // somebody rebuilds it on the skill graph.
+    expect([...UNPUBLISHED_PREFIXES]).toEqual(["/practice/session"]);
+  });
+
+  it("republished IB, AP, the courses and grades 6–7", () => {
+    for (const p of [
+      "/practice/ib",
+      "/practice/ap",
+      "/ib-analytics",
+      "/math/6",
+      "/math/7",
+      "/math/algebra-1",
+      "/math/geometry",
+      "/math/ib-sl",
+      "/math/8",
+      "/math/12",
+    ]) {
+      expect(isUnpublished(p), `${p} should be published`).toBe(false);
     }
   });
 
   it("filters nav lists", () => {
     expect(
-      publishedOnly([{ href: "/practice/esh" }, { href: "/practice/ib" }, { href: "/math/7" }]),
-    ).toEqual([{ href: "/practice/esh" }]);
+      publishedOnly([
+        { href: "/practice/esh" },
+        { href: "/practice/ib" },
+        { href: "/math/7" },
+        { href: "/practice/session" },
+      ]),
+    ).toEqual([{ href: "/practice/esh" }, { href: "/practice/ib" }, { href: "/math/7" }]);
   });
 
   it("noindex is served for every unpublished prefix", () => {

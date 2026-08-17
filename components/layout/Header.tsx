@@ -22,19 +22,155 @@ import { useIsNativeShell } from "@/lib/use-native-shell";
 import LogoMark from "@/components/layout/LogoMark";
 import LogoLockup from "@/components/layout/LogoLockup";
 
-// THE TWO HUBS. Phase 0 collapsed the site to ЭЕШ and SAT; IB and AP are
-// unpublished (data/unpublished-routes.json) and the Courses hub left
-// navigation with them. Both entries here are live and have content, which
-// is what rule 7 requires of anything in navigation.
+// Curriculum hubs shown in the Resources menu.
+//
+// Phase 0 collapsed this to ЭЕШ · SAT and dropped the Resources dropdown.
+// The owner reversed that on 2026-08-17: students were using the courses,
+// and IB was wanted back. Every file had stayed in place, so restoring them
+// was deleting lines from data/unpublished-routes.json.
+//
+// `live` is not decoration — it is checked against what is actually behind
+// the link, so the menu never promises a product that isn't there:
+//   ЭЕШ  real hub, the reference implementation
+//   SAT  real hub with content
+//   IB   real hub (app/practice/ib) over three courses that each carry
+//        content — /math/ib-sl, /math/ib-hl, /math/ib-ai-sl
+//   AP   <ComingSoonHub slug="ap" />, seven lines, no curriculum behind it —
+//        so it keeps the "Soon" badge and a real notify page, exactly as it
+//        had before Phase 0. Promote it the day AP has lessons.
 const mathHubs = [
-  { en: "ЭЕШ", mn: "ЭЕШ", href: "/practice/esh", live: true },
-  { en: "SAT", mn: "SAT", href: "/practice/sat", live: true },
+  { en: "ЭЕШ Hub", mn: "ЭЕШ төв", href: "/practice/esh", live: true },
+  { en: "SAT Math Hub", mn: "SAT Math төв", href: "/practice/sat", live: true },
+  { en: "IB Math Hub", mn: "IB Math төв", href: "/practice/ib", live: true },
+  { en: "AP Calculus Hub", mn: "AP Calculus төв", href: "/practice/ap", live: false },
+];
+
+// The Courses hub (grades 6–12 plus the named and integrated courses) is
+// active and lives at /math.
+const genMathItems = [
+  { en: "Courses (Grades 6–12)", mn: "Хичээлүүд (6–12 анги)", href: "/math" },
 ];
 
 const aboutItems = [
   { en: "About Us", mn: "Бидний тухай", href: "/about#about" },
   { en: "Contact", mn: "Холбоо барих", href: "/contact" },
 ];
+
+interface ResourcesDropdownProps {
+  label: string;
+  active?: boolean;
+}
+
+function ResourcesDropdown({ label, active }: ResourcesDropdownProps) {
+  const { lang } = useLang();
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const ref = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  function onEnter() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  }
+  function onLeave() {
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  }
+
+  return (
+    <li ref={ref} className="relative" data-navactive={active || undefined} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      <button
+        type="button"
+        className="flex items-center gap-1 font-display text-[13px] tracking-[0.01em] whitespace-nowrap transition-colors py-2 px-3 rounded-full"
+        style={{
+          color: active ? "var(--accent)" : "var(--fg-1)",
+          fontWeight: active ? 600 : 500,
+        }}
+        onClick={() => setOpen((v) => !v)}
+        onMouseEnter={(e) => { if (!active) e.currentTarget.style.color = "var(--fg)"; }}
+        onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = "var(--fg-1)"; }}
+      >
+        {label}
+        <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
+      </button>
+      {open && (
+        <div
+          className="dropdown-enter absolute top-full left-0 w-72 rounded-lg shadow-2xl shadow-black/40 py-2 z-50"
+          style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}
+          onMouseEnter={onEnter}
+          onMouseLeave={onLeave}
+        >
+          <div
+            className="px-4 pb-2 mb-1 eyebrow"
+            style={{ borderBottom: "1px solid var(--line)" }}
+          >
+            {lang === "mn" ? "Математикийн төвүүд" : "Math hubs"}
+          </div>
+          {mathHubs.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex items-center justify-between gap-3 px-4 py-2 text-sm transition-colors"
+              style={{ color: "var(--fg-1)" }}
+              onClick={() => setOpen(false)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.background = "var(--accent-wash)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--fg-1)";
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              <span>{lang === "mn" ? item.mn : item.en}</span>
+              <span
+                className="badge-edit"
+                style={
+                  item.live
+                    ? { color: "var(--accent)", borderColor: "var(--accent-line)", background: "var(--accent-wash)" }
+                    : undefined
+                }
+              >
+                {item.live ? (lang === "mn" ? "Нээлттэй" : "Live") : lang === "mn" ? "Удахгүй" : "Soon"}
+              </span>
+            </Link>
+          ))}
+          <div
+            className="px-4 pb-2 mb-1 mt-2 eyebrow"
+            style={{ borderTop: "1px solid var(--line)", paddingTop: 8 }}
+          >
+            Courses · Active
+          </div>
+          {genMathItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block px-4 py-2 text-sm transition-colors"
+              style={{ color: "var(--fg-1)" }}
+              onClick={() => setOpen(false)}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.background = "var(--accent-wash)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--fg-1)";
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              {lang === "mn" ? item.mn : item.en}
+            </Link>
+          ))}
+        </div>
+      )}
+    </li>
+  );
+}
 
 interface AboutDropdownProps {
   label: string;
@@ -217,6 +353,14 @@ export default function Header() {
   const onPath = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
   const onAnyPath = (hrefs: string[]) => hrefs.some(onPath);
+  // Resources groups the math hubs (ЭЕШ + SAT/IB/AP) and Courses.
+  const resourcesActive = onAnyPath([
+    "/math",
+    "/practice/esh",
+    "/practice/sat",
+    "/practice/ib",
+    "/practice/ap",
+  ]);
   const aboutActive = onAnyPath(["/about", "/contact"]);
 
   return (
@@ -270,23 +414,24 @@ export default function Header() {
                   opacity: indicator.visible ? 1 : 0,
                 }}
               />
-              {/* ЭЕШ · SAT · Tutoring · About — the whole nav. The hubs are
-                  top-level rather than buried in a Resources dropdown; the
-                  logo covers Home. Logged-in users also get Dashboard (see
-                  the Phase 0 report on Today/Me). */}
-              {mathHubs.map((hub) => (
-                <NavLink key={hub.href} href={hub.href} active={onPath(hub.href)}>
-                  {lang === "mn" ? hub.mn : hub.en}
-                </NavLink>
-              ))}
-              <NavLink href="/tutoring" active={onPath("/tutoring")}>
-                {nav.tutoring}
+              {/* Home · Dashboard · Tutoring · Resources · About — restored
+                  2026-08-17. Phase 0 had cut Home (the logo carried it) and
+                  the Resources dropdown; the owner asked for both back. The
+                  hubs live under Resources again rather than sitting
+                  top-level, which is what keeps the bar short enough to add
+                  Home back without it wrapping. */}
+              <NavLink href="/" active={onPath("/")}>
+                {nav.home}
               </NavLink>
               {isAuthenticated && (
                 <NavLink href="/dashboard" active={onPath("/dashboard")}>
                   {nav.dashboard}
                 </NavLink>
               )}
+              <NavLink href="/tutoring" active={onPath("/tutoring")}>
+                {nav.tutoring}
+              </NavLink>
+              <ResourcesDropdown label={nav.resources} active={resourcesActive} />
               <AboutDropdown label={nav.about} active={aboutActive} />
             </ul>
           </nav>
@@ -442,9 +587,9 @@ export default function Header() {
         >
           <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {[
-              ...mathHubs.map((h) => ({ label: lang === "mn" ? h.mn : h.en, href: h.href })),
-              { label: nav.tutoring, href: "/tutoring" },
+              { label: nav.home, href: "/" },
               ...(isAuthenticated ? [{ label: nav.dashboard, href: "/dashboard" }] : []),
+              { label: nav.tutoring, href: "/tutoring" },
             ].map((item) => {
               const active = onPath(item.href);
               return (
@@ -460,6 +605,58 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
+                </Link>
+              );
+            })}
+
+            {/* Math hubs */}
+            <div
+              className="px-4 pt-3 mt-2 eyebrow"
+              style={{ borderTop: "1px solid var(--line)" }}
+            >
+              {lang === "mn" ? "Математикийн төвүүд" : "Math hubs"}
+            </div>
+            {mathHubs.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center justify-between gap-3 px-4 py-2 rounded-md text-sm transition-colors"
+                style={{ color: "var(--fg-1)" }}
+                onClick={() => setMobileOpen(false)}
+              >
+                <span>{lang === "mn" ? item.mn : item.en}</span>
+                <span
+                  className="badge-edit"
+                  style={
+                    item.live
+                      ? { color: "var(--accent)", borderColor: "var(--accent-line)", background: "var(--accent-wash)" }
+                      : undefined
+                  }
+                >
+                  {item.live ? (lang === "mn" ? "Нээлттэй" : "Live") : lang === "mn" ? "Удахгүй" : "Soon"}
+                </span>
+              </Link>
+            ))}
+
+            {/* Resources — Courses active section */}
+            <div className="px-4 pt-2 eyebrow">
+              Courses · Active
+            </div>
+            {genMathItems.map((item) => {
+              const active = onPath(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-4 py-2 rounded-md text-sm transition-colors"
+                  style={{
+                    color: active ? "var(--accent)" : "var(--fg-1)",
+                    background: active ? "var(--accent-wash)" : "transparent",
+                    fontWeight: active ? 600 : undefined,
+                  }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {lang === "mn" ? item.mn : item.en}
                 </Link>
               );
             })}

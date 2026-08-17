@@ -12,8 +12,10 @@ const primaryRenumber = JSON.parse(
 
 // Phase 0 unpublish (2026-08-14): IB, AP, the standalone topic courses and
 // grades 6–7 leave navigation and go noindex, but every file stays in place —
-// IB returns in 2027. Same list the app reads through lib/unpublished.ts;
-// this file cannot import TypeScript, hence the shared JSON.
+// Same list the app reads through lib/unpublished.ts; this file cannot import
+// TypeScript, hence the shared JSON. (IB, AP, the courses and grades 6–7 were
+// republished on 2026-08-17 by deleting their lines from it — the whole point
+// of unpublishing rather than deleting.)
 const unpublishedPrefixes = JSON.parse(
   readFileSync(new URL("./data/unpublished-routes.json", import.meta.url), "utf-8"),
 ).prefixes;

@@ -1,27 +1,8 @@
 {
-  "note": "Phase 0 UNPUBLISH list. /practice/session is the orphaned legacy runner whose tables (practice_sessions, session_answers, topic_progress) migration 010 dropped; it had no inbound links and every one of those tables held 0 rows. These routes still exist and still build — every file is left in place — but they are removed from navigation and internal links, and served noindex. IB comes back in 2027; re-publishing is deleting entries from this file.",
+  "note": "Routes that exist and build but stay out of navigation, internal links and search. Phase 0 (2026-08-14) also cut IB, AP, the standalone topic courses and grades 6-7; the owner REPUBLISHED all of those on 2026-08-17 because students were using the courses and IB was wanted back. Every file had been left in place, so re-publishing was deleting lines from this list. What remains is not a product decision: /practice/session is the orphaned legacy runner whose tables (practice_sessions, session_answers, topic_progress) migration 010 DROPPED. It would throw on load. Do not re-publish it without rebuilding it on the skill graph.",
   "since": "2026-08-14",
+  "republished": "2026-08-17",
   "prefixes": [
-    "/practice/session",
-    "/practice/ib",
-    "/practice/ap",
-    "/ib-analytics",
-    "/math/6",
-    "/math/7",
-    "/math/algebra-1",
-    "/math/algebra-2",
-    "/math/geometry",
-    "/math/trigonometry",
-    "/math/solid-geometry",
-    "/math/prob-stats",
-    "/math/precalculus",
-    "/math/calculus",
-    "/math/vectors-matrices",
-    "/math/integrated-1",
-    "/math/integrated-2",
-    "/math/integrated-3",
-    "/math/ib-sl",
-    "/math/ib-hl",
-    "/math/ib-ai-sl"
+    "/practice/session"
   ]
 }
