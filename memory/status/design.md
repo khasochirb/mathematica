@@ -7,6 +7,38 @@ the template in `CLAUDE.md` § "End every session with this".
 
 ---
 
+## 2026-08-17 05:05 UTC
+
+**Did:** Applied `011_seed_esh_graph.sql` to production — 184 ЭЕШ skills and
+367 prerequisite edges.
+
+**Landed where:** applied to production. (Code from this session is already
+on main as `a532ae4`.)
+
+**Blocked on:** nothing. Phase 1 is unblocked — the graph is in the database.
+
+**Others should know:**
+- **The ЭЕШ graph is live.** `skills`=184, `skill_prerequisites`=367, 0
+  dangling endpoints, 0 self-edges, `name_mn` NULL on every row (Phase 3
+  writes it). Verified by row count AND by content hash against the file,
+  because the SQL had to be retyped through a tool parameter and a mistyped
+  weight would seed a wrong graph in silence. `skill_state` was empty before
+  and after, so no learner state was ever at risk.
+- **Do not trust `/api/health/flags` on 011 right now.** It still answers
+  `missing` for a table holding 184 rows — a false negative, raised as
+  FLAG-010 with everything already ruled out on the database side (counts
+  under every role, RLS, grants, bypassrls, schema-cache reload, no
+  duplicate table, right sentinel in the deployed build). If you read that
+  endpoint and conclude the seed never ran, you will re-apply a migration
+  that is already applied. The re-run is safe (upserts, never deletes) but
+  the conclusion is wrong. `migration_008_student_profiles` reports
+  `unknown` with no code in the same response; both failing probes are on
+  `profiles`/`skills` and both passing ones are on `attempts` — that split
+  is the lead worth pulling.
+- `015_attempts_server_delete.sql` is unblocked: its stated precondition was
+  a live deploy carrying `/api/attempts/erase`, and that shipped in
+  `a532ae4`.
+
 ## 2026-08-17 04:25 UTC
 
 **Did:** New logo shipped — the designer's lockup replaces the old mascot

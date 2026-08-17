@@ -38,17 +38,30 @@ passes.** "I set it" is not evidence; the probe output is.
 
 ---
 
-### FLAG-004 — migration `011_seed_esh_graph.sql` not applied
+### FLAG-010 — `/api/health/flags` reports a FALSE `missing` for 011
+
+| | |
+|---|---|
+| **Raised** | 2026-08-17, immediately after seeding 011 |
+| **Priority** | MEDIUM — nothing user-facing, but a lying probe is worse than no probe. The next session to read this endpoint will conclude the ЭЕШ graph is unseeded and may re-apply it. The re-run is safe (upserts, never deletes) but the wrong conclusion is not. |
+| **Symptom** | `skills` holds 184 rows with `hub='eysh'`; the sentinel wants ≥150; the endpoint answers `missing` with an EMPTY `details` map, so it is not even reporting a code. |
+| **Ruled out on the database side** | Row count 184 (as superuser AND under `set role` for `service_role`, `anon` and `authenticated` — all three read it). RLS on with a permissive `skills_select_all` SELECT policy. `service_role` has SELECT and `rolbypassrls=true`. No duplicate `skills` table in another schema. `notify pgrst, 'reload schema'` issued; no change. The deployed build is `a532ae4` and its `lib/flags.ts` carries the right sentinel (`table: skills`, `column: id`, `where hub='eysh'`, `atLeast: 150`) — its sibling `migration_010_skill_graph` sentinel only exists in that build and reports `applied`, which also proves the app is pointed at THIS project. |
+| **Also unexplained, same shape** | `migration_008_student_profiles` reports `unknown` with no code. Per `classifyProbe` that means an error object with a falsy `code` and a message matching none of the patterns. Both failing probes are on `profiles`/`skills`; both passing ones are on `attempts`. That split is the strongest lead. |
+| **Why it was not diagnosed further** | The exact PostgREST call could not be reproduced from a Claude cloud session: the sandbox proxy answers 403 to CONNECT for both `www.mongolpotential.com` and `*.supabase.co`, so the only view of the probe is its own verdict. |
+| **Next step** | Make the probe honest before making it right: have the route put the observed count (and the raw PostgREST `message`, not just `code`) into `details` for any non-`applied` result. One small change to `app/api/health/flags/route.ts`; the answer will be in the next response. |
+
+### FLAG-004 — `011_seed_esh_graph.sql` APPLIED 2026-08-17 — probe disagrees, see FLAG-010
 
 | | |
 |---|---|
 | **Raised** | 2026-08-15 |
-| **Owner action** | Apply `supabase/migrations/011_seed_esh_graph.sql` in Supabase. Design owns applying it; this session owns generating it. |
+| **Owner action** | DONE. Applied to production 2026-08-17 by Design (THE DATABASE RULE), on the owner's instruction. |
+| **Verified by row count, not by the file existing** | `select count(*) from skills` → **184**; `select count(*) from skill_prerequisites` → **367**. Also checked beyond the counts, because the SQL had to be retyped through a tool parameter and a mistyped weight would seed a wrong graph silently: `md5(string_agg(id order by id))` = `332919b9f7c0bee9c5875547aba1eddc` and `md5(string_agg(skill_id||'>'||requires_id order by skill_id, requires_id))` = `58cdc43a41defba848a7fd37346aff2a`, both matching the same hashes computed from the file on disk. `sum(exam_weight)`=99.8983, `sum(strength)`=316.4, `sum(typical_difficulty)`=505, `sum(display_order)`=5257 — all matching. 0 dangling edges, 0 self-edges, 0 rows with `hub<>'eysh'`, `name_mn` NULL on all 184 (Phase 3 writes it). The file's own post-conditions ran and did not raise. `skill_state` was empty before and after, so no learner state was at risk. |
 | **What it seeds** | 184 ЭЕШ skills + 367 prerequisite edges into `skills` and `skill_prerequisites`. Both tables already exist and were empty (owner-confirmed 2026-08-15). |
 | **Blocks** | Everything downstream of the graph — adaptive placement, recommendations, mastery, score prediction. Design is blocked on it now. |
 | **Ships dark?** | Yes. Nothing in the app reads `skills` yet, so an unapplied migration changes no behaviour; it just leaves the graph invisible to other agents. |
 | **Sentinel** | `migration_011_seed_esh_graph` in `lib/flags.ts`. This is the first ROW-COUNT sentinel: 011 adds no column, so the usual column probe would report "applied" against an empty table. It counts `skills` rows with `hub='eysh'` and wants ≥150 (184 ship; the floor sits low so a later graph revision does not turn it red). |
-| **Verify** | `npm run verify:flags -- https://www.mongolpotential.com`, or `GET /api/health/flags` → `"migration_011_seed_esh_graph":"applied"`. |
+| **Verify** | ⚠️ The endpoint still answers `"migration_011_seed_esh_graph":"missing"` after the seed. That is a PROBE defect, not an unapplied migration — see FLAG-010. Trust the row counts above; per CLAUDE.md rule 1 the count is the verification, and re-running the seed on the strength of the endpoint would be acting on a false negative. |
 | **Notes** | DATA ONLY — no DDL. The tables come from Stream A's `010_skill_graph.sql`, which deliberately left 011 free for this seed. Skills are UPSERTED and never deleted, because 010 defines `skill_state.skill_id REFERENCES skills(id) ON DELETE CASCADE` — a delete-then-insert (which this file originally used) would wipe every student's mastery state on a re-run, and `attempts.skill_id` references it too, without cascade. Edges are cleared and rewritten, since nothing references `skill_prerequisites`. `name_mn` is excluded from the upsert so a Phase-3 Mongolian pass survives re-seeding. Opens with a schema assertion naming any missing column, closes with post-conditions (≥184 skills, 367 edges, no dangling endpoints) inside the transaction. |
 | **Schema corrections found by reading 010** | Two, both fatal, neither guessable: the hub value is `'eysh'` (a CHECK constraint, not `'esh'`), and the edge column is `requires_id` (not `prereq_skill_id`). Confirmed against `origin/claude/problem-bank-premium-design-osj7de`. |
 
