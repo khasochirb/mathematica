@@ -25,7 +25,7 @@ function SessionContent() {
 
   useEffect(() => {
     if (!sessionId || !topicId) {
-      router.replace("/practice");
+      router.replace("/practice/esh");
       return;
     }
     loadNextProblem();
@@ -43,7 +43,7 @@ function SessionContent() {
       const p = await api.problems.next(topicId, sessionId);
       setProblem(p);
     } catch {
-      router.replace("/practice");
+      router.replace("/practice/esh");
     } finally {
       setLoading(false);
     }
@@ -81,7 +81,7 @@ function SessionContent() {
         `/practice/result?correct=${sr.totalCorrect}&total=${sr.totalQuestions}&xp=${sr.sessionXp}&leveledUp=${sr.leveledUp}`
       );
     } catch {
-      router.replace("/practice");
+      router.replace("/practice/esh");
     }
   }
 

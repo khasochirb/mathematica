@@ -9,7 +9,7 @@ const links = {
     { label: "Previous Year Tests", href: "/practice/esh/test?type=previous" },
     { label: "ЭЕШ Study by Topic", href: "/practice/esh/topics" },
     { label: "Courses", href: "/math" },
-    { label: "Math Practice", href: "/practice" },
+    { label: "Practice by Topic", href: "/practice/esh/practice" },
     { label: "1-on-1 Tutoring", href: "/tutoring" },
   ],
   Company: [
