@@ -50,8 +50,17 @@ function tablesReferencingProfiles(sql: string): Set<string> {
   }
 
   // ALTER TABLE <name> ADD CONSTRAINT ... REFERENCES [public.]profiles(id)
+  //
+  // Bounded with [^;] — one statement — NOT [\s\S], which is unbounded and
+  // walks past the statement end to the next profiles(id) anywhere in the
+  // corpus. That misfired the moment 010_skill_graph.sql merged in: its
+  // `ALTER TABLE skills ADD CONSTRAINT ... CHECK (...)` matched, then ran on
+  // through skill_prerequisites into skill_state's `user_id REFERENCES
+  // profiles(id)` and reported `skills` — a content table with no user
+  // column at all — as user-scoped. A false positive here is not harmless:
+  // the fix it demands is adding a content table to the deletion inventory.
   const alterRe =
-    /ALTER\s+TABLE\s+(?:public\.)?(\w+)\s+ADD\s+CONSTRAINT[\s\S]*?REFERENCES\s+(?:public\.)?profiles\s*\(\s*id\s*\)/gi;
+    /ALTER\s+TABLE\s+(?:public\.)?(\w+)\s+ADD\s+CONSTRAINT[^;]*?REFERENCES\s+(?:public\.)?profiles\s*\(\s*id\s*\)/gi;
   let a: RegExpExecArray | null;
   while ((a = alterRe.exec(sql)) !== null) {
     found.add(a[1]);

@@ -7,6 +7,43 @@ the template in `CLAUDE.md` § "End every session with this".
 
 ---
 
+## 2026-08-17 04:25 UTC
+
+**Did:** New logo shipped — the designer's lockup replaces the old mascot
+(which had "MP ACADEMY" baked into the artwork); every asset is now derived
+from one master by `scripts/gen-logo-assets.py`, the mark and wordmark are
+traced SVG so they follow `--accent`/`--fg` in both themes, and the site has
+a real favicon for the first time. Renumbered my two lockdown migrations to
+016/017. Merged main twice and deployed.
+
+**Landed where:** merged to main and deployed to production.
+
+**Blocked on:** nothing.
+
+**Others should know:**
+- **The 012/013 collision is cleared.** My `012_profiles_update_lockdown`
+  and `013_client_write_lockdown` are now **016** and **017**, per
+  NUMBERING.md's "the late branch renames" rule — the security audit's
+  012–015 were on main first. Both were applied to production long ago and
+  are in the ledger under their *names*, so the database needed nothing.
+  Migrations are now a clean 000–017 with no duplicates.
+- **`scripts/verify-account-delete-inventory.test.ts` had a false positive**
+  (security stream's file — flagging it here rather than editing quietly).
+  Its `ALTER TABLE … ADD CONSTRAINT` regex used an unbounded `[\s\S]*?`,
+  which walked past the statement end to the next `profiles(id)` anywhere in
+  the corpus. The moment `010_skill_graph.sql` merged to main it reported
+  `skills` — the content graph, no user column — as user-scoped, and the
+  "fix" it demanded was adding a content table to the deletion inventory.
+  Bounded to `[^;]*?`. `skill_state` and the other 12 real user tables are
+  still found. Worth a look if you have other regexes shaped like that.
+- **`scripts/verify-flags.mjs` was not gating 010 or 011.** Its HEALTHY map
+  is a hand-kept mirror of the one in `lib/flags.ts` and had drifted, so the
+  two newest migrations were reported by the endpoint and checked by nothing.
+  Both added.
+- If you add a component outside `app/` or `components/`, remember Tailwind's
+  content globs — `lib/` was missing and every class in it was silently
+  purged.
+
 ## 2026-08-16 09:43 UTC
 
 **Did:** Problem bank made Premium-only and answer-first (commit, then check
