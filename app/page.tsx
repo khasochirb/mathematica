@@ -4,6 +4,18 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 import MathText from "@/components/esh/MathText";
+import {
+  PROJECTION,
+  PROJECTION_ERR,
+  PROJECTION_TARGET,
+  areaPath,
+  bandPath,
+  pointsFor,
+  smoothPath,
+  xFor,
+  yFor,
+  type Scale,
+} from "@/lib/score-projection";
 
 type Bi = { en: string; mn: string };
 
@@ -14,7 +26,34 @@ const CURRICULA: { label: Bi; href: string; live: boolean }[] = [
   { label: { en: "School math", mn: "Сургуулийн математик" }, href: "/math", live: true },
   { label: { en: "SAT Math", mn: "SAT Math" }, href: "/practice/sat", live: false },
   { label: { en: "ЭШ", mn: "ЭШ" }, href: "/practice/esh", live: true },
+  // IB was missing from the home page while /practice/ib has been a live
+  // door for some time (AA SL, AA HL and AI SL courses plus a topic bank
+  // — see lib/hub-consistency.test.ts, which already treats it as a hub).
+  // The header's Resources menu linked it; the landing page did not.
+  { label: { en: "IB Math", mn: "IB Math" }, href: "/practice/ib", live: true },
 ];
+
+// The two projection charts' scales. Both are module constants so the
+// paths are computed once at import, not on every render, and so the
+// gate test can assert the axis labels against the same numbers the
+// curve is drawn from (scripts/verify-score-projection.test.ts).
+//
+// SPARK: the report card's inline trend. sBot 580 puts 800 at y=8.7,
+// exactly where the dashed target rule sits.
+const SPARK: Scale = { x0: 6, x1: 150, yTop: 4, yBot: 56, sTop: 800, sBot: 580 };
+const SPARK_FLOOR = 62;
+
+// PROJ: the feature-section chart. sBot is derived rather than typed so
+// an 80-point step is exactly 60px — the spacing of the gridlines drawn
+// beside it. Pick sBot by hand and the curve drifts off its own axis,
+// which is the bug this replaces.
+const PROJ: Scale = {
+  x0: 60, x1: 528, yTop: 40, yBot: 236, sTop: 800, sBot: 800 - 196 / 0.75,
+};
+const PROJ_WEEK_LABELS = ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "NOW"];
+
+const SPARK_PTS = pointsFor(PROJECTION, SPARK);
+const PROJ_PTS = pointsFor(PROJECTION, PROJ);
 
 const i18n = {
   hero_eyebrow: { en: "Personalized math mastery", mn: "Ганцаарчилсан математикийн дэмжлэг" },
@@ -86,16 +125,20 @@ export default function HomePage() {
   const { lang } = useLang();
   const t = (key: keyof typeof i18n) => i18n[key][lang === "mn" ? "mn" : "en"];
 
+  // Colour alone marks the emphasised word. It used to also be set in
+  // serif ITALIC, which highlighted the same word twice — the accent had
+  // already done the job, and the italic only made the largest type on
+  // the site harder to read (owner's call, 2026-08-23).
   const heroHeadline =
     lang === "mn" ? (
       <>
         Сул талаа нөхөж, математикаа{" "}
-        <em className="serif-italic" style={{ color: "var(--accent)" }}>бүрэн эзэмш</em>.
+        <span style={{ color: "var(--accent)" }}>бүрэн эзэмш</span>.
       </>
     ) : (
       <>
         Close the gaps,{" "}
-        <em className="serif-italic" style={{ color: "var(--accent)" }}>master</em> the math.
+        <span style={{ color: "var(--accent)" }}>master</span> the math.
       </>
     );
 
@@ -194,22 +237,66 @@ export default function HomePage() {
                   {lang === "mn" ? "Таамагласан оноо · ±18" : "Projected score · ±18"}
                 </div>
               </div>
-              <svg viewBox="0 0 160 60" width="160" height="60" preserveAspectRatio="none" style={{ opacity: 0.85 }}>
-                <defs>
-                  <linearGradient id="spark" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0" stopColor="var(--accent)" stopOpacity="0.35" />
-                    <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,50 L20,44 L40,46 L60,38 L80,30 L100,32 L120,22 L140,16 L160,10 L160,60 L0,60 Z"
-                  fill="url(#spark)"
+              {/* Plotted from PROJECTION, on SPARK's scale: the dashed
+                  rule is the 780 target, and the ringed point is where
+                  the student is now. preserveAspectRatio is deliberately
+                  left at its default — the old chart stretched its
+                  geometry with "none". */}
+              <svg
+                viewBox="0 0 160 64"
+                width="160"
+                height="64"
+                role="img"
+                aria-label={
+                  lang === "mn"
+                    ? `Оноо ${PROJECTION[0]}-аас ${PROJECTION[PROJECTION.length - 1]} хүртэл өссөн, зорилт ${PROJECTION_TARGET}`
+                    : `Score trend rising from ${PROJECTION[0]} to ${PROJECTION[PROJECTION.length - 1]}, target ${PROJECTION_TARGET}`
+                }
+              >
+                <line
+                  x1="0"
+                  y1={yFor(PROJECTION_TARGET, SPARK)}
+                  x2="160"
+                  y2={yFor(PROJECTION_TARGET, SPARK)}
+                  stroke="var(--accent)"
+                  strokeDasharray="2 4"
+                  strokeWidth="1"
+                  opacity="0.6"
                 />
+                <text
+                  x="158"
+                  y={yFor(PROJECTION_TARGET, SPARK) - 1.7}
+                  className="mono"
+                  fontSize="7.5"
+                  fill="var(--accent)"
+                  textAnchor="end"
+                  opacity="0.9"
+                >
+                  {PROJECTION_TARGET}
+                </text>
+                <path d={areaPath(SPARK_PTS, SPARK_FLOOR)} fill="var(--accent)" opacity="0.12" />
                 <path
-                  d="M0,50 L20,44 L40,46 L60,38 L80,30 L100,32 L120,22 L140,16 L160,10"
+                  d={smoothPath(SPARK_PTS)}
                   fill="none"
                   stroke="var(--accent)"
-                  strokeWidth="1.5"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle
+                  cx={SPARK_PTS[SPARK_PTS.length - 1][0]}
+                  cy={SPARK_PTS[SPARK_PTS.length - 1][1]}
+                  r="8"
+                  fill="none"
+                  stroke="var(--accent)"
+                  strokeOpacity="0.35"
+                  strokeWidth="2"
+                />
+                <circle
+                  cx={SPARK_PTS[SPARK_PTS.length - 1][0]}
+                  cy={SPARK_PTS[SPARK_PTS.length - 1][1]}
+                  r="4"
+                  fill="var(--accent)"
                 />
               </svg>
             </div>
@@ -239,10 +326,10 @@ export default function HomePage() {
                     borderTop: i === 0 ? "none" : "1px solid var(--line)",
                   }}
                 >
-                  <span style={{ color: "var(--fg-1)" }}>{r.name}</span>
+                  <span style={{ color: "var(--fg-1)", minWidth: 0 }}>{r.name}</span>
                   <span
                     style={{
-                      height: 4,
+                      height: 5,
                       background: "var(--bg-3)",
                       borderRadius: 99,
                       overflow: "hidden",
@@ -259,7 +346,14 @@ export default function HomePage() {
                       }}
                     />
                   </span>
-                  <span className="tabular text-right" style={{ color: "var(--fg-2)" }}>
+                  {/* The weak rows carry the warn colour on the NUMBER as
+                      well as the bar. With it only on the bar, the two
+                      rows that actually cost marks read the same as the
+                      three that don't at a glance. */}
+                  <span
+                    className="tabular text-right"
+                    style={{ color: r.weak ? "var(--warn)" : "var(--fg-2)" }}
+                  >
                     {r.pct}%
                   </span>
                 </div>
@@ -446,69 +540,97 @@ export default function HomePage() {
                 {lang === "mn" ? "хянагдаж байна" : "tracking"}
               </span>
             </div>
-            <svg viewBox="0 0 560 280" width="100%" height="280" style={{ marginTop: 8 }}>
-              <defs>
-                <linearGradient id="band" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0" stopColor="var(--accent)" stopOpacity="0.25" />
-                  <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
+            {/* Every mark below is computed from PROJECTION on PROJ's
+                scale. The version this replaces drew its curve, its band
+                and its five dots as three unrelated hand-typed paths —
+                the dots did not sit on the line, and neither matched the
+                axis labels printed beside them. */}
+            <svg
+              viewBox="0 0 560 280"
+              width="100%"
+              height="280"
+              style={{ marginTop: 8 }}
+              role="img"
+              aria-label={
+                lang === "mn"
+                  ? `Таамагласан оноо 8 долоо хоногт ${PROJECTION[0]}-аас ${PROJECTION[PROJECTION.length - 1]} болж өссөн, зорилт ${PROJECTION_TARGET}, ±${PROJECTION_ERR} итгэлийн зурвастай`
+                  : `Projected score rising from ${PROJECTION[0]} to ${PROJECTION[PROJECTION.length - 1]} over eight weeks against a target of ${PROJECTION_TARGET}, with a ±${PROJECTION_ERR} confidence band`
+              }
+            >
               <g stroke="var(--line)" strokeWidth="1">
-                <line x1="0" y1="60" x2="560" y2="60" />
-                <line x1="0" y1="120" x2="560" y2="120" />
-                <line x1="0" y1="180" x2="560" y2="180" />
-                <line x1="0" y1="240" x2="560" y2="240" />
+                {[800, 720, 640, 560].map((s) => (
+                  <line key={s} x1={PROJ.x0 - 16} y1={yFor(s, PROJ)} x2="544" y2={yFor(s, PROJ)} />
+                ))}
               </g>
-              <g fontFamily="var(--font-mono)" fontSize="10" fill="var(--fg-3)">
-                <text x="6" y="56">800</text>
-                <text x="6" y="116">720</text>
-                <text x="6" y="176">640</text>
-                <text x="6" y="236">560</text>
-              </g>
-              <path
-                d="M40,210 C120,200 180,180 240,160 C300,140 360,118 420,100 C480,84 540,70 540,70 L540,110 C480,124 420,140 360,156 C300,172 240,188 180,200 C120,212 60,222 40,230 Z"
-                fill="url(#band)"
-              />
-              <path
-                d="M40,220 C120,200 180,180 240,160 C300,140 360,118 420,100 C480,82 520,68 540,60"
-                fill="none"
-                stroke="var(--accent)"
-                strokeWidth="2"
-              />
-              <g fill="var(--fg)">
-                <circle cx="40" cy="222" r="3" />
-                <circle cx="140" cy="200" r="3" />
-                <circle cx="240" cy="168" r="3" />
-                <circle cx="340" cy="132" r="3" />
-                <circle cx="440" cy="96" r="3" />
+              <g fontFamily="var(--font-mono)" fontSize="10" fill="var(--fg-3)" textAnchor="end">
+                {[800, 720, 640, 560].map((s) => (
+                  <text key={s} x={PROJ.x0 - 24} y={yFor(s, PROJ) + 3}>
+                    {s}
+                  </text>
+                ))}
               </g>
               <line
-                x1="0"
-                y1="70"
-                x2="560"
-                y2="70"
+                x1={PROJ.x0 - 16}
+                y1={yFor(PROJECTION_TARGET, PROJ)}
+                x2="544"
+                y2={yFor(PROJECTION_TARGET, PROJ)}
                 stroke="var(--accent)"
-                strokeDasharray="3 4"
+                strokeDasharray="3 5"
                 strokeWidth="1"
-                opacity="0.7"
+                opacity="0.75"
               />
               <text
-                x="540"
-                y="66"
+                x="542"
+                y={yFor(PROJECTION_TARGET, PROJ) - 5}
                 fontFamily="var(--font-mono)"
                 fontSize="10"
                 fill="var(--accent)"
                 textAnchor="end"
               >
-                TARGET 780
+                {lang === "mn" ? `ЗОРИЛТ ${PROJECTION_TARGET}` : `TARGET ${PROJECTION_TARGET}`}
               </text>
-              <g fontFamily="var(--font-mono)" fontSize="10" fill="var(--fg-3)">
-                <text x="40" y="270">W1</text>
-                <text x="140" y="270">W3</text>
-                <text x="240" y="270">W5</text>
-                <text x="340" y="270">W7</text>
-                <text x="440" y="270">NOW</text>
-                <text x="530" y="270" textAnchor="end">EXAM</text>
+              <path d={bandPath(PROJECTION, PROJ, PROJECTION_ERR)} fill="var(--accent)" opacity="0.08" />
+              <path d={areaPath(PROJ_PTS, PROJ.yBot)} fill="var(--accent)" opacity="0.1" />
+              <path
+                d={smoothPath(PROJ_PTS)}
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {PROJ_PTS.slice(0, -1).map((p, i) => (
+                <circle
+                  key={i}
+                  cx={p[0]}
+                  cy={p[1]}
+                  r="2.6"
+                  fill="var(--bg-1)"
+                  stroke="var(--accent)"
+                  strokeWidth="1.6"
+                />
+              ))}
+              <circle
+                cx={PROJ_PTS[PROJ_PTS.length - 1][0]}
+                cy={PROJ_PTS[PROJ_PTS.length - 1][1]}
+                r="8"
+                fill="none"
+                stroke="var(--accent)"
+                strokeOpacity="0.35"
+                strokeWidth="2"
+              />
+              <circle
+                cx={PROJ_PTS[PROJ_PTS.length - 1][0]}
+                cy={PROJ_PTS[PROJ_PTS.length - 1][1]}
+                r="4"
+                fill="var(--accent)"
+              />
+              <g fontFamily="var(--font-mono)" fontSize="10" fill="var(--fg-3)" textAnchor="middle">
+                {PROJ_WEEK_LABELS.map((w, i) => (
+                  <text key={w} x={xFor(i, PROJ)} y="266">
+                    {w}
+                  </text>
+                ))}
               </g>
             </svg>
           </>
@@ -540,34 +662,59 @@ export default function HomePage() {
               </div>
               <span className="badge-edit badge-accent live-dot">LIVE</span>
             </div>
-            <div
-              className="flex flex-col gap-3.5"
-              style={{ padding: "24px 28px", fontSize: 14 }}
-            >
-              <div
+            {/* "02 / 05" was a line of mono text doing the work of a
+                progress indicator; the five segments make it legible
+                without reading. The problem itself now gets its own
+                panel at display size instead of sitting inline at 18px,
+                and the answer step carries the accent so the eye lands
+                on the result. */}
+            <div className="flex items-center gap-3 flex-wrap" style={{ padding: "16px 28px 0" }}>
+              <span
                 className="mono uppercase"
                 style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.08em" }}
               >
                 {lang === "mn" ? "БОДЛОГО 02 / 05" : "PROBLEM 02 / 05"}
-              </div>
-              <div
-                className="serif"
-                style={{ fontSize: 18, letterSpacing: "-0.01em", lineHeight: 1.5 }}
-              >
-                <MathText
-                  text={
-                    lang === "mn"
-                      ? "$x^2 - 5x + 6 = 0$ тэгшитгэлийг бод."
-                      : "Solve $x^2 - 5x + 6 = 0$."
-                  }
-                />
-              </div>
+              </span>
+              <span className="flex gap-1" aria-hidden>
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <span
+                    key={i}
+                    style={{
+                      width: 18,
+                      height: 4,
+                      borderRadius: 99,
+                      background: i < 2 ? "var(--accent)" : "var(--bg-3)",
+                    }}
+                  />
+                ))}
+              </span>
+            </div>
+            <div
+              className="serif text-center"
+              style={{
+                margin: "14px 28px 0",
+                padding: "26px 20px",
+                border: "1px solid var(--line)",
+                borderRadius: 12,
+                background: "var(--bg-2)",
+                fontSize: "clamp(21px, 2.4vw, 26px)",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              <MathText
+                text={
+                  lang === "mn"
+                    ? "$x^2 - 5x + 6 = 0$ тэгшитгэлийг бод."
+                    : "Solve $x^2 - 5x + 6 = 0$."
+                }
+              />
+            </div>
+            <div style={{ padding: "8px 28px 6px", fontSize: 14 }}>
               <div
                 className="mono uppercase"
                 style={{
-                  borderTop: "1px solid var(--line)",
-                  paddingTop: 16,
-                  fontSize: 12,
+                  padding: "14px 0 4px",
+                  fontSize: 11,
                   color: "var(--fg-2)",
                   letterSpacing: "0.08em",
                 }}
@@ -577,6 +724,7 @@ export default function HomePage() {
               {[
                 {
                   n: "01",
+                  result: false,
                   text:
                     lang === "mn"
                       ? "Үржвэрт задлая: $(x - 2)(x - 3) = 0$."
@@ -584,6 +732,7 @@ export default function HomePage() {
                 },
                 {
                   n: "02",
+                  result: false,
                   text:
                     lang === "mn"
                       ? "Хэрвээ үржвэр тэг бол үржигдэхүүн хооронд нэг нь тэг: $x - 2 = 0$ эсвэл $x - 3 = 0$."
@@ -591,37 +740,56 @@ export default function HomePage() {
                 },
                 {
                   n: "03",
+                  result: true,
                   text:
                     lang === "mn"
                       ? "Шийдүүд: $x = 2$ эсвэл $x = 3$."
                       : "Solutions: $x = 2$ or $x = 3$.",
                 },
-              ].map((s) => (
+              ].map((s, i) => (
                 <div
                   key={s.n}
-                  className="grid gap-3"
-                  style={{ gridTemplateColumns: "24px 1fr" }}
+                  className="grid gap-3 items-start"
+                  style={{
+                    gridTemplateColumns: "26px 1fr",
+                    padding: "13px 0",
+                    borderTop: i === 0 ? "none" : "1px solid var(--line)",
+                    fontSize: 14.5,
+                  }}
                 >
-                  <div className="mono" style={{ color: "var(--accent)", fontSize: 11 }}>
+                  <div className="mono" style={{ color: "var(--accent)", fontSize: 10, paddingTop: 3 }}>
                     {s.n}
                   </div>
-                  <div style={{ color: "var(--fg-1)" }}>
+                  <div
+                    style={{
+                      color: s.result ? "var(--fg)" : "var(--fg-1)",
+                      fontWeight: s.result ? 600 : 400,
+                    }}
+                  >
                     <MathText text={s.text} />
                   </div>
                 </div>
               ))}
-              <div className="flex gap-2.5 mt-2 flex-wrap">
-                <button className="btn btn-line" style={{ fontSize: 12, padding: "7px 12px" }}>
-                  {lang === "mn" ? "Өөрөөр тайлбарлах" : "Explain differently"}
-                </button>
-                <Link
-                  href="/practice/esh/practice"
-                  className="btn btn-line ml-auto"
-                  style={{ fontSize: 12, padding: "7px 12px" }}
-                >
-                  {lang === "mn" ? "Дараагийн бодлого →" : "Next problem →"}
-                </Link>
-              </div>
+            </div>
+            <div
+              className="flex gap-2 flex-wrap"
+              style={{
+                padding: "16px 28px 20px",
+                marginTop: 8,
+                borderTop: "1px solid var(--line)",
+                background: "var(--bg-2)",
+              }}
+            >
+              <button className="btn" style={{ fontSize: 12, padding: "7px 12px" }}>
+                {lang === "mn" ? "Өөрөөр тайлбарлах" : "Explain differently"}
+              </button>
+              <Link
+                href="/practice/esh/practice"
+                className="btn btn-primary ml-auto"
+                style={{ fontSize: 12, padding: "7px 12px" }}
+              >
+                {lang === "mn" ? "Дараагийн бодлого →" : "Next problem →"}
+              </Link>
             </div>
           </>
         }
