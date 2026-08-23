@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
@@ -54,6 +55,30 @@ const PROJ_WEEK_LABELS = ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "NOW"];
 
 const SPARK_PTS = pointsFor(PROJECTION, SPARK);
 const PROJ_PTS = pointsFor(PROJECTION, PROJ);
+
+// The sample report's skill rows. Lifted out of the JSX because the
+// "Next up" card below now reads whichever row the visitor picked.
+const SKILLS: { name: Bi; pct: number; weak: boolean }[] = [
+  { name: { en: "Functions & Graphs", mn: "Функц ба график" }, pct: 92, weak: false },
+  { name: { en: "Trigonometry", mn: "Тригонометр" }, pct: 84, weak: false },
+  { name: { en: "Integration · definite", mn: "Тодорхой интеграл" }, pct: 41, weak: true },
+  { name: { en: "Sequences · limits", mn: "Дараалал · хязгаар" }, pct: 38, weak: true },
+  { name: { en: "Probability", mn: "Магадлал" }, pct: 72, weak: false },
+];
+
+// Row 2 (definite integration, 41%) is the default because the card's
+// original "Next up" line named it — the interaction starts where the
+// static card left off rather than resetting it.
+const DEFAULT_SKILL = 2;
+
+// How many problems the queue would hold for a given accuracy. Weaker
+// skill, more problems. Illustrative — this is a sample report, and the
+// real queue comes from the engine — but it must at least be monotone,
+// or clicking down the list would show a student MORE work for a skill
+// they are better at.
+function queueSize(pct: number): number {
+  return Math.min(8, Math.max(3, Math.round((100 - pct) / 12)));
+}
 
 const i18n = {
   hero_eyebrow: { en: "Personalized math mastery", mn: "Ганцаарчилсан математикийн дэмжлэг" },
@@ -124,6 +149,47 @@ const i18n = {
 export default function HomePage() {
   const { lang } = useLang();
   const t = (key: keyof typeof i18n) => i18n[key][lang === "mn" ? "mn" : "en"];
+  const L = (b: Bi) => (lang === "mn" ? b.mn : b.en);
+
+  // ── Panel state ──────────────────────────────────────────────────
+  // Which skill row drives the "Next up" card, which week the chart is
+  // reading out, and how much of the worked solution is uncovered.
+  const [skill, setSkill] = useState(DEFAULT_SKILL);
+  const [week, setWeek] = useState<number | null>(null);
+  const [steps, setSteps] = useState(1);
+
+  // The chart responds to a mouse as it moves, but on touch only to a
+  // deliberate tap. Scrubbing on touch would mean swallowing the scroll
+  // gesture (touch-action: none) over a full-width element — on a phone
+  // that traps the page, which is a far worse bug than a chart that
+  // needs a tap.
+  const readWeekFrom = useCallback((clientX: number, el: SVGSVGElement) => {
+    const r = el.getBoundingClientRect();
+    if (!r.width) return;
+    const vx = ((clientX - r.left) * 560) / r.width;
+    let best = 0;
+    let bestD = Infinity;
+    for (let i = 0; i < PROJECTION.length; i++) {
+      const d = Math.abs(xFor(i, PROJ) - vx);
+      if (d < bestD) {
+        bestD = d;
+        best = i;
+      }
+    }
+    setWeek(best);
+  }, []);
+
+  const onChartKey = useCallback((e: React.KeyboardEvent<SVGSVGElement>) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      setWeek((w) => {
+        const next = (w === null ? PROJECTION.length - 1 : w) + (e.key === "ArrowRight" ? 1 : -1);
+        return Math.min(PROJECTION.length - 1, Math.max(0, next));
+      });
+    } else if (e.key === "Escape") {
+      setWeek(null);
+    }
+  }, []);
 
   // Colour alone marks the emphasised word. It used to also be set in
   // serif ITALIC, which highlighted the same word twice — the accent had
@@ -300,64 +366,80 @@ export default function HomePage() {
                 />
               </svg>
             </div>
+            {/* Each row is a real button: picking one drives the "Next
+                up" card below it. Buttons rather than click handlers on
+                a div so the rows are reachable by keyboard and announced
+                as pressable, and so a tap works without any touch code
+                of our own. */}
             <div className="mt-5 pt-3.5" style={{ borderTop: "1px solid var(--line)" }}>
-              {(lang === "mn"
-                ? [
-                    { name: "Функц ба график", pct: 92, weak: false },
-                    { name: "Тригонометр", pct: 84, weak: false },
-                    { name: "Тодорхой интеграл", pct: 41, weak: true },
-                    { name: "Дараалал · хязгаар", pct: 38, weak: true },
-                    { name: "Магадлал", pct: 72, weak: false },
-                  ]
-                : [
-                    { name: "Functions & Graphs", pct: 92, weak: false },
-                    { name: "Trigonometry", pct: 84, weak: false },
-                    { name: "Integration · definite", pct: 41, weak: true },
-                    { name: "Sequences · limits", pct: 38, weak: true },
-                    { name: "Probability", pct: 72, weak: false },
-                  ]
-              ).map((r, i) => (
-                <div
-                  key={r.name}
-                  className="grid items-center gap-3 py-2.5"
-                  style={{
-                    gridTemplateColumns: "1fr 80px 40px",
-                    fontSize: 12,
-                    borderTop: i === 0 ? "none" : "1px solid var(--line)",
-                  }}
-                >
-                  <span style={{ color: "var(--fg-1)", minWidth: 0 }}>{r.name}</span>
-                  <span
+              {SKILLS.map((r, i) => {
+                const on = skill === i;
+                return (
+                  <button
+                    key={r.name.en}
+                    type="button"
+                    onClick={() => setSkill(i)}
+                    aria-pressed={on}
+                    className="grid items-center gap-3 py-2.5 w-full text-left mono transition-colors"
                     style={{
-                      height: 5,
-                      background: "var(--bg-3)",
-                      borderRadius: 99,
-                      overflow: "hidden",
-                      position: "relative",
+                      gridTemplateColumns: "1fr 80px 40px",
+                      fontSize: 12,
+                      borderTop: i === 0 ? "none" : "1px solid var(--line)",
+                      background: "transparent",
+                      cursor: "pointer",
+                      // The selected row is marked by a rule in the
+                      // accent, drawn in the padding so nothing shifts
+                      // when the selection moves.
+                      boxShadow: on ? "inset 2px 0 0 var(--accent)" : "none",
+                      paddingLeft: 8,
+                      marginLeft: -8,
+                      paddingRight: 4,
+                      marginRight: -4,
                     }}
                   >
                     <span
                       style={{
-                        display: "block",
-                        height: "100%",
-                        width: `${r.pct}%`,
-                        background: r.weak ? "var(--warn)" : "var(--accent)",
-                        borderRadius: 99,
+                        color: on ? "var(--fg)" : "var(--fg-1)",
+                        minWidth: 0,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
                       }}
-                    />
-                  </span>
-                  {/* The weak rows carry the warn colour on the NUMBER as
-                      well as the bar. With it only on the bar, the two
-                      rows that actually cost marks read the same as the
-                      three that don't at a glance. */}
-                  <span
-                    className="tabular text-right"
-                    style={{ color: r.weak ? "var(--warn)" : "var(--fg-2)" }}
-                  >
-                    {r.pct}%
-                  </span>
-                </div>
-              ))}
+                    >
+                      {L(r.name)}
+                    </span>
+                    <span
+                      style={{
+                        height: 5,
+                        background: "var(--bg-3)",
+                        borderRadius: 99,
+                        overflow: "hidden",
+                        position: "relative",
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: "block",
+                          height: "100%",
+                          width: `${r.pct}%`,
+                          background: r.weak ? "var(--warn)" : "var(--accent)",
+                          borderRadius: 99,
+                        }}
+                      />
+                    </span>
+                    {/* The weak rows carry the warn colour on the NUMBER
+                        as well as the bar. With it only on the bar, the
+                        two rows that actually cost marks read the same
+                        as the three that don't at a glance. */}
+                    <span
+                      className="tabular text-right"
+                      style={{ color: r.weak ? "var(--warn)" : "var(--fg-2)" }}
+                    >
+                      {r.pct}%
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -371,20 +453,32 @@ export default function HomePage() {
               fontSize: 12,
             }}
           >
-            <div>
+            {/* Follows the selected skill row above.
+                MONGOLIAN NOTE: the line was "Тодорхой интегралын 5 бодлого",
+                which puts the topic in the genitive. Composing that for an
+                arbitrary topic is real grammar — the case ending depends on
+                the word, and I got exactly this wrong once already (ЭШ-ийн
+                vs ЭШ-ын). So the count moves to its own line as a bare
+                "5 бодлого", which needs no ending, and the topic name is
+                printed verbatim as it appears in the row above. Flagged for
+                the human teacher's pass if a nicer phrasing is wanted. */}
+            <div style={{ minWidth: 0 }}>
               <div
                 className="uppercase"
                 style={{ color: "var(--fg-2)", fontSize: 11, letterSpacing: "0.1em" }}
               >
                 {lang === "mn" ? "Дараагийнх" : "Next up"}
               </div>
-              <div
-                className="serif mt-1"
-                style={{ fontSize: 22, color: "var(--fg)", letterSpacing: "-0.01em" }}
-              >
-                {lang === "mn"
-                  ? "Тодорхой интегралын 5 бодлого"
-                  : "5 problems on definite integration"}
+              <div aria-live="polite">
+                <div
+                  className="serif mt-1"
+                  style={{ fontSize: 22, color: "var(--fg)", letterSpacing: "-0.01em" }}
+                >
+                  {L(SKILLS[skill].name)}
+                </div>
+                <div className="tabular mt-0.5" style={{ color: "var(--fg-2)", fontSize: 11 }}>
+                  {queueSize(SKILLS[skill].pct)} {lang === "mn" ? "бодлого" : "problems"}
+                </div>
               </div>
             </div>
             <span className="badge-edit badge-accent live-dot">
@@ -549,7 +643,17 @@ export default function HomePage() {
               viewBox="0 0 560 280"
               width="100%"
               height="280"
-              style={{ marginTop: 8 }}
+              style={{ marginTop: 8, cursor: "crosshair", outlineOffset: 4 }}
+              tabIndex={0}
+              onKeyDown={onChartKey}
+              onPointerDown={(e) => readWeekFrom(e.clientX, e.currentTarget)}
+              onPointerMove={(e) => {
+                if (e.pointerType === "mouse") readWeekFrom(e.clientX, e.currentTarget);
+              }}
+              onPointerLeave={(e) => {
+                if (e.pointerType === "mouse") setWeek(null);
+              }}
+              onBlur={() => setWeek(null)}
               role="img"
               aria-label={
                 lang === "mn"
@@ -625,14 +729,88 @@ export default function HomePage() {
                 r="4"
                 fill="var(--accent)"
               />
-              <g fontFamily="var(--font-mono)" fontSize="10" fill="var(--fg-3)" textAnchor="middle">
+              <g fontFamily="var(--font-mono)" fontSize="10" textAnchor="middle">
                 {PROJ_WEEK_LABELS.map((w, i) => (
-                  <text key={w} x={xFor(i, PROJ)} y="266">
+                  <text
+                    key={w}
+                    x={xFor(i, PROJ)}
+                    y="266"
+                    fill={week === i ? "var(--accent)" : "var(--fg-3)"}
+                  >
                     {w}
                   </text>
                 ))}
               </g>
+              {/* Readout. Drawn in SVG rather than as an HTML overlay so
+                  it scales with the viewBox and needs no pixel maths to
+                  place — the chart is fluid-width. */}
+              {week !== null && (
+                <g pointerEvents="none">
+                  <line
+                    x1={PROJ_PTS[week][0]}
+                    y1={PROJ.yTop}
+                    x2={PROJ_PTS[week][0]}
+                    y2={PROJ.yBot + 12}
+                    stroke="var(--fg-3)"
+                    strokeWidth="1"
+                    strokeDasharray="2 3"
+                  />
+                  <circle
+                    cx={PROJ_PTS[week][0]}
+                    cy={PROJ_PTS[week][1]}
+                    r="5.5"
+                    fill="var(--bg-1)"
+                    stroke="var(--accent)"
+                    strokeWidth="2.5"
+                  />
+                  {(() => {
+                    // Keep the label inside the frame at both ends.
+                    const cx = PROJ_PTS[week][0];
+                    const w = 92;
+                    const x = Math.min(544 - w, Math.max(PROJ.x0 - 16, cx - w / 2));
+                    const y = Math.max(PROJ.yTop, PROJ_PTS[week][1] - 44);
+                    return (
+                      <>
+                        <rect
+                          x={x}
+                          y={y}
+                          width={w}
+                          height="30"
+                          rx="7"
+                          fill="var(--bg-2)"
+                          stroke="var(--line-strong)"
+                        />
+                        <text
+                          x={x + w / 2}
+                          y={y + 19}
+                          fontFamily="var(--font-mono)"
+                          fontSize="12"
+                          textAnchor="middle"
+                          fill="var(--fg)"
+                        >
+                          {PROJ_WEEK_LABELS[week]} · {PROJECTION[week]}
+                        </text>
+                      </>
+                    );
+                  })()}
+                </g>
+              )}
             </svg>
+            <div
+              className="mono"
+              aria-live="polite"
+              style={{ fontSize: 11, color: "var(--fg-3)", letterSpacing: "0.04em", marginTop: 2 }}
+            >
+              {/* No instruction line here on purpose: writing one means
+                  writing a Mongolian sentence, and translation is the
+                  human teacher's job, not mine. The readout instead
+                  rests on the newest week, so the row always carries a
+                  real value and the crosshair cursor plus the plotted
+                  points do the discovery. */}
+              {`${PROJ_WEEK_LABELS[week ?? PROJECTION.length - 1]} · ${
+                PROJECTION[week ?? PROJECTION.length - 1]
+              } / 800`}
+            </div>
           </>
         }
       />
@@ -711,7 +889,7 @@ export default function HomePage() {
             </div>
             <div style={{ padding: "8px 28px 6px", fontSize: 14 }}>
               <div
-                className="mono uppercase"
+                className="mono uppercase flex items-center justify-between gap-3"
                 style={{
                   padding: "14px 0 4px",
                   fontSize: 11,
@@ -719,7 +897,12 @@ export default function HomePage() {
                   letterSpacing: "0.08em",
                 }}
               >
-                {lang === "mn" ? "Алхам алхмаар" : "Step-by-step"}
+                <span>{lang === "mn" ? "Алхам алхмаар" : "Step-by-step"}</span>
+                {/* Digits only — no word needed, so it reads the same in
+                    both languages and adds no copy to translate. */}
+                <span className="tabular" style={{ color: "var(--fg-3)" }}>
+                  {String(steps).padStart(2, "0")} / 03
+                </span>
               </div>
               {[
                 {
@@ -746,30 +929,36 @@ export default function HomePage() {
                       ? "Шийдүүд: $x = 2$ эсвэл $x = 3$."
                       : "Solutions: $x = 2$ or $x = 3$.",
                 },
-              ].map((s, i) => (
-                <div
-                  key={s.n}
-                  className="grid gap-3 items-start"
-                  style={{
-                    gridTemplateColumns: "26px 1fr",
-                    padding: "13px 0",
-                    borderTop: i === 0 ? "none" : "1px solid var(--line)",
-                    fontSize: 14.5,
-                  }}
-                >
-                  <div className="mono" style={{ color: "var(--accent)", fontSize: 10, paddingTop: 3 }}>
-                    {s.n}
-                  </div>
+              ]
+                // Uncovered one at a time. A worked solution sitting
+                // open is something to read; one that waits is something
+                // to try — which is what the tutor being demonstrated
+                // actually does.
+                .slice(0, steps)
+                .map((s, i) => (
                   <div
+                    key={s.n}
+                    className="grid gap-3 items-start"
                     style={{
-                      color: s.result ? "var(--fg)" : "var(--fg-1)",
-                      fontWeight: s.result ? 600 : 400,
+                      gridTemplateColumns: "26px 1fr",
+                      padding: "13px 0",
+                      borderTop: i === 0 ? "none" : "1px solid var(--line)",
+                      fontSize: 14.5,
                     }}
                   >
-                    <MathText text={s.text} />
+                    <div className="mono" style={{ color: "var(--accent)", fontSize: 10, paddingTop: 3 }}>
+                      {s.n}
+                    </div>
+                    <div
+                      style={{
+                        color: s.result ? "var(--fg)" : "var(--fg-1)",
+                        fontWeight: s.result ? 600 : 400,
+                      }}
+                    >
+                      <MathText text={s.text} />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
             <div
               className="flex gap-2 flex-wrap"
@@ -780,16 +969,36 @@ export default function HomePage() {
                 background: "var(--bg-2)",
               }}
             >
+              {/* While steps remain, the primary action reveals the next
+                  one; once the solution is out, it hands over to the real
+                  drill runner. Only ever one primary button, so there is
+                  never a question about what to press.
+                  MONGOLIAN NOTE: "Дараагийн алхам" is the one new string
+                  on this page — the same construction as the existing
+                  "Дараагийн бодлого" with алхам, which the panel already
+                  uses in "Алхам алхмаар", in the noun slot. Flagged for
+                  the human teacher's pass. */}
               <button className="btn" style={{ fontSize: 12, padding: "7px 12px" }}>
                 {lang === "mn" ? "Өөрөөр тайлбарлах" : "Explain differently"}
               </button>
-              <Link
-                href="/practice/esh/practice"
-                className="btn btn-primary ml-auto"
-                style={{ fontSize: 12, padding: "7px 12px" }}
-              >
-                {lang === "mn" ? "Дараагийн бодлого →" : "Next problem →"}
-              </Link>
+              {steps < 3 ? (
+                <button
+                  type="button"
+                  onClick={() => setSteps((s) => Math.min(3, s + 1))}
+                  className="btn btn-primary ml-auto"
+                  style={{ fontSize: 12, padding: "7px 12px" }}
+                >
+                  {lang === "mn" ? "Дараагийн алхам →" : "Next step →"}
+                </button>
+              ) : (
+                <Link
+                  href="/practice/esh/practice"
+                  className="btn btn-primary ml-auto"
+                  style={{ fontSize: 12, padding: "7px 12px" }}
+                >
+                  {lang === "mn" ? "Дараагийн бодлого →" : "Next problem →"}
+                </Link>
+              )}
             </div>
           </>
         }
