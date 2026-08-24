@@ -104,10 +104,10 @@ export default function ComingSoonHub({ slug }: { slug: HubKey }) {
             className="serif mt-6"
             style={{ fontSize: "clamp(40px, 6vw, 80px)", fontWeight: 400, letterSpacing: "-0.04em", lineHeight: 1.02, margin: 0 }}
           >
-            {hub.name}{" "}
-            <em className="serif-italic" style={{ color: "var(--accent)" }}>
-              Hub
-            </em>
+            {/* Colour only, matching the home page: the accent already
+                marks the word, and setting it in italic on top marked it
+                twice. */}
+            {hub.name} <span style={{ color: "var(--accent)" }}>Hub</span>
           </h1>
           <p className="mt-6 mx-auto" style={{ color: "var(--fg-1)", fontSize: 18, maxWidth: "56ch", lineHeight: 1.6 }}>
             {L(hub.tagline)}

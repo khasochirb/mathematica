@@ -13,6 +13,7 @@ import {
   type Band,
 } from "@/lib/ratings";
 import RecommendedNextCard from "@/components/ratings/RecommendedNextCard";
+import { HubShell, HubHeader } from "@/components/hub/HubKit";
 import { useLang } from "@/lib/lang-context";
 
 const BAND_COLOR: Record<Band, string> = {
@@ -394,23 +395,28 @@ export default function MathLandingPage() {
     );
 
   return (
-    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
-        {/* Header */}
-        <div className="eyebrow mb-4">Courses</div>
-        <h1
-          className="serif"
-          style={{
-            fontWeight: 400,
-            fontSize: "clamp(36px, 5vw, 64px)",
-            letterSpacing: "-0.04em",
-            lineHeight: 1,
-            color: "var(--fg)",
-          }}
-        >
-          Courses
-        </h1>
-        <p className="mt-4 mb-10" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
+    // On the shared shell, like every other hub. This page used to
+    // hand-copy HubShell's markup — same classes, but pt-12 pb-16 where
+    // the kit says py-8, and its own <h1> at a different size — so it
+    // drifted a little further from the hubs with every edit. A copy of
+    // a design system is not the design system.
+    <HubShell>
+      <HubHeader
+        eyebrow="Courses"
+        title="Courses"
+        // Counts, like every other hub's stats line — not a restatement
+        // of the paragraph directly beneath it.
+        statsLine={
+          <>
+            <span className="tabular">{publishedOnly(TOPIC_COURSES).length}</span> topic
+            courses · <span className="tabular">{publishedOnly(IM_COURSES).length}</span>{" "}
+            Integrated Math years · grades{" "}
+            <span className="tabular">6–12</span>
+          </>
+        }
+      />
+      <>
+        <p className="mb-10 -mt-4" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
           Find your <strong>school band</strong> below — Primary, Mid school or
           High school on the Mongol curriculum — or take the Integrated Math
           pathway beside them. Preparing for ЭШ, SAT or IB? Those have their
@@ -545,7 +551,7 @@ export default function MathLandingPage() {
             {publishedOnly(IM_COURSES).map(renderCourseCard)}
           </div>
         </section>
-      </div>
-    </div>
+      </>
+    </HubShell>
   );
 }

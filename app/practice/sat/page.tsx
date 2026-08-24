@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, BookOpen, Clock, FileText, Layers, ListChecks, Sparkles } from "lucide-react";
+import { ArrowRight, Clock, ListChecks } from "lucide-react";
 import { listSatTests } from "@/lib/sat-test";
 import {
   HubShell,
@@ -23,26 +23,26 @@ export default function SatHubPage() {
       href: "#practice-tests",
       title: "Practice tests",
       subtitle: `Bluebook format · ${tests.length} ${tests.length === 1 ? "test" : "tests"} · 44 questions · adaptive Module 2`,
-      icon: FileText,
+      role: "tests",
       badge: { label: "Free", tone: "accent" },
     },
     {
       href: "/practice/sat/learn",
       title: "SAT Math course",
       subtitle: "4 College Board domains · 27 units · lessons, practice, unit tests",
-      icon: Sparkles,
+      role: "course",
     },
     {
       href: "/practice/sat/bank",
       title: "Practice by topic",
       subtitle: "Drill the 4 domains · a similar problem after every miss",
-      icon: Layers,
+      role: "drill",
     },
     {
       href: "/math",
       title: "Foundations",
       subtitle: "General Math courses — every topic from zero",
-      icon: BookOpen,
+      role: "foundations",
     },
   ];
 
@@ -63,7 +63,6 @@ export default function SatHubPage() {
 
       <HubProgressBanner
         href="/sat-analytics"
-        icon={BarChart3}
         eyebrow="Progress"
         title="Your SAT performance"
         subtitle="Per-domain accuracy and your weakest areas, once you've taken a test"

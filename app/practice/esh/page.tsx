@@ -2,14 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import {
-  FileText,
-  Target,
-  BookOpen,
-  BarChart3,
-  ChevronRight,
-  Archive,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import ComingSoonBadge from "@/components/ComingSoonBadge";
 import useESHProgress from "@/lib/use-esh-progress";
 import {
@@ -57,27 +50,27 @@ export default function ESHHubPage() {
       href: "/practice/esh/test?type=previous",
       title: "Өмнө жилийн тестүүд",
       subtitle: "Шалгалт · 20 тест",
-      icon: Archive,
+      role: "past-papers",
       badge: { label: "Үнэгүй", tone: "accent" },
     },
     {
       href: "/practice/esh/test?type=premium",
       title: "Дадлага тестүүд",
       subtitle: "Premium · 14 тест · Түгжээтэй",
-      icon: FileText,
+      role: "tests",
       badge: { label: "Түгжээтэй", tone: "muted" },
     },
     {
       href: "/practice/esh/practice",
       title: "Сэдвээр дадлагажих",
       subtitle: "Сул талаа сайжруулах",
-      icon: Target,
+      role: "drill",
     },
     {
       href: "/practice/esh/topics",
       title: "Сэдвээр суралцах",
       subtitle: "ЭШ-ын сэдвүүд · Жингээр эрэмбэлсэн",
-      icon: BookOpen,
+      role: "course",
     },
   ];
 
@@ -159,7 +152,6 @@ export default function ESHHubPage() {
 
       <HubProgressBanner
         href={progressBannerHref}
-        icon={BarChart3}
         eyebrow="Ахиц"
         title="Гүйцэтгэлийн дэлгэрэнгүй"
         subtitle={

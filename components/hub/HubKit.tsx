@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { Archive, BarChart3, BookOpen, ChevronRight, FileText, Layers, Target } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 // THE hub design system — and the direction matters: the ЭШ hub's original
@@ -12,6 +12,41 @@ import type { LucideIcon } from "lucide-react";
 // Content language stays a HUB property (ЭШ Mongolian, SAT/IB English) —
 // the kit carries no copy. Server-safe: no hooks; client hubs (ЭШ) can
 // pass live values as props/children.
+
+// ── Icons belong to the ROLE, not to the hub ────────────────────────────
+//
+// Cards used to carry their own `icon`, and the three hubs drifted into
+// contradicting each other: BookOpen meant "course" on ЭШ and IB but
+// "foundations" on SAT; the drill card was Target on ЭШ and Layers on
+// SAT and IB; the SAT course card was Sparkles, used nowhere else. A
+// student moving between hubs was being shown the same glyph for
+// different things and different glyphs for the same thing.
+//
+// So a card declares WHAT IT IS and the kit decides how it looks. Adding
+// a hub cannot introduce a new icon for an existing role, because there
+// is no longer anywhere to put one.
+export type HubCardRole =
+  /** Full-length timed papers under exam conditions. */
+  | "tests"
+  /** Real past papers, as sat in previous years. */
+  | "past-papers"
+  /** The taught course — lessons in syllabus order. */
+  | "course"
+  /** Drill a chosen topic; the engine picks what to serve. */
+  | "drill"
+  /** The general-maths courses under /math, below this hub's level. */
+  | "foundations"
+  /** Analytics, score projection, weak-spot report. */
+  | "progress";
+
+export const HUB_ROLE_ICON: Record<HubCardRole, LucideIcon> = {
+  tests: FileText,
+  "past-papers": Archive,
+  course: BookOpen,
+  drill: Target,
+  foundations: Layers,
+  progress: BarChart3,
+};
 
 export function HubShell({ children }: { children: React.ReactNode }) {
   return (
@@ -66,21 +101,24 @@ export function HubHeader({
 
 // The full-width accent banner above the action grid — the hub's progress /
 // analytics destination.
+// The banner is always the progress destination, so it always wears the
+// progress icon. It used to take `icon` and all three hubs passed the
+// same BarChart3 — a convention held up by nothing but three people
+// remembering. Now it cannot differ.
 export function HubProgressBanner({
   href,
-  icon: Icon,
   eyebrow,
   title,
   subtitle,
   cta,
 }: {
   href: string;
-  icon: LucideIcon;
   eyebrow: string;
   title: string;
   subtitle: string;
   cta: string;
 }) {
+  const Icon = HUB_ROLE_ICON.progress;
   return (
     <Link
       href={href}
@@ -136,7 +174,8 @@ export interface HubActionCardDef {
   href: string;
   title: string;
   subtitle: string;
-  icon: LucideIcon;
+  /** What this card IS. The kit picks the icon — see HUB_ROLE_ICON. */
+  role: HubCardRole;
   badge?: { label: string; tone: "accent" | "muted" };
 }
 
@@ -146,7 +185,7 @@ export function HubActionGrid({ cards }: { cards: HubActionCardDef[] }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {cards.map((c) => {
-        const Icon = c.icon;
+        const Icon = HUB_ROLE_ICON[c.role];
         return (
           <Link key={c.href} href={c.href} className="card-edit p-6 group block">
             <div className="flex items-start justify-between mb-4">

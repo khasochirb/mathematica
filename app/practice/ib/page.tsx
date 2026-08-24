@@ -1,4 +1,4 @@
-import { BarChart3, BookOpen, Layers } from "lucide-react";
+
 import IbPracticeSets from "@/components/ib/IbPracticeSets";
 import {
   HubShell,
@@ -19,28 +19,28 @@ export default function IbHubPage() {
       href: "/math/ib-sl",
       title: "Analysis & Approaches SL",
       subtitle: "The complete AA SL syllabus · 5 topics · one lesson per subtopic code",
-      icon: BookOpen,
+      role: "course",
       badge: { label: "Live", tone: "accent" },
     },
     {
       href: "/math/ib-hl",
       title: "Analysis & Approaches HL",
       subtitle: "The AHL extension on top of AA SL · proof, complex numbers, 3D vectors, deeper calculus",
-      icon: BookOpen,
+      role: "course",
       badge: { label: "Live", tone: "accent" },
     },
     {
       href: "/math/ib-ai-sl",
       title: "Applications & Interpretation SL",
       subtitle: "The complete AI SL syllabus · calculator-always, modelling-first · 5 topics",
-      icon: BookOpen,
+      role: "course",
       badge: { label: "New", tone: "accent" },
     },
     {
       href: "/practice/ib/bank",
       title: "Practice by topic",
       subtitle: "Drill the 5 syllabus topics · a similar problem after every miss",
-      icon: Layers,
+      role: "drill",
     },
   ];
 
@@ -59,7 +59,6 @@ export default function IbHubPage() {
 
       <HubProgressBanner
         href="/ib-analytics"
-        icon={BarChart3}
         eyebrow="Progress"
         title="Your IB performance"
         subtitle="Per-component accuracy and weakest areas, once you start practicing"
