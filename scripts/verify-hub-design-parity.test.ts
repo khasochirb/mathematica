@@ -137,6 +137,73 @@ describe("every hub is built from the kit", () => {
   });
 });
 
+describe("every exam hub wears the five-tab bar", () => {
+  // THE MISS. The first pass at "make the hubs identical" compared icons
+  // and card grids and declared victory. The owner opened them on a phone
+  // and saw it immediately: ЭШ had the tab bar and SAT and IB had none.
+  //
+  // lib/hub-tabs.ts had declared SAT's tabs since the contract was written
+  // — but no layout mounted them, and IB was not in HubKey at all. A spec
+  // nothing renders looks exactly like a spec that does, from the source.
+  // These tests check the mounting, not the declaration.
+  const HUB_KEYS: Record<string, string> = {
+    "app/practice/esh/layout.tsx": "eysh",
+    "app/practice/sat/layout.tsx": "sat",
+    "app/practice/ib/layout.tsx": "ib",
+  };
+
+  it("each exam hub has a layout that mounts HubTabs for its own key", () => {
+    for (const [file, key] of Object.entries(HUB_KEYS)) {
+      const src = read(file);
+      expect(src, `${file} does not mount HubTabs`).toContain("<HubTabs");
+      expect(src, `${file} mounts the wrong hub key`).toContain(`hub="${key}"`);
+      // A running test is a timed exam and gets no navigation out of it.
+      expect(src, `${file} does not hide chrome inside a test`).toContain("hidesHubChrome");
+    }
+  });
+
+  it("all three render the SAME tabs, not merely some tabs", () => {
+    // Mounting the bar on a hub whose landings do not exist would give
+    // 4 tabs on ЭШ, 3 on SAT and 2 on IB — visibly still not identical,
+    // which is the state this replaces.
+    const spec = read("lib/hub-tabs.ts");
+    for (const key of ["eysh", "sat", "ib"]) {
+      expect(spec, `${key} is not in the hub table`).toMatch(
+        new RegExp(`^\\s*${key}:\\s*\\{`, "m"),
+      );
+    }
+    const live = ["learn", "practice", "tests", "progress"];
+    const blocks = spec.split(/^  (?=\w+: \{$)/m).filter((b) => /^(eysh|sat|ib):/.test(b));
+    expect(blocks.length, "expected three hub blocks").toBe(3);
+    for (const b of blocks) {
+      const name = b.slice(0, b.indexOf(":"));
+      for (const tab of live) {
+        expect(b, `${name} has no live ${tab} tab`).toMatch(
+          new RegExp(`${tab}: "/practice/`),
+        );
+      }
+      // Plan is the one piece nobody has built. Null everywhere, so the
+      // hubs are equal in what they lack too.
+      expect(b, `${name} should not fake a Plan tab`).toMatch(/plan: null/);
+    }
+  });
+
+  it("every tab destination is a real page", () => {
+    const spec = read("lib/hub-tabs.ts");
+    const re = /"(\/practice\/[a-z]+\/[a-z]+)"/g;
+    let m: RegExpExecArray | null;
+    const missing: string[] = [];
+    while ((m = re.exec(spec)) !== null) {
+      const route = m[1];
+      const file = path.join(process.cwd(), "app", route, "page.tsx");
+      if (!fs.existsSync(file)) missing.push(route);
+    }
+    // A tab pointing at a route with no page.tsx is the dead-link class
+    // lib/link-integrity.test.ts caught once before.
+    expect(missing, "tab destinations without a page").toEqual([]);
+  });
+});
+
 describe("the hubs agree on the small things too", () => {
   it("no hub reintroduces the italic-plus-colour double highlight", () => {
     for (const [name, src] of Object.entries(HUBS)) {

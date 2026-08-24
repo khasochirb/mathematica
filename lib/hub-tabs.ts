@@ -18,7 +18,7 @@
 export const HUB_TAB_ORDER = ["plan", "learn", "practice", "tests", "progress"] as const;
 export type HubTabKey = (typeof HUB_TAB_ORDER)[number];
 
-export type HubKey = "eysh" | "sat";
+export type HubKey = "eysh" | "sat" | "ib";
 
 export const HUB_TAB_LABELS: Record<HubTabKey, { en: string; mn: string }> = {
   plan: { en: "Plan", mn: "Төлөвлөгөө" },
@@ -48,8 +48,6 @@ export const HUBS: Record<HubKey, HubSpec> = {
     },
   },
   sat: {
-    // Declared so the contract is one table rather than two conventions. SAT
-    // lags this phase — nothing mounts these yet.
     base: "/practice/sat",
     tabs: {
       plan: null,
@@ -57,11 +55,19 @@ export const HUBS: Record<HubKey, HubSpec> = {
       // SAT's practice surface is its problem bank. Same tab, different href:
       // the hub does not get to invent a "Bank" tab.
       practice: "/practice/sat/bank",
-      // No landing page yet — app/practice/sat/test holds only [testId], so
-      // /practice/sat/test resolves to nothing. Null keeps rule 7 honest
-      // (lib/link-integrity.test.ts caught this pointing at a dead route).
-      tests: null,
+      tests: "/practice/sat/test",
       progress: "/practice/sat/progress",
+    },
+  },
+  ib: {
+    base: "/practice/ib",
+    tabs: {
+      plan: null,
+      learn: "/practice/ib/learn",
+      // Same as SAT: the bank IS the practice surface.
+      practice: "/practice/ib/bank",
+      tests: "/practice/ib/test",
+      progress: "/practice/ib/progress",
     },
   },
 };

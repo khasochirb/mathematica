@@ -47,11 +47,16 @@ export default function IbHubPage() {
   return (
     <HubShell>
       <HubHeader
-        eyebrow="IB Mathematics · Analysis & Approaches · Applications & Interpretation"
+        // The eyebrow was three clauses long and wrapped to two lines on a
+        // phone, where ЭШ's is two words and SAT's is three; and the stats
+        // line was a sentence where the other hubs carry counts. Same
+        // header component, but it did not read as the same header.
+        eyebrow="IB Mathematics · AA · AI"
         title="IB Math practice"
         statsLine={
           <>
-            AA SL + HL and AI SL courses · topic drills · practice sets
+            <span className="tabular">3</span> courses ·{" "}
+            <span className="tabular">5</span> syllabus topics · practice sets
             marked to markscheme standard
           </>
         }

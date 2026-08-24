@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Clock, ListChecks } from "lucide-react";
 import { listSatTests } from "@/lib/sat-test";
+import SatTestList from "@/components/sat/SatTestList";
 import {
   HubShell,
   HubHeader,
@@ -20,7 +20,9 @@ export default function SatHubPage() {
 
   const cards: HubActionCardDef[] = [
     {
-      href: "#practice-tests",
+      // Points at the Tests tab landing, like ЭШ's tests card does,
+      // rather than scroll-jumping to an anchor further down itself.
+      href: "/practice/sat/test",
       title: "Practice tests",
       subtitle: `Bluebook format · ${tests.length} ${tests.length === 1 ? "test" : "tests"} · 44 questions · adaptive Module 2`,
       role: "tests",
@@ -74,52 +76,7 @@ export default function SatHubPage() {
       {/* The full test list — every paper, one Start each. */}
       <div className="mt-12" id="practice-tests">
         <div className="eyebrow mb-4">Practice tests · {tests.length}</div>
-        <div style={{ border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden" }}>
-          {tests.map((t, i) => (
-            <Link
-              key={t.testId}
-              href={`/practice/sat/test/${t.testId}`}
-              className="flex items-center gap-4 px-5 py-3.5 transition-colors hover:opacity-90 group"
-              style={{
-                background: "var(--bg-1)",
-                borderTop: i === 0 ? "none" : "1px solid var(--line)",
-              }}
-            >
-              <span
-                className="badge-edit"
-                style={{
-                  minWidth: 44,
-                  justifyContent: "center",
-                  color: "var(--accent)",
-                  borderColor: "var(--accent-line)",
-                  background: "var(--accent-wash)",
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="flex-1 min-w-0">
-                <div className="text-[14px]" style={{ color: "var(--fg)" }}>
-                  {t.label}
-                </div>
-                <div className="flex items-center gap-3 mono text-[11px] mt-0.5" style={{ color: "var(--fg-3)" }}>
-                  <span className="inline-flex items-center gap-1">
-                    <ListChecks className="h-3 w-3" /> 44 questions
-                  </span>
-                  <span className="inline-flex items-center gap-1">
-                    <Clock className="h-3 w-3" /> 2 × {t.minutesPerModule} min
-                  </span>
-                </div>
-              </div>
-              <span
-                className="mono text-[11px] uppercase shrink-0 inline-flex items-center gap-1"
-                style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
-              >
-                Start
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </span>
-            </Link>
-          ))}
-        </div>
+        <SatTestList />
       </div>
 
       <p className="text-[13px] mt-8" style={{ color: "var(--fg-3)" }}>

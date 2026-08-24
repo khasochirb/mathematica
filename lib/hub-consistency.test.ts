@@ -46,7 +46,10 @@ describe("hub landing pages share the ЭШ design idiom", () => {
     // The resource blueprint's consistency rule, checked as destinations.
     const need: Record<string, string[]> = {
       "app/practice/esh/page.tsx": ["/practice/esh/test", "/practice/esh/topics", "/practice/esh/practice"],
-      "app/practice/sat/page.tsx": ["/practice/sat/test/", "/practice/sat/learn", "/practice/sat/bank"],
+      // "/practice/sat/test" without the trailing slash: the tests branch is
+      // now a landing page (the Tests tab needed a destination), not only a
+      // deep link to one paper.
+      "app/practice/sat/page.tsx": ["/practice/sat/test", "/practice/sat/learn", "/practice/sat/bank"],
       "app/practice/ib/page.tsx": ["/math/ib-sl", "/math/ib-hl", "/math/ib-ai-sl", "/practice/ib/bank"],
     };
     for (const [file, hrefs] of Object.entries(need)) {
