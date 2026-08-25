@@ -90,6 +90,15 @@ export default function DeleteAccountPanel() {
       if (/invalid password/i.test(msg)) {
         setError(i18n.badPassword[lang]);
       } else if (/INCOMPLETE/i.test(msg)) {
+        // INCOMPLETE means the auth user WAS deleted and only the residual
+        // re-count came back non-empty — the account is gone either way.
+        // This branch used to leave the token and every local store in
+        // place, so a deleted student's work kept rendering to whoever
+        // opened the browser next. On the shared family device this
+        // product is often used on, that is the erasure failing in the
+        // one way the student would actually notice.
+        eraseLocalScope("all");
+        clearToken();
         setError(i18n.partial[lang]);
       } else {
         setError(i18n.failed[lang]);

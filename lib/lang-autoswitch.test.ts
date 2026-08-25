@@ -24,6 +24,11 @@ const ALLOWED = new Map([
   ["lib/lang-context.tsx", "defines it"],
   ["components/layout/Header.tsx", "the EN/MN toggle — the reader's own choice"],
   ["app/tutoring/page.tsx", "ad landing page; must satisfy the guards below"],
+  [
+    "components/settings/PreferencesPanel.tsx",
+    "the labelled language setting — same reader's-own-choice as the header " +
+      "toggle, and like it writes mp_lang ONLY on a click, never on mount",
+  ],
 ]);
 
 function sourceFiles(): string[] {

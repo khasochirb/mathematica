@@ -7,8 +7,6 @@ import usePerformance from "@/lib/use-performance";
 import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
-import DataErasePanel from "@/components/settings/DataErasePanel";
-import DeleteAccountPanel from "@/components/settings/DeleteAccountPanel";
 import EshStudyReport from "@/components/esh/progress/EshStudyReport";
 import { getTestInfo, TOPIC_LABELS } from "@/lib/esh-questions";
 import { getStudyTarget } from "@/lib/exam-study-map";
@@ -904,12 +902,22 @@ export default function AnalyticsPage() {
             page so ЭШ has ONE report reached from two doors, like SAT and IB. */}
         <EshStudyReport />
 
-        {/* Erasure lives here, at the account level, because this page is the
-            only one that sees every hub at once. Account deletion sits below
-            it as a separate card — same page, deliberately not the same
-            control, since one keeps the account and the other ends it. */}
-        <DataErasePanel />
-        <DeleteAccountPanel />
+        {/* Erasure and account deletion MOVED to /dashboard/settings.
+            They lived here because this page sees every hub at once — but
+            this page is the ЭШ report (lib/perf-context.ts routes only ЭШ
+            contexts here), so a SAT-only or IB-only student could not reach
+            them at all. The link keeps today's discovery path working. */}
+        <div className="card-edit p-6 mt-8">
+          <div className="eyebrow">{lang === "mn" ? "Таны өгөгдөл" : "Your data"}</div>
+          <p className="text-[13px] mt-2" style={{ color: "var(--fg-2)" }}>
+            {lang === "mn"
+              ? "Дадлагын түүхээ устгах болон бүртгэлээ хаах тохиргоо руу шилжлээ."
+              : "Erasing your practice history and deleting your account have moved to settings."}
+          </p>
+          <Link href="/dashboard/settings#data" className="btn btn-line mt-4 inline-flex">
+            {lang === "mn" ? "Тохиргоо" : "Open settings"}
+          </Link>
+        </div>
       </section>
     </div>
   );

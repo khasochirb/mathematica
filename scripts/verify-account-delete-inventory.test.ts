@@ -19,7 +19,7 @@
 // route refuses to report success on a table it could not read.
 
 import { describe, it, expect } from "vitest";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { LEGACY_DROPPED_TABLES, SERVER_USER_TABLES } from "../lib/data-erase";
 
@@ -69,6 +69,39 @@ function tablesReferencingProfiles(sql: string): Set<string> {
   return found;
 }
 
+/**
+ * Tables created by a migration whose flag is still OPEN in memory/flags.md.
+ *
+ * Deliberately duplicated from verify-erase-inventory-vs-migrations.test.ts
+ * rather than shared: these two gates enforce OPPOSITE directions of the same
+ * rule, and a shared helper would let one bug silence both at once.
+ */
+function pendingMigrationTables(): Set<string> {
+  const flags = readFileSync(join(__dirname, "..", "memory", "flags.md"), "utf8");
+  const from = flags.indexOf("## OPEN");
+  const ends = ["## WATCH", "## RESOLVED", "## Resolved", "## Session log"]
+    .map((h) => flags.indexOf(h, from + 1))
+    .filter((i) => i > from);
+  const open = flags.slice(from, ends.length ? Math.min(...ends) : undefined);
+
+  const out = new Set<string>();
+  const fileRe = /`(\d{3}_[a-z0-9_]+\.sql)`/g;
+  let m: RegExpExecArray | null;
+  while ((m = fileRe.exec(open)) !== null) {
+    const at = open.lastIndexOf("### FLAG", m.index);
+    const nextAt = open.indexOf("### FLAG", m.index + 1);
+    const heading = open.slice(at, nextAt > at ? nextAt : undefined).split("\n")[0];
+    if (/\bAPPLIED\b/.test(heading) && !/not applied/i.test(heading)) continue;
+    const p = join(MIGRATIONS_DIR, m[1]);
+    if (!existsSync(p)) continue;
+    const sql = readFileSync(p, "utf8");
+    const tableRe = /create\s+table\s+(?:if\s+not\s+exists\s+)?(?:public\.)?([a-z0-9_]+)/gi;
+    let t: RegExpExecArray | null;
+    while ((t = tableRe.exec(sql)) !== null) out.add(t[1].toLowerCase());
+  }
+  return out;
+}
+
 describe("account deletion inventory", () => {
   const inventory = new Set(SERVER_USER_TABLES.map((s) => s.table));
 
@@ -80,7 +113,21 @@ describe("account deletion inventory", () => {
     expect(referencing.size).toBeGreaterThan(5);
 
     const dropped = new Set(LEGACY_DROPPED_TABLES);
-    const missing = Array.from(referencing).filter((t) => !inventory.has(t) && !dropped.has(t));
+    // A table whose migration has not been APPLIED yet is exempt, and must
+    // be: the inventory is what app/api/account/delete/route.ts probes, and
+    // naming a table the database does not have makes it refuse EVERY
+    // deletion with a 500. That is not hypothetical — it is what
+    // contact_messages did in production (FLAG-011).
+    //
+    // So this gate and its sibling now bracket the same invariant from both
+    // sides: a table must enter the inventory in the same commit as its
+    // migration (here), and must not be in it before that migration is
+    // applied (scripts/verify-erase-inventory-vs-migrations.test.ts, which
+    // also forces it back in the moment the flag closes).
+    const pending = pendingMigrationTables();
+    const missing = Array.from(referencing).filter(
+      (t) => !inventory.has(t) && !dropped.has(t) && !pending.has(t),
+    );
     expect(
       missing,
       `these tables reference profiles(id) but are not in SERVER_USER_TABLES, ` +

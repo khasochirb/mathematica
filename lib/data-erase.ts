@@ -86,10 +86,26 @@ export const SERVER_USER_TABLES: UserTableSpec[] = [
   { table: "subscription_events", column: "user_id", rule: "cascade", what: "billing history" },
   // Holds a signup email, so the whole row goes rather than being de-identified.
   { table: "premium_waitlist", column: "user_id", rule: "cascade", what: "waitlist entry" },
-  // Holds the sender's name, email and message text, so the whole row goes —
-  // same reasoning as premium_waitlist. Anonymous messages have no user_id and
-  // no account behind them, so nothing links them to an erase request.
-  { table: "contact_messages", column: "user_id", rule: "cascade", what: "contact messages" },
+  // contact_messages IS DELIBERATELY ABSENT UNTIL MIGRATION 018 IS APPLIED.
+  //
+  // It was added here in 319b46b, in the same commit as the contact form —
+  // correctly, by the rule three lines above. But 018_contact_messages.sql
+  // was never applied (FLAG-011), so the table does not exist, and the
+  // consequence was not the contact form: it was ACCOUNT DELETION.
+  //
+  // app/api/account/delete/route.ts:65 counts rows in every table on this
+  // list and pushes any it cannot read into `unreadable`; :172 then refuses
+  // the whole delete with a 500. That refusal is right — an unreadable table
+  // is one we cannot prove we cleared — so the bug is this entry, not the
+  // guard. Every account deletion in production has been failing since that
+  // commit shipped, self-service and guardian alike, on a product whose
+  // users are minors.
+  //
+  // Leaving it out is honest rather than convenient: a table that does not
+  // exist holds no rows to erase, so the inventory is complete as written.
+  // The moment 018 is applied this line goes back, and
+  // scripts/verify-erase-inventory-vs-migrations.test.ts fails the build
+  // until it does — the two can no longer move independently.
   // De-identified analytics: the row survives with user_id nulled.
   { table: "events", column: "user_id", rule: "set-null", what: "analytics events" },
   // The account row itself. Cascades from auth.users(id), and everything above

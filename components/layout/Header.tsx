@@ -3,16 +3,7 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  LogOut,
-  User,
-  Sun,
-  Moon,
-  Sparkles,
-} from "lucide-react";
+import { ChevronDown, LogOut, Menu, Moon, Settings, Sparkles, Sun, User, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/lang-context";
 import { useAuth } from "@/lib/auth-context";
@@ -346,6 +337,7 @@ export default function Header() {
     login: lang === "mn" ? "Нэвтрэх" : "Log in",
     signup: lang === "mn" ? "Бүртгүүлэх" : "Sign up",
     upgrade: lang === "mn" ? "Премиум болох" : "Upgrade to Premium",
+    settings: lang === "mn" ? "Тохиргоо" : "Settings",
     logout: lang === "mn" ? "Гарах" : "Log out",
   };
 
@@ -526,6 +518,26 @@ export default function Header() {
                         </span>
                       )}
                     </div>
+                    {/* The dropdown contained exactly one action — Log out —
+                        so there was no way to reach account settings from
+                        anywhere in the product. */}
+                    <Link
+                      href="/dashboard/settings"
+                      onClick={() => setAvatarOpen(false)}
+                      className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm transition-colors"
+                      style={{ color: "var(--fg-1)" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "var(--fg)";
+                        e.currentTarget.style.background = "var(--bg-2)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "var(--fg-1)";
+                        e.currentTarget.style.background = "transparent";
+                      }}
+                    >
+                      <Settings className="h-3.5 w-3.5" />
+                      {nav.settings}
+                    </Link>
                     <button
                       onClick={() => {
                         setAvatarOpen(false);
@@ -714,15 +726,27 @@ export default function Header() {
 
             <div className="pt-3 mt-2 flex gap-2 px-4" style={{ borderTop: "1px solid var(--line)" }}>
               {isAuthenticated ? (
-                <button
-                  onClick={() => {
-                    logout();
-                    setMobileOpen(false);
-                  }}
-                  className="btn btn-line flex-1 text-center"
-                >
-                  {nav.logout}
-                </button>
+                <>
+                  {/* Mobile has no avatar dropdown, so without this there is
+                      no route to settings on a phone at all — which is the
+                      device most of these students are on. */}
+                  <Link
+                    href="/dashboard/settings"
+                    className="btn btn-line flex-1 text-center"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {nav.settings}
+                  </Link>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setMobileOpen(false);
+                    }}
+                    className="btn btn-line flex-1 text-center"
+                  >
+                    {nav.logout}
+                  </button>
+                </>
               ) : (
                 <>
                   <Link
