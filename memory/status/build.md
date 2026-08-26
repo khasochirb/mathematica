@@ -14,6 +14,60 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-08-26 08:45 UTC — mode: content
+
+**Did:** Opened the Mongolian programme. Committed `docs/MONGOLIAN.md` (Khas's
+standing programme — read it with `CLAUDE.md` at the start of every session
+from now on). Started group 0, the vocabulary: swept the corpus to 622 maths
+terms plus 37 operational terms the title-driven sweep had missed, parsed all
+184 ЭШ skill names out of `011_seed_esh_graph.sql` (every `name_mn` NULL,
+strands 76/60/23/20/5 matching Khas's figures), and built
+`scripts/i18n/mn_ground.py` to check every provenance label against the source
+it claims.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` —
+`7bf6dba` (programme), `b5e28d6` (grounding checker), `c126dea` (ЭШ bank as
+evidence). Nothing deployed; nothing Mongolian is wired.
+
+**Blocked on:** Khas — group 0 ends in a hard stop for glossary approval, and
+nothing downstream can start until the terms are locked. Group 2 (voice) and
+group 3 (lesson prose) are blocked by design.
+
+**Others should know:**
+
+- **The mode rule is dropped.** Khas dropped it explicitly on 26 Aug. This
+  entry is marked `content` for legibility, not because the rule still binds.
+
+- **The grounding checker's failure mode is grounding too much, and it is
+  silent.** Its first version matched stems as raw substrings and reported all
+  100 glossary terms as present in the grade 10–12 ministry standard —
+  including "tip" and "tree diagram", which are primary-school concepts. It
+  passed a smoke test at the time. `--selftest` now asserts in both directions
+  (out-of-scope terms absent, core terms present) and is wired into
+  `npx vitest run` via `scripts/verify-mn-ground.test.ts`. If you touch the
+  matcher, that test is the one that matters.
+
+- **`data/questions/` is the best Mongolian evidence on the site and was being
+  ignored.** 20 real ЭШ past papers, 4,543 Mongolian strings, ~449k characters,
+  Mongolian-FIRST rather than translated. It is now part of the shipped corpus
+  the checker reads. Anyone reasoning about Mongolian terminology should reach
+  for it before the translated mirrors.
+
+- **The 25 shipped MN mirrors can be walked in lockstep with their English.**
+  `mn_walk.py`'s `pure_math()` skips any string with no Latin letters, which on
+  the Mongolian side is every translated string — so a naive parallel walk
+  desyncs. With a script-symmetric predicate all 25 align exactly, yielding
+  14,003 EN→MN string pairs. That is reusable evidence, not a one-off.
+
+- **58 of the 184 skill names are imperative clauses** ("Solve a quadratic by
+  factoring"). They are descriptive, not persuasive, so they are not voice —
+  but it does raise a live style question for Khas: should skill labels follow
+  the ministry's verbal-noun pattern («…-ыг мэдэх, хэрэглэх») or be pure noun
+  phrases? It affects all 184 and belongs in the group-0 question list.
+
+- **Accumulated question list for Khas** is being assembled with the group-0
+  deliverable and is not yet complete — the term proposals are still running.
+
 ## 2026-08-17 08:30 UTC — mode: ship
 
 **Did:** Finished `CLAUDE.md` as the master (two-chat ownership, one mode per
