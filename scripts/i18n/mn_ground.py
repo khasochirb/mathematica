@@ -103,12 +103,40 @@ def load_sources():
     import mn_terms  # noqa: E402
     glossary = " ".join(mn_terms.GLOSSARY.values())
 
-    shipped_path = os.environ.get("MN_SHIPPED_PAIRS", "")
-    shipped = ""
-    if shipped_path and os.path.exists(shipped_path):
-        pairs = json.load(open(shipped_path, encoding="utf8"))
-        shipped = " ".join(p["mn"] for p in pairs)
-    return (haystack_stems(ministry), haystack_stems(glossary), haystack_stems(shipped))
+    return (haystack_stems(ministry), haystack_stems(glossary), haystack_stems(shipped_corpus()))
+
+
+def shipped_corpus() -> str:
+    """Every word of Mongolian the site has actually published.
+
+    TWO sources, and the second is the larger one:
+
+      data/genmath/*-mn/**       the 25 translated General Math mirrors
+      data/questions/**          the ESh bank — 20 real past papers with
+                                 authored Mongolian solutions, ~449k characters
+
+    The ESh bank matters more than its size suggests. It is Mongolian-FIRST
+    content (the hub's content language is Mongolian by locked decision), not
+    translated, so its vocabulary is what a Mongolian maths writer actually
+    reaches for rather than what a translator produced. For terminology
+    evidence that is the better witness of the two.
+
+    Read from the repo rather than a passed-in file so the checker cannot be
+    run against a stale or partial corpus by accident. $MN_SHIPPED_PAIRS still
+    overrides, for checking a proposal against some other body of text.
+    """
+    override = os.environ.get("MN_SHIPPED_PAIRS", "")
+    if override and os.path.exists(override):
+        return " ".join(p.get("mn", "") for p in json.load(open(override, encoding="utf8")))
+
+    import glob
+
+    out = []
+    for path in glob.glob(os.path.join(ROOT, "data", "genmath", "*-mn", "*.json")):
+        out.append(open(path, encoding="utf8").read())
+    for path in glob.glob(os.path.join(ROOT, "data", "questions", "**", "*.json"), recursive=True):
+        out.append(open(path, encoding="utf8").read())
+    return " ".join(out)
 
 
 def selftest() -> int:
@@ -149,6 +177,17 @@ def selftest() -> int:
     fabricated = [("nonsense", "зөгнөлт хуурмаг үг")]
 
     failures = []
+    # A source that silently fails to load makes every claim against it look
+    # like an overclaim — the loudest possible wrong answer. Assert each one
+    # actually has content before trusting any verdict computed from it.
+    for name, stems, floor in (("ministry", ministry, 300), ("glossary", glossary, 100), ("shipped", shipped, 2000)):
+        if len(stems) < floor:
+            failures.append(f"SOURCE EMPTY: {name} loaded only {len(stems)} stems (expected >{floor})")
+    # The grade 6-8 vocabulary below is absent from the STANDARD but present in
+    # the shipped corpus, which is what makes the two sources independent.
+    for en, mn in must_be_absent:
+        if not grounded_in(mn, shipped):
+            failures.append(f"SHIPPED GAP: «{mn}» ({en}) is published content but the corpus missed it")
     for en, mn in must_be_absent:
         if grounded_in(mn, ministry):
             failures.append(f"OVER-GROUNDED: «{mn}» ({en}) matched the grade 10-12 standard")
