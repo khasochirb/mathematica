@@ -3,7 +3,7 @@
 Everything from the vocabulary pass that needs Khas. Batched, as
 `docs/MONGOLIAN.md` asks, rather than stopping the session per question.
 
-Data: `data/i18n/mn-glossary-proposal.json` (622 terms) ·
+Data: `data/i18n/mn-glossary-proposal.json` (659 terms) ·
 `data/i18n/mn-skill-names.json` (184 skill names). Neither is wired, neither
 is in `mn_terms.py`.
 
@@ -24,7 +24,7 @@ actually say. They are worth fixing whatever you decide about the rest.
 | A5 | **addition** — "like you do for addition" ships as «Нэмэлт шиг…», and «нэмэлт» is *also* the site's word for an angle's complement (21×) | one word, two unrelated meanings | few strings |
 | A6 | **multiplication** ships as «үржүүлэг» 29× and «үржүүлэлт» 14× | the four operations don't match each other | ~43 strings |
 | A7 | **combination** — one shipped item says «хослол» where ministry and glossary are firm on «хэсэглэл» | true combinatorics content | 1 string |
-| A8 | **spread vs distribution** both ship as «тархалт** — including in the *same sentence* ("A full description of a DISTRIBUTION touches … SPREAD" → «ТАРХАЛТын бүрэн дүрслэл … ТАРХАЛТ») | reads as one word for two ideas | see B2 |
+| A8 | **spread vs distribution** both ship as «тархалт» — including in the *same sentence* ("A full description of a DISTRIBUTION touches … SPREAD" → «ТАРХАЛТын бүрэн дүрслэл … ТАРХАЛТ») | reads as one word for two ideas | see B2 |
 | A9 | **scatter plot vs dot plot** both ship as «цэгэн диаграмм» | two different charts, one name | live |
 | A10 | **quantity** — «хэмжигдэхүүн» in two lines, but «тоо» and «тоо хэмжээ» elsewhere for the same English word | inconsistent | few |
 | A11 | **tree diagram** — the glossary says «мод диаграм»; the **ministry says «модны схем»** (10.15б, 11.13д, 12.15а) | glossary contradicts the standard | glossary + mirrors |
@@ -47,7 +47,7 @@ indistinguishable to a student.
 | B3 | **shape** | geometric shape = «дүрс» (73×) · the shape of a distribution = «хэлбэр» |
 | B4 | **complement** | an angle's complement = «нэмэлт» (21×) · an event's complement = «гүйцээлт» (7×). Neither is in the ministry standard |
 | B5 | **variation** | the algebra sense (direct/inverse) vs. "proportional relationship" = «пропорциональ хамаарал» |
-| B6 | **division** | the operation = «хуваалт» (33×) · but the ministry uses «хуваалт** for a *partition* (11.10, integration). Collides when calculus lands |
+| B6 | **division** | the operation = «хуваалт» (33×) · but the ministry uses «хуваалт» for a *partition* (11.10, integration). Collides when calculus lands |
 | B7 | **modelling / simulation** | all three currently «загварчлал»; simulation is a different concept |
 | B8 | **rate** | «хурдац» (106×) — but do **not** substitute into "rate of change", which is «өөрчлөлтийн хурд» |
 
@@ -98,11 +98,11 @@ than persuasion, so I do not think any is voice — but you asked to see them:
 
 ## F. Where the confidence sits
 
-| | Terms (622) | Skills (184) |
+| | Terms (659) | Skills (184) |
 |---|---|---|
-| **quoted** — the named source contains the phrase | 425 | 47 |
+| **quoted** — the named source contains the phrase | 461 | 47 |
 | **composed** — long label from ≥80% source vocabulary | 7 | 98 |
-| **upgradable** — said "proposal", a source has it | 96 | 2 |
+| **upgradable** — said "proposal", a source has it | 97 | 2 |
 | **novel** — genuinely mine, expect correction | 80 | 19 |
 | **unsourced** — named a source that lacks the phrase | 14 | 16 |
 | **weak-composition** | 0 | 2 |
@@ -116,10 +116,43 @@ terms may still be right; the citation is not.
 
 ---
 
-## G. Not yet done in group 0
+## G. Group 0 is complete
 
-- **37 operational terms** — `positive`, `constant`, `base`, `root`, `term`,
-  `pair`, `tens`, `numerator` and similar. The first sweep was title-driven and
-  caught topic vocabulary while missing the words a lesson uses sentence by
-  sentence. Proposals are running; several are polysemous in ways English hides
-  (*base* of a power vs. of a triangle; *root* of a number vs. of an equation).
+**659 terms** (622 corpus + 37 operational) and **184 skill names**. The
+operational batch came back unusually well-sourced — 36 of 37 quoted verbatim
+from shipped content or the ministry, none questionable — which is what you
+would expect for words the site already uses constantly.
+
+---
+
+## H. Polysemy — English hides a split Mongolian makes
+
+From the operational sweep. These are high-frequency words, so a wrong pick is
+wrong in thousands of sentences. **The proposal gives one sense; the other is
+named so it does not get silently overwritten.**
+
+| English | Proposed sense | The other sense |
+|---|---|---|
+| **row** | мөр — a grid, table or matrix row | эгнээ — a row of physical objects; **ministry 11.12** uses эгнээ for the combinatorics arrangement |
+| **half** | хагас — the computed amount ½ | тал — one of two portions. тал is *also* “side”, so it carries real ambiguity |
+| **count** | тоолох — the verb | тоо (how many) · тооллого (the tally itself). Never тоолол |
+| **scale** | томсгох — the verb, to scale up (opposite багасгах) | масштаб — a map’s scale · масштабын коэффициент — scale factor |
+| **increase** | өсөх — intransitive, to be increasing (opposite буурах) | өсөлт — the noun, which the percent unit actually ships · ихэсгэх — transitive |
+| **edge** | ирмэг — of a solid, and of a histogram bin | зах — the margin of something written or laid out |
+| **measure** | хэмжих — the verb | хэмжээ — the noun · хэмжигдэхүүн — a measured quantity |
+| **size** | хэмжээ — magnitude | see amount; the two share хэмжээ |
+| **amount** | хэмжээ — quantity | collides with size — both ship as хэмжээ |
+| **tens** | аравт — the tens place | place-value family: нэгж / аравт / зуут / мянгат |
+| **hundreds** | зуут — the hundreds place | same family |
+| **thousands** | мянгат — the thousands place | same family |
+
+`row` is the sharpest: the ministry's own combinatorics objective (11.12) uses
+**эгнээ**, while every coordinate-plane and table context in shipped content
+uses **мөр**. A single glossary key for "row" would put the wrong word into one
+of them.
+
+`base` deserves a note of its own: Mongolian does **not** split it — «суурь»
+covers the base of a power, of a triangle, of a prism and of a logarithm. But
+«суурь вектор» is *basis vector*, a different concept sharing the word, so
+vector lessons must write it in full and never let a bare «суурь» stand for a
+basis.

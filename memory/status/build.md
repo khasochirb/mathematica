@@ -65,8 +65,29 @@ group 3 (lesson prose) are blocked by design.
   the ministry's verbal-noun pattern («…-ыг мэдэх, хэрэглэх») or be pure noun
   phrases? It affects all 184 and belongs in the group-0 question list.
 
-- **Accumulated question list for Khas** is being assembled with the group-0
-  deliverable and is not yet complete — the term proposals are still running.
+- **Group 0 is complete and awaiting approval.** 659 terms (622 corpus + 37
+  operational) and all 184 ЭШ skill names, in `data/i18n/`. Question list in
+  `memory/mn-group0-questions.md`. 508 rows are quoted verbatim from a named
+  source; 99 are genuinely novel; 171 are low confidence.
+
+- **Eleven terminology bugs are live in shipped Mongolian**, found while
+  checking proposals against what the site already says. Section A of the
+  question list. They are independent of the approval decision: absolute value
+  ships three ways, "reflect" uses a word absent from the ministry standard
+  across a whole unit, and "spread" and "distribution" are the same word inside
+  one sentence.
+
+- **The glossary contradicts the ministry on "tree diagram".** The standard
+  covers it three times (10.15б, 11.13д, 12.15а) and calls it «модны схем»;
+  `mn-translation`'s glossary says «мод диаграм». Same shape as the
+  тэнцэтгэл бус/биш correction. It surfaced only after the grounding checker
+  learned to require phrase adjacency — before that, «модны» in one objective
+  and «диаграмм» in another were being stitched into a false match.
+
+- **Judge long labels differently from short terms.** A six-word skill name is
+  COMPOSED from source vocabulary, not quoted from it. Without that split, 99
+  legitimate compositions read as overclaims. Anyone extending
+  `mn_ground.py` should keep that distinction.
 
 ## 2026-08-17 08:30 UTC — mode: ship
 
