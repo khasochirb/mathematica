@@ -4,7 +4,8 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getAlg1Unit } from "@/lib/genmath-data/algebra-1";
+import { getAlg1UnitLocalized } from "@/lib/genmath-data/algebra-1";
+import { useLang } from "@/lib/lang-context";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {
@@ -17,7 +18,8 @@ const REVEAL_LABELS = {
 function Alg1PracticePageInner() {
   const params = useParams();
   const unitSlug = params.unit as string;
-  const unit = getAlg1Unit(unitSlug);
+  const { lang } = useLang();
+  const unit = getAlg1UnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

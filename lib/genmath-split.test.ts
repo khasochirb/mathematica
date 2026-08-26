@@ -113,7 +113,10 @@ describe("per-course data modules keep the corpus split", () => {
     geometry: ["geometry/"],
     "prob-stats": ["prob-stats/"],
     "vectors-matrices": ["vectors-matrices/"],
-    "algebra-1": ["algebra-1/"],
+    // Named courses get their "-mn/" sibling the same way the grades do, but
+    // only once a mirror actually exists — an unearned prefix here is a hole
+    // the next generator bug walks through. Algebra 1 is the first.
+    "algebra-1": ["algebra-1/", "algebra-1-mn/"],
     "algebra-2": ["algebra-2/"],
     "integrated-1": ["integrated-1/"],
     "integrated-2": ["integrated-2/"],

@@ -3,13 +3,15 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getAlg1Unit, getAlg1Spine } from "@/lib/genmath-data/algebra-1";
+import { getAlg1UnitLocalized, getAlg1Spine } from "@/lib/genmath-data/algebra-1";
+import { useLang } from "@/lib/lang-context";
 
 // An Algebra 1 unit page: what it builds on, then the lessons in order.
 export default function Alg1UnitPage() {
   const params = useParams();
   const unitSlug = params.unit as string;
-  const unit = getAlg1Unit(unitSlug);
+  const { lang } = useLang();
+  const unit = getAlg1UnitLocalized(unitSlug, lang);
   const spineEntry = getAlg1Spine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

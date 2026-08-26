@@ -3,7 +3,8 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getAlg1Unit, getAlg1Lesson } from "@/lib/genmath-data/algebra-1";
+import { getAlg1UnitLocalized, getAlg1LessonLocalized } from "@/lib/genmath-data/algebra-1";
+import { useLang } from "@/lib/lang-context";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -14,8 +15,9 @@ function Alg1LessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getAlg1Unit(unitSlug);
-  const lesson = getAlg1Lesson(unitSlug, lessonSlug);
+  const { lang } = useLang();
+  const unit = getAlg1UnitLocalized(unitSlug, lang);
+  const lesson = getAlg1LessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (
