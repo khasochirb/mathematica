@@ -3,6 +3,14 @@
 Everything from the vocabulary pass that needs Khas. Batched, as
 `docs/MONGOLIAN.md` asks, rather than stopping the session per question.
 
+> **Partly answered, 26 Aug 2026 — see `memory/mn-rulings.md` for the decisions.**
+> Settled: A3 (reflect), A11 (tree diagram), all of B/H (the splits stand),
+> the register, and 8 of the 9 voice strings.
+> **A4 is WITHDRAWN — it was not a bug.** Absolute value's three forms are
+> three different things, not three renderings of one; ~59 strings will not be
+> rewritten after all.
+> Still open: A1, A2, A5–A10, C, D, E, F.
+
 Data: `data/i18n/mn-glossary-proposal.json` (659 terms) ·
 `data/i18n/mn-skill-names.json` (184 skill names). Neither is wired, neither
 is in `mn_terms.py`.
@@ -19,15 +27,15 @@ actually say. They are worth fixing whatever you decide about the rest.
 |---|---|---|---|
 | A1 | **volume** ships two ways | «эзлэхүүн» 37× vs «эзэлхүүн» 9×. The ministry is *itself* inconsistent — эзлэхүүн in 10.12, эзэлхүүн in 11.10 | 9 strings |
 | A2 | **"Fraction" rendered as «Хэсэг»** in two strings («Хэсэг $= \frac{13}{40}$») against «бутархай» 463× everywhere else | the term is settled; those two strings are simply wrong | 2 strings |
-| A3 | **reflect** — every shipped item uses «тусгах», a word **absent from the ministry standard**. The ministry and glossary both say «тэгш хэмээр хувиргах» | a whole transformations unit | unit-wide |
-| A4 | **absolute value ships three ways**: «абсолют утга» 42×, «үнэмлэхүй утга» 13×, «модул» 4×. Ministry 12.1 says **модул** | contradicts the dominant shipped form | ~59 strings |
+| A3 | ✅ **CONFIRMED** — «тэгш хэмээр хувиргах» is right; shipped «тусгах» is the bug | a whole transformations unit | unit-wide, awaiting go |
+| A4 | ❌ **WITHDRAWN — not a bug.** «абсолют утга»/«үнэмлэхүй утга» = the value; «модул» = the brackets; «модулт тэгшитгэл» = the equation. Three things, not three spellings | my error | **0 strings** |
 | A5 | **addition** — "like you do for addition" ships as «Нэмэлт шиг…», and «нэмэлт» is *also* the site's word for an angle's complement (21×) | one word, two unrelated meanings | few strings |
 | A6 | **multiplication** ships as «үржүүлэг» 29× and «үржүүлэлт» 14× | the four operations don't match each other | ~43 strings |
 | A7 | **combination** — one shipped item says «хослол» where ministry and glossary are firm on «хэсэглэл» | true combinatorics content | 1 string |
 | A8 | **spread vs distribution** both ship as «тархалт» — including in the *same sentence* ("A full description of a DISTRIBUTION touches … SPREAD" → «ТАРХАЛТын бүрэн дүрслэл … ТАРХАЛТ») | reads as one word for two ideas | see B2 |
 | A9 | **scatter plot vs dot plot** both ship as «цэгэн диаграмм» | two different charts, one name | live |
 | A10 | **quantity** — «хэмжигдэхүүн» in two lines, but «тоо» and «тоо хэмжээ» elsewhere for the same English word | inconsistent | few |
-| A11 | **tree diagram** — the glossary says «мод диаграм»; the **ministry says «модны схем»** (10.15б, 11.13д, 12.15а) | glossary contradicts the standard | glossary + mirrors |
+| A11 | ✅ **CONFIRMED** — «модны схем». The skill's glossary is corrected | glossary fixed | mirrors awaiting go |
 
 A11 is the same shape as the `тэнцэтгэл бус`/`тэнцэтгэл биш` correction already
 on record: a glossary entry that the standard does not use.
@@ -35,6 +43,9 @@ on record: a glossary entry that the standard does not use.
 ---
 
 ## B. Splits — one English word, two Mongolian words
+
+> ✅ **APPROVED as written, 26 Aug 2026** — "the word and the description of
+> when to use seems accurate." No changes needed here or in §H.
 
 The reconciler found these by comparing across batches. Each needs **two keys**
 in the glossary, not one, and picking one form would make two ideas

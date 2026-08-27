@@ -9,6 +9,20 @@ Done 26 Aug 2026. Nothing here has been changed — all three are reports.
 
 ## 1. Register — there are two, and nobody declared the line
 
+> ✅ **RULED, 26 Aug 2026: «та», formal.** "чи is usually not used for
+> customers. it is not suitable."
+>
+> **This inverts the audit's assumption below.** The table treats grade 7's pure
+> «чи» as the reference implementation and grade 8 as off-register. Under the
+> ruling it is the other way round: **grade 8 was right**, and grades 6 and 7
+> are the 267 strings written in the wrong register. The app UI's 73 formal
+> forms were correct all along.
+>
+> Option 1 in the list below ("declare the split") is therefore not what was
+> chosen — «та» applies throughout, not only in chrome. Whether the 267 shipped
+> strings get rewritten is still open, and it is a cost question rather than a
+> language one. See `memory/mn-rulings.md` R1.
+
 `docs/MONGOLIAN.md` and the `mn-translation` skill both say the register is
 friendly-instructional **«чи»**, never formal **«та»**. The audit says that is
 true of lesson content and **false of the app**.
@@ -91,6 +105,11 @@ that is a Mongolian-speaker call, not a code one.
 ---
 
 ## 3. Voice pulled out of the chrome batch — 9 move
+
+> ✅ **8 of 9 written by Khas, 26 Aug 2026**, applied verbatim. Two gaps remain:
+> "Confirmation email sent. Check your inbox." was not in the batch, and the
+> confirmation-link string is two sentences in English with only the first
+> written. See `memory/mn-rulings.md` R7.
 
 Per the rule: anything that persuades or speaks to a student is yours, and I
 never propose a draft for it. **Nine of the 91 move to your pile.**

@@ -232,17 +232,15 @@ next topic uses the same word.
 
 ## How it should sound
 
-Friendly and instructional — **«чи»**, the way you would speak to one student
-in front of you, not **«та»**. The English has jokes and energy; keep that.
-Do not flatten it into textbook prose.
+**«та», formal.** A student on this product is a customer, and «чи» is not
+suitable for one. Formal is not the same as stiff — the English has jokes and
+energy, and that should survive. Do not flatten it into textbook prose.
 
 Quotes take «...». Proper names take their standard Mongolian forms. Product
 names and symbols stay Latin.
 
-> **Open question, and it affects this brief.** The register is not settled
-> across the site: grade 7 is written entirely in «чи», grade 8 almost
-> entirely in «та», and the app's own screens are formal throughout. See
-> `memory/mn-group1-audits.md` §1. Write in «чи» unless told otherwise.
+> Note if you have seen earlier material: grades 6 and 7 are written in «чи»,
+> which is now the wrong register. Do not copy their tone.
 
 ---
 

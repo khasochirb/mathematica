@@ -29,8 +29,18 @@
 //           Nine strings moved here on 26 Aug; my earlier Mongolian for them
 //           is withdrawn, not offered. See memory/mn-group1-audits.md §3.
 //
-// Register: friendly-instructional «чи», matching the EN "you" and the
-// existing mirrors — never formal «та». Guillemets «...» for quotes.
+// REGISTER: «та», formal. Khas, 26 Aug 2026 — "чи is usually not used for
+// customers. it is not suitable." A student here is a customer, and the voice
+// strings Khas wrote confirm it: «Танд чухал зүйл», «Таны баталгаажуулах
+// холбоосны хугацаа дууссан байна».
+//
+// THIS REVERSES what the mn-translation skill says, and the skill is wrong.
+// It reads "friendly-instructional «чи» ... never formal «та»", which is how
+// grades 6 and 7 came to be written in «чи» — 267 strings. Grade 8, which the
+// register audit flagged as off-register for using «та», turns out to have
+// been right. See memory/mn-group1-audits.md §1 and the ruling recorded there.
+//
+// Guillemets «...» for quotes.
 //
 // COUNTS are occurrences of the English string across the non-bilingual
 // files, measured 26 Aug 2026. They rank the work: "Unit" at 36 is worth
@@ -87,7 +97,7 @@ export const NAV: ChromeEntry[] = [
   { en: "Next step", mn: "Дараагийн алхам", src: "NEW", n: 2 },
   { en: "Start", mn: "Эхлэх", src: "SITE", n: 15 },
   { en: "Continue", mn: "Үргэлжлүүлэх", src: "SITE" },
-  { en: "Soon", mn: "", src: "VOICE", n: 15, note: "badge on unbuilt doors (rule 7 legacy tier) — must read as a promise, not an apology" },
+  { en: "Soon", mn: "Удахгүй", src: "VOICE", n: 15, note: "badge on unbuilt doors (rule 7 legacy tier) — must read as a promise, not an apology" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -135,9 +145,9 @@ export const SECTIONS: ChromeEntry[] = [
   { en: "Watch out", mn: "Болгоомжил", src: "NEW", n: 3, note: "heads the common-mistakes block" },
   { en: "Real-world picture", mn: "Бодит амьдрал дээр", src: "NEW", n: 3 },
   { en: "Builds on", mn: "Уг нь тулгуурлах", src: "NEW", n: 12, note: "LOW CONFIDENCE. Labels the prerequisite list on a unit page. Wants a natural Mongolian phrase for «you need this first», not a literal rendering of the English metaphor — please rewrite freely." },
-  { en: "Focus first on", mn: "", src: "VOICE", n: 5, note: 'site: "Focus units"→«Анхаарах нэгжүүд»' },
-  { en: "Important for you", mn: "", src: "VOICE", n: 4, note: "«танд» is formal-you; register elsewhere is «чи». Should this be «чамд»? It appears in a recommendation banner." },
-  { en: "Ready to check yourself?", mn: "", src: "VOICE", n: 12 },
+  { en: "Focus first on", mn: "Түрүүнд анхаарах зүйл", src: "VOICE", n: 5, note: 'site: "Focus units"→«Анхаарах нэгжүүд»' },
+  { en: "Important for you", mn: "Танд чухал зүйл", src: "VOICE", n: 4, note: "recommendation banner. Khas wrote this; «танд» is correct — see the register ruling in the header." },
+  { en: "Ready to check yourself?", mn: "Өөрийгөө шалгаад үзэх үү?", src: "VOICE", n: 12 },
   { en: "Self-graded", mn: "Өөрийгөө дүгнэ", src: "SITE", n: 15 },
 ];
 
@@ -153,9 +163,9 @@ export const FORMS: ChromeEntry[] = [
   { en: "first number", mn: "эхний тоо", src: "NEW", n: 2 },
   { en: "second number", mn: "хоёр дахь тоо", src: "NEW", n: 2 },
   { en: "At least 8 characters", mn: "Дор хаяж 8 тэмдэгт", src: "NEW" },
-  { en: "Free to join", mn: "", src: "VOICE" },
+  { en: "Free to join", mn: "Үнэгүй нэгд", src: "VOICE" },
   { en: "Sign up again", mn: "Дахин бүртгүүлэх", src: "NEW", n: 2 },
-  { en: "Choose your level", mn: "", src: "VOICE", n: 1 },
+  { en: "Choose your level", mn: "Өөрийн анги, түвшинээ сонгох", src: "VOICE", n: 1 },
   { en: "you@example.com", mn: "you@example.com", src: "NEW", n: 2, note: "placeholder stays Latin — it is an example address, not prose" },
 ];
 
@@ -171,14 +181,14 @@ export const STATES: ChromeEntry[] = [
   { en: "Coming soon.", mn: "Удахгүй нэмэгдэнэ.", src: "NEW", n: 1 },
   {
     en: "Complete a mock test and your trajectory appears here.",
-    mn: "",
+    mn: "Жишиг тестнээс гүйцэтгээд аялалаа эхлүүлээрэй",
     src: "VOICE",
     n: 1,
     note: 'built from the established "Complete a test to plot your trajectory."→«Графикийг үзэхийн тулд тест дуусгана уу.» and "Score trajectory"→«Онооны өсөлт»',
   },
   {
     en: "Your confirmation link expired. Enter your email to resend.",
-    mn: "",
+    mn: "Таны баталгаажуулах холбоосны хугацаа дууссан байна",
     src: "VOICE",
   },
   { en: "Confirmation email sent. Check your inbox.", mn: "", src: "VOICE" },

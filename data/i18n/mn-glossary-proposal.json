@@ -2376,17 +2376,18 @@
    "mn": "тэгш хэмээр хувиргах",
    "provenance": "ministry",
    "provenanceClaimed": "ministry",
-   "verdict": "quoted",
-   "confidence": "low",
+   "verdict": "owner-confirmed",
+   "confidence": "high",
    "foundIn": [
     "ministry",
     "glossary",
     "shipped"
    ],
    "evidence": "10.11 — «Координатын хавтгай дахь дүрсийг тэгш хэмээр (цэгийн, тэнхлэгийн) хувиргах»",
-   "note": "Production disagrees with both the ministry and the glossary: every shipped item uses «тусгах» («$(3, 4)$-ийг x тэнхлэгээр тусга»), a word that appears nowhere in the standard. This is a live inconsistency across a whole transformations unit — fixing it is a content change, not a wording preference.",
+   "note": "CONFIRMED Khas, 26 Aug 2026. Shipped content uses «тусгах» throughout a transformations unit; that is the string to fix, not this term.",
    "uses": 449,
-   "rank": 3
+   "rank": 3,
+   "ownerStatus": "confirmed"
   },
   {
    "en": "the angle",
@@ -2718,17 +2719,18 @@
    "mn": "тэгш хэмээр хувиргах",
    "provenance": "ministry",
    "provenanceClaimed": "glossary",
-   "verdict": "quoted",
-   "confidence": "low",
+   "verdict": "owner-confirmed",
+   "confidence": "high",
    "foundIn": [
     "ministry",
     "glossary",
     "shipped"
    ],
    "evidence": "glossary: reflection → тэгш хэмээр хувиргах; MoE 10.11",
-   "note": "Same live conflict as \"reflect\": production writes «тусгал» («Түүний тусгал нь $4$ нэгж доор байна»), which is in neither the glossary nor the standard. If a noun is wanted rather than the glossary's verbal phrase, «тэгш хэмээр хувиргалт» follows the ministry's own «хувиргалт» (10.11) — owner's call.",
+   "note": "CONFIRMED Khas, 26 Aug 2026. Same verbal noun as `reflect`.",
    "uses": 222,
-   "rank": 11
+   "rank": 11,
+   "ownerStatus": "confirmed"
   },
   {
    "en": "vector",
@@ -3240,15 +3242,17 @@
    "mn": "абсолют утга",
    "provenance": "shipped",
    "provenanceClaimed": "shipped",
-   "verdict": "quoted",
-   "confidence": "low",
+   "verdict": "owner-confirmed",
+   "confidence": "high",
    "foundIn": [
     "shipped"
    ],
    "evidence": "shipped: «**Абсолют утга** ашигла; тэнхлэгийг дайрвал хэсгүүд нь нэмэгдэнэ.» — 27 MN strings use абсолют, none use модул",
-   "note": "Conflict: MoE 12.1 calls |x| «модул» («модултай тэгшитгэл, тэнцэтгэл биш бодох») and the glossary maps modulus→модул. Production and the ministry disagree; unifying on модул would rewrite ~27 shipped strings. Owner decides.",
+   "note": "SENSE SPLIT, per Khas, 26 Aug 2026. These are not three renderings of one term — they are different things:\n  • the VALUE  → «абсолют утга» or «үнэмлэхүй утга» (both correct)\n  • the straight brackets | | → «модул» (the notation itself)\n  • an absolute-value EQUATION → «модулт тэгшитгэл»\n  • taking |x| of a number → «тооноос модул авах»\nSo the site's 'three ways' is not an inconsistency and needs no sweep. The earlier finding that ministry 12.1's «модул» should replace «абсолют утга» was WRONG: 12.1 is about modulus equations, which is the bracket sense.\n  → this entry: the value. «үнэмлэхүй утга» is equally correct.",
    "uses": 152,
-   "rank": 13
+   "rank": 13,
+   "ownerStatus": "confirmed",
+   "polysemous": true
   },
   {
    "en": "trapezoid",
@@ -3867,14 +3871,15 @@
   },
   {
    "en": "central angle",
-   "mn": "төвийн өнцөг",
+   "mn": "төв өнцөг",
    "provenance": "proposal",
    "provenanceClaimed": "proposal",
    "verdict": "novel",
-   "confidence": "medium",
-   "note": "Built from MoE parts («координатын эх дээр төвтэй тойрог» 10.8 + өнцөг); the ministry names the inscribed angle (10.7) but never the central angle.",
+   "confidence": "high",
+   "note": "CORRECTED Khas, 26 Aug 2026: «төв өнцөг», not «төвийн өнцөг» — no genitive.",
    "uses": 149,
-   "rank": 4
+   "rank": 4,
+   "ownerStatus": "corrected"
   },
   {
    "en": "grouping",
@@ -4027,9 +4032,10 @@
    "provenanceClaimed": "proposal",
    "verdict": "novel",
    "confidence": "low",
-   "note": "Angle of depression ('Angles of Elevation & Depression', fact 'Elevation = depression'). No source has it — whatever is chosen must pair with the elevation-angle term.",
+   "note": "PAUSED Khas, 26 Aug 2026 — 'i will need to confirm myself since im not sure'. Do not use until confirmed.",
    "uses": 113,
-   "rank": 10
+   "rank": 10,
+   "ownerStatus": "paused"
   },
   {
    "en": "subset",
@@ -4085,9 +4091,10 @@
    "provenanceClaimed": "proposal",
    "verdict": "novel",
    "confidence": "low",
-   "note": "No source. Must not collide with «туслах өнцөг» (auxiliary angle — glossary, MoE 12.6 «Туслах өнцгийн томьёо»); «суурь өнцөг» is the other candidate.",
+   "note": "PAUSED Khas, 26 Aug 2026 — 'i will need to confirm myself since im not sure'. Do not use until confirmed.",
    "uses": 110,
-   "rank": 10
+   "rank": 10,
+   "ownerStatus": "paused"
   },
   {
    "en": "sss",
@@ -4347,14 +4354,15 @@
   },
   {
    "en": "perpendicular bisector",
-   "mn": "дундаж перпендикуляр",
+   "mn": "перпендикуляр таллагч",
    "provenance": "proposal",
    "provenanceClaimed": "proposal",
    "verdict": "novel",
-   "confidence": "medium",
-   "note": "Built from MoE parts: «перпендикуляр» (11.5) + «хэрчмийн дундаж цэг» (10.8). In running lesson text the fuller «хэрчмийн дундаж перпендикуляр» may read better; pick one for 'Perpendicular Bisectors & the Circumcenter'.",
+   "confidence": "high",
+   "note": "CORRECTED Khas, 26 Aug 2026: «перпендикуляр таллагч», not «дундаж перпендикуляр».",
    "uses": 107,
-   "rank": 7
+   "rank": 7,
+   "ownerStatus": "corrected"
   },
   {
    "en": "story",
@@ -6396,10 +6404,10 @@
   },
   {
    "en": "absolute-value equation",
-   "mn": "модултай тэгшитгэл",
+   "mn": "модулт тэгшитгэл",
    "provenance": "ministry",
    "provenanceClaimed": "ministry",
-   "verdict": "quoted",
+   "verdict": "owner-confirmed",
    "confidence": "high",
    "foundIn": [
     "ministry",
@@ -6407,7 +6415,9 @@
    ],
    "evidence": "12.1 «|x-a|=b,|x-a|<b,|x-a|>b хэлбэрийн модултай тэгшитгэл, тэнцэтгэл биш бодох»",
    "uses": 16,
-   "rank": 10
+   "rank": 10,
+   "ownerStatus": "confirmed",
+   "note": "CORRECTED Khas, 26 Aug 2026: «модулт тэгшитгэл». Was «модултай тэгшитгэл» (the ministry's 12.1 wording); Khas's form is the one to use."
   },
   {
    "en": "cross-section",
@@ -6890,7 +6900,7 @@
    "mn": "модны схем",
    "provenance": "ministry",
    "provenanceClaimed": "ministry",
-   "verdict": "quoted",
+   "verdict": "owner-confirmed",
    "confidence": "high",
    "foundIn": [
     "ministry",
@@ -6898,7 +6908,9 @@
    ],
    "evidence": "10.15 «...модны схем, үр дүнгийн хүснэгт, Эйлер-Веннийн диаграмм хэрэглэх»",
    "uses": 19,
-   "rank": 6
+   "rank": 6,
+   "ownerStatus": "confirmed",
+   "note": "CONFIRMED Khas, 26 Aug 2026. The mn-translation glossary's «мод диаграм» is wrong and must be replaced — the standard uses «модны схем» in 10.15б, 11.13д and 12.15а."
   },
   {
    "en": "interquartile range",
@@ -7983,18 +7995,20 @@
   },
   {
    "en": "absolute-value graph",
-   "mn": "Модултай функцийн график",
+   "mn": "Модулт функцийн график",
    "provenance": "ministry",
    "provenanceClaimed": "ministry",
-   "verdict": "quoted",
-   "confidence": "low",
+   "verdict": "owner-confirmed",
+   "confidence": "high",
    "foundIn": [
     "ministry"
    ],
    "evidence": "12.3 \"Функцийн модул, … y=|f(x)|,y=f(|x|) функцийн графикийг байгуулах\" (also 12.1)",
-   "note": "Three-way production inconsistency for |x|: the mirrors ship абсолют утга (42 strings), үнэмлэхүй утга (13) and модул (4). The ministry says модул, so that is chosen here — but it contradicts the dominant shipped wording and needs an owner ruling before it goes on a label.",
+   "note": "SENSE SPLIT, per Khas, 26 Aug 2026. These are not three renderings of one term — they are different things:\n  • the VALUE  → «абсолют утга» or «үнэмлэхүй утга» (both correct)\n  • the straight brackets | | → «модул» (the notation itself)\n  • an absolute-value EQUATION → «модулт тэгшитгэл»\n  • taking |x| of a number → «тооноос модул авах»\nSo the site's 'three ways' is not an inconsistency and needs no sweep. The earlier finding that ministry 12.1's «модул» should replace «абсолют утга» was WRONG: 12.1 is about modulus equations, which is the bracket sense.\n  → this entry: the function under the brackets — bracket sense, so модул-.",
    "uses": 2,
-   "rank": 6
+   "rank": 6,
+   "ownerStatus": "confirmed",
+   "polysemous": true
   },
   {
    "en": "applications of derivative",
@@ -9752,6 +9766,45 @@
    "uses": 40,
    "rank": 6,
    "group": "operational"
+  },
+  {
+   "en": "absolute-value bars",
+   "mn": "модул",
+   "provenance": "proposal",
+   "provenanceClaimed": "proposal",
+   "verdict": "owner-confirmed",
+   "confidence": "high",
+   "ownerStatus": "confirmed",
+   "foundIn": [],
+   "note": "The straight brackets | | themselves. Khas, 26 Aug 2026.",
+   "polysemous": true,
+   "group": "owner-added"
+  },
+  {
+   "en": "take the absolute value",
+   "mn": "тооноос модул авах",
+   "provenance": "proposal",
+   "provenanceClaimed": "proposal",
+   "verdict": "owner-confirmed",
+   "confidence": "high",
+   "ownerStatus": "confirmed",
+   "foundIn": [],
+   "note": "The operation. Khas, 26 Aug 2026.",
+   "polysemous": true,
+   "group": "owner-added"
+  },
+  {
+   "en": "modulus",
+   "mn": "модул",
+   "provenance": "proposal",
+   "provenanceClaimed": "proposal",
+   "verdict": "owner-confirmed",
+   "confidence": "high",
+   "ownerStatus": "confirmed",
+   "foundIn": [],
+   "note": "The bracket notation. Distinct from «абсолют утга», the value.",
+   "polysemous": true,
+   "group": "owner-added"
   }
  ],
  "groups": {
