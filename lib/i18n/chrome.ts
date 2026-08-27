@@ -1,12 +1,17 @@
 // Chrome vocabulary — Mongolian for the navigation, buttons, labels, headers,
 // units, and empty/error states that are currently hardcoded English.
 //
-// ═══ STATUS: DRAFT, NOT WIRED. Awaiting Khas's corrections. ═══
+// ═══ STATUS: WIRED ON THE BRANCH. NOT DEPLOYED. ═══
 //
-// Nothing imports this yet, deliberately. Wiring it before the wording is
-// approved would put un-reviewed Mongolian in front of students, and the
-// wording is the part only a Mongolian speaker can settle. Once corrected,
-// this becomes the dictionary the ~120 English-only pages read from.
+// Khas confirmed the two glossary terms the chrome depends on (`focus`,
+// `test`) and wrote the voice strings, so group 1 wiring has started. The
+// pages read from `chrome()` below.
+//
+// NOTHING HERE HAS SHIPPED. docs/MONGOLIAN.md: "Never deploy unreviewed
+// Mongolian." Wiring on the branch is how the wording becomes reviewable at
+// all — it renders on the preview URL where Khas can read it in place, which
+// a table of 91 strings cannot show. Production still serves English on these
+// pages until a deploy is explicitly asked for.
 //
 // WHERE THE WORDS COME FROM. Every entry is marked:
 //   SITE  — this exact English string already has a Mongolian on the site,
@@ -210,7 +215,7 @@ export const MEASURES: ChromeEntry[] = [
   { en: "Multiples of", mn: "-ын үржвэрүүд", src: "NEW", n: 3, note: "same hazard as above" },
 ];
 
-export const ALL_CHROME = [
+export const ALL_CHROME: ChromeEntry[] = [
   ...STRUCTURE,
   ...NAV,
   ...CONTROLS,
@@ -219,3 +224,38 @@ export const ALL_CHROME = [
   ...STATES,
   ...MEASURES,
 ];
+
+// ---------------------------------------------------------------------------
+// Lookup
+// ---------------------------------------------------------------------------
+
+const MN_BY_EN: Record<string, string> = {};
+for (const e of ALL_CHROME) {
+  // An entry with no Mongolian is not a gap to paper over — VOICE entries are
+  // deliberately empty until Khas writes them. Leaving them out of the map
+  // makes chrome() fall through to English, which is the honest rendering.
+  if (e.mn) MN_BY_EN[e.en] = e.mn;
+}
+
+/**
+ * The English string in the reader's language.
+ *
+ * FALLS BACK TO ENGLISH, ALWAYS. A missing entry renders the English rather
+ * than a blank or a key, because a page that silently loses its labels is
+ * harder to notice than one that is half-translated — and this dictionary is
+ * deliberately incomplete while the voice strings are outstanding.
+ *
+ * Never call this with an interpolated string. Mongolian suffixes agree with
+ * what they attach to, so a composed string cannot be looked up; see
+ * `memory/mn-group1-audits.md` §2 for the two sites that need a function
+ * instead.
+ */
+export function chrome(en: string, lang: string): string {
+  if (lang !== "mn") return en;
+  return MN_BY_EN[en] ?? en;
+}
+
+/** Entries still waiting on Khas — used by the coverage test, not by pages. */
+export function untranslated(): ChromeEntry[] {
+  return ALL_CHROME.filter((e) => !e.mn);
+}

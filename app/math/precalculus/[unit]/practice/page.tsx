@@ -3,19 +3,22 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { chrome } from "@/lib/i18n/chrome";
+import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
 import { getPrecalcUnit } from "@/lib/genmath-data/precalculus";
 import ContentGate from "@/components/genmath/ContentGate";
 
-const REVEAL_LABELS = {
-  reveal: "Show solution",
-  hide: "Hide",
-  revealAria: "Show solution",
-  hideAria: "Hide solution",
-};
+const revealLabels = (lang: string) => ({
+  reveal: chrome("Show solution", lang),
+  hide: chrome("Hide", lang),
+  revealAria: chrome("Show solution", lang),
+  hideAria: chrome("Hide solution", lang),
+});
 
 function PrecalcPracticePageInner() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   const unit = getPrecalcUnit(unitSlug);
 
@@ -66,7 +69,7 @@ function PrecalcPracticePageInner() {
         </p>
 
         <div className="space-y-4">
-          <GradedProblemList problems={unit.practice} labels={REVEAL_LABELS} kind="practice" />
+          <GradedProblemList problems={unit.practice} labels={revealLabels(lang)} kind="practice" />
         </div>
       </div>
     </div>
@@ -76,9 +79,10 @@ function PrecalcPracticePageInner() {
 // Content requires an account; the hub and unit pages above stay public.
 export default function PrecalcPracticePage() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate courseKey="precalculus" topicSlug={unitSlug} backHref={`/math/precalculus/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="precalculus" topicSlug={unitSlug} backHref={`/math/precalculus/${unitSlug}`} backLabel={chrome("Back to unit", lang)}>
       <PrecalcPracticePageInner />
     </ContentGate>
   );

@@ -3,11 +3,14 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { chrome } from "@/lib/i18n/chrome";
+import { useLang } from "@/lib/lang-context";
 import { getCalcUnit, getCalcSpine } from "@/lib/genmath-data/calculus";
 
 // A Calculus unit page: what it builds on, then the lessons in order.
 export default function CalcUnitPage() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   const unit = getCalcUnit(unitSlug);
   const spineEntry = getCalcSpine().find((u) => u.slug === unitSlug);
@@ -17,7 +20,7 @@ export default function CalcUnitPage() {
       <div className="min-h-screen pt-20 flex items-center justify-center" style={{ background: "var(--bg)" }}>
         <div className="text-center">
           <p className="serif" style={{ fontWeight: 400, fontSize: 22, color: "var(--fg)" }}>
-            Unit <em className="serif-italic" style={{ color: "var(--accent)" }}>not found</em>.
+            {chrome("Unit not found", lang)}
           </p>
           <Link href="/math/calculus" className="btn btn-line mt-5 inline-flex items-center gap-1.5">
             <ArrowLeft className="h-3.5 w-3.5" /> Back to the course
@@ -68,7 +71,7 @@ export default function CalcUnitPage() {
             style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
           >
             <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>
-              Builds on
+              {chrome("Builds on", lang)}
             </div>
             <p className="text-[14px] leading-relaxed" style={{ color: "var(--fg-1)" }}>
               {buildsOn}
@@ -77,7 +80,7 @@ export default function CalcUnitPage() {
         )}
 
         {/* Lesson list */}
-        <div className="eyebrow mb-4">Lessons</div>
+        <div className="eyebrow mb-4">{chrome("Lessons", lang)}</div>
         <ol className="space-y-3">
           {unit.lessons.map((lesson, i) => (
             <li key={lesson.slug}>
@@ -114,7 +117,7 @@ export default function CalcUnitPage() {
         {/* Practice + Test yourself */}
         {(unit.practice.length > 0 || unit.testYourself.length > 0) && (
           <>
-            <div className="eyebrow mt-10 mb-3">Ready to check yourself?</div>
+            <div className="eyebrow mt-10 mb-3">{chrome("Ready to check yourself?", lang)}</div>
             <div className="flex flex-wrap gap-3">
               {unit.practice.length > 0 && (
                 <Link href={`/math/calculus/${unitSlug}/practice`} className="btn btn-primary">

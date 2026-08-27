@@ -3,22 +3,23 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { chrome } from "@/lib/i18n/chrome";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
 import { getAlg1UnitLocalized } from "@/lib/genmath-data/algebra-1";
 import { useLang } from "@/lib/lang-context";
 import ContentGate from "@/components/genmath/ContentGate";
 
-const REVEAL_LABELS = {
-  reveal: "Show solution",
-  hide: "Hide",
-  revealAria: "Show solution",
-  hideAria: "Hide solution",
-};
+const revealLabels = (lang: string) => ({
+  reveal: chrome("Show solution", lang),
+  hide: chrome("Hide", lang),
+  revealAria: chrome("Show solution", lang),
+  hideAria: chrome("Hide solution", lang),
+});
 
 function Alg1PracticePageInner() {
   const params = useParams();
-  const unitSlug = params.unit as string;
   const { lang } = useLang();
+  const unitSlug = params.unit as string;
   const unit = getAlg1UnitLocalized(unitSlug, lang);
 
   if (!unit) {
@@ -68,7 +69,7 @@ function Alg1PracticePageInner() {
         </p>
 
         <div className="space-y-4">
-          <GradedProblemList problems={unit.practice} labels={REVEAL_LABELS} kind="practice" />
+          <GradedProblemList problems={unit.practice} labels={revealLabels(lang)} kind="practice" />
         </div>
       </div>
     </div>
@@ -78,9 +79,10 @@ function Alg1PracticePageInner() {
 // Content requires an account; the hub and unit pages above stay public.
 export default function Alg1PracticePage() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate courseKey="algebra-1" topicSlug={unitSlug} backHref={`/math/algebra-1/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="algebra-1" topicSlug={unitSlug} backHref={`/math/algebra-1/${unitSlug}`} backLabel={chrome("Back to unit", lang)}>
       <Alg1PracticePageInner />
     </ContentGate>
   );
