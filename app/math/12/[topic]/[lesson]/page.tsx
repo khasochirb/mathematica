@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useLang } from "@/lib/lang-context";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -9,7 +10,7 @@ import FactCard from "@/components/lesson/FactCard";
 import WorkedExampleCard from "@/components/lesson/WorkedExampleCard";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import CommonMistakesList from "@/components/lesson/CommonMistakesList";
-import { getGrade12Topic, getGrade12Lesson } from "@/lib/genmath-data/grade-12";
+import { getGrade12TopicLocalized, getGrade12Lesson } from "@/lib/genmath-data/grade-12";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -22,10 +23,12 @@ const REVEAL_LABELS = {
 
 function GenMathLessonPageInner() {
   const params = useParams();
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const topicSlug = params.topic as string;
   const lessonSlug = params.lesson as string;
 
-  const topic = getGrade12Topic(topicSlug);
+  const topic = getGrade12TopicLocalized(topicSlug, lang);
   const lesson = getGrade12Lesson(topicSlug, lessonSlug);
 
   if (!lesson || !topic) {

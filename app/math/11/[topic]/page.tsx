@@ -1,14 +1,17 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useLang } from "@/lib/lang-context";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getGrade11Topic } from "@/lib/genmath-data/grade-11";
+import { getGrade11TopicLocalized } from "@/lib/genmath-data/grade-11";
 
 export default function GenMathTopicPage() {
   const params = useParams();
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const topicSlug = params.topic as string;
-  const topic = getGrade11Topic(topicSlug);
+  const topic = getGrade11TopicLocalized(topicSlug, lang);
 
   if (!topic) {
     return (
@@ -37,7 +40,7 @@ export default function GenMathTopicPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Courses · Grade 11</div>
+          <div className="eyebrow">{mn ? "Хичээлүүд · 11-р анги" : "Courses · Grade 11"}</div>
         </div>
 
         {/* Topic heading */}
@@ -58,7 +61,7 @@ export default function GenMathTopicPage() {
         </p>
 
         {/* Lesson list */}
-        <div className="eyebrow mb-4">Lessons</div>
+        <div className="eyebrow mb-4">{mn ? "Хичээлүүд" : "Lessons"}</div>
         <ol className="space-y-3 mb-10">
           {topic.lessons.map((lesson, i) => (
             <li key={lesson.slug}>
@@ -95,13 +98,13 @@ export default function GenMathTopicPage() {
         {/* Practice + Test buttons */}
         <div className="flex gap-3 flex-wrap">
           <Link href={`/math/11/${topicSlug}/practice`} className="btn btn-primary">
-            Practice
+            {mn ? "Дасгал" : "Practice"}
           </Link>
           <Link href={`/math/11/${topicSlug}/test`} className="btn btn-line">
-            Test yourself
+            {mn ? "Өөрийгөө шалга" : "Test yourself"}
           </Link>
           <Link href={`/math/problem-bank/11/${topicSlug}`} className="btn btn-line">
-            Problem bank
+            {mn ? "Бодлогын сан" : "Problem bank"}
           </Link>
         </div>
       </div>

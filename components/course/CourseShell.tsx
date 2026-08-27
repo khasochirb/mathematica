@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 import { useParams } from "next/navigation";
 import { getCourseExams } from "@/lib/course-exam";
 import Link from "next/link";
@@ -94,6 +96,68 @@ export const EN_COURSE_LABELS: CourseLabels = {
   },
 };
 
+// Mongolian for the course shell. SIXTEEN pages read these labels — the three
+// Integrated courses and every named course that uses CourseShell — so this
+// object is the highest-leverage translation in group 1.
+//
+// WHERE EACH ONE COMES FROM. Most are lifted verbatim from Mongolian the site
+// already ships (checked against every en/mn pair in the bilingual files), a
+// few are Khas's own voice strings, and the rest are drawn from
+// lib/i18n/chrome.ts. Nothing here is invented on the spot.
+//
+// FOUR ARE DELIBERATELY EMPTY. `courseLabels()` falls back to the English for
+// any blank, so an untranslated label renders in English rather than
+// disappearing. They are blank because no source has them and they are long
+// enough to be prose rather than labels — inventing them would be exactly the
+// translationese docs/MONGOLIAN.md forbids.
+export const MN_COURSE_LABELS: Partial<CourseLabels> = {
+  root: "Курсууд",                              // shipped
+  unitWord: "Нэгж",                             // chrome
+  spineHeading: (n) => `Хөтөлбөр — ${n} нэгж, дарааллаар`, // grade 9's shipped pattern
+  start: "Эхлэх",                               // shipped
+  soon: "Удахгүй",                              // Khas
+  buildsOn: "Уг нь тулгуурлах",                 // chrome — LOW CONFIDENCE, flagged for Khas
+  lessons: "Хичээлүүд",                         // chrome
+  readyHeading: "Өөрийгөө шалгаад үзэх үү?",    // Khas
+  practice: "Дасгал",                           // shipped
+  testYourself: "Өөрийгөө шалга",               // shipped
+  backToCourse: "Курс руу буцах",               // chrome
+  backToUnit: "Нэгж рүү буцах",                 // chrome — рүү/руу unconfirmed
+  unitLead: "Нэгж",                             // chrome
+  lessonLead: "Хичээл",                         // chrome
+  notFound: "олдсонгүй",                        // shipped ("Бодлого олдсонгүй")
+  practiceTitle: "Дасгал",                      // shipped
+  testTitle: "Өөрийгөө шалга",                  // shipped
+  practiceIntro:
+    "Бодлого бүрийг өөрөө бодоод, дараа нь бодолтыг нээж хариугаа шалгаарай.", // shipped verbatim
+  selfGraded: "Өөрийгөө дүгнэ",                 // shipped
+  open: "Нээх",                                 // shipped
+  reveal: {
+    reveal: "Бодолтыг харах",
+    hide: "Нуух",
+    revealAria: "Бодолтыг харах",
+    hideAria: "Бодолтыг нуух",
+  },
+  // selfGradedBody, examsHeading, examsTitle, examsBody: no source has these
+  // and they are prose. Left to Khas.
+};
+
+/**
+ * Course labels in the reader's language, English for anything unwritten.
+ *
+ * Merges rather than switches, so a missing Mongolian label falls back to its
+ * English counterpart instead of rendering blank. A half-translated shell is
+ * legible; a shell with holes in it is not.
+ */
+export function courseLabels(lang: string): CourseLabels {
+  if (lang !== "mn") return EN_COURSE_LABELS;
+  const out = { ...EN_COURSE_LABELS };
+  for (const [k, v] of Object.entries(MN_COURSE_LABELS)) {
+    if (v !== undefined && v !== "") (out as Record<string, unknown>)[k] = v;
+  }
+  return out;
+}
+
 export interface CourseDef {
   /** Path segment identifying the course — e.g. "integrated-1". */
   slug: string;
@@ -122,8 +186,16 @@ function base(course: CourseDef): string {
   return course.basePath ?? `/math/${course.slug}`;
 }
 
-function labelsOf(course: CourseDef): CourseLabels {
-  return course.labels ?? EN_COURSE_LABELS;
+/**
+ * Labels for a course in the reader's language.
+ *
+ * A course may override the whole set via `course.labels`; when it does, that
+ * override wins and no Mongolian is merged in. That is deliberate — an
+ * override exists precisely because the course wants its own wording, and
+ * quietly translating half of it would be worse than leaving it English.
+ */
+function labelsOf(course: CourseDef, lang: string): CourseLabels {
+  return course.labels ?? courseLabels(lang);
 }
 
 const BACK_BUTTON_STYLE = {
@@ -192,8 +264,9 @@ function Shell({ children }: { children: React.ReactNode }) {
 // Exported on its own because the ЭШ hub embeds a course spine inside a page
 // that also carries the topic's formula sheet, rather than on a bare hub page.
 export function CourseSpineList({ course }: { course: CourseDef }) {
+  const { lang } = useLang();
   const spine = course.spine();
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
   const root = base(course);
 
   return (
@@ -261,7 +334,8 @@ export function CourseSpineList({ course }: { course: CourseDef }) {
 
 // --- Course exams card, where the course has papers ------------------------
 function CourseExamsCard({ course }: { course: CourseDef }) {
-  const L = labelsOf(course);
+  const { lang } = useLang();
+  const L = labelsOf(course, lang);
   const count = getCourseExams(course.slug).length;
   if (count === 0) return null;
 
@@ -297,9 +371,10 @@ function CourseExamsCard({ course }: { course: CourseDef }) {
 
 // --- Hub: the course spine, in order --------------------------------------
 export function CourseHubPage({ course }: { course: CourseDef }) {
+  const { lang } = useLang();
   const spine = course.spine();
   const liveCount = spine.filter((u) => u.live).length;
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
 
   return (
     <Shell>
@@ -343,11 +418,12 @@ export function CourseHubPage({ course }: { course: CourseDef }) {
 
 // --- Unit: what it builds on, then the lessons in order --------------------
 export function CourseUnitPage({ course }: { course: CourseDef }) {
+  const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
   const unit = course.unit(unitSlug);
   const spineEntry = course.spine().find((u) => u.slug === unitSlug);
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
   const root = base(course);
 
   if (!unit) {
@@ -441,13 +517,14 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
 
 // --- Lesson: the paced interactive player ---------------------------------
 function LessonInner({ course }: { course: CourseDef }) {
+  const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
   const unit = course.unit(unitSlug);
   const lesson = course.lesson(unitSlug, lessonSlug);
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
   const root = base(course);
 
   if (!lesson || !unit || !lesson.interactive) {
@@ -474,9 +551,10 @@ function LessonInner({ course }: { course: CourseDef }) {
 
 // Content requires an account; the hub and unit pages stay public.
 export function CourseLessonPage({ course }: { course: CourseDef }) {
+  const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
   return (
     <ContentGate courseKey={course.slug} topicSlug={unitSlug} backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <LessonInner course={course} />
@@ -486,10 +564,11 @@ export function CourseLessonPage({ course }: { course: CourseDef }) {
 
 // --- Practice + Test yourself ---------------------------------------------
 function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" | "test" }) {
+  const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
   const unit = course.unit(unitSlug);
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
   const root = base(course);
 
   if (!unit) {
@@ -541,9 +620,10 @@ function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" |
 }
 
 export function CoursePracticePage({ course }: { course: CourseDef }) {
+  const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
   return (
     <ContentGate courseKey={course.slug} topicSlug={unitSlug} backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <ProblemsInner course={course} kind="practice" />
@@ -552,9 +632,10 @@ export function CoursePracticePage({ course }: { course: CourseDef }) {
 }
 
 export function CourseTestPage({ course }: { course: CourseDef }) {
+  const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
-  const L = labelsOf(course);
+  const L = labelsOf(course, lang);
   return (
     <ContentGate courseKey={course.slug} topicSlug={unitSlug} backHref={`${base(course)}/${unitSlug}`} backLabel={L.backToUnit}>
       <ProblemsInner course={course} kind="test" />

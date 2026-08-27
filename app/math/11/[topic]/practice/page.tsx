@@ -1,10 +1,11 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useLang } from "@/lib/lang-context";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getGrade11Topic } from "@/lib/genmath-data/grade-11";
+import { getGrade11TopicLocalized } from "@/lib/genmath-data/grade-11";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const REVEAL_LABELS = {
@@ -16,8 +17,10 @@ const REVEAL_LABELS = {
 
 function GenMathPracticePageInner() {
   const params = useParams();
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const topicSlug = params.topic as string;
-  const topic = getGrade11Topic(topicSlug);
+  const topic = getGrade11TopicLocalized(topicSlug, lang);
 
   if (!topic) {
     return (
