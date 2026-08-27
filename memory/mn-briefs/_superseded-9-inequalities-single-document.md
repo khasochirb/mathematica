@@ -1,3 +1,17 @@
+> **SUPERSEDED, 26 Aug 2026.** Kept as history only.
+>
+> `docs/MONGOLIAN.md` splits the brief in two — a teacher-facing document and a
+> Build-facing one — because this single document was wrong for both readers at
+> once: it asked a maths teacher to care about `problemId` stability, and buried
+> the pedagogy under JSON. Generated briefs now live in
+> `memory/mn-briefs/<corpus>-<slug>/{teacher,build}.md`, produced by
+> `scripts/i18n/mn_brief.py`.
+>
+> Two things in here are also now WRONG and were corrected in the new format:
+> §4 permitted changed numbers while §7 rule 4 forbade changing currency
+> (worked examples and tryIt now move to \u20ae and Build rewrites the check);
+> and §9 had no owner review step before applying.
+
 # MN authoring brief — Grade 9 · Тэнцэтгэл биш ба абсолют утга
 
 **Topic slug:** `inequalities-and-absolute-value` · **Corpus:** `data/genmath/9/`

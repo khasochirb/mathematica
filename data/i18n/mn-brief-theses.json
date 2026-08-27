@@ -1,0 +1,55 @@
+{
+ "note": "The judgement half of each authoring brief: what carries a topic, and where students reliably break. scripts/i18n/mn_brief.py reads this and drops it into teacher.md. Kept as DATA, not hand-edited into the generated file, for the same reason MN mirrors are never hand-edited — a regeneration would silently destroy it.",
+ "howToWrite": "Two or three ideas, no more. Each one names something a student gets WRONG when they learn it as a procedure instead of a reason. Written for a Mongolian maths teacher who will decide how to teach it; never a summary of the English lesson.",
+ "generated": "2026-08-26",
+ "theses": {
+  "10/quadratic-equations": {
+   "carries": [
+    "**Every method solves the same equation.** Square roots, factoring, completing the square and the formula are four routes to one place, and the point of the topic is knowing which route the shape of the equation asks for — not memorising four procedures. A student who leaves able to run all four but unable to choose has not learned the topic.",
+    "**±, not +.** `x² = 49` has two answers. This is the single most reliable error in the topic, and it is a reasoning failure, not a slip: squaring loses the sign, so un-squaring must put it back. Teach why the negative root is there and it stops being forgotten.",
+    "**The discriminant is a question you can ask before solving.** `b² − 4ac` tells you how many real solutions exist without finding them. Students who meet it as the last third of the formula never use it; students who meet it as a cheap look-ahead do."
+   ],
+   "breaks": "Reading b and c without their signs, when the equation is not yet in standard form. Half the topic's wrong answers start here, before any method is chosen."
+  },
+  "10/quadratic-functions": {
+   "carries": [
+    "**A parabola is a shape you can read.** Vertex, axis of symmetry, intercepts and direction of opening are all visible in the algebra before anything is plotted. The topic is about learning to read them off, not about plotting points and joining them up.",
+    "**Vertex form and standard form say the same thing differently.** Each one hands you a different fact for free — vertex form the turning point, standard form the y-intercept. Converting between them is worth doing precisely because it is the same function.",
+    "**Maximum and minimum are the same idea as the vertex.** Real questions about profit, height and area are vertex questions wearing a context. If a student sees that, word problems stop being a separate skill."
+   ],
+   "breaks": "Sign of the vertex's x-coordinate — the formula gives −b/2a, and the minus is dropped constantly."
+  },
+  "10/polynomials-and-factoring": {
+   "carries": [
+    "**Factoring is multiplication read backwards.** Every factoring technique is a multiplication pattern recognised in reverse. Students taught the techniques as a list of tricks cannot tell which applies; students taught them as patterns can, because they know what each one produces.",
+    "**Always take out the common factor first.** Not a tidiness rule — it is what makes the remaining expression simple enough to recognise. Skipping it is why a factorable expression looks unfactorable.",
+    "**Check by expanding.** Factoring is the one topic where a student can verify their own answer completely, in seconds, with no help. Build that habit here and it pays for the rest of algebra."
+   ],
+   "breaks": "The difference of squares applied to a SUM. `a² + b²` does not factor over the reals, and students who pattern-match on the shape rather than the operation will factor it anyway."
+  },
+  "10/exponential-functions": {
+   "carries": [
+    "**Exponential growth is repeated multiplication, and that is why it wins.** The comparison against a straight line is the topic's whole point: a student needs to see that a slower-starting exponential overtakes any linear function, and to feel why.",
+    "**The base tells you everything.** Greater than 1 grows, between 0 and 1 decays, and the distance from 1 sets the speed. One number, read directly.",
+    "**Percent change and the base are the same fact.** A 5% rise per year IS a base of 1.05. Students who hold these as two separate ideas cannot model anything real."
+   ],
+   "breaks": "Reading a 20% decrease as a base of 0.2 rather than 0.8."
+  },
+  "10/radicals-and-rational-exponents": {
+   "carries": [
+    "**A radical IS a fractional exponent.** Not a related notation — the same object written twice. Once a student believes this, every exponent law they already know transfers to radicals for free, and the topic more than halves in size.",
+    "**Simplifying means pulling out perfect powers.** There is one move, applied repeatedly. The rest is arithmetic.",
+    "**√(x²) = |x|, not x.** This is the topic's honest difficulty and it is worth the time. A square root returns the non-negative root, so the absolute value is not pedantry — it is what keeps the algebra true for negative x."
+   ],
+   "breaks": "Distributing a root over a sum: √(a+b) is not √a + √b. Reliable, and worth an explicit counterexample with numbers."
+  },
+  "10/rational-expressions": {
+   "carries": [
+    "**These are fractions, with all the same rules.** Common denominators, cancelling common factors, multiply straight across, divide by flipping. A student who sees them as fractions already knows the operations; one who sees them as a new topic learns four procedures again.",
+    "**You may only cancel factors, never terms.** The single most common error in the topic, and it comes from cancelling what looks the same rather than what is multiplied. Worth teaching as a rule with a reason attached.",
+    "**Excluded values are part of the answer.** A denominator that could be zero restricts the domain, and the restriction survives simplification — even after the offending factor cancels. Dropping it changes what the expression means."
+   ],
+   "breaks": "Cancelling across a sum: in (x+3)/(x+5) the x's cannot go. Nearly universal, and it needs numbers to disprove, not a rule."
+  }
+ }
+}
