@@ -84,6 +84,37 @@ group 3 (lesson prose) are blocked by design.
   learned to require phrase adjacency — before that, «модны» in one objective
   and «диаграмм» in another were being stitched into a false match.
 
+- **The rewrite gate exists now: `scripts/i18n/mn_skeleton.py`.** It was the
+  true blocker for group 3 — `mn_apply.py` asserts string parity, so the first
+  rewritten topic would have failed it for being correct. Structure is
+  enforced (lesson count/slugs/order, problem ids, step kind sequences,
+  option counts, correctIndex, check[] presence, CYR-IN-MATH); prose never is.
+  All 25 shipped mirrors pass. `npm run verify:mn-skeleton`.
+
+- **Single-asterisk emphasis is a live display bug in BOTH languages.**
+  MathText renders `**bold**` only (`MathText.tsx:24`), so a single `*` reaches
+  the reader literally — **1,032 English strings** against 36 Mongolian,
+  including IB markscheme annotations like `*(A1 A1)*`. It is advisory in the
+  gate rather than fatal, because failing on a pre-existing English habit would
+  make it red from birth. Nobody has recorded this before.
+
+- **There are two registers in production and nobody declared the line.**
+  Grade 7 is pure «чи» (0 formal). Grade 8 is «та»-dominant in its teaching
+  prose (40 strings). The app UI is formal throughout (73 across 31 files).
+  Grade 6's 55 formal hits are 47 instances of ONE completion template plus 8
+  prose strings — not a re-register. May well be deliberate; it is not written
+  down. `memory/mn-group1-audits.md` §1.
+
+- **Runtime string composition: 53 sites, 2 certain bugs.** `lib/ratings.ts`
+  builds `${u.title}-ийг эзэмших` where the accusative must agree with the
+  title's final vowel and 215 titles can reach it; the chrome batch's
+  `Factors of `/`Multiples of ` are the same class. 46 sites are safe (number +
+  uninflected noun). Two need a Mongolian-speaker call, not a code one.
+
+- **Nine chrome strings moved to Khas's voice pile** and are marked
+  `src: "VOICE"` with `mn: ""` in `lib/i18n/chrome.ts`. My earlier Mongolian
+  for them is withdrawn. 82 labels stay.
+
 - **Judge long labels differently from short terms.** A six-word skill name is
   COMPOSED from source vocabulary, not quoted from it. Without that split, 99
   legitimate compositions read as overclaims. Anyone extending

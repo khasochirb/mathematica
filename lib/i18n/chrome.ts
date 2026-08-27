@@ -22,6 +22,12 @@
 //   NEW   — proposed here. THESE ARE THE ONES TO CORRECT. They are modelled
 //           on the SITE entries' register and morphology, but I do not speak
 //           Mongolian and cannot judge whether they read naturally.
+//   VOICE — NOT MINE TO WRITE, and `mn` is deliberately empty. Per
+//           docs/MONGOLIAN.md, anything that persuades or speaks to a student
+//           is Khas's, and Claude never proposes a draft for it — a draft
+//           anchors the writing, which is the whole reason for the rule.
+//           Nine strings moved here on 26 Aug; my earlier Mongolian for them
+//           is withdrawn, not offered. See memory/mn-group1-audits.md §3.
 //
 // Register: friendly-instructional «чи», matching the EN "you" and the
 // existing mirrors — never formal «та». Guillemets «...» for quotes.
@@ -33,8 +39,8 @@
 export type ChromeEntry = {
   en: string;
   mn: string;
-  /** SITE = verbatim from the site · DERIV = built from a related site string · GLOSS = glossary-locked · NEW = proposed, please correct */
-  src: "SITE" | "DERIV" | "GLOSS" | "NEW";
+  /** SITE = verbatim from the site · DERIV = built from a related site string · GLOSS = glossary-locked · NEW = proposed, please correct · VOICE = Khas writes it, `mn` is deliberately empty */
+  src: "SITE" | "DERIV" | "GLOSS" | "NEW" | "VOICE";
   /** occurrences across English-only files */
   n?: number;
   /** why this wording, where it is not obvious */
@@ -81,7 +87,7 @@ export const NAV: ChromeEntry[] = [
   { en: "Next step", mn: "Дараагийн алхам", src: "NEW", n: 2 },
   { en: "Start", mn: "Эхлэх", src: "SITE", n: 15 },
   { en: "Continue", mn: "Үргэлжлүүлэх", src: "SITE" },
-  { en: "Soon", mn: "Удахгүй", src: "NEW", n: 15, note: "badge on unbuilt doors (rule 7 legacy tier) — must read as a promise, not an apology" },
+  { en: "Soon", mn: "", src: "VOICE", n: 15, note: "badge on unbuilt doors (rule 7 legacy tier) — must read as a promise, not an apology" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -129,9 +135,9 @@ export const SECTIONS: ChromeEntry[] = [
   { en: "Watch out", mn: "Болгоомжил", src: "NEW", n: 3, note: "heads the common-mistakes block" },
   { en: "Real-world picture", mn: "Бодит амьдрал дээр", src: "NEW", n: 3 },
   { en: "Builds on", mn: "Уг нь тулгуурлах", src: "NEW", n: 12, note: "LOW CONFIDENCE. Labels the prerequisite list on a unit page. Wants a natural Mongolian phrase for «you need this first», not a literal rendering of the English metaphor — please rewrite freely." },
-  { en: "Focus first on", mn: "Эхлээд анхаарах", src: "DERIV", n: 5, note: 'site: "Focus units"→«Анхаарах нэгжүүд»' },
-  { en: "Important for you", mn: "Танд чухал", src: "NEW", n: 4, note: "«танд» is formal-you; register elsewhere is «чи». Should this be «чамд»? It appears in a recommendation banner." },
-  { en: "Ready to check yourself?", mn: "Өөрийгөө шалгахад бэлэн үү?", src: "NEW", n: 12 },
+  { en: "Focus first on", mn: "", src: "VOICE", n: 5, note: 'site: "Focus units"→«Анхаарах нэгжүүд»' },
+  { en: "Important for you", mn: "", src: "VOICE", n: 4, note: "«танд» is formal-you; register elsewhere is «чи». Should this be «чамд»? It appears in a recommendation banner." },
+  { en: "Ready to check yourself?", mn: "", src: "VOICE", n: 12 },
   { en: "Self-graded", mn: "Өөрийгөө дүгнэ", src: "SITE", n: 15 },
 ];
 
@@ -147,9 +153,9 @@ export const FORMS: ChromeEntry[] = [
   { en: "first number", mn: "эхний тоо", src: "NEW", n: 2 },
   { en: "second number", mn: "хоёр дахь тоо", src: "NEW", n: 2 },
   { en: "At least 8 characters", mn: "Дор хаяж 8 тэмдэгт", src: "NEW" },
-  { en: "Free to join", mn: "Бүртгүүлэх үнэгүй", src: "NEW" },
+  { en: "Free to join", mn: "", src: "VOICE" },
   { en: "Sign up again", mn: "Дахин бүртгүүлэх", src: "NEW", n: 2 },
-  { en: "Choose your level", mn: "Түвшингээ сонго", src: "NEW", n: 1 },
+  { en: "Choose your level", mn: "", src: "VOICE", n: 1 },
   { en: "you@example.com", mn: "you@example.com", src: "NEW", n: 2, note: "placeholder stays Latin — it is an example address, not prose" },
 ];
 
@@ -165,17 +171,17 @@ export const STATES: ChromeEntry[] = [
   { en: "Coming soon.", mn: "Удахгүй нэмэгдэнэ.", src: "NEW", n: 1 },
   {
     en: "Complete a mock test and your trajectory appears here.",
-    mn: "Тест дуусгасны дараа таны онооны өсөлт энд харагдана.",
-    src: "DERIV",
+    mn: "",
+    src: "VOICE",
     n: 1,
     note: 'built from the established "Complete a test to plot your trajectory."→«Графикийг үзэхийн тулд тест дуусгана уу.» and "Score trajectory"→«Онооны өсөлт»',
   },
   {
     en: "Your confirmation link expired. Enter your email to resend.",
-    mn: "Баталгаажуулах холбоос хугацаа нь дууссан байна. И-мэйлээ оруулбал дахин илгээнэ.",
-    src: "NEW",
+    mn: "",
+    src: "VOICE",
   },
-  { en: "Confirmation email sent. Check your inbox.", mn: "Баталгаажуулах и-мэйл илгээлээ. Ирсэн захиагаа шалгана уу.", src: "NEW" },
+  { en: "Confirmation email sent. Check your inbox.", mn: "", src: "VOICE" },
 ];
 
 // ---------------------------------------------------------------------------
