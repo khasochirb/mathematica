@@ -174,18 +174,41 @@ everything after them.
 
 ---
 
-## The gate — before group 3, whenever that is reached
+## The gate — **done**, 26 Aug 2026
 
-`scripts/i18n/mn_apply.py` asserts one Mongolian string per English string
-in the same slot. **It is a translation machine, and the first rewritten
-topic will fail it.**
+`scripts/i18n/mn_skeleton.py` replaces the walker's parity assertion.
 
-- **Keep** the Cyrillic-in-maths scan and the single-asterisk scan. Neither
-  makes a parity assumption.
-- **Replace the walker** with a skeleton comparison: lesson count, slugs,
-  order, problem ids, option counts, widget `kind` sequences, `check[]`
-  presence.
-- **Never compare prose.**
+```
+python3 scripts/i18n/mn_skeleton.py <corpus> <slug>   # one topic
+python3 scripts/i18n/mn_skeleton.py --all             # every mirror
+npm run verify:mn-skeleton                            # both, via vitest
+```
+
+**Enforced** — lesson count, slugs and order · problem ids
+(`workedExamples`, `tryIt`, `practice`, `testYourself`) · interactive step
+`kind` sequences · `problemId` references · tapQuestion option counts and
+`correctIndex` · `check[]` presence wherever the English has one ·
+CYR-IN-MATH.
+
+**Never compared** — sentence counts, paragraph counts, fact counts,
+wording, or which worked example teaches what with which numbers.
+
+`mn_apply.py` is now **legacy**. It still works for a string-parity
+translation, but it cannot express a rewrite and must not gate one.
+
+Two things learned building it, both worth keeping:
+
+- **Ids are the hard part.** `worked` and `tryIt` interactive steps carry no
+  content — they reference a problem by `problemId`, and every student
+  attempt is recorded against that id. A rewrite may change an example's
+  numbers entirely; changing its **id** breaks the widget and detaches the
+  student's history.
+- **Single-asterisk emphasis is advisory, not fatal.** `MathText` renders
+  `**bold**` only (`components/esh/MathText.tsx:24`), so a single `*`
+  reaches the reader literally — but this is inherited from the English,
+  which carries **1,032** such strings against the mirrors' 36. Failing the
+  gate on a pre-existing English habit would make it red from birth, and a
+  gate nobody can get green is a gate nobody reads.
 
 ---
 
