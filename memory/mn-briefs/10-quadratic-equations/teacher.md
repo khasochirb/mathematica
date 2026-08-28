@@ -235,6 +235,74 @@ next topic uses the same word.
 
 ---
 
+## What to hand back
+
+Plain text or a document — **not** JSON, and nothing needs to look like
+code. One block per lesson, in the order above. Use the lesson’s slug as
+its heading so Build can match it up; everything else is prose.
+
+```
+## meet-the-quadratics
+
+TITLE:      <the lesson title in Mongolian>
+OBJECTIVE:  <what the student can do after it, one sentence>
+KEY IDEA:   <the one sentence that carries the lesson>
+
+TEACHING:
+<your explanation. As many paragraphs as it takes — more than the
+English, fewer, in a different order. Blank line between paragraphs.>
+
+MISTAKES:
+- <a mistake students make, and why>
+
+WORKED qe1-we1:
+  PROBLEM:  <the question, your numbers>
+  WORKING:  <how it is solved, step by step>
+  ANSWER:   <the answer, exactly>
+
+TRY qe1-t1:
+  PROBLEM:  <the question>
+  ANSWER:   <the answer, exactly>
+
+## solving-by-square-roots
+
+TITLE:      <the lesson title in Mongolian>
+OBJECTIVE:  <what the student can do after it, one sentence>
+KEY IDEA:   <the one sentence that carries the lesson>
+
+TEACHING:
+<your explanation. As many paragraphs as it takes — more than the
+English, fewer, in a different order. Blank line between paragraphs.>
+
+MISTAKES:
+- <a mistake students make, and why>
+
+WORKED qe2-we1:
+  PROBLEM:  <the question, your numbers>
+  WORKING:  <how it is solved, step by step>
+  ANSWER:   <the answer, exactly>
+
+TRY qe2-t1:
+  PROBLEM:  <the question>
+  ANSWER:   <the answer, exactly>
+
+...and so on for the remaining lessons.
+```
+
+**Keep the ids** (`qe1-we1` and so on) exactly
+as they appear. They are how the site connects your example to the student
+who answered it; the numbers inside are yours to change, the id is not.
+
+**The ANSWER line matters more than it looks.** Build turns it into a check
+the computer runs, so it has to be exact — write $\frac{3}{4}$ or
+$2\sqrt{5}$ rather than 0.75 or 4.47, unless the answer really is a
+rounded decimal, in which case say so.
+
+For the practice and test-yourself sets at the end of the topic, hand back
+**only the wording** — their numbers and answers stay as they are.
+
+---
+
 ## How it should sound
 
 **«та», formal.** A student on this product is a customer, and «чи» is not
