@@ -32,7 +32,7 @@ describe("course shell labels", () => {
     const mn = courseLabels("mn");
     const CYRILLIC = /[А-Яа-яӨөҮү]/;
     for (const key of Object.keys(MN_COURSE_LABELS)) {
-      const v = (mn as Record<string, unknown>)[key];
+      const v = (mn as unknown as Record<string, unknown>)[key];
       if (typeof v === "string") {
         expect(CYRILLIC.test(v), `"${key}" is in MN_COURSE_LABELS but resolved to "${v}"`).toBe(true);
       }
