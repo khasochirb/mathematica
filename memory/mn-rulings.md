@@ -118,3 +118,36 @@ Applied verbatim to `lib/i18n/chrome.ts`, marked `src: "VOICE"`.
 
 `depression` («доош харах өнцөг») and `reference angle` («жишиг өнцөг») are
 marked `ownerStatus: paused` and must not be used until Khas confirms.
+
+### R9 · The ЭШ set-theory vocabulary, and the complement notation
+
+> "those sound good to me" — 30 Aug 2026, on the five terms the ЭШ
+> sets-and-operations draft could not ground in either source.
+
+| English | Mongolian | grounded in |
+|---|---|---|
+| complement (set/event) | гүйцээлт | shipped mirrors only (7×) — **not** the ministry or the ЭШ bank |
+| proper subset | жинхэнэ дэд олонлог | nothing — 0 hits in both |
+| disjoint | огтлолцолгүй | nothing — the bank writes $A \cap B = \emptyset$ and leaves it unnamed |
+| distributive law | хуваарилах хууль | nothing — 0 hits in both |
+| De Morgan's laws | Де Морганы хууль | nothing — a proper-name transliteration |
+
+**Four of the five rest on Khas's judgement alone.** That is recorded per term
+in `ownerStatus` rather than left implicit, because the provenance machinery
+would otherwise report them as unverified and a later session would re-raise a
+question that has been answered.
+
+**What changed as a result.** The `complement` entry was a single key holding
+«нэмэлт» — the *angle* sense — with `polysemous: true` and no split. It is now
+two keys: `complement (angle)` → «нэмэлт», and `complement (set/event)` →
+«гүйцээлт». This is the failure the polysemous flag existed to catch: one key
+would have handed every algebra and probability brief the angle word for a set
+complement, and nothing downstream would have noticed.
+
+`cardinality` → «чадал» is added at the same time, grounded in the bank's own
+stem gloss («$|X|$ - $X$ олонлогийн чадал буюу элементийн тоог тэмдэглэв»).
+
+**Notation, settled the same day:** the complement is $\overline{A}$, never
+$A'$ — 13 overlines to 0 primes across the 54 past papers — and this is applied
+to the **English** ЭШ source as well, so the hub carries one notation in both
+languages. Full reasoning and its caveat in `memory/mn-drafts/README.md`.
