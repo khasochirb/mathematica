@@ -164,22 +164,22 @@
       "slug": "union-intersection-difference",
       "title": "Union, Intersection, Difference & Complement",
       "concreteComparison": "Two clubs at one school: the union is everyone who joined anything, the intersection is the students running between both rooms, the difference is one club with the double-bookers removed, and the complement is everyone still at home.",
-      "objective": "Compute $A \\cup B$, $A \\cap B$, $A \\setminus B$ and $A'$ for concrete sets, and read each operation as a plain-language condition.",
+      "objective": "Compute $A \\cup B$, $A \\cap B$, $A \\setminus B$ and $\\overline{A}$ for concrete sets, and read each operation as a plain-language condition.",
       "concept": [
         "**Union** $A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\}$ — in at least one. **Intersection** $A \\cap B = \\{x : x \\in A \\text{ and } x \\in B\\}$ — in both. Two sets with $A \\cap B = \\varnothing$ are **disjoint**.",
-        "**Difference** $A \\setminus B$ keeps what is in $A$ but not in $B$ — and it is not symmetric: $A \\setminus B \\ne B \\setminus A$ in general. Within a stated **universal set** $U$, the **complement** $A' = U \\setminus A$ is everything $A$ leaves out, so $|A'| = |U| - |A|$.",
+        "**Difference** $A \\setminus B$ keeps what is in $A$ but not in $B$ — and it is not symmetric: $A \\setminus B \\ne B \\setminus A$ in general. Within a stated **universal set** $U$, the **complement** $\\overline{A} = U \\setminus A$ is everything $A$ leaves out, so $|\\overline{A}| = |U| - |A|$.",
         "On the exam these appear as conditions chained in words: 'divisible by 2 or 3' is a union, 'divisible by 2 and 3' is an intersection, 'even but not a multiple of 3' is a difference. Translate the sentence into the operation first, then count."
       ],
       "keyIdea": "Or $\\to \\cup$, and $\\to \\cap$, but-not $\\to \\setminus$, everything-else $\\to$ complement. The operation IS the sentence.",
       "facts": [
         {
           "title": "The four operations",
-          "latex": "A \\cup B,\\quad A \\cap B,\\quad A \\setminus B,\\quad A' = U \\setminus A",
+          "latex": "A \\cup B,\\quad A \\cap B,\\quad A \\setminus B,\\quad \\overline{A} = U \\setminus A",
           "explanation": "Or, and, but-not, everything-else — each word picks its operation."
         },
         {
           "title": "Complement count",
-          "latex": "|A'| = |U| - |A|",
+          "latex": "|\\overline{A}| = |U| - |A|",
           "explanation": "Counting what you don't want is often faster than counting what you do."
         }
       ],
@@ -228,7 +228,7 @@
         {
           "id": "esh-sets-l2-t2",
           "statement": "In $U = \\{1, \\ldots, 40\\}$, how many numbers are NOT multiples of $5$?",
-          "solution": "Multiples of $5$: $|A| = 8$. Complement: $|A'| = 40 - 8 = 32$.",
+          "solution": "Multiples of $5$: $|A| = 8$. Complement: $|\\overline{A}| = 40 - 8 = 32$.",
           "check": [
             "Eq(floor(Rational(40, 5)), 8)",
             "Eq(40 - 8, 32)"
@@ -302,7 +302,7 @@
             "title": "What sticks",
             "points": [
               "$\\cup$ = or, $\\cap$ = and, $\\setminus$ = but-not (directional!), $'$ = everything else",
-              "$|A'| = |U| - |A|$ — complements turn hard counts into easy ones",
+              "$|\\overline{A}| = |U| - |A|$ — complements turn hard counts into easy ones",
               "Never add $|A| + |B|$ for a union without removing the overlap"
             ]
           }
@@ -453,15 +453,15 @@
       "concreteComparison": "Negating 'cheap AND fast' gives 'expensive OR slow' — the NOT distributes and flips the connective. De Morgan's laws are that everyday negation, written in set language.",
       "objective": "Apply De Morgan's laws and the distributive laws to rewrite and count complements of unions and intersections.",
       "concept": [
-        "**De Morgan's laws**: $(A \\cup B)' = A' \\cap B'$ and $(A \\cap B)' = A' \\cup B'$. Complement flips union with intersection. In words: NOT (in either) = outside both; NOT (in both) = missing from at least one.",
+        "**De Morgan's laws**: $\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}$ and $\\overline{A \\cap B} = \\overline{A} \\cup \\overline{B}$. Complement flips union with intersection. In words: NOT (in either) = outside both; NOT (in both) = missing from at least one.",
         "The **distributive laws** mirror arithmetic: $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$ and $A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C)$ — the second has no arithmetic analogue, which is why it feels wrong and is tested.",
-        "The exam's favorite use is counting: 'how many are in neither club' is $|(A \\cup B)'| = |U| - |A \\cup B|$ — one De Morgan step turns a fussy condition into a subtraction."
+        "The exam's favorite use is counting: 'how many are in neither club' is $|\\overline{A \\cup B}| = |U| - |A \\cup B|$ — one De Morgan step turns a fussy condition into a subtraction."
       ],
       "keyIdea": "Complement swaps $\\cup$ and $\\cap$ (De Morgan). 'Neither' means $|U| - |A \\cup B|$ — always.",
       "facts": [
         {
           "title": "De Morgan's laws",
-          "latex": "(A \\cup B)' = A' \\cap B', \\qquad (A \\cap B)' = A' \\cup B'",
+          "latex": "\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}, \\qquad \\overline{A \\cap B} = \\overline{A} \\cup \\overline{B}",
           "explanation": "The complement bar breaks over the operation and flips it."
         },
         {
@@ -473,8 +473,8 @@
       "workedExamples": [
         {
           "id": "esh-sets-l4-we1",
-          "statement": "In $U = \\{1, \\ldots, 20\\}$, $A$ = multiples of $4$, $B$ = multiples of $5$. Verify De Morgan by counting: $|(A \\cup B)'|$ and $|A' \\cap B'|$.",
-          "solution": "$|A| = 5$, $|B| = 4$, $A \\cap B$ = multiples of $20$: $|A \\cap B| = 1$. So $|A \\cup B| = 5 + 4 - 1 = 8$ and $|(A \\cup B)'| = 20 - 8 = 12$. Directly: $A' \\cap B'$ is the numbers divisible by neither — the same $12$ elements. Both routes agree, as De Morgan promises.",
+          "statement": "In $U = \\{1, \\ldots, 20\\}$, $A$ = multiples of $4$, $B$ = multiples of $5$. Verify De Morgan by counting: $|\\overline{A \\cup B}|$ and $|\\overline{A} \\cap \\overline{B}|$.",
+          "solution": "$|A| = 5$, $|B| = 4$, $A \\cap B$ = multiples of $20$: $|A \\cap B| = 1$. So $|A \\cup B| = 5 + 4 - 1 = 8$ and $|\\overline{A \\cup B}| = 20 - 8 = 12$. Directly: $\\overline{A} \\cap \\overline{B}$ is the numbers divisible by neither — the same $12$ elements. Both routes agree, as De Morgan promises.",
           "check": [
             "Eq(floor(Rational(20, 4)), 5)",
             "Eq(floor(Rational(20, 5)), 4)",
@@ -486,7 +486,7 @@
         {
           "id": "esh-sets-l4-we2",
           "statement": "Of $32$ students, $18$ passed algebra and the set of students who failed BOTH algebra and geometry has $6$ students. How many passed at least one subject?",
-          "solution": "'Failed both' is $(A \\cup G)'$ by De Morgan. So $|A \\cup G| = 32 - 6 = 26$ students passed at least one.",
+          "solution": "'Failed both' is $\\overline{A \\cup G}$ by De Morgan. So $|A \\cup G| = 32 - 6 = 26$ students passed at least one.",
           "check": [
             "Eq(32 - 6, 26)"
           ]
@@ -494,21 +494,21 @@
       ],
       "commonMistakes": [
         {
-          "text": "Distributing the complement without flipping: $(A \\cup B)' = A' \\cup B'$.",
-          "correction": "The operation flips: $(A \\cup B)' = A' \\cap B'$. Check with a tiny example — $U = \\{1,2\\}$, $A = \\{1\\}$, $B = \\{2\\}$ breaks the unflipped version.",
+          "text": "Distributing the complement without flipping: $\\overline{A \\cup B} = \\overline{A} \\cup \\overline{B}$.",
+          "correction": "The operation flips: $\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}$. Check with a tiny example — $U = \\{1,2\\}$, $A = \\{1\\}$, $B = \\{2\\}$ breaks the unflipped version.",
           "authored": true
         },
         {
           "text": "Reading 'not both' as 'neither'.",
-          "correction": "'Not both' is $(A \\cap B)' $ — missing from at least one. 'Neither' is $(A \\cup B)'$ — missing from both. They differ by everyone in exactly one set.",
+          "correction": "'Not both' is $\\overline{A \\cap B} $ — missing from at least one. 'Neither' is $\\overline{A \\cup B}$ — missing from both. They differ by everyone in exactly one set.",
           "authored": true
         }
       ],
       "tryIt": [
         {
           "id": "esh-sets-l4-t1",
-          "statement": "In $U$ with $|U| = 50$: $|A| = 23$, $|B| = 19$, $|A \\cap B| = 8$. Find $|A' \\cap B'|$.",
-          "solution": "$|A \\cup B| = 23 + 19 - 8 = 34$; De Morgan turns the target into $|(A \\cup B)'| = 50 - 34 = 16$.",
+          "statement": "In $U$ with $|U| = 50$: $|A| = 23$, $|B| = 19$, $|A \\cap B| = 8$. Find $|\\overline{A} \\cap \\overline{B}|$.",
+          "solution": "$|A \\cup B| = 23 + 19 - 8 = 34$; De Morgan turns the target into $|\\overline{A \\cup B}| = 50 - 34 = 16$.",
           "check": [
             "Eq(23 + 19 - 8, 34)",
             "Eq(50 - 34, 16)"
@@ -516,8 +516,8 @@
         },
         {
           "id": "esh-sets-l4-t2",
-          "statement": "With the same data, how many elements are in $A' \\cup B'$?",
-          "solution": "De Morgan: $A' \\cup B' = (A \\cap B)'$, so the count is $50 - 8 = 42$.",
+          "statement": "With the same data, how many elements are in $\\overline{A} \\cup \\overline{B}$?",
+          "solution": "De Morgan: $\\overline{A} \\cup \\overline{B} = \\overline{A \\cap B}$, so the count is $50 - 8 = 42$.",
           "check": [
             "Eq(50 - 8, 42)"
           ]
@@ -572,7 +572,7 @@
             "kind": "recap",
             "title": "What sticks",
             "points": [
-              "$(A \\cup B)' = A' \\cap B'$ and $(A \\cap B)' = A' \\cup B'$",
+              "$\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}$ and $\\overline{A \\cap B} = \\overline{A} \\cup \\overline{B}$",
               "'Neither' $= |U| - |A \\cup B|$; 'not both' $= |U| - |A \\cap B|$",
               "When a complement looks hard, De Morgan it into a subtraction"
             ]
@@ -654,7 +654,7 @@
     },
     {
       "id": "esh-sets-p8",
-      "statement": "$|U| = 45$, $|A| = 21$, $|B| = 17$, $|A' \\cap B'| = 15$. Find $|A \\cap B|$.",
+      "statement": "$|U| = 45$, $|A| = 21$, $|B| = 17$, $|\\overline{A} \\cap \\overline{B}| = 15$. Find $|A \\cap B|$.",
       "solution": "De Morgan: $|A \\cup B| = 45 - 15 = 30$. Then $|A \\cap B| = 21 + 17 - 30 = 8$.",
       "check": [
         "Eq(45 - 15, 30)",
@@ -729,8 +729,8 @@
     },
     {
       "id": "esh-sets-q6",
-      "statement": "$|U| = 36$, $|A \\cap B| = 7$. How many elements are in $A' \\cup B'$?",
-      "solution": "De Morgan: $A' \\cup B' = (A \\cap B)'$, so $36 - 7 = 29$.",
+      "statement": "$|U| = 36$, $|A \\cap B| = 7$. How many elements are in $\\overline{A} \\cup \\overline{B}$?",
+      "solution": "De Morgan: $\\overline{A} \\cup \\overline{B} = \\overline{A \\cap B}$, so $36 - 7 = 29$.",
       "check": [
         "Eq(36 - 7, 29)"
       ]

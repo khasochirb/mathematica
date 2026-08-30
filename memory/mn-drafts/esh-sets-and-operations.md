@@ -29,18 +29,39 @@ These are changes to what lesson 1 said when it was drafted alone. Each one came
 out of reading the ЭШ bank rather than out of taste, and each one applies to the
 whole topic.
 
-### 1. The complement is $\overline{A}$, not $A'$
+### 1. The complement is $\overline{A}$, not $A'$ — in both languages
 
-The English source writes $A'$. **The ЭШ bank never does.** Every complement in
-the bank is an overline — «$A \cap \overline{B}$ нь $A$-д орших боловч $B$-д
-орохгүй цэгүүдийн олонлог» — and every prime in the bank is a derivative
-($P'(-3)$, $V'(x)$) or a reflected point ($A' = 2F - A$). On a course that also
-teaches calculus, shipping $A'$ for *complement* would collide with $f'$ for
-*derivative* in the same student's week, using the exam's own symbol for the
-wrong thing.
+Counted across the 54 real past papers:
 
-So this rewrite uses $\overline{A}$ throughout, and $\overline{A \cup B}$ where
-the English has $(A \cup B)'$. Same mathematics, the exam's notation.
+| complement written as | count |
+|---|---|
+| $\overline{A}$ (overline) | 13 |
+| $A'$ (prime) | 0 |
+
+All four primes that do appear in the bank are reflected points
+($A' = 2F - A$), never complements.
+
+**The argument is exam fidelity, not symbol collision.** A student who learns
+complement as $A'$ and meets $\overline{A}$ on the paper has to translate under
+time pressure, and that is the only cost that matters here. I first argued this
+on the grounds that $A'$ collides with $f'$ for *derivative* in the same course;
+that point is weaker than I made it sound — context separates $f'(x)$ from a
+bare capital, and textbooks live with the overlap routinely. It is not the
+reason. The reason is that this is the notation the exam uses.
+
+Worth stating honestly: **the exam overloads the overline too.** In the same
+bank it also means digit concatenation ($\overline{ab} = 10a + b$, 12 uses) and
+a repeating decimal ($0.\overline{3}$, 4 uses) — together *more* frequent than
+the complement sense. That is not an argument against matching it. We are not
+designing the notation, we are preparing students for it, and reading the
+overline in context is part of what they have to be able to do.
+
+**This is now applied to the English source as well**, not just the Mongolian.
+The notation argument does not depend on the prose language: the English ЭШ
+lesson teaches the same students sitting the same exam. So
+`data/genmath/esh/sets-and-operations.json` moved to the overline in the same
+change — 23 strings, no other edit, `check[]` untouched. There is no EN/MN
+divergence.
 
 ### 2. The empty set is $\emptyset$
 
@@ -690,12 +711,12 @@ $\overline{A} \cup \overline{B}$ хэдэн элементтэй вэ?
 
 Ordered by how much rides on your answer.
 
-1. **The complement notation switch ($A' \to \overline{A}$)** is the biggest
-   call in this draft and it is mine, made on corpus evidence rather than on
-   your instruction. It is right for the ЭШ hub — the bank uses the overline
-   exclusively and reserves the prime for derivatives — but it means the MN
-   lesson and the EN lesson show different symbols for the same object. If you
-   want them to match, say so and I revert; it is mechanical.
+1. **The complement notation switch ($A' \to \overline{A}$)** is settled and
+   applied to both languages — you asked for what is correct rather than what
+   matches, and the ЭШ papers write the complement as an overline 13 times and
+   as a prime never. The English source moved with it, so nothing diverges.
+   Details and the honest caveat (the exam overloads the overline) are in the
+   section above. Gates re-run green after the English change.
 2. **The imperative form is now «олоорой», not «ол»** — the question I flagged
    on lesson 1, now answered from the bank's own counts (383 vs 352, and 36 vs
    17 for бич). This is the one that generalises: whatever you decide holds for

@@ -22,9 +22,15 @@ after it, so no later draft re-argues them. Each is provisional until Khas rules
   convention looked like they conflicted. They do not: across the 54 papers the
   polite imperative is the *more* common form (олоорой 383 / ол 352;
   бичээрэй 36 / бич 17). Polite satisfies both.
-- **Complement is $\overline{A}$, never $A'$.** The ЭШ bank uses the overline
-  exclusively and reserves the prime for derivatives. Shipping $A'$ on a course
-  that also teaches calculus collides with $f'$ using the exam's own symbol.
+- **Complement is $\overline{A}$, never $A'$ — in English content too.** The 54
+  past papers write it as an overline 13 times and as a prime 0 times (all four
+  primes in the bank are reflected points). The ground is exam fidelity, not
+  symbol collision: a student who learns $A'$ must translate on sight in the
+  hall. The exam also overloads the overline for digit concatenation
+  ($\overline{ab}$) and repeating decimals, more often than for complements —
+  that is a fact about the exam to teach around, not a reason to diverge from
+  it. Applied to `data/genmath/esh/sets-and-operations.json` on 30 Aug, so the
+  English and Mongolian ЭШ lessons use one notation.
 - **Empty set is `\emptyset`**, matching the bank, not `\varnothing`.
 - **Cardinality has two names**: $|A|$ is «элементийн тоо», and the bank calls
   it «чадал», glossing it in the stem. Teach both; a student meets «чадал» on
