@@ -13,6 +13,14 @@ written. This checks what is checkable at draft stage:
                 it looks Mongolian to a spellcheck-free eye and is invisible to
                 a CYR-IN-MATH scan. The list is short and covers the function
                 words most likely to slip, not Russian generally.
+  IMPERATIVE    ADVISORY, never fatal. Bare imperatives addressed to a student
+                contradict the «та» ruling — but most hits are legitimate:
+                imperative headings are normal in both languages, and terse
+                rule statements («Ганцаарчилсан хас хос нэм» is *singles minus
+                pairs plus triple*, arithmetic nouns rather than commands) read
+                correctly. A check that mostly cries wolf gets switched off, so
+                this one reports and lets a human judge.
+
   IDS           every problem id present exactly as the English source has it,
                 and none invented
   SKELETON      per lesson: step kinds in order, tapQuestion option counts
@@ -31,6 +39,12 @@ INFORMAL = [r'\bчи\b', r'\bчиний\b', r'\bчамд\b', r'\bчамайг\b'
 
 # Russian function words with no Mongolian reading. Deliberately short: a long
 # list would collide with real Mongolian words and get switched off.
+# Bare imperative stems. Advisory only — see the docstring.
+BARE = ['зур', 'тоол', 'шалга', 'бич', 'хялбарчил', 'ангил', 'сур', 'бод',
+        'оруул', 'нэм', 'хас', 'тайл', 'өргө', 'сонго']
+# Coined rule names. These are labels, not instructions to the reader.
+COINED = ['нэгийг нэм', 'төвийг хас']
+
 RUSSIAN = ['любой', 'любые', 'если', 'который', 'которые', 'потому', 'этот',
            'эта', 'это', 'все', 'всё', 'где', 'когда', 'очень', 'может',
            'должен', 'также', 'таким', 'своих', 'после', 'через', 'между']
@@ -99,7 +113,18 @@ def check(corpus: str, slug: str) -> int:
             if int(ci) != s['correctIndex']:
                 fails.append(f'CORRECT INDEX {l["slug"]}/{s["title"]}: {ci} != {s["correctIndex"]}')
 
+    advisory = []
+    for w in BARE:
+        for m in re.finditer(r'(?<![а-яөүёА-ЯӨҮЁ])' + w + r'(?![а-яөүёА-ЯӨҮЁ])', content):
+            ctx = ' '.join(content[max(0, m.start()-55):m.end()+8].split())
+            if not any(c in ctx for c in COINED):
+                advisory.append(f'«{w}» ...{ctx[-58:]}')
+
     print(f'\n  ids {len(want) - sum(f.startswith("MISSING") for f in fails)}/{len(want)}')
+    if advisory:
+        print(f'\n  {len(advisory)} bare imperative(s) — ADVISORY, judge each:')
+        for a in advisory:
+            print(f'    {a}')
     if fails:
         print(f'\n--- {len(fails)} finding(s) ---')
         for f in fails:

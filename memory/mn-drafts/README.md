@@ -39,3 +39,30 @@ after it, so no later draft re-argues them. Each is provisional until Khas rules
   in lesson body text are the product speaking to a student, so they follow the
   register ruling — unlike a quoted exam question, which stays verbatim.
   Polite or impersonal forms instead.
+
+## Open — needs Khas, do not settle by drafting around it
+
+**The interval bracket convention.** The ЭШ papers use two. Counting only the
+shapes that discriminate (closed `[a,b]` is identical in both conventions, and
+round-round is unusable because coordinate pairs share its shape):
+
+| reversed (French/Russian) | | standard | |
+|---|---|---|---|
+| `]a, b[` | 66 | `[a, b)` | 36 |
+| `]a, b]` | 22 | `(a, b]` | 10 |
+| `[a, b[` | 17 | | |
+| **105** | | **46** | |
+
+Real examples: `]-\infty;\ 3[`, `]4;\ +\infty[`, `[10;12[`, `]0, 2]`, beside
+`[3; \infty)` and `(0, 1/2]`. The semicolon separator is common too. Ministry
+А/492 uses «завсар» but fixes no notation, so it does not settle this.
+
+Unlike the complement question this has no single right answer to switch to —
+the exam genuinely uses both, so the student must be able to **read** both, and
+teaching only one is a defect whichever one you pick. `esh/number-sets-and-
+intervals` therefore teaches the equivalence and keeps writing in the standard
+convention, which the rest of the site, the SAT hub and the IB hub also use.
+
+Switching the ЭШ hub to *write* in the reversed convention would touch every
+interval, inequality and calculus topic. That is Khas's call, not a drafting
+decision.
