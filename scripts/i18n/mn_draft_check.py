@@ -23,8 +23,13 @@ written. This checks what is checkable at draft stage:
 
   IDS           every problem id present exactly as the English source has it,
                 and none invented
-  SKELETON      per lesson: step kinds in order, tapQuestion option counts
-                and correctIndex, all identical to the English source
+  SKELETON      per lesson: step kinds in order, and for BOTH interactive
+                question shapes — tapQuestion steps and tryItSet problems —
+                the option counts and correct index, all identical to the
+                English source. The draft marks the two differently
+                (**options**/**correctIndex** vs **choices**/**answerIndex**)
+                so a topic containing both cannot have one silently checked
+                against the other's source steps.
 
 Commentary sections (the per-lesson "What makes this a rewrite" paragraphs and
 the trailing Notes) are excluded — they are never copied into JSON, and judging
@@ -52,7 +57,12 @@ RUSSIAN = ['любой', 'любые', 'если', 'который', 'котор
 
 def content_of(src: str) -> str:
     body = src.split('## Topic-level strings', 1)[-1].split('## Notes for Build', 1)[0]
-    return re.sub(r'\*\*What makes this a rewrite\.\*\*.*?(?=\n\*\*TITLE:)', '', body, flags=re.S)
+    # Both commentary headings used across the drafts. A heading this misses
+    # leaves English commentary inside the "content" the checks judge, which
+    # showed up as four phantom EMPHASIS failures on the first topic to use the
+    # second wording.
+    return re.sub(r'\*\*(?:What makes this a rewrite|Rewrite thesis)\.\*\*.*?(?=\n\*\*TITLE:)',
+                  '', body, flags=re.S)
 
 
 def check(corpus: str, slug: str) -> int:
@@ -101,17 +111,25 @@ def check(corpus: str, slug: str) -> int:
             fails.append(f'STEP KINDS {l["slug"]}: {kinds} != {src_kinds}')
         else:
             print(f'  {l["slug"]:34s} {len(kinds)} steps, kinds match')
+        # tapQuestion steps, and tryItSet problems, checked separately.
         src_tap = [s for s in l['interactive']['steps'] if s['kind'] == 'tapQuestion']
-        draft_tap = re.findall(r'\*\*options\*\*(.*?)—\s*\*\*correctIndex (\d+)\*\*', tbl)
-        if len(src_tap) != len(draft_tap):
-            fails.append(f'TAP COUNT {l["slug"]}: {len(draft_tap)} != {len(src_tap)}')
-            continue
-        for s, (opts, ci) in zip(src_tap, draft_tap):
-            n = len(opts.split('` · `'))
-            if n != len(s['options']):
-                fails.append(f'OPTION COUNT {l["slug"]}/{s["title"]}: {n} != {len(s["options"])}')
-            if int(ci) != s['correctIndex']:
-                fails.append(f'CORRECT INDEX {l["slug"]}/{s["title"]}: {ci} != {s["correctIndex"]}')
+        src_try = [p for s in l['interactive']['steps'] if s['kind'] == 'tryItSet'
+                   for p in s.get('problems', [])]
+        for label, src, pat in (
+            ('TAP', src_tap, r'\*\*options\*\*(.*?)—\s*\*\*correctIndex (\d+)\*\*'),
+            ('TRYSET', src_try, r'\*\*choices\*\*(.*?)—\s*\*\*answerIndex (\d+)\*\*'),
+        ):
+            drafted = re.findall(pat, tbl)
+            if len(src) != len(drafted):
+                fails.append(f'{label} COUNT {l["slug"]}: {len(drafted)} != {len(src)}')
+                continue
+            for q, (opts, ci) in zip(src, drafted):
+                name = q.get('title') or q.get('prompt', '')[:34]
+                n = len(opts.split('` · `'))
+                if n != len(q['options']):
+                    fails.append(f'{label} OPTION COUNT {l["slug"]}/{name}: {n} != {len(q["options"])}')
+                if int(ci) != q['correctIndex']:
+                    fails.append(f'{label} CORRECT INDEX {l["slug"]}/{name}: {ci} != {q["correctIndex"]}')
 
     advisory = []
     for w in BARE:
