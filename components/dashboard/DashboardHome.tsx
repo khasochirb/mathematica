@@ -223,10 +223,12 @@ export default function DashboardHome({ lessonTotals }: { lessonTotals: Record<s
     );
 
   return (
-    <div className="min-h-screen pt-16" style={{ background: "var(--bg)" }}>
-      <div className="max-w-5xl mx-auto px-6 md:px-10 py-10 md:py-12">
+    <div className="min-h-screen pt-16 relative overflow-hidden" style={{ background: "var(--bg)" }}>
+      <div aria-hidden className="bg-dots absolute inset-x-0 top-0 h-[420px] pointer-events-none" />
+      <div aria-hidden className="orb" style={{ width: 440, height: 440, top: -220, right: -120, opacity: 0.8 }} />
+      <div className="relative max-w-5xl mx-auto px-6 md:px-10 py-10 md:py-12">
         {/* Welcome */}
-        <section className="pb-7" style={{ borderBottom: "1px solid var(--line)" }}>
+        <section className="pb-7" style={{ borderBottom: "1px solid var(--line)" }} data-reveal>
           <div className="eyebrow">
             {t("eyebrow_dashboard")}
             {userName && ` · ${userName}`}

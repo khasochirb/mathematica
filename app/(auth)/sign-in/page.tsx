@@ -137,8 +137,8 @@ function SignInInner() {
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[460px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(closest-side, color-mix(in oklch, var(--accent) 14%, transparent), transparent 70%)",
-          filter: "blur(40px)",
+            "radial-gradient(closest-side, color-mix(in oklch, var(--accent) 18%, transparent), transparent 70%)",
+          filter: "blur(60px)",
         }}
       />
 
@@ -149,7 +149,7 @@ function SignInInner() {
           </Link>
         </div>
 
-        <div className="card-edit p-8">
+        <div className="card-edit p-8" style={{ boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-lg)" }}>
           <div className="mb-6">
             <div className="eyebrow mb-2">Account · Sign In</div>
             <h1
@@ -168,8 +168,8 @@ function SignInInner() {
             <div
               className="mb-5 p-3 rounded-md text-[13px]"
               style={{
-                background: "rgba(239, 68, 68, 0.10)",
-                border: "1px solid rgba(239, 68, 68, 0.30)",
+                background: "color-mix(in oklch, var(--danger) 10%, transparent)",
+                border: "1px solid color-mix(in oklch, var(--danger) 30%, transparent)",
                 color: "var(--danger)",
               }}
             >
@@ -256,8 +256,8 @@ function SignInInner() {
             <div
               className="mb-5 p-3 rounded-md text-[13px]"
               style={{
-                background: "rgba(239, 68, 68, 0.10)",
-                border: "1px solid rgba(239, 68, 68, 0.30)",
+                background: "color-mix(in oklch, var(--danger) 10%, transparent)",
+                border: "1px solid color-mix(in oklch, var(--danger) 30%, transparent)",
                 color: "var(--danger)",
               }}
             >

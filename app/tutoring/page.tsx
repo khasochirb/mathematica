@@ -188,14 +188,16 @@ export default function TutoringPage() {
     <div style={{ background: "var(--bg)", color: "var(--fg)" }}>
       {/* HERO */}
       <section
-        className="px-6 sm:px-10 pt-24 pb-20"
+        className="relative overflow-hidden px-6 sm:px-10 pt-28 pb-20"
         style={{
           borderBottom: "1px solid var(--line)",
           background:
             "radial-gradient(ellipse 900px 400px at 20% 90%, var(--accent-wash), transparent 70%), var(--bg)",
         }}
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div aria-hidden className="bg-dots absolute inset-0 pointer-events-none" />
+        <div aria-hidden className="orb" style={{ width: 520, height: 520, top: -240, left: "50%", transform: "translateX(-50%)" }} />
+        <div className="relative max-w-4xl mx-auto text-center" data-reveal>
           <div className="eyebrow mb-6">{L(i18n.eyebrow)}</div>
           <h1
             className="serif"
@@ -211,16 +213,14 @@ export default function TutoringPage() {
               href={FACEBOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary w-full sm:w-auto"
-              style={{ padding: "12px 22px", fontSize: 14 }}
+              className="btn btn-primary btn-lg w-full sm:w-auto"
             >
               <Facebook className="h-4 w-4" /> {L(i18n.ctaFb)}
             </a>
             <button
               type="button"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-              className="btn btn-line w-full sm:w-auto"
-              style={{ padding: "12px 22px", fontSize: 14 }}
+              className="btn btn-line btn-lg w-full sm:w-auto"
             >
               {L(i18n.ctaReach)}
             </button>

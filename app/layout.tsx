@@ -8,6 +8,7 @@ import { AuthProvider } from "@/lib/auth-context";
 import { ThemeProvider } from "@/lib/theme-context";
 import { UpgradeModalProvider } from "@/lib/upgrade-modal-context";
 import AttemptsSyncIndicator from "@/components/AttemptsSyncIndicator";
+import RevealObserver from "@/components/layout/RevealObserver";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -108,6 +109,7 @@ export default function RootLayout({
                 <main>{children}</main>
                 <Footer />
                 <AttemptsSyncIndicator />
+                <RevealObserver />
               </UpgradeModalProvider>
             </AuthProvider>
           </LangProvider>

@@ -92,8 +92,8 @@ function ResourcesDropdown({ label, active }: ResourcesDropdownProps) {
       </button>
       {open && (
         <div
-          className="dropdown-enter absolute top-full left-0 w-72 rounded-lg shadow-2xl shadow-black/40 py-2 z-50"
-          style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}
+          className="dropdown-enter absolute top-full left-0 mt-1.5 w-72 rounded-xl py-2 z-50"
+          style={{ background: "var(--bg-1)", border: "1px solid var(--line)", boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-lg)" }}
           onMouseEnter={onEnter}
           onMouseLeave={onLeave}
         >
@@ -208,8 +208,8 @@ function AboutDropdown({ label, active }: AboutDropdownProps) {
       </Link>
       {open && (
         <div
-          className="dropdown-enter absolute top-full left-0 w-52 rounded-lg shadow-2xl shadow-black/40 py-2 z-50"
-          style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}
+          className="dropdown-enter absolute top-full left-0 mt-1.5 w-52 rounded-xl py-2 z-50"
+          style={{ background: "var(--bg-1)", border: "1px solid var(--line)", boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-lg)" }}
           onMouseEnter={onEnter}
           onMouseLeave={onLeave}
         >
@@ -367,15 +367,20 @@ export default function Header() {
       >
         <div
           className={cn(
-            "backdrop-blur-xl transition-all duration-300 motion-reduce:transition-none",
-            scrolled ? "rounded-2xl shadow-lg shadow-black/10" : "rounded-none"
+            "glass transition-all duration-300 motion-reduce:transition-none",
+            scrolled ? "rounded-2xl" : "rounded-none"
           )}
           style={{
             background: scrolled
-              ? "color-mix(in oklch, var(--bg) 88%, transparent)"
-              : "color-mix(in oklch, var(--bg) 60%, transparent)",
+              ? "color-mix(in oklch, var(--bg) 82%, transparent)"
+              : "color-mix(in oklch, var(--bg) 55%, transparent)",
             border: scrolled ? "1px solid var(--line)" : "1px solid transparent",
             borderTopColor: "transparent",
+            // Lit from above like every card, and a deep soft drop once it
+            // floats — the pill should look like it sits above the page.
+            boxShadow: scrolled
+              ? "inset 0 1px 0 var(--hi), var(--shadow-lg)"
+              : "0 1px 0 var(--line)",
             ...(scrolled ? {} : { borderLeft: "none", borderRight: "none" }),
           }}
         >
@@ -430,38 +435,41 @@ export default function Header() {
 
           {/* Right side */}
           <div className="hidden lg:flex items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              className="rounded-md p-1.5 transition-colors"
-              style={{ color: "var(--fg-2)", border: "1px solid var(--line)" }}
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {theme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
-            </button>
-
-            <button
-              onClick={() => setLang(lang === "en" ? "mn" : "en")}
-              className="mono uppercase text-[11px] font-semibold rounded-md px-2.5 py-1.5 transition-colors"
+            {/* Theme and language share one segmented control — two loose
+                chips read as clutter next to the primary button. */}
+            <div
+              className="flex items-stretch rounded-lg overflow-hidden"
               style={{
-                color: "var(--fg-2)",
                 border: "1px solid var(--line)",
-                letterSpacing: "0.08em",
+                background: "color-mix(in oklch, var(--bg-1) 70%, transparent)",
+                boxShadow: "inset 0 1px 0 var(--hi)",
               }}
-              aria-label="Toggle language"
             >
-              {lang === "en" ? "MN" : "EN"}
-            </button>
+              <button
+                onClick={toggleTheme}
+                className="p-2 transition-colors hover:bg-[var(--bg-2)]"
+                style={{ color: "var(--fg-2)" }}
+                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {theme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+              </button>
+              <span aria-hidden className="w-px self-stretch" style={{ background: "var(--line)" }} />
+              <button
+                onClick={() => setLang(lang === "en" ? "mn" : "en")}
+                className="mono uppercase text-[11px] font-semibold px-2.5 transition-colors hover:bg-[var(--bg-2)]"
+                style={{ color: "var(--fg-1)", letterSpacing: "0.08em" }}
+                aria-label="Toggle language"
+              >
+                {lang === "en" ? "MN" : "EN"}
+              </button>
+            </div>
 
             {!isSubscribed && !isNative && (
               <button
                 onClick={() => openUpgrade({ source: "header_button" })}
-                className="flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md transition-all ml-1"
-                style={{
-                  background: "var(--accent)",
-                  color: "var(--accent-ink, white)",
-                  border: "1px solid var(--accent)",
-                }}
+                className="btn btn-primary ml-1"
+                style={{ fontSize: 12.5, padding: "7px 12px", borderRadius: 9 }}
               >
                 <Sparkles className="h-3.5 w-3.5" />
                 <span className="hidden xl:inline">{nav.upgrade}</span>
@@ -477,14 +485,8 @@ export default function Header() {
                   style={{ color: "var(--fg-1)" }}
                   aria-label="User menu"
                 >
-                  <div
-                    className="w-7 h-7 rounded-md flex items-center justify-center"
-                    style={{
-                      background: "var(--accent-wash)",
-                      border: "1px solid var(--accent-line)",
-                    }}
-                  >
-                    <User className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} />
+                  <div className="icon-tile w-7 h-7" style={{ borderRadius: 8 }}>
+                    <User className="h-3.5 w-3.5" />
                   </div>
                   <ChevronDown
                     className={cn("h-3 w-3 transition-transform", avatarOpen && "rotate-180")}
@@ -493,8 +495,8 @@ export default function Header() {
                 </button>
                 {avatarOpen && (
                   <div
-                    className="dropdown-enter absolute top-full right-0 mt-1 w-56 rounded-lg shadow-2xl shadow-black/40 py-2 z-50"
-                    style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}
+                    className="dropdown-enter absolute top-full right-0 mt-2 w-56 rounded-xl py-2 z-50"
+                    style={{ background: "var(--bg-1)", border: "1px solid var(--line)", boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-lg)" }}
                   >
                     <div className="px-4 py-2 mb-1" style={{ borderBottom: "1px solid var(--line)" }}>
                       <p className="text-[13px] font-medium truncate" style={{ color: "var(--fg)" }}>
@@ -564,14 +566,12 @@ export default function Header() {
               <>
                 <Link
                   href="/sign-in"
-                  className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors"
-                  style={{ color: "var(--fg-1)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-1)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  className="btn btn-ghost"
+                  style={{ fontSize: 13, padding: "7px 12px" }}
                 >
                   {nav.login}
                 </Link>
-                <Link href="/sign-up" className="btn btn-primary">
+                <Link href="/sign-up" className="btn btn-primary" style={{ fontSize: 13, padding: "7px 14px", borderRadius: 9 }}>
                   {nav.signup}
                 </Link>
               </>

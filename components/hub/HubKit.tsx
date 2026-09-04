@@ -122,22 +122,10 @@ export function HubProgressBanner({
   return (
     <Link
       href={href}
-      className="block mb-4 p-5 group transition-colors"
-      style={{
-        background: "var(--bg-1)",
-        border: "1px solid var(--accent-line)",
-        borderRadius: 12,
-      }}
+      className="card-edit card-accent block mb-4 p-5 group"
     >
       <div className="flex items-center gap-4">
-        <div
-          className="w-11 h-11 rounded-md flex items-center justify-center shrink-0"
-          style={{
-            background: "var(--accent-wash)",
-            border: "1px solid var(--accent-line)",
-            color: "var(--accent)",
-          }}
-        >
+        <div className="icon-tile w-11 h-11 shrink-0 transition-transform group-hover:scale-105">
           <Icon className="w-5 h-5" />
         </div>
         <div className="flex-1 min-w-0">
@@ -188,11 +176,8 @@ export function HubActionGrid({ cards }: { cards: HubActionCardDef[] }) {
         const Icon = HUB_ROLE_ICON[c.role];
         return (
           <Link key={c.href} href={c.href} className="card-edit p-6 group block">
-            <div className="flex items-start justify-between mb-4">
-              <div
-                className="w-10 h-10 rounded-md flex items-center justify-center"
-                style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--accent)" }}
-              >
+            <div className="flex items-start justify-between mb-5">
+              <div className="icon-tile w-10 h-10 transition-transform group-hover:scale-105">
                 <Icon className="w-4 h-4" />
               </div>
               <ChevronRight

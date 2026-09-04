@@ -51,16 +51,14 @@ export default function Footer() {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ background: "var(--bg)", borderTop: "1px solid var(--line)" }}
+      style={{
+        background:
+          "radial-gradient(ellipse 700px 320px at 50% 0%, var(--accent-wash), transparent 70%), var(--bg)",
+        borderTop: "1px solid var(--line)",
+      }}
     >
-      {/* Top hairline */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, var(--accent-line) 50%, transparent 100%)",
-        }}
-      />
+      {/* Top hairline: a brighter accent rule that fades at both ends. */}
+      <div className="rule-accent absolute top-0 left-1/2 -translate-x-1/2 w-[720px] max-w-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -101,11 +99,12 @@ export default function Footer() {
                   target={s.href !== "#" ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-md flex items-center justify-center transition-all"
+                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:-translate-y-0.5"
                   style={{
-                    background: "var(--bg-1)",
+                    background: "var(--card-grad)",
                     border: "1px solid var(--line)",
                     color: "var(--fg-2)",
+                    boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-sm)",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = "var(--accent)";
@@ -115,7 +114,7 @@ export default function Footer() {
                   onMouseLeave={(e) => {
                     e.currentTarget.style.color = "var(--fg-2)";
                     e.currentTarget.style.borderColor = "var(--line)";
-                    e.currentTarget.style.background = "var(--bg-1)";
+                    e.currentTarget.style.background = "var(--card-grad)";
                   }}
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -135,7 +134,7 @@ export default function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm transition-colors"
+                      className="link-draw text-sm hover:text-[var(--fg)]"
                       style={{ color: "var(--fg-1)" }}
                     >
                       {item.label}

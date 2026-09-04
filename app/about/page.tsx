@@ -72,9 +72,12 @@ export default function AboutPage() {
   const t = (en: string, mn: string) => (lang === "mn" ? mn : en);
 
   return (
-    <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
+    <div className="min-h-screen pt-20 relative overflow-hidden" style={{ background: "var(--bg)" }}>
+      {/* Atmosphere behind the hero only: dot grid fading out, one orb. */}
+      <div aria-hidden className="bg-dots absolute inset-x-0 top-0 h-[520px] pointer-events-none" />
+      <div aria-hidden className="orb" style={{ width: 480, height: 480, top: -200, right: -140 }} />
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+      <section className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16" data-reveal>
         <div className="eyebrow mb-3">{t("Our Story · About", "Манай түүх · Бидний тухай")}</div>
         <h1
           className="serif"

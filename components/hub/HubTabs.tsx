@@ -21,8 +21,8 @@ export default function HubTabs({ hub }: { hub: HubKey }) {
   return (
     <nav
       aria-label={mn ? "Хэсгүүд" : "Hub sections"}
-      className="sticky top-16 z-30"
-      style={{ background: "var(--bg)", borderBottom: "1px solid var(--line)" }}
+      className="sticky top-16 z-30 glass"
+      style={{ borderBottom: "1px solid var(--line)" }}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <ul className="flex items-center gap-1 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
@@ -33,7 +33,7 @@ export default function HubTabs({ hub }: { hub: HubKey }) {
                 <Link
                   href={t.href}
                   aria-current={isActive ? "page" : undefined}
-                  className="inline-block px-3.5 py-3 text-[13.5px] transition-colors"
+                  className="inline-block px-3.5 py-3 text-[13.5px] transition-colors hover:text-[var(--fg)]"
                   style={{
                     color: isActive ? "var(--accent)" : "var(--fg-1)",
                     fontWeight: isActive ? 600 : 500,

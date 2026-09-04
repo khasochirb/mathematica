@@ -212,15 +212,24 @@ export default function HomePage() {
     <div style={{ background: "var(--bg)", color: "var(--fg)" }}>
       {/* HERO */}
       <section
-        className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-[60px] items-end pt-24 pb-20 px-6 sm:px-10 lg:min-h-[78vh]"
+        className="relative overflow-hidden grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-[60px] items-end pt-28 pb-20 px-6 sm:px-10 lg:min-h-[78vh]"
         style={{
           borderBottom: "1px solid var(--line)",
           background:
             "radial-gradient(ellipse 900px 400px at 15% 90%, var(--accent-wash), transparent 70%), var(--bg)",
         }}
       >
-        <div>
-          <div className="eyebrow mb-6">{t("hero_eyebrow")}</div>
+        {/* Atmosphere: a faint dot grid fading from the top, two soft accent
+            orbs. Decorative only — behind everything, no pointer events. */}
+        <div aria-hidden className="bg-dots absolute inset-0 pointer-events-none" />
+        <div aria-hidden className="orb" style={{ width: 520, height: 520, top: -200, right: -120 }} />
+        <div aria-hidden className="orb" style={{ width: 380, height: 380, bottom: -160, left: "30%", opacity: 0.6 }} />
+
+        <div className="relative" data-reveal>
+          <div className="eyebrow mb-6 inline-flex items-center gap-2">
+            <span className="live-dot" />
+            {t("hero_eyebrow")}
+          </div>
           <h1
             className="serif"
             style={{
@@ -239,11 +248,11 @@ export default function HomePage() {
           >
             {t("hero_sub")}
           </p>
-          <div className="flex gap-3">
-            <Link href="/math/placement/high" className="btn btn-primary">
-              {t("hero_cta")}
+          <div className="flex flex-wrap gap-3">
+            <Link href="/math/placement/high" className="btn btn-primary btn-lg">
+              {t("hero_cta")} <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/analytics" className="btn btn-line">
+            <Link href="/analytics" className="btn btn-line btn-lg">
               {t("hero_cta2")}
             </Link>
           </div>
@@ -257,16 +266,15 @@ export default function HomePage() {
           </div>
         </div>
 
-        <aside className="flex flex-col justify-end gap-3.5 self-stretch">
+        <aside className="relative flex flex-col justify-end gap-3.5 self-stretch" data-reveal style={{ "--reveal-delay": "120ms" } as React.CSSProperties}>
           {/* Sample report card */}
           <div
-            className="mono"
+            className="mono card-edit"
             style={{
-              background: "var(--bg-1)",
-              border: "1px solid var(--line)",
-              borderRadius: 14,
-              padding: 20,
+              borderRadius: 16,
+              padding: 22,
               fontSize: 12,
+              boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-lg)",
             }}
           >
             <div
@@ -288,7 +296,7 @@ export default function HomePage() {
                     margin: 0,
                   }}
                 >
-                  742
+                  <span className="display-grad">742</span>
                   <sup
                     className="mono"
                     style={{ fontSize: 20, color: "var(--fg-3)", marginLeft: 4, verticalAlign: "top" }}
@@ -444,13 +452,12 @@ export default function HomePage() {
           </div>
 
           <div
-            className="flex items-center justify-between mono"
+            className="flex items-center justify-between mono card-edit"
             style={{
-              background: "var(--bg-1)",
-              border: "1px solid var(--line)",
-              borderRadius: 14,
+              borderRadius: 16,
               padding: 20,
               fontSize: 12,
+              boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-md)",
             }}
           >
             {/* Follows the selected skill row above.
@@ -498,7 +505,8 @@ export default function HomePage() {
           color: "var(--fg-3)",
           fontSize: 12,
           letterSpacing: "0.12em",
-          background: "var(--bg-1)",
+          background: "color-mix(in oklch, var(--bg-1) 70%, var(--bg))",
+          boxShadow: "inset 0 1px 0 var(--hi)",
         }}
       >
         {CURRICULA.flatMap((c, i) => {
@@ -527,13 +535,15 @@ export default function HomePage() {
           { big: "2,000", unit: "+", lbl: t("learners") },
           { big: "1,000", unit: "+", lbl: t("mistakes") },
           { big: "10,000", unit: "+", lbl: t("avg_lift") },
-        ].map((s) => (
+        ].map((s, i) => (
           <div
             key={s.lbl}
+            data-reveal
             className="px-6 py-12 sm:px-10 sm:py-16 border-[color:var(--line)] border-b last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
+            style={{ "--reveal-delay": `${i * 90}ms` } as React.CSSProperties}
           >
             <div
-              className="serif tabular"
+              className="serif tabular display-grad"
               style={{
                 fontSize: 88,
                 letterSpacing: "-0.04em",
@@ -562,7 +572,7 @@ export default function HomePage() {
 
       {/* TWO WAYS TO LEARN */}
       <section className="px-6 sm:px-10 py-24" style={{ borderBottom: "1px solid var(--line)" }}>
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto" data-reveal>
           <div className="eyebrow text-center">{t("ways_eye")}</div>
           <h3
             className="serif text-center mt-3"
@@ -578,7 +588,7 @@ export default function HomePage() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-12">
             {/* Self-study platform */}
-            <div className="card-edit p-8 flex flex-col">
+            <div className="card-edit card-lift card-accent p-8 flex flex-col">
               <div className="flex items-center justify-between">
                 <div className="eyebrow">{t("way1_eye")}</div>
                 <span className="badge-edit badge-accent">{t("free_badge")}</span>
@@ -589,12 +599,12 @@ export default function HomePage() {
               <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15, lineHeight: 1.6, flex: 1 }}>
                 {t("way1_s")}
               </p>
-              <Link href="/practice/esh" className="btn btn-primary mt-6 self-start">
+              <Link href="/practice/esh" className="btn btn-primary mt-8 self-start">
                 {t("way1_cta")} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             {/* 1-on-1 tutoring */}
-            <div className="card-edit p-8 flex flex-col">
+            <div className="card-edit card-lift p-8 flex flex-col">
               <div className="eyebrow">{t("way2_eye")}</div>
               <h4 className="serif mt-3" style={{ fontWeight: 400, fontSize: 28, letterSpacing: "-0.02em" }}>
                 {t("way2_t")}
@@ -602,7 +612,7 @@ export default function HomePage() {
               <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15, lineHeight: 1.6, flex: 1 }}>
                 {t("way2_s")}
               </p>
-              <Link href="/tutoring" className="btn btn-line mt-6 self-start">
+              <Link href="/tutoring" className="btn btn-line mt-8 self-start">
                 {t("way2_cta")} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -1008,6 +1018,7 @@ export default function HomePage() {
       <section
         className="text-center px-6 sm:px-10 py-20 lg:py-[100px]"
         style={{ borderBottom: "1px solid var(--line)" }}
+        data-reveal
       >
         <div className="eyebrow">{t("diaspora_eye")}</div>
         <h3
@@ -1039,8 +1050,8 @@ export default function HomePage() {
             <Link
               key={c.href}
               href={c.href}
-              className="badge-edit"
-              style={{ fontSize: 12.5, padding: "8px 14px", color: "var(--fg-1)" }}
+              className="badge-edit transition-all hover:-translate-y-0.5"
+              style={{ fontSize: 12.5, padding: "9px 16px", color: "var(--fg-1)", boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-sm)" }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = "var(--accent)";
                 e.currentTarget.style.borderColor = "var(--accent-line)";
@@ -1061,14 +1072,17 @@ export default function HomePage() {
 
       {/* BIG CTA */}
       <section
-        className="text-center px-6 sm:px-10 py-24 lg:py-[140px]"
+        className="relative overflow-hidden text-center px-6 sm:px-10 py-24 lg:py-[140px]"
         style={{
           background:
             "radial-gradient(ellipse 900px 400px at 50% 100%, var(--accent-wash), transparent 70%), var(--bg)",
         }}
+        data-reveal
       >
+        <div aria-hidden className="orb" style={{ width: 640, height: 640, bottom: -420, left: "50%", transform: "translateX(-50%)" }} />
+        <div aria-hidden className="bg-dots absolute inset-0 pointer-events-none" style={{ opacity: 0.6 }} />
         <h2
-          className="serif"
+          className="serif relative"
           style={{
             fontWeight: 400,
             fontSize: "clamp(48px, 5vw, 88px)",
@@ -1080,14 +1094,14 @@ export default function HomePage() {
         >
           {t("cta_t")}
         </h2>
-        <p style={{ color: "var(--fg-2)", margin: "24px 0 36px", fontSize: 16 }}>
+        <p className="relative" style={{ color: "var(--fg-2)", margin: "24px 0 36px", fontSize: 16 }}>
           {t("cta_s")}
         </p>
-        <div className="flex gap-3 justify-center">
-          <Link href="/math/placement/high" className="btn btn-primary">
-            {t("hero_cta")}
+        <div className="relative flex flex-wrap gap-3 justify-center">
+          <Link href="/math/placement/high" className="btn btn-primary btn-lg">
+            {t("hero_cta")} <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/analytics" className="btn btn-line">
+          <Link href="/analytics" className="btn btn-line btn-lg">
             {t("hero_cta2")}
           </Link>
         </div>
@@ -1118,7 +1132,7 @@ function FeatSection({
       className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-20 px-6 sm:px-10 py-20 lg:py-[120px]"
       style={{ borderBottom: "1px solid var(--line)" }}
     >
-      <div className={reverse ? "lg:order-2" : "lg:order-1"}>
+      <div className={reverse ? "lg:order-2" : "lg:order-1"} data-reveal>
         <div className="eyebrow">{eyebrow}</div>
         <h3
           className="serif"
@@ -1169,19 +1183,33 @@ function FeatSection({
         </ul>
       </div>
 
+      {/* The demo panel sits in a soft accent halo so it reads as the
+          object the section is about, not another card in a row. */}
       <div
-        className={`flex flex-col gap-4 ${reverse ? "lg:order-1" : "lg:order-2"}`}
-        style={{
-          position: "relative",
-          padding: vizPadding ? 32 : 0,
-          background: "var(--bg-1)",
-          border: "1px solid var(--line)",
-          borderRadius: 18,
-          minHeight: 480,
-          overflow: vizPadding ? "visible" : "hidden",
-        }}
+        className={`relative ${reverse ? "lg:order-1" : "lg:order-2"}`}
+        data-reveal
+        style={{ "--reveal-delay": "120ms" } as React.CSSProperties}
       >
-        {viz}
+        <div
+          aria-hidden
+          className="absolute -inset-6 rounded-[28px] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(60% 60% at 50% 40%, var(--accent-wash), transparent 70%)",
+          }}
+        />
+        <div
+          className="relative flex flex-col gap-4 card-edit"
+          style={{
+            padding: vizPadding ? 32 : 0,
+            borderRadius: 20,
+            minHeight: 480,
+            overflow: vizPadding ? "visible" : "hidden",
+            boxShadow: "inset 0 1px 0 var(--hi), var(--shadow-lg)",
+          }}
+        >
+          {viz}
+        </div>
       </div>
     </section>
   );

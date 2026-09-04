@@ -202,17 +202,17 @@ export default function HubProgress({
             key={s.id}
             type="button"
             onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
-            className="block w-full text-left px-2.5 py-2 text-[13px] rounded-md"
+            className="side-link block w-full text-left px-2.5 py-2 text-[13px] rounded-md"
             style={{ color: "var(--fg-1)" }}
           >
             {s.label}
           </button>
         ))}
         <h5 className="eyebrow mb-2.5 px-2 mt-5">Actions</h5>
-        <Link href={hubHome} className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+        <Link href={hubHome} className="side-link block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           {title} hub
         </Link>
-        <Link href="/dashboard" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+        <Link href="/dashboard" className="side-link block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           Dashboard
         </Link>
       </aside>

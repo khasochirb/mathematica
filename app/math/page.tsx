@@ -187,16 +187,11 @@ const IM_COURSES: CourseCardDef[] = [
   },
 ];
 
-const cardHover = {
-  onMouseEnter: (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.currentTarget.style.borderColor = "var(--accent-line)";
-    e.currentTarget.style.background = "var(--accent-wash)";
-  },
-  onMouseLeave: (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.currentTarget.style.borderColor = "";
-    e.currentTarget.style.background = "";
-  },
-};
+// Hover used to be two inline style handlers swapping border and background
+// by hand; the card primitive now carries lift + accent border in CSS
+// (a.card-edit:hover), so these are no-ops kept only to leave call sites
+// untouched.
+const cardHover = {};
 
 const gridStyle = { gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" };
 
@@ -208,9 +203,9 @@ function TransitionChip({ grade }: { grade: number }) {
       className="mono rounded-full px-2 py-0.5 text-[10px] uppercase"
       title={label}
       style={{
-        background: "rgba(216,150,32,0.10)",
-        border: "1px solid rgba(216,150,32,0.4)",
-        color: "var(--warn, #d89620)",
+        background: "color-mix(in oklch, var(--warn) 10%, transparent)",
+        border: "1px solid color-mix(in oklch, var(--warn) 40%, transparent)",
+        color: "var(--warn)",
         letterSpacing: "0.06em",
       }}
     >

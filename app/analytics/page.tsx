@@ -336,7 +336,7 @@ export default function AnalyticsPage() {
             key={s.id}
             type="button"
             onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
-            className="block w-full text-left px-2.5 py-2 text-[13px] rounded-md"
+            className="side-link block w-full text-left px-2.5 py-2 text-[13px] rounded-md"
             style={{ color: "var(--fg-1)" }}
           >
             {s.label}
@@ -344,13 +344,13 @@ export default function AnalyticsPage() {
         ))}
 
         <h5 className="eyebrow mb-2.5 px-2 mt-5">{t("nav_actions")}</h5>
-        <Link href="/practice/esh" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+        <Link href="/practice/esh" className="side-link block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           {t("nav_take_eesh")}
         </Link>
-        <Link href="/practice/esh/test?type=previous" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+        <Link href="/practice/esh/test?type=previous" className="side-link block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           {t("nav_prev")}
         </Link>
-        <Link href="/dashboard" className="block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
+        <Link href="/dashboard" className="side-link block px-2.5 py-2 text-[13px] rounded-md" style={{ color: "var(--fg-1)" }}>
           {t("nav_hub")}
         </Link>
       </aside>
