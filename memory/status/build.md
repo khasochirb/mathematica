@@ -14,6 +14,48 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-09-04 04:20 UTC — mode: ship
+
+**Did:** Visual polish pass across the whole site on the owner's request
+("upgrade the design, don't change it entirely, premium like big tech /
+new startups"). Structure, routes, nav and copy untouched; only the visual
+layer. One `.btn` system (top-lit gradient primary, lift/press on every
+variant), top-lit `.card-edit` with hover lift, depth tokens per theme
+(`--hi`, `--shadow-*`, `--glow`, `--glass`, `--card-grad`), dot-grid + orb
+hero atmosphere, `data-reveal` scroll reveal (fails open, reduced-motion
+off), glass header pill with segmented theme/lang control, footer with
+accent hairline. Hubs pick it up through HubKit/HubTabs. Fixed six
+hardcoded rgba colours that broke the light theme (auth error banners,
+/math gold chip, badge-warn/danger, card-glass). Removed dead legacy CSS
+utilities (zero call sites).
+
+**Landed where:** branch `claude/website-design-upgrade-174y3l`, commit
+`4dc5c60`. **Not merged, not deployed** — owner asked to see a preview
+first. Vercel preview:
+`imathhub-git-claude-web-eeea05-khas-ochir-bayarjargals-projects.vercel.app`
+(SSO-protected; owner must be logged into Vercel to view).
+
+**Blocked on:** owner review of the preview. Merge to main only on "deploy".
+
+**Others should know:**
+
+- `.btn-primary` used to be defined twice — once in `@layer components`
+  (px-6 py-3 rounded-xl, from the old design) and once unlayered. The
+  layered one is gone; anything that looked like a big pill button was
+  getting its size from the unlayered `.btn` anyway.
+- `a.card-edit:hover` and `button.card-edit:hover` now lift and take an
+  accent border in CSS. `app/math/page.tsx`'s `cardHover` inline handlers
+  are a no-op object left in place so the call sites did not change.
+- New primitives available to anyone: `.card-accent`, `.icon-tile`,
+  `.rule-fade`, `.rule-accent`, `.bg-dots`, `.orb`, `.glass`,
+  `.display-grad`, `.link-draw`, `.btn-lg`, `.side-link`, and the
+  `data-reveal` attribute (optional `--reveal-delay`).
+- Verified: tsc clean, 879 vitest green, `next build` green, Playwright
+  screenshots of home/about/tutoring/contact/esh/sat/math/sign-in in both
+  themes and mobile.
+
+---
+
 ## 2026-08-17 08:30 UTC — mode: ship
 
 **Did:** Finished `CLAUDE.md` as the master (two-chat ownership, one mode per
