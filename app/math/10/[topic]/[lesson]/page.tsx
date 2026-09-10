@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -87,21 +88,21 @@ function GenMathLessonPageInner() {
         </h1>
 
         {/* 01 · Real-world picture — ALWAYS shown */}
-        <Section n="01" label="Real-world picture">
+        <Section n="01" label={chrome("Real-world picture", lang)}>
           <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
             <MathText text={lesson.concreteComparison} />
           </p>
         </Section>
 
         {/* 02 · What you'll learn */}
-        <Section n="02" label="What you'll learn">
+        <Section n="02" label={chrome("What you'll learn", lang)}>
           <p className="font-sans" style={{ fontSize: 17, lineHeight: 1.55, color: "var(--fg-1)" }}>
             {lesson.objective}
           </p>
         </Section>
 
         {/* 03 · The idea */}
-        <Section n="03" label="The idea">
+        <Section n="03" label={chrome("The idea", lang)}>
           <div className="space-y-4">
             {lesson.concept.map((para, i) => (
               <p key={i} className="font-sans" style={{ fontSize: 17, lineHeight: 1.6, color: "var(--fg-1)" }}>
@@ -124,7 +125,7 @@ function GenMathLessonPageInner() {
 
         {/* 04 · Try this (optional) */}
         {lesson.tryThis && (
-          <Section n="04" label="Try this">
+          <Section n="04" label={chrome("Try this", lang)}>
             <div
               className="card-edit p-5"
               style={{ background: "var(--bg-1)" }}
@@ -144,7 +145,7 @@ function GenMathLessonPageInner() {
 
         {/* 05 · Key facts (optional) */}
         {lesson.facts && lesson.facts.length > 0 && (
-          <Section n="05" label="Key facts">
+          <Section n="05" label={chrome("Key facts", lang)}>
             <div className="space-y-3">
               {lesson.facts.map((fact, i) => (
                 <FactCard key={i} fact={fact} />
@@ -154,7 +155,7 @@ function GenMathLessonPageInner() {
         )}
 
         {/* 06 · Worked examples */}
-        <Section n="06" label="Worked examples">
+        <Section n="06" label={chrome("Worked examples", lang)}>
           <div className="space-y-4">
             {lesson.workedExamples.map((problem, i) => (
               <WorkedExampleCard key={problem.id} problem={problem} index={i} />
@@ -164,13 +165,13 @@ function GenMathLessonPageInner() {
 
         {/* 07 · Watch out (only if there are authored mistakes) */}
         {hasAuthoredMistakes && (
-          <Section n="07" label="Watch out">
+          <Section n="07" label={chrome("Watch out", lang)}>
             <CommonMistakesList mistakes={lesson.commonMistakes} />
           </Section>
         )}
 
         {/* 08 · Your turn */}
-        <Section n="08" label="Your turn">
+        <Section n="08" label={chrome("Your turn", lang)}>
           <div className="space-y-4">
             {lesson.tryIt.map((problem, i) => (
               <RevealProblemCard

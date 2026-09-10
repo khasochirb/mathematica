@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Play, Lock } from "lucide-react";
@@ -11,6 +14,7 @@ import { useAuth } from "@/lib/auth-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 export default function LearnPage() {
+  const { lang } = useLang();
   const upgrade = useUpgradeModal();
   const { user, loading } = useAuth();
   const [mounted, setMounted] = useState(false);
@@ -26,7 +30,7 @@ export default function LearnPage() {
             href="/practice/esh"
             className="btn btn-ghost mb-8 inline-flex"
             style={{ padding: "8px 10px" }}
-            aria-label="Back"
+            aria-label={chrome("Back", lang)}
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>

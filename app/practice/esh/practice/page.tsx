@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState, useEffect, useMemo, useCallback } from "react";
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
@@ -55,6 +58,7 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 export default function PracticePage() {
+  const { lang } = useLang();
   const [mounted, setMounted] = useState(false);
   const [state, setState] = useState<PracticeState>("setup");
   const [mode, setMode] = useState<PracticeMode>("weak");
@@ -622,7 +626,7 @@ export default function PracticePage() {
             <Sparkles className="w-4 h-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
             <div className="flex-1">
               <p className="text-[13px]" style={{ color: "var(--fg)" }}>
-                <strong>Premium</strong> — 14 нэмэлт тест, 500+ бодлогыг сандаа нэм
+                <strong>{chrome("Premium", lang)}</strong> — 14 нэмэлт тест, 500+ бодлогыг сандаа нэм
               </p>
               <p className="mono text-[11px] mt-0.5" style={{ color: "var(--fg-2)", letterSpacing: "0.04em" }}>
                 Мэдэгдэл авах

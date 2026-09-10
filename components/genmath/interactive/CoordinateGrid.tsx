@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { type CoordinateGridConfig } from "@/lib/genmath-interactive";
@@ -11,6 +14,7 @@ import { type CoordinateGridConfig } from "@/lib/genmath-interactive";
 //  - reflect:   shows a point and, on tap, its mirror image across an axis.
 //  - distance:  shows two points sharing a row/column and counts the units.
 export default function CoordinateGrid({ config }: { config: CoordinateGridConfig }) {
+  const { lang } = useLang();
   const { min = -5, max = 5, mode, points = [], reflectAxis = "x", polygon = false, showQuadrants = false, color = "#e8913c" } = config;
   const [sel, setSel] = useState<{ x: number; y: number } | null>(null);
   const [revealed, setRevealed] = useState(false);
@@ -194,9 +198,8 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
       )}
       {mode === "reflect" && src && reflected && (
         <div className="mt-4 flex items-center justify-center gap-3">
-          <button type="button" onClick={() => setRevealed(false)} disabled={!revealed} aria-label="Reset" className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-            <RotateCcw className="h-4 w-4" /> Reset
-          </button>
+          <button type="button" onClick={() => setRevealed(false)} disabled={!revealed} aria-label={chrome("Reset", lang)} className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+            <RotateCcw className="h-4 w-4" /> {chrome("Reset", lang)}</button>
           <button type="button" onClick={() => setRevealed(true)} disabled={revealed} className="gm-press rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}>
             Reflect across the {reflectAxis}-axis
           </button>

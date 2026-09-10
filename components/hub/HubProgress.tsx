@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
@@ -94,6 +97,7 @@ export default function HubProgress({
   title: string;
   comingSoonCopy: string;
 }) {
+  const { lang } = useLang();
   const perf = usePerformance();
   const [openRun, setOpenRun] = useState<Record<string, boolean>>({});
   const overall = perf.getOverallStats(context);
@@ -172,7 +176,7 @@ export default function HubProgress({
   const NAV = [
     { label: "Overview", id: "overview" },
     { label: "Score trajectory", id: "test-history" },
-    { label: "By domain", id: "topic-mastery" },
+    { label: chrome("By domain", lang), id: "topic-mastery" },
     { label: "Every sitting", id: "sittings" },
     { label: "Recent attempts", id: "recent-attempts" },
     { label: "Mistake bank", id: "mistakes" },
@@ -406,7 +410,7 @@ export default function HubProgress({
               <div id="topic-mastery" className="card-edit p-6 mt-5" style={{ scrollMarginTop: 80 }}>
                 <div className="flex items-center gap-2 mb-4">
                   <Target className="h-4 w-4" style={{ color: "var(--fg-2)" }} />
-                  <div className="eyebrow">By domain</div>
+                  <div className="eyebrow">{chrome("By domain", lang)}</div>
                 </div>
                 <div className="space-y-3">
                   {topicStats.map((tt) => (

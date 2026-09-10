@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -24,6 +27,7 @@ function fmt(n: number): string {
 }
 
 export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
+  const { lang } = useLang();
   const {
     mode,
     a: a0 = 1,
@@ -253,9 +257,8 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
         </div>
 
         <div className="mt-3 flex justify-center">
-          <button type="button" onClick={replay} aria-label="Race again" className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-            <RotateCcw className="h-3.5 w-3.5" /> Race again
-          </button>
+          <button type="button" onClick={replay} aria-label={chrome("Race again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+            <RotateCcw className="h-3.5 w-3.5" /> {chrome("Race again", lang)}</button>
         </div>
       </div>
     );
@@ -310,7 +313,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
       </div>
 
       <div className="mt-3 flex justify-center">
-        <button type="button" onClick={replay} aria-label="Compound again" className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+        <button type="button" onClick={replay} aria-label={chrome("Compound again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
           <RotateCcw className="h-3.5 w-3.5" /> Run it again
         </button>
       </div>

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -35,6 +38,7 @@ function radLabel(deg: number): string {
 }
 
 export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
+  const { lang } = useLang();
   const { mode, start = 45 } = config;
 
   // ---- geometry ----
@@ -200,9 +204,8 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
         </div>
 
         <div className="mt-3 flex justify-center">
-          <button type="button" onClick={replay} aria-label="Orbit again" className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-            <RotateCcw className="h-3.5 w-3.5" /> Orbit again
-          </button>
+          <button type="button" onClick={replay} aria-label={chrome("Orbit again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+            <RotateCcw className="h-3.5 w-3.5" /> {chrome("Orbit again", lang)}</button>
         </div>
       </div>
     );

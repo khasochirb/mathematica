@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -12,6 +15,7 @@ import { type LongRunFrequencyConfig } from "@/lib/genmath-interactive";
 const MAX_TRIALS = 400;
 
 export default function LongRunFrequency({ config }: { config: LongRunFrequencyConfig }) {
+  const { lang } = useLang();
   const { p, pLabel, eventLabel, actionLabel = "run" } = config;
   // freqs[i] = running relative frequency after trial i+1
   const [freqs, setFreqs] = useState<number[]>([]);
@@ -144,7 +148,7 @@ export default function LongRunFrequency({ config }: { config: LongRunFrequencyC
           type="button"
           onClick={reset}
           disabled={total === 0}
-          aria-label="Reset"
+          aria-label={chrome("Reset", lang)}
           className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >

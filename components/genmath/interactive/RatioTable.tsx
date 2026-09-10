@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import {
@@ -82,6 +85,7 @@ function RatioColumn({
 }
 
 export default function RatioTable({ config }: { config: RatioTableConfig }) {
+  const { lang } = useLang();
   const [visibleCols, setVisibleCols] = useState(1);
   const { a, b, tokenA, tokenB, maxCols } = config;
   const [sa, sb] = simplifyRatio(a, b);
@@ -205,7 +209,7 @@ export default function RatioTable({ config }: { config: RatioTableConfig }) {
           type="button"
           onClick={() => setVisibleCols((v) => Math.min(maxCols, v + 1))}
           disabled={!canAdd}
-          aria-label="Add column"
+          aria-label={chrome("Add column", lang)}
           className="gm-press flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-medium disabled:opacity-30"
           style={{
             background: "var(--accent)",

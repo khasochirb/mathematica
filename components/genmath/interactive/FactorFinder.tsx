@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw, Check, X } from "lucide-react";
 import { type FactorFinderConfig } from "@/lib/genmath-interactive";
@@ -10,6 +13,7 @@ import { type FactorFinderConfig } from "@/lib/genmath-interactive";
 // Once the candidates pass √n every "new" factor is just the partner of one you
 // already found, so you can stop. A factor rainbow arcs each pair together.
 export default function FactorFinder({ config }: { config: FactorFinderConfig }) {
+  const { lang } = useLang();
   const { n, color = "#e8913c" } = config;
   const M = Math.floor(Math.sqrt(n)); // stop testing once d exceeds √n
   const [checked, setChecked] = useState(0);
@@ -106,12 +110,11 @@ export default function FactorFinder({ config }: { config: FactorFinderConfig })
           type="button"
           onClick={() => setChecked(0)}
           disabled={checked === 0}
-          aria-label="Reset"
+          aria-label={chrome("Reset", lang)}
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <RotateCcw className="h-4 w-4" /> Reset
-        </button>
+          <RotateCcw className="h-4 w-4" /> {chrome("Reset", lang)}</button>
         <button
           type="button"
           onClick={() => setChecked((v) => Math.min(M, v + 1))}

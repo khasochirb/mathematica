@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type GcfFinderConfig } from "@/lib/genmath-interactive";
@@ -19,6 +22,7 @@ function gcd(a: number, b: number): number {
 // is ringed — that is the greatest common factor. A reusable primitive: change
 // either number and the overlap (and the GCF) updates live.
 export default function GcfFinder({ config }: { config: GcfFinderConfig }) {
+  const { lang } = useLang();
   const { a: a0, b: b0, min = 2, max = 24, color = "#e8913c" } = config;
   const [a, setA] = useState(a0);
   const [b, setB] = useState(b0);
@@ -87,14 +91,14 @@ export default function GcfFinder({ config }: { config: GcfFinderConfig }) {
         <div>
           <div className="mb-2 flex items-center justify-between">
             <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>Factors of <b className="serif tabular" style={{ color: "var(--fg)" }}>{a}</b></span>
-            <Stepper label="first number" val={a} set={setA} />
+            <Stepper label={chrome("first number", lang)} val={a} set={setA} />
           </div>
           <Row n={a} />
         </div>
         <div style={{ borderTop: "1px solid var(--line)" }} className="pt-4">
           <div className="mb-2 flex items-center justify-between">
             <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>Factors of <b className="serif tabular" style={{ color: "var(--fg)" }}>{b}</b></span>
-            <Stepper label="second number" val={b} set={setB} />
+            <Stepper label={chrome("second number", lang)} val={b} set={setB} />
           </div>
           <Row n={b} />
         </div>

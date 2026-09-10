@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type LcmFinderConfig } from "@/lib/genmath-interactive";
@@ -14,6 +17,7 @@ function gcd(a: number, b: number): number {
 // the first (smallest) shared one is ringed — the least common multiple.
 // Reusable: change either number and the strips and LCM update live.
 export default function LcmFinder({ config }: { config: LcmFinderConfig }) {
+  const { lang } = useLang();
   const { a: a0, b: b0, min = 2, max = 12, count = 6, color = "#5b8def" } = config;
   const [a, setA] = useState(a0);
   const [b, setB] = useState(b0);
@@ -83,14 +87,14 @@ export default function LcmFinder({ config }: { config: LcmFinderConfig }) {
         <div>
           <div className="mb-2 flex items-center justify-between">
             <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>Multiples of <b className="serif tabular" style={{ color: "var(--fg)" }}>{a}</b></span>
-            <Stepper label="first number" val={a} set={setA} />
+            <Stepper label={chrome("first number", lang)} val={a} set={setA} />
           </div>
           <Strip n={a} />
         </div>
         <div style={{ borderTop: "1px solid var(--line)" }} className="pt-4">
           <div className="mb-2 flex items-center justify-between">
             <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>Multiples of <b className="serif tabular" style={{ color: "var(--fg)" }}>{b}</b></span>
-            <Stepper label="second number" val={b} set={setB} />
+            <Stepper label={chrome("second number", lang)} val={b} set={setB} />
           </div>
           <Strip n={b} />
         </div>

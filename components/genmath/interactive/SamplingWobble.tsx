@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -17,6 +20,7 @@ function fmt(n: number, dp = 2): string {
 }
 
 export default function SamplingWobble({ config }: { config: SamplingWobbleConfig }) {
+  const { lang } = useLang();
   const { p, pLabel, statLabel = "sample proportion p̂", nChoices = [25, 100, 400], showMoe = false } = config;
   const [n, setN] = useState(nChoices[0]);
   const [samples, setSamples] = useState<number[]>([]);
@@ -184,7 +188,7 @@ export default function SamplingWobble({ config }: { config: SamplingWobbleConfi
           type="button"
           onClick={() => setSamples([])}
           disabled={samples.length === 0}
-          aria-label="Reset"
+          aria-label={chrome("Reset", lang)}
           className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >

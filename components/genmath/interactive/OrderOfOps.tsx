@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { type OrderOfOpsConfig } from "@/lib/genmath-interactive";
@@ -8,6 +11,7 @@ import { type OrderOfOpsConfig } from "@/lib/genmath-interactive";
 // "Next step" reveals the next stage — the running expression plus a note saying
 // which operation was just carried out and why it came first (PEMDAS order).
 export default function OrderOfOps({ config }: { config: OrderOfOpsConfig }) {
+  const { lang } = useLang();
   const { stages, color = "#e8913c" } = config;
   const [shown, setShown] = useState(1);
   const done = shown >= stages.length;
@@ -45,12 +49,11 @@ export default function OrderOfOps({ config }: { config: OrderOfOpsConfig }) {
           type="button"
           onClick={() => setShown(1)}
           disabled={shown === 1}
-          aria-label="Reset"
+          aria-label={chrome("Reset", lang)}
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <RotateCcw className="h-4 w-4" /> Reset
-        </button>
+          <RotateCcw className="h-4 w-4" /> {chrome("Reset", lang)}</button>
         <button
           type="button"
           onClick={() => setShown((v) => Math.min(stages.length, v + 1))}

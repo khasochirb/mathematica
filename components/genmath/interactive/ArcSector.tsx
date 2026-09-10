@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -15,6 +18,7 @@ const H = 300;
 const STEPS = [30, 45, 60, 90, 120, 180, 270];
 
 export default function ArcSector({ config }: { config: ArcSectorConfig }) {
+  const { lang } = useLang();
   const { radius = 6, color = GEO_ACCENT } = config;
   const [ti, setTi] = useState(() => {
     const i = STEPS.indexOf(config.start ?? 90);
@@ -74,9 +78,9 @@ export default function ArcSector({ config }: { config: ArcSectorConfig }) {
 
       <div className="mt-4 flex items-center justify-center gap-3">
         <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>angle θ</span>
-        <button type="button" onClick={() => setTi((v) => Math.max(0, v - 1))} disabled={ti <= 0} aria-label="Smaller" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setTi((v) => Math.max(0, v - 1))} disabled={ti <= 0} aria-label={chrome("Smaller", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 17, color: "var(--fg)" }}>{theta}°</div>
-        <button type="button" onClick={() => setTi((v) => Math.min(STEPS.length - 1, v + 1))} disabled={ti >= STEPS.length - 1} aria-label="Larger" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setTi((v) => Math.min(STEPS.length - 1, v + 1))} disabled={ti >= STEPS.length - 1} aria-label={chrome("Larger", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
