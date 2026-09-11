@@ -93,7 +93,7 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
 
     return (
       <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label="Radius lengths wrapping around a circle">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("Radius lengths wrapping around a circle", lang)}>
           <circle cx={cx} cy={cy} r={R} fill="none" stroke="var(--line)" strokeWidth={1.6} />
           {/* the radius, as the measuring stick */}
           <line x1={cx} y1={cy} x2={cx + R} y2={cy} stroke="var(--fg-2)" strokeWidth={2} />
@@ -131,9 +131,9 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
         </div>
 
         <div className="mt-4 flex items-center justify-center gap-2">
-          <button type="button" onClick={() => setNRad((v) => Math.max(0, v - 1))} disabled={nRad <= 0} aria-label="Unwrap one radian" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+          <button type="button" onClick={() => setNRad((v) => Math.max(0, v - 1))} disabled={nRad <= 0} aria-label={chrome("Unwrap one radian", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
           <div className="serif tabular text-center" style={{ minWidth: 36, fontSize: 16, color: GEO_ACCENT }}>{nRad}</div>
-          <button type="button" onClick={() => setNRad((v) => Math.min(6, v + 1))} disabled={nRad >= 6} aria-label="Wrap one radian" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+          <button type="button" onClick={() => setNRad((v) => Math.min(6, v + 1))} disabled={nRad >= 6} aria-label={chrome("Wrap one radian", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
         </div>
         <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
           wrap radius-lengths around the rim — watch three-and-a-bit reach the π mark
@@ -162,7 +162,7 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
 
     return (
       <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 380, display: "block", margin: "0 auto" }} role="img" aria-label="A point orbiting a circle traces a sine wave">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 380, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("A point orbiting a circle traces a sine wave", lang)}>
           {/* circle + axes */}
           <line x1={cx - R - 8} y1={cy} x2={cx + R + 8} y2={cy} stroke="var(--line)" strokeWidth={1} />
           <line x1={cx} y1={cy - R - 8} x2={cx} y2={cy + R + 8} stroke="var(--line)" strokeWidth={1} />
@@ -226,7 +226,7 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label="A point on the unit circle with its coordinates">
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("A point on the unit circle with its coordinates", lang)}>
         {/* axes + circle */}
         <line x1={10} y1={cy} x2={W - 10} y2={cy} stroke="var(--line)" strokeWidth={1.2} />
         <line x1={cx} y1={10} x2={cx} y2={H - 10} stroke="var(--line)" strokeWidth={1.2} />
@@ -267,9 +267,9 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-2">
-        <button type="button" onClick={() => setDeg((v) => Math.max(0, v - 15))} disabled={deg <= 0} aria-label="Decrease angle" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setDeg((v) => Math.max(0, v - 15))} disabled={deg <= 0} aria-label={chrome("Decrease angle", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 48, fontSize: 16, color: GEO_ACCENT }}>{deg}°</div>
-        <button type="button" onClick={() => setDeg((v) => Math.min(360, v + 15))} disabled={deg >= 360} aria-label="Increase angle" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setDeg((v) => Math.min(360, v + 15))} disabled={deg >= 360} aria-label={chrome("Increase angle", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
         sweep the angle in 15° steps — watch the legs and signs change quadrant by quadrant

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { translate, reflectX, reflectY, reflectYeqX, rotate, dilateOrigin } from "@/lib/geo";
@@ -55,6 +58,7 @@ function fmt(n: number): string {
 }
 
 export default function TransformPlane({ config }: { config: TransformPlaneConfig }) {
+  const { lang } = useLang();
   const color = config.color ?? GEO_ACCENT;
   const [shown, setShown] = useState(false);
 
@@ -78,7 +82,7 @@ export default function TransformPlane({ config }: { config: TransformPlaneConfi
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="Transformation on the coordinate plane">
+        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Transformation on the coordinate plane", lang)}>
           {/* Gridlines */}
           {ints.map((g) => (
             <g key={`g${g}`}>

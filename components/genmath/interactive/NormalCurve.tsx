@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -20,6 +23,7 @@ function fmt(n: number): string {
 }
 
 export default function NormalCurve({ config }: { config: NormalCurveConfig }) {
+  const { lang } = useLang();
   const { mode, mu, sigma, x0, step = sigma / 2, xLabel = "value" } = config;
   const [band, setBand] = useState<number>(mode === "empirical" ? 1 : 0);
   const [x, setX] = useState(x0 ?? mu + sigma);
@@ -60,7 +64,7 @@ export default function NormalCurve({ config }: { config: NormalCurveConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 420 }} role="img" aria-label="Normal curve">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 420 }} role="img" aria-label={chrome("Normal curve", lang)}>
           {/* shaded band / walk */}
           {mode === "empirical" && band > 0 && (
             <path d={areaPath(mu - band * sigma, mu + band * sigma)} fill="var(--accent)" fillOpacity={0.22} className="gm-pop" key={band} />
@@ -161,7 +165,7 @@ export default function NormalCurve({ config }: { config: NormalCurveConfig }) {
             type="button"
             onClick={() => setX((v) => Math.max(mu - 3 * sigma, Math.round((v - step) * 100) / 100))}
             disabled={x <= mu - 3 * sigma}
-            aria-label="Move x left"
+            aria-label={chrome("Move x left", lang)}
             className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
           >
@@ -174,7 +178,7 @@ export default function NormalCurve({ config }: { config: NormalCurveConfig }) {
             type="button"
             onClick={() => setX((v) => Math.min(mu + 3 * sigma, Math.round((v + step) * 100) / 100))}
             disabled={x >= mu + 3 * sigma}
-            aria-label="Move x right"
+            aria-label={chrome("Move x right", lang)}
             className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
             style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
           >

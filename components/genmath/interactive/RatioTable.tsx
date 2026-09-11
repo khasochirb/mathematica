@@ -194,7 +194,7 @@ export default function RatioTable({ config }: { config: RatioTableConfig }) {
           type="button"
           onClick={() => setVisibleCols((v) => Math.max(1, v - 1))}
           disabled={!canRemove}
-          aria-label="Remove column"
+          aria-label={chrome("Remove column", lang)}
           className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-30"
           style={{
             background: "var(--bg-2)",

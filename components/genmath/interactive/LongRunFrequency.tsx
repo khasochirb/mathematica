@@ -76,7 +76,7 @@ export default function LongRunFrequency({ config }: { config: LongRunFrequencyC
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label="Running relative frequency chart">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label={chrome("Running relative frequency chart", lang)}>
           {/* frame + gridlines at 0, ½, 1 */}
           {[0, 0.5, 1].map((f) => (
             <g key={f}>

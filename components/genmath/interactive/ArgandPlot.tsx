@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -59,6 +62,7 @@ function Stepper({
 }
 
 export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
+  const { lang } = useLang();
   const {
     mode,
     a: a0 = 3,
@@ -101,7 +105,7 @@ export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
 
     return (
       <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label="A complex number plotted on the Argand diagram">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("A complex number plotted on the Argand diagram", lang)}>
           {/* grid */}
           {[-4, -3, -2, -1, 1, 2, 3, 4].map((k) => (
             <g key={k}>
@@ -181,7 +185,7 @@ export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
 
     return (
       <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label="Powers of a complex number spiralling on the Argand diagram">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("Powers of a complex number spiralling on the Argand diagram", lang)}>
           <line x1={10} y1={cy} x2={W - 10} y2={cy} stroke="var(--fg-2)" strokeWidth={1.2} />
           <line x1={cx} y1={10} x2={cx} y2={H - 10} stroke="var(--fg-2)" strokeWidth={1.2} />
           {/* unit circle for reference */}
@@ -240,7 +244,7 @@ export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label="The nth roots of a complex number forming a regular polygon on a circle">
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("The nth roots of a complex number forming a regular polygon on a circle", lang)}>
         <line x1={10} y1={cy} x2={W - 10} y2={cy} stroke="var(--fg-2)" strokeWidth={1.2} />
         <line x1={cx} y1={10} x2={cx} y2={H - 10} stroke="var(--fg-2)" strokeWidth={1.2} />
         <circle cx={cx} cy={cy} r={R} fill="none" stroke="var(--fg-2)" strokeWidth={1.5} />

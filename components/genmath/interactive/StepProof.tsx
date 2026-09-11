@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw, Check } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -9,6 +12,7 @@ import { type StepProofConfig } from "@/lib/genmath-interactive";
 // reason that justifies it underneath. The gentle on-ramp to deduction —
 // introduced at the end of Unit 1 and the workhorse of Unit 2 onward.
 export default function StepProof({ config }: { config: StepProofConfig }) {
+  const { lang } = useLang();
   const { given, prove, rows } = config;
   const [shown, setShown] = useState(0);
   const done = shown >= rows.length;
@@ -76,7 +80,7 @@ export default function StepProof({ config }: { config: StepProofConfig }) {
           type="button"
           onClick={() => setShown(0)}
           disabled={shown === 0}
-          aria-label="Reset proof"
+          aria-label={chrome("Reset proof", lang)}
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -14,6 +17,7 @@ const W = 320;
 const H = 190;
 
 export default function CircleUnroll({ config }: { config: CircleUnrollConfig }) {
+  const { lang } = useLang();
   const { color = GEO_ACCENT } = config;
 
   const [go, setGo] = useState(false);
@@ -85,7 +89,7 @@ export default function CircleUnroll({ config }: { config: CircleUnrollConfig })
       </div>
 
       <div className="mt-3 flex justify-center">
-        <button type="button" onClick={replay} aria-label="Roll again" className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+        <button type="button" onClick={replay} aria-label={chrome("Roll again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
           <RotateCcw className="h-3.5 w-3.5" /> Roll it again
         </button>
       </div>

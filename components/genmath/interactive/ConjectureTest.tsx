@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Check, X, RotateCcw } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -9,6 +12,7 @@ import { type ConjectureTestConfig } from "@/lib/genmath-interactive";
 // up green — but a single red ✗ is a counterexample, and the conjecture is
 // dead on the spot. (And if everything passes? Still not a proof.)
 export default function ConjectureTest({ config }: { config: ConjectureTestConfig }) {
+  const { lang } = useLang();
   const { conjecture, items } = config;
   const [tested, setTested] = useState<Set<number>>(new Set());
 
@@ -89,7 +93,7 @@ export default function ConjectureTest({ config }: { config: ConjectureTestConfi
           type="button"
           onClick={() => setTested(new Set())}
           disabled={tested.size === 0}
-          aria-label="Reset tests"
+          aria-label={chrome("Reset tests", lang)}
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >

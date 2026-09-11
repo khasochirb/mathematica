@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { type VennCountsConfig } from "@/lib/genmath-interactive";
@@ -16,6 +19,7 @@ const RED = "rgb(200,60,60)";
 type Region = "onlyA" | "both" | "onlyB" | "neither" | null;
 
 export default function VennCounts({ config }: { config: VennCountsConfig }) {
+  const { lang } = useLang();
   const { mode, labelA, labelB, onlyA, onlyB, both, neither = 0, countNoun = "outcomes" } = config;
   const [region, setRegion] = useState<Region>(null);
   const [beat, setBeat] = useState(0); // addition mode: 0 rest, 1 |A|, 2 |B|, 3 overlap, 4 formula
@@ -68,7 +72,7 @@ export default function VennCounts({ config }: { config: VennCountsConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 380 }} role="img" aria-label="Venn diagram with counts">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 380 }} role="img" aria-label={chrome("Venn diagram with counts", lang)}>
           <defs>
             {/* the only-A crescent: circle A with circle B cut away (and mirrored) */}
             <mask id="vc-onlyA">

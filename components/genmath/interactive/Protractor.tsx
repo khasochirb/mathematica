@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useRef, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { ArrowHead, arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -12,6 +15,7 @@ import { type ProtractorConfig } from "@/lib/genmath-interactive";
 //   classify: true — names the angle acute / right / obtuse / straight.
 //   bisector: true — draws the tracking half-angle ray with equal-angle arcs.
 export default function Protractor({ config }: { config: ProtractorConfig }) {
+  const { lang } = useLang();
   const { initial, classify = false, bisector = false, labels, color = GEO_ACCENT } = config;
   const [deg, setDeg] = useState(clampProtractor(initial));
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -158,7 +162,7 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
           type="button"
           onClick={() => setDeg((v) => clampProtractor(v - 5))}
           disabled={deg <= 0}
-          aria-label="Close the angle"
+          aria-label={chrome("Close the angle", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -173,7 +177,7 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
           type="button"
           onClick={() => setDeg((v) => clampProtractor(v + 5))}
           disabled={deg >= 180}
-          aria-label="Open the angle"
+          aria-label={chrome("Open the angle", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

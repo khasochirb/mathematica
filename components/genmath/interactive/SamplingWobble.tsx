@@ -104,7 +104,7 @@ export default function SamplingWobble({ config }: { config: SamplingWobbleConfi
       </div>
 
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 420 }} role="img" aria-label="Sampling distribution dots">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 420 }} role="img" aria-label={chrome("Sampling distribution dots", lang)}>
           {/* margin-of-error band */}
           {showMoe && (
             <rect

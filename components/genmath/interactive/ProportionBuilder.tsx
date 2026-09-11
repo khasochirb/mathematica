@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus, Check } from "lucide-react";
 import {
@@ -41,6 +44,7 @@ function TokenChips({
 }
 
 export default function ProportionBuilder({ config }: { config: ProportionBuilderConfig }) {
+  const { lang } = useLang();
   const { aLabel, bLabel, a, b, knownSide, knownValue, tokenA, tokenB } = config;
 
   const base = knownSide === "a" ? a : b;
@@ -161,7 +165,7 @@ export default function ProportionBuilder({ config }: { config: ProportionBuilde
           type="button"
           onClick={dec}
           disabled={k <= 1}
-          aria-label="Decrease scale"
+          aria-label={chrome("Decrease scale", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -181,7 +185,7 @@ export default function ProportionBuilder({ config }: { config: ProportionBuilde
           type="button"
           onClick={inc}
           disabled={k >= maxK}
-          aria-label="Increase scale"
+          aria-label={chrome("Increase scale", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{
             background: "var(--accent)",

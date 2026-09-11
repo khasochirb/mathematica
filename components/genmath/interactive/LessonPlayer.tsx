@@ -115,6 +115,7 @@ import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import NotationToggle from "@/components/genmath/interactive/NotationToggle";
 import { type GenMathLesson } from "@/lib/genmath-types";
 import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
 import usePerformance from "@/lib/use-performance";
 import { useLapTimer } from "@/lib/use-question-timer";
 import { contextFromPathname, lessonSlugsFromPathname } from "@/lib/perf-context";
@@ -1497,7 +1498,7 @@ export default function LessonPlayer({
           <div className="mb-2.5 flex items-center gap-3">
             <Link
               href={topicHref}
-              aria-label="Exit lesson"
+              aria-label={chrome("Exit lesson", lang)}
               className="gm-press grid h-8 w-8 place-items-center rounded-md"
               style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
             >

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -22,6 +25,7 @@ function fmt(n: number): string {
 }
 
 export default function DotPlot({ config }: { config: DotPlotConfig }) {
+  const { lang } = useLang();
   const { mode, data: data0, min, max, xLabel = "value" } = config;
   // meanMedian: the largest starting value is the one the steppers move
   const moveIx = useMemo(() => data0.indexOf(Math.max(...data0)), [data0]);
@@ -68,7 +72,7 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label="Dot plot">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label={chrome("Dot plot", lang)}>
           <line x1={padL} y1={axisY} x2={W - padR} y2={axisY} stroke="var(--fg-2)" strokeWidth={1.6} />
           {ticks.map((x) => (
             <g key={x}>
@@ -184,7 +188,7 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
             type="button"
             onClick={() => setMoved((v) => Math.max(data0[moveIx], v - 1))}
             disabled={moved <= data0[moveIx]}
-            aria-label="Pull the dot back"
+            aria-label={chrome("Pull the dot back", lang)}
             className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
           >
@@ -197,7 +201,7 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
             type="button"
             onClick={() => setMoved((v) => Math.min(max, v + 1))}
             disabled={moved >= max}
-            aria-label="Pull the dot right"
+            aria-label={chrome("Pull the dot right", lang)}
             className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
             style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
           >

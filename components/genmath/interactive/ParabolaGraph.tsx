@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -44,6 +47,7 @@ function stdEqn(a: number, b: number, c: number): string {
 }
 
 export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig }) {
+  const { lang } = useLang();
   const {
     mode,
     a: a0 = mode === "shape" ? 1 : 1,
@@ -175,7 +179,7 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
     const landed = fp > 0.985;
     return (
       <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-        <svg viewBox={`0 0 ${PW} ${PH}`} width="100%" style={{ maxWidth: 360, display: "block", margin: "0 auto" }} role="img" aria-label="A ball flying along a parabolic arc">
+        <svg viewBox={`0 0 ${PW} ${PH}`} width="100%" style={{ maxWidth: 360, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("A ball flying along a parabolic arc", lang)}>
           {/* axes */}
           <line x1={ppadL} y1={PH - ppadB} x2={PW - 8} y2={PH - ppadB} stroke="var(--fg-2)" strokeWidth={1.6} />
           <line x1={ppadL} y1={PH - ppadB} x2={ppadL} y2={8} stroke="var(--fg-2)" strokeWidth={1.6} />
@@ -228,7 +232,7 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
         </div>
 
         <div className="mt-3 flex justify-center">
-          <button type="button" onClick={replay} aria-label="Throw again" className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+          <button type="button" onClick={replay} aria-label={chrome("Throw again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
             <RotateCcw className="h-3.5 w-3.5" /> Throw it again
           </button>
         </div>
@@ -247,7 +251,7 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="A parabola on a coordinate grid">
+        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("A parabola on a coordinate grid", lang)}>
           {ints.map((g) => (
             <g key={`g${g}`}>
               <line x1={px(g)} y1={py(max)} x2={px(g)} y2={py(min)} stroke="var(--line)" strokeWidth={1} />

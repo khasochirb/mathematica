@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { type FactorTreeConfig } from "@/lib/genmath-interactive";
@@ -47,6 +50,7 @@ type TNode = { x: number; y: number; v: number; prime: boolean; revealAt: number
 type TEdge = { x1: number; y1: number; x2: number; y2: number; revealAt: number };
 
 export default function FactorTree({ config }: { config: FactorTreeConfig }) {
+  const { lang } = useLang();
   const { n, color = "#e8913c" } = config;
   const { splits, primes } = buildSplits(n);
   const [shown, setShown] = useState(0);
@@ -88,7 +92,7 @@ export default function FactorTree({ config }: { config: FactorTreeConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center overflow-x-auto">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: Math.min(W, 360), minWidth: Math.min(W, 240) }} role="img" aria-label="Factor tree">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: Math.min(W, 360), minWidth: Math.min(W, 240) }} role="img" aria-label={chrome("Factor tree", lang)}>
           {/* branches */}
           {edges.filter((e) => e.revealAt <= shown).map((e, i) => (
             <line key={`e${i}`} x1={e.x1} y1={e.y1 + r - 2} x2={e.x2} y2={e.y2 - r + 2} stroke="var(--fg-3)" strokeWidth={1.6} />
@@ -111,7 +115,7 @@ export default function FactorTree({ config }: { config: FactorTreeConfig }) {
             type="button"
             onClick={() => setShown(0)}
             disabled={shown === 0}
-            aria-label="Reset tree"
+            aria-label={chrome("Reset tree", lang)}
             className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
           >

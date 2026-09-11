@@ -192,6 +192,7 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
 
 // ---------------------------------------------------------------------------
 function Corner({ initial, color }: { initial: number; color: string }) {
+  const { lang } = useLang();
   const H = 200;
   const cx = 70;
   const cy = H - 40;
@@ -272,7 +273,7 @@ function Corner({ initial, color }: { initial: number; color: string }) {
           type="button"
           onClick={() => setDeg((v) => Math.max(10, v - 5))}
           disabled={deg <= 10}
-          aria-label="Lower the ray"
+          aria-label={chrome("Lower the ray", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -285,7 +286,7 @@ function Corner({ initial, color }: { initial: number; color: string }) {
           type="button"
           onClick={() => setDeg((v) => Math.min(80, v + 5))}
           disabled={deg >= 80}
-          aria-label="Raise the ray"
+          aria-label={chrome("Raise the ray", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { binCounts, type HistogramBinsConfig } from "@/lib/genmath-interactive";
@@ -9,6 +12,7 @@ import { binCounts, type HistogramBinsConfig } from "@/lib/genmath-interactive";
 // it, and the middle choice lets the story (skew, peaks, gaps) show.
 
 export default function HistogramBins({ config }: { config: HistogramBinsConfig }) {
+  const { lang } = useLang();
   const { data, min, max, widths, start = 0, xLabel = "value" } = config;
   const [wIx, setWIx] = useState(Math.min(start, widths.length - 1));
 
@@ -36,7 +40,7 @@ export default function HistogramBins({ config }: { config: HistogramBinsConfig 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label="Histogram">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label={chrome("Histogram", lang)}>
           {/* count gridlines */}
           {yTicks.map((c) => (
             <g key={c}>

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -12,6 +15,7 @@ import { type PatternGrowConfig } from "@/lib/genmath-interactive";
 //             "the first n odd numbers sum to n²".
 //   doubling: dots double each stage — "stage n holds 2^(n−1) dots".
 export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
+  const { lang } = useLang();
   const { pattern, maxSteps = pattern === "odds" ? 5 : 5 } = config;
   const [n, setN] = useState(1);
   const done = n >= maxSteps;
@@ -126,7 +130,7 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
           type="button"
           onClick={() => setN(1)}
           disabled={n === 1}
-          aria-label="Reset pattern"
+          aria-label={chrome("Reset pattern", lang)}
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >

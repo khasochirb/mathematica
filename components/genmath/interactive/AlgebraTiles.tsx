@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus, Check } from "lucide-react";
 import { type AlgebraTilesConfig } from "@/lib/genmath-interactive";
@@ -19,6 +22,7 @@ function expr(a: number, b: number): string {
 }
 
 export default function AlgebraTiles({ config }: { config: AlgebraTilesConfig }) {
+  const { lang } = useLang();
   const { x: x0, units: u0, mode = "build", maxX = 5, maxUnits = 8, color = "#e8913c" } = config;
   const [x, setX] = useState(x0);
   const [units, setUnits] = useState(u0);
@@ -79,17 +83,17 @@ export default function AlgebraTiles({ config }: { config: AlgebraTilesConfig })
           <div className="text-center">
             <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>x-tiles</div>
             <div className="mt-1 flex items-center gap-2">
-              <button type="button" onClick={() => setX((v) => Math.max(0, v - 1))} disabled={x <= 0} aria-label="Fewer x" className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+              <button type="button" onClick={() => setX((v) => Math.max(0, v - 1))} disabled={x <= 0} aria-label={chrome("Fewer x", lang)} className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
               <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 18, color: "var(--fg)" }}>{x}</div>
-              <button type="button" onClick={() => setX((v) => Math.min(maxX, v + 1))} disabled={x >= maxX} aria-label="More x" className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+              <button type="button" onClick={() => setX((v) => Math.min(maxX, v + 1))} disabled={x >= maxX} aria-label={chrome("More x", lang)} className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
             </div>
           </div>
           <div className="text-center">
             <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>units</div>
             <div className="mt-1 flex items-center gap-2">
-              <button type="button" onClick={() => setUnits((v) => Math.max(0, v - 1))} disabled={units <= 0} aria-label="Fewer units" className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+              <button type="button" onClick={() => setUnits((v) => Math.max(0, v - 1))} disabled={units <= 0} aria-label={chrome("Fewer units", lang)} className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
               <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 18, color: "var(--fg)" }}>{units}</div>
-              <button type="button" onClick={() => setUnits((v) => Math.min(maxUnits, v + 1))} disabled={units >= maxUnits} aria-label="More units" className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+              <button type="button" onClick={() => setUnits((v) => Math.min(maxUnits, v + 1))} disabled={units >= maxUnits} aria-label={chrome("More units", lang)} className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
             </div>
           </div>
         </div>

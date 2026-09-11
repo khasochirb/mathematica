@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -16,6 +19,7 @@ function fmt(x: number, dp = 3): string {
 }
 
 export default function BinomialBars({ config }: { config: BinomialBarsConfig }) {
+  const { lang } = useLang();
   const { n0 = 6, p0 = 0.5, nMax = 14, showMuSigma = false, highlightK } = config;
   const [n, setN] = useState(n0);
   const [p, setP] = useState(p0);
@@ -58,7 +62,7 @@ export default function BinomialBars({ config }: { config: BinomialBarsConfig })
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label="Binomial distribution bars">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label={chrome("Binomial distribution bars", lang)}>
           <line x1={padL} y1={axisY} x2={W - padR} y2={axisY} stroke="var(--fg-2)" strokeWidth={1.6} />
           {pmf.map((q, k) => {
             const hot = pick === k;

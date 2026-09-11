@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -27,6 +30,7 @@ function fmt(n: number, dp = 2): string {
 const H_STEPS = [2, 1, 0.5, 0.25, 0.1];
 
 export default function TangentGraph({ config }: { config: TangentGraphConfig }) {
+  const { lang } = useLang();
   const { mode } = config;
 
   const [hi, setHi] = useState(0); // secant: index into H_STEPS
@@ -90,7 +94,7 @@ export default function TangentGraph({ config }: { config: TangentGraphConfig })
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="A curve with a tangent or secant line">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("A curve with a tangent or secant line", lang)}>
           {Array.from({ length: 7 }, (_, i) => -3 + i).map((g) => (
             <line key={`v${g}`} x1={px(g)} y1={py(Y0)} x2={px(g)} y2={py(Y1)} stroke="var(--line)" strokeWidth={1} />
           ))}

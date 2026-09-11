@@ -49,7 +49,7 @@ export default function FactorFinder({ config }: { config: FactorFinderConfig })
     // odd count → the middle factor is √n paired with itself
     const selfPair = factors.length % 2 === 1 ? xs[(factors.length - 1) / 2] : null;
     return (
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: Math.min(W, 340) }} role="img" aria-label="Factor rainbow">
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: Math.min(W, 340) }} role="img" aria-label={chrome("Factor rainbow", lang)}>
         {arcs}
         {selfPair !== null && (
           <circle cx={selfPair} cy={baseY - 10} r={9} fill="none" stroke={color} strokeWidth={1.8} opacity={0.75} />

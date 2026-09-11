@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { fencesOf, quartilesOf, type BoxPlotConfig } from "@/lib/genmath-interactive";
@@ -19,6 +22,7 @@ function fmt(n: number): string {
 type Part = "min" | "q1" | "median" | "q3" | "max" | "iqr" | null;
 
 export default function BoxPlot({ config }: { config: BoxPlotConfig }) {
+  const { lang } = useLang();
   const { data, xLabel = "value", showFences = false } = config;
   const [part, setPart] = useState<Part>(null);
   const [fences, setFences] = useState(showFences);
@@ -89,7 +93,7 @@ export default function BoxPlot({ config }: { config: BoxPlotConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label="Boxplot">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 400 }} role="img" aria-label={chrome("Boxplot", lang)}>
           {/* axis */}
           <line x1={padL} y1={axisY} x2={W - padR} y2={axisY} stroke="var(--fg-2)" strokeWidth={1.6} />
           {ticks.map((x) => (

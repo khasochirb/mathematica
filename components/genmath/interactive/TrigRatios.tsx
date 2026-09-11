@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -15,6 +18,7 @@ const H = 250;
 const HYP = 6;
 
 export default function TrigRatios({ config }: { config: TrigRatiosConfig }) {
+  const { lang } = useLang();
   const { color = GEO_ACCENT } = config;
   const [theta, setTheta] = useState(config.start ?? 40);
   const rad = (theta * Math.PI) / 180;
@@ -63,9 +67,9 @@ export default function TrigRatios({ config }: { config: TrigRatiosConfig }) {
 
       <div className="mt-4 flex items-center justify-center gap-3">
         <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>angle θ</span>
-        <button type="button" onClick={() => setTheta((v) => Math.max(15, v - 5))} disabled={theta <= 15} aria-label="Smaller angle" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setTheta((v) => Math.max(15, v - 5))} disabled={theta <= 15} aria-label={chrome("Smaller angle", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 40, fontSize: 17, color: "var(--fg)" }}>{theta}°</div>
-        <button type="button" onClick={() => setTheta((v) => Math.min(75, v + 5))} disabled={theta >= 75} aria-label="Larger angle" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setTheta((v) => Math.min(75, v + 5))} disabled={theta >= 75} aria-label={chrome("Larger angle", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );

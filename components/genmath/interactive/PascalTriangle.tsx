@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -14,6 +17,7 @@ import { pascalRow, type PascalTriangleConfig } from "@/lib/genmath-interactive"
 //                  coefficients, term by term.
 
 export default function PascalTriangle({ config }: { config: PascalTriangleConfig }) {
+  const { lang } = useLang();
   const { mode, rows = 6 } = config;
   const [visible, setVisible] = useState(mode === "build" ? 2 : mode === "expansion" ? 2 : rows);
   const [pick, setPick] = useState<[number, number] | null>(null);
@@ -89,7 +93,7 @@ export default function PascalTriangle({ config }: { config: PascalTriangleConfi
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 430 }} role="img" aria-label="Pascal's triangle">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 430 }} role="img" aria-label={chrome("Pascal's triangle", lang)}>
           {allRows.slice(0, shown + 1).map((row, n) => (
             <g key={n}>
               {/* parent connectors for the tapped cell */}

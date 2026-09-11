@@ -53,7 +53,7 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="Coordinate grid">
+        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Coordinate grid", lang)}>
           {/* Quadrant shading */}
           {quadShade && (
             <>

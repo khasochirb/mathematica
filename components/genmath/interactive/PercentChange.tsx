@@ -1,11 +1,15 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type PercentChangeConfig } from "@/lib/genmath-interactive";
 import PercentChangeView from "@/components/genmath/interactive/PercentChangeView";
 
 export default function PercentChange({ config }: { config: PercentChangeConfig }) {
+  const { lang } = useLang();
   const { original, start = 0, mode, currency = "$", color = "#e8913c" } = config;
   const [p, setP] = useState(Math.max(0, Math.min(100, Math.round(start))));
   const step = (d: number) => setP((v) => Math.max(0, Math.min(100, v + d)));
@@ -21,7 +25,7 @@ export default function PercentChange({ config }: { config: PercentChangeConfig 
           type="button"
           onClick={() => step(-5)}
           disabled={p <= 0}
-          aria-label="Lower the percent"
+          aria-label={chrome("Lower the percent", lang)}
           className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -37,7 +41,7 @@ export default function PercentChange({ config }: { config: PercentChangeConfig 
           type="button"
           onClick={() => step(5)}
           disabled={p >= 100}
-          aria-label="Raise the percent"
+          aria-label={chrome("Raise the percent", lang)}
           className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >
