@@ -103,6 +103,28 @@ export const NAV: ChromeEntry[] = [
   { en: "Start", mn: "Эхлэх", src: "SITE", n: 15 },
   { en: "Continue", mn: "Үргэлжлүүлэх", src: "SITE" },
   { en: "Soon", mn: "Удахгүй", src: "VOICE", n: 15, note: "badge on unbuilt doors (rule 7 legacy tier) — must read as a promise, not an apology" },
+
+  // Site nav — the footer's link columns. The HEADER already carried Mongolian
+  // for four of these inline (components/layout/Header.tsx, the `nav` object);
+  // those are copied VERBATIM rather than re-worded, because two Mongolian
+  // labels for one destination is precisely how a product starts feeling
+  // machine-made. The footer had no `lang` at all before this.
+  { en: "1-on-1 Tutoring", mn: "Ганцаарчилсан хичээл", src: "SITE", n: 2, note: "verbatim from Header.tsx nav.tutoring" },
+  { en: "About Us", mn: "Бидний тухай", src: "SITE", n: 2, note: "verbatim from Header.tsx nav.about; app/about uses the same" },
+  { en: "Contact Us", mn: "Холбоо барих", src: "SITE", n: 2, note: 'same wording as the existing "Contact" entry — one destination, one label' },
+  { en: "Careers", mn: "Ажлын байр", src: "SITE", n: 1, note: 'verbatim from app/about ("02 · Ажлын байр")' },
+  { en: "Blog", mn: "Блог", src: "NEW", n: 2 },
+  { en: "Privacy Policy", mn: "Нууцлалын бодлого", src: "NEW", n: 2 },
+  { en: "Terms of Service", mn: "Үйлчилгээний нөхцөл", src: "NEW", n: 2 },
+  { en: "Practice by Topic", mn: "Сэдвээр дасгал хийх", src: "DERIV", n: 1, note: 'built from "Topic"→«Сэдэв» + "Practice"→«Дасгал»; the instrumental -ээр is mine' },
+  { en: "Previous Year Tests", mn: "Өмнөх жилүүдийн шалгалт", src: "NEW", n: 1, note: "the real ЭШ past papers, NOT «жишиг тест» (mock) — Khas used «жишиг тест» for the mock-test voice string, so the two must stay distinguishable" },
+  { en: "ЭШ Hub", mn: "ЭШ хэсэг", src: "DERIV", n: 1, note: 'matches the existing "Back to the SAT hub"→«SAT хэсэг рүү буцах»' },
+  { en: "ЭШ Study by Topic", mn: "ЭШ сэдэв тус бүрээр", src: "NEW", n: 1 },
+
+  // Footer column headings.
+  { en: "Programs", mn: "Хөтөлбөр", src: "NEW", n: 1 },
+  { en: "Company", mn: "Компани", src: "NEW", n: 1 },
+  { en: "Support", mn: "Тусламж", src: "NEW", n: 1 },
 ];
 
 // ---------------------------------------------------------------------------
@@ -126,6 +148,17 @@ export const CONTROLS: ChromeEntry[] = [
   { en: "Rotate line", mn: "Шулууныг эргүүлэх", src: "NEW", n: 2 },
   { en: "Tilt transversal", mn: "Огтлогчийг налуулах", src: "NEW", n: 2, note: "«огтлогч» = transversal; confirm against the ministry standard's geometry vocabulary" },
   { en: "Add column", mn: "Багана нэмэх", src: "NEW", n: 1 },
+
+  // Header controls. These are aria-labels — never rendered as visible text,
+  // but read aloud by a screen reader, so a Mongolian student using one
+  // currently hears the whole site chrome in English. No precedent existed for
+  // any of them; all four are mine.
+  { en: "Toggle language", mn: "Хэл солих", src: "NEW", n: 1 },
+  { en: "Toggle menu", mn: "Цэс нээх, хаах", src: "NEW", n: 1 },
+  { en: "Toggle theme", mn: "Дэлгэцийн горим солих", src: "NEW", n: 1, note: "light/dark, not a visual «загвар» — confirm the wording" },
+  { en: "User menu", mn: "Хэрэглэгчийн цэс", src: "NEW", n: 1 },
+  { en: "Switch to light mode", mn: "Цайвар горимд шилжих", src: "NEW", n: 1 },
+  { en: "Switch to dark mode", mn: "Бараан горимд шилжих", src: "NEW", n: 1 },
 ];
 
 // ---------------------------------------------------------------------------
