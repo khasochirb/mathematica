@@ -17,6 +17,8 @@ import { ALL_CHROME, chrome, untranslated } from "../lib/i18n/chrome";
 
 const ROOT = process.cwd();
 
+const MN_OF = (en: string) => ALL_CHROME.find((e) => e.en === en)?.mn ?? "";
+
 function sourceFiles(dirs: string[]): string[] {
   const out: string[] = [];
   const walk = (dir: string) => {
@@ -77,6 +79,34 @@ describe("chrome dictionary", () => {
       Array.from(new Set(offenders)),
       "chrome() takes a literal English key, never a template literal",
     ).toEqual([]);
+  });
+
+  it("has no two keys differing only by case", () => {
+    // chrome() is an exact-match lookup, so "Practice by Topic" and "Practice
+    // by topic" are two different entries that can drift apart in wording. Two
+    // Mongolian labels for one English label is the thing this dictionary
+    // exists to prevent.
+    const byLower = new Map<string, string[]>();
+    for (const e of ALL_CHROME) {
+      const k = e.en.toLowerCase();
+      byLower.set(k, [...(byLower.get(k) ?? []), e.en]);
+    }
+    const drifted = Array.from(byLower.values())
+      .filter((v) => v.length > 1)
+      .filter((v) => new Set(v.map((en) => MN_OF(en))).size > 1);
+    expect(
+      drifted,
+      "these keys differ only by case AND have different Mongolian — pick one wording",
+    ).toEqual([]);
+  });
+
+  it("resolves a key whose casing differs from the dictionary's", () => {
+    // Pages write the same label with different capitalisation, so chrome()
+    // falls back to a case-insensitive lookup. Without it each mismatch
+    // renders English and is indistinguishable from an un-wired page.
+    expect(chrome("practice by topic", "mn")).toBe(chrome("Practice by Topic", "mn"));
+    expect(chrome("SAT MATH COURSE", "mn")).toBe(chrome("SAT Math course", "mn"));
+    expect(chrome("practice by topic", "mn")).not.toBe("practice by topic");
   });
 
   it("only wires keys the dictionary actually has", () => {

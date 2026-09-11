@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Tc } from "@/components/T";
 import { Archive, BarChart3, BookOpen, ChevronRight, FileText, Layers, Target } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -75,7 +76,7 @@ export function HubHeader({
       style={{ borderBottom: "1px solid var(--line)" }}
     >
       <div>
-        <div className="eyebrow mb-1.5">{eyebrow}</div>
+        <div className="eyebrow mb-1.5"><Tc en={eyebrow} /></div>
         <h1
           className="serif"
           style={{
@@ -86,7 +87,7 @@ export function HubHeader({
             color: "var(--fg)",
           }}
         >
-          {title}
+          <Tc en={title} />
         </h1>
         {statsLine && (
           <p className="mono mt-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
@@ -142,23 +143,23 @@ export function HubProgressBanner({
         </div>
         <div className="flex-1 min-w-0">
           <div className="eyebrow" style={{ color: "var(--accent)" }}>
-            {eyebrow}
+            <Tc en={eyebrow} />
           </div>
           <h2
             className="serif mt-1"
             style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.1 }}
           >
-            {title}
+            <Tc en={title} />
           </h2>
           <p className="text-[13px] mt-1" style={{ color: "var(--fg-2)" }}>
-            {subtitle}
+            <Tc en={subtitle} />
           </p>
         </div>
         <span
           className="mono text-[11px] uppercase shrink-0 hidden sm:inline-flex items-center gap-1"
           style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
         >
-          {cta}
+          <Tc en={cta} />
           <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
         <ChevronRight
@@ -205,7 +206,7 @@ export function HubActionGrid({ cards }: { cards: HubActionCardDef[] }) {
                 className="serif"
                 style={{ fontWeight: 400, fontSize: 22, letterSpacing: "-0.02em", color: "var(--fg)", lineHeight: 1.1 }}
               >
-                {c.title}
+                <Tc en={c.title} />
               </h2>
               {c.badge && (
                 <span
@@ -225,12 +226,12 @@ export function HubActionGrid({ cards }: { cards: HubActionCardDef[] }) {
                         }
                   }
                 >
-                  {c.badge.label}
+                  <Tc en={c.badge.label} />
                 </span>
               )}
             </div>
             <p className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-              {c.subtitle}
+              <Tc en={c.subtitle} />
             </p>
           </Link>
         );

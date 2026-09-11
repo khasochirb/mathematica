@@ -122,6 +122,34 @@ export const NAV: ChromeEntry[] = [
   { en: "ЭШ Study by Topic", mn: "ЭШ сэдэв тус бүрээр", src: "NEW", n: 1 },
 
   // Footer column headings.
+
+  // SAT and IB hub chrome. NOTE THE RULE THIS OBEYS: content language is a
+  // property of the hub (memory/expansion-vision.md §4.7, locked) — the SAT and
+  // IB hubs serve their content in English on purpose, because realism is the
+  // point, and "navigation chrome is what the EN/MN toggle controls, never
+  // content". So the LABELS below translate and the official course names do
+  // NOT: "Analysis & Approaches SL", "Applications & Interpretation SL",
+  // "Digital SAT · Math" are IB's and College Board's own names for the things
+  // and are deliberately absent from this dictionary.
+  { en: "Practice by topic", mn: "Сэдвээр дасгал хийх", src: "DERIV", n: 2, note: "lowercase-t twin of \"Practice by Topic\" — the footer uses one casing and the hubs the other; chrome() is case-sensitive, so both keys must exist" },
+  { en: "Practice tests", mn: "Жишиг тестүүд", src: "DERIV", n: 2, note: "Khas's mock-test voice string uses «жишиг тест»" },
+  { en: "Foundations", mn: "Суурь мэдлэг", src: "NEW", n: 2 },
+  { en: "Progress", mn: "Ахиц", src: "NEW", n: 3 },
+  { en: "See the full report", mn: "Бүрэн тайланг үзэх", src: "NEW", n: 2 },
+  { en: "SAT Math Hub", mn: "SAT Math хэсэг", src: "DERIV", n: 1, note: "SAT/IB course names stay Latin; only «хэсэг» is translated" },
+  { en: "IB Math Hub", mn: "IB Math хэсэг", src: "DERIV", n: 1 },
+  { en: "SAT Math course", mn: "SAT Math курс", src: "DERIV", n: 1 },
+  { en: "IB Math courses", mn: "IB Math курсууд", src: "DERIV", n: 1 },
+  { en: "IB Math — Courses", mn: "IB Math — Курсууд", src: "DERIV", n: 1 },
+  { en: "SAT Math practice", mn: "SAT Math дасгал", src: "DERIV", n: 1 },
+  { en: "IB Math practice", mn: "IB Math дасгал", src: "DERIV", n: 1 },
+  { en: "Your SAT performance", mn: "Таны SAT-ийн гүйцэтгэл", src: "NEW", n: 1 },
+  { en: "Your IB performance", mn: "Таны IB-ийн гүйцэтгэл", src: "NEW", n: 1 },
+  { en: "Live", mn: "Нээлттэй", src: "NEW", n: 4, note: "status badge, the counterpart of «Удахгүй» (Soon) which Khas wrote — he may want to write this one too" },
+  { en: "New", mn: "Шинэ", src: "NEW", n: 2 },
+  { en: "Free", mn: "Үнэгүй", src: "DERIV", n: 1, note: "from Khas's «Үнэгүй нэгд» (Free to join)" },
+
+  // Footer column headings.
   { en: "Programs", mn: "Хөтөлбөр", src: "NEW", n: 1 },
   { en: "Company", mn: "Компани", src: "NEW", n: 1 },
   { en: "Support", mn: "Тусламж", src: "NEW", n: 1 },
@@ -230,6 +258,20 @@ export const STATES: ChromeEntry[] = [
     src: "VOICE",
   },
   { en: "Confirmation email sent. Check your inbox.", mn: "", src: "VOICE" },
+
+  // SAT / IB hub descriptions. Sentences that describe and sell a course —
+  // VOICE by docs/MONGOLIAN.md, so `mn` stays empty and chrome() renders the
+  // English until Khas writes them. Listed here rather than left loose in the
+  // pages so the outstanding voice work is one reviewable queue.
+  { en: "The complete AA SL syllabus · 5 topics · one lesson per subtopic code", mn: "", src: "VOICE", n: 2 },
+  { en: "The AHL extension on top of AA SL · proof, complex numbers, 3D vectors, deeper calculus", mn: "", src: "VOICE", n: 2 },
+  { en: "The complete AI SL syllabus · calculator-always, modelling-first · 5 topics", mn: "", src: "VOICE", n: 2 },
+  { en: "4 College Board domains · 27 units · lessons, practice, unit tests", mn: "", src: "VOICE", n: 1 },
+  { en: "Drill the 4 domains · a similar problem after every miss", mn: "", src: "VOICE", n: 1 },
+  { en: "Drill the 5 syllabus topics · a similar problem after every miss", mn: "", src: "VOICE", n: 1 },
+  { en: "General Math courses — every topic from zero", mn: "", src: "VOICE", n: 2 },
+  { en: "Per-domain accuracy and your weakest areas, once you've taken a test", mn: "", src: "VOICE", n: 1 },
+  { en: "Per-component accuracy and weakest areas, once you start practicing", mn: "", src: "VOICE", n: 1 },
 ];
 
 // ---------------------------------------------------------------------------
@@ -270,6 +312,23 @@ for (const e of ALL_CHROME) {
   if (e.mn) MN_BY_EN[e.en] = e.mn;
 }
 
+// Case-insensitive index, consulted only when the exact key misses.
+//
+// The same label is written with different capitalisation in different places
+// — the footer has "Practice by Topic", the SAT and IB hubs have "Practice by
+// topic", the SAT learn page has "SAT Math Course" against the hub's "SAT Math
+// course". Each mismatch renders English and looks exactly like a page nobody
+// has wired yet, which is the one failure mode this dictionary exists to
+// remove. Requiring an entry per casing would mean the same Mongolian written
+// two or three times, free to drift apart.
+//
+// This is safe because the chrome test asserts that keys differing only by
+// case never carry different Mongolian.
+const MN_BY_EN_LOWER: Record<string, string> = {};
+for (const e of ALL_CHROME) {
+  if (e.mn) MN_BY_EN_LOWER[e.en.toLowerCase()] = e.mn;
+}
+
 /**
  * The English string in the reader's language.
  *
@@ -285,7 +344,7 @@ for (const e of ALL_CHROME) {
  */
 export function chrome(en: string, lang: string): string {
   if (lang !== "mn") return en;
-  return MN_BY_EN[en] ?? en;
+  return MN_BY_EN[en] ?? MN_BY_EN_LOWER[en.toLowerCase()] ?? en;
 }
 
 /** Entries still waiting on Khas — used by the coverage test, not by pages. */
