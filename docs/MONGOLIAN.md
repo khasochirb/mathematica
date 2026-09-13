@@ -3,7 +3,7 @@
 **Standing programme, not a task.** Many sessions run against this document.
 Read it at the start of each one, alongside `CLAUDE.md`.
 
-Established 26 Aug 2026 by Khas. Deadline **ЭЕШ, June 2027** — not
+Established 26 Aug 2026 by Khas. Deadline **ЭШ, June 2027** — not
 1 September. Nothing here is urgent; all of it is long.
 
 ---
@@ -70,7 +70,7 @@ shipped rather than trusting them. On the chrome batch that caught eight
 mislabelled entries — words claimed as established that were only derived
 from a related string.
 
-**(b) The 184 ЭЕШ skill names** from `supabase/migrations/011_seed_esh_graph.sql`.
+**(b) The 184 ЭШ skill names** from `supabase/migrations/011_seed_esh_graph.sql`.
 `name_mn` is NULL on every production row. Propose Mongolian for each.
 
 Produce it **as data. Do not write to the database** — the Supabase MCP's

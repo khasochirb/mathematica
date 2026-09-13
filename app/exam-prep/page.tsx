@@ -41,7 +41,11 @@ export default function ExamPrepPage() {
         >
           {t(
             "Mongolian university entrance exam math prep",
-            "Математикийн Элсэлтийн Ерөнхий Шалгалтын бэлтгэл",
+            // The exam dropped «Ерөнхий» from its name; it is now ЭШ,
+            // Элсэлтийн Шалгалт. Khas, 13 Sep 2026 — and this headline had
+            // carried the old name into production. Guarded by
+            // scripts/verify-exam-name.test.ts.
+            "Математикийн Элсэлтийн Шалгалтын бэлтгэл",
           )}
         </h1>
         <ul
