@@ -139,10 +139,16 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="mono text-[10px]" style={{ color: "var(--fg-3)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                  {t("Location", "Байршил")}
+                  {t("Locations", "Байршил")}
                 </div>
+                {/* Two offices as of 13 Sep 2026, Khas's call. Ulaanbaatar
+                    first: it is where the in-person tutoring happens and where
+                    the "Ulaanbaatar time" SLA below is anchored. */}
                 <div className="text-[13px] mt-0.5" style={{ color: "var(--fg)" }}>
                   {t("Ulaanbaatar, Mongolia", "Улаанбаатар, Монгол")}
+                </div>
+                <div className="text-[13px] mt-0.5" style={{ color: "var(--fg)" }}>
+                  {t("San Francisco, California", "Сан Франциско, Калифорни")}
                 </div>
                 {/* Was "Online · worldwide", which read as "we are nowhere"
                     next to a city. Online tutoring is still offered — it is

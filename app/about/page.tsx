@@ -1,33 +1,42 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Heart, Lightbulb, Globe, Target } from "lucide-react";
+import { ArrowRight, Lightbulb, Globe, Target, TrendingUp } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 
 // next/image is imported on-demand by the team section. Currently the
 // team section is hidden (see below). When re-enabling, restore:
 //   import Image from "next/image";
 
+// Khas rewrote this page on 13 Sep 2026. The Mongolian below is his, verbatim
+// — it is voice, and docs/MONGOLIAN.md puts it out of Claude's hands. The
+// English is written to mirror it sentence for sentence, on his instruction
+// ("modify the english version to match this mongolian version exactly"), so
+// the two languages say the same thing rather than drifting into two pitches.
+//
+// Icons follow the new themes: a plan, visible progress, curiosity kept alive,
+// culture. The previous four values (Student-First, Culturally Connected,
+// Excellence-Driven, Results-Focused) are replaced wholesale, not edited.
 const values = [
   {
-    icon: Heart,
-    en: { title: "Student-First", desc: "Every decision we make starts with what's best for the student. Not the curriculum. Not the test. The student." },
-    mn: { title: "Оюутан түрүүнд", desc: "Бидний гаргадаг бүх шийдвэр оюутанд хамгийн сайн зүйлийг хийхээс эхэлдэг. Хөтөлбөр биш. Шалгалт биш. Оюутан." },
+    icon: Target,
+    en: { title: "A plan made for each student", desc: "Every student follows a plan built for them. At their own pace, starting from wherever they need to." },
+    mn: { title: "Сурагч бүрд тохирсон төлөвлөгөө", desc: "Сурагч бүр өөртөө тохирсон төлөвлөгөөг дагаж суралцана. Өөрийн хурдаараа, өөрт хэрэгтэй газраасаа эхэлж болно." },
   },
   {
-    icon: Globe,
-    en: { title: "Culturally Connected", desc: "We weave Mongolian identity into every lesson. Math isn't just numbers — it's a lens through which we understand the world." },
-    mn: { title: "Соёлтой холбогдсон", desc: "Монгол өвөрмөц байдлыг хичээл бүрт нэгтгэдэг. Математик зүгээр тоо биш — дэлхийг ойлгох нүд." },
+    icon: TrendingUp,
+    en: { title: "Progress you can actually see", desc: "Measuring a student's progress precisely means they know what to work on, and waste no time on what they don't." },
+    mn: { title: "Ахицаа бодитоор хардаг", desc: "Сурагчийн ахицыг нарийвчлалтайгаар хэмжсэнээр юун дээрээ анхаарах ёстойгоо мэдэж цагаа дэмий үрэхгүй." },
   },
   {
     icon: Lightbulb,
-    en: { title: "Excellence-Driven", desc: "We hold ourselves and our students to the highest standards. World-class education means not settling for good enough." },
-    mn: { title: "Тэргүүлэгч", desc: "Бид өөрсдөө болон оюутнуудаа хамгийн өндөр стандартад хүргэдэг. Дэлхийн түвшний боловсрол гэдэг хангалттай хэмжээнд тухлахгүй гэсэн үг." },
+    en: { title: "We don't put the spark out", desc: "A child should be asking questions and staying curious. Bury them in exercises and they tire of maths, and the interest goes out. So we give the right problems, not a lot of problems." },
+    mn: { title: "Сонирхлыг нь унтраахгүй", desc: "Хүүхэд асуудаг, сонирхдог байх ёстой. Даалгавраар дарвал математикаас залхаж, сонирхол нь унтардаг. Тиймээс олон бодлого биш, зөв бодлого өгдөг." },
   },
   {
-    icon: Target,
-    en: { title: "Results-Focused", desc: "We measure success by student outcomes — grades, test scores, and confidence. Every session has a purpose." },
-    mn: { title: "Үр дүнд чиглэсэн", desc: "Амжилтыг оюутны үр дүнгээр — дүн, шалгалтын оноо, итгэлээр хэмждэг. Хичээл бүр зорилготой." },
+    icon: Globe,
+    en: { title: "We don't forget our culture", desc: "Every lesson draws its examples from Mongolian life. Maths is not just numbers. It is a way of understanding the world." },
+    mn: { title: "Соёлоо мартдаггүй", desc: "Хичээл бүрдээ монгол амьдралаас жишээ татдаг. Математик бол зүгээр нэг тоо биш. Дэлхийг ойлгох арга юм." },
   },
 ];
 
@@ -86,9 +95,9 @@ export default function AboutPage() {
             color: "var(--fg)",
           }}
         >
-          {t("Built by Mongolians, for ", "Монголчуудаар, ")}
+          {t("About ", "Бидний ")}
           <em className="serif-italic" style={{ color: "var(--accent)" }}>
-            {t("Mongolians", "Монголчуудад")}
+            {t("us", "тухай")}
           </em>
           .
         </h1>
@@ -97,8 +106,8 @@ export default function AboutPage() {
           style={{ fontStyle: "normal", fontSize: 19, lineHeight: 1.5, color: "var(--fg-1)" }}
         >
           {t(
-            "Mongol Potential was founded with a simple belief: every Mongolian student — wherever they live — deserves access to excellent math education that honors who they are.",
-            "Mongol Potential-ийг энгийн итгэл үнэмшилтэй үүсгэсэн: хаана ч амьдардаг бай — Монгол оюутан бүр өөрийнх нь хүн байдлыг хүндэтгэсэн өндөр чанарын математикийн боловсролд хүрэх эрхтэй.",
+            "At Mongol Potential, every student — wherever they live, whatever level they are at — can reach a high-quality mathematics education.",
+            "Mongol Potential-ийг хаана ч амьдардаг бай, ямар ч түвшинтэй бай, сурагч бүр өндөр чанарын математикийн боловсролд хүрэх бүрэн боломжтой.",
           )}
         </p>
       </section>
@@ -114,19 +123,13 @@ export default function AboutPage() {
           className="serif"
           style={{ fontWeight: 400, fontSize: "clamp(28px, 4vw, 40px)", letterSpacing: "-0.03em", color: "var(--fg)" }}
         >
-          {t("Helping Mongol minds reach their potential.", "Монгол оюун ухааныг боломжоо нээхэд тусалж байна.")}
+          {t("We help Mongolian children unlock their potential.", "Монгол хүүхдүүдийг өөрийн потенциалаа нээхэд бид тусална.")}
         </h2>
-        <div className="mt-6 grid md:grid-cols-2 gap-8 text-[15px] leading-relaxed" style={{ color: "var(--fg-1)" }}>
+        <div className="mt-6 max-w-3xl text-[15px] leading-relaxed" style={{ color: "var(--fg-1)" }}>
           <p>
             {t(
-              "Many Mongolian children grow up in the United States and across the world. They remain proudly Mongolian — and deserve to be well-educated, confident, and connected to their heritage.",
-              "Олон Монгол хүүхэд АНУ болон дэлхийн өнцөг булан бүрт өсч торниж байна. Тэд бахархалтайгаар Монгол хэвээрээ — мөн сайн боловсролтой, итгэлтэй, өвлийн соёлтойгоо холбогдсон байх эрхтэй.",
-            )}
-          </p>
-          <p>
-            {t(
-              "We tailor lessons to what students already study (AP, California Middle School Math, IB, and more), boost grades, and build genuine curiosity and confidence.",
-              "Оюутнуудын аль хэдийн сурч буй зүйлд (AP, Калифорнийн дунд сургуулийн математик, IB) тохирсон хичээл зохиож, дүнгийг дээшлүүлж, жинхэнэ сониуч зан, итгэлийг бий болгодог.",
+              "Many Mongolian children are growing up in every corner of the world, and we give each of them the chance to close the gaps in their mathematics and to build further on what they are already good at.",
+              "Олон Монгол хүүхэд дэлхийн өнцөг булан бүрд өсөж торниж байгаа бөгөөд, хүүхэд бүрд математикийн сул талаа нөхөх болон сайн чадваруудаа улам хөгжүүлэх боломжийг олгож байна.",
             )}
           </p>
         </div>
@@ -139,7 +142,7 @@ export default function AboutPage() {
           className="serif mb-10"
           style={{ fontWeight: 400, fontSize: "clamp(28px, 4vw, 40px)", letterSpacing: "-0.03em", color: "var(--fg)" }}
         >
-          {t("What guides us.", "Биднийг удирдах зүйлс.")}
+          {t("What we hold to.", "Бид юуг эрхэмлэдэг вэ.")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {values.map((v, i) => {
@@ -202,16 +205,16 @@ export default function AboutPage() {
             className="serif"
             style={{ fontWeight: 400, fontSize: "clamp(28px, 4vw, 40px)", letterSpacing: "-0.03em", color: "var(--fg)" }}
           >
-            {t("Join our ", "Манай ")}
+            {t("Want to work ", "Бидэнтэй хамт ")}
             <em className="serif-italic" style={{ color: "var(--accent)" }}>
-              {t("team", "багт")}
+              {t("with us", "ажиллах уу")}
             </em>
-            .
+            ?
           </h2>
           <p className="text-[14px] mt-4 max-w-xl mx-auto leading-relaxed" style={{ color: "var(--fg-1)" }}>
             {t(
-              "Are you a passionate math educator with a connection to the Mongolian community? We'd love to hear from you.",
-              "Та Монгол нийгэмлэгтэй холбоотой, математикийн сэтгэл зүрхтэй багш уу? Таны мессежийг хүлээн авахад баяртай байна.",
+              "If you are interested in mathematics and education and would like to work with children, get in touch with us.",
+              "Математик, боловсролын салбарыг сонирхдог, хүүхдүүдтэй ажиллах хүсэлтэй хүн байвал бидэнтэй холбогдоорой.",
             )}
           </p>
           <Link href="/contact" className="btn btn-primary mt-7 inline-flex">
