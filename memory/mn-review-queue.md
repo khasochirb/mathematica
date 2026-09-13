@@ -215,10 +215,31 @@ Each needs a course blurb, and a blurb persuades — so nine of them are
 Khas's to write, not mine. That is the real cost of this gap, and it is
 worth queueing before the count grows.
 
-**The ministry's own chart vocabulary is unsafe.** А/492 gives dot plot «цэгэн
-диаграм» and scatter plot «цэгэн диаграмм» — one doubled м apart. I followed
-the site's distinguishable «цэгэн график» / «хамаарлын график» instead.
-Confirm that is right.
+**~~The ministry's own chart vocabulary is unsafe.~~ WITHDRAWN — I misread
+А/492.** The claim was that the standard gives dot plot «цэгэн диаграм» and
+scatter plot «цэгэн диаграмм», one doubled м apart, and that this made its
+chart vocabulary dangerous to follow. Re-counted 13 Sep 2026: the standard
+contains **zero** single-м spellings. All four of its uses are «диаграмм»:
+
+- `10.13в` «Цэгэн диаграмм, түүний хандлагын шулуун» — one entry, not two
+- «Эйлер-Веннийн диаграмм»
+- «Иш навчны диаграмм, гистограмм»
+- «хайрцган диаграммыг»
+
+There is no minimal pair, so there was nothing unsafe. The site's
+«цэгэн график» / «хамаарлын график» still stand — both are SITE entries and
+not in question — but they were never rescuing us from a ministry hazard.
+
+**G5 · The mirrors spell «диаграм» where the ministry spells «диаграмм».**
+Found while checking the above. Shipped Mongolian uses the single-м form 58
+times (`диаграм`, `диаграмын`, `диаграмд`, `диаграмаас`) against 7 double-м.
+The ministry outranks the glossary, and the glossary outranks the mirrors,
+so the mirrors are the ones that are wrong.
+
+Same shape as G4: mirror JSON is generated, so the route is an
+`mn_terms.py` entry plus `--fix`, not a hand edit. Cheap to do, and it needs
+no ruling — the ministry has already decided it. Queued rather than done
+because it belongs with G4's glossary pass, not in a chrome commit.
 
 ---
 

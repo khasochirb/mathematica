@@ -131,7 +131,7 @@ export const NAV: ChromeEntry[] = [
   { en: "Privacy Policy", mn: "Нууцлалын бодлого", src: "NEW", n: 2, ok: "2026-09-13" },
   { en: "Terms of Service", mn: "Үйлчилгээний нөхцөл", src: "NEW", n: 2, ok: "2026-09-13" },
   { en: "Practice by Topic", mn: "Сэдвээр дасгал хийх", src: "DERIV", n: 1, note: 'built from "Topic"→«Сэдэв» + "Practice"→«Дасгал»; the instrumental -ээр is mine' },
-  { en: "Previous Year Tests", mn: "Өмнөх жилүүдийн шалгалт", src: "NEW", n: 1, note: "the real ЭШ past papers, NOT «жишиг тест» (mock) — Khas used «жишиг тест» for the mock-test voice string, so the two must stay distinguishable" },
+  { en: "Previous Year Tests", mn: "Өмнөх жилүүдийн шалгалт", src: "NEW", n: 1, note: "«шалгалт», NOT «тест» — and the split from «Жишиг тестүүд» is deliberate. These are the real state papers, and the exam's own name is Элсэлтийн Ерөнхий ШАЛГАЛТ. A practice test is «тест» (the site, the approved Practice tests entry, and both of Khas's own voice strings all use it); the real examination is «шалгалт». Not repo-attested either way — the papers never label themselves — so this rests on the acronym." },
   { en: "ЭШ Hub", mn: "ЭШ хэсэг", src: "DERIV", n: 1, note: 'matches the existing "Back to the SAT hub"→«SAT хэсэг рүү буцах»' },
   { en: "ЭШ Study by Topic", mn: "ЭШ сэдэв тус бүрээр", src: "NEW", n: 1 },
 
@@ -389,7 +389,7 @@ export const WIDGETS: ChromeEntry[] = [
   { en: "Histogram", mn: "Гистограмм", src: "GLOSS", note: "ministry А/492" },
   { en: "Boxplot", mn: "Хайрцган диаграмм", src: "GLOSS", note: "ministry «box plot»" },
   { en: "Normal curve", mn: "Хэвийн тархалтын муруй", src: "DERIV", note: "from the ministry's «хэвийн тархалт»" },
-  { en: "Venn diagram with counts", mn: "Тоотой Венн диаграмм", src: "DERIV", note: "«Венн диаграмм» is the ЭШ bank's spelling" },
+  { en: "Venn diagram with counts", mn: "Тоотой Веннийн диаграмм", src: "GLOSS", note: "«Веннийн», genitive — А/492 writes «Эйлер-Веннийн диаграмм». Was «Венн диаграмм», the bare stem. The double м is also the ministry's: it spells «диаграмм» in all four of its uses and never «диаграм», even though the shipped mirrors use the single-м form 58 times (G5)." },
   { en: "Pascal's triangle", mn: "Паскалийн гурвалжин", src: "GLOSS", note: "proper names take standard Mongolian Cyrillic (Паскаль)" },
   { en: "Factor tree", mn: "Үржигдэхүүнд задлах мод", src: "NEW", note: "FACTOR IS POLYSEMOUS (R9): a factor TREE decomposes into prime factors → «үржигдэхүүн», while a factor RAINBOW pairs divisors → «хуваагч». The two widgets need the two different words." },
   { en: "Factor rainbow", mn: "Хуваагчийн солонго", src: "NEW", note: "see Factor tree — this one pairs divisors, so «хуваагч»" },
