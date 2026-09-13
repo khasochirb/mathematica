@@ -167,6 +167,20 @@ is **non-elective** — «Илтгэгч тэгшитгэлийг графики
 `memory/mn-findings/esh-scope-gaps.md`: extend the unit, re-map the objective,
 or accept the gap deliberately.
 
+**G3 · Most of the numeral genitive table is still unverified.**
+`lib/i18n/mn-numerals.ts` holds 19 endings — the units 1–9, the whole tens,
+and 100 — and four widgets render them.
+
+Khas confirmed **«12-ын хуваагчид»** on 13 Sep 2026. That settles the
+construction (number · hyphen · ending · noun) and the «ын» row with it,
+since 12 inherits from хоёр. The *rule* is tested besides: a compound takes
+its last word's ending, whole tens are their own word.
+
+What is still mine: the endings for **4, 6, 7, 9 and the whole tens** —
+«6-гийн», «20-ийн» and the rest. Each is marked `unconfirmed` in the file. A
+wrong row is a one-line fix and the tests follow it. Not urgent enough to
+interrupt him for; worth folding into the next batch he reads.
+
 **G2 · Nine course hubs have no Mongolian at all.** Found 13 Sep 2026 while
 applying the focus-label ruling. `/math/geometry` and the eight hubs sharing
 `components/course/CoursePlacementCta.tsx` — precalculus, trigonometry,

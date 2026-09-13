@@ -82,7 +82,7 @@ export type ChromeEntry = {
 // ---------------------------------------------------------------------------
 export const STRUCTURE: ChromeEntry[] = [
   { en: "Unit", mn: "Бүлэг", src: "SITE", n: 36, note: "COURSE-CHAPTER sense. Khas 13 Sep 2026: «Бүлэг if we are talking about unit as a chapter or like a section, but нэгж if we are talking about kg, cm, meters.» His own SAT sentence uses «бүлэг» for both the sections and the unit tests, which is the same call. Was «Нэгж» — wrong in all 36 places." },
-  { en: "Lesson", mn: "Хичээл", src: "DERIV", n: 15 },
+  { en: "Lesson", mn: "Хичээл", src: "DERIV", n: 15, ok: "2026-09-13" },
   { en: "Lessons", mn: "Хичээлүүд", src: "NEW", n: 15, ok: "2026-09-13", note: 'Khas kept the plural, 13 Sep 2026, alongside the site\'s unmarked «Хичээл» on the TAB label. Both forms on one page is deliberate: the tab names the section, this heads a countable list.' },
   { en: "Topic", mn: "Сэдэв", src: "SITE", n: 9 },
   { en: "Courses", mn: "Курсууд", src: "SITE", n: 9 },
@@ -101,19 +101,19 @@ export const STRUCTURE: ChromeEntry[] = [
 //    the kind of thing I will have got wrong somewhere.
 // ---------------------------------------------------------------------------
 export const NAV: ChromeEntry[] = [
-  { en: "Back", mn: "Буцах", src: "NEW", n: 5 },
+  { en: "Back", mn: "Буцах", src: "NEW", n: 5, ok: "2026-09-13" },
   { en: "Back to the course", mn: "Курс руу буцах", src: "NEW", n: 35, ok: "2026-09-13", note: "the single most common chrome string on the site. Khas approved «курс» and the руу form, 13 Sep 2026." },
-  { en: "Back to unit", mn: "Бүлэг рүү буцах", src: "DERIV", n: 12, note: "course chapter, so «Бүлэг» per the 13 Sep ruling; рүү after the front vowel" },
-  { en: "Back to topic", mn: "Сэдэв рүү буцах", src: "NEW", n: 3 },
-  { en: "Back to Grade 10", mn: "10-р анги руу буцах", src: "NEW", n: 3 },
-  { en: "Back to Grade 11", mn: "11-р анги руу буцах", src: "NEW", n: 3 },
-  { en: "Back to Grade 12", mn: "12-р анги руу буцах", src: "NEW", n: 3 },
-  { en: "Back to Geometry", mn: "Геометр рүү буцах", src: "NEW", n: 3 },
-  { en: "Back to the SAT hub", mn: "SAT хэсэг рүү буцах", src: "NEW", n: 1, note: "SAT stays Latin (glossary rule 2)" },
-  { en: "Back to the IB hub", mn: "IB хэсэг рүү буцах", src: "NEW", n: 1 },
-  { en: "Next", mn: "Дараах", src: "DERIV", n: 4, note: 'site has "Next →"→«Дараах →»' },
-  { en: "Previous", mn: "Өмнөх", src: "NEW", n: 2 },
-  { en: "Next step", mn: "Дараагийн алхам", src: "NEW", n: 2 },
+  { en: "Back to unit", mn: "Бүлэг рүү буцах", src: "DERIV", n: 12, ok: "2026-09-13", note: "course chapter, so «Бүлэг» per the 13 Sep ruling; рүү after the front vowel" },
+  { en: "Back to topic", mn: "Сэдэв рүү буцах", src: "NEW", n: 3, ok: "2026-09-13" },
+  { en: "Back to Grade 10", mn: "10-р анги руу буцах", src: "NEW", n: 3, ok: "2026-09-13" },
+  { en: "Back to Grade 11", mn: "11-р анги руу буцах", src: "NEW", n: 3, ok: "2026-09-13" },
+  { en: "Back to Grade 12", mn: "12-р анги руу буцах", src: "NEW", n: 3, ok: "2026-09-13" },
+  { en: "Back to Geometry", mn: "Геометр рүү буцах", src: "NEW", n: 3, ok: "2026-09-13" },
+  { en: "Back to the SAT hub", mn: "SAT хэсэг рүү буцах", src: "NEW", n: 1, ok: "2026-09-13", note: "SAT stays Latin (glossary rule 2)" },
+  { en: "Back to the IB hub", mn: "IB хэсэг рүү буцах", src: "NEW", n: 1, ok: "2026-09-13" },
+  { en: "Next", mn: "Дараах", src: "DERIV", n: 4, ok: "2026-09-13", note: 'site has "Next →"→«Дараах →»' },
+  { en: "Previous", mn: "Өмнөх", src: "NEW", n: 2, ok: "2026-09-13" },
+  { en: "Next step", mn: "Дараагийн алхам", src: "NEW", n: 2, ok: "2026-09-13" },
   { en: "Start", mn: "Эхлэх", src: "SITE", n: 15 },
   { en: "Continue", mn: "Үргэлжлүүлэх", src: "SITE" },
   { en: "Soon", mn: "Удахгүй", src: "VOICE", n: 15, note: "badge on unbuilt doors (rule 7 legacy tier) — must read as a promise, not an apology" },
@@ -127,9 +127,9 @@ export const NAV: ChromeEntry[] = [
   { en: "About Us", mn: "Бидний тухай", src: "SITE", n: 2, note: "verbatim from Header.tsx nav.about; app/about uses the same" },
   { en: "Contact Us", mn: "Холбоо барих", src: "SITE", n: 2, note: 'same wording as the existing "Contact" entry — one destination, one label' },
   { en: "Careers", mn: "Ажлын байр", src: "SITE", n: 1, note: 'verbatim from app/about ("02 · Ажлын байр")' },
-  { en: "Blog", mn: "Блог", src: "NEW", n: 2 },
-  { en: "Privacy Policy", mn: "Нууцлалын бодлого", src: "NEW", n: 2 },
-  { en: "Terms of Service", mn: "Үйлчилгээний нөхцөл", src: "NEW", n: 2 },
+  { en: "Blog", mn: "Блог", src: "NEW", n: 2, ok: "2026-09-13" },
+  { en: "Privacy Policy", mn: "Нууцлалын бодлого", src: "NEW", n: 2, ok: "2026-09-13" },
+  { en: "Terms of Service", mn: "Үйлчилгээний нөхцөл", src: "NEW", n: 2, ok: "2026-09-13" },
   { en: "Practice by Topic", mn: "Сэдвээр дасгал хийх", src: "DERIV", n: 1, note: 'built from "Topic"→«Сэдэв» + "Practice"→«Дасгал»; the instrumental -ээр is mine' },
   { en: "Previous Year Tests", mn: "Өмнөх жилүүдийн шалгалт", src: "NEW", n: 1, note: "the real ЭШ past papers, NOT «жишиг тест» (mock) — Khas used «жишиг тест» for the mock-test voice string, so the two must stay distinguishable" },
   { en: "ЭШ Hub", mn: "ЭШ хэсэг", src: "DERIV", n: 1, note: 'matches the existing "Back to the SAT hub"→«SAT хэсэг рүү буцах»' },
@@ -145,11 +145,11 @@ export const NAV: ChromeEntry[] = [
   // NOT: "Analysis & Approaches SL", "Applications & Interpretation SL",
   // "Digital SAT · Math" are IB's and College Board's own names for the things
   // and are deliberately absent from this dictionary.
-  { en: "Practice by topic", mn: "Сэдвээр дасгал хийх", src: "DERIV", n: 2, note: "lowercase-t twin of \"Practice by Topic\" — the footer uses one casing and the hubs the other; chrome() is case-sensitive, so both keys must exist" },
-  { en: "Practice tests", mn: "Жишиг тестүүд", src: "DERIV", n: 2, note: "Khas's mock-test voice string uses «жишиг тест»" },
-  { en: "Foundations", mn: "Суурь мэдлэг", src: "NEW", n: 2 },
-  { en: "Progress", mn: "Ахиц", src: "NEW", n: 3 },
-  { en: "See the full report", mn: "Бүрэн тайланг үзэх", src: "NEW", n: 2 },
+  { en: "Practice by topic", mn: "Сэдвээр дасгал хийх", src: "DERIV", n: 2, ok: "2026-09-13", note: "lowercase-t twin of \"Practice by Topic\" — the footer uses one casing and the hubs the other; chrome() is case-sensitive, so both keys must exist" },
+  { en: "Practice tests", mn: "Жишиг тестүүд", src: "DERIV", n: 2, ok: "2026-09-13", note: "Khas's mock-test voice string uses «жишиг тест»" },
+  { en: "Foundations", mn: "Суурь мэдлэг", src: "NEW", n: 2, ok: "2026-09-13" },
+  { en: "Progress", mn: "Ахиц", src: "NEW", n: 3, ok: "2026-09-13" },
+  { en: "See the full report", mn: "Бүрэн тайланг үзэх", src: "NEW", n: 2, ok: "2026-09-13" },
   { en: "SAT Math Hub", mn: "SAT Math хэсэг", src: "DERIV", n: 1, note: "SAT/IB course names stay Latin; only «хэсэг» is translated" },
   { en: "IB Math Hub", mn: "IB Math хэсэг", src: "DERIV", n: 1 },
   { en: "SAT Math course", mn: "SAT Math курс", src: "DERIV", n: 1 },
@@ -160,7 +160,7 @@ export const NAV: ChromeEntry[] = [
   { en: "Your SAT performance", mn: "Таны SAT-ийн гүйцэтгэл", src: "NEW", n: 1 },
   { en: "Your IB performance", mn: "Таны IB-ийн гүйцэтгэл", src: "NEW", n: 1 },
   { en: "Live", mn: "Нээлттэй", src: "NEW", n: 4, ok: "2026-09-13", note: "status badge, the counterpart of «Удахгүй» (Soon) which Khas wrote. He approved it as-is on 13 Sep 2026 rather than writing his own." },
-  { en: "New", mn: "Шинэ", src: "NEW", n: 2 },
+  { en: "New", mn: "Шинэ", src: "NEW", n: 2, ok: "2026-09-13" },
   { en: "Free", mn: "Үнэгүй", src: "DERIV", n: 1, note: "from Khas's «Үнэгүй нэгд» (Free to join)" },
 
   // Footer column headings.
@@ -178,8 +178,8 @@ export const CONTROLS: ChromeEntry[] = [
   { en: "Check", mn: "Шалгах", src: "NEW", n: 2 },
   { en: "Move left", mn: "Зүүн тийш", src: "NEW", n: 2 },
   { en: "Move right", mn: "Баруун тийш", src: "NEW", n: 2 },
-  { en: "Larger", mn: "Томсгох", src: "NEW", n: 5, note: "verb (do this) not adjective — these are buttons" },
-  { en: "Smaller", mn: "Жижигрүүлэх", src: "NEW", n: 5 },
+  { en: "Larger", mn: "Томсгох", src: "NEW", n: 5, ok: "2026-09-13", note: "verb (do this) not adjective — these are buttons" },
+  { en: "Smaller", mn: "Жижигрүүлэх", src: "NEW", n: 5, ok: "2026-09-13" },
   { en: "Show solution", mn: "Бодолтыг харах", src: "NEW", note: 'site has "Review the solution"→«Бодолтыг дахин үзэх»; first viewing is харах not дахин үзэх' },
   { en: "Hide", mn: "Нуух", src: "NEW" },
   { en: "Hide solution", mn: "Бодолтыг нуух", src: "NEW" },
@@ -222,9 +222,9 @@ export const SECTIONS: ChromeEntry[] = [
   { en: "What you'll learn", mn: "Юу сурах вэ", src: "NEW", n: 3, ok: "2026-09-13", note: "the glossary's «Юу сурснаа эргэн харъя» is past-tense (end of lesson); this is the start-of-lesson heading and needs its own future form" },
   { en: "Key idea", mn: "Гол санаа", src: "NEW", n: 3, ok: "2026-09-13", note: "Khas kept this and «Санаа нь» distinct, 13 Sep 2026 — they head different blocks and do not read as duplicates." },
   { en: "The idea", mn: "Санаа нь", src: "NEW", n: 3, ok: "2026-09-13" },
-  { en: "Key facts", mn: "Гол баримтууд", src: "NEW", n: 3 },
+  { en: "Key facts", mn: "Гол баримтууд", src: "NEW", n: 3, ok: "2026-09-13" },
   { en: "Watch out", mn: "Болгоомжил", src: "NEW", n: 3, ok: "2026-09-13", note: "heads the common-mistakes block. The bare form stands despite the «та» ruling — Khas approved it on 13 Sep 2026 over «Болгоомжилоорой». It is a label on a box, not the product addressing a student." },
-  { en: "Real-world picture", mn: "Бодит амьдрал дээр", src: "NEW", n: 3 },
+  { en: "Real-world picture", mn: "Бодит амьдрал дээр", src: "NEW", n: 3, ok: "2026-09-13" },
   { en: "Builds on", mn: "Тулгуур сэдэв нь:", src: "SITE", n: 12, ok: "2026-09-13", note: "Khas's wording, 13 Sep 2026. Heads the tinted prerequisite card above the lesson list on 12 unit pages; the sentence naming the prerequisites sits underneath, so the label ends in a colon and leads into it. Was «Уг нь тулгуурлах» — a relative clause with nothing to attach to, which read as a sentence that never finished." },
   { en: "Focus first on", mn: "Түрүүнд анхаарах зүйлс:", src: "VOICE", n: 5, ok: "2026-09-13", note: "Khas's wording, 13 Sep 2026 — plural «зүйлс», and a colon. It is a LABEL, not the opening of a sentence, and that is what solves the surface: the placement card drops one to three live unit names in after it, and Mongolian case endings cannot be attached to a name chosen at runtime. After a colon the names stand uninflected. Rendered inline on the eight placement cards rather than through chrome(), because the names are bold inside the line; verify-chrome-wiring keeps the inline copies equal to this one." },
   { en: "Important for you", mn: "Танд чухал зүйл", src: "VOICE", n: 4, note: "recommendation banner. Khas wrote this; «танд» is correct — see the register ruling in the header." },
@@ -301,8 +301,13 @@ export const MEASURES: ChromeEntry[] = [
   { en: "By syllabus topic", mn: "Хөтөлбөрийн сэдвээр", src: "NEW", n: 1 },
   { en: "All units", mn: "Бүх бүлэг", src: "NEW", n: 1 },
   { en: "All levels", mn: "Бүх түвшин", src: "NEW", n: 1 },
-  { en: "Factors of", mn: "-ын хуваагчид", src: "NEW", n: 3, note: "GRAMMAR HAZARD: EN composes «Factors of » + number at runtime. Mongolian puts the number first and the suffix varies with it (12-ын, 15-ын, 20-ын). Needs a function, not a string — flagging so the wiring is built right." },
-  { en: "Multiples of", mn: "-ын үржвэрүүд", src: "NEW", n: 3, note: "same hazard as above" },
+  // NOT dictionary strings. "Factors of 12:" composes a number chosen at
+  // runtime, and Mongolian leads with that number and hangs a genitive off
+  // it whose form changes with the numeral. The noun below is the only fixed
+  // part; the ending comes from lib/i18n/mn-numerals, and the four widgets
+  // render the pair inline. Kept here so the nouns stay in one place.
+  { en: "Factors of", mn: "хуваагчид", src: "NEW", n: 3, ok: "2026-09-13", note: "the DIVISORS sense, per the R9 factor split — «үржигдэхүүн» is the prime-factorisation sense and belongs to the factor-tree widget, not here. Rendered as «12-ын хуваагчид:» with the ending from mnGenitiveEnding(); the ending table is NOT yet confirmed." },
+  { en: "Multiples of", mn: "үржвэрүүд", src: "NEW", n: 3, ok: "2026-09-13", note: "same construction as above" },
 ];
 
 

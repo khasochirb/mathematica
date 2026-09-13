@@ -2,6 +2,7 @@
 
 import { useLang } from "@/lib/lang-context";
 import { chrome } from "@/lib/i18n/chrome";
+import { mnGenitiveEnding } from "@/lib/i18n/mn-numerals";
 
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
@@ -21,6 +22,16 @@ function gcd(a: number, b: number): number {
 // factors they SHARE are highlighted in both rows, and the largest shared chip
 // is ringed — that is the greatest common factor. A reusable primitive: change
 // either number and the overlap (and the GCF) updates live.
+// "Factors of 12" / "Multiples of 3". Mongolian leads with the number and
+// hangs the genitive off it, so the bold value moves to the front and takes
+// an ending that changes with the numeral — see lib/i18n/mn-numerals.
+function CountOf({ n, mn, noun, en, color }: { n: number; mn: boolean; noun: string; en: string; color: string }) {
+  const value = <b className="serif tabular" style={{ color }}>{n}</b>;
+  if (!mn) return <>{en} {value}</>;
+  const ending = mnGenitiveEnding(n);
+  return <>{value}{ending ? `-${ending}` : ""} {noun}</>;
+}
+
 export default function GcfFinder({ config }: { config: GcfFinderConfig }) {
   const { lang } = useLang();
   const { a: a0, b: b0, min = 2, max = 24, color = "#e8913c" } = config;
@@ -90,14 +101,14 @@ export default function GcfFinder({ config }: { config: GcfFinderConfig }) {
       <div className="flex flex-col gap-4">
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>Factors of <b className="serif tabular" style={{ color: "var(--fg)" }}>{a}</b></span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={a} mn={lang === "mn"} noun="хуваагчид" en="Factors of" color="var(--fg)" /></span>
             <Stepper label={chrome("first number", lang)} val={a} set={setA} />
           </div>
           <Row n={a} />
         </div>
         <div style={{ borderTop: "1px solid var(--line)" }} className="pt-4">
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>Factors of <b className="serif tabular" style={{ color: "var(--fg)" }}>{b}</b></span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={b} mn={lang === "mn"} noun="хуваагчид" en="Factors of" color="var(--fg)" /></span>
             <Stepper label={chrome("second number", lang)} val={b} set={setB} />
           </div>
           <Row n={b} />

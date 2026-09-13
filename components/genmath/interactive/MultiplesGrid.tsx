@@ -2,6 +2,7 @@
 
 import { useLang } from "@/lib/lang-context";
 import { chrome } from "@/lib/i18n/chrome";
+import { mnGenitiveEnding } from "@/lib/i18n/mn-numerals";
 
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
@@ -47,7 +48,14 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
       </div>
 
       <div className="mt-3 text-center text-[14px]" style={{ color: "var(--fg-1)" }}>
-        Multiples of <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>:{" "}
+        {lang === "mn" ? (
+          <>
+            <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>
+            {mnGenitiveEnding(k) ? `-${mnGenitiveEnding(k)}` : ""} үржвэрүүд:{" "}
+          </>
+        ) : (
+          <>Multiples of <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>:{" "}</>
+        )}
         <span className="serif tabular">{list.join(", ")}, …</span>
       </div>
 
