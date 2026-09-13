@@ -57,8 +57,13 @@ describe("course shell labels", () => {
     const missing = (Object.keys(EN_COURSE_LABELS) as string[]).filter(
       (k) => !(k in MN_COURSE_LABELS),
     );
+    // `reveal` joined the list on 13 Sep 2026 for a different reason from the
+    // rest: its Mongolian exists but is Claude's own, and its chrome entries
+    // carry no `ok`. On production chrome() holds those back, so shipping them
+    // from this object would have walked straight around that gate. Withdrawn
+    // until Khas reads the four strings.
     expect(missing.sort()).toEqual(
-      ["examsBody", "examsHeading", "examsTitle", "selfGradedBody"].sort(),
+      ["examsBody", "examsHeading", "examsTitle", "reveal", "selfGradedBody"].sort(),
     );
   });
 });

@@ -112,19 +112,19 @@ export const EN_COURSE_LABELS: CourseLabels = {
 // translationese docs/MONGOLIAN.md forbids.
 export const MN_COURSE_LABELS: Partial<CourseLabels> = {
   root: "Курсууд",                              // shipped
-  unitWord: "Нэгж",                             // chrome
-  spineHeading: (n) => `Хөтөлбөр — ${n} нэгж, дарааллаар`, // grade 9's shipped pattern
+  unitWord: "Бүлэг",                            // chrome — Khas 13 Sep, was «Нэгж»
+  spineHeading: (n) => `Хөтөлбөр — ${n} бүлэг, дарааллаар`, // was «нэгж»
   start: "Эхлэх",                               // shipped
   soon: "Удахгүй",                              // Khas
-  buildsOn: "Уг нь тулгуурлах",                 // chrome — LOW CONFIDENCE, flagged for Khas
-  lessons: "Хичээлүүд",                         // chrome
+  buildsOn: "Тулгуур сэдэв нь:",                // Khas 13 Sep, was «Уг нь тулгуурлах»
+  lessons: "Хичээлүүд",                         // chrome — Khas 13 Sep
   readyHeading: "Өөрийгөө шалгаад үзэх үү?",    // Khas
   practice: "Дасгал",                           // shipped
   testYourself: "Өөрийгөө шалга",               // shipped
-  backToCourse: "Курс руу буцах",               // chrome
-  backToUnit: "Нэгж рүү буцах",                 // chrome — рүү/руу unconfirmed
-  unitLead: "Нэгж",                             // chrome
-  lessonLead: "Хичээл",                         // chrome
+  backToCourse: "Курс руу буцах",               // chrome — Khas 13 Sep
+  backToUnit: "Бүлэг рүү буцах",                // chrome — Khas 13 Sep, was «Нэгж рүү»
+  unitLead: "Бүлэг",                            // chrome — Khas 13 Sep, was «Нэгж»
+  lessonLead: "Хичээл",                         // chrome — Khas 13 Sep
   notFound: "олдсонгүй",                        // shipped ("Бодлого олдсонгүй")
   practiceTitle: "Дасгал",                      // shipped
   testTitle: "Өөрийгөө шалга",                  // shipped
@@ -132,12 +132,14 @@ export const MN_COURSE_LABELS: Partial<CourseLabels> = {
     "Бодлого бүрийг өөрөө бодоод, дараа нь бодолтыг нээж хариугаа шалгаарай.", // shipped verbatim
   selfGraded: "Өөрийгөө дүгнэ",                 // shipped
   open: "Нээх",                                 // shipped
-  reveal: {
-    reveal: "Бодолтыг харах",
-    hide: "Нуух",
-    revealAria: "Бодолтыг харах",
-    hideAria: "Бодолтыг нуух",
-  },
+  // `reveal` WITHDRAWN, 13 Sep 2026. Its four strings («Бодолтыг харах»,
+  // «Нуух», and the two aria labels) are my wording, and their chrome entries
+  // carry no `ok` — so on production chrome() would hold them back while this
+  // object shipped them anyway, straight around the gate. Removed so the
+  // merge in `courseLabels()` falls through to English, which is what the
+  // dictionary does with an unapproved string. Four words from Khas restores
+  // them.
+  //
   // selfGradedBody, examsHeading, examsTitle, examsBody: no source has these
   // and they are prose. Left to Khas.
 };
