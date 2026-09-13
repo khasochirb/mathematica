@@ -109,6 +109,15 @@ describe("chrome dictionary", () => {
     expect(chrome("practice by topic", "mn")).not.toBe("practice by topic");
   });
 
+  it("never stamps an approval on an empty string", () => {
+    // `ok` is the record that Khas read a specific Mongolian string and
+    // approved it, and it is what makes an entry deployable. Stamping one
+    // with no `mn` would claim a review of nothing — and since `chrome()`
+    // falls back to English, the page would ship English under an approval.
+    const empty = ALL_CHROME.filter((e) => e.ok && !e.mn).map((e) => e.en);
+    expect(empty, "these are marked approved but have no Mongolian").toEqual([]);
+  });
+
   it("only wires keys the dictionary actually has", () => {
     // A typo'd key renders English forever and looks like an un-wired page,
     // which is the one failure this whole batch is meant to remove.

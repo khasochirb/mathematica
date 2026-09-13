@@ -27,6 +27,11 @@
 //   NEW   — proposed here. THESE ARE THE ONES TO CORRECT. They are modelled
 //           on the SITE entries' register and morphology, but I do not speak
 //           Mongolian and cannot judge whether they read naturally.
+//   ok    — NOT a source; a date, set when Khas has read that exact Mongolian
+//           and approved it. `src` says where a wording came from; `ok` says
+//           it is settled. docs/MONGOLIAN.md allows deploying an approved
+//           batch freely, so `ok` is the line between the two. It belongs to
+//           the string, not the entry: change `mn` and the stamp comes off.
 //   VOICE — NOT MINE TO WRITE, and `mn` is deliberately empty. Per
 //           docs/MONGOLIAN.md, anything that persuades or speaks to a student
 //           is Khas's, and Claude never proposes a draft for it — a draft
@@ -60,6 +65,15 @@ export type ChromeEntry = {
   n?: number;
   /** why this wording, where it is not obvious */
   note?: string;
+  /**
+   * Date Khas read THIS EXACT Mongolian and approved it. An `ok` entry is no
+   * longer a proposal — `src` still records where the wording came from, but
+   * the wording itself is settled and safe to deploy.
+   *
+   * Changing `mn` invalidates the approval: clear `ok` in the same edit, or
+   * the stamp claims a review that never happened for the new string.
+   */
+  ok?: string;
 };
 
 // ---------------------------------------------------------------------------
@@ -69,7 +83,7 @@ export type ChromeEntry = {
 export const STRUCTURE: ChromeEntry[] = [
   { en: "Unit", mn: "Бүлэг", src: "SITE", n: 36, note: "COURSE-CHAPTER sense. Khas 13 Sep 2026: «Бүлэг if we are talking about unit as a chapter or like a section, but нэгж if we are talking about kg, cm, meters.» His own SAT sentence uses «бүлэг» for both the sections and the unit tests, which is the same call. Was «Нэгж» — wrong in all 36 places." },
   { en: "Lesson", mn: "Хичээл", src: "DERIV", n: 15 },
-  { en: "Lessons", mn: "Хичээлүүд", src: "NEW", n: 15, note: 'site has "Lessons"→«Хичээл» (unmarked plural) as a TAB label; as a countable heading the plural may read better — your call which wins' },
+  { en: "Lessons", mn: "Хичээлүүд", src: "NEW", n: 15, ok: "2026-09-13", note: 'Khas kept the plural, 13 Sep 2026, alongside the site\'s unmarked «Хичээл» on the TAB label. Both forms on one page is deliberate: the tab names the section, this heads a countable list.' },
   { en: "Topic", mn: "Сэдэв", src: "SITE", n: 9 },
   { en: "Courses", mn: "Курсууд", src: "SITE", n: 9 },
   { en: "Practice", mn: "Дасгал", src: "SITE", n: 15 },
@@ -88,7 +102,7 @@ export const STRUCTURE: ChromeEntry[] = [
 // ---------------------------------------------------------------------------
 export const NAV: ChromeEntry[] = [
   { en: "Back", mn: "Буцах", src: "NEW", n: 5 },
-  { en: "Back to the course", mn: "Курс руу буцах", src: "NEW", n: 35, note: "the single most common chrome string on the site" },
+  { en: "Back to the course", mn: "Курс руу буцах", src: "NEW", n: 35, ok: "2026-09-13", note: "the single most common chrome string on the site. Khas approved «курс» and the руу form, 13 Sep 2026." },
   { en: "Back to unit", mn: "Бүлэг рүү буцах", src: "DERIV", n: 12, note: "course chapter, so «Бүлэг» per the 13 Sep ruling; рүү after the front vowel" },
   { en: "Back to topic", mn: "Сэдэв рүү буцах", src: "NEW", n: 3 },
   { en: "Back to Grade 10", mn: "10-р анги руу буцах", src: "NEW", n: 3 },
@@ -145,7 +159,7 @@ export const NAV: ChromeEntry[] = [
   { en: "IB Math practice", mn: "IB Math дасгал", src: "DERIV", n: 1 },
   { en: "Your SAT performance", mn: "Таны SAT-ийн гүйцэтгэл", src: "NEW", n: 1 },
   { en: "Your IB performance", mn: "Таны IB-ийн гүйцэтгэл", src: "NEW", n: 1 },
-  { en: "Live", mn: "Нээлттэй", src: "NEW", n: 4, note: "status badge, the counterpart of «Удахгүй» (Soon) which Khas wrote — he may want to write this one too" },
+  { en: "Live", mn: "Нээлттэй", src: "NEW", n: 4, ok: "2026-09-13", note: "status badge, the counterpart of «Удахгүй» (Soon) which Khas wrote. He approved it as-is on 13 Sep 2026 rather than writing his own." },
   { en: "New", mn: "Шинэ", src: "NEW", n: 2 },
   { en: "Free", mn: "Үнэгүй", src: "DERIV", n: 1, note: "from Khas's «Үнэгүй нэгд» (Free to join)" },
 
@@ -160,7 +174,7 @@ export const NAV: ChromeEntry[] = [
 // 3. Buttons and controls, including the interactive widgets' own controls.
 // ---------------------------------------------------------------------------
 export const CONTROLS: ChromeEntry[] = [
-  { en: "Reset", mn: "Дахин эхлэх", src: "NEW", n: 20, note: "«Цэвэрлэх» (clear) would be wrong — these widgets return to a start state, they do not empty" },
+  { en: "Reset", mn: "Дахин эхлэх", src: "NEW", n: 20, ok: "2026-09-13", note: "«Цэвэрлэх» (clear) would be wrong — these widgets return to a start state, they do not empty. Khas approved the length for a small button, 13 Sep 2026." },
   { en: "Check", mn: "Шалгах", src: "NEW", n: 2 },
   { en: "Move left", mn: "Зүүн тийш", src: "NEW", n: 2 },
   { en: "Move right", mn: "Баруун тийш", src: "NEW", n: 2 },
@@ -205,13 +219,13 @@ export const SECTIONS: ChromeEntry[] = [
   { en: "Fun fact", mn: "Сонирхолтой баримт", src: "GLOSS" },
   { en: "Recap", mn: "Эргэн дүгнэлт", src: "GLOSS" },
   { en: "What you learned", mn: "Юу сурснаа эргэн харъя", src: "GLOSS" },
-  { en: "What you'll learn", mn: "Юу сурах вэ", src: "NEW", n: 3, note: "the glossary's «Юу сурснаа эргэн харъя» is past-tense (end of lesson); this is the start-of-lesson heading and needs its own future form" },
-  { en: "Key idea", mn: "Гол санаа", src: "NEW", n: 3 },
-  { en: "The idea", mn: "Санаа нь", src: "NEW", n: 3 },
+  { en: "What you'll learn", mn: "Юу сурах вэ", src: "NEW", n: 3, ok: "2026-09-13", note: "the glossary's «Юу сурснаа эргэн харъя» is past-tense (end of lesson); this is the start-of-lesson heading and needs its own future form" },
+  { en: "Key idea", mn: "Гол санаа", src: "NEW", n: 3, ok: "2026-09-13", note: "Khas kept this and «Санаа нь» distinct, 13 Sep 2026 — they head different blocks and do not read as duplicates." },
+  { en: "The idea", mn: "Санаа нь", src: "NEW", n: 3, ok: "2026-09-13" },
   { en: "Key facts", mn: "Гол баримтууд", src: "NEW", n: 3 },
-  { en: "Watch out", mn: "Болгоомжил", src: "NEW", n: 3, note: "heads the common-mistakes block" },
+  { en: "Watch out", mn: "Болгоомжил", src: "NEW", n: 3, ok: "2026-09-13", note: "heads the common-mistakes block. The bare form stands despite the «та» ruling — Khas approved it on 13 Sep 2026 over «Болгоомжилоорой». It is a label on a box, not the product addressing a student." },
   { en: "Real-world picture", mn: "Бодит амьдрал дээр", src: "NEW", n: 3 },
-  { en: "Builds on", mn: "Уг нь тулгуурлах", src: "NEW", n: 12, note: "LOW CONFIDENCE. Labels the prerequisite list on a unit page. Wants a natural Mongolian phrase for «you need this first», not a literal rendering of the English metaphor — please rewrite freely." },
+  { en: "Builds on", mn: "Тулгуур сэдэв нь:", src: "SITE", n: 12, ok: "2026-09-13", note: "Khas's wording, 13 Sep 2026. Heads the tinted prerequisite card above the lesson list on 12 unit pages; the sentence naming the prerequisites sits underneath, so the label ends in a colon and leads into it. Was «Уг нь тулгуурлах» — a relative clause with nothing to attach to, which read as a sentence that never finished." },
   { en: "Focus first on", mn: "Түрүүнд анхаарах зүйл", src: "VOICE", n: 5, note: 'site: "Focus units"→«Анхаарах нэгжүүд»' },
   { en: "Important for you", mn: "Танд чухал зүйл", src: "VOICE", n: 4, note: "recommendation banner. Khas wrote this; «танд» is correct — see the register ruling in the header." },
   { en: "Ready to check yourself?", mn: "Өөрийгөө шалгаад үзэх үү?", src: "VOICE", n: 12 },

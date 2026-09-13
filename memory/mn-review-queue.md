@@ -8,17 +8,36 @@ this touches.
 
 ---
 
-## 1 · The 168 chrome entries in my wording — `lib/i18n/chrome.ts`
+## 1 · The 158 chrome entries still in my wording — `lib/i18n/chrome.ts`
 
-233 entries total:
+234 entries total:
 
 | marker | count | what it means |
 |---|---|---|
 | `GLOSS` | 25 | locked by ministry А/492 or the glossary — not mine, don't need you |
-| `SITE` | 22 | copied verbatim from Mongolian already on the site — not mine |
-| **`NEW`** | **129** | **proposed by me. These are the ones to correct.** |
+| `SITE` | 24 | copied verbatim from Mongolian already on the site — not mine |
+| **`NEW`** | **127** (8 approved) | **proposed by me. These are the ones to correct.** |
 | **`DERIV`** | **39** | **stem is established, the ending is mine** |
-| `VOICE` | 18 | yours — see §2 |
+| `VOICE` | 19 | yours — see §2 |
+
+An entry carrying `ok: "<date>"` has been read and approved by Khas and is
+out of the queue. **158 remain** (NEW + DERIV without `ok`).
+
+**Reviewed 13 Sep 2026 — the nine highest-frequency entries.** Batching by
+frequency was the lesson of the «Бүлэг» correction: one wrong word was wrong
+in 36 places, so the top of the frequency table is where a review hour buys
+the most.
+
+| en | mn | n | outcome |
+|---|---|---|---|
+| Back to the course | Курс руу буцах | 35 | kept |
+| Reset | Дахин эхлэх | 20 | kept |
+| Lessons | Хичээлүүд | 15 | kept — plural stands beside the tab's «Хичээл» |
+| **Builds on** | **Тулгуур сэдэв нь:** | 12 | **rewritten by Khas** |
+| Live | Нээлттэй | 4 | kept |
+| What you'll learn | Юу сурах вэ | 3 | kept |
+| Watch out | Болгоомжил | 3 | kept — bare form stands; a box label, not speech to a student |
+| Key idea / The idea | Гол санаа / Санаа нь | 3 each | kept, deliberately distinct |
 
 **The specific risk: case endings.** Mongolian accusative (-ийг / -ыг / -г) and
 directional (руу / рүү) agree with the vowel of the noun they attach to. About
@@ -40,48 +59,37 @@ Worth a specific look:
 
 ---
 
-## 2 · Ten voice strings — nobody else can write these
+## 2 · Voice strings — one left of eleven
 
-`mn` is deliberately empty; the page renders English until you fill it.
+Khas wrote ten on 13 Sep 2026, and they are wired verbatim. **One is still
+empty, and its surface renders English until it is filled:**
 
-1. `Confirmation email sent. Check your inbox.`
-2. `The complete AA SL syllabus · 5 topics · one lesson per subtopic code`
-3. `The AHL extension on top of AA SL · proof, complex numbers, 3D vectors, deeper calculus`
-4. `The complete AI SL syllabus · calculator-always, modelling-first · 5 topics`
-5. `4 College Board domains · 27 units · lessons, practice, unit tests`
-6. `Drill the 4 domains · a similar problem after every miss`
-7. `Drill the 5 syllabus topics · a similar problem after every miss`
-8. `General Math courses — every topic from zero`
-9. `Per-domain accuracy and your weakest areas, once you've taken a test`
-10. `Per-component accuracy and weakest areas, once you start practicing`
+- `Per-component accuracy and weakest areas, once you start practicing` —
+  the IB hub progress banner. It is the twin of the SAT banner he did write
+  («Сул сэдвээ тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших»),
+  so the open question is only whether that SAT wording is reused here or
+  the IB banner gets its own sentence.
 
-Plus two that are not dictionary entries because they are **sentences with a
-value interpolated into them**, which Mongolian suffixes cannot survive being
-dropped into:
+The footer tagline was also his and is now a VOICE entry, written and wired.
 
-- **«Focus first on X — marked below»** on all seven grade hub pages. Your
+Still outstanding, and **not** dictionary entries because they are
+**sentences with a value interpolated into them**, which Mongolian suffixes
+cannot survive being dropped into:
+
+- **«Focus first on X — marked below»** on all seven grade hub pages. His
   «Түрүүнд анхаарах зүйл» is a noun phrase; it needs a sentence built around
   the unit names, not a substitution.
-- The footer tagline: *"ЭШ exam prep and world-class math education for
-  Mongolian students everywhere."*
 
 ---
 
 ## 3 · Three decisions that shape everything downstream
 
-**3a. The ЭШ interval bracket convention.** The past papers use two, and among
-the shapes that actually discriminate, the reversed one wins 105 to 46:
-
-| reversed | | standard | |
-|---|---|---|---|
-| `]a, b[` | 66 | `[a, b)` | 36 |
-| `]a, b]` | 22 | `(a, b]` | 10 |
-| `[a, b[` | 17 | | |
-
-Real: `]-\infty;\ 3[`, `[10;12[`, `]0, 2]`. А/492 fixes no notation. Today the
-lessons *teach* both and *write* the standard one. Switching the ЭШ hub to
-write reversed touches every interval, inequality and calculus topic — which
-is why I did not decide it.
+**3a. The ЭШ interval bracket convention — SETTLED 13 Sep 2026: `]2, 7[`.**
+The past papers use two, and among the shapes that actually discriminate, the
+reversed one won 105 to 46. Khas ruled for the papers' convention. Scope is
+the ЭШ hub only; SAT and IB keep `(a, b)`. The full table and the conversion
+rules are in `memory/mn-drafts/README.md`. No longer a question — left here
+because §3b and §3c below still are.
 
 **3b. «муж» is doing two jobs.** It is the exam's own word for a Venn region
 («хүрэн муж», test4a) — but the bank uses it far more often for a function's
