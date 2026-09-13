@@ -55,6 +55,36 @@ Everything else: keep going.
 **Never deploy unreviewed Mongolian.** Once Khas has approved a batch,
 deploy it freely.
 
+## The term-not-found rule
+
+Added 13 Sep 2026 alongside `docs/en-mn-math-glossary.md`. That file's own
+header points at "the Term-not-found rule in `CLAUDE.md`" — **and no such rule
+existed in CLAUDE.md.** It is written here instead: CLAUDE.md is the working
+agreement between the chats and is Khas's to amend, not mine. The dangling
+pointer is worth him fixing in one place or the other.
+
+The rule itself:
+
+> **A term missing from the glossary is not permission to invent a
+> translation.** The dictionary covers `a`–`base` only; the ministry standard
+> covers the grade 10–12 syllabus; the shipped mirrors cover what has already
+> been written. When a term appears in none of them, say so in the draft's
+> Notes and use the least-bad rendering *flagged as ungrounded* — never
+> silently.
+
+Order of authority when sources disagree:
+
+1. **Ministry order А/492** (`data/esh/moe-curriculum.json`) — outranks
+   everything, and `mn_terms.py --check` enforces the part of it that is
+   mechanical.
+2. **The printed dictionary** (`docs/en-mn-math-glossary.md`).
+3. **The shipped corpus** — the ЭШ bank and the existing `*-mn` mirrors.
+
+Where 2 and 3 disagree and 1 is silent, it is **Khas's call, not a count**.
+There is one such conflict open today: `absolute value`, the book's «абсолют
+хэмжигдэхүүн» against 53 live uses of «абсолют утга». See
+`memory/mn-review-queue.md` §5a.
+
 ---
 
 ## Group 0 — the vocabulary · **start here**

@@ -1,0 +1,962 @@
+# English → Mongolian mathematics glossary
+
+Transcribed from **«Математикийн англи-монгол нэр томьёо, үг, хэллэгийн лавлах толь»** — the English–Mongolian reference dictionary of mathematical terms, words and phrases.
+
+- **Source pages:** 13–43 (16 photographs, transcribed 2026-09-04)
+- **Entries:** 706 (133 carry a usage note)
+- **Alphabetical coverage:** `a` → `base` — **the A section and the very start of B, and nothing beyond it**
+- **Verified:** independent audit of 253 rows across 6 of the 16 photographs; no Cyrillic errors found, 8 defects corrected
+
+> ## ⚠️ Read this before using the glossary
+>
+> This file covers **only a–base**. The overwhelming majority of terms a maths site needs —
+> *equation, fraction, triangle, derivative, probability, function, graph, integer, percent* —
+> are **not in here yet**, because those pages have not been photographed.
+>
+> **A term missing from this file is not permission to invent a translation.** See the
+> "Term not found" rule in `CLAUDE.md`.
+
+## How to use
+
+Look a term up by its English form. The Mongolian column gives the dictionary's equivalents
+**in the order the book prints them**; the first is the default rendering unless the note says
+otherwise. Multi-word phrases are listed under their own first word — `angle bisector` and
+`alternate interior angles` both sort under *a* — so search for the **whole phrase** you need,
+not just the head noun. The book's phrase-level renderings often differ from the sum of the parts.
+
+Command-line lookup against the flat file:
+
+```bash
+grep -i -P "^angle\t"  docs/en-mn-math-glossary.tsv   # exact headword
+grep -i    "angle"      docs/en-mn-math-glossary.tsv   # anything containing it
+```
+
+---
+
+## Core terms — quick reference
+
+The 49 terms most likely to appear in site copy, lesson text and question banks.
+
+| English | Монгол | Тэмдэглэл |
+|---|---|---|
+| `add` | нэмэх, нийлбэр болгох |  |
+| `addend` | нэмэгдэхүүн | in 3 + 5 = 8, 3 and 5 are addends |
+| `addition` | нэмэх, нэмэх үйлдэл, нийлбэр болгох, өөрчлөлт (утгын) |  |
+| `additive` | аддитив |  |
+| `additive inverse` | эсрэг тоо, эсрэг матриц, нэмэхийн эсрэг хоёр тоо, сөрөг тоо | entry runs on from p.19; vectors/matrices: эсрэг элемент |
+| `adjacent` | залгаа, хөрш, залгаа оршсон, налсан, зэрэгцээ, ерөнхий талтай, хиллэсэн, дараалсан |  |
+| `adjacent angles` | залгаа хоёр өнцөг, ерөнхий талтай хоёр өнцөг |  |
+| `algebra` | алгебр |  |
+| `algebraic` | алгебрын, алгебр |  |
+| `algebraic expression` | алгебрын илэрхийлэл, алгебрийн илэрхийлэл | book prints both -ын and -ийн spellings; printed as plural 'algebraic expressions' |
+| `algorithm` | алгоритм, дүрэм, теорем |  |
+| `altitude` | өндөр |  |
+| `amount` | нийлбэр, хэмжээ, утга, мөнгөний дүн, мөнгөний нийт хэмжээ, мөнгөний хэмжээ, бүгд хүрэх, тэнцэх | finance sense: дүн мөнгө = principal + interest |
+| `analysis` | анализ, математик анализ, задлан шинжилгээ | plural analyses; entry continues on p.28 |
+| `angle` | өнцөг |  |
+| `acute angle` | хурц өнцөг |  |
+| `a right angle` | тэгш өнцөг |  |
+| `an obtuse angle` | мохоо өнцөг |  |
+| `alternate interior angles` | дотоод солбисон хоёр өнцөг |  |
+| `angle bisector` | өнцгийн биссектрис |  |
+| `answer` | хариу, хариулт, хариулах, тохирох, харгалзах, хангах |  |
+| `antiderivative` | эх функц |  |
+| `approximate` | ойролцоо утга, ойролцоо илэрхийлэх, ойролцоо тэнцэх |  |
+| `approximately` | ойролцоо, ойролцоогоор |  |
+| `arc` | нум |  |
+| `area` | талбай, муж, хүрээ (үйлчлэх), салбар |  |
+| `arithmetic` | арифметик, арифметикийн үйлдэл | 'арифметик дундаж' нь arithmetic mean-д хамаарна |
+| `arithmetic mean` | арифметикийн дундаж, арифметик дундаж |  |
+| `arithmetic progression` | арифметик (арифметикийн) прогресс |  |
+| `arithmetic sequence` | арифметик (арифметикийн) прогресс |  |
+| `arrange` | байрлал, жагсаалт, эрэмбэлсэн байрлал, дэс дараалан байрлуулах, эрэмбэлэн байрлуулах, гэж үзэх, эрэмбэлэх, ангилах |  |
+| `array` | цуглуулга, дараалал, хүснэгт, матриц, эрэмбэлэн байрлуулах |  |
+| `ascending` | өсөлт, дээшлэлт, өсөж байгаа, дээшилж байгаа |  |
+| `associative` | бүлэглэх | of an operation: бүлэглэх чанартай |
+| `assume` | гэж үзэх, хүлээн авах, авах (утга), болох, гэх |  |
+| `assumption` | угтвар дүгнэлт, урьдчилсан дүгнэлт, таамаглал, эсрэг дүгнэлт (эсрэгээс батлахад) |  |
+| `average` | дундаж, дундаж тоо гаргах |  |
+| `axiom` | аксиом |  |
+| `abscissa` | абсцисс | x-coordinate; first coordinate of an ordered pair |
+| `absolute value` | абсолют хэмжигдэхүүн |  |
+| `acute` | хурц |  |
+| `base` | үндэс, суурь, үндэслэх, суурилах, тулгуурлах |  |
+| `accuracy` | нарийвчлал, зөв болох (нь) |  |
+| `accurate` | нарийн, яг (зөв) тодорхойлсон, зөв, алдаагүй |  |
+| `apply` | хэрэглэх, ашиглах, давхарлах |  |
+| `argument` | аргумент, үл хамааран хувьсагч, үндэслэл, тайлбар, гаргалгаа, ургуулан бодолт, баталгаа |  |
+| `x-axis` | x тэнхлэг, абсцисс тэнхлэг |  |
+| `y-axis` | y тэнхлэг, ординат тэнхлэг |  |
+| `z-axis` | z тэнхлэг, аппликат тэнхлэг |  |
+
+---
+
+## Terms that need a judgement call
+
+133 entries where the dictionary distinguishes senses, expands an abbreviation, flags a
+domain, or where the printed book contains a typo. **Read the note before choosing a rendering.**
+
+| English | Монгол | Тэмдэглэл | p. |
+|---|---|---|---|
+| `a` | зарим, нэг, эхний | symbol for a known number/quantity; prefix a- is negating | 13 |
+| `a contraria` | урвуу, урвуугаар | Latin | 18 |
+| `a fortiori` | тэх тусмаа | Latin; printed 'тэх' (std. тэр тусмаа) | 22 |
+| `a posteriori distribution` | апостериор магадлал, туршилтын дараах магадлал | 'Bayes' formula'-гын орчуулгыг хар | 31 |
+| `AAA` | өнцөг – өнцөг – өнцөг, ӨӨӨ | angle-angle-angle; abbreviation for triangle similarity criterion | 13 |
+| `AAS` | өнцөг – өнцөг – тал, ӨӨТ | angle-angle-side; triangle congruence criterion | 13 |
+| `ab initio` | бүр эхнээс нь | Latin | 13 |
+| `ab ovo` | бүр эхнээс нь | Latin | 14 |
+| `abacus` | сампин | тайлбар өгүүлбэрт 'абак' хэлбэрийг бас хэрэглэсэн | 13 |
+| `abbreviate` | товчлох, хураангуйлах | shorten a word by letters or syllables | 13 |
+| `abbreviation` | товчилол, хураангуйлал, үсэг хураалт, товчилсон үг | e.g. AAA, AAS | 13 |
+| `about` | ойролцоо, ойролцоогоор, орчим, орчин (цэгийн) хажууд, бараг, хувьд, тухай, тойруулсан эргүүлэлт | sometimes left untranslated | 13 |
+| `about a line` | шулууны хувь дахь тэгшхэм | symmetry with respect to a line | 13 |
+| `about-face` | 180°–ын эргүүлэлт | printed as about – face | 13 |
+| `above` | –ийн дээр, дээр, дээр нь, өмнө (хугацаа) | өмнө in the time sense | 13 |
+| `abridge` | товчлох, товч өгүүлэх, хязгаарлах | 1. shorten 2. limit | 14 |
+| `abscissa` | абсцисс | x-coordinate; first coordinate of an ordered pair | 14 |
+| `absense` | байхгүй (байх) | printed absense; = absence | 14 |
+| `absense of certion orders` | тодорхой орны нэгж байхгүйг | printed certion; = certain | 14 |
+| `absolute error` | абсолют зөрөө | difference between real value and estimated value | 14 |
+| `absolute value equations and inequalities` | абсолют хэмжигдэхүүнтэй тэгшитгэл ба тэнцэтгэлбиш | e.g. \|x\| = 3, \|x\| ≥ 5 | 15 |
+| `abstract` | хийсвэр, хийсвэр ухагдахуун, товч агуулга, товч танилцуулга, онолын хийсвэрлэл, товч дүгнэлт, хийсвэрлэх | 1. abstract (adj) 2. summary 3. theoretical abstraction | 15 |
+| `abstraction of actual infinity` | бодит төгсгөлгүйн хийсвэрлэл | translation continues on p.16 | 15 |
+| `acceleration` | хурдатгал | change in speed per unit of time | 16 |
+| `according to` | ёсоор, харгалзан, -аар (-ээр, -оор, -өөр) | also rendered by the instrumental suffix | 17 |
+| `accumulution of data` | мэдээний цуглуулга, мэдээ хуримтлагдах | printed accumulution; = accumulation of data | 17 |
+| `accurate to` | хүртэп нарийвчлалтай | printed хүртэп; read хүртэл | 17 |
+| `achieveable` | хүрч болох | printed achieveable; = achievable | 18 |
+| `actual speedy` | бодит хурд, өөрийн хурд | printed speedy; = actual speed | 18 |
+| `acute triangle` | хурц өнцөгт гурвалжин | also printed as acute-angled triangle | 18 |
+| `ad absurdum` | утгагүйд шилжүүлэх, зөрчилд хүргэх, эсрэгээс нь батлах баталгаа | Latin | 18 |
+| `ad infinitum` | төгсгөлгүй хүртэл | Latin | 21 |
+| `add the ones` | нэгжүүдийг нь нэм, нэгжийг нь нэм | when adding two whole numbers | 18 |
+| `addend` | нэмэгдэхүүн | in 3 + 5 = 8, 3 and 5 are addends | 19 |
+| `addition of whole numbers` | сөрөгбус бүхэл тоо нэмэх | printed сөрөгбус = сөрөг бус (non-negative) | 19 |
+| `additive identity` | нэмэхийн нөлөөгүй тоо (тэгийн өөр нэр) | 0 is the additive identity: a+0=0+a | 19 |
+| `additive inverse` | эсрэг тоо, эсрэг матриц, нэмэхийн эсрэг хоёр тоо, сөрөг тоо | entry runs on from p.19; vectors/matrices: эсрэг элемент | 19,20 |
+| `adjoint` | хосмог, нэгтгэсэн, хосмог хувиргалт | matrix/operator sense | 21 |
+| `adjust` | уялдуулах, дагуу хийх, тооцоолох, тохируулах, засварлах, засвар хийх, тоймлох | e.g. adjust the compass | 21 |
+| `advanced cours` | ахиу түвшний сурах бичиг | printed 'cours' (= course) | 21 |
+| `affirmation` | нотломж | logic | 22 |
+| `affix` | аффикс | math sense: комплекс тоонд харгалзаж буй комплекс хавтгайн цэг | 22 |
+| `aggregate of simple events` | эгэл үзэгдлийн олонлог | probability | 22 |
+| `ahead, to be ahead` | хожих, давуу байх (тоглоомонд) | in games | 22 |
+| `aleph` | алеф, кардинал тоо | first Hebrew letter ℵ; cardinal of an infinite set | 22 |
+| `alfin` | заан (шатрын) | chess bishop | 22 |
+| `algebra of events` | үзэгдлийн алгебр | probability | 23 |
+| `algebra of logik` | логикийн алгебр | printed 'logik' (= logic) | 23 |
+| `algebraic expression` | алгебрын илэрхийлэл, алгебрийн илэрхийлэл | book prints both -ын and -ийн spellings; printed as plural 'algebraic expressions' | 23 |
+| `algebraic number` | алгебрын тоо | root of an integer-coefficient polynomial | 23 |
+| `algebraic step` | алгебрын алхам (тэгшитгэл бодох зэргийн) | step in solving an equation | 23 |
+| `all A's are B's` | Бүх A нь B | logic statement pattern | 25 |
+| `almost everywhere` | бараг хааяагүй | as printed | 25 |
+| `alpha` | альф, үсэгт | first Greek letter α | 25 |
+| `alphabet` | цагаан толгой, цагаан топгойн үсгийн дэс дараагаар байрлуулах | 2nd sense = to alphabetize; misprint топгойн = толгойн | 25 |
+| `alphabetically` | цагаан толгойн үсгээр дугаарлах | numbering а), б) etc. | 25 |
+| `alternate events` | нэгдэл үзэгдэл | probability | 25 |
+| `alternate interior angles are congurent` | дотоод солбисон хоёр өнцөг тэнцүү | printed 'congurent' (= congruent) | 26 |
+| `alternation` | сөөлжилт, үелж өөрчлөгдөх, дизъюнкц | logic sense: disjunction | 26 |
+| `always - falsehood` | ямагт худал | logic | 26 |
+| `always - truth` | ямагт үнэн | logic | 26 |
+| `amicable numbers` | нөхөрсөг хоёр тоо | e.g. 220 and 284; gloss completed on p.27 | 26 |
+| `amount` | нийлбэр, хэмжээ, утга, мөнгөний дүн, мөнгөний нийт хэмжээ, мөнгөний хэмжээ, бүгд хүрэх, тэнцэх | finance sense: дүн мөнгө = principal + interest | 27 |
+| `amplitude` | далайц, модул (комплекс тооны) | modulus of a complex number; амплитуд for x=Asin(wt+a) | 27 |
+| `an altitude of a triangle` | гурвалжны өндөр | perpendicular from vertex to opposite side | 26 |
+| `analysis` | анализ, математик анализ, задлан шинжилгээ | plural analyses; entry continues on p.28 | 27 |
+| `and` | ба, бөгөөд, хоёр | Олон юм тоочихдоо сүүлчийнх нь өмнө тавина; заримдаа орчуулахгүй | 28 |
+| `angle of depression` | доошоо харах өнцөг | depression үгийн орчуулгыг хар | 29 |
+| `angle of elevation` | дээшээ харах өнцөг | elevation үгийн орчуулгыг хар | 29 |
+| `angle-chasing` | өнцөг хөөх | Евклидийн геометрт өнцгүүдийг тооцоолох арга | 29 |
+| `annex a zero to` | … –ын ард тэг бич | жишээ: 1,3–ын ард тэг бич | 29 |
+| `annotation` | товч танилцуулга (өгүүлэл, ном, гар бичмэлийн) | Өгүүлэл, ном, гар бичмэлийн | 29 |
+| `answer following` | дараах асуултанд хариул | Номд 'the' үггүй хэвлэгдсэн (= answer the following) | 30 |
+| `antecedent` | эхний гишүүн, өмнөх | Логикт (p ⇒ q)-ийн p нөхцөл | 30 |
+| `anticosine` | арккосинус | cos⁻¹x | 30 |
+| `anticotangent` | арккотангенс | ctg⁻¹x | 30 |
+| `antisine` | арксинус | sin⁻¹x | 30 |
+| `antitangent` | арктангенс | tg⁻¹x | 30 |
+| `anywhere` | хаа нэг, аль нэг | Зарим үед орчуулахгүй | 31 |
+| `apothem` | апофем | Зөв олонөнцөгтийн төвөөс талд нь буулгасан перпиндикуляр хэрчим | 31 |
+| `applicate axis` | босоо тэнхлэг (огторгуйд) | z-axis in 3D space | 42 |
+| `arabic system` | араб тооллын систем | 0,1,2,...,9 цифр ашиглан тоо бичдэг систем | 33 |
+| `arc cosine` | арккосинус | cos⁻¹x | 33 |
+| `arc cotangent` | арккотангенс | ctg⁻¹x | 33 |
+| `arc secant` | арксеканс | sec⁻¹x | 33 |
+| `arc sine` | арксинус | sin⁻¹x | 33 |
+| `arc tangent` | арктангенс | tg⁻¹x | 33 |
+| `Archimedes` | Архимед | МЭӨ 287-212 он | 34 |
+| `are` | ар | Талбайн нэгж; 1a = 100 м² | 34 |
+| `Argand diagram` | Аргандын диаграмм | a+bi тоог (a,b) цэг болгон дүрсэлсэн зураг | 34 |
+| `argumentum` | баталгаа | Латин үг | 34 |
+| `Aristotelian` | Арестотелийн | Номд ийнхүү хэвлэгдсэн; доор нь Аристотелийн гэж бичсэн | 34 |
+| `arithmetic` | арифметик, арифметикийн үйлдэл | 'арифметик дундаж' нь arithmetic mean-д хамаарна | 34 |
+| `armithmetic series` | арифметик цуваа (арифметикийн прогрессээс зохиосон цуваа) | printed 'armithmetic' (= arithmetic) | 35 |
+| `arrangement of n elements taken m at a time` | n элементээс нэг, нэгээр авсан m элементийн байрлал, n элементээс авсан (сонгосон) m элементийн байрлал, n элементийн m элементэй гүйлгэмэл | combinatorics: arrangements of m out of n | 36 |
+| `arrow` | сум | vector/segment arrow | 36 |
+| `artificial exersize` | зохиомол (нүсэр төвөгтэй) дасгал | printed spelling; = artificial exercise | 37 |
+| `Artistotle` | Аристотель (МЭӨ 384-322 он) | printed 'Artistotle' (= Aristotle) | 34 |
+| `as soon as` | -нгуут | verbal suffix | 38 |
+| `ASA rule` | гурвалжны тэнцүүгийн өнцөг тал өнцгийн (ӨТӨ) шинжийн дүрэм, ӨТӨ шинж | angle-side-angle triangle congruence | 38 |
+| `associative` | бүлэглэх | of an operation: бүлэглэх чанартай | 39 |
+| `Assume that the statement is true for n=k.` | n=k үед нотломжоо үнэн гэж үзье | induction | 39 |
+| `Assume the contrary.` | Эсрэгийг нь биелнэ гэж үзье | proof by contradiction | 39 |
+| `assumption (1) leads to a conradiction` | (1) эсрэг дүгнэлт нь зөрчилд хүргэлээ | printed "conradiction" for contradiction | 39 |
+| `at` | -аар (-ээр), -д (-т), -дахь, -аас (-ээс) | зарим үед орчуулахгүй - sometimes left untranslated | 40 |
+| `atomic proposition` | дан хэллэг, энгийн хэллэг | logic | 41 |
+| `attack` | бодолт, бодох арга, бодож эхлэх | of a problem | 41 |
+| `augend` | эхний нэмэгдэхүүн | first addend in an addition | 41 |
+| `automaton` | автомат | plural: automata | 41 |
+| `awkward` | нүсэр (илэрхийлэл) | of an expression | 42 |
+| `b` | мэдэгдэж байгаа тоо, хэмжигдэхүүний тэмдэглэл | symbol for a known number or quantity | 42 |
+| `back` | ар, ар тал, урвуу, урвуу чигпэл, өмнө, буцах, эргэн үзэх, ахин авч үзэх, дэмжих | чигпэл as printed; read чиглэл | 42 |
+| `barrel` | торх, торхонд хийх (шингэнийг), баррел (шингэн хэмжих нэгж) | 1 баррел = 163,65 л (Англид), 119 л (Америкт) | 43 |
+| `common difference` | ялгавар | Арифметик прогрессийн дараалсан хоёр гишүүний ялгавар | 35 |
+| `dijital arithmetic` | тооны арифметикийн үйлдэл | Номд dijital гэж хэвлэгдсэн | 35 |
+| `division algorithm` | үлдэгдэлтэй хуваахын теорем | a = b·q + r, 0 <= r < b | 24 |
+| `law of absorption` | шингээлтийн хууль | set theory: A ∪ (A∩B) = A | 15 |
+| `Liar's antinomy` | худалчийн зөрчил | paradox үгийн орчуулгад бий | 30 |
+| `look back at the definintion of a polynomial` | Олон гишүүнтийн тодорхойлолтыг эргэж хар | printed "definintion" for definition | 42 |
+| `negation bar` | үгүйсгэлийн тэмдэг (зураас) | logic: overbar for NOT | 43 |
+| `particular affirmative` | тухайн нотолсон нотломж (бодомж) | logic: particular affirmative proposition | 22 |
+| `sides of the angle` | өнцгийн тал | Өнцгийн цацрагийг тал гэж нэрлэдэг | 28 |
+| `the absolute value of a number` | тооны абсолют хэмжигдэхүүн | distance on the number line from the number to 0 | 15 |
+| `the grouping does not alter the result` | бүлэглэх (хаалтанд хийх) нь үйлдлийн үр дүнг өөрчлөхгүй | associative property | 25 |
+| `the leg adjacent to the acute angle` | хурц өнцөгт налсан катет | right triangle | 21 |
+| `the ratio of the measure of the leg adjacent to the acute angle to the measure of the hypotenuse` | хурц өнцөгт налсан катетын уртыг гипотенузын уртад харьцуулсан харьцаа | i.e. cosine ratio | 21 |
+| `the size of an angle` | өнцгийн хэмжээ | Нэг талыг нөгөө талтай давхацтал эргүүлсэн дүн | 28 |
+| `the vertex of the angle` | өнцгийн орой | Цацрагуудын ерөнхий цэг | 28 |
+| `truth assignment` | үнэний утгын оноолт | logic | 39 |
+| `two adjacent terms` | зэрэгцээ (хөрш) хоёр гишүүн | terms of a sequence/series | 21 |
+| `universal affirmative` | ерөнхий нотолсон нотломж (бодомж) | logic: universal affirmative proposition | 22 |
+| `x-coordinate` | x координат | in a Cartesian coordinate system; the abscissa | 14 |
+| `y against x` | y нь x-ээс хамаарсан функц | plotting y versus x | 22 |
+
+---
+
+## Full glossary (a–base)
+
+All 706 entries, alphabetical.
+
+| English | Монгол | Тэмдэглэл | p. |
+|---|---|---|---|
+| `a` | зарим, нэг, эхний | symbol for a known number/quantity; prefix a- is negating | 13 |
+| `a + sign appears` | + тэмдэг байна |  | 31 |
+| `a bar graph used to compare quantities` | баганан диаграммыг тоон мэдээллийг харьцуулахад ашигладаг |  | 43 |
+| `a contraria` | урвуу, урвуугаар | Latin | 18 |
+| `a fortiori` | тэх тусмаа | Latin; printed 'тэх' (std. тэр тусмаа) | 22 |
+| `a line contains at least two points` | шулуун нь дор хаяж хоёр цэг агуулна |  | 41 |
+| `a posteriori` | апостериор, туршилтад тулгуурласан, туршилтад тулгуурласан мэдлэг, туршилтаар олж авсан мэдлэг |  | 31 |
+| `a posteriori distribution` | апостериор магадлал, туршилтын дараах магадлал | 'Bayes' formula'-гын орчуулгыг хар | 31 |
+| `a priori` | туршилтаас үл хамаарсан туршилтын өмнөх мэдлэг |  | 33 |
+| `a priori distribution` | априор магадлал, туршилтын өмнөх магадлал |  | 33 |
+| `a right angle` | тэгш өнцөг |  | 28 |
+| `AAA` | өнцөг – өнцөг – өнцөг, ӨӨӨ | angle-angle-angle; abbreviation for triangle similarity criterion | 13 |
+| `AAS` | өнцөг – өнцөг – тал, ӨӨТ | angle-angle-side; triangle congruence criterion | 13 |
+| `ab initio` | бүр эхнээс нь | Latin | 13 |
+| `ab ovo` | бүр эхнээс нь | Latin | 14 |
+| `abacus` | сампин | тайлбар өгүүлбэрт 'абак' хэлбэрийг бас хэрэглэсэн | 13 |
+| `abandon` | орхих, хаях, татгалзах |  | 13 |
+| `abandoned` | орхисон |  | 13 |
+| `abbreviate` | товчлох, хураангуйлах | shorten a word by letters or syllables | 13 |
+| `abbreviation` | товчилол, хураангуйлал, үсэг хураалт, товчилсон үг | e.g. AAA, AAS | 13 |
+| `ABC` | цагаан толгой, үсэглэл, эхлэл, үндэс |  | 13 |
+| `Abelian` | абелийн, байр солих |  | 13 |
+| `ability` | чадвар |  | 13 |
+| `able` | чадвар, чадварлаг, чадвартай |  | 13 |
+| `about` | ойролцоо, ойролцоогоор, орчим, орчин (цэгийн) хажууд, бараг, хувьд, тухай, тойруулсан эргүүлэлт | sometimes left untranslated | 13 |
+| `about a line` | шулууны хувь дахь тэгшхэм | symmetry with respect to a line | 13 |
+| `about-face` | 180°–ын эргүүлэлт | printed as about – face | 13 |
+| `aboutness` | хөрш, ойр |  | 13 |
+| `above` | –ийн дээр, дээр, дээр нь, өмнө (хугацаа) | өмнө in the time sense | 13 |
+| `above the average` | дундажаас дээгүүр |  | 41 |
+| `above-mentioned` | дээр (өмнө) дурдсан |  | 14 |
+| `above-said` | дээр (өмнө) өгүүлсэн |  | 14 |
+| `above-stated` | өмнө томьёолсон |  | 14 |
+| `abridge` | товчлох, товч өгүүлэх, хязгаарлах | 1. shorten 2. limit | 14 |
+| `abridged` | товчилсон, огтолсон, огтлогдсон |  | 14 |
+| `abscissa` | абсцисс | x-coordinate; first coordinate of an ordered pair | 14 |
+| `absense` | байхгүй (байх) | printed absense; = absence | 14 |
+| `absense of certion orders` | тодорхой орны нэгж байхгүйг | printed certion; = certain | 14 |
+| `absolute` | абсолют, туйлын, бүрэн төгс, нөхцөлгүй |  | 14 |
+| `absolute error` | абсолют зөрөө | difference between real value and estimated value | 14 |
+| `absolute maxima and minima` | абсолют максимум ба минимум |  | 14 |
+| `absolute maximum and minimum` | хамгийн их ба бага утга |  | 15 |
+| `absolute maximum of f` | f(x) функцийн хамгийн их утга, f(x) функцийн үнэмлэхүй их утга |  | 14 |
+| `absolute minimum of f` | f(x) функцийн хамгийн бага утга, f(x) функцийн үнэмлэхүй бага утга |  | 15 |
+| `absolute value` | абсолют хэмжигдэхүүн |  | 15 |
+| `absolute value bars` | абсолют хэмжигдэхүүний тэмдэг (босоо зураас) |  | 43 |
+| `absolute value equations and inequalities` | абсолют хэмжигдэхүүнтэй тэгшитгэл ба тэнцэтгэлбиш | e.g. \|x\| = 3, \|x\| ≥ 5 | 15 |
+| `absolute value function` | абсолют хэмжигдэхүүний функц |  | 15 |
+| `absolutely` | абсолют, бүрэн |  | 14 |
+| `absorption` | шингээлт |  | 15 |
+| `abstract` | хийсвэр, хийсвэр ухагдахуун, товч агуулга, товч танилцуулга, онолын хийсвэрлэл, товч дүгнэлт, хийсвэрлэх | 1. abstract (adj) 2. summary 3. theoretical abstraction | 15 |
+| `abstracting` | хийсвэрлэн, хийсвэрлэх |  | 15 |
+| `abstraction` | хийсвэр, хийсвэрлэл, хөндийрэл, хийсвэрлэх, хөндийрөх |  | 15 |
+| `abstraction of actual infinity` | бодит төгсгөлгүйн хийсвэрлэл | translation continues on p.16 | 15 |
+| `abstraction of identification` | адилтгах хийсвэрлэл |  | 16 |
+| `abstraction of potential realizability` | боломжит хэрэгжилтийн хийсвэрлэл |  | 16 |
+| `absurd` | утгагүй |  | 16 |
+| `absurdity` | зөрчил, утгагүй болох (нь), утгагүй нь |  | 16 |
+| `absurdity of the assumption is obvious` | хийсэн таамаглал утгагүй болох нь илэрхий |  | 16 |
+| `abundant` | илүүдэлтэй |  | 16 |
+| `acceleration` | хурдатгал | change in speed per unit of time | 16 |
+| `accelerator` | хурдасгагч |  | 16 |
+| `accent` | онцлог ялгаа, ялгах онцлог, зураас (штрих), анхаарал төвлөрүүлэх |  | 16 |
+| `accented` | ялгасан, онцолсон, зураастай, "малгайтай" |  | 16 |
+| `accept` | хүлээн авах, хүлээн зөвшөөрөх, гэж үзэх, нийтээр хүлээн зөвшөөрөх |  | 16 |
+| `acceptable` | тохиромжтой, боломжтой, тохирох, байж болох |  | 16 |
+| `acceptable assignment` | боломжит оноолт |  | 16 |
+| `acceptable probability` | боломжит магадлал |  | 16 |
+| `accepted` | дэвшүүлсэн (хүлээн зөвшөөрсөн), таамаглал, таамагласан, нийтээр хүлээн зөвшөөрсөн, нийтэд тодорхой, нийтийн мэдэх |  | 17 |
+| `access` | боломж, бололцоо, хүрэх, орох |  | 17 |
+| `accessible` | хүрэх, хүртээмжтэй |  | 17 |
+| `accession` | өсөлт, нэмэлт |  | 17 |
+| `accident` | золгүй тохиолдол, санамсаргүй шинж, санамсаргүй үзэгдэл |  | 17 |
+| `accidental` | санамсаргүй, системгүй, эмхгүй |  | 17 |
+| `accomplish` | гүйцэтгэх, боловсронгуй болгох, гүйцээх |  | 17 |
+| `accomplished` | гүйцээсэн, болгосон |  | 17 |
+| `accomplished as a sum of` | нийлбэр болгон гүйцээсэн |  | 17 |
+| `accord` | харгалзаа, тохироо, харгалзах, уялдах |  | 17 |
+| `accordance` | харгалзаа |  | 17 |
+| `according to` | ёсоор, харгалзан, -аар (-ээр, -оор, -өөр) | also rendered by the instrumental suffix | 17 |
+| `according to the triangle inequality theorem` | гурвалжны тэнцэтгэлбишийн теорем ёсоор, гурвалжны тэнцэтгэлбишээр |  | 17 |
+| `account` | тооцоо, нягтлан бодох бүртгэл, тайлан, тооцох, гэж үзэх, анхаарах |  | 17 |
+| `accretion` | өсөлт, өөрчлөлт |  | 17 |
+| `accumulate` | хуримтлах, цуглуулах, төвлөрүүлэх, хуримтлуулах, хуримтлагдах, төвлөрөх |  | 17 |
+| `accumulation` | хуримтлал, цуглах, нийлбэр болгох |  | 17 |
+| `accumulation of errors` | алдаа хуримтлагдах |  | 17 |
+| `accumulution of data` | мэдээний цуглуулга, мэдээ хуримтлагдах | printed accumulution; = accumulation of data | 17 |
+| `accuracy` | нарийвчлал, зөв болох (нь) |  | 17 |
+| `accuracy in the mean` | дундажийн нарийвчлал, дундаж утгын нарийвчлал |  | 17 |
+| `accuracy of approximation` | ойролцоо утгын нарийвчлал, ойролцоо илэрхийллийн нарийвчлал |  | 17 |
+| `accurate` | нарийн, яг (зөв) тодорхойлсон, зөв, алдаагүй |  | 17 |
+| `accurate to` | хүртэп нарийвчлалтай | printed хүртэп; read хүртэл | 17 |
+| `accurately` | нарийн, яг |  | 17 |
+| `ace` | шооны нэг нүхтэй талс, 1 оноо, оноо авах |  | 18 |
+| `achieve` | хүрэх |  | 18 |
+| `achieveable` | хүрч болох | printed achieveable; = achievable | 18 |
+| `achievement` | ололт, амжилт |  | 18 |
+| `acknowledge` | ухамсарлах, хүлээн зөвшөөрөх, гэж үзэх, нотлох, талархах |  | 18 |
+| `acolinearity` | коллинеарбус болох (нь), нэг шулуун дээр үл орших (нь) |  | 18 |
+| `acolineary` | коллинеарбус, нэг шулуун дээр үл орших |  | 18 |
+| `acoplanar` | компланарбус, нэг хавтгай дээр үл орших |  | 18 |
+| `acoplanarity` | компланарбус болох (нь) |  | 18 |
+| `acquisition` | хүлээн авах, олох |  | 18 |
+| `across` | хөндлөн, хэрээс |  | 18 |
+| `act` | үйл, үйлдэл, үйл явдал, үзэгдэл, хуулийн бичиг (баримт буюу тогтоол), үйлдэх |  | 18 |
+| `action` | үйлдэл, нөлөөлөл, үйл ажиллагаа, төлөв байдал, төлөв байдлын шугам |  | 18 |
+| `active` | идэвхтэй, ажиллаж буй |  | 18 |
+| `activity` | идэвх, ажил, үйлдэл, ажиллагаа |  | 18 |
+| `actual` | бодитой оршин байгаа, бодит, жинхэнэ, баримтат, одоогийн чухал, орчин үеийн чухал |  | 18 |
+| `actual measurement` | бодит хэмжилт |  | 18 |
+| `actual speedy` | бодит хурд, өөрийн хурд | printed speedy; = actual speed | 18 |
+| `actualize` | хэрэгжүүлэх |  | 18 |
+| `actually` | үнэндээ, үнэхээр, одоо үед |  | 18 |
+| `acute` | хурц |  | 18 |
+| `acute angle` | хурц өнцөг |  | 18 |
+| `acute triangle` | хурц өнцөгт гурвалжин | also printed as acute-angled triangle | 18 |
+| `acute-angled triangle` | хурц өнцөгт гурвалжин |  | 18 |
+| `acyclic` | үегүй, цикл бус |  | 18 |
+| `ad absurdum` | утгагүйд шилжүүлэх, зөрчилд хүргэх, эсрэгээс нь батлах баталгаа | Latin | 18 |
+| `ad infinitum` | төгсгөлгүй хүртэл | Latin | 21 |
+| `adapt` | зохицох |  | 18 |
+| `adaptation` | зохицол, зохицох, гадаад хэл суралцахад зориулан хураангуйлж хялбарчилсан бичиг (текст) |  | 18 |
+| `add` | нэмэх, нийлбэр болгох |  | 18 |
+| `add the ones` | нэгжүүдийг нь нэм, нэгжийг нь нэм | when adding two whole numbers | 18 |
+| `add the tens` | арвыг нэм, аравтын (арвын) орны цифр нэм |  | 18 |
+| `addable` | нийлбэр авч буй, нэмж буй |  | 19 |
+| `addend` | нэмэгдэхүүн | in 3 + 5 = 8, 3 and 5 are addends | 19 |
+| `addendum` | нэмэлт, хавсралт |  | 19 |
+| `adding` | нийлбэр, нэмэх, нэмж буй |  | 19 |
+| `adding fractions` | энгийн бутархайг нэмэх |  | 19 |
+| `adding with decimals` | аравтын бутархайг нэмэх |  | 19 |
+| `addition` | нэмэх, нэмэх үйлдэл, нийлбэр болгох, өөрчлөлт (утгын) |  | 19 |
+| `addition formulae for sine and cosine` | Синус, косинусын нэмэхийн томьёо |  | 19 |
+| `addition method for systems` | тэгшитгэлийн систем бодох нэмэх арга |  | 19 |
+| `addition of similar terms` | төсөөтэй гишүүн эмхэтгэх |  | 19 |
+| `addition of whole numbers` | сөрөгбус бүхэл тоо нэмэх | printed сөрөгбус = сөрөг бус (non-negative) | 19 |
+| `addition properties` | нэмэхийн чанар |  | 19 |
+| `additional` | нэмэлт |  | 19 |
+| `additional distributive properties` | гишүүнчлэн үржүүлэхийн (үржвэрийг нийлбэрээр илэрхийлэхийн) нэмэлт чанар |  | 19 |
+| `additional topics` | нэмэлт сэдэв |  | 19 |
+| `additionally` | нэмж хэлэх (өгүүлэх) |  | 19 |
+| `additive` | аддитив |  | 19 |
+| `additive identity` | нэмэхийн нөлөөгүй тоо (тэгийн өөр нэр) | 0 is the additive identity: a+0=0+a | 19 |
+| `additive inverse` | эсрэг тоо, эсрэг матриц, нэмэхийн эсрэг хоёр тоо, сөрөг тоо | entry runs on from p.19; vectors/matrices: эсрэг элемент | 19,20 |
+| `additivity` | нийлбэр болох (нь), нийлбэр |  | 20 |
+| `adequacy` | хангалттай болох (нь), тохирох (нь), харгалзаа, харилцан хэмжилтэй болох (нь) |  | 20 |
+| `adequacy of data` | мэдээний үнэн болох (нь) |  | 20 |
+| `adequate` | хангалттай, тохиромжтой, шаардлагад тохирсон, харгалзаж байгаа, харгалзах, зохистой, зохистой болох (нь) |  | 20 |
+| `adjacent` | залгаа, хөрш, залгаа оршсон, налсан, зэрэгцээ, ерөнхий талтай, хиллэсэн, дараалсан |  | 21 |
+| `adjacent angles` | залгаа хоёр өнцөг, ерөнхий талтай хоёр өнцөг |  | 21 |
+| `adjoin` | хиллэж (залгаж) орших, хөрш байх |  | 21 |
+| `adjoined` | нэгтгэсэн, холбосон |  | 21 |
+| `adjoint` | хосмог, нэгтгэсэн, хосмог хувиргалт | matrix/operator sense | 21 |
+| `adjunct` | гүйцээлт, хавсралт, санамсаргүй онцлог |  | 21 |
+| `adjunction` | холболт, холбох, шилжүүлэх |  | 21 |
+| `adjunction to scale` | масштабт шилжүүлэх |  | 21 |
+| `adjust` | уялдуулах, дагуу хийх, тооцоолох, тохируулах, засварлах, засвар хийх, тоймлох | e.g. adjust the compass | 21 |
+| `adjustment` | уялдуулах, дагуу болгох, тоймлох, тооцоо хийх |  | 21 |
+| `admissibility` | боломжтой болох (нь), боломж |  | 21 |
+| `admissible` | боломжит, болох |  | 21 |
+| `admissible act` | боломжит үйлдэл |  | 18 |
+| `admit` | гэж үзэх, хүлээн зөвшөөрөх |  | 21 |
+| `adopt` | хүлээн авах, эзэмших |  | 21 |
+| `advance` | амжилт, ололт, дэвшил, урагшлах, ахих, дэвших, таамаглал дэвшүүлэх |  | 21 |
+| `advanced` | ахиу, дэвшилттэй |  | 21 |
+| `advanced cours` | ахиу түвшний сурах бичиг | printed 'cours' (= course) | 21 |
+| `advanced mathematics` | ахиу түвшний математик |  | 21 |
+| `advancement` | таамаглал дэвшүүлэх |  | 21 |
+| `affect` | нөлөөлөх |  | 22 |
+| `affine` | аффин (хувиргалт) |  | 22 |
+| `affinity` | аффин хувиргалт, аффин чанартай болох (нь) |  | 22 |
+| `affirm` | нотлох, батлах |  | 22 |
+| `affirmation` | нотломж | logic | 22 |
+| `affirmative` | нотолсон |  | 22 |
+| `affix` | аффикс | math sense: комплекс тоонд харгалзаж буй комплекс хавтгайн цэг | 22 |
+| `again` | бас, дахин |  | 22 |
+| `against` | эсрэг (чиглэл) |  | 22 |
+| `agenda` | бодлого бодох төлөвлөгөө, үндсэн оператор буюу үйлдлийн жагсаалт (хэлхээ) |  | 22 |
+| `aggregate` | цуглуулга, олонлог, бүл, хослол, ерөнхий цогц, үр дүн, цуглуулах, тэнцэх, бүрдүүлэх |  | 22 |
+| `aggregate of points` | цэгийн цуглуулга, цогц цэг |  | 22 |
+| `aggregate of simple events` | эгэл үзэгдлийн олонлог | probability | 22 |
+| `aggregation` | нэгдэл, нийлүүлэл, бүлэглэл, блок болгох |  | 22 |
+| `agree` | давхцах, харгалзах, харгалзаанд орших |  | 22 |
+| `agreement` | тохиролцоо, уялдаа, хэлцэл, гэрээ, нийцэл, давхцал, нийцэх |  | 22 |
+| `agreements on domains and ranges` | функцийн тодорхойлогдох ба утгын мужийн талаарх тохиролцоо |  | 22 |
+| `ahead, to be ahead` | хожих, давуу байх (тоглоомонд) | in games | 22 |
+| `aid` | тусламж, дэм, нэмэлт |  | 22 |
+| `aids` | нэмэлт хэрэгсэл, дагалдах хэрэгсэл |  | 22 |
+| `aim` | зорилго, зорилт |  | 22 |
+| `aleatory` | санамсаргүй, тохиолдлоос хамаарсан, шоо хаях үр дүнгээс хамаарсан |  | 22 |
+| `aleph` | алеф, кардинал тоо | first Hebrew letter ℵ; cardinal of an infinite set | 22 |
+| `alfin` | заан (шатрын) | chess bishop | 22 |
+| `algebra` | алгебр |  | 22 |
+| `algebra of events` | үзэгдлийн алгебр | probability | 23 |
+| `algebra of logik` | логикийн алгебр | printed 'logik' (= logic) | 23 |
+| `algebraic` | алгебрын, алгебр |  | 23 |
+| `algebraic addition` | алгебрын нэмэх (үйлдэл) |  | 19 |
+| `algebraic adjunct` | алгебр гүйцээлт |  | 21 |
+| `algebraic expression` | алгебрын илэрхийлэл, алгебрийн илэрхийлэл | book prints both -ын and -ийн spellings; printed as plural 'algebraic expressions' | 23 |
+| `algebraic fraction` | алгебрын бутархай |  | 23 |
+| `algebraic number` | алгебрын тоо | root of an integer-coefficient polynomial | 23 |
+| `algebraic operations` | алгебрын үйлдэл |  | 23 |
+| `algebraic proof` | алгебрын баталгаа |  | 23 |
+| `algebraic step` | алгебрын алхам (тэгшитгэл бодох зэргийн) | step in solving an equation | 23 |
+| `algebraically` | алгебр үүднээс, алгебрт, алгебр аргаар |  | 24 |
+| `algorism` | аравтын тооллын систем, арав арваар тоолох систем |  | 24 |
+| `algorithm` | алгоритм, дүрэм, теорем |  | 24 |
+| `algorithmic` | алгоритмийн, дүрэмтэй, алгоритмт |  | 24 |
+| `algorithmically` | алгоритмоор, дүрмээр |  | 24 |
+| `algorithmization` | алгоритмчилах, алгоритмлах, дүрэмлэх |  | 24 |
+| `align` | нэг тоог нөгөө тооны дор харгалзуулан бичих, зэрэгцүүлэн бичих, жагсаан бичих, тэнцүүлэх, нэг шулуун дээр байрлуулах |  | 24 |
+| `align the decimal points` | аравтын бутархайн таслалыг харгалзуулан нэг тоог нөгөө тооны доор нь бич |  | 24 |
+| `aligned` | нэг шулуун дагуу байрласан |  | 24 |
+| `aliquant` | үл хуваагдах, бүхэл хуваагдахгүй |  | 24 |
+| `aliquot` | хуваагдагч, бүхэл тоон удаа агуулагдаж буй |  | 24 |
+| `all` | бүгд, бүх, дурын, бүр |  | 24 |
+| `all A's are B's` | Бүх A нь B | logic statement pattern | 25 |
+| `all rational numbers` | бүх рационал тоо |  | 24 |
+| `all the sides` | бүх тал |  | 24 |
+| `allineation` | нэг шулуун дээр байрлах |  | 25 |
+| `allocate` | байрлах, байрлуулах, хуваарилах, зориулах |  | 25 |
+| `allocation` | байрлал, хуваарилалт, тархалт, ангилал |  | 25 |
+| `allot` | байрлуулах, өгөх (бодлого), шодож хуваарилах |  | 25 |
+| `allotment` | тархалт |  | 25 |
+| `allow` | гэж үзэх, зөв гэж үзэх, хүлээн зөвшөөрөх |  | 25 |
+| `allowable` | боломжтой, тохиромжтой |  | 25 |
+| `almost` | бараг |  | 25 |
+| `almost everywhere` | бараг хааяагүй | as printed | 25 |
+| `alogism` | логикгүй, логикгүй болох (нь) |  | 25 |
+| `alone` | ганц, зөвхөн, онцгойлон |  | 25 |
+| `along` | дагуу, ёсоор |  | 25 |
+| `along with this definition` | энэхүү тодорхойлолт ёсоор |  | 25 |
+| `alpha` | альф, үсэгт | first Greek letter α | 25 |
+| `alphabet` | цагаан толгой, цагаан топгойн үсгийн дэс дараагаар байрлуулах | 2nd sense = to alphabetize; misprint топгойн = толгойн | 25 |
+| `alphabetical` | үсгийн, үсэгт |  | 25 |
+| `alphabetically` | цагаан толгойн үсгээр дугаарлах | numbering а), б) etc. | 25 |
+| `alter` | хувирах, өөрчлөгдөх |  | 25 |
+| `alteration` | өөрчлөлт |  | 25 |
+| `alteration of form` | хэлбэрийн өөрчлөлт, деформац |  | 25 |
+| `altering` | өөрчлөлт |  | 25 |
+| `alternate` | өөр нэг, нэмэлт, ээлжлэх, сөөлжлөх, хувьсах |  | 25 |
+| `alternate angles` | солбисон хоёр өнцөг |  | 29 |
+| `alternate events` | нэгдэл үзэгдэл | probability | 25 |
+| `alternate exterior angles` | гадаад солбисон хоёр өнцөг |  | 25 |
+| `alternate interior angles` | дотоод солбисон хоёр өнцөг |  | 25 |
+| `alternate interior angles are congurent` | дотоод солбисон хоёр өнцөг тэнцүү | printed 'congurent' (= congruent) | 26 |
+| `alternately` | бас, ээлжлэн |  | 26 |
+| `alternation` | сөөлжилт, үелж өөрчлөгдөх, дизъюнкц | logic sense: disjunction | 26 |
+| `alternative` | бие биеэ үгүйсгэсэн хоёр боломжоос хийх сонголт, хоёрын нэг, харилцан үгүйсгэсэн хувилбар, бас, нэгэн нэмэлт, хувилбар сонгох |  | 26 |
+| `altitude` | өндөр |  | 26 |
+| `altogether` | бүрэн, төгс |  | 26 |
+| `always` | ямагт, үргэлж |  | 26 |
+| `always - falsehood` | ямагт худал | logic | 26 |
+| `always - truth` | ямагт үнэн | logic | 26 |
+| `ambiguity` | нэг утгагүй, нэг утгагүй болох (нь), тодорхойгүй, хоёрдмол утгатай, хоёрдмол утгатай болох (нь) |  | 26 |
+| `ambiguous` | хоёрдмол утгатай, эргэлзээтэй, тодорхойгүй |  | 26 |
+| `ambiguous case` | хоёрдмол утгатай тохиолдол |  | 26 |
+| `ambivalence` | тодорхойгүй, тодорхойгүй болох (нь) |  | 26 |
+| `amend` | дэлгэрүүлэх, сайжруулах |  | 26 |
+| `amended` | сайжруулсан |  | 26 |
+| `amicable` | нөхөрсөг |  | 26 |
+| `amicable numbers` | нөхөрсөг хоёр тоо | e.g. 220 and 284; gloss completed on p.27 | 26 |
+| `amount` | нийлбэр, хэмжээ, утга, мөнгөний дүн, мөнгөний нийт хэмжээ, мөнгөний хэмжээ, бүгд хүрэх, тэнцэх | finance sense: дүн мөнгө = principal + interest | 27 |
+| `amount as a numeral` | тоогоор бичсэн мөнгөний дүн (тоогоор бичсэн мөнгөний хэмжээ) |  | 27 |
+| `amount in words` | үсгээр бичсэн мөнгөний дүн (хэмжээ) |  | 27 |
+| `amount of change` | өөрчлөлтийн хэмжээ |  | 27 |
+| `ample` | хангалттай, илүүдэлтэй, элбэг |  | 27 |
+| `ampleness` | хангалттай болох (нь) |  | 27 |
+| `amplitude` | далайц, модул (комплекс тооны) | modulus of a complex number; амплитуд for x=Asin(wt+a) | 27 |
+| `an acute angle` | хурц өнцөг |  | 28 |
+| `an aggregate of units` | нэгжийн цуглуулга, нэгүүд, натурал тоо |  | 22 |
+| `an alternative definition of...` | -ийн бас нэгэн тодорхойлолт |  | 26 |
+| `an altitude of a parallelogram` | параллелограммын өндөр |  | 26 |
+| `an altitude of a triangle` | гурвалжны өндөр | perpendicular from vertex to opposite side | 26 |
+| `an apex of a pyramid` | пирамидын орой |  | 31 |
+| `an arbitrary natural number` | дурын натурал тоо |  | 33 |
+| `an axis of a parabola` | параболын тэнхлэг |  | 42 |
+| `an oblique asymptote` | налуу асимптот |  | 40 |
+| `an obtuse angle` | мохоо өнцөг |  | 28 |
+| `anagram` | анаграм |  | 27 |
+| `analog` | -тэй адил юм, -тэй ижил юм, -тэй төсөөтэй юм, адил төсөөтэй байдал |  | 27 |
+| `analogical` | төсөөд тулгуурласан |  | 27 |
+| `analogous` | төстэй, төсөөтэй |  | 27 |
+| `analogously` | үүнтэй адил, үүнтэй төстэйгээр |  | 27 |
+| `analogy` | төсөө, адил |  | 27 |
+| `analyse` | задлан шинжлэх, задлах, анализ хийх, учрыг олох |  | 27 |
+| `analyser` | задлан шинжилгээ хийдэг багаж |  | 27 |
+| `analysis` | анализ, математик анализ, задлан шинжилгээ | plural analyses; entry continues on p.28 | 27 |
+| `analysis of means` | дундажийн анализ |  | 28 |
+| `analyzable` | задлан буй, анализ хийж буй |  | 28 |
+| `analyze` | задлан шинжлэх, анализ хийх |  | 28 |
+| `analyze data` | мэдээнд анализ хийх (хий), мэдээг задлан шинжлэх |  | 28 |
+| `analyze the model` | загварыг задлан шинжил |  | 28 |
+| `analyzing` | задлан шинжлэх, анализ хийх |  | 28 |
+| `analyzing data` | мэдээнд анализ хийх |  | 28 |
+| `ancient` | эртний, урдын |  | 28 |
+| `and` | ба, бөгөөд, хоёр | Олон юм тоочихдоо сүүлчийнх нь өмнө тавина; заримдаа орчуулахгүй | 28 |
+| `and so on` | гэх мэт |  | 28 |
+| `angle` | өнцөг |  | 28 |
+| `angle addition postulate` | нийлбэр өнцгийн постулат, өнцөг нэмэх постулат (аксиом) |  | 28 |
+| `angle at center` | төв өнцөг |  | 29 |
+| `angle at circumference` | тойрог дээр оройтой өнцөг |  | 29 |
+| `angle at vertex` | орой дахь өнцөг, оройн өнцөг |  | 29 |
+| `angle between lines` | хоёр шулууны хоорондох өнцөг |  | 29 |
+| `angle bisector` | өнцгийн биссектрис |  | 29 |
+| `angle dependent` | өнцгөөс хамаарсан |  | 29 |
+| `angle included between` | хоорондох өнцөг |  | 29 |
+| `angle of depression` | доошоо харах өнцөг | depression үгийн орчуулгыг хар | 29 |
+| `angle of elevation` | дээшээ харах өнцөг | elevation үгийн орчуулгыг хар | 29 |
+| `angle sum theorem` | гурвалжны өнцгийн нийлбэрийн теорем |  | 28 |
+| `angle-chasing` | өнцөг хөөх | Евклидийн геометрт өнцгүүдийг тооцоолох арга | 29 |
+| `angle-preserving` | өнцөг хадгалдаг (хувиргалт) |  | 29 |
+| `angular` | өнцгийн |  | 29 |
+| `angular measure` | өнцгийн хэмжээ |  | 29 |
+| `annex` | нэмэлт, нэмж (залгаж) бичих |  | 29 |
+| `annex a zero to` | … –ын ард тэг бич | жишээ: 1,3–ын ард тэг бич | 29 |
+| `annexing zeros` | нэмж бичсэн тэгүүд |  | 29 |
+| `annotate` | товч танилцуулга хийх |  | 29 |
+| `annotation` | товч танилцуулга (өгүүлэл, ном, гар бичмэлийн) | Өгүүлэл, ном, гар бичмэлийн | 29 |
+| `annual` | жил тутмын, жилийн |  | 29 |
+| `annual average` | жилийн дундаж |  | 41 |
+| `annual income` | жилийн орлого |  | 29 |
+| `annuity` | рент, түрээс |  | 29 |
+| `annul` | устгах |  | 29 |
+| `another` | өөр |  | 30 |
+| `answer` | хариу, хариулт, хариулах, тохирох, харгалзах, хангах |  | 30 |
+| `answer following` | дараах асуултанд хариул | Номд 'the' үггүй хэвлэгдсэн (= answer the following) | 30 |
+| `answer line` | хариуны зураас |  | 30 |
+| `antagonism` | зөрчил, эсрэг үзэл (зарчим) |  | 30 |
+| `antagonistic` | зөрчилт |  | 30 |
+| `antecedent` | эхний гишүүн, өмнөх | Логикт (p ⇒ q)-ийн p нөхцөл | 30 |
+| `antecedent of ratio` | харьцааны эхний гишүүн |  | 30 |
+| `anticlockwise` | цагийн зүүний эсрэг, нар буруу |  | 30 |
+| `anticosine` | арккосинус | cos⁻¹x | 30 |
+| `anticotangent` | арккотангенс | ctg⁻¹x | 30 |
+| `antiderivation` | эх функц олох (уламжлалын урвуу үйлдэл) |  | 30 |
+| `antiderivative` | эх функц |  | 30 |
+| `antiderivative of f(x)` | f(x) функцийн эх функц |  | 30 |
+| `antidifferentiation` | уламжлал авахын урвуу үйлдэл, интеграл авах, уламжлалыг нь мэдсэнээр эх функц олох |  | 30 |
+| `antiimage` | эх дүр |  | 30 |
+| `antilogarithm` | антилогарифм, эх тоо |  | 30 |
+| `antinomy` | зөрчил, парадокс |  | 30 |
+| `antiparallel` | параллелбус, антипараллел |  | 30 |
+| `antique` | эртний, эртний урлагийн бүтээл |  | 30 |
+| `antisine` | арксинус | sin⁻¹x | 30 |
+| `antitangent` | арктангенс | tg⁻¹x | 30 |
+| `any` | дурын, аливаа, ямар ч |  | 30 |
+| `any point` | дурын цэг |  | 30 |
+| `any real number` | аливаа бодит тоо |  | 30 |
+| `anyone` | хэн нэг (асуух өгүүлбэрт), аливаа, ямар ч (нотолсон өгүүлбэрт), хэн ч (үгүйсгэсэн өгүүлбэрт) |  | 30 |
+| `anywhere` | хаа нэг, аль нэг | Зарим үед орчуулахгүй | 31 |
+| `apart` | хэсгүүд, тус тусдаа, зайтай, бусад |  | 31 |
+| `apart from` | -ийн гадна, -аас бусад, хэрэв ... -ийг хайхрахгүй бол |  | 31 |
+| `apart from the order of the factors` | үржигдэхүүний эрэмбээс бусад |  | 31 |
+| `aperiodic` | үегүй |  | 31 |
+| `aperiodicity` | үегүй, үегүй болох (нь) |  | 31 |
+| `apex (apices), apexes` | орой, оройнууд |  | 31 |
+| `apexes of the triangle` | гурвалжны оройнууд |  | 31 |
+| `apical` | оройн, орой дахь |  | 31 |
+| `apogee` | сар буюу дэлхийн хиймэл дагуулын тойрог замын дэлхийгээс хамгийн хол орших цэг, хөгжлийн дээд цэг, оргил, цэцэглэл, мандалт |  | 31 |
+| `Apollonius' circle` | Аполлоны тойрог |  | 31 |
+| `apothem` | апофем | Зөв олонөнцөгтийн төвөөс талд нь буулгасан перпиндикуляр хэрчим | 31 |
+| `apparatus` | багаж, хэрэгсэл, аппарат |  | 31 |
+| `apparent` | илэрхий, тодорхой, харагдах, санагдах |  | 31 |
+| `apparent argument` | хуурамч баталгаа |  | 34 |
+| `apparently` | тодорхой, илэрхий |  | 31 |
+| `appear` | гарч ирэх, гарч байх, байх, гарах, үзэгдэх |  | 31 |
+| `appendix` | хавсралт |  | 32 |
+| `applicate` | босоо тэнхлэг (огторгуй дахь z тэнхлэг) |  | 32 |
+| `applicate axis` | босоо тэнхлэг (огторгуйд) | z-axis in 3D space | 42 |
+| `application` | хэрэглээ, хавсралт, давхарлах (геометрт) |  | 32 |
+| `Applications: Using Tax Tables` | Хэрэглээ; татварын хүснэгт ашиглах нь |  | 32 |
+| `applied` | хэрэглээний, хавсарга |  | 32 |
+| `applied mathematics` | хэрэглээний математик |  | 32 |
+| `apply` | хэрэглэх, ашиглах, давхарлах |  | 32 |
+| `apply correction for` | -ыг засах |  | 32 |
+| `applying mathematics` | хэрэглээний математик |  | 32 |
+| `appreciate` | үнэлэх, ойлгох |  | 32 |
+| `approach` | дөхөлт, ойртолт, хандлага, арга, зарчим, дөхөх, ойртох, тэмүүлэх |  | 32 |
+| `appropriate` | тохирох, харгалзах, олгох |  | 32 |
+| `appropriately` | тохирох, харгалзан |  | 33 |
+| `approve` | сайшаах, нотлох |  | 33 |
+| `approximate` | ойролцоо утга, ойролцоо илэрхийлэх, ойролцоо тэнцэх |  | 33 |
+| `approximate square roots` | квадрат язгуурын ойролцоо утга |  | 33 |
+| `approximate value` | ойролцоо утга |  | 33 |
+| `approximated` | ойролцоо илэрхийлсэн |  | 33 |
+| `approximately` | ойролцоо, ойролцоогоор |  | 33 |
+| `approximating` | ойролцоо илэрхийлэх, ойролцоо утга авах |  | 33 |
+| `approximating irrational number by rationals` | иррационал тоог рационал тоогоор ойролцоо илэрхийлэх |  | 33 |
+| `approximation` | ойролцоо илэрхийлэх, дөхөлт, ойролцоо утга, ойролцоо илэрхийлэл, ойролцоо утга олох томьёо |  | 33 |
+| `apt` | боломжтой, магадлалтай, чадварлаг, тохирох |  | 33 |
+| `arabic system` | араб тооллын систем | 0,1,2,...,9 цифр ашиглан тоо бичдэг систем | 33 |
+| `arbitrarily` | дураар, хичнээн ч |  | 33 |
+| `arbitrarily assigned` | дураар өгсөн |  | 38 |
+| `arbitrary` | дурын, дураар сонгосон, санамсаргүй |  | 33 |
+| `arc` | нум |  | 33 |
+| `arc AB` | AB нум |  | 33 |
+| `arc cosecant` | арккосеканс |  | 33 |
+| `arc cosine` | арккосинус | cos⁻¹x | 33 |
+| `arc cotangent` | арккотангенс | ctg⁻¹x | 33 |
+| `arc measure` | нумын хэмжээ |  | 33 |
+| `arc of circle` | тойргийн нум |  | 33 |
+| `arc secant` | арксеканс | sec⁻¹x | 33 |
+| `arc sine` | арксинус | sin⁻¹x | 33 |
+| `arc tangent` | арктангенс | tg⁻¹x | 33 |
+| `Archimedes` | Архимед | МЭӨ 287-212 он | 34 |
+| `are` | ар | Талбайн нэгж; 1a = 100 м² | 34 |
+| `area` | талбай, муж, хүрээ (үйлчлэх), салбар |  | 34 |
+| `area of a circle` | дугуйн талбай |  | 34 |
+| `area of a triangle` | гурвалжны талбай |  | 34 |
+| `area under a curve` | муруйн доорх талбай |  | 34 |
+| `Argand diagram` | Аргандын диаграмм | a+bi тоог (a,b) цэг болгон дүрсэлсэн зураг | 34 |
+| `argue` | ургуулан бодох, үндэслэх, хэлэлцэх, нотлох, батлах |  | 34 |
+| `argument` | аргумент, үл хамааран хувьсагч, үндэслэл, тайлбар, гаргалгаа, ургуулан бодолт, баталгаа |  | 34 |
+| `argument by analogy` | төстэй баталгаа |  | 34 |
+| `argument of function` | функцийн аргумент |  | 34 |
+| `argumentation` | үндэслэл, гаргалгаа, баталгаа, батлах, тайлбар хийх, ургуулан бодох, үндэслэх |  | 34 |
+| `argumentum` | баталгаа | Латин үг | 34 |
+| `arise (arose, arisen)` | үүсэх, буй болох |  | 34 |
+| `Aristotelian` | Арестотелийн | Номд ийнхүү хэвлэгдсэн; доор нь Аристотелийн гэж бичсэн | 34 |
+| `Aristotelian logic` | Аристотелийн логик |  | 34 |
+| `arithmetic` | арифметик, арифметикийн үйлдэл | 'арифметик дундаж' нь arithmetic mean-д хамаарна | 34 |
+| `arithmetic average` | арифметик дундаж |  | 41 |
+| `arithmetic calculation with decimals` | аравтын бутархайн арифметикийн үйлдэл |  | 35 |
+| `arithmetic mean` | арифметикийн дундаж, арифметик дундаж |  | 34 |
+| `arithmetic operations` | арифметикийн үйлдэл |  | 35 |
+| `arithmetic progression` | арифметик (арифметикийн) прогресс |  | 35 |
+| `arithmetic sequence` | арифметик (арифметикийн) прогресс |  | 35 |
+| `arithmetical` | арифметикийн, арифметик |  | 35 |
+| `arm` | өнцгийн тал, хажуу тал (адил хажуут гурвалжны), мөр (хөшүүргийн), гар, хөшүүрэг |  | 35 |
+| `armithmetic series` | арифметик цуваа (арифметикийн прогрессээс зохиосон цуваа) | printed 'armithmetic' (= arithmetic) | 35 |
+| `around` | тойрон, бүтэн тойрох, тойруулан, эргэн тойрон, орчим, ойролцоо |  | 35 |
+| `arrange` | байрлал, жагсаалт, эрэмбэлсэн байрлал, дэс дараалан байрлуулах, эрэмбэлэн байрлуулах, гэж үзэх, эрэмбэлэх, ангилах |  | 35 |
+| `arrange the following numbers increasing order` | доорх тоонуудыг өсөх эрэмбээр байрлуул |  | 35 |
+| `arrangement` | байрлал, дэс дараатай байрлал, гүйлгэмэл, тархалт, систем, конфигурац |  | 36 |
+| `arrangement of axes` | координатын тэнхлэгийн чиглэл |  | 36 |
+| `arrangement of n elements taken m at a time` | n элементээс нэг, нэгээр авсан m элементийн байрлал, n элементээс авсан (сонгосон) m элементийн байрлал, n элементийн m элементэй гүйлгэмэл | combinatorics: arrangements of m out of n | 36 |
+| `array` | цуглуулга, дараалал, хүснэгт, матриц, эрэмбэлэн байрлуулах |  | 36 |
+| `array of signs for a 3x3 determinant` | 3x3 тодорхойлогчийн тэмдгийн хүснэгт |  | 36 |
+| `arrive` | хүргэх, хүрэх |  | 36 |
+| `arrow` | сум | vector/segment arrow | 36 |
+| `arrow diagram` | сумтай диаграмм (зураг) |  | 36 |
+| `artificial` | зохиомол, хиймэл |  | 37 |
+| `artificial exersize` | зохиомол (нүсэр төвөгтэй) дасгал | printed spelling; = artificial exercise | 37 |
+| `Artistotle` | Аристотель (МЭӨ 384-322 он) | printed 'Artistotle' (= Aristotle) | 34 |
+| `Artistotle's logical works` | Аристотелийн логикийн бүтээл |  | 34 |
+| `as` | мэт, гэж, -аас, байхад, болгон, ... нь -ээс хамаарсан, болох нь, үеийн |  | 37 |
+| `as .... as` | -ийн мэт, -тэй адил |  | 37 |
+| `as against` | -тэй харьцуулбал |  | 22 |
+| `as an alternate method of solution` | бодох нэмэлт нэгэн арга болгон |  | 25 |
+| `as close as` | хичнээн ч ойр, маш ойр |  | 37 |
+| `as far as` | аль болохуйц, боломжийн хэрээр, хүртэл, -ээр болох |  | 37 |
+| `as large as you like` | хичнээн л бол хичнээн их, хүссэнээр их |  | 37 |
+| `as long as` | хэрэв... бол... |  | 37 |
+| `as much again` | хоёр дахин их |  | 22 |
+| `as much as` | хичнээн, хэрэв... бол... |  | 38 |
+| `as Q moves closer to P` | Q цэг нь P цэг рүү ойртоход |  | 37 |
+| `as soon as` | -нгуут | verbal suffix | 38 |
+| `as soon as division is introduced` | хуваах үйлдэл тодорхойлонгуут |  | 38 |
+| `as well as` | бас, болон, ...мэтийн |  | 38 |
+| `as x→a` | x нь a руу тэмүүлэхэд, x нь a руу тэмүүлэх үеийн |  | 37 |
+| `ASA rule` | гурвалжны тэнцүүгийн өнцөг тал өнцгийн (ӨТӨ) шинжийн дүрэм, ӨТӨ шинж | angle-side-angle triangle congruence | 38 |
+| `ascend` | дээшлэх, өгсөх, өсөх |  | 38 |
+| `ascendancy, ascendency` | өсөлт, дээшлэлт, өсөх |  | 38 |
+| `ascendant, ascendent` | өсөлт, өсөж байгаа |  | 38 |
+| `ascending` | өсөлт, дээшлэлт, өсөж байгаа, дээшилж байгаа |  | 38 |
+| `ascent` | өгсөлт, өсөх, мандах |  | 38 |
+| `ascertain` | тогтоох, итгэх, үнэмших, тайлбарлах |  | 38 |
+| `aselect` | санамсаргүй |  | 38 |
+| `Asia` | Ази (тив) |  | 38 |
+| `aspect` | үзэл, санаа, үзэл санаа, асуудал, зүйл, тал |  | 38 |
+| `aspect of algebra` | алгебрын үзэл санаа |  | 38 |
+| `aspects of number theory` | тооны онолын асуудал |  | 38 |
+| `aspherical` | бөмбөрцөг бус, бөмбөрцгөөс өөр, бөмбөрцөг болохгүй |  | 38 |
+| `assay` | туршилт, шалгалт, шалгах, турших, шалгах, анализ хийх |  | 38 |
+| `assemblage` | цуглуулга, бүл |  | 38 |
+| `assert` | нотлох, дэвшүүлэх (таамаглал), үндэслэх, дүгнэх |  | 38 |
+| `assertion` | нотломж, хэллэг, сэтгэмж |  | 38 |
+| `assertive` | нотолсон |  | 38 |
+| `assess` | үнэлэх, тодорхойлох |  | 38 |
+| `assessment` | үнэлгээ, үнэлэлт, бодол, сэтгэмж |  | 38 |
+| `assign` | оноох, харгалзуулах, өгөх, олгох, тодорхойлох |  | 38 |
+| `assignable` | санамсаргүй бус, тодорхой шалтгаантай |  | 38 |
+| `assigned` | өгсөн (хэмжигдэхүүн) |  | 38 |
+| `assigning` | оноох |  | 39 |
+| `assigning probability` | магадлал оноох |  | 39 |
+| `assignment` | даалгавар, оноолт, тархалт, утга өгөх |  | 39 |
+| `associate` | холбоотой, холбох, нэгтгэх, бүлэглэх, харгалзах, харгалзуулах |  | 39 |
+| `associated` | холбосон, бүлэглэсэн, оноосон, харгалзуулсан |  | 39 |
+| `association` | бүлэг, харилцан холбоо |  | 39 |
+| `associative` | бүлэглэх | of an operation: бүлэглэх чанартай | 39 |
+| `associative law` | бүлэглэх хууль |  | 39 |
+| `associative property` | бүлэглэх чанар |  | 39 |
+| `assort` | бүлэглэх, ангилах |  | 39 |
+| `assume` | гэж үзэх, хүлээн авах, авах (утга), болох, гэх |  | 39 |
+| `assume that` | гэж үзье (гэе) |  | 39 |
+| `Assume that all variable represent nonzero real numbers.` | Бүх хувьсагчийг тэгээс ялгаатай бодит тоо илэрхийлсэн гэж үз |  | 39 |
+| `Assume that the statement is true for n=k.` | n=k үед нотломжоо үнэн гэж үзье | induction | 39 |
+| `Assume the contrary.` | Эсрэгийг нь биелнэ гэж үзье | proof by contradiction | 39 |
+| `assumption` | угтвар дүгнэлт, урьдчилсан дүгнэлт, таамаглал, эсрэг дүгнэлт (эсрэгээс батлахад) |  | 39 |
+| `assumption (1) leads to a conradiction` | (1) эсрэг дүгнэлт нь зөрчилд хүргэлээ | printed "conradiction" for contradiction | 39 |
+| `assurance` | гарцаагүй болох (нь), гарцаагүй нь |  | 39 |
+| `asymmetric` | тэгшхэмгүй |  | 39 |
+| `asymmetry` | тэгшхэмгүй |  | 40 |
+| `asymptote` | асимптот, хашлага шулуун |  | 40 |
+| `asymptote to a hyperbola` | гиперболын асимптот |  | 40 |
+| `asynchronous` | нэгэн зэрэг бус, цуварсан (хугацаа) |  | 40 |
+| `at` | -аар (-ээр), -д (-т), -дахь, -аас (-ээс) | зарим үед орчуулахгүй - sometimes left untranslated | 40 |
+| `at an angle of` | өнцөг үүсгэн |  | 29 |
+| `at least` | дор хаяж, наанадаж, хамгийн бага нь |  | 41 |
+| `at (on) the average, upon the average` | дунджаар |  | 41 |
+| `at point A` | A цэгт |  | 40 |
+| `at six o'clock` | зургаан цагт |  | 40 |
+| `at the right` | баруун талд, баруун тал дахь |  | 40 |
+| `atom` | атом, элемент |  | 41 |
+| `atomic` | атомын |  | 41 |
+| `atomic proposition` | дан хэллэг, энгийн хэллэг | logic | 41 |
+| `attach` | холбох, бэхлэх, утга өгөх |  | 41 |
+| `attack` | бодолт, бодох арга, бодож эхлэх | of a problem | 41 |
+| `attain` | хүрэх, авах |  | 41 |
+| `attempt` | оролдлого, туршлага, туршилт, оролдох, турших |  | 41 |
+| `attitude` | байр суурь (үзэл бодлын), үзэл бодол |  | 41 |
+| `attract` | анхаарал татах, сэтгэл татах |  | 41 |
+| `attribute` | гол шинж, гол чанар, салшгүй шинж, чанарын үзүүлэлт, холбоотой (хамаатай) гэж үзэх |  | 41 |
+| `augend` | эхний нэмэгдэхүүн | first addend in an addition | 41 |
+| `augment` | өсөх, нэмэгдүүлэх, нэмэх, нөхөх |  | 41 |
+| `augmentation` | өсөлт, өөрчлөлт, гүйцээлт, нэмэлт, өргөтгөл, өсөх |  | 41 |
+| `augmented matrix` | өргөтгөсөн матриц |  | 41 |
+| `automaton` | автомат | plural: automata | 41 |
+| `automorph` | автоморф |  | 41 |
+| `auxiliary` | нэмэлт |  | 41 |
+| `auxiliary figure` | нэмэлт дүрс |  | 41 |
+| `availability` | боломжтой болох нь, тохиромжтой, ашигтай, зохистой |  | 41 |
+| `available` | боломж, боломжийн |  | 41 |
+| `available unit` | тохиромжтой нэгж |  | 41 |
+| `average` | дундаж, дундаж тоо гаргах |  | 41 |
+| `averaged` | дундажласан |  | 41 |
+| `averaging` | дундажлалт, дундаж утга гаргах |  | 41 |
+| `avoid` | зайлсхийх, зайлах, тойрох |  | 42 |
+| `aware` | ухаарсан, ойлгосон, мэдлэгтэй, ухаарах, ойлгох, мэдэх |  | 42 |
+| `away` | алсалсан |  | 42 |
+| `awkward` | нүсэр (илэрхийлэл) | of an expression | 42 |
+| `awkward point` | онцгой цэг |  | 42 |
+| `axes of coordinates` | координатын тэнхлэгүүд |  | 42 |
+| `axial` | тэнхлэг, тэнхлэгийн |  | 42 |
+| `axiom` | аксиом |  | 42 |
+| `axiom of parallels` | параллелийн аксиом |  | 42 |
+| `axiomatic` | аксиомын, аксиомт, аксиомын систем |  | 42 |
+| `axiomatic method` | аксиомын арга |  | 42 |
+| `axiomatic set theory` | олонлогийн онолын аксиомын систем, олонлогийн аксиомт онол |  | 42 |
+| `axiomatics` | аксиомчлал, аксиомууд |  | 42 |
+| `axiomatization` | аксиомчилал, онолыг аксиомоор байгуулах, онолын аксиомын томьёолол |  | 42 |
+| `axiomatize` | аксиомлах, аксиом томьёолох |  | 42 |
+| `axiomatized` | аксиомчилсан, аксиом томьёолсон |  | 42 |
+| `axis (axes)` | тэнхлэг (тэнхлэгүүд) |  | 42 |
+| `axis of a symmetry` | тэгшхэмийн тэнхлэг |  | 42 |
+| `azimuth` | азимут (хөдөлгөөний өгсөн чиглэл, хойд зүг хоёрын хоорондох өнцөг) |  | 42 |
+| `b` | мэдэгдэж байгаа тоо, хэмжигдэхүүний тэмдэглэл | symbol for a known number or quantity | 42 |
+| `Babylonian mathematical tablet` | Вавилоны математикийн шаантаг бичиг |  | 42 |
+| `back` | ар, ар тал, урвуу, урвуу чигпэл, өмнө, буцах, эргэн үзэх, ахин авч үзэх, дэмжих | чигпэл as printed; read чиглэл | 42 |
+| `background` | урьдчилсан дүгнэлт, бэлтгэл, хөрс |  | 42 |
+| `backward` | урвуу, урвуу чиглэлд, ухраах, буцаах, хоцрогдсон |  | 43 |
+| `balance` | жин, дэнс, тэнцвэр, дүн, үлдэгдэл, баланс, тэнцвэртэй байх, тэнцэх, тэнцүүлэх, жинлэх, баланслах, баланс гаргах, эргэцүүлэн бодох |  | 43 |
+| `balance of forces` | хүчний тэнцвэр |  | 43 |
+| `balanced` | тэнцсэн, балансалсан |  | 43 |
+| `ball` | бөмбөрцөг, бөмбөг |  | 43 |
+| `band` | зурвас, тууз, задгай завсар, муж |  | 43 |
+| `bank of data` | мэдээний сан |  | 43 |
+| `bar` | зураас, тэмдэг, үсгийн дээр буюу хажуу дахь жижиг зураас, тэгшөнцөгт, багана |  | 43 |
+| `bar chart` | баганан диаграмм |  | 43 |
+| `bar graph(s)` | баганан диаграмм |  | 43 |
+| `barrel` | торх, торхонд хийх (шингэнийг), баррел (шингэн хэмжих нэгж) | 1 баррел = 163,65 л (Англид), 119 л (Америкт) | 43 |
+| `basal` | суурь |  | 43 |
+| `base` | үндэс, суурь, үндэслэх, суурилах, тулгуурлах |  | 43 |
+| `base angle` | суурийн өнцөг |  | 29 |
+| `below the average` | дундажаас доогуур |  | 41 |
+| `by accident` | санамсаргүй |  | 17 |
+| `by an algorithm` | алгоритмоор, дүрмээр |  | 24 |
+| `by analogy` | үүнтэй адилаар ургуулан бодох, үүнтэй төстэйгээр ургуулан бодох |  | 27 |
+| `by analogy with, on the analogy of` | -тэй төстэйгээр |  | 27 |
+| `by assumption` | урьдчилсан дүгнэлт ёсоор, таамаглал ёсоор |  | 39 |
+| `center at (0,0)` | төв нь (0, 0) цэгт |  | 41 |
+| `circle circumscribed about the regular hexagon` | зөв зургаанөнцөгтийг багтаасан тойрог |  | 13 |
+| `closed ball` | битүү бөмбөлөг, битүү бөмбөрцөг |  | 43 |
+| `common difference` | ялгавар | Арифметик прогрессийн дараалсан хоёр гишүүний ялгавар | 35 |
+| `computing aids` | тооцоолох хэрэгсэл |  | 22 |
+| `coordinate axes` | координатын тэнхлэгүүд |  | 42 |
+| `critical assumption` | шийдвэрлэх дүгнэлт |  | 39 |
+| `data acquisition` | мэдээ цуглуулах |  | 18 |
+| `deductive argument` | дедукц баталгаа, дедукц ургуулан бодолт |  | 34 |
+| `Definite integral as a limit of a Sum` | Тодорхой интеграл нийлбэрийн хязгаар болох нь |  | 37 |
+| `dijital arithmetic` | тооны арифметикийн үйлдэл | Номд dijital гэж хэвлэгдсэн | 35 |
+| `distance away from the centre of the circle` | тойргийн төвөөс алсалсан зай |  | 42 |
+| `division algorithm` | үлдэгдэлтэй хуваахын теорем | a = b·q + r, 0 <= r < b | 24 |
+| `do the arithmetic` | арифметикийн үйлдэл гүйцэтгэ |  | 35 |
+| `does not affect` | нөлөөгүй |  | 22 |
+| `domain of admissible values` | боломжит утгын муж |  | 21 |
+| `draw analogy (to, with)` | -тэй төстэйгээр гүйцэтгэх (хийх) |  | 27 |
+| `Euclidean algorithm` | Евклидийн алгоритм |  | 24 |
+| `Express 81 as a power of 3.` | 81-ийг 3-ын зэрэг болгон бич |  | 37 |
+| `far apart` | их зайтай |  | 31 |
+| `finite aggregate` | төгсгөлөг олонлог |  | 22 |
+| `fraction bar` | бутархайн зураас |  | 43 |
+| `geometric approach` | геометр хандлага (арга) |  | 32 |
+| `geometry activity` | геометрийн ажиллагаа |  | 18 |
+| `graphic approach` | график арга |  | 32 |
+| `horizontal arrangement` | хөндлөн байрлал |  | 36 |
+| `horizontal asymptote` | хөндлөн (хэвтээ) асимптот |  | 40 |
+| `horizontal asymptote for the graph of function` | функцийн графикийн хөндлөн асимптот |  | 40 |
+| `horizontal axis` | хөндлөн (хэвтээ) тэнхлэг |  | 42 |
+| `if we abstract` | хэрэв хийсвэрлэвэл |  | 15 |
+| `in accordance with` | -ийн дагуу, ёсоор, дагуу, харгалзан |  | 17 |
+| `in advance` | урьдчилан, урьдаас |  | 21 |
+| `in the aggregate` | цогцоороо |  | 22 |
+| `in the last analysis` | эцсийн дүнд |  | 28 |
+| `inductive argument` | индукцийн баталгаа, индукцээр ургуулан бодох |  | 34 |
+| `law of absorption` | шингээлтийн хууль | set theory: A ∪ (A∩B) = A | 15 |
+| `Liar's antinomy` | худалчийн зөрчил | paradox үгийн орчуулгад бий | 30 |
+| `limit` | хязгаар |  | 32 |
+| `linear aggregate` | шугаман эвлүүлэг |  | 22 |
+| `logical absurdity` | логик зөрчил, логикийн үүднээс зөрчилтэй |  | 16 |
+| `logical assessment` | логик үнэлгээ |  | 38 |
+| `logically absurd` | логик зөрчил, логикийн үүднээс зөрчилтэй |  | 16 |
+| `look back at the definintion of a polynomial` | Олон гишүүнтийн тодорхойлолтыг эргэж хар | printed "definintion" for definition | 42 |
+| `mathematical analysis` | математик анализ |  | 28 |
+| `mathematical apparatus` | математикийн хэрэгсэл |  | 31 |
+| `method of analyzing` | анализ хийх арга |  | 28 |
+| `minor arc` | бага нум |  | 33 |
+| `Multiply as with whole numbers.` | Сөрөг бус бүхэл тоо мэт үржүүл |  | 37 |
+| `negation bar` | үгүйсгэлийн тэмдэг (зураас) | logic: overbar for NOT | 43 |
+| `on the angle` | өнцгөөр, налан |  | 29 |
+| `open ball` | задгай бөмбөрцөг, бөмбөлөг |  | 43 |
+| `particular affirmative` | тухайн нотолсон нотломж (бодомж) | logic: particular affirmative proposition | 22 |
+| `per unit area` | нэгж талбайд |  | 34 |
+| `random allocation` | санамсаргүй тархалт |  | 25 |
+| `Read \|\| as is parallel.` | \|\| -ийг ... нь ... -тэй параллел гэж унш |  | 37 |
+| `read backwards` | буцааж (ухрааж) унших |  | 43 |
+| `reduction ad absurdum` | утгагүйд шилжүүлэх |  | 18 |
+| `sides of the angle` | өнцгийн тал | Өнцгийн цацрагийг тал гэж нэрлэдэг | 28 |
+| `solve algebraically the inequalities` | тэнцэтгэлбишийг алгебр аргаар бод |  | 24 |
+| `square array` | квадрат хүснэгт |  | 36 |
+| `start at O` | O цэгээс эхэл |  | 40 |
+| `statement about numbers and operations` | тоо, үйлдэл хоёрын тухай хэллэг (нотломж) |  | 13 |
+| `symmetrical about the y-axis` | у тэнхлэгийн хувьд тэгшхэмтэй |  | 13 |
+| `take away` | холдуул |  | 42 |
+| `the absolute value of a number` | тооны абсолют хэмжигдэхүүн | distance on the number line from the number to 0 | 15 |
+| `the accuracy of a measurement` | хэмжилтийн нарийвчлал |  | 17 |
+| `the altitude of the cone` | конусын өндөр |  | 26 |
+| `the angle construction postulate` | Өгсөн хэмжээтэй өнцөг байгуулах постулат |  | 28 |
+| `the angle measure postulate` | Өнцөг хэмжих постулат |  | 29 |
+| `the arm of the angle` | өнцгийн тал |  | 35 |
+| `the arms of a right triangle` | тэгш өнцөгт гурвалжны хоёр катет |  | 35 |
+| `the dollar amount of the check` | чекийн нийт доллар, чекийн мөнгөний дүн |  | 27 |
+| `the grouping does not alter the result` | бүлэглэх (хаалтанд хийх) нь үйлдлийн үр дүнг өөрчлөхгүй | associative property | 25 |
+| `the leg adjacent to the acute angle` | хурц өнцөгт налсан катет | right triangle | 21 |
+| `the limit as x approaches 1 of...` | -ийн x нь 1 рүү тэмүүлэх үеийн -ийн хязгаар |  | 37 |
+| `the number assigned to a point on a number line` | тоон шулуун дээрх цэгт оноосон тоо (харгалзуулсан тоо) |  | 38 |
+| `the ratio of the measure of the leg adjacent to the acute angle to the measure of the hypotenuse` | хурц өнцөгт налсан катетын уртыг гипотенузын уртад харьцуулсан харьцаа | i.e. cosine ratio | 21 |
+| `The scales are balanced.` | Дэнсний (хилийн) хоёр таваг тэнцвэртэй байна |  | 43 |
+| `the series is ascending` | цуваа өсөж байна |  | 38 |
+| `the size of an angle` | өнцгийн хэмжээ | Нэг талыг нөгөө талтай давхацтал эргүүлсэн дүн | 28 |
+| `the two lines intersect at point E` | хоёр шулуун E цэгт огтлолцож байна |  | 40 |
+| `the vertex of the angle` | өнцгийн орой | Цацрагуудын ерөнхий цэг | 28 |
+| `then be amended as follows` | ...ийг доорхи байдлаар дэлгэрүүлж болно |  | 26 |
+| `there is no alternative` | өөр сонголт байхгүй |  | 26 |
+| `to abbreviate notation` | тэмдэглэлийг (бичиглэлийг) хураангуйлах |  | 13 |
+| `to accept hypothesis` | таамаглал хүлээн зөвшөөрөх |  | 16 |
+| `to account for` | тайлбарлах, анхаарах, тооцоолох |  | 17 |
+| `to add up to` | нэмэх, нийлбэр болгох |  | 19 |
+| `to admit hypothesis` | таамаглал хүлээн зөвшөөрөх |  | 21 |
+| `to allow for` | засвар хийх, тооцох |  | 25 |
+| `to an accuracy of` | хүртэл нарийвчлалтай |  | 17 |
+| `to approach a limit` | хязгаар луу тэмүүлэх |  | 32 |
+| `to approach to infinity` | хязгааргүй руу тэмүүлэх |  | 32 |
+| `to argue away` | зохисгүйг батлах |  | 34 |
+| `to argue in a circle` | эргүүлгэнд орох, эндүү батлах |  | 34 |
+| `to arrive at a conclusion` | дүгнэлтэд хүрэх |  | 36 |
+| `to attack on the problem` | бодлогоо бодож эхлэх |  | 41 |
+| `to avoid this error` | энэхүү алдаанаас зайлах |  | 42 |
+| `to be aware of` | -ийг ухаарах |  | 42 |
+| `to be in accord with` | харгалзах, хангах, уялдах |  | 17 |
+| `to be in agreement with` | -тэй нийцэх (зохицох, уялдах) |  | 22 |
+| `to make an angle with` | –тэй өнцөг үүсгэх |  | 29 |
+| `to prove an argument` | дүгнэлт батлах |  | 34 |
+| `to reason by analogy` | төсөөтэй дүгнэлт хийх, төсөөтэй ургуулан бодох |  | 27 |
+| `to take account of` | анхаарах, тооцох, гэж үзэх |  | 17 |
+| `total amount` | нийт тоон хэмжээ |  | 27 |
+| `training aids` | сургалтын хэрэгсэл |  | 22 |
+| `true assertion` | үнэн хэллэг |  | 38 |
+| `truth assignment` | үнэний утгын оноолт | logic | 39 |
+| `two adjacent terms` | зэрэгцээ (хөрш) хоёр гишүүн | terms of a sequence/series | 21 |
+| `universal affirmative` | ерөнхий нотолсон нотломж (бодомж) | logic: universal affirmative proposition | 22 |
+| `value assignment` | хувьсагчид утга өгөх |  | 39 |
+| `vertical arrangement` | гулд байрлал |  | 36 |
+| `vertical asymptote` | гулд (босоо) асимптот |  | 40 |
+| `vertical axis` | гулд (босоо) тэнхлэг |  | 42 |
+| `vertical bar` | босоо зураас |  | 43 |
+| `visual aids` | үзүүлэн таниулах хэрэгсэл, үзүүлэн |  | 22 |
+| `with an accuracy to` | хүртэл нарийвчлалтай |  | 17 |
+| `x-axis` | x тэнхлэг, абсцисс тэнхлэг |  | 42 |
+| `x-coordinate` | x координат | in a Cartesian coordinate system; the abscissa | 14 |
+| `y against x` | y нь x-ээс хамаарсан функц | plotting y versus x | 22 |
+| `y as a function of x` | y нь x -ээс хамаарсан функц |  | 37 |
+| `y varies directly as x` | y нь x -ээс шууд хамаарч байна, y нь x -ээс шууд хамааралтай |  | 37 |
+| `y-axis` | y тэнхлэг, ординат тэнхлэг |  | 42 |
+| `z-axis` | z тэнхлэг, аппликат тэнхлэг |  | 42 |
+
+---
+
+## Transcription conventions
+
+- Russian parentheticals printed after the English headword (`счёты`, `сокращать`, `точность` …)
+  are the book's Russian equivalents, not Mongolian — they are **excluded** from this glossary.
+- Bold multi-word English phrases inside an entry are recorded as **their own rows**.
+- Illustrative example sentences are not recorded as rows, but informed the notes.
+- Mongolian is transcribed **exactly as printed**, including the book's own typos, which are
+  flagged in the note column (e.g. `цагаан топгойн` for `толгойн`, `чигпэл` for `чиглэл`).
+  English headwords misprinted in the book (`absense`, `armithmetic`, `Artistotle`, `dijital`)
+  are likewise kept as printed and flagged.
+- `source_page` is the printed page number in the book, for checking against the original.

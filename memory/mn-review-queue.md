@@ -129,6 +129,44 @@ rest on your judgement alone: «хагас задралын хугацаа» (ha
 
 ---
 
+## 5a · The printed dictionary — installed 13 Sep 2026, and one conflict
+
+Khas supplied a transcription of **«Математикийн англи-монгол нэр томьёо, үг,
+хэллэгийн лавлах толь»**, 706 entries from the printed book, now at
+`docs/en-mn-math-glossary.md` with a flat `docs/en-mn-math-glossary.tsv` for
+lookup. **It covers `a`–`base` only** — the later pages are not photographed —
+so the terms a maths site most needs (equation, fraction, triangle,
+derivative, function) are not in it yet.
+
+Audited every term I had already drafted that falls inside its range:
+**11 confirmed, 1 corrected, 1 conflict.**
+
+| | |
+|---|---|
+| confirmed | абсцисс · эсрэг тоо · алгебр · алгебрын илэрхийлэл · ба · өнцөг · нум · талбай · дундаж · аксиом · суурь |
+| corrected | `angle of depression` → «доошоо харах өнцөг» (see §6) |
+
+**THE CONFLICT — `absolute value`, and it needs Khas.**
+
+| source | rendering | weight |
+|---|---|---|
+| the printed dictionary | **абсолют хэмжигдэхүүн** | the book, p. 14 — and it also prints the whole phrase «абсолют хэмжигдэхүүнтэй тэгшитгэл ба тэнцэтгэлбиш», which is exactly a lesson title |
+| shipped mirrors | **абсолют утга** | **53 live uses** |
+| ministry А/492 | — | 0 for either |
+
+The ministry, which outranks both, is silent. So this is a straight choice
+between a published reference and 53 strings already in front of students,
+and it is not mine to make. It is also not urgent — nothing is wrong today,
+both forms are intelligible — but `algebra-1/inequalities` has a whole lesson
+on the topic and is drafted with «абсолют утга», so the answer decides whether
+that lesson gets rewritten before it is applied.
+
+One transcription note: the book prints «тэнцэтгэлбиш» as a single word in
+that entry. `mn_terms.py` enforces the ministry's two-word «тэнцэтгэл биш»,
+which is right — the run-together form is a printing artifact, not a ruling.
+
+---
+
 ## 5 · The glossary backlog — 644 of 667 terms unreviewed
 
 23 have your ruling. The rest have never been looked at.
@@ -152,8 +190,15 @@ that split has already earned its keep — the factor *tree* widget needs
 (divisors), and I used both in the widget batch. The glossary's single entry
 still says «хуваагч» for all 3,133 uses.
 
-**Still paused, must not be used until you confirm:** `depression`
-(«доош харах өнцөг»), `reference angle` («жишиг өнцөг»).
+**`depression` — UNPAUSED 13 Sep 2026 by the dictionary, and corrected.**
+`docs/en-mn-math-glossary.md` gives `angle of depression` → **«доошоо харах
+өнцөг»** (p. 29), with `angle of elevation` → «дээшээ харах өнцөг» as its
+partner. My paused guess was «доош харах өнцөг» — one syllable short. Neither
+form appears anywhere in the corpus, so nothing needs rewriting; the term is
+simply now safe to use, in the book's spelling.
+
+**Still paused:** `reference angle` («жишиг өнцөг»). Its headword is under
+*r*, and the dictionary transcription only reaches *base*.
 
 ---
 
