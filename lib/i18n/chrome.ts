@@ -150,6 +150,7 @@ export const NAV: ChromeEntry[] = [
   { en: "Free", mn: "Үнэгүй", src: "DERIV", n: 1, note: "from Khas's «Үнэгүй нэгд» (Free to join)" },
 
   // Footer column headings.
+  { en: "ЭШ exam prep and world-class math education for Mongolian students everywhere.", mn: "ЭШ-ын бэлтгэл, болон дэлхийн түвшний математикийн боловсролыг Монгол хүүхэд бүрт.", src: "VOICE", n: 1, note: "the company line under the footer logo — Khas wrote it 13 Sep 2026" },
   { en: "Programs", mn: "Хөтөлбөр", src: "NEW", n: 1 },
   { en: "Company", mn: "Компани", src: "NEW", n: 1 },
   { en: "Support", mn: "Тусламж", src: "NEW", n: 1 },
@@ -257,20 +258,20 @@ export const STATES: ChromeEntry[] = [
     mn: "Таны баталгаажуулах холбоосны хугацаа дууссан байна",
     src: "VOICE",
   },
-  { en: "Confirmation email sent. Check your inbox.", mn: "", src: "VOICE" },
+  { en: "Confirmation email sent. Check your inbox.", mn: "Баталгаажуулах и-мэйл илгээгдлээ. И-мэйл хаягаараа нэвтрэн орж ирсэн и-мэйлийг шалгана уу.", src: "VOICE" },
 
   // SAT / IB hub descriptions. Sentences that describe and sell a course —
   // VOICE by docs/MONGOLIAN.md, so `mn` stays empty and chrome() renders the
   // English until Khas writes them. Listed here rather than left loose in the
   // pages so the outstanding voice work is one reviewable queue.
-  { en: "The complete AA SL syllabus · 5 topics · one lesson per subtopic code", mn: "", src: "VOICE", n: 2 },
-  { en: "The AHL extension on top of AA SL · proof, complex numbers, 3D vectors, deeper calculus", mn: "", src: "VOICE", n: 2 },
-  { en: "The complete AI SL syllabus · calculator-always, modelling-first · 5 topics", mn: "", src: "VOICE", n: 2 },
-  { en: "4 College Board domains · 27 units · lessons, practice, unit tests", mn: "", src: "VOICE", n: 1 },
-  { en: "Drill the 4 domains · a similar problem after every miss", mn: "", src: "VOICE", n: 1 },
-  { en: "Drill the 5 syllabus topics · a similar problem after every miss", mn: "", src: "VOICE", n: 1 },
-  { en: "General Math courses — every topic from zero", mn: "", src: "VOICE", n: 2 },
-  { en: "Per-domain accuracy and your weakest areas, once you've taken a test", mn: "", src: "VOICE", n: 1 },
+  { en: "The complete AA SL syllabus · 5 topics · one lesson per subtopic code", mn: "AA SL хөтөлбөр бүтнээрээ. 5 сэдэв. Бүх сэдвүүд багтсан.", src: "VOICE", n: 2 },
+  { en: "The AHL extension on top of AA SL · proof, complex numbers, 3D vectors, deeper calculus", mn: "AHL сэдвүүд, батлах, комплекс тоо, вектор, болон анализ", src: "VOICE", n: 2 },
+  { en: "The complete AI SL syllabus · calculator-always, modelling-first · 5 topics", mn: "AI SL хөтөлбөр бүтнээрээ. 5 сэдэв", src: "VOICE", n: 2 },
+  { en: "4 College Board domains · 20 units · lessons, practice, unit tests", mn: "SAT бүх бүлэг, сэдэв, хичээл, дадлага, бүлэг бүрт зориулсан тестүүд", src: "VOICE", n: 1 },
+  { en: "Drill the 4 domains · a similar problem after every miss", mn: "SAT-ийн үндсэн 4 сэдвээр дадлагажих - Алдсан бодлогоо бодож сурах, уг бодлогуудтай төстэй бодлогуудаар дадлагажих", src: "VOICE", n: 1 },
+  { en: "Drill the 5 syllabus topics · a similar problem after every miss", mn: "IB хөтөлбөрийн үндсэн 5 сэдвээр дадлагажих - Алдсан бодлогоо бодож сурах, уг бодлогуудтай төстэй бодлогуудаар дадлагажих", src: "VOICE", n: 1 },
+  { en: "General Math courses — every topic from zero", mn: "Ерөнхий Боловсролын математик - Бүх сэдвийг хүссэн түвшнээсээ эхлэн суралцах боломж", src: "VOICE", n: 2 },
+  { en: "Per-domain accuracy and your weakest areas, once you've taken a test", mn: "Сул сэдвээ тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших", src: "VOICE", n: 1 },
   { en: "Per-component accuracy and weakest areas, once you start practicing", mn: "", src: "VOICE", n: 1 },
 ];
 

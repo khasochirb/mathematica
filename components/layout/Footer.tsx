@@ -76,7 +76,7 @@ export default function Footer() {
               className="text-sm leading-relaxed mb-5"
               style={{ color: "var(--fg-2)" }}
             >
-              ЭШ exam prep and world-class math education for Mongolian students everywhere.
+              {chrome("ЭШ exam prep and world-class math education for Mongolian students everywhere.", lang)}
             </p>
             <div className="space-y-2 mb-6">
               <div className="eyebrow">{chrome("Contact", lang)}</div>

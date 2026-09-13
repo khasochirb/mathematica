@@ -31,7 +31,7 @@ export default function SatHubPage() {
     {
       href: "/practice/sat/learn",
       title: "SAT Math course",
-      subtitle: "4 College Board domains · 27 units · lessons, practice, unit tests",
+      subtitle: "4 College Board domains · 20 units · lessons, practice, unit tests",
       role: "course",
     },
     {
