@@ -67,7 +67,7 @@ export type ChromeEntry = {
 //    important to get right; a wrong word here is wrong on 36 pages.
 // ---------------------------------------------------------------------------
 export const STRUCTURE: ChromeEntry[] = [
-  { en: "Unit", mn: "Нэгж", src: "DERIV", n: 36, note: 'from "By unit"→«Нэгжээр», "Weakest unit"→«Хамгийн сул нэгж»' },
+  { en: "Unit", mn: "Бүлэг", src: "SITE", n: 36, note: "COURSE-CHAPTER sense. Khas 13 Sep 2026: «Бүлэг if we are talking about unit as a chapter or like a section, but нэгж if we are talking about kg, cm, meters.» His own SAT sentence uses «бүлэг» for both the sections and the unit tests, which is the same call. Was «Нэгж» — wrong in all 36 places." },
   { en: "Lesson", mn: "Хичээл", src: "DERIV", n: 15 },
   { en: "Lessons", mn: "Хичээлүүд", src: "NEW", n: 15, note: 'site has "Lessons"→«Хичээл» (unmarked plural) as a TAB label; as a countable heading the plural may read better — your call which wins' },
   { en: "Topic", mn: "Сэдэв", src: "SITE", n: 9 },
@@ -89,7 +89,7 @@ export const STRUCTURE: ChromeEntry[] = [
 export const NAV: ChromeEntry[] = [
   { en: "Back", mn: "Буцах", src: "NEW", n: 5 },
   { en: "Back to the course", mn: "Курс руу буцах", src: "NEW", n: 35, note: "the single most common chrome string on the site" },
-  { en: "Back to unit", mn: "Нэгж рүү буцах", src: "NEW", n: 12, note: "рүү not руу after front-vowel «нэгж» — please confirm" },
+  { en: "Back to unit", mn: "Бүлэг рүү буцах", src: "DERIV", n: 12, note: "course chapter, so «Бүлэг» per the 13 Sep ruling; рүү after the front vowel" },
   { en: "Back to topic", mn: "Сэдэв рүү буцах", src: "NEW", n: 3 },
   { en: "Back to Grade 10", mn: "10-р анги руу буцах", src: "NEW", n: 3 },
   { en: "Back to Grade 11", mn: "11-р анги руу буцах", src: "NEW", n: 3 },
@@ -242,7 +242,7 @@ export const FORMS: ChromeEntry[] = [
 //    Tone target — say what happened and what to do, never blame the reader.
 // ---------------------------------------------------------------------------
 export const STATES: ChromeEntry[] = [
-  { en: "Unit not found", mn: "Нэгж олдсонгүй", src: "DERIV", note: 'from "Question not found"→«Бодлого олдсонгүй»' },
+  { en: "Unit not found", mn: "Бүлэг олдсонгүй", src: "DERIV", note: 'from "Question not found"→«Бодлого олдсонгүй»' },
   { en: "Lesson not found", mn: "Хичээл олдсонгүй", src: "DERIV" },
   { en: "Topic not found", mn: "Сэдэв олдсонгүй", src: "DERIV" },
   { en: "Coming soon.", mn: "Удахгүй нэмэгдэнэ.", src: "NEW", n: 1 },
@@ -282,10 +282,10 @@ export const MEASURES: ChromeEntry[] = [
   { en: "Accuracy", mn: "Зөв хариулсан хувь", src: "SITE", n: 1 },
   { en: "Complete", mn: "Дууссан", src: "NEW", n: 1 },
   { en: "Actions", mn: "Үйлдэл", src: "NEW", n: 1 },
-  { en: "By unit", mn: "Нэгжээр", src: "SITE", n: 2 },
+  { en: "By unit", mn: "Бүлгээр", src: "SITE", n: 2 },
   { en: "By domain", mn: "Хэсгээр", src: "NEW", n: 2 },
   { en: "By syllabus topic", mn: "Хөтөлбөрийн сэдвээр", src: "NEW", n: 1 },
-  { en: "All units", mn: "Бүх нэгж", src: "NEW", n: 1 },
+  { en: "All units", mn: "Бүх бүлэг", src: "NEW", n: 1 },
   { en: "All levels", mn: "Бүх түвшин", src: "NEW", n: 1 },
   { en: "Factors of", mn: "-ын хуваагчид", src: "NEW", n: 3, note: "GRAMMAR HAZARD: EN composes «Factors of » + number at runtime. Mongolian puts the number first and the suffix varies with it (12-ын, 15-ын, 20-ын). Needs a function, not a string — flagging so the wiring is built right." },
   { en: "Multiples of", mn: "-ын үржвэрүүд", src: "NEW", n: 3, note: "same hazard as above" },
