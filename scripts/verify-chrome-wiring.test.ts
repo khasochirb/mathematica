@@ -109,6 +109,29 @@ describe("chrome dictionary", () => {
     expect(chrome("practice by topic", "mn")).not.toBe("practice by topic");
   });
 
+  it("keeps the placement card's inline label equal to the dictionary's", () => {
+    // The focus label is the one approved string rendered inline rather than
+    // through chrome(), because live unit names sit bold inside the same
+    // line. That is seven copies of a string Khas wrote — exactly the drift
+    // the dictionary exists to prevent — so they are checked instead.
+    const label = MN_OF("Focus first on");
+    expect(label, "the dictionary entry itself").toBe("Түрүүнд анхаарах зүйлс:");
+
+    const wrong: string[] = [];
+    let found = 0;
+    for (const file of sourceFiles(["app"])) {
+      const src = fs.readFileSync(file, "utf8");
+      if (!src.includes("Focus first on")) continue;
+      // A page is wired if it carries the label; an un-wired course hub has
+      // no Mongolian on it at all and is not a failure here.
+      if (!/useLang|const mn =/.test(src)) continue;
+      found++;
+      if (!src.includes(label)) wrong.push(path.relative(ROOT, file));
+    }
+    expect(wrong, "these render the focus line but not the approved label").toEqual([]);
+    expect(found, "the seven grade hubs render this line").toBe(7);
+  });
+
   it("never stamps an approval on an empty string", () => {
     // `ok` is the record that Khas read a specific Mongolian string and
     // approved it, and it is what makes an entry deployable. Stamping one

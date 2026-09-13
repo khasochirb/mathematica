@@ -61,7 +61,7 @@ export default function Grade10TopicsPage() {
               </p>
               <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
                 {priorityTitles.length > 0
-                  ? (mn ? <>Эхлээд <b>{priorityTitles.slice(0, 3).join(", ")}</b> сэдвүүдэд анхаараарай — доор тэмдэглэсэн.</> : <>Focus first on <b>{priorityTitles.slice(0, 3).join(", ")}</b> — marked below.</>)
+                  ? (mn ? <>Түрүүнд анхаарах зүйлс: <b>{priorityTitles.slice(0, 3).join(", ")}</b> — доор тэмдэглэсэн.</> : <>Focus first on <b>{priorityTitles.slice(0, 3).join(", ")}</b> — marked below.</>)
                   : (mn ? <>Та бүх сэдэвт хүчтэй байна. Хүссэн үедээ дахин өгөөрэй.</> : <>You&apos;re strong across the board. Retake anytime.</>)}
               </p>
             </div>

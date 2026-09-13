@@ -226,7 +226,7 @@ export const SECTIONS: ChromeEntry[] = [
   { en: "Watch out", mn: "Болгоомжил", src: "NEW", n: 3, ok: "2026-09-13", note: "heads the common-mistakes block. The bare form stands despite the «та» ruling — Khas approved it on 13 Sep 2026 over «Болгоомжилоорой». It is a label on a box, not the product addressing a student." },
   { en: "Real-world picture", mn: "Бодит амьдрал дээр", src: "NEW", n: 3 },
   { en: "Builds on", mn: "Тулгуур сэдэв нь:", src: "SITE", n: 12, ok: "2026-09-13", note: "Khas's wording, 13 Sep 2026. Heads the tinted prerequisite card above the lesson list on 12 unit pages; the sentence naming the prerequisites sits underneath, so the label ends in a colon and leads into it. Was «Уг нь тулгуурлах» — a relative clause with nothing to attach to, which read as a sentence that never finished." },
-  { en: "Focus first on", mn: "Түрүүнд анхаарах зүйл", src: "VOICE", n: 5, note: 'site: "Focus units"→«Анхаарах нэгжүүд»' },
+  { en: "Focus first on", mn: "Түрүүнд анхаарах зүйлс:", src: "VOICE", n: 5, ok: "2026-09-13", note: "Khas's wording, 13 Sep 2026 — plural «зүйлс», and a colon. It is a LABEL, not the opening of a sentence, and that is what solves the surface: the placement card drops one to three live unit names in after it, and Mongolian case endings cannot be attached to a name chosen at runtime. After a colon the names stand uninflected. Rendered inline on the eight placement cards rather than through chrome(), because the names are bold inside the line; verify-chrome-wiring keeps the inline copies equal to this one." },
   { en: "Important for you", mn: "Танд чухал зүйл", src: "VOICE", n: 4, note: "recommendation banner. Khas wrote this; «танд» is correct — see the register ruling in the header." },
   { en: "Ready to check yourself?", mn: "Өөрийгөө шалгаад үзэх үү?", src: "VOICE", n: 12 },
   { en: "Self-graded", mn: "Өөрийгөө дүгнэ", src: "SITE", n: 15 },
@@ -285,8 +285,8 @@ export const STATES: ChromeEntry[] = [
   { en: "Drill the 4 domains · a similar problem after every miss", mn: "SAT-ийн үндсэн 4 сэдвээр дадлагажих - Алдсан бодлогоо бодож сурах, уг бодлогуудтай төстэй бодлогуудаар дадлагажих", src: "VOICE", n: 1 },
   { en: "Drill the 5 syllabus topics · a similar problem after every miss", mn: "IB хөтөлбөрийн үндсэн 5 сэдвээр дадлагажих - Алдсан бодлогоо бодож сурах, уг бодлогуудтай төстэй бодлогуудаар дадлагажих", src: "VOICE", n: 1 },
   { en: "General Math courses — every topic from zero", mn: "Ерөнхий Боловсролын математик - Бүх сэдвийг хүссэн түвшнээсээ эхлэн суралцах боломж", src: "VOICE", n: 2 },
-  { en: "Per-domain accuracy and your weakest areas, once you've taken a test", mn: "Сул сэдвээ тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших", src: "VOICE", n: 1 },
-  { en: "Per-component accuracy and weakest areas, once you start practicing", mn: "", src: "VOICE", n: 1 },
+  { en: "Per-domain accuracy and your weakest areas, once you've taken a test", mn: "Сул сэдвээ тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших", src: "VOICE", n: 1, ok: "2026-09-13" },
+  { en: "Per-component accuracy and weakest areas, once you start practicing", mn: "Сул сэдвээ тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших", src: "VOICE", n: 1, ok: "2026-09-13", note: "deliberately identical to the SAT banner above — Khas, 13 Sep 2026, reused his own sentence rather than writing a second. The English differs (domain vs component) because the two exams name their parts differently; the Mongolian does not need to." },
 ];
 
 // ---------------------------------------------------------------------------

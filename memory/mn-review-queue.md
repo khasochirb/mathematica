@@ -59,26 +59,27 @@ Worth a specific look:
 
 ---
 
-## 2 · Voice strings — one left of eleven
+## 2 · Voice strings — all written
 
-Khas wrote ten on 13 Sep 2026, and they are wired verbatim. **One is still
-empty, and its surface renders English until it is filled:**
+Khas wrote them on 13 Sep 2026 and they are wired verbatim. No VOICE entry
+has an empty `mn` any more, and a test now fails if one is ever approved
+while empty.
 
-- `Per-component accuracy and weakest areas, once you start practicing` —
-  the IB hub progress banner. It is the twin of the SAT banner he did write
-  («Сул сэдвээ тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших»),
-  so the open question is only whether that SAT wording is reused here or
-  the IB banner gets its own sentence.
+The last two were settled on 13 Sep:
 
-The footer tagline was also his and is now a VOICE entry, written and wired.
+- **The IB hub progress banner** reuses his SAT sentence («Сул сэдвээ
+  тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших») unchanged. The
+  English differs — *per-domain* on SAT, *per-component* on IB, because the
+  two exams name their parts differently — and the Mongolian deliberately
+  does not.
+- **«Focus first on X — marked below»**, the one surface that could not be a
+  dictionary entry because live unit names land in the middle of it. His
+  answer removed the problem rather than solving it: **«Түрүүнд анхаарах
+  зүйлс:»** — plural, and a colon. A label, not the opening of a sentence,
+  so the names that follow need no case ending at all. Applied to all seven
+  grade hubs.
 
-Still outstanding, and **not** dictionary entries because they are
-**sentences with a value interpolated into them**, which Mongolian suffixes
-cannot survive being dropped into:
-
-- **«Focus first on X — marked below»** on all seven grade hub pages. His
-  «Түрүүнд анхаарах зүйл» is a noun phrase; it needs a sentence built around
-  the unit names, not a substitution.
+The footer tagline was also his and is written and wired.
 
 ---
 
@@ -165,6 +166,22 @@ is **non-elective** — «Илтгэгч тэгшитгэлийг графики
 "solve" appear **zero times** in the topic. Three options in
 `memory/mn-findings/esh-scope-gaps.md`: extend the unit, re-map the objective,
 or accept the gap deliberately.
+
+**G2 · Nine course hubs have no Mongolian at all.** Found 13 Sep 2026 while
+applying the focus-label ruling. `/math/geometry` and the eight hubs sharing
+`components/course/CoursePlacementCta.tsx` — precalculus, trigonometry,
+algebra-1, algebra-2, calculus, prob-stats, vectors-matrices, solid-geometry —
+carry no `useLang`, no `chrome()`, no `<Tc>`: title, blurb, unit list and
+placement card are all hardcoded English. The seven grade hubs (6–12) were
+wired; these nine were missed.
+
+They are **not** half-wired, which is why the focus label was deliberately
+not applied to them: a Mongolian placement card under an English headline
+reads worse than a consistently English page. Wire the page, then the card.
+
+Each needs a course blurb, and a blurb persuades — so nine of them are
+Khas's to write, not mine. That is the real cost of this gap, and it is
+worth queueing before the count grows.
 
 **The ministry's own chart vocabulary is unsafe.** А/492 gives dot plot «цэгэн
 диаграм» and scatter plot «цэгэн диаграмм» — one doubled м apart. I followed

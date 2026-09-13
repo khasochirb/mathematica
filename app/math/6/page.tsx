@@ -60,7 +60,7 @@ export default function Grade6TopicsPage() {
               <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
                 {priorityTitles.length > 0
                   ? (mn
-                      ? <>Эхлээд <b>{priorityTitles.slice(0, 3).join(", ")}</b> сэдэвт анхаараарай — доор тэмдэглэсэн.</>
+                      ? <>Түрүүнд анхаарах зүйлс: <b>{priorityTitles.slice(0, 3).join(", ")}</b> — доор тэмдэглэсэн.</>
                       : <>Focus first on <b>{priorityTitles.slice(0, 3).join(", ")}</b> — marked below.</>)
                   : (mn
                       ? <>Та бүх сэдэвт сайн байна. Хүссэн үедээ дахин өгөөрэй.</>
