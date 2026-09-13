@@ -149,15 +149,33 @@ describe("chrome dictionary", () => {
     expect(mine.map((e) => e.en), "these are Claude's wording and unreviewed").toEqual([]);
   });
 
-  it("leaves the gate open off production, so wording stays reviewable", () => {
-    // vitest runs with NEXT_PUBLIC_VERCEL_ENV unset, which is the same state
-    // as local dev and a preview deploy. If the gate ever defaulted to ON,
-    // Khas would lose the ability to read unapproved wording in place on the
-    // preview URL — which is the only way it becomes reviewable at all.
-    expect(process.env.NEXT_PUBLIC_VERCEL_ENV).not.toBe("production");
+  it("leaves the gate open in dev and tests, so wording stays reviewable", () => {
+    // vitest runs with NODE_ENV !== "production", the same state as local
+    // `next dev`. The gate must be off here or working on the wording would
+    // mean working blind.
+    expect(process.env.NODE_ENV).not.toBe("production");
     const unapproved = ALL_CHROME.find((e) => !isApproved(e) && e.mn);
     expect(unapproved, "fixture: expected at least one unapproved entry").toBeTruthy();
     expect(chrome(unapproved!.en, "mn")).toBe(unapproved!.mn);
+  });
+
+  it("closes the gate on an unknown environment rather than opening it", () => {
+    // The failure this guards against is silent: if the gate keyed off a
+    // variable that went missing, it would read false, open, and ship
+    // unreviewed Mongolian to students. So the condition must be "production
+    // build AND nobody asked for drafts" — never "environment equals
+    // preview". This asserts the source spells it that way, because the
+    // behaviour itself cannot be observed from inside a test run (NODE_ENV is
+    // fixed at "test" here).
+    const src = fs.readFileSync(path.join(ROOT, "lib/i18n/chrome.ts"), "utf8");
+    const line = src.split("\n").find((l) => l.includes("GATE_TO_APPROVED ="));
+    expect(line, "GATE_TO_APPROVED must exist").toBeTruthy();
+    const decl = src.slice(src.indexOf("const GATE_TO_APPROVED"), src.indexOf("const MN_APPROVED"));
+    expect(decl).toContain('process.env.NODE_ENV === "production"');
+    expect(decl).toContain("NEXT_PUBLIC_MN_SHOW_DRAFTS");
+    // An equality test against a named non-production environment would mean
+    // an absent variable opens the gate.
+    expect(decl).not.toMatch(/VERCEL_ENV\s*===\s*"production"/);
   });
 
   it("never stamps an approval on an empty string", () => {

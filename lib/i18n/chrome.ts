@@ -482,16 +482,22 @@ export function isApproved(e: ChromeEntry): boolean {
   return Boolean(e.mn) && (Boolean(e.ok) || e.src === "SITE" || e.src === "GLOSS" || e.src === "VOICE");
 }
 
-// Preview and local dev show EVERYTHING, production shows only what is
-// approved. The gate must not apply off production: rendering the wording in
-// place on the preview URL is how it becomes reviewable at all — a table of
-// strings cannot show how a label reads inside its own page.
+// FAIL-SAFE, and deliberately so. The gate is ON for any production build
+// unless something explicitly asks for drafts.
 //
-// `NEXT_PUBLIC_` is required for the value to survive into the client bundle;
-// Vercel sets it per environment. Anywhere it is unset (local `next dev`,
-// vitest, a bare `next build`) the value is undefined, so the gate stays OFF
-// and nothing is hidden from a reviewer by accident.
-const GATE_TO_APPROVED = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
+// The obvious spelling — `VERCEL_ENV === "production"` — fails the wrong way:
+// if that variable is ever absent (system variables switched off, a
+// self-hosted build, a rename upstream) the check is false, the gate opens,
+// and unreviewed Mongolian ships. The rule it enforces is "never deploy
+// unreviewed Mongolian", so an unknown environment must close the gate, not
+// open it.
+//
+// Off during local `next dev` and vitest (NODE_ENV is not "production"), so
+// working on the wording still shows all of it. To review drafts on a
+// deployed preview, set NEXT_PUBLIC_MN_SHOW_DRAFTS=1 on the PREVIEW
+// environment only — never on production.
+const GATE_TO_APPROVED =
+  process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_MN_SHOW_DRAFTS !== "1";
 
 const MN_APPROVED: Record<string, string> = {};
 const MN_APPROVED_LOWER: Record<string, string> = {};
