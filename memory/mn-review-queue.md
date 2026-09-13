@@ -167,6 +167,24 @@ is **non-elective** — «Илтгэгч тэгшитгэлийг графики
 `memory/mn-findings/esh-scope-gaps.md`: extend the unit, re-map the objective,
 or accept the gap deliberately.
 
+**G4 · «pattern» is now two words.** Khas ruled on 13 Sep 2026 that pattern
+is **«зүй тогтол»**, and the PatternGrow widget uses it. But **«хэв маяг»**
+stands in **7 places in already-shipped mirrors**, and «зүй тогтол» appears
+nowhere in the corpus — so today the widget and the prose around it disagree.
+
+The 7 split across two senses, which may be why one word could not cover it:
+
+| file | uses | sense |
+|---|---|---|
+| `8-mn/exponents-and-scientific-notation.json` | 3 | a numeric regularity — "watch the pattern shrink". Same sense as the widget; probably wants «зүй тогтол» too. |
+| `8-mn/scatter-plots-and-bivariate-data.json` | 4 | a statistical trend — "Хэв маяг бол шалтгаан биш". Arguably a different sense; may keep «хэв маяг». |
+
+**Not fixable by hand.** `mn-translation`'s iron rule: mirror JSON is
+generated, never edited — a hand fix is destroyed on the next regeneration.
+The route is a `mn_terms.py` entry plus `--fix`, which is re-appliable. That
+needs Khas to say whether the scatter-plot sense changes too, because a
+single glossary entry cannot hold both.
+
 **G3 · Most of the numeral genitive table is still unverified.**
 `lib/i18n/mn-numerals.ts` holds 19 endings — the units 1–9, the whole tens,
 and 100 — and four widgets render them.
