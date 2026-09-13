@@ -37,6 +37,46 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 CORRECTIONS = [
     ("тэнцэтгэл бус", "тэнцэтгэл биш", "10.5, 11.1, 12.1",
      "The standard writes 'тэнцэтгэл биш' 13 times and 'тэнцэтгэл бус' never."),
+    # Regex, because a plain substring replace would turn an already-correct
+    # 'диаграмм' into 'диаграммм' on the second run, and --fix must stay
+    # idempotent. The lookahead also carries the inflected forms across:
+    # 'диаграмын' -> 'диаграммын', 'диаграмд' -> 'диаграммд'.
+    (r"диаграм(?!м)", "диаграмм", "10.13в, 11.11а",
+     "The standard writes 'диаграмм' in all four of its uses -- 'Цэгэн диаграмм', "
+     "'Эйлер-Веннийн диаграмм', 'Иш навчны диаграмм', 'хайрцган диаграммыг' -- and "
+     "single-m never. The mirrors had it the other way round, 58 to 7."),
+]
+
+# Khas's rulings. NOT ministry evidence, which is why they are not in
+# CORRECTIONS above: that list claims to be settled by the standard's own text,
+# and diluting it would make every entry in it less trustworthy.
+#
+# (wrong form, ruled form, date, note)
+OWNER_CORRECTIONS = [
+    # "pattern is зүй тогтол period. never хэв маяг." -- 13 Sep 2026.
+    # Ordered longest-first: 'Хэв маягийг' must match before 'Хэв маяг'.
+    # The accusative drops the stem vowel (тогтол -> тогтл-), which is Khas's
+    # own form from «Зүй тогтлыг дахин эхлүүлэх».
+    (r"Хэв маягийг(?![а-яөүё])", "Зүй тогтлыг", "2026-09-13", "pattern, accusative"),
+    (r"хэв маягийг(?![а-яөүё])", "зүй тогтлыг", "2026-09-13", "pattern, accusative"),
+    (r"Хэв маяг(?![а-яөүё])", "Зүй тогтол", "2026-09-13", "pattern, nominative"),
+    (r"хэв маяг(?![а-яөүё])", "зүй тогтол", "2026-09-13", "pattern, nominative"),
+]
+
+# Inflected forms of a ruled term that have NO mapping yet.
+#
+# Mongolian obliques are not substring swaps -- 'хэв маягийг' becomes
+# 'зүй тогтлыг', with the stem vowel dropping -- so each form needs its own
+# ruling. Until one exists, a file containing any of these is skipped ENTIRELY
+# rather than half-converted: a lesson carrying both «зүй тогтол» and
+# «хэв маяг» reads worse than one consistently using the old word, and would
+# also hide the remaining work by making the count look almost done.
+PENDING_FORMS = [
+    r"хэв маягаар(?![а-яөүё])",
+    r"хэв маягаас(?![а-яөүё])",
+    r"хэв маяггүйгээр(?![а-яөүё])",
+    r"хэв маяггүй(?![а-яөүё])",
+    r"хэв маягт(?![а-яөүё])",
 ]
 
 # Terms the ministry uses that a translator is likely to improvise around.
@@ -167,14 +207,47 @@ def mn_files():
     return sorted(set(seen))
 
 
-def scan():
-    hits = []
+def _rx(pattern):
+    """Treat an entry as a regex if it looks like one, else as a literal.
+
+    The original entries were plain strings and must keep working; the newer
+    ones need lookaheads to stay idempotent and to avoid matching a longer
+    word they are a prefix of.
+    """
+    return pattern if re.search(r"[()\[\]?*+|\\]", pattern) else re.escape(pattern)
+
+
+def blocked_files():
+    """Files holding an inflected form nobody has ruled on yet.
+
+    Returned so --fix can leave them completely alone. Half-converting a
+    lesson is worse than not touching it.
+    """
+    out = {}
     for path in mn_files():
         text = open(path, encoding="utf-8").read()
+        found = []
+        for pat in PENDING_FORMS:
+            found += re.findall(pat, text)
+        if found:
+            out[path] = sorted(set(found))
+    return out
+
+
+def scan(skip=()):
+    hits = []
+    for path in mn_files():
+        if path in skip:
+            continue
+        text = open(path, encoding="utf-8").read()
         for wrong, right, where, _note in CORRECTIONS:
-            n = len(re.findall(re.escape(wrong), text))
+            n = len(re.findall(_rx(wrong), text))
             if n:
                 hits.append((path, wrong, right, where, n))
+        for wrong, right, when, note in OWNER_CORRECTIONS:
+            n = len(re.findall(_rx(wrong), text))
+            if n:
+                hits.append((path, wrong, right, "Khas %s (%s)" % (when, note), n))
     return hits
 
 
@@ -186,22 +259,35 @@ def main():
     if not (args.fix or args.check):
         args.check = True
 
-    hits = scan()
+    blocked = blocked_files()
+    hits = scan(skip=blocked)
+
     if args.fix:
-        changed = 0
+        changed = set()
         for path, wrong, right, _where, _n in hits:
             text = open(path, encoding="utf-8").read()
-            open(path, "w", encoding="utf-8").write(text.replace(wrong, right))
-            changed += 1
-        print("mn_terms --fix: rewrote %d file(s)" % changed)
-        hits = scan()
+            open(path, "w", encoding="utf-8").write(re.sub(_rx(wrong), right, text))
+            changed.add(path)
+        print("mn_terms --fix: rewrote %d file(s)" % len(changed))
+        hits = scan(skip=blocked)
+
+    if blocked:
+        print("mn_terms: %d file(s) held back -- an inflected form has no ruling yet:"
+              % len(blocked))
+        for path, forms in sorted(blocked.items()):
+            print("  %s: %s" % (os.path.relpath(path, ROOT), ", ".join(repr(f) for f in forms)))
+        print("  (skipped whole, not half-converted -- see PENDING_FORMS)")
 
     if hits:
-        print("mn_terms: %d file(s) use wording the ministry standard does not:"
+        print("mn_terms: %d file(s) use wording that has been ruled against:"
               % len({h[0] for h in hits}))
         for path, wrong, right, where, n in hits:
-            print("  %s: %r x%d -> %r (ministry: %s)"
-                  % (os.path.relpath(path, ROOT), wrong, n, right, where))
+            # `where` already names its own authority for owner rulings; only
+            # the ministry entries need the label adding, and conflating the
+            # two is the thing OWNER_CORRECTIONS exists to prevent.
+            src = where if where.startswith("Khas") else "ministry: %s" % where
+            print("  %s: %r x%d -> %r (%s)"
+                  % (os.path.relpath(path, ROOT), wrong, n, right, src))
         return 1
     print("mn_terms: %d file(s) checked, %d enforced term(s), %d glossary entries — clean"
           % (len(mn_files()), len(CORRECTIONS), len(GLOSSARY)))

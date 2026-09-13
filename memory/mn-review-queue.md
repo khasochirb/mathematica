@@ -167,23 +167,34 @@ is **non-elective** — «Илтгэгч тэгшитгэлийг графики
 `memory/mn-findings/esh-scope-gaps.md`: extend the unit, re-map the objective,
 or accept the gap deliberately.
 
-**G4 · «pattern» is now two words.** Khas ruled on 13 Sep 2026 that pattern
-is **«зүй тогтол»**, and the PatternGrow widget uses it. But **«хэв маяг»**
-stands in **7 places in already-shipped mirrors**, and «зүй тогтол» appears
-nowhere in the corpus — so today the widget and the prose around it disagree.
+**G4 · «pattern» — RULED, mostly applied, 8 uses left.**
+Khas, 13 Sep 2026: *"pattern is зүй тогтол period. never хэв маяг."* That is
+absolute and covers the statistical sense too — the earlier guess that scatter
+plots might keep «хэв маяг» is dead.
 
-The 7 split across two senses, which may be why one word could not cover it:
+There were 32 uses across 9 inflected forms, not the 7 first reported (the
+first count matched only two forms). 24 are converted via
+`mn_terms.OWNER_CORRECTIONS` + `--fix`.
 
-| file | uses | sense |
+**Still blocked: 8 uses in 2 files**, because Mongolian obliques are not
+substring swaps — «хэв маягийг» becomes «зүй тогтлыг», with the stem vowel
+dropping. Khas's own «зүй тогтлыг» settles the accusative; these five forms
+have no ruling:
+
+| form | means | files |
 |---|---|---|
-| `8-mn/exponents-and-scientific-notation.json` | 3 | a numeric regularity — "watch the pattern shrink". Same sense as the widget; probably wants «зүй тогтол» too. |
-| `8-mn/scatter-plots-and-bivariate-data.json` | 4 | a statistical trend — "Хэв маяг бол шалтгаан биш". Arguably a different sense; may keep «хэв маяг». |
+| `хэв маягаар` | instrumental — "by the pattern" | the-real-number-system |
+| `хэв маягаас` | ablative — "from the pattern" | scatter-plots |
+| `хэв маяггүй` | caritive — "without a pattern" | both |
+| `хэв маяггүйгээр` | adverbial caritive | the-real-number-system |
+| `хэв маягт` | dative — "in the pattern" | scatter-plots |
 
-**Not fixable by hand.** `mn-translation`'s iron rule: mirror JSON is
-generated, never edited — a hand fix is destroyed on the next regeneration.
-The route is a `mn_terms.py` entry plus `--fix`, which is re-appliable. That
-needs Khas to say whether the scatter-plot sense changes too, because a
-single glossary entry cannot hold both.
+`PENDING_FORMS` in `mn_terms.py` holds them back, and `--fix` skips those two
+files **whole** rather than half-converting: a lesson carrying both words
+reads worse than one consistently using the old one, and a partial conversion
+would hide the remaining work by making the count look nearly done.
+
+Five forms, and this closes.
 
 **G3 · Most of the numeral genitive table is still unverified.**
 `lib/i18n/mn-numerals.ts` holds 19 endings — the units 1–9, the whole tens,
@@ -236,10 +247,14 @@ times (`диаграм`, `диаграмын`, `диаграмд`, `диагра
 The ministry outranks the glossary, and the glossary outranks the mirrors,
 so the mirrors are the ones that are wrong.
 
-Same shape as G4: mirror JSON is generated, so the route is an
-`mn_terms.py` entry plus `--fix`, not a hand edit. Cheap to do, and it needs
-no ruling — the ministry has already decided it. Queued rather than done
-because it belongs with G4's glossary pass, not in a chrome commit.
+**DONE, 13 Sep 2026.** 34 occurrences rewritten across 3 files via
+`mn_terms.py --fix`. The entry is a regex with a negative lookahead
+(`диаграм(?!м)`) rather than a literal: a plain substring replace would turn
+an already-correct «диаграмм» into «диаграммм» on the second run, and `--fix`
+has to stay idempotent. The lookahead carries the inflected forms across for
+free — «диаграмын» → «диаграммын», «диаграмд» → «диаграммд».
+
+No ruling was needed; the ministry had already decided it 4–0.
 
 ---
 
