@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
-import { ALL_CHROME, chrome, untranslated, isApproved } from "../lib/i18n/chrome";
+import { ALL_CHROME, chrome, untranslated, isApproved, gatedLookup } from "../lib/i18n/chrome";
 
 // GROUP 1 — THE CHROME DICTIONARY AND ITS WIRING.
 //
@@ -9,11 +9,12 @@ import { ALL_CHROME, chrome, untranslated, isApproved } from "../lib/i18n/chrome
 // the dictionary they read from, and this pins the three things that would
 // silently undo it.
 //
-// NOTHING HERE HAS SHIPPED. Wiring lives on the branch so the wording is
-// reviewable in place on the preview URL — a table of 91 strings cannot show
-// how a label reads inside its own page. docs/MONGOLIAN.md's "never deploy
-// unreviewed Mongolian" still binds, and the last test below is what keeps
-// that honest.
+// docs/MONGOLIAN.md: "Never deploy unreviewed Mongolian. Once I've approved a
+// batch, deploy it freely." As of 13 Sep 2026 that is enforced rather than
+// observed — `chrome()` consults an approved-only map on production builds,
+// and the tests below pin both halves: that the approval predicate admits
+// only somebody else's judgement, and that nothing outside it reaches a
+// reader. The approved batch ships; my wording waits.
 
 const ROOT = process.cwd();
 
@@ -157,6 +158,29 @@ describe("chrome dictionary", () => {
     const unapproved = ALL_CHROME.find((e) => !isApproved(e) && e.mn);
     expect(unapproved, "fixture: expected at least one unapproved entry").toBeTruthy();
     expect(chrome(unapproved!.en, "mn")).toBe(unapproved!.mn);
+  });
+
+  it("renders no unapproved wording once the gate is closed", () => {
+    // The claim every Mongolian deploy rests on, checked against the gated
+    // lookup itself rather than trusting the predicate.
+    //
+    // Note what this does NOT claim: the unapproved strings are still present
+    // in the JS bundle, because ALL_CHROME is one array and bundlers do not
+    // tree-shake data. They are never rendered, which is what the rule is
+    // about — and the repository is public anyway, so stripping them from the
+    // payload would buy nothing.
+    //
+    // A key differing only by case resolves through its twin, and the twin
+    // carries identical Mongolian (pinned by the case-drift test above), so
+    // an approved string surfacing that way is correct, not a leak.
+    const approvedStrings = new Set(ALL_CHROME.filter(isApproved).map((e) => e.mn));
+    const leaked: string[] = [];
+    for (const e of ALL_CHROME) {
+      if (isApproved(e) || !e.mn) continue;
+      const out = gatedLookup(e.en);
+      if (out !== e.en && !approvedStrings.has(out)) leaked.push(`${e.en} -> ${out}`);
+    }
+    expect(leaked, "unreviewed Mongolian would reach a student").toEqual([]);
   });
 
   it("closes the gate on an unknown environment rather than opening it", () => {

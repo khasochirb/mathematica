@@ -522,10 +522,20 @@ for (const e of ALL_CHROME) {
  */
 export function chrome(en: string, lang: string): string {
   if (lang !== "mn") return en;
-  if (GATE_TO_APPROVED) {
-    return MN_APPROVED[en] ?? MN_APPROVED_LOWER[en.toLowerCase()] ?? en;
-  }
+  if (GATE_TO_APPROVED) return gatedLookup(en);
   return MN_BY_EN[en] ?? MN_BY_EN_LOWER[en.toLowerCase()] ?? en;
+}
+
+/**
+ * What production would render for `en`, regardless of the current NODE_ENV.
+ *
+ * Exists so the gate's behaviour is testable. NODE_ENV is fixed at "test"
+ * inside vitest, so a test cannot otherwise observe the closed gate — and the
+ * failure it guards against (unreviewed Mongolian reaching a student) is
+ * silent, which is exactly the kind that needs a test rather than a comment.
+ */
+export function gatedLookup(en: string): string {
+  return MN_APPROVED[en] ?? MN_APPROVED_LOWER[en.toLowerCase()] ?? en;
 }
 
 /** Entries still waiting on Khas — used by the coverage test, not by pages. */
