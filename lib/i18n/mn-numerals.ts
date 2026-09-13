@@ -76,6 +76,27 @@ export function mnGenitiveEnding(n: number): string {
 }
 
 /**
+ * Whether `n`'s ending has actually been confirmed by Khas.
+ *
+ * He confirmed «12-ын хуваагчид» on 13 Sep 2026. That settles the
+ * construction and the «ын» row — and, through the compound rule, every
+ * numeral whose last spoken word is хоёр. Nothing else has been read by a
+ * Mongolian speaker.
+ *
+ * The chrome dictionary gates unreviewed wording out of production by
+ * `src`/`ok`; these endings come from a function rather than an entry, so they
+ * need their own gate or they would ride around it. `mnGenitiveApproved` is
+ * that gate — callers render the English label when it returns false, which is
+ * the same fallback `chrome()` uses and is honest: better a label in English
+ * than a case ending nobody has checked.
+ *
+ * Delete this the moment the remaining rows are confirmed.
+ */
+export function mnGenitiveApproved(n: number): boolean {
+  return Number.isInteger(n) && n > 0 && n <= 100 && n % 10 === 2;
+}
+
+/**
  * `n` written with its genitive ending — «12-ын», «6-гийн».
  *
  * Falls back to the bare number when the ending is unknown, so an

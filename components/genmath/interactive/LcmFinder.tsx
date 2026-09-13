@@ -2,7 +2,7 @@
 
 import { useLang } from "@/lib/lang-context";
 import { chrome } from "@/lib/i18n/chrome";
-import { mnGenitiveEnding } from "@/lib/i18n/mn-numerals";
+import { mnGenitiveEnding, mnGenitiveApproved } from "@/lib/i18n/mn-numerals";
 
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
@@ -22,7 +22,8 @@ function gcd(a: number, b: number): number {
 // an ending that changes with the numeral — see lib/i18n/mn-numerals.
 function CountOf({ n, mn, noun, en, color }: { n: number; mn: boolean; noun: string; en: string; color: string }) {
   const value = <b className="serif tabular" style={{ color }}>{n}</b>;
-  if (!mn) return <>{en} {value}</>;
+  // English until the ending is confirmed — see mnGenitiveApproved.
+  if (!mn || !mnGenitiveApproved(n)) return <>{en} {value}</>;
   const ending = mnGenitiveEnding(n);
   return <>{value}{ending ? `-${ending}` : ""} {noun}</>;
 }

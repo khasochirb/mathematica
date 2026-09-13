@@ -463,6 +463,45 @@ for (const e of ALL_CHROME) {
 }
 
 /**
+ * Whether an entry's Mongolian may reach a student on PRODUCTION.
+ *
+ * docs/MONGOLIAN.md: "Never deploy unreviewed Mongolian. Once I've approved a
+ * batch, deploy it freely." Until now that line was kept by hand — the whole
+ * dictionary shipped or none of it did, so one unreviewed string held back a
+ * hundred approved ones, and a careless deploy would have shipped my wording
+ * to students. This makes the rule mechanical instead.
+ *
+ * Four ways to qualify, and they are all somebody else's judgement, not mine:
+ *   ok     — Khas read that exact string and approved it.
+ *   SITE   — copied verbatim from Mongolian already live on the site.
+ *   GLOSS  — fixed by ministry order А/492 or the enforced glossary.
+ *   VOICE  — Khas wrote it himself.
+ * A NEW or DERIV entry without `ok` is MY wording and nobody has read it.
+ */
+export function isApproved(e: ChromeEntry): boolean {
+  return Boolean(e.mn) && (Boolean(e.ok) || e.src === "SITE" || e.src === "GLOSS" || e.src === "VOICE");
+}
+
+// Preview and local dev show EVERYTHING, production shows only what is
+// approved. The gate must not apply off production: rendering the wording in
+// place on the preview URL is how it becomes reviewable at all — a table of
+// strings cannot show how a label reads inside its own page.
+//
+// `NEXT_PUBLIC_` is required for the value to survive into the client bundle;
+// Vercel sets it per environment. Anywhere it is unset (local `next dev`,
+// vitest, a bare `next build`) the value is undefined, so the gate stays OFF
+// and nothing is hidden from a reviewer by accident.
+const GATE_TO_APPROVED = process.env.NEXT_PUBLIC_VERCEL_ENV === "production";
+
+const MN_APPROVED: Record<string, string> = {};
+const MN_APPROVED_LOWER: Record<string, string> = {};
+for (const e of ALL_CHROME) {
+  if (!isApproved(e)) continue;
+  MN_APPROVED[e.en] = e.mn;
+  MN_APPROVED_LOWER[e.en.toLowerCase()] = e.mn;
+}
+
+/**
  * The English string in the reader's language.
  *
  * FALLS BACK TO ENGLISH, ALWAYS. A missing entry renders the English rather
@@ -477,6 +516,9 @@ for (const e of ALL_CHROME) {
  */
 export function chrome(en: string, lang: string): string {
   if (lang !== "mn") return en;
+  if (GATE_TO_APPROVED) {
+    return MN_APPROVED[en] ?? MN_APPROVED_LOWER[en.toLowerCase()] ?? en;
+  }
   return MN_BY_EN[en] ?? MN_BY_EN_LOWER[en.toLowerCase()] ?? en;
 }
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLang } from "@/lib/lang-context";
-import { mnGenitiveEnding } from "@/lib/i18n/mn-numerals";
+import { mnGenitiveEnding, mnGenitiveApproved } from "@/lib/i18n/mn-numerals";
 import { type PrimeExplorerConfig } from "@/lib/genmath-interactive";
 
 // All factors of n, in order.
@@ -72,7 +72,7 @@ export default function PrimeExplorer({ config }: { config: PrimeExplorerConfig 
 
       <div className="mt-4 rounded-xl p-3.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-          {mn ? (
+          {mn && mnGenitiveApproved(sel) ? (
             // Mongolian leads with the number and hangs the genitive off it,
             // so the bold value moves to the front and takes an ending that
             // changes with the numeral — see lib/i18n/mn-numerals.

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
-import { ALL_CHROME, chrome, untranslated } from "../lib/i18n/chrome";
+import { ALL_CHROME, chrome, untranslated, isApproved } from "../lib/i18n/chrome";
 
 // GROUP 1 — THE CHROME DICTIONARY AND ITS WIRING.
 //
@@ -130,6 +130,34 @@ describe("chrome dictionary", () => {
     }
     expect(wrong, "these render the focus line but not the approved label").toEqual([]);
     expect(found, "the seven grade hubs render this line").toBe(7);
+  });
+
+  it("counts as approved only what somebody other than Claude decided", () => {
+    // This predicate is what production ships. Widening it is how unreviewed
+    // Mongolian would reach students, so the four qualifying routes are
+    // pinned: Khas approved the exact string, it came verbatim from the live
+    // site, the ministry/glossary fixes it, or Khas wrote it.
+    for (const e of ALL_CHROME) {
+      if (!isApproved(e)) continue;
+      const why = e.ok || e.src === "SITE" || e.src === "GLOSS" || e.src === "VOICE";
+      expect(why, `"${e.en}" is treated as approved but nobody approved it`).toBeTruthy();
+    }
+    // A NEW/DERIV entry without `ok` is Claude's own wording and must not ship.
+    const mine = ALL_CHROME.filter(
+      (e) => (e.src === "NEW" || e.src === "DERIV") && !e.ok && isApproved(e),
+    );
+    expect(mine.map((e) => e.en), "these are Claude's wording and unreviewed").toEqual([]);
+  });
+
+  it("leaves the gate open off production, so wording stays reviewable", () => {
+    // vitest runs with NEXT_PUBLIC_VERCEL_ENV unset, which is the same state
+    // as local dev and a preview deploy. If the gate ever defaulted to ON,
+    // Khas would lose the ability to read unapproved wording in place on the
+    // preview URL — which is the only way it becomes reviewable at all.
+    expect(process.env.NEXT_PUBLIC_VERCEL_ENV).not.toBe("production");
+    const unapproved = ALL_CHROME.find((e) => !isApproved(e) && e.mn);
+    expect(unapproved, "fixture: expected at least one unapproved entry").toBeTruthy();
+    expect(chrome(unapproved!.en, "mn")).toBe(unapproved!.mn);
   });
 
   it("never stamps an approval on an empty string", () => {
