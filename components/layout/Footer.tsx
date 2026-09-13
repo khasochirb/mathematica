@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import LogoLockup from "@/components/layout/LogoLockup";
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
 
 const links = {
   Programs: [
@@ -48,6 +50,7 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { lang } = useLang();
   return (
     <footer
       className="relative overflow-hidden"
@@ -73,10 +76,10 @@ export default function Footer() {
               className="text-sm leading-relaxed mb-5"
               style={{ color: "var(--fg-2)" }}
             >
-              ЭШ exam prep and world-class math education for Mongolian students everywhere.
+              {chrome("ЭШ exam prep and world-class math education for Mongolian students everywhere.", lang)}
             </p>
             <div className="space-y-2 mb-6">
-              <div className="eyebrow">Contact</div>
+              <div className="eyebrow">{chrome("Contact", lang)}</div>
               <a
                 href="tel:+97688627927"
                 className="block mono tabular text-sm transition-colors"
@@ -129,7 +132,7 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(links).map(([category, items]) => (
             <div key={category}>
-              <div className="eyebrow mb-4">{category}</div>
+              <div className="eyebrow mb-4">{chrome(category, lang)}</div>
               <ul className="space-y-3">
                 {items.map((item) => (
                   <li key={item.href}>
@@ -138,7 +141,7 @@ export default function Footer() {
                       className="text-sm transition-colors"
                       style={{ color: "var(--fg-1)" }}
                     >
-                      {item.label}
+                      {chrome(item.label, lang)}
                     </Link>
                   </li>
                 ))}

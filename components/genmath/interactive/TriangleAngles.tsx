@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -36,6 +39,7 @@ function lerpAngle(a: number, b: number, t: number) {
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export default function TriangleAngles({ config }: { config: TriangleAnglesConfig }) {
+  const { lang } = useLang();
   const { beta: b0 = 55, gamma: g0 = 65, exterior = false, color = GEO_ACCENT } = config;
   const [beta, setBeta] = useState(b0);
   const [gamma, setGamma] = useState(g0);
@@ -199,7 +203,7 @@ export default function TriangleAngles({ config }: { config: TriangleAnglesConfi
           </div>
         ))}
         {!exterior && (
-          <button type="button" onClick={replay} aria-label="Replay the tear" className="gm-press flex items-center gap-1.5 rounded-full px-3 py-2 text-[12px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+          <button type="button" onClick={replay} aria-label={chrome("Replay the tear", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-3 py-2 text-[12px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
             <RotateCcw className="h-3.5 w-3.5" /> Replay
           </button>
         )}

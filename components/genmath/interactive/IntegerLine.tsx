@@ -1,11 +1,15 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type IntegerLineConfig } from "@/lib/genmath-interactive";
 import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
 
 export default function IntegerLine({ config }: { config: IntegerLineConfig }) {
+  const { lang } = useLang();
   const { min, max, start, color = "#e8913c" } = config;
   const [v, setV] = useState(Math.max(min, Math.min(max, Math.round(start))));
   const sign = v > 0 ? "positive" : v < 0 ? "negative" : "zero";
@@ -28,7 +32,7 @@ export default function IntegerLine({ config }: { config: IntegerLineConfig }) {
           type="button"
           onClick={() => setV((x) => Math.max(min, x - 1))}
           disabled={v <= min}
-          aria-label="Move left"
+          aria-label={chrome("Move left", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -41,7 +45,7 @@ export default function IntegerLine({ config }: { config: IntegerLineConfig }) {
           type="button"
           onClick={() => setV((x) => Math.min(max, x + 1))}
           disabled={v >= max}
-          aria-label="Move right"
+          aria-label={chrome("Move right", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

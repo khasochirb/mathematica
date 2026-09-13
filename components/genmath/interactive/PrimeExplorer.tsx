@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/lib/lang-context";
+import { mnGenitiveEnding, mnGenitiveApproved } from "@/lib/i18n/mn-numerals";
 import { type PrimeExplorerConfig } from "@/lib/genmath-interactive";
 
 // All factors of n, in order.
@@ -15,6 +17,8 @@ function factorsOf(n: number): number[] {
 // a glance. Tap any number to see its factor list and the prime/composite
 // verdict — the definition made concrete.
 export default function PrimeExplorer({ config }: { config: PrimeExplorerConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { max, start, color = "#e8913c" } = config;
   const [sel, setSel] = useState(Math.min(Math.max(2, start), max));
 
@@ -68,7 +72,17 @@ export default function PrimeExplorer({ config }: { config: PrimeExplorerConfig 
 
       <div className="mt-4 rounded-xl p-3.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-          Factors of <b className="serif tabular" style={{ color: "var(--fg)" }}>{sel}</b>:
+          {mn && mnGenitiveApproved(sel) ? (
+            // Mongolian leads with the number and hangs the genitive off it,
+            // so the bold value moves to the front and takes an ending that
+            // changes with the numeral — see lib/i18n/mn-numerals.
+            <>
+              <b className="serif tabular" style={{ color: "var(--fg)" }}>{sel}</b>
+              {mnGenitiveEnding(sel) ? `-${mnGenitiveEnding(sel)}` : ""} хуваагчид:
+            </>
+          ) : (
+            <>Factors of <b className="serif tabular" style={{ color: "var(--fg)" }}>{sel}</b>:</>
+          )}
         </div>
         <div className="mt-2 flex flex-wrap justify-center gap-1.5">
           {factors.map((f) => (

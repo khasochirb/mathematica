@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
-"""MN pipeline applier: python3 scripts/i18n/mn_apply.py <grade> <slug>
+"""LEGACY — MN pipeline applier: python3 scripts/i18n/mn_apply.py <grade> <slug>
+
+    ⚠ SUPERSEDED for new work by scripts/i18n/mn_skeleton.py.
+
+docs/MONGOLIAN.md (26 Aug 2026) sets the rule: we REWRITE, we do not
+translate. Different sentence count, different examples, different order are
+expected. This file asserts one Mongolian string per English string in the
+same walker slot, so a rewritten topic fails it FOR BEING CORRECT.
+
+It remains only for the string-parity path that produced the grade 6/7/8
+mirrors, and for regenerating those from an existing translation table. It
+must not gate rewritten content. The structural gate is mn_skeleton.py.
+
 
 Re-walks data/genmath/<grade>/<slug>.json in the identical walker order,
 swaps in MN[i] from <workdir>/mn_<grade>_<slug>_tr.py, and writes

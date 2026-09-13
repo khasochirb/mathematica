@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useRef, useState } from "react";
 import { Minus, Plus, Crosshair } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -202,6 +205,7 @@ function EntityToggle({ color }: { color: string }) {
 // Mode: segmentAddition
 // ---------------------------------------------------------------------------
 function SegmentAddition({ total, start, color }: { total: number; start: number; color: string }) {
+  const { lang } = useLang();
   const [t, setT] = useState(start);
   const { ab, bc, ac } = segmentParts(total, t);
   const atMid = ab === bc;
@@ -282,7 +286,7 @@ function SegmentAddition({ total, start, color }: { total: number; start: number
           type="button"
           onClick={() => setT((v) => Math.max(1, v - 1))}
           disabled={t <= 1}
-          aria-label="Move B left"
+          aria-label={chrome("Move B left", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -300,7 +304,7 @@ function SegmentAddition({ total, start, color }: { total: number; start: number
           type="button"
           onClick={() => setT((v) => Math.min(total - 1, v + 1))}
           disabled={t >= total - 1}
-          aria-label="Move B right"
+          aria-label={chrome("Move B right", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >
@@ -318,6 +322,7 @@ function SegmentAddition({ total, start, color }: { total: number; start: number
 // ---------------------------------------------------------------------------
 
 export default function GeoCanvas({ config }: { config: GeoCanvasConfig }) {
+  const { lang } = useLang();
   const { mode, total = 10, start = 3, color = GEO_ACCENT } = config;
   if (mode === "lineThrough") return <LineThrough color={color} />;
   if (mode === "entityToggle") return <EntityToggle color={color} />;

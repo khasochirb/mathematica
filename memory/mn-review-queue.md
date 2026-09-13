@@ -1,0 +1,265 @@
+# Mongolian — everything waiting on Khas
+
+Generated 11 Sep 2026 from the repo, not from memory. Ordered by blast radius:
+the further down, the cheaper it is to change later.
+
+Nothing below is deployed. Production still serves English on every surface
+this touches.
+
+---
+
+## 1 · The 158 chrome entries still in my wording — `lib/i18n/chrome.ts`
+
+234 entries total:
+
+| marker | count | what it means |
+|---|---|---|
+| `GLOSS` | 25 | locked by ministry А/492 or the glossary — not mine, don't need you |
+| `SITE` | 24 | copied verbatim from Mongolian already on the site — not mine |
+| **`NEW`** | **127** (8 approved) | **proposed by me. These are the ones to correct.** |
+| **`DERIV`** | **39** | **stem is established, the ending is mine** |
+| `VOICE` | 19 | yours — see §2 |
+
+An entry carrying `ok: "<date>"` has been read and approved by Khas and is
+out of the queue. **158 remain** (NEW + DERIV without `ok`).
+
+**Reviewed 13 Sep 2026 — the nine highest-frequency entries.** Batching by
+frequency was the lesson of the «Бүлэг» correction: one wrong word was wrong
+in 36 places, so the top of the frequency table is where a review hour buys
+the most.
+
+| en | mn | n | outcome |
+|---|---|---|---|
+| Back to the course | Курс руу буцах | 35 | kept |
+| Reset | Дахин эхлэх | 20 | kept |
+| Lessons | Хичээлүүд | 15 | kept — plural stands beside the tab's «Хичээл» |
+| **Builds on** | **Тулгуур сэдэв нь:** | 12 | **rewritten by Khas** |
+| Live | Нээлттэй | 4 | kept |
+| What you'll learn | Юу сурах вэ | 3 | kept |
+| Watch out | Болгоомжил | 3 | kept — bare form stands; a box label, not speech to a student |
+| Key idea / The idea | Гол санаа / Санаа нь | 3 each | kept, deliberately distinct |
+
+**The specific risk: case endings.** Mongolian accusative (-ийг / -ыг / -г) and
+directional (руу / рүү) agree with the vowel of the noun they attach to. About
+sixty of the widget labels carry one. Assume some are wrong.
+
+Cheapest way to review: open `lib/i18n/chrome.ts` and read only the lines
+marked `NEW` and `DERIV`. Each carries a `note` where the reasoning isn't
+obvious. Correcting the `mn` string in place is the whole fix — every page
+reads from this one file.
+
+Worth a specific look:
+
+- **The widget batch** (section 8, 96 entries) — the densest concentration of
+  case endings, and the one I am least able to judge.
+- `"Back to unit"` → «Нэгж рүү буцах» — рүү not руу after front-vowel «нэгж».
+  Flagged since August, still unconfirmed, and it is the pattern the other
+  nine "Back to X" entries copy.
+- `"Lessons"` → «Хичээлүүд» vs the site's unmarked «Хичээл».
+
+---
+
+## 2 · Voice strings — all written
+
+Khas wrote them on 13 Sep 2026 and they are wired verbatim. No VOICE entry
+has an empty `mn` any more, and a test now fails if one is ever approved
+while empty.
+
+The last two were settled on 13 Sep:
+
+- **The IB hub progress banner** reuses his SAT sentence («Сул сэдвээ
+  тодорхойлж, цагаа хэмнэх. Уг сэдвээ өөрийн болгож эзэмших») unchanged. The
+  English differs — *per-domain* on SAT, *per-component* on IB, because the
+  two exams name their parts differently — and the Mongolian deliberately
+  does not.
+- **«Focus first on X — marked below»**, the one surface that could not be a
+  dictionary entry because live unit names land in the middle of it. His
+  answer removed the problem rather than solving it: **«Түрүүнд анхаарах
+  зүйлс:»** — plural, and a colon. A label, not the opening of a sentence,
+  so the names that follow need no case ending at all. Applied to all seven
+  grade hubs.
+
+The footer tagline was also his and is written and wired.
+
+---
+
+## 3 · Three decisions that shape everything downstream
+
+**3a. The ЭШ interval bracket convention — SETTLED 13 Sep 2026: `]2, 7[`.**
+The past papers use two, and among the shapes that actually discriminate, the
+reversed one won 105 to 46. Khas ruled for the papers' convention. Scope is
+the ЭШ hub only; SAT and IB keep `(a, b)`. The full table and the conversion
+rules are in `memory/mn-drafts/README.md`. No longer a question — left here
+because §3b and §3c below still are.
+
+**3b. «муж» is doing two jobs.** It is the exam's own word for a Venn region
+(«хүрэн муж», test4a) — but the bank uses it far more often for a function's
+domain and range («тодорхойлогдох муж», «утгын муж»). A student meets both
+inside the ЭШ course. Keeping the exam's word affects every function topic;
+changing it diverges from the paper.
+
+**3c. Coined names for reflexes.** I have invented two — «нэгийг нэм» (the +1
+counting rule) and «төвийг хас» (peel the centre from a pairwise overlap).
+Two is a house style, not a one-off. Say once whether the product should name
+its moves this way; if not I will stop and describe them instead.
+
+---
+
+## 4 · Four topic drafts — 17,000 words of Mongolian prose
+
+Nothing has been applied to a mirror. Each has a **Notes for Khas** section at
+the foot with the specific items.
+
+| draft | words | items for you |
+|---|---|---|
+| `esh-sets-and-operations.md` | 4,400 | 8 |
+| `esh-venn-diagrams-and-counting.md` | 3,600 | 5 |
+| `esh-number-sets-and-intervals.md` | 3,600 | 5 |
+| `10-exponential-functions.md` | 5,400 | 4 |
+
+**This is the one where reading early pays most.** All four are written in one
+voice, with one register and one set of coined names, and every one of the
+remaining 176 topics will inherit them. Finding out at topic forty costs forty
+topics of rework.
+
+Terms across the four I could ground in neither А/492 nor the ЭШ bank, so they
+rest on your judgement alone: «хагас задралын хугацаа» (half-life), «нийлмэл
+хүү» (compound interest), «нэмэх–хасах зарчим» (inclusion–exclusion), «битүү
+/ нээлттэй завсар» (closed/open interval — avoided so far), «цацраг» (ray).
+
+---
+
+## 5 · The glossary backlog — 644 of 667 terms unreviewed
+
+23 have your ruling. The rest have never been looked at.
+
+**The 21 unruled polysemous terms are the dangerous ones** — one Mongolian word
+standing in for two English senses, which ships wrong silently:
+
+| term | current | uses |
+|---|---|---|
+| **`factor`** | «хуваагч» | **3,133** |
+| `count` | «тоолох» | 2,393 |
+| `half` | «хагас» | 1,468 |
+| `base` | «суурь» | 1,405 |
+| `row` | «мөр» | 1,346 |
+| `shape` | «дүрс» | 1,269 |
+| `range` | «далайц» | 1,201 |
+
+`factor` is the urgent one. R9 split `complement` into angle vs set senses and
+that split has already earned its keep — the factor *tree* widget needs
+«үржигдэхүүн» (prime factors) while the factor *rainbow* needs «хуваагч»
+(divisors), and I used both in the widget batch. The glossary's single entry
+still says «хуваагч» for all 3,133 uses.
+
+**Still paused, must not be used until you confirm:** `depression`
+(«доош харах өнцөг»), `reference angle` («жишиг өнцөг»).
+
+---
+
+## 6 · Two product findings — not translation, but found by doing it
+
+**G1 · A ministry objective nothing teaches.** `lib/esh-course.ts` maps
+`exponential-functions` to А/492 objectives 10.3г, 10.3е and **10.5д**. 10.5д
+is **non-elective** — «Илтгэгч тэгшитгэлийг графикийн болон орлуулах аргаар
+бодох» — it is claimed by that unit and no other, and the words "equation" and
+"solve" appear **zero times** in the topic. Three options in
+`memory/mn-findings/esh-scope-gaps.md`: extend the unit, re-map the objective,
+or accept the gap deliberately.
+
+**G4 · «pattern» — RULED, mostly applied, 8 uses left.**
+Khas, 13 Sep 2026: *"pattern is зүй тогтол period. never хэв маяг."* That is
+absolute and covers the statistical sense too — the earlier guess that scatter
+plots might keep «хэв маяг» is dead.
+
+There were 32 uses across 9 inflected forms, not the 7 first reported (the
+first count matched only two forms). 24 are converted via
+`mn_terms.OWNER_CORRECTIONS` + `--fix`.
+
+**Still blocked: 8 uses in 2 files**, because Mongolian obliques are not
+substring swaps — «хэв маягийг» becomes «зүй тогтлыг», with the stem vowel
+dropping. Khas's own «зүй тогтлыг» settles the accusative; these five forms
+have no ruling:
+
+| form | means | files |
+|---|---|---|
+| `хэв маягаар` | instrumental — "by the pattern" | the-real-number-system |
+| `хэв маягаас` | ablative — "from the pattern" | scatter-plots |
+| `хэв маяггүй` | caritive — "without a pattern" | both |
+| `хэв маяггүйгээр` | adverbial caritive | the-real-number-system |
+| `хэв маягт` | dative — "in the pattern" | scatter-plots |
+
+`PENDING_FORMS` in `mn_terms.py` holds them back, and `--fix` skips those two
+files **whole** rather than half-converting: a lesson carrying both words
+reads worse than one consistently using the old one, and a partial conversion
+would hide the remaining work by making the count look nearly done.
+
+Five forms, and this closes.
+
+**G3 · Most of the numeral genitive table is still unverified.**
+`lib/i18n/mn-numerals.ts` holds 19 endings — the units 1–9, the whole tens,
+and 100 — and four widgets render them.
+
+Khas confirmed **«12-ын хуваагчид»** on 13 Sep 2026. That settles the
+construction (number · hyphen · ending · noun) and the «ын» row with it,
+since 12 inherits from хоёр. The *rule* is tested besides: a compound takes
+its last word's ending, whole tens are their own word.
+
+What is still mine: the endings for **4, 6, 7, 9 and the whole tens** —
+«6-гийн», «20-ийн» and the rest. Each is marked `unconfirmed` in the file. A
+wrong row is a one-line fix and the tests follow it. Not urgent enough to
+interrupt him for; worth folding into the next batch he reads.
+
+**G2 · Nine course hubs have no Mongolian at all.** Found 13 Sep 2026 while
+applying the focus-label ruling. `/math/geometry` and the eight hubs sharing
+`components/course/CoursePlacementCta.tsx` — precalculus, trigonometry,
+algebra-1, algebra-2, calculus, prob-stats, vectors-matrices, solid-geometry —
+carry no `useLang`, no `chrome()`, no `<Tc>`: title, blurb, unit list and
+placement card are all hardcoded English. The seven grade hubs (6–12) were
+wired; these nine were missed.
+
+They are **not** half-wired, which is why the focus label was deliberately
+not applied to them: a Mongolian placement card under an English headline
+reads worse than a consistently English page. Wire the page, then the card.
+
+Each needs a course blurb, and a blurb persuades — so nine of them are
+Khas's to write, not mine. That is the real cost of this gap, and it is
+worth queueing before the count grows.
+
+**~~The ministry's own chart vocabulary is unsafe.~~ WITHDRAWN — I misread
+А/492.** The claim was that the standard gives dot plot «цэгэн диаграм» and
+scatter plot «цэгэн диаграмм», one doubled м apart, and that this made its
+chart vocabulary dangerous to follow. Re-counted 13 Sep 2026: the standard
+contains **zero** single-м spellings. All four of its uses are «диаграмм»:
+
+- `10.13в` «Цэгэн диаграмм, түүний хандлагын шулуун» — one entry, not two
+- «Эйлер-Веннийн диаграмм»
+- «Иш навчны диаграмм, гистограмм»
+- «хайрцган диаграммыг»
+
+There is no minimal pair, so there was nothing unsafe. The site's
+«цэгэн график» / «хамаарлын график» still stand — both are SITE entries and
+not in question — but they were never rescuing us from a ministry hazard.
+
+**G5 · The mirrors spell «диаграм» where the ministry spells «диаграмм».**
+Found while checking the above. Shipped Mongolian uses the single-м form 58
+times (`диаграм`, `диаграмын`, `диаграмд`, `диаграмаас`) against 7 double-м.
+The ministry outranks the glossary, and the glossary outranks the mirrors,
+so the mirrors are the ones that are wrong.
+
+**DONE, 13 Sep 2026.** 34 occurrences rewritten across 3 files via
+`mn_terms.py --fix`. The entry is a regex with a negative lookahead
+(`диаграм(?!м)`) rather than a literal: a plain substring replace would turn
+an already-correct «диаграмм» into «диаграммм» on the second run, and `--fix`
+has to stay idempotent. The lookahead carries the inflected forms across for
+free — «диаграмын» → «диаграммын», «диаграмд» → «диаграммд».
+
+No ruling was needed; the ministry had already decided it 4–0.
+
+---
+
+## What I would do with an hour of your time
+
+§3a, §3b and the `factor` row of §5 — three decisions, each of which otherwise
+gets baked into dozens of topics. Then §2's ten voice strings, which are the
+only thing blocking those surfaces from being finishable at all.

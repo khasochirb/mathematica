@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { type GeoDiagramSpec, type GeoPointSpec, type GeoObjectSpec } from "@/lib/genmath-interactive";
 
 // The static geometry renderer — the drawing engine for the Geometry course.
@@ -114,6 +117,7 @@ function resolveColor(c: string | undefined, fallback: string): string {
 }
 
 export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
+  const { lang } = useLang();
   const { points, objects, hidePoints = [], height = 200 } = spec;
   // entrance choreography timing: each object draws in ~0.1s after the last;
   // point dots and labels pop once the strokes are on screen
@@ -270,7 +274,7 @@ export default function GeoDiagram({ spec }: { spec: GeoDiagramSpec }) {
   };
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="Geometry diagram">
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Geometry diagram", lang)}>
       {objects.map(renderObject)}
       {points
         .filter((p) => !hidePoints.includes(p.id) && p.label !== "")

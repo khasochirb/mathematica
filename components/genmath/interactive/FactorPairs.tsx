@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus, Check, X } from "lucide-react";
 import { type FactorPairsConfig } from "@/lib/genmath-interactive";
@@ -8,6 +11,7 @@ import { type FactorPairsConfig } from "@/lib/genmath-interactive";
 // fill a complete rectangle (cols × n/cols) — a factor pair. Otherwise the last
 // row is short, showing cols is not a factor.
 export default function FactorPairs({ config }: { config: FactorPairsConfig }) {
+  const { lang } = useLang();
   const { n, color = "#e8913c" } = config;
   const [cols, setCols] = useState(1);
   const divides = n % cols === 0;
@@ -53,7 +57,7 @@ export default function FactorPairs({ config }: { config: FactorPairsConfig }) {
           type="button"
           onClick={() => setCols((c) => Math.max(1, c - 1))}
           disabled={cols <= 1}
-          aria-label="Fewer columns"
+          aria-label={chrome("Fewer columns", lang)}
           className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -67,7 +71,7 @@ export default function FactorPairs({ config }: { config: FactorPairsConfig }) {
           type="button"
           onClick={() => setCols((c) => Math.min(n, c + 1))}
           disabled={cols >= n}
-          aria-label="More columns"
+          aria-label={chrome("More columns", lang)}
           className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

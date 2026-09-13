@@ -1,5 +1,9 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+import { mnGenitiveEnding, mnGenitiveApproved } from "@/lib/i18n/mn-numerals";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type MultiplesGridConfig } from "@/lib/genmath-interactive";
@@ -7,6 +11,7 @@ import { type MultiplesGridConfig } from "@/lib/genmath-interactive";
 // A 1..max number grid. The multiples of the chosen number k light up, so
 // skip-counting (k, 2k, 3k, …) is visible as a pattern across the chart.
 export default function MultiplesGrid({ config }: { config: MultiplesGridConfig }) {
+  const { lang } = useLang();
   const { max, start, color = "#e8913c" } = config;
   const [k, setK] = useState(Math.max(2, start));
   const cols = max % 10 === 0 ? 10 : 6;
@@ -43,7 +48,14 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
       </div>
 
       <div className="mt-3 text-center text-[14px]" style={{ color: "var(--fg-1)" }}>
-        Multiples of <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>:{" "}
+        {lang === "mn" && mnGenitiveApproved(k) ? (
+          <>
+            <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>
+            {mnGenitiveEnding(k) ? `-${mnGenitiveEnding(k)}` : ""} үржвэрүүд:{" "}
+          </>
+        ) : (
+          <>Multiples of <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>:{" "}</>
+        )}
         <span className="serif tabular">{list.join(", ")}, …</span>
       </div>
 
@@ -52,7 +64,7 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
           type="button"
           onClick={() => setK((v) => Math.max(2, v - 1))}
           disabled={k <= 2}
-          aria-label="Smaller number"
+          aria-label={chrome("Smaller number", lang)}
           className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -65,7 +77,7 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
           type="button"
           onClick={() => setK((v) => Math.min(10, v + 1))}
           disabled={k >= 10}
-          aria-label="Bigger number"
+          aria-label={chrome("Bigger number", lang)}
           className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

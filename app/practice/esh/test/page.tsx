@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { Suspense, useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -48,6 +51,7 @@ const HEADER_COPY: Record<
 };
 
 function TestSelectionPageInner() {
+  const { lang } = useLang();
   const router = useRouter();
   const searchParams = useSearchParams();
   const { isAuthenticated, isSubscribed } = useAuth();
@@ -154,7 +158,7 @@ function TestSelectionPageInner() {
             href="/practice/esh"
             className="btn btn-ghost"
             style={{ padding: "8px 10px" }}
-            aria-label="Back"
+            aria-label={chrome("Back", lang)}
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
@@ -467,6 +471,7 @@ function TestSelectionPageInner() {
 }
 
 export default function TestSelectionPage() {
+  const { lang } = useLang();
   // Suspense boundary required because TestSelectionPageInner uses
   // useSearchParams; without it, Next.js fails to prerender the static
   // /practice/esh/test route at build time (caught by the same prerender

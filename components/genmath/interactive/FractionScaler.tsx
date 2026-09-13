@@ -1,11 +1,15 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type FractionScalerConfig } from "@/lib/genmath-interactive";
 import FractionBar from "@/components/genmath/interactive/FractionBar";
 
 export default function FractionScaler({ config }: { config: FractionScalerConfig }) {
+  const { lang } = useLang();
   const { num, den, maxSplit, color = "#e8913c" } = config;
   const [n, setN] = useState(1);
   const sNum = num * n;
@@ -43,7 +47,7 @@ export default function FractionScaler({ config }: { config: FractionScalerConfi
           type="button"
           onClick={dec}
           disabled={n <= 1}
-          aria-label="Fewer pieces"
+          aria-label={chrome("Fewer pieces", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -61,7 +65,7 @@ export default function FractionScaler({ config }: { config: FractionScalerConfi
           type="button"
           onClick={inc}
           disabled={n >= maxSplit}
-          aria-label="More pieces"
+          aria-label={chrome("More pieces", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

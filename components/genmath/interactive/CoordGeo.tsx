@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { dist, midpoint, legs } from "@/lib/geo";
@@ -26,6 +29,7 @@ function frac(num: number, den: number): string {
 }
 
 export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
+  const { lang } = useLang();
   const color = config.color ?? GEO_ACCENT;
   const [shown, setShown] = useState(false);
   const min = config.min ?? -6;
@@ -174,7 +178,7 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="Coordinate geometry figure">
+        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Coordinate geometry figure", lang)}>
           {ints.map((g) => (
             <g key={`g${g}`}>
               <line x1={px(g)} y1={py(max)} x2={px(g)} y2={py(min)} stroke="var(--line)" strokeWidth={1} />

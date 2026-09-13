@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -22,6 +25,7 @@ function eqn(m: number, b: number): string {
 }
 
 export default function SystemGraph({ config }: { config: SystemGraphConfig }) {
+  const { lang } = useLang();
   const {
     m1, b1,
     m2: m20, b2: b20,
@@ -76,7 +80,7 @@ export default function SystemGraph({ config }: { config: SystemGraphConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="Two lines on a coordinate grid">
+        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Two lines on a coordinate grid", lang)}>
           {ints.map((g) => (
             <g key={`g${g}`}>
               <line x1={px(g)} y1={py(max)} x2={px(g)} y2={py(min)} stroke="var(--line)" strokeWidth={1} />

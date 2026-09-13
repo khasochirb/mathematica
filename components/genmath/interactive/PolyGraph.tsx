@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -24,6 +27,7 @@ function fmt(n: number): string {
 }
 
 export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
+  const { lang } = useLang();
   const { mode, n: n0 = 3, negative: neg0 = false, zeros: z0 = [-2, 1, 3], m: m0 = 1 } = config;
 
   const [n, setN] = useState(n0);
@@ -96,7 +100,7 @@ export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="A polynomial curve on a grid">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("A polynomial curve on a grid", lang)}>
           {Array.from({ length: X1 - X0 + 1 }, (_, i) => X0 + i).map((g) => (
             <line key={`v${g}`} x1={px(g)} y1={py(Y0)} x2={px(g)} y2={py(Y1)} stroke="var(--line)" strokeWidth={1} />
           ))}
@@ -187,7 +191,7 @@ export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
             {stepper("degree n", n, setN, 2, 5, GEO_ACCENT)}
             <div className="text-center">
               <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>leading sign</div>
-              <button type="button" onClick={() => setNeg((v) => !v)} aria-label="Flip leading sign" className="gm-press mt-1 rounded-full px-5 py-2 text-[14px] serif" style={{ background: neg ? "rgba(200,60,60,0.1)" : "var(--accent-wash)", border: `1px solid ${neg ? RED : "var(--accent-line)"}`, color: neg ? RED : "var(--accent)" }}>
+              <button type="button" onClick={() => setNeg((v) => !v)} aria-label={chrome("Flip leading sign", lang)} className="gm-press mt-1 rounded-full px-5 py-2 text-[14px] serif" style={{ background: neg ? "rgba(200,60,60,0.1)" : "var(--accent-wash)", border: `1px solid ${neg ? RED : "var(--accent-line)"}`, color: neg ? RED : "var(--accent)" }}>
                 {neg ? "negative" : "positive"}
               </button>
             </div>

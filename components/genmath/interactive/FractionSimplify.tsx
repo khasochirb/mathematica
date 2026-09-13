@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { RotateCcw, Check } from "lucide-react";
 import { type FractionSimplifyConfig } from "@/lib/genmath-interactive";
@@ -15,6 +18,7 @@ function smallestCommonFactor(a: number, b: number): number {
 }
 
 export default function FractionSimplify({ config }: { config: FractionSimplifyConfig }) {
+  const { lang } = useLang();
   const { num: num0, den: den0, color = "#3fb27f" } = config;
   const [num, setNum] = useState(num0);
   const [den, setDen] = useState(den0);
@@ -77,7 +81,7 @@ export default function FractionSimplify({ config }: { config: FractionSimplifyC
           <button
             type="button"
             onClick={reset}
-            aria-label="Reset"
+            aria-label={chrome("Reset", lang)}
             className="gm-press grid h-11 w-11 place-items-center rounded-full"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >

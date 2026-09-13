@@ -1,0 +1,151 @@
+{
+  "note": "The judgement half of each authoring brief: what carries a topic, and where students reliably break. scripts/i18n/mn_brief.py reads this and drops it into teacher.md. Kept as DATA, not hand-edited into the generated file, for the same reason MN mirrors are never hand-edited — a regeneration would silently destroy it.",
+  "howToWrite": "Two or three ideas, no more. Each one names something a student gets WRONG when they learn it as a procedure instead of a reason. Written for a Mongolian maths teacher who will decide how to teach it; never a summary of the English lesson.",
+  "generated": "2026-08-26",
+  "theses": {
+    "10/quadratic-equations": {
+      "carries": [
+        "**Every method solves the same equation.** Square roots, factoring, completing the square and the formula are four routes to one place, and the point of the topic is knowing which route the shape of the equation asks for — not memorising four procedures. A student who leaves able to run all four but unable to choose has not learned the topic.",
+        "**±, not +.** `x² = 49` has two answers. This is the single most reliable error in the topic, and it is a reasoning failure, not a slip: squaring loses the sign, so un-squaring must put it back. Teach why the negative root is there and it stops being forgotten.",
+        "**The discriminant is a question you can ask before solving.** `b² − 4ac` tells you how many real solutions exist without finding them. Students who meet it as the last third of the formula never use it; students who meet it as a cheap look-ahead do."
+      ],
+      "breaks": "Reading b and c without their signs, when the equation is not yet in standard form. Half the topic's wrong answers start here, before any method is chosen."
+    },
+    "10/quadratic-functions": {
+      "carries": [
+        "**A parabola is a shape you can read.** Vertex, axis of symmetry, intercepts and direction of opening are all visible in the algebra before anything is plotted. The topic is about learning to read them off, not about plotting points and joining them up.",
+        "**Vertex form and standard form say the same thing differently.** Each one hands you a different fact for free — vertex form the turning point, standard form the y-intercept. Converting between them is worth doing precisely because it is the same function.",
+        "**Maximum and minimum are the same idea as the vertex.** Real questions about profit, height and area are vertex questions wearing a context. If a student sees that, word problems stop being a separate skill."
+      ],
+      "breaks": "Sign of the vertex's x-coordinate — the formula gives −b/2a, and the minus is dropped constantly."
+    },
+    "10/polynomials-and-factoring": {
+      "carries": [
+        "**Factoring is multiplication read backwards.** Every factoring technique is a multiplication pattern recognised in reverse. Students taught the techniques as a list of tricks cannot tell which applies; students taught them as patterns can, because they know what each one produces.",
+        "**Always take out the common factor first.** Not a tidiness rule — it is what makes the remaining expression simple enough to recognise. Skipping it is why a factorable expression looks unfactorable.",
+        "**Check by expanding.** Factoring is the one topic where a student can verify their own answer completely, in seconds, with no help. Build that habit here and it pays for the rest of algebra."
+      ],
+      "breaks": "The difference of squares applied to a SUM. `a² + b²` does not factor over the reals, and students who pattern-match on the shape rather than the operation will factor it anyway."
+    },
+    "10/exponential-functions": {
+      "carries": [
+        "**Exponential growth is repeated multiplication, and that is why it wins.** The comparison against a straight line is the topic's whole point: a student needs to see that a slower-starting exponential overtakes any linear function, and to feel why.",
+        "**The base tells you everything.** Greater than 1 grows, between 0 and 1 decays, and the distance from 1 sets the speed. One number, read directly.",
+        "**Percent change and the base are the same fact.** A 5% rise per year IS a base of 1.05. Students who hold these as two separate ideas cannot model anything real."
+      ],
+      "breaks": "Reading a 20% decrease as a base of 0.2 rather than 0.8."
+    },
+    "10/radicals-and-rational-exponents": {
+      "carries": [
+        "**A radical IS a fractional exponent.** Not a related notation — the same object written twice. Once a student believes this, every exponent law they already know transfers to radicals for free, and the topic more than halves in size.",
+        "**Simplifying means pulling out perfect powers.** There is one move, applied repeatedly. The rest is arithmetic.",
+        "**√(x²) = |x|, not x.** This is the topic's honest difficulty and it is worth the time. A square root returns the non-negative root, so the absolute value is not pedantry — it is what keeps the algebra true for negative x."
+      ],
+      "breaks": "Distributing a root over a sum: √(a+b) is not √a + √b. Reliable, and worth an explicit counterexample with numbers."
+    },
+    "10/rational-expressions": {
+      "carries": [
+        "**These are fractions, with all the same rules.** Common denominators, cancelling common factors, multiply straight across, divide by flipping. A student who sees them as fractions already knows the operations; one who sees them as a new topic learns four procedures again.",
+        "**You may only cancel factors, never terms.** The single most common error in the topic, and it comes from cancelling what looks the same rather than what is multiplied. Worth teaching as a rule with a reason attached.",
+        "**Excluded values are part of the answer.** A denominator that could be zero restricts the domain, and the restriction survives simplification — even after the offending factor cancels. Dropping it changes what the expression means."
+      ],
+      "breaks": "Cancelling across a sum: in (x+3)/(x+5) the x's cannot go. Nearly universal, and it needs numbers to disprove, not a rule."
+    },
+    "11/logarithms": {
+      "carries": [
+        "**A logarithm is an exponent.** `log_b(x)` is the answer to \"what power of b gives x?\" — nothing more. Every law follows from that one sentence, and a student who holds it can derive the laws instead of memorising them. One who does not will confuse all three forever.",
+        "**The laws are the exponent laws, read backwards.** Multiplication becomes addition, division becomes subtraction, a power becomes a coefficient. Show the pair side by side and three rules become one idea.",
+        "**The domain is the trap.** You cannot take the log of zero or a negative number, so solving a logarithmic equation always ends with checking the solutions against the original — and the check throws answers away. That step is not optional bookkeeping; it is part of the answer."
+      ],
+      "breaks": "Treating log(a + b) as log a + log b. There is no law for the log of a sum, and the false symmetry with the product law makes it near-universal. Disprove it with numbers early."
+    },
+    "11/complex-numbers": {
+      "carries": [
+        "**i is defined, not discovered.** We declare a number whose square is −1 because the real line cannot solve x² = −1. Nothing mystical follows — every operation on complex numbers is ordinary algebra with one substitution rule, i² = −1.",
+        "**Arithmetic is just collecting like terms.** Real parts with real, imaginary with imaginary. Multiplication is the distributive law plus i² = −1. Students who see this stop treating complex numbers as a separate subject.",
+        "**The conjugate exists to make a real denominator.** Multiplying by the conjugate clears i from the bottom exactly as multiplying by a radical conjugate clears a surd. Same move, twice."
+      ],
+      "breaks": "Writing √(−4)·√(−9) = √36 = 6. The product rule for radicals holds only for non-negative numbers; the correct answer is −6. Worth one deliberate counterexample."
+    },
+    "11/polynomial-functions": {
+      "carries": [
+        "**The degree and leading coefficient decide the ends.** Before any point is plotted, those two numbers tell you what the graph does far left and far right. That is the cheapest prediction in the topic and students skip it.",
+        "**A root is a factor is an x-intercept.** Three names for one fact. Once a student holds them as the same thing, factoring, solving and sketching stop being three skills.",
+        "**Multiplicity changes the shape at a root.** An odd multiplicity crosses the axis, an even one touches and turns back. That single rule is what makes a sketch from factored form possible."
+      ],
+      "breaks": "Assuming a degree-n polynomial always shows n distinct x-intercepts. Repeated and complex roots both reduce the count, and the graph is the evidence."
+    },
+    "11/sequences-and-series": {
+      "carries": [
+        "**Arithmetic adds, geometric multiplies.** Every formula in the topic follows from which of the two it is. A student who identifies the type correctly has done most of the work; one who does not applies the wrong formula perfectly.",
+        "**A sequence is the list, a series is the sum.** They are constantly confused because they are constantly next to each other. Keep the distinction explicit in the wording every time.",
+        "**An infinite geometric series only converges when |r| < 1.** This is the topic's one genuinely surprising result and it deserves the time: adding infinitely many positive numbers can give a finite answer, but only when the terms shrink fast enough."
+      ],
+      "breaks": "Off-by-one in the nth-term formula — using a + nd instead of a + (n−1)d. The first term needs zero steps, not one, and saying that once fixes it."
+    },
+    "12/conic-sections": {
+      "carries": [
+        "**All four are slices of one cone.** Circle, ellipse, parabola, hyperbola differ only by the angle of the cut. Teaching them as four unrelated equations to memorise is what makes this topic feel enormous when it is small.",
+        "**Completing the square is how you read a conic.** The general second-degree equation says almost nothing; the standard form hands you the centre, the radii and the orientation directly. The whole skill is getting from one to the other.",
+        "**The signs between the squared terms identify the curve.** Same sign is an ellipse, opposite signs a hyperbola, one squared term a parabola. A student can classify before solving anything."
+      ],
+      "breaks": "Forgetting to balance both sides when completing the square — adding a term inside a bracket that is multiplied by a coefficient, without multiplying it on the right."
+    },
+    "12/vectors": {
+      "carries": [
+        "**A vector is a displacement, not a place.** The same vector can start anywhere; only its direction and length matter. Students who hold it as \"an arrow from the origin\" struggle the moment vectors are added tail-to-head.",
+        "**The dot product measures alignment.** Zero means perpendicular — that is the fact worth carrying, more than the formula. It turns geometric questions about angles into arithmetic.",
+        "**Component form makes it algebra.** Once a vector is a pair or triple of numbers, adding, scaling and dotting are just arithmetic on the components. Move there early."
+      ],
+      "breaks": "Treating the dot product as producing a vector. It returns a number, and that is exactly why it can answer questions about angle."
+    },
+    "9/introduction-to-functions": {
+      "carries": [
+        "**One input, one output. That is the whole definition.** Everything else in the topic — the vertical line test, function notation, domain and range — is a consequence of it. Teach the rule before any of its tools.",
+        "**f(x) is a name, not a multiplication.** The single most damaging misreading in early algebra: students see f(x) and multiply. Say it out loud, in Mongolian, the first time it appears.",
+        "**Domain and range are questions about what is allowed and what comes out.** Not formulas to memorise. Ask them of every function the lesson meets."
+      ],
+      "breaks": "Reading f(x) as f times x, and then f(2) as 2f. Worth catching in the first lesson, because everything after it inherits the error."
+    },
+    "9/equations-and-formulas": {
+      "carries": [
+        "**Whatever you do to one side, do to the other.** That is the only rule; every technique is an application of it. A student who holds the balance idea can solve equations they have never seen a template for.",
+        "**Rearranging a formula is solving an equation whose letters happen to have names.** Solving for h in A = ½bh is the same move as solving for x. Students treat literal equations as a new topic; they are not.",
+        "**Some equations have no solution, and some have every solution.** When the variable disappears, the sentence that remains is either true or false, and that answers the question. Meet both cases deliberately rather than as an accident."
+      ],
+      "breaks": "Distributing a negative sign across a bracket and dropping it on the later terms — −(x − 3) becoming −x − 3."
+    },
+    "9/inequalities-in-two-variables": {
+      "carries": [
+        "**The line is the boundary; the shading is the answer.** Students draw the line and stop. The solution is a region, and half the marks live in choosing which side.",
+        "**Test one point.** The origin, whenever it is not on the line. One substitution settles the shading with no reasoning about direction — reliable and fast.",
+        "**Solid or dashed says whether the boundary counts.** ≤ and ≥ include it, < and > do not. A small mark carrying real meaning."
+      ],
+      "breaks": "Flipping the shading after rearranging the inequality to y = form, because the rearrangement multiplied by a negative and the sign was not reversed."
+    },
+    "9/linear-models-and-variation": {
+      "carries": [
+        "**Slope is a rate with units.** Not a number on a graph — metres per second, tögrög per kilo. A student who reads slope with its units can interpret any model; one who does not is doing arithmetic without meaning.",
+        "**Direct variation is a line through the origin.** y = kx is the special case where nothing exists when x is zero. Seeing it as a restricted line rather than a separate topic halves what has to be learned.",
+        "**The intercept is the starting amount.** In a real model it is what you have before anything happens, and it is where most interpretation questions live."
+      ],
+      "breaks": "Computing slope as run over rise. The order is not arbitrary — it is what makes slope a rate of change of y."
+    },
+    "9/piecewise-and-absolute-value-graphs": {
+      "carries": [
+        "**A piecewise function is several functions with a rule about which applies where.** Not one strange function. Once a student reads the condition first and the formula second, evaluation becomes routine.",
+        "**The absolute-value graph is a V because the negative half is reflected.** Understanding it as a reflection rather than a shape to memorise means transformations of it need no new rules.",
+        "**Open and closed circles say which piece owns the boundary.** They are the only thing distinguishing two otherwise identical graphs, and they carry real meaning."
+      ],
+      "breaks": "Evaluating a piecewise function with the wrong branch — substituting into the formula next to the condition rather than the one whose condition the input satisfies."
+    },
+    "esh/sets-and-operations": {
+      "carries": [
+        "**Two levels, and the exam lives on the boundary.** `∈` speaks about one element; `⊆` speaks about a whole set. `2 ∈ {2,4}` and `{2} ⊆ {2,4}` are both true, `{2} ∈ {2,4}` is false — and ЭШ papers offer that third form as a distractor constantly. A student who cannot say which level a claim is on will lose marks they understood the maths for.",
+        "**Counting an inclusive run is a scoring skill, not a concept.** From a to b there are b − a + 1 integers, and the +1 is where fast solvers drop a point. It is worth more exam marks than anything else in the lesson, so it should be drilled to reflex rather than derived once.",
+        "**An operation is a sentence.** or → нэгдэл, and → огтлолцол, but-not → ялгавар, everything-else → гүйцээлт. Students who read the symbol as a sentence solve word-shaped problems directly; students who memorise four symbols translate twice and lose the thread."
+      ],
+      "breaks": "Confusing the element claim with the subset claim — writing {2} ∈ {2,4}. It is the single most-offered wrong option in this topic on real papers, and it is a reasoning error about levels, not a slip."
+    }
+  }
+}

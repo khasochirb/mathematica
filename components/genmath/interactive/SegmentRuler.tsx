@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { PointDot, GEO_ACCENT } from "@/components/genmath/interactive/GeoDiagram";
@@ -10,6 +13,7 @@ import { type SegmentRulerConfig } from "@/lib/genmath-interactive";
 // change with every slide — but their difference (the length) never does.
 // That's the Ruler Postulate made physical.
 export default function SegmentRuler({ config }: { config: SegmentRulerConfig }) {
+  const { lang } = useLang();
   const { length, max, start = 0, color = GEO_ACCENT } = config;
   const [r, setR] = useState(Math.min(Math.max(start, 0), max - length));
 
@@ -67,7 +71,7 @@ export default function SegmentRuler({ config }: { config: SegmentRulerConfig })
           type="button"
           onClick={() => setR((v) => Math.max(0, v - 1))}
           disabled={r <= 0}
-          aria-label="Slide ruler left"
+          aria-label={chrome("Slide ruler left", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -81,7 +85,7 @@ export default function SegmentRuler({ config }: { config: SegmentRulerConfig })
           type="button"
           onClick={() => setR((v) => Math.min(max - length, v + 1))}
           disabled={r >= max - length}
-          aria-label="Slide ruler right"
+          aria-label={chrome("Slide ruler right", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

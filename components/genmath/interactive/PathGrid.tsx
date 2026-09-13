@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -12,6 +15,7 @@ import { latticePaths, nCr, type PathGridConfig } from "@/lib/genmath-interactiv
 // reads C(m+n, m).
 
 export default function PathGrid({ config }: { config: PathGridConfig }) {
+  const { lang } = useLang();
   const { cols, rows } = config;
   const maxDiag = cols + rows;
   const [diag, setDiag] = useState(1);
@@ -46,7 +50,7 @@ export default function PathGrid({ config }: { config: PathGridConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 380 }} role="img" aria-label="Path-counting grid">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 380 }} role="img" aria-label={chrome("Path-counting grid", lang)}>
           {/* streets */}
           {Array.from({ length: cols + 1 }, (_, i) => (
             <line key={`v${i}`} x1={px(i)} y1={py(0)} x2={px(i)} y2={py(rows)} stroke="var(--line)" strokeWidth={2} />
@@ -145,7 +149,7 @@ export default function PathGrid({ config }: { config: PathGridConfig }) {
           type="button"
           onClick={() => { setDiag((d) => Math.max(1, d - 1)); setPick(null); }}
           disabled={diag <= 1}
-          aria-label="Hide a diagonal"
+          aria-label={chrome("Hide a diagonal", lang)}
           className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -158,7 +162,7 @@ export default function PathGrid({ config }: { config: PathGridConfig }) {
           type="button"
           onClick={() => { setDiag((d) => Math.min(maxDiag, d + 1)); setPick(null); }}
           disabled={diag >= maxDiag}
-          aria-label="Reveal the next diagonal"
+          aria-label={chrome("Reveal the next diagonal", lang)}
           className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

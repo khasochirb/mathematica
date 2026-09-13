@@ -111,6 +111,13 @@ usually gone, so a bad term in a shipped mirror cannot be fixed by
 which keeps the correction inside the pipeline instead of becoming a hand
 edit of generated JSON.
 
+**Second correction on record:** this file said `мод диаграм` for *tree
+diagram*. The ministry standard covers tree diagrams three times — 10.15б,
+11.13д, 12.15а — and calls them **`модны схем`** every time. Confirmed by Khas
+on 26 Aug 2026. Found by the group-0 grounding pass, which only surfaced it
+once the checker required phrase adjacency: before that, `модны` in one
+objective and `диаграмм` in another were being stitched into a false match.
+
 **Correction on record:** this file said `тэнцэтгэл бус` for *inequality*.
 The standard writes `тэнцэтгэл биш` thirteen times and `тэнцэтгэл бус`
 never. `тэнцэтгэл биш` is canonical; the six occurrences that had shipped in
@@ -137,7 +144,7 @@ Probability: магадлал (probability) · боломжит үр дүнги�
 space) · онолын/туршилтын магадлал (theoretical/experimental) ·
 гүйцээлт (complement) · нийлмэл үзэгдэл (compound event) · хараат бус
 (independent) · буцааж тавихгүй (without replacement) · тооллын зарчим
-(counting principle) · мод диаграм (tree diagram) · загварчлал
+(counting principle) · **модны схем** (tree diagram) · загварчлал
 (simulation) · хүлээгдэх тоо (expected count).
 
 Statistics: популяци (population) · түүвэр (sample) · бүрэн тооллого
@@ -160,8 +167,20 @@ commit — the glossary is the contract for the next 40 topics.
 
 ## Style
 
-- Register: friendly-instructional «чи» (matching the EN "you"), not
-  formal «та». Keep the EN's energy — jokes translate, don't flatten.
+- Register: **«та», formal.** Khas ruled on 26 Aug 2026: "чи is usually not
+  used for customers. it is not suitable." A student on this product is a
+  customer.
+
+  > **This entry used to say the opposite** — "friendly-instructional «чи»
+  > (matching the EN 'you'), not formal «та»" — and that wording is why grades
+  > 6 and 7 shipped in «чи» (267 strings). The register audit in
+  > `memory/mn-group1-audits.md` §1 flagged grade 8 as the off-register one for
+  > using «та»; under the ruling grade 8 was right and its neighbours are the
+  > problem. Whether the 267 shipped strings get rewritten is an open cost
+  > question, not settled by the ruling itself.
+
+  Keep the EN's energy — jokes translate, don't flatten. Formal register is
+  not the same as stiff.
 - Guillemets «...» for quotes (matches existing mirrors).
 - Proper names stay as-is (Паскаль, Ферма, Галилео get standard
   Mongolian Cyrillic renderings; product names like RAND stay Latin).

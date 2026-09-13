@@ -56,6 +56,112 @@ first. Vercel preview:
 
 ---
 
+## 2026-08-26 08:45 UTC — mode: content
+
+**Did:** Opened the Mongolian programme. Committed `docs/MONGOLIAN.md` (Khas's
+standing programme — read it with `CLAUDE.md` at the start of every session
+from now on). Started group 0, the vocabulary: swept the corpus to 622 maths
+terms plus 37 operational terms the title-driven sweep had missed, parsed all
+184 ЭШ skill names out of `011_seed_esh_graph.sql` (every `name_mn` NULL,
+strands 76/60/23/20/5 matching Khas's figures), and built
+`scripts/i18n/mn_ground.py` to check every provenance label against the source
+it claims.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` —
+`7bf6dba` (programme), `b5e28d6` (grounding checker), `c126dea` (ЭШ bank as
+evidence). Nothing deployed; nothing Mongolian is wired.
+
+**Blocked on:** Khas — group 0 ends in a hard stop for glossary approval, and
+nothing downstream can start until the terms are locked. Group 2 (voice) and
+group 3 (lesson prose) are blocked by design.
+
+**Others should know:**
+
+- **The mode rule is dropped.** Khas dropped it explicitly on 26 Aug. This
+  entry is marked `content` for legibility, not because the rule still binds.
+
+- **The grounding checker's failure mode is grounding too much, and it is
+  silent.** Its first version matched stems as raw substrings and reported all
+  100 glossary terms as present in the grade 10–12 ministry standard —
+  including "tip" and "tree diagram", which are primary-school concepts. It
+  passed a smoke test at the time. `--selftest` now asserts in both directions
+  (out-of-scope terms absent, core terms present) and is wired into
+  `npx vitest run` via `scripts/verify-mn-ground.test.ts`. If you touch the
+  matcher, that test is the one that matters.
+
+- **`data/questions/` is the best Mongolian evidence on the site and was being
+  ignored.** 20 real ЭШ past papers, 4,543 Mongolian strings, ~449k characters,
+  Mongolian-FIRST rather than translated. It is now part of the shipped corpus
+  the checker reads. Anyone reasoning about Mongolian terminology should reach
+  for it before the translated mirrors.
+
+- **The 25 shipped MN mirrors can be walked in lockstep with their English.**
+  `mn_walk.py`'s `pure_math()` skips any string with no Latin letters, which on
+  the Mongolian side is every translated string — so a naive parallel walk
+  desyncs. With a script-symmetric predicate all 25 align exactly, yielding
+  14,003 EN→MN string pairs. That is reusable evidence, not a one-off.
+
+- **58 of the 184 skill names are imperative clauses** ("Solve a quadratic by
+  factoring"). They are descriptive, not persuasive, so they are not voice —
+  but it does raise a live style question for Khas: should skill labels follow
+  the ministry's verbal-noun pattern («…-ыг мэдэх, хэрэглэх») or be pure noun
+  phrases? It affects all 184 and belongs in the group-0 question list.
+
+- **Group 0 is complete and awaiting approval.** 659 terms (622 corpus + 37
+  operational) and all 184 ЭШ skill names, in `data/i18n/`. Question list in
+  `memory/mn-group0-questions.md`. 508 rows are quoted verbatim from a named
+  source; 99 are genuinely novel; 171 are low confidence.
+
+- **Eleven terminology bugs are live in shipped Mongolian**, found while
+  checking proposals against what the site already says. Section A of the
+  question list. They are independent of the approval decision: absolute value
+  ships three ways, "reflect" uses a word absent from the ministry standard
+  across a whole unit, and "spread" and "distribution" are the same word inside
+  one sentence.
+
+- **The glossary contradicts the ministry on "tree diagram".** The standard
+  covers it three times (10.15б, 11.13д, 12.15а) and calls it «модны схем»;
+  `mn-translation`'s glossary says «мод диаграм». Same shape as the
+  тэнцэтгэл бус/биш correction. It surfaced only after the grounding checker
+  learned to require phrase adjacency — before that, «модны» in one objective
+  and «диаграмм» in another were being stitched into a false match.
+
+- **The rewrite gate exists now: `scripts/i18n/mn_skeleton.py`.** It was the
+  true blocker for group 3 — `mn_apply.py` asserts string parity, so the first
+  rewritten topic would have failed it for being correct. Structure is
+  enforced (lesson count/slugs/order, problem ids, step kind sequences,
+  option counts, correctIndex, check[] presence, CYR-IN-MATH); prose never is.
+  All 25 shipped mirrors pass. `npm run verify:mn-skeleton`.
+
+- **Single-asterisk emphasis is a live display bug in BOTH languages.**
+  MathText renders `**bold**` only (`MathText.tsx:24`), so a single `*` reaches
+  the reader literally — **1,032 English strings** against 36 Mongolian,
+  including IB markscheme annotations like `*(A1 A1)*`. It is advisory in the
+  gate rather than fatal, because failing on a pre-existing English habit would
+  make it red from birth. Nobody has recorded this before.
+
+- **There are two registers in production and nobody declared the line.**
+  Grade 7 is pure «чи» (0 formal). Grade 8 is «та»-dominant in its teaching
+  prose (40 strings). The app UI is formal throughout (73 across 31 files).
+  Grade 6's 55 formal hits are 47 instances of ONE completion template plus 8
+  prose strings — not a re-register. May well be deliberate; it is not written
+  down. `memory/mn-group1-audits.md` §1.
+
+- **Runtime string composition: 53 sites, 2 certain bugs.** `lib/ratings.ts`
+  builds `${u.title}-ийг эзэмших` where the accusative must agree with the
+  title's final vowel and 215 titles can reach it; the chrome batch's
+  `Factors of `/`Multiples of ` are the same class. 46 sites are safe (number +
+  uninflected noun). Two need a Mongolian-speaker call, not a code one.
+
+- **Nine chrome strings moved to Khas's voice pile** and are marked
+  `src: "VOICE"` with `mn: ""` in `lib/i18n/chrome.ts`. My earlier Mongolian
+  for them is withdrawn. 82 labels stay.
+
+- **Judge long labels differently from short terms.** A six-word skill name is
+  COMPOSED from source vocabulary, not quoted from it. Without that split, 99
+  legitimate compositions read as overclaims. Anyone extending
+  `mn_ground.py` should keep that distinction.
+
 ## 2026-08-17 08:30 UTC — mode: ship
 
 **Did:** Finished `CLAUDE.md` as the master (two-chat ownership, one mode per

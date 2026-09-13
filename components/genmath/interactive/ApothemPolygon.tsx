@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -13,6 +16,7 @@ const W = 320;
 const H = 300;
 
 export default function ApothemPolygon({ config }: { config: ApothemPolygonConfig }) {
+  const { lang } = useLang();
   const { side = 6, color = GEO_ACCENT } = config;
   const [n, setN] = useState(config.start ?? 6);
 
@@ -66,9 +70,9 @@ export default function ApothemPolygon({ config }: { config: ApothemPolygonConfi
 
       <div className="mt-4 flex items-center justify-center gap-3">
         <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>sides</span>
-        <button type="button" onClick={() => setN((v) => Math.max(3, v - 1))} disabled={n <= 3} aria-label="Fewer" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setN((v) => Math.max(3, v - 1))} disabled={n <= 3} aria-label={chrome("Fewer", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 17, color: "var(--fg)" }}>{n}</div>
-        <button type="button" onClick={() => setN((v) => Math.min(10, v + 1))} disabled={n >= 10} aria-label="More" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setN((v) => Math.min(10, v + 1))} disabled={n >= 10} aria-label={chrome("More", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );

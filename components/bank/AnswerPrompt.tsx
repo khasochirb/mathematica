@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useRef, useState } from "react";
 import { Check, CornerDownLeft, Eye, X } from "lucide-react";
 import MathText from "@/components/esh/MathText";
@@ -51,6 +54,7 @@ export default function AnswerPrompt({
   salt?: string;
   autoFocus?: boolean;
 }) {
+  const { lang } = useLang();
   return mode === "numeric" ? (
     <NumericPrompt variant={variant} outcome={outcome} onCommit={onCommit} autoFocus={autoFocus} />
   ) : (
@@ -73,6 +77,7 @@ function NumericPrompt({
   onCommit: (outcome: AnswerOutcome) => void;
   autoFocus?: boolean;
 }) {
+  const { lang } = useLang();
   const [text, setText] = useState("");
   const [unreadable, setUnreadable] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -115,8 +120,8 @@ function NumericPrompt({
             autoFocus={autoFocus}
             value={text}
             disabled={answered}
-            placeholder="Your answer"
-            aria-label="Your answer"
+            placeholder={chrome("Your answer", lang)}
+            aria-label={chrome("Your answer", lang)}
             onChange={(e) => {
               setText(e.target.value);
               setUnreadable(false);

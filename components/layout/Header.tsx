@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, LogOut, Menu, Moon, Settings, Sparkles, Sun, User, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
 import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
@@ -434,7 +435,7 @@ export default function Header() {
               onClick={toggleTheme}
               className="rounded-md p-1.5 transition-colors"
               style={{ color: "var(--fg-2)", border: "1px solid var(--line)" }}
-              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              aria-label={chrome(theme === "dark" ? "Switch to light mode" : "Switch to dark mode", lang)}
               title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             >
               {theme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
@@ -448,7 +449,7 @@ export default function Header() {
                 border: "1px solid var(--line)",
                 letterSpacing: "0.08em",
               }}
-              aria-label="Toggle language"
+              aria-label={chrome("Toggle language", lang)}
             >
               {lang === "en" ? "MN" : "EN"}
             </button>
@@ -475,7 +476,7 @@ export default function Header() {
                   onClick={() => setAvatarOpen((v) => !v)}
                   className="flex items-center gap-2 text-sm transition-colors rounded-md px-1.5 py-1"
                   style={{ color: "var(--fg-1)" }}
-                  aria-label="User menu"
+                  aria-label={chrome("User menu", lang)}
                 >
                   <div
                     className="w-7 h-7 rounded-md flex items-center justify-center"
@@ -583,7 +584,7 @@ export default function Header() {
             className="lg:hidden p-2 rounded-md transition-colors"
             style={{ color: "var(--fg-1)" }}
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={chrome("Toggle menu", lang)}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -698,7 +699,7 @@ export default function Header() {
                 onClick={toggleTheme}
                 className="rounded-md p-2 flex-shrink-0"
                 style={{ color: "var(--fg-2)", border: "1px solid var(--line)" }}
-                aria-label="Toggle theme"
+                aria-label={chrome("Toggle theme", lang)}
               >
                 {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </button>

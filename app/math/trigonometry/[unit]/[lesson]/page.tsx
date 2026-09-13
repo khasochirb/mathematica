@@ -3,6 +3,8 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { chrome } from "@/lib/i18n/chrome";
+import { useLang } from "@/lib/lang-context";
 import { getTrigUnit, getTrigLesson } from "@/lib/genmath-data/trigonometry";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
@@ -11,6 +13,7 @@ import ContentGate from "@/components/genmath/ContentGate";
 // use, pointed at this course's units.
 function TrigLessonPageInner() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
@@ -25,7 +28,7 @@ function TrigLessonPageInner() {
             Lesson <em className="serif-italic" style={{ color: "var(--accent)" }}>not found</em>.
           </p>
           <Link href={`/math/trigonometry/${unitSlug}`} className="btn btn-line mt-5 inline-flex items-center gap-1.5">
-            <ArrowLeft className="h-3.5 w-3.5" /> Back to unit
+            <ArrowLeft className="h-3.5 w-3.5" /> {chrome("Back to unit", lang)}
           </Link>
         </div>
       </div>
@@ -46,9 +49,10 @@ function TrigLessonPageInner() {
 // Content requires an account; the hub and unit pages above stay public.
 export default function TrigLessonPage() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate courseKey="trigonometry" topicSlug={unitSlug} backHref={`/math/trigonometry/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="trigonometry" topicSlug={unitSlug} backHref={`/math/trigonometry/${unitSlug}`} backLabel={chrome("Back to unit", lang)}>
       <TrigLessonPageInner />
     </ContentGate>
   );

@@ -1,11 +1,15 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { type IntegerSignRuleConfig } from "@/lib/genmath-interactive";
 
 // Flip each factor's sign and watch the result's sign follow the rule:
 // same signs → positive, different signs → negative (for both × and ÷).
 export default function IntegerSignRule({ config }: { config: IntegerSignRuleConfig }) {
+  const { lang } = useLang();
   const { a, b, op, color = "#e8913c" } = config;
   const ma = Math.abs(a);
   const mb = Math.abs(b);
@@ -25,7 +29,7 @@ export default function IntegerSignRule({ config }: { config: IntegerSignRuleCon
       onClick={() => set((s) => -s)}
       className="gm-press serif tabular rounded-xl px-4 py-2"
       style={{ fontSize: 24, background: "var(--bg-2)", border: "1px solid var(--line)", color: sign < 0 ? "#3b82f6" : "var(--fg)" }}
-      aria-label="Flip sign"
+      aria-label={chrome("Flip sign", lang)}
     >
       {sign < 0 ? `−${mag}` : mag}
     </button>

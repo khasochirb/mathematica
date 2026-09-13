@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -28,6 +31,7 @@ function fmt(n: number, dp = 2): string {
 const DELTAS = [1, 0.5, 0.25, 0.1];
 
 export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
+  const { lang } = useLang();
   const { mode } = config;
 
   // δ stepper (approach / hole / jump)
@@ -121,7 +125,7 @@ export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="A function graph with points approaching a target x-value">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("A function graph with points approaching a target x-value", lang)}>
           {Array.from({ length: X1 - X0 + 1 }, (_, i) => X0 + i).map((g) => (
             <line key={`v${g}`} x1={px(g)} y1={py(Y0)} x2={px(g)} y2={py(Y1)} stroke="var(--line)" strokeWidth={1} />
           ))}
@@ -251,7 +255,7 @@ export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
             </div>
           </div>
         ) : (
-          <button type="button" onClick={replay} aria-label="Replay the approach" className="gm-press flex items-center gap-2 rounded-full px-5 py-2 text-[13px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
+          <button type="button" onClick={replay} aria-label={chrome("Replay the approach", lang)} className="gm-press flex items-center gap-2 rounded-full px-5 py-2 text-[13px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
             <RotateCcw className="h-3.5 w-3.5" /> replay the approach
           </button>
         )}

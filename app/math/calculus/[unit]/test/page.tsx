@@ -3,19 +3,22 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { chrome } from "@/lib/i18n/chrome";
+import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
 import { getCalcUnit } from "@/lib/genmath-data/calculus";
 import ContentGate from "@/components/genmath/ContentGate";
 
-const REVEAL_LABELS = {
-  reveal: "Show solution",
-  hide: "Hide",
-  revealAria: "Show solution",
-  hideAria: "Hide solution",
-};
+const revealLabels = (lang: string) => ({
+  reveal: chrome("Show solution", lang),
+  hide: chrome("Hide", lang),
+  revealAria: chrome("Show solution", lang),
+  hideAria: chrome("Hide solution", lang),
+});
 
 function CalcTestPageInner() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   const unit = getCalcUnit(unitSlug);
 
@@ -76,7 +79,7 @@ function CalcTestPageInner() {
         </div>
 
         <div className="space-y-4">
-          <GradedProblemList problems={unit.testYourself} labels={REVEAL_LABELS} kind="test" />
+          <GradedProblemList problems={unit.testYourself} labels={revealLabels(lang)} kind="test" />
         </div>
       </div>
     </div>
@@ -86,9 +89,10 @@ function CalcTestPageInner() {
 // Content requires an account; the hub and unit pages above stay public.
 export default function CalcTestPage() {
   const params = useParams();
+  const { lang } = useLang();
   const unitSlug = params.unit as string;
   return (
-    <ContentGate courseKey="calculus" topicSlug={unitSlug} backHref={`/math/calculus/${unitSlug}`} backLabel="Back to unit">
+    <ContentGate courseKey="calculus" topicSlug={unitSlug} backHref={`/math/calculus/${unitSlug}`} backLabel={chrome("Back to unit", lang)}>
       <CalcTestPageInner />
     </ContentGate>
   );

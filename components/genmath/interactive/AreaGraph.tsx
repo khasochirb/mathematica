@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -26,6 +29,7 @@ function fmt(n: number, dp = 3): string {
 const NS = [2, 4, 8, 16, 32];
 
 export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
+  const { lang } = useLang();
   const { mode } = config;
 
   const [ni, setNi] = useState(0); // riemann: index into NS
@@ -116,7 +120,7 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label="Area under a curve">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Area under a curve", lang)}>
           {Array.from({ length: Math.floor(X1) + 1 }, (_, i) => i).map((g) => (
             <line key={`v${g}`} x1={px(g)} y1={py(0)} x2={px(g)} y2={py(Y1)} stroke="var(--line)" strokeWidth={1} />
           ))}
@@ -256,7 +260,7 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
           </div>
         )}
         {mode === "accumulate" && (
-          <button type="button" onClick={replay} aria-label="Replay the sweep" className="gm-press flex items-center gap-2 rounded-full px-5 py-2 text-[13px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
+          <button type="button" onClick={replay} aria-label={chrome("Replay the sweep", lang)} className="gm-press flex items-center gap-2 rounded-full px-5 py-2 text-[13px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
             <RotateCcw className="h-3.5 w-3.5" /> replay the sweep
           </button>
         )}

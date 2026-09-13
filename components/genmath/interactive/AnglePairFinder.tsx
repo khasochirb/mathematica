@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useRef, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { ArrowHead, arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -12,6 +15,7 @@ import { type AnglePairFinderConfig } from "@/lib/genmath-interactive";
 //            pairs stay EQUAL while linear pairs keep summing to 180°.
 //  corner:   a right angle split by a ray — the two parts stay complementary.
 export default function AnglePairFinder({ config }: { config: AnglePairFinderConfig }) {
+  const { lang } = useLang();
   const { mode, initial, color = GEO_ACCENT } = config;
   return mode === "crossing" ? (
     <Crossing initial={initial ?? 50} color={color} />
@@ -39,6 +43,7 @@ function useAngleDrag(cx: number, cy: number, onDeg: (d: number) => void) {
 
 // ---------------------------------------------------------------------------
 function Crossing({ initial, color }: { initial: number; color: string }) {
+  const { lang } = useLang();
   const H = 230;
   const cx = W / 2;
   const cy = 105;
@@ -161,7 +166,7 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
           type="button"
           onClick={() => setDeg((v) => Math.max(20, v - 5))}
           disabled={deg <= 20}
-          aria-label="Rotate line"
+          aria-label={chrome("Rotate line", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -174,7 +179,7 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
           type="button"
           onClick={() => setDeg((v) => Math.min(160, v + 5))}
           disabled={deg >= 160}
-          aria-label="Rotate line"
+          aria-label={chrome("Rotate line", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >
@@ -187,6 +192,7 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
 
 // ---------------------------------------------------------------------------
 function Corner({ initial, color }: { initial: number; color: string }) {
+  const { lang } = useLang();
   const H = 200;
   const cx = 70;
   const cy = H - 40;
@@ -267,7 +273,7 @@ function Corner({ initial, color }: { initial: number; color: string }) {
           type="button"
           onClick={() => setDeg((v) => Math.max(10, v - 5))}
           disabled={deg <= 10}
-          aria-label="Lower the ray"
+          aria-label={chrome("Lower the ray", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -280,7 +286,7 @@ function Corner({ initial, color }: { initial: number; color: string }) {
           type="button"
           onClick={() => setDeg((v) => Math.min(80, v + 5))}
           disabled={deg >= 80}
-          aria-label="Raise the ray"
+          aria-label={chrome("Raise the ray", lang)}
           className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

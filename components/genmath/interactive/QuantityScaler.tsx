@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus, Check } from "lucide-react";
 import {
@@ -43,6 +46,7 @@ function TokenCluster({
 }
 
 export default function QuantityScaler({ config }: { config: ScalerConfig }) {
+  const { lang } = useLang();
   const [n, setN] = useState(1);
   const [a, b] = scaleRatio(config.a, config.b, n);
   const [sa, sb] = simplifyRatio(config.a, config.b);
@@ -90,7 +94,7 @@ export default function QuantityScaler({ config }: { config: ScalerConfig }) {
           type="button"
           onClick={dec}
           disabled={n <= 1}
-          aria-label="Fewer batches"
+          aria-label={chrome("Fewer batches", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
@@ -108,7 +112,7 @@ export default function QuantityScaler({ config }: { config: ScalerConfig }) {
           type="button"
           onClick={inc}
           disabled={n >= config.maxBatches}
-          aria-label="More batches"
+          aria-label={chrome("More batches", lang)}
           className="gm-press grid h-12 w-12 place-items-center rounded-full disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { ArrowHead, arcPath, sectorPath, GEO_ACCENT } from "@/components/genmath/interactive/GeoDiagram";
@@ -58,6 +61,7 @@ function regionsAt(lineMath: number, transMath: number) {
 }
 
 export default function Transversal({ config }: { config: TransversalConfig }) {
+  const { lang } = useLang();
   const {
     acute: a0 = 62,
     highlight: hl0 = "corresponding",
@@ -253,9 +257,9 @@ export default function Transversal({ config }: { config: TransversalConfig }) {
       {/* controls */}
       {interactive && (
         <div className="mt-3 flex items-center justify-center gap-3">
-          <button type="button" onClick={() => setATarget((v) => Math.max(35, v - 6))} disabled={aTarget <= 35} aria-label="Tilt transversal" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+          <button type="button" onClick={() => setATarget((v) => Math.max(35, v - 6))} disabled={aTarget <= 35} aria-label={chrome("Tilt transversal", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
           <div className="text-center text-[12px]" style={{ color: "var(--fg-3)", minWidth: 90 }}>tilt the transversal</div>
-          <button type="button" onClick={() => setATarget((v) => Math.min(85, v + 6))} disabled={aTarget >= 85} aria-label="Tilt transversal" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+          <button type="button" onClick={() => setATarget((v) => Math.min(85, v + 6))} disabled={aTarget >= 85} aria-label={chrome("Tilt transversal", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
         </div>
       )}
 

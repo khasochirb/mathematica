@@ -35,6 +35,10 @@
     "verify:exams": "python3 scripts/verify-exams.py",
     "verify:links": "node scripts/crawl-links.mjs",
     "verify:mn-terms": "python3 scripts/i18n/mn_terms.py --check",
+    "verify:mn-ground": "vitest run scripts/verify-mn-ground.test.ts",
+    "verify:mn-skeleton": "vitest run scripts/verify-mn-skeleton.test.ts",
+    "verify:chrome": "vitest run scripts/verify-chrome-wiring.test.ts",
+    "verify:course-labels": "vitest run scripts/verify-course-labels.test.ts",
     "verify:esh-topics": "vitest run scripts/verify-esh-question-topics.test.ts",
     "verify:primary-figures": "vitest run scripts/verify-primary-figures.test.ts",
     "verify:figure-first": "vitest run scripts/verify-primary-figure-first.test.ts"

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -24,6 +27,7 @@ function fmt(n: number): string {
 }
 
 export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
+  const { lang } = useLang();
   const {
     mode,
     a: a0 = 1,
@@ -79,7 +83,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
 
     return (
       <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label="An exponential curve on a grid">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("An exponential curve on a grid", lang)}>
           {/* grid */}
           {Array.from({ length: Y1 + 1 }, (_, i) => i).map((g) => (
             <line key={`h${g}`} x1={px(X0)} y1={py(g)} x2={px(X1)} y2={py(g)} stroke="var(--line)" strokeWidth={1} />
@@ -139,17 +143,17 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
             <div className="text-center">
               <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>start a</div>
               <div className="mt-1 flex items-center gap-2">
-                <button type="button" onClick={() => setA((v) => Math.max(1, v - 1))} disabled={a <= 1} aria-label="Decrease start a" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+                <button type="button" onClick={() => setA((v) => Math.max(1, v - 1))} disabled={a <= 1} aria-label={chrome("Decrease start a", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
                 <div className="serif tabular text-center" style={{ minWidth: 36, fontSize: 16, color: GEO_BLUE }}>{fmt(a)}</div>
-                <button type="button" onClick={() => setA((v) => Math.min(4, v + 1))} disabled={a >= 4} aria-label="Increase start a" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+                <button type="button" onClick={() => setA((v) => Math.min(4, v + 1))} disabled={a >= 4} aria-label={chrome("Increase start a", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
               </div>
             </div>
             <div className="text-center">
               <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>base b</div>
               <div className="mt-1 flex items-center gap-2">
-                <button type="button" onClick={() => setBi((v) => Math.max(0, v - 1))} disabled={bi <= 0} aria-label="Decrease base b" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+                <button type="button" onClick={() => setBi((v) => Math.max(0, v - 1))} disabled={bi <= 0} aria-label={chrome("Decrease base b", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
                 <div className="serif tabular text-center" style={{ minWidth: 40, fontSize: 16, color: GEO_ACCENT }}>{fmt(b)}</div>
-                <button type="button" onClick={() => setBi((v) => Math.min(B_STEPS.length - 1, v + 1))} disabled={bi >= B_STEPS.length - 1} aria-label="Increase base b" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+                <button type="button" onClick={() => setBi((v) => Math.min(B_STEPS.length - 1, v + 1))} disabled={bi >= B_STEPS.length - 1} aria-label={chrome("Increase base b", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
               </div>
             </div>
           </div>
@@ -198,7 +202,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
 
     return (
       <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 360, display: "block", margin: "0 auto" }} role="img" aria-label="An exponential racing a straight line">
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 360, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("An exponential racing a straight line", lang)}>
           <line x1={padL} y1={H - padB} x2={W - 8} y2={H - padB} stroke="var(--fg-2)" strokeWidth={1.6} />
           <line x1={padL} y1={H - padB} x2={padL} y2={10} stroke="var(--fg-2)" strokeWidth={1.6} />
           {Array.from({ length: X1 + 1 }, (_, i) => i).map((t) => (
@@ -253,9 +257,8 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
         </div>
 
         <div className="mt-3 flex justify-center">
-          <button type="button" onClick={replay} aria-label="Race again" className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-            <RotateCcw className="h-3.5 w-3.5" /> Race again
-          </button>
+          <button type="button" onClick={replay} aria-label={chrome("Race again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+            <RotateCcw className="h-3.5 w-3.5" /> {chrome("Race again", lang)}</button>
         </div>
       </div>
     );
@@ -274,7 +277,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 360, display: "block", margin: "0 auto" }} role="img" aria-label="A bank balance compounding year by year">
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 360, display: "block", margin: "0 auto" }} role="img" aria-label={chrome("A bank balance compounding year by year", lang)}>
         <line x1={padL} y1={H - padB} x2={W - padL} y2={H - padB} stroke="var(--fg-2)" strokeWidth={1.6} />
         {/* the principal reference line */}
         <line x1={padL} y1={H - padB - ((principal / maxV) * (H - padB - padT))} x2={W - padL} y2={H - padB - ((principal / maxV) * (H - padB - padT))} stroke="var(--line)" strokeWidth={1} strokeDasharray="4 4" />
@@ -310,7 +313,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
       </div>
 
       <div className="mt-3 flex justify-center">
-        <button type="button" onClick={replay} aria-label="Compound again" className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+        <button type="button" onClick={replay} aria-label={chrome("Compound again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
           <RotateCcw className="h-3.5 w-3.5" /> Run it again
         </button>
       </div>

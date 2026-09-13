@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+import { chrome } from "@/lib/i18n/chrome";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -14,6 +17,7 @@ const H = 250;
 const TS = [0.25, 0.375, 0.5, 0.625, 0.75];
 
 export default function SideSplitter({ config }: { config: SideSplitterConfig }) {
+  const { lang } = useLang();
   const { ab = 8, ac = 12, color = GEO_ACCENT } = config;
   const [ti, setTi] = useState(() => {
     const i = TS.indexOf(config.start ?? 0.5);
@@ -74,8 +78,8 @@ export default function SideSplitter({ config }: { config: SideSplitterConfig })
 
       <div className="mt-4 flex items-center justify-center gap-3">
         <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>slide the line</span>
-        <button type="button" onClick={() => setTi((v) => Math.max(0, v - 1))} disabled={ti <= 0} aria-label="Up" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
-        <button type="button" onClick={() => setTi((v) => Math.min(TS.length - 1, v + 1))} disabled={ti >= TS.length - 1} aria-label="Down" className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setTi((v) => Math.max(0, v - 1))} disabled={ti <= 0} aria-label={chrome("Up", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => setTi((v) => Math.min(TS.length - 1, v + 1))} disabled={ti >= TS.length - 1} aria-label={chrome("Down", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
