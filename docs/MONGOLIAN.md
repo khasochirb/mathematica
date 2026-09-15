@@ -66,7 +66,8 @@ pointer is worth him fixing in one place or the other.
 The rule itself:
 
 > **A term missing from the glossary is not permission to invent a
-> translation.** The dictionary covers `a`–`base` only; the ministry standard
+> translation.** The dictionary covers `a`–`jointly variable` (A–I and the
+> start of J, as of 15 Sep 2026); the ministry standard
 > covers the grade 10–12 syllabus; the shipped mirrors cover what has already
 > been written. When a term appears in none of them, say so in the draft's
 > Notes and use the least-bad rendering *flagged as ungrounded* — never

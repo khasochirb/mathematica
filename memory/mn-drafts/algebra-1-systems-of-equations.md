@@ -5,7 +5,7 @@
 ЭШ spine: **algebra, unit 3.** Four lessons, 30 items, 44 interactive steps.
 
 Conventions per R9 and `memory/mn-drafts/README.md`: «та», polite imperative,
-written polite-first. Checked against `docs/en-mn-math-glossary.md` (a–base)
+written polite-first. Checked against `docs/en-mn-math-glossary.md` (a–i)
 as well as А/492 and the corpus.
 
 ---
@@ -28,12 +28,16 @@ as well as А/492 and the corpus.
 | substitution | **орлуулга** | ministry 1 · corpus 15 |
 | addition (of numbers) | нэмэх | dictionary p. 19 confirms «нэмэх» |
 
-**«нэмэх арга» for the elimination method — FLAGGED, see Notes 1.** The
-ministry names the graphing and substitution methods but not this one; its
-nearest phrase is «Ялгаврын аргаар» (1 use), which is not the same idea. The
-corpus has «нэмэх арга» once. The Russian-tradition name is «метод сложения»,
-which «нэмэх арга» renders, and the lesson literally teaches adding whole
-equations — but one corpus hit is thin for a term that names a lesson.
+**«зайлуулах арга» for the elimination method — SETTLED by the dictionary,
+15 Sep 2026.** `elimination` → «зайлуулах (үл мэдэгдэхийг), холтгох,
+холдуулах» (p. 132) — literally **eliminating the unknown**, which is exactly
+what this lesson does.
+
+My first draft said «нэмэх арга», resting on one corpus hit and on the Russian
+«метод сложения». That named the **mechanism** — adding equations — while the
+book names the **purpose**, removing a variable. Ten uses corrected, lesson 3's
+title included. The ministry, for its part, names the other two methods in its
+own objectives («графикийн аргаар», «орлуулах аргаар») and this one nowhere.
 
 ---
 
@@ -123,7 +127,7 @@ equations — but one corpus hit is thin for a term that names a lesson.
 | 4 | worked | **eyebrow** Бодсон жишээ · **title** Давхар шалгалт ажиллаж байна<br>**problemId** `al61-we2` |
 | 5 | teach | **eyebrow** Гурван зураг · **title** Огтлолцох, параллель, эсвэл ижил<br>**body** Хоёр шулуун: **нэг удаа огтлолцоно** (нэг шийд — ердийн тохиолдол), **параллель** явна (налуу тэнцүү, огтлолцол өөр — шийдгүй), эсвэл **нэг ижил шулуун** байна (цэг бүр таарна — төгсгөлгүй олон). Бодохоосоо өмнө арван секундын налуугийн харьцуулалт аль кинонд байгааг чинь хэлж өгнө. |
 | 6 | tapQuestion | **eyebrow** Зургуудыг шалга · **title** Үр дүнг урьдчилан хэлээрэй<br>**prompt** $\{y = \tfrac{1}{2}x + 3, \; y = \tfrac{1}{2}x - 2\}$ хэдэн шийдтэй вэ?<br>**options** `огт үгүй` · `яг нэг` · `яг хоёр` · `төгсгөлгүй олон` — **correctIndex 0**<br>**explanation** Налуу нь ижил $\frac{1}{2}$, огтлолцол нь өөр: параллель шулуунууд хэзээ ч уулзахгүй. Ямар ч $(x, y)$ хос хоёуланд нь байж чадахгүй. |
-| 7 | tip | **eyebrow** Зуршил · **title** График бол харах нүд, шугам биш<br>**body** Хэдэн шийд байгааг, ойролцоогоор хаана байгааг ХАРАХАД графикийг ашиглаарай. Гэвч огтлолцол нь цэвэрхэн торон цэг дээр биш бол бүү нүдээ ирмэ — орлуулах эсвэл нэмэх арга руу шилжээрэй. Ойлгохын тулд зур, нарийвчлалын тулд алгебр. |
+| 7 | tip | **eyebrow** Зуршил · **title** График бол харах нүд, шугам биш<br>**body** Хэдэн шийд байгааг, ойролцоогоор хаана байгааг ХАРАХАД графикийг ашиглаарай. Гэвч огтлолцол нь цэвэрхэн торон цэг дээр биш бол бүү нүдээ ирмэ — орлуулах эсвэл зайлуулах арга руу шилжээрэй. Ойлгохын тулд зур, нарийвчлалын тулд алгебр. |
 | 8 | tryIt | **eyebrow** Туршиж үз · **title** Огтлолцлыг олоорой<br>**problemId** `al61-t1` |
 | 9 | tryIt | **eyebrow** Туршиж үз · **title** Эхлээд геометрийг уншаарай<br>**problemId** `al61-t2` |
 | 10 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** Системийн шийд = ХОЁУЛАНГИЙНХ нь график дээрх цэг (огтлолцол). · Нэрдэвшигчийг ХОЁР тэгшитгэлд нь батлаарай — нэг нь хэзээ ч хангалтгүй. · Налуу түүхийг урьдчилан хэлнэ: нэг удаа огтлолцох, параллель (шийдгүй), нэг ижил шулуун (бүгд). |
@@ -220,12 +224,12 @@ equations — but one corpus hit is thin for a term that names a lesson.
 
 ---
 
-## Lesson 3 — Нэмэх арга (`elimination`)
+## Lesson 3 — Зайлуулах арга (`elimination`)
 
 **concreteComparison**
 
 Нэг кафенаас авсан хоёр баримт: 2 кофе + 5 боов = 17; 2 кофе + 3 боов = 11.
-Баримтуудыг хасвал кофе хоорондоо хасагдана — 2 боов 6 болно. Нэмэх арга бол
+Баримтуудыг хасвал кофе хоорондоо хасагдана — 2 боов 6 болно. Зайлуулах арга бол
 баримт хасах ажлыг зэвсэг болгосон хэрэг.
 
 **objective**
@@ -235,7 +239,7 @@ equations — but one corpus hit is thin for a term that names a lesson.
 
 **concept**
 
-1. **Нэмэх арга** нь бүтэн тэгшитгэлүүдийг нэмж буюу хасч нэг хувьсагчийг
+1. **Зайлуулах арга** нь бүтэн тэгшитгэлүүдийг нэмж буюу хасч нэг хувьсагчийг
    хасдаг. $x$-ийн коэффициентүүд таарч байвал ХАСААРАЙ; эсрэг байвал ($3y$ ба
    $-3y$ шиг) НЭМЭЭРЭЙ. Үлдэх нь нэг үл мэдэгдэгчтэй нэг тэгшитгэл.
 
@@ -247,7 +251,7 @@ equations — but one corpus hit is thin for a term that names a lesson.
 
 3. **Багажаа сонгох**: хувьсагч аль хэдийн ганцаарчилагдсан (эсвэл коэффициент
    нь 1) → орлуулах арга гялалзана. Хоёр тэгшитгэл хоёулаа $Ax + By = C$
-   хэлбэртэй → нэмэх арга ихэвчлэн хурдан бөгөөд цэвэрхэн. Хоёулаа үргэлж
+   хэлбэртэй → зайлуулах арга ихэвчлэн хурдан бөгөөд цэвэрхэн. Хоёулаа үргэлж
    ажиллана; чадвар нь хямдыг нь сонгох явдал.
 
 **keyIdea**
@@ -305,10 +309,10 @@ equations — but one corpus hit is thin for a term that names a lesson.
 | 4 | teach | **eyebrow** Масштаблалт · **title** Эсрэг тоонуудыг үйлдвэрлээрэй<br>**body** $\{2x + 3y = 12,\; 3x - 2y = 5\}$: хаана ч тохирол алга. Нэгийг үйлдвэрлээрэй: эхнийхийг 2-оор, хоёр дахийг 3-аар үржүүлбэл — одоо $+6y$ ба $-6y$. Гишүүн БҮРИЙГ, баруун талыг оролцуулан масштаблаарай. Та коэффициент дээр ХБЕХ-ийн хөдөлгөөн хийж байна. |
 | 5 | worked | **eyebrow** Бодсон жишээ · **title** Хоёуланг масштаблаад нэм<br>**problemId** `al63-we2` |
 | 6 | tapQuestion | **eyebrow** Масштаблалтыг шалга · **title** Бүтэн тэгшитгэлийн үржүүлэлт<br>**prompt** $\{3x + 5y = 26,\; 2x - y = 4\}$-ээс $x$-ийг хасахын тулд зөв масштаблалт нь:<br>**options** `эхнийх ×2, хоёр дахь ×(−3)` · `эхнийх ×2, хоёр дахь ×3` · `эхнийх ×5, хоёр дахь ×1` · `зөвхөн хоёр дахь ×5` — **correctIndex 0**<br>**explanation** ×2 ба ×(−3) нь $6x$ ба $-6x$ гаргана — эсрэг, нэмэхэд бэлэн. (×2 ба ×3 нь $6x$ ба $6x$ өгнө: бас ашиглаж болно, гэхдээ ХАСАХ замаар.) |
-| 7 | tip | **eyebrow** Зуршил · **title** Зэвсгээ 5 секундэд сонгоорой<br>**body** Ганцаардсан хувьсагч харагдав уу (коэффициент $\pm 1$, эсвэл аль хэдийн ганцаарчилагдсан)? Орлуулах арга. Хоёр цэвэрхэн $Ax + By = C$ мөр харагдав уу? Нэмэх арга. Хэлбэртэй нь хэзээ ч бүү тэмц — системийн байрлал өөрөө аль аргыг хүсэж байгаагаа хэлж байгаа юм. |
+| 7 | tip | **eyebrow** Зуршил · **title** Зэвсгээ 5 секундэд сонгоорой<br>**body** Ганцаардсан хувьсагч харагдав уу (коэффициент $\pm 1$, эсвэл аль хэдийн ганцаарчилагдсан)? Орлуулах арга. Хоёр цэвэрхэн $Ax + By = C$ мөр харагдав уу? Зайлуулах арга. Хэлбэртэй нь хэзээ ч бүү тэмц — системийн байрлал өөрөө аль аргыг хүсэж байгаагаа хэлж байгаа юм. |
 | 8 | tryIt | **eyebrow** Туршиж үз · **title** Бэлэн эсрэг тоонууд<br>**problemId** `al63-t1` |
 | 9 | tryIt | **eyebrow** Туршиж үз · **title** Нэг масштаблалт хэрэгтэй<br>**problemId** `al63-t2` |
-| 10 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** Ижил коэффициент → хас; эсрэг → нэм. · Бүтэн тэгшитгэлийг (баруун талыг нь ч!) масштаблаж эсрэг тоо үйлдвэрлээрэй. · Ганцаардсан хувьсагч → орлуулах арга; хоёр цэвэрхэн мөр → нэмэх арга. |
+| 10 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** Ижил коэффициент → хас; эсрэг → нэм. · Бүтэн тэгшитгэлийг (баруун талыг нь ч!) масштаблаж эсрэг тоо үйлдвэрлээрэй. · Ганцаардсан хувьсагч → орлуулах арга; хоёр цэвэрхэн мөр → зайлуулах арга. |
 
 ---
 
@@ -329,7 +333,7 @@ equations — but one corpus hit is thin for a term that names a lesson.
 
 1. Ихэнх түүх хоёр баримт өгнө: **тоо** («нийт 12 тасалбар»: $a + c = 12$)
    болон **үнэ** («борлуулалт \$80 болсон»: $9a + 5c = 80$). Баримт тутамд нэг
-   тэгшитгэл; орлуулах эсвэл нэмэх аргаар бодно.
+   тэгшитгэл; орлуулах эсвэл зайлуулах аргаар бодно.
 
 2. **Зардал нөхөх цэг** нь хоёр шугаман төлөвлөгөөг харьцуулна: зардал/орлогын
    илэрхийллийг тэнцүүлбэл — огтлолцол нь хямд сонголт солигдох цэг.
@@ -398,7 +402,7 @@ equations — but one corpus hit is thin for a term that names a lesson.
 | 2 | worked | **eyebrow** Бодсон жишээ · **title** Лангуун дээрх ундаа<br>**problemId** `al64-we1` |
 | 3 | tapQuestion | **eyebrow** Загварыг шалга · **title** Үнийн тэгшитгэлийг бичээрэй<br>**prompt** Савад $n$ ширхэг 5 центийн, $d$ ширхэг 10 центийн зоос байна — нийт 25 зоос, 190 цент. ҮНИЙН тэгшитгэл нь:<br>**options** `$5n + 10d = 190$` · `$n + d = 190$` · `$5n + 10d = 25$` · `$15(n + d) = 190$` — **correctIndex 0**<br>**explanation** 5 центийн зоос бүр 5, 10 центийнх 10 оруулна: $5n + 10d = 190$. (Тооны тэгшитгэл нь нөгөөх нь: $n + d = 25$; бодвол $n = 12$, $d = 13$.) |
 | 4 | worked | **eyebrow** Бодсон жишээ · **title** Зардал нөхөх хэвлэгчид<br>**problemId** `al64-we2` |
-| 5 | teach | **eyebrow** Онцгой шийдвэр · **title** Алгебр эргэж ярих үед<br>**body** Заримдаа нэмэх арга ХОЁУЛАН хувьсагчийг арчина. ХУДАЛ үлдэц ($0 = 30$): түүхийн хоёр шаардлага зөрчилдөж байна — шийдгүй, зөв хариу нь үүнийг ХЭЛЭХ явдал. ҮНЭН үлдэц ($0 = 0$): хоёр дахь баримт нь эхнийх нь далдалсан хэлбэр байсан — төгсгөлгүй олон хувилбар таарах тул систем нэгийг нь тогтоож чадахгүй. |
+| 5 | teach | **eyebrow** Онцгой шийдвэр · **title** Алгебр эргэж ярих үед<br>**body** Заримдаа зайлуулах арга ХОЁУЛАН хувьсагчийг арчина. ХУДАЛ үлдэц ($0 = 30$): түүхийн хоёр шаардлага зөрчилдөж байна — шийдгүй, зөв хариу нь үүнийг ХЭЛЭХ явдал. ҮНЭН үлдэц ($0 = 0$): хоёр дахь баримт нь эхнийх нь далдалсан хэлбэр байсан — төгсгөлгүй олон хувилбар таарах тул систем нэгийг нь тогтоож чадахгүй. |
 | 6 | tapQuestion | **eyebrow** Шийдвэрийг шалга · **title** Үлдцийг уншаарай<br>**prompt** Жимсний лангууны тухай системийг бодоход $0 = 0$-ээр төгслөө. Зөв дүгнэлт нь:<br>**options** `өгөгдсөн хоёр баримт тэнцүү байсан — олон хослол таарна` · `яг тэг шийдтэй` · `хариу нь $(0, 0)$` · `арифметик буруу байх ёстой` — **correctIndex 0**<br>**explanation** $0 = 0$ нь юу ч байсан ҮНЭН — тэгшитгэлүүд нэг ижил шулууныг тодорхойлж байна. Өгөгдсөн мэдээлэл ганц хариуг тогтооход хүрэлцээгүй. |
 | 7 | tip | **eyebrow** Зуршил · **title** Түүхтэй нь тулгаж шалгаарай<br>**body** Бодсоныхоо дараа бодлогоо тоонуудаа орлуулан дахин уншаарай: «\$3-ын 7 кола, \$5-ын 5 шүүс — 12 ундаа мөн үү? \$46 мөн үү?» Гучин секунд. Сөрөг тасалбарын тоо, 13.5 зоос нь алдаагаа чанга зарласнаар олон шалгалтын оноог аварсан. |
 | 8 | tryIt | **eyebrow** Туршиж үз · **title** Шалгалтын оноо<br>**problemId** `al64-t1` |
@@ -414,7 +418,7 @@ equations — but one corpus hit is thin for a term that names a lesson.
   хангана.
 - `al6-pr-2` — Орлуулах аргаар бодоорой: $y = x + 4$ ба $3x + y = 16$.
   **solution:** $3x + x + 4 = 16 \to x = 3$, $y = 7$.
-- `al6-pr-3` — Нэмэх аргаар бодоорой: $2x + y = 11$ ба $2x - 3y = -1$.
+- `al6-pr-3` — Зайлуулах аргаар бодоорой: $2x + y = 11$ ба $2x - 3y = -1$.
   **solution:** Хасвал: $4y = 12$, $y = 3$; дараа нь $2x = 8$, $x = 4$.
 - `al6-pr-4` — Бодоорой: $3x + 4y = 10$ ба $5x - 2y = 8$.
   **solution:** Хоёр дахийг хоёр дахин болгоод: $10x - 4y = 16$; нэмбэл:
@@ -463,13 +467,12 @@ equations — but one corpus hit is thin for a term that names a lesson.
 
 ## Notes for Khas
 
-1. **«нэмэх арга» for the elimination method — the one ungrounded term here.**
-   The ministry names the other two methods in its own objectives («графикийн
-   аргаар», «орлуулах аргаар») but not this one; its nearest phrase is
-   «Ялгаврын аргаар», a single use, and that is a different idea. The corpus
-   has «нэмэх арга» once. It renders the Russian-tradition «метод сложения»,
-   and the lesson does literally teach adding whole equations — but one hit is
-   thin for a term that titles a lesson and recurs 9 times.
+1. **«зайлуулах арга» for the elimination method — CLOSED, no longer a
+   question.** This note used to ask you to rule on «нэмэх арга», which rested
+   on one corpus hit and on the Russian «метод сложения». The dictionary you
+   sent on 15 Sep settles it: `elimination` → «зайлуулах (үл мэдэгдэхийг),
+   холтгох, холдуулах» (p. 132). Ten uses corrected, lesson 3's title included.
+   Recorded in Terminology above; nothing owed from you.
 
 2. **«масштаблах» for scaling an equation.** Borrowed from «масштаб», which
    the glossary carries for scale drawings. Used 7 times in lesson 3. If there

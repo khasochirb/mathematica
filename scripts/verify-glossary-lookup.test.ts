@@ -18,11 +18,11 @@ const ROOT = process.cwd();
 const MD = path.join(ROOT, "docs/en-mn-math-glossary.md");
 const TSV = path.join(ROOT, "docs/en-mn-math-glossary.tsv");
 
-function rows(): { en: string; mn: string }[] {
+function rows(): { en: string; mn: string; note: string }[] {
   const lines = fs.readFileSync(TSV, "utf8").trim().split("\n").slice(1);
   return lines.map((l) => {
     const p = l.split("\t");
-    return { en: p[0], mn: p[1] ?? "" };
+    return { en: p[0], mn: p[1] ?? "", note: p[2] ?? "" };
   });
 }
 
@@ -47,19 +47,29 @@ describe("en-mn math glossary", () => {
     expect(missing, "headwords in the markdown with no tsv row — regenerate the tsv").toEqual([]);
   });
 
-  it("carries no empty Mongolian", () => {
-    // An empty rendering would read as "the book has no word for this", which
-    // is a different and much stronger claim than "we have not transcribed it".
-    const blank = rows().filter((r) => r.en && !r.mn).map((r) => r.en);
-    expect(blank, "these rows claim the dictionary prints nothing").toEqual([]);
+  it("carries no UNEXPLAINED empty Mongolian", () => {
+    // An empty rendering reads as "the book has no word for this", which is a
+    // different and much stronger claim than "we have not transcribed it". A
+    // handful of entries really are printed with no Mongolian — `combination
+    // of n things r at a time` gets only a Russian equivalent, `set of a data`
+    // is a bold phrase the book never glosses — so a blank is legal, but only
+    // when the note column says why. A blank with no note is the dangerous
+    // case: a dropped cell that a reader takes as evidence about the book.
+    const blank = rows()
+      .filter((r) => r.en && !r.mn && !r.note.trim())
+      .map((r) => r.en);
+    expect(blank, "blank Mongolian with no note explaining it — a dropped cell").toEqual([]);
   });
 
   it("states its own coverage, because the gap is the dangerous part", () => {
-    // The transcription reaches `base` and no further. A reader who assumes it
-    // is complete would take a missing headword as licence to invent — which
-    // is exactly what docs/MONGOLIAN.md's term-not-found rule forbids.
+    // The transcription reaches `jointly variable` and no further — A–I and a
+    // little of J, extended from the original a–base on 15 Sep 2026. A reader
+    // who assumes it is complete would take a missing headword as licence to
+    // invent, which is exactly what docs/MONGOLIAN.md's term-not-found rule
+    // forbids. Pinning the stated range means a future batch that extends the
+    // data without extending the warning fails here rather than in a draft.
     const md = fs.readFileSync(MD, "utf8");
-    expect(md).toMatch(/a.*→.*base/);
+    expect(md).toMatch(/`a`\s*→\s*`jointly variable`/);
     expect(md.toLowerCase()).toContain("not permission to invent");
   });
 

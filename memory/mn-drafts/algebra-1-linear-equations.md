@@ -29,10 +29,8 @@ where an interval appears (none does in this topic).
 
 **Two phrases I could not ground, flagged rather than quietly chosen:**
 
-- **«урвуу үйлдэл»** (inverse operation) — 2 ministry hits, 1 in the corpus.
-  The idea carries the whole of lesson 1. The corpus does have «урвуу тоо»
-  (reciprocal, 16) and «урвуу дарааллаар» (in reverse order, 3), so the word
-  «урвуу» is at home; it is the collocation with «үйлдэл» that is thin.
+- ~~«урвуу үйлдэл»~~ **CONFIRMED by the dictionary, 15 Sep 2026.** `inverse`
+  lists «урвуу үйлдэл» as its third numbered sense. No longer a flag.
 - **«хаалт задлах»** (distribute / expand brackets) — 0 hits in either. The
   corpus talks about brackets («хаалтын өмнөх», «хаалт дундуур») but never
   names the operation. Used 4 times in lesson 2.
@@ -437,10 +435,8 @@ $C = \dfrac{5}{9}(F - 32)$ томьёо Фаренгейтийг Цельс рү
 
 ## Notes for Khas
 
-1. **«урвуу үйлдэл» (inverse operation) — barely grounded.** 2 ministry hits,
-   1 in the whole corpus, and it carries lesson 1. «урвуу» itself is at home
-   («урвуу тоо» 16, «урвуу дарааллаар» 3); it is the pairing with «үйлдэл»
-   that is thin. If there is a more usual phrasing, lesson 1 is where it pays.
+1. ~~«урвуу үйлдэл»~~ **RESOLVED 15 Sep 2026** — `docs/en-mn-math-glossary.md`
+   gives «урвуу үйлдэл» as sense 3 of `inverse`. Nothing to decide.
 
 2. **«хаалт задлах» (distribute) — ungrounded, 0 hits.** The corpus names the
    brackets but never the operation. Used 4 times in lesson 2 and once in the
