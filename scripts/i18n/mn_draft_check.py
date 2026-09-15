@@ -54,9 +54,48 @@ RUSSIAN = ['любой', 'любые', 'если', 'который', 'котор
            'эта', 'это', 'все', 'всё', 'где', 'когда', 'очень', 'может',
            'должен', 'также', 'таким', 'своих', 'после', 'через', 'между']
 
+# ---------------------------------------------------------------- voice rules
+# Added 15 Sep 2026 from docs/mn-voice-reference.md, which is derived from 1,047
+# English sentences printed beside their published Mongolian rendering. The
+# point of putting them here rather than in prose: terminology was already
+# mechanical (mn_terms.py) while voice was not, so a draft could pass every gate
+# and still read as translated. These are the rules from that file that a script
+# can actually judge.
+#
+# NOT encoded, deliberately: clause order (§1), the naming verbs (§2), `юм` (§4)
+# and "be more explicit than the English" (§10). Those need a reader. A check
+# that guessed at them would cry wolf and get switched off, which is how the
+# IMPERATIVE advisory nearly went.
+
+# §9 — the em dash appears ONCE in 1,147 published passages. Mongolian glosses
+# with ( ) and asides with [ ]. Advisory, not fatal: the existing drafts carry
+# 864 of them, and a gate that is red from birth is a gate nobody reads (the
+# same reasoning the EMPHASIS rule records).
+EMDASH_SCAFFOLD = re.compile(
+    r'—\s*\*\*(correctIndex|answerIndex|problemId|statement|solution|correction|'
+    r'text|options|choices|prompt|explanation|body|teach|points|config|title|eyebrow)')
+
+# §7 — decimal COMMA, thousands SPACE. 56 comma-decimals against 5 period ones.
+# Only judged outside $...$: inside math the decimal point is LaTeX, and a comma
+# there would change what KaTeX renders and desync the English mirror.
+DECIMAL_POINT = re.compile(r'(?<![\w.])\d+\.\d+(?![\w.])')
+
+# §8 — case suffixes on numerals and Latin symbols take a hyphen (264 uses).
+NO_HYPHEN_SUFFIX = re.compile(r'(?<=[A-Za-z0-9])(ийн|ыг|ийг|аас|ээс|оос|өөс|тай|той|тэй)\b')
+
+# Smell test §3 — оюутан is a university student; this site's readers are at
+# school. Matched on the stem so the oblique forms (оюутны, оюутанд) are seen.
+STUDENT_WORD = re.compile(r'оюутн|оюутан')
+
 
 def content_of(src: str) -> str:
     body = src.split('## Topic-level strings', 1)[-1].split('## Notes for Build', 1)[0]
+    # The trailing questions-for-Khas section is commentary and never ships, so
+    # judging it produces findings that cannot be acted on. It quotes the very
+    # wording it is asking about — a note explaining why «оюутан» was removed
+    # failed the оюутан check three times over, which is exactly the "trains the
+    # reader to ignore the output" failure this function already guards against.
+    body = body.split('## Notes for Khas', 1)[0]
     # Both commentary headings used across the drafts. A heading this misses
     # leaves English commentary inside the "content" the checks judge, which
     # showed up as four phantom EMPHASIS failures on the first topic to use the
@@ -131,6 +170,42 @@ def check(corpus: str, slug: str) -> int:
                 if int(ci) != q['correctIndex']:
                     fails.append(f'{label} CORRECT INDEX {l["slug"]}/{name}: {ci} != {q["correctIndex"]}')
 
+    # ---- voice, per docs/mn-voice-reference.md ----------------------------
+    # Judge PROSE only. Two things are stripped first, both machinery rather
+    # than copy (rule 12 — translate copy, not machinery):
+    #   $...$  math, where the decimal point is LaTeX, not Mongolian punctuation
+    #   `...`  ids, slugs, latex and widget config — `b: 0.5` is a config value
+    #          a student never reads, and comma-ising it would break the widget.
+    # The \$ lookbehind matters: an escaped dollar is a literal currency sign,
+    # and pairing it with a real delimiter swallows the prose between them and
+    # spills the math out. A price line («\$800 үнэтэй утас … $V = 800(0.75)^t$»)
+    # reported two decimal points that were inside math all along.
+    prose_only = re.sub(r'`[^`\n]*`', '',
+                        re.sub(r'(?<!\\)\$[^$\n]*?(?<!\\)\$', '', content))
+
+    for m in DECIMAL_POINT.finditer(prose_only):
+        ctx = ' '.join(prose_only[max(0, m.start() - 40):m.end() + 20].split())
+        fails.append(f'DECIMAL POINT (§7 wants a comma): «{m.group(0)}» in ...{ctx}...')
+
+    for m in NO_HYPHEN_SUFFIX.finditer(prose_only):
+        ctx = ' '.join(prose_only[max(0, m.start() - 30):m.end() + 10].split())
+        fails.append(f'UNHYPHENATED SUFFIX (§8): ...{ctx}...')
+
+    for m in STUDENT_WORD.finditer(prose_only):
+        ctx = ' '.join(prose_only[max(0, m.start() - 45):m.end() + 30].split())
+        fails.append(f'ОЮУТАН (smell test §3 — school readers are «сурагч»): ...{ctx}...')
+
+    emdash = []
+    for m in re.finditer('—', content):
+        after, before = content[m.start():m.start() + 40], content[:m.start()]
+        if EMDASH_SCAFFOLD.match(after) or re.search(r'`\s*$', before[-60:]):
+            continue          # this draft's own table syntax, which the parser above reads
+        if re.search(r'\n#{1,4} [^\n]*$', before):
+            continue          # a markdown heading («## Lesson 2 — Онцгой үржвэрүүд»):
+                              # the draft's own outline, not a string that ships
+        if CYR.search(before[-30:]) or CYR.search(after[1:30]):
+            emdash.append(' '.join(content[max(0, m.start() - 45):m.start() + 45].split()))
+
     advisory = []
     for w in BARE:
         for m in re.finditer(r'(?<![а-яөүёА-ЯӨҮЁ])' + w + r'(?![а-яөүёА-ЯӨҮЁ])', content):
@@ -139,6 +214,14 @@ def check(corpus: str, slug: str) -> int:
                 advisory.append(f'«{w}» ...{ctx[-58:]}')
 
     print(f'\n  ids {len(want) - sum(f.startswith("MISSING") for f in fails)}/{len(want)}')
+    if emdash:
+        print(f'\n  {len(emdash)} em-dash parenthetical(s) in Mongolian prose — ADVISORY '
+              f'(voice reference §9: one in 1,147 published passages; use ( ) or [ ], '
+              f'or restructure with тул / учраас / бөгөөд / Иймд):')
+        for e in emdash[:8]:
+            print(f'    {e}')
+        if len(emdash) > 8:
+            print(f'    ... and {len(emdash) - 8} more')
     if advisory:
         print(f'\n  {len(advisory)} bare imperative(s) — ADVISORY, judge each:')
         for a in advisory:

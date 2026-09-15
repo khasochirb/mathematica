@@ -73,7 +73,48 @@ The rule itself:
 > Notes and use the least-bad rendering *flagged as ungrounded* — never
 > silently.
 
-Order of authority when sources disagree:
+## The voice reference — added 15 Sep 2026
+
+`docs/mn-voice-reference.md`, from Khas. Derived from 1,047 English sentences
+printed beside their published Mongolian rendering in the same dictionary the
+glossary comes from. **Read it before writing any Mongolian prose.**
+
+It closes a real hole. Terminology was already mechanical (`mn_terms.py`) while
+voice was not, so a draft could pass every gate and still read as translated.
+The rules a script can judge are now in `mn_draft_check.py`: decimal comma (§7),
+hyphenated suffixes on numerals and Latin symbols (§8), em-dash parentheticals
+(§9, advisory), and «оюутан» for a school reader (smell test §3). Clause order
+(§1), the naming verbs (§2), `юм` (§4) and "be more explicit than the English"
+(§10) are **not** encoded — they need a reader, and a check that guessed at them
+would cry wolf and get switched off.
+
+Its companion `mn-voice-corpus.tsv` **has not been supplied.** §7 of that file
+tells you to grep the corpus for constructions; there is nothing to grep yet.
+
+### Open — the register contradiction. Khas's call.
+
+**The voice reference §5 and the «та» ruling disagree, and both came from Khas.**
+
+- The standing ruling, in `memory/mn-drafts/README.md` and every draft: **«та»,
+  polite imperative** — «бодоорой», not «бод». It reversed the `mn-translation`
+  skill's «чи» and is stamped on ten drafts.
+- The voice reference §5: **task wording is a bare imperative** — «Доорх дүрс
+  бүрийг хуулбарлан зур.» Polite `-на уу` appears **twice in 1,147 passages**.
+
+`mn_draft_check.py` currently enforces both at once: it fails on informal
+pronouns and *also* warns on bare imperative stems. One of those is wrong.
+
+A reading that would let both stand, offered as a hypothesis and not adopted:
+§11 of the voice reference says in its own words that it describes **expository
+textbook Mongolian**, and that "parent-facing and conversational writing takes
+softer connectors… Match the register to the reader, not to this file alone."
+Our lesson prose speaks *to* a student; the book is a reference work that sets
+*tasks*. That would put bare imperatives on `practice` and `testYourself`
+statements — the task wording §5 is actually about — and keep «та» in teaching
+prose. **Not acted on.** Ten drafts and roughly 1,400 problem statements ride on
+this, so it is a ruling, not a guess.
+
+## Order of authority when sources disagree:
 
 1. **Ministry order А/492** (`data/esh/moe-curriculum.json`) — outranks
    everything, and `mn_terms.py --check` enforces the part of it that is
