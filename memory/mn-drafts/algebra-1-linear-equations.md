@@ -27,13 +27,13 @@ where an interval appears (none does in this topic).
 | substitute | **орлуулах** | ministry 2 · corpus 15 |
 | balance | **тэнцвэр** | corpus 45 |
 
-**Two phrases I could not ground, flagged rather than quietly chosen:**
+**Two phrases I could not ground. Both are now settled — 15 Sep 2026.**
 
-- ~~«урвуу үйлдэл»~~ **CONFIRMED by the dictionary, 15 Sep 2026.** `inverse`
-  lists «урвуу үйлдэл» as its third numbered sense. No longer a flag.
-- **«хаалт задлах»** (distribute / expand brackets) — 0 hits in either. The
-  corpus talks about brackets («хаалтын өмнөх», «хаалт дундуур») but never
-  names the operation. Used 4 times in lesson 2.
+- ~~«урвуу үйлдэл»~~ **CONFIRMED by the dictionary.** `inverse` lists
+  «урвуу үйлдэл» as its third numbered sense. No longer a flag.
+- ~~«хаалт задлах»~~ → **«хаалт нээх», per the dictionary.** `expand` prints
+  «задлах, хаалт нээх (задлах)». My «хаалт задлах» was a blend of the two
+  halves and had 0 hits in either source. Nine uses corrected.
 
 ---
 
@@ -134,7 +134,7 @@ where an interval appears (none does in this topic).
 
 **objective**
 
-Хоёр талдаа хувьсагчтай, шаардлагатай бол эхлээд хаалт задлах тэгшитгэлүүдийг
+Хоёр талдаа хувьсагчтай, шаардлагатай бол эхлээд хаалт нээх тэгшитгэлүүдийг
 бодох.
 
 **concept**
@@ -148,8 +148,8 @@ where an interval appears (none does in this topic).
    зөөгөөрэй — ингэвэл коэффициент нь эерэг хэвээр үлдэж, тэмдгүүд эвтэйхэн
    болно.
 
-3. Тэгшитгэлд хаалт байвал **эхлээд хаалтыг задалж, тал бүрийг хялбарчилж,
-   ДАРАА нь цуглуулаарай.** Бүтэн дараалал: хаалт задлах → тал бүр дээрх ижил
+3. Тэгшитгэлд хаалт байвал **эхлээд хаалтыг нээгээд, тал бүрийг хялбарчилж,
+   ДАРАА нь цуглуулаарай.** Бүтэн дараалал: хаалт нээх → тал бүр дээрх ижил
    гишүүдийг нэгтгэх → хувьсагчийг нэг тал руу → тогтмолуудыг нөгөө тал руу →
    хуваах.
 
@@ -163,7 +163,7 @@ where an interval appears (none does in this topic).
 
 | title | latex | explanation |
 |---|---|---|
-| Бүтэн дараалал | `\text{хаалт задлах} \to \text{нэгтгэх} \to \text{}x\text{ цуглуулах} \to \text{тоо цуглуулах} \to \text{хуваах}` | Шугаман тэгшитгэл бүр, нэг л дараалал. |
+| Бүтэн дараалал | `\text{хаалт нээх} \to \text{нэгтгэх} \to \text{}x\text{ цуглуулах} \to \text{тоо цуглуулах} \to \text{хуваах}` | Шугаман тэгшитгэл бүр, нэг л дараалал. |
 | Том коэффициент рүү цуглуулах | `2g + 30 = 5g + 18 \;\to\; 30 = 3g + 18` | $5g$ биш $2g$-г хасвал $x$-ийн коэффициент эерэг хэвээр үлдэнэ. |
 
 **workedExamples**
@@ -181,7 +181,7 @@ where an interval appears (none does in this topic).
 - **text:** Хувьсагчтай гишүүнийг зөвхөн нэг талаас нь хасах.
   **correction:** $7x - 6 = 3x + 14 \to 4x - 6 = 14$: $3x$ нь ХОЁР талаас
   хоёуланд нь явах ёстой.
-- **text:** Гишүүдээ зөөсний дараа хаалтаа задалж, замдаа нэг гишүүнээ гээх.
+- **text:** Гишүүдээ зөөсний дараа хаалтаа нээгээд, замдаа нэг гишүүнээ гээх.
   **correction:** Хаалт үргэлж түрүүлнэ. Тэнцүүгийн тэмдгийг юу ч гатлахаас
   өмнө тал бүрээ бүрэн цэгцлээрэй.
 
@@ -202,13 +202,13 @@ where an interval appears (none does in this topic).
 | 1 | teach | **eyebrow** Хөдөлгөөн · **title** $x$-үүдээ нэг тал руу туух<br>**body** Хоёр талаас $2g$-г хасвал: $30 = 3g + 18$. Одоо энэ бол таны аль хэдийн мэддэг хоёр алхамт тэгшитгэл: $12 = 3g$, тэгэхээр $g = 4$. **Хувьсагчтай гишүүдийг цуглуулах нь бас нэг хоёр-талын хөдөлгөөн** — шинэ зүйл алга, зүгээр л $x$ агуулсан гишүүнд хэрэглэсэн хэрэг. |
 | 2 | tapQuestion | **eyebrow** Хөдөлгөөнийг шалга · **title** Зөвхөн эхний хөдөлгөөн<br>**prompt** $8x + 3 = 5x + 18$-д хоёр талаас $5x$-ийг хассаны дараа юу гарах вэ?<br>**options** `$3x + 3 = 18$` · `$13x + 3 = 18$` · `$3x = 15$` · `$8x = 5x + 15$` — **correctIndex 0**<br>**explanation** Зүүн талд $8x - 5x = 3x$, баруун тал нь 18-аа хадгална: $3x + 3 = 18$. (Дараа нь $x = 5$.) |
 | 3 | worked | **eyebrow** Бодсон жишээ · **title** Цуглуулаад дуусга<br>**problemId** `al22-we1` |
-| 4 | teach | **eyebrow** Хаалттай үед · **title** Туухаасаа өмнө цэгцлээрэй<br>**body** $3(2x - 4) = 5x + 1$: ЭХЛЭЭД хаалтыг задлаарай ($6x - 12 = 5x + 1$), дараа нь цуглуулаарай. Хаалт хаалттай хэвээр байхад гишүүдийг тэнцүүгийн тэмдэг гатлуулах гэж оролдвол гишүүн замдаа гээгддэг. Бүтэн дараалал: **хаалт задлах → нэгтгэх → $x$ цуглуулах → тоо цуглуулах → хуваах.** |
+| 4 | teach | **eyebrow** Хаалттай үед · **title** Туухаасаа өмнө цэгцлээрэй<br>**body** $3(2x - 4) = 5x + 1$: ЭХЛЭЭД хаалтыг нээгээрэй ($6x - 12 = 5x + 1$), дараа нь цуглуулаарай. Хаалт хаалттай хэвээр байхад гишүүдийг тэнцүүгийн тэмдэг гатлуулах гэж оролдвол гишүүн замдаа гээгддэг. Бүтэн дараалал: **хаалт нээх → нэгтгэх → $x$ цуглуулах → тоо цуглуулах → хуваах.** |
 | 5 | worked | **eyebrow** Бодсон жишээ · **title** Хаалт задлаад бод<br>**problemId** `al22-we2` |
 | 6 | tapQuestion | **eyebrow** Дарааллыг шалга · **title** Бүтэн ажиллуулалт<br>**prompt** $4(x + 2) = 2x + 18$-ийг бодоорой.<br>**options** `$x = 5$` · `$x = 8$` · `$x = 2$` · `$x = 13$` — **correctIndex 0**<br>**explanation** $4x + 8 = 2x + 18 \to 2x = 10 \to x = 5$. Шалгалт: $4(7) = 28 = 10 + 18$. ✓ |
 | 7 | tip | **eyebrow** Зуршил · **title** Том овоолго руу нь зөөгөөрэй<br>**body** $x$-үүдээ аль хэдийн ИЛҮҮ ОЛОН нь байгаа тал руу цуглуулаарай: $2g + 30 = 5g + 18$-д $5g$ биш $2g$-г хасвал коэффициент эерэг хэвээр үлдэнэ. Сөрөг тэмдэг цөөрч, алдах боломж ч цөөрнө. |
 | 8 | tryIt | **eyebrow** Туршиж үз · **title** Сөрөг хариу, ижил хөдөлгөөн<br>**problemId** `al22-t1` |
 | 9 | tryIt | **eyebrow** Туршиж үз · **title** Утасны багцын тэнцэх цэг<br>**problemId** `al22-t2` |
-| 10 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** Хоёр талдаа хувьсагчтай: хоёр талаас нь бага $x$-гишүүнийг хасаарай. · Хаалт түрүүлнэ — гишүүд тэнцүүгийн тэмдгийг гатлахаас өмнө тал бүрээ цэгцэл. · Дараалал: хаалт задлах → нэгтгэх → $x$ цуглуулах → тоо цуглуулах → хуваах. |
+| 10 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** Хоёр талдаа хувьсагчтай: хоёр талаас нь бага $x$-гишүүнийг хасаарай. · Хаалт түрүүлнэ — гишүүд тэнцүүгийн тэмдгийг гатлахаас өмнө тал бүрээ цэгцэл. · Дараалал: хаалт нээх → нэгтгэх → $x$ цуглуулах → тоо цуглуулах → хуваах. |
 
 ---
 
@@ -438,9 +438,16 @@ $C = \dfrac{5}{9}(F - 32)$ томьёо Фаренгейтийг Цельс рү
 1. ~~«урвуу үйлдэл»~~ **RESOLVED 15 Sep 2026** — `docs/en-mn-math-glossary.md`
    gives «урвуу үйлдэл» as sense 3 of `inverse`. Nothing to decide.
 
-2. **«хаалт задлах» (distribute) — ungrounded, 0 hits.** The corpus names the
-   brackets but never the operation. Used 4 times in lesson 2 and once in the
-   step tables.
+2. ~~«хаалт задлах» (distribute)~~ **RESOLVED 15 Sep 2026 — now «хаалт нээх».**
+   The dictionary prints `expand` → «задлах, хаалт нээх (задлах)»; my version
+   was a blend of the two halves with 0 hits anywhere. Nine uses corrected here
+   and two in `algebra-1/inequalities`.
+
+   There is a second reason beyond the book, and it is the one that decided it:
+   unit 4 makes «задлах» carry **factor** («үржигдэхүүн болгон задлах»).
+   Expanding and factoring are inverse operations, so letting them share a verb
+   would be a genuine collision one unit later. «хаалт нээх» for expand and
+   «үржигдэхүүн болгон задлах» for factor keep them apart, and both are printed.
 
 3. **«ХБЕХ» (LCD)** — I spelled out «хамгийн бага ерөнхий хуваарь» on first
    use and abbreviated after, matching how the English uses "LCD". Confirm the
