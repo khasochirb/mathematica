@@ -212,6 +212,10 @@ def check(corpus: str, slug: str) -> int:
         after, before = content[m.start():m.start() + 40], content[:m.start()]
         if EMDASH_SCAFFOLD.match(after) or re.search(r'`\s*$', before[-60:]):
             continue          # this draft's own table syntax, which the parser above reads
+        if re.search(r'\*\*(?:answer|correct)Index \d+\*\*\s*$', before):
+            continue          # the SECOND dash in «— **answerIndex 0** — explanation»:
+                              # the older drafts separate the key from its
+                              # explanation that way, so it is scaffolding too
         if re.search(r'(?:^|\n)#{1,4} [^\n]*$', before):
             continue          # a markdown heading («## Lesson 2 — Онцгой үржвэрүүд»):
                               # the draft's own outline, not a string that ships
