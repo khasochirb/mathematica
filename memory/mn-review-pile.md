@@ -8,6 +8,10 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
+**Voice reference §9 is fully applied and no longer a question.** All thirteen
+drafts carry zero em-dash parentheticals in shipping prose, and the check is
+fatal rather than advisory, so the state cannot rot back.
+
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
 entries) and `docs/mn-voice-reference.md`. Their companion data files,
 `en-mn-math-glossary.tsv` beyond row 746 and `mn-voice-corpus.tsv`, have not
@@ -76,12 +80,35 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied, not yet surveyed**
+### 2d. Math-mode decimals — **not applied. Surveyed: 178 of them.**
 
 §7 says "every number a student reads", but the checks deliberately skip
-`$...$` because the decimal point there is LaTeX. So `$x = 3.4$` in an answer
-option still shows a point. If §7 governs maths mode too, this is a bank-wide
-sweep and wants its own pass.
+`$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
+So `$x = 3.4$` in an answer option still renders a point.
+
+Counted across the thirteen drafts:
+
+| Draft | Math-mode decimals |
+|---|---|
+| `10/exponential-functions` | 144 |
+| `algebra-1/linear-equations` | 12 |
+| `algebra-1/inequalities` | 10 |
+| `10/quadratic-functions` | 7 |
+| `esh/number-sets-and-intervals` | 3 |
+| `algebra-1/systems-of-equations` | 2 |
+| **total** | **178** |
+
+Exponential functions carries four fifths of them because growth factors
+(`$b = 1.05$`, `$V = 800(0.75)^t$`) are decimals by nature.
+
+**Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
+change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
+formula noisier to read and to edit, and it diverges from the English mirror in
+178 places rather than eight. It also touches `check[]` neighbourhoods, though
+not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
+render QA walk; if it governs prose only, nothing changes. **Prose decimals
+(item 2b) are already done either way** — this is only about the inside of
+`$...$`.
 
 ---
 
