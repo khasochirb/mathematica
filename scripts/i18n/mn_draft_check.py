@@ -89,7 +89,19 @@ STUDENT_WORD = re.compile(r'оюутн|оюутан')
 
 
 def content_of(src: str) -> str:
-    body = src.split('## Topic-level strings', 1)[-1].split('## Notes for Build', 1)[0]
+    # Content starts at the topic-level strings (TITLE/BLURB ship) when a draft
+    # has them, and at the first lesson otherwise. Without the fallback, the
+    # four drafts written before that heading existed had their English header
+    # and Terminology table judged as if they were Mongolian that ships — which
+    # is how a note reading *eliminating the unknown* drew an EMPHASIS finding.
+    if '## Topic-level strings' in src:
+        body = src.split('## Topic-level strings', 1)[1]
+    else:
+        # Lookahead, so the heading itself survives the split: the em-dash
+        # check recognises a heading by the «## » in front of it, and slicing
+        # that off left «1 — Нэг ба хоёр алхамт тэгшитгэл» looking like prose.
+        body = re.split(r'\n(?=## Lesson )', src, maxsplit=1)[-1]
+    body = body.split('## Notes for Build', 1)[0]
     # The trailing questions-for-Khas section is commentary and never ships, so
     # judging it produces findings that cannot be acted on. It quotes the very
     # wording it is asking about — a note explaining why «оюутан» was removed
@@ -200,7 +212,7 @@ def check(corpus: str, slug: str) -> int:
         after, before = content[m.start():m.start() + 40], content[:m.start()]
         if EMDASH_SCAFFOLD.match(after) or re.search(r'`\s*$', before[-60:]):
             continue          # this draft's own table syntax, which the parser above reads
-        if re.search(r'\n#{1,4} [^\n]*$', before):
+        if re.search(r'(?:^|\n)#{1,4} [^\n]*$', before):
             continue          # a markdown heading («## Lesson 2 — Онцгой үржвэрүүд»):
                               # the draft's own outline, not a string that ships
         if CYR.search(before[-30:]) or CYR.search(after[1:30]):
