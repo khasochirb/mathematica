@@ -68,9 +68,13 @@ RUSSIAN = ['любой', 'любые', 'если', 'который', 'котор
 # IMPERATIVE advisory nearly went.
 
 # §9 — the em dash appears ONCE in 1,147 published passages. Mongolian glosses
-# with ( ) and asides with [ ]. Advisory, not fatal: the existing drafts carry
-# 864 of them, and a gate that is red from birth is a gate nobody reads (the
-# same reasoning the EMPHASIS rule records).
+# with ( ) and asides with [ ].
+#
+# This started advisory because the drafts carried 864 of them and a gate that
+# is red from birth is a gate nobody reads (the same reasoning the EMPHASIS rule
+# records). All thirteen drafts reached zero on 16 Sep 2026, so the reason to
+# keep it advisory is gone and it is FATAL now. An advisory nobody has to act on
+# is how the count got to 864 in the first place.
 EMDASH_SCAFFOLD = re.compile(
     r'—\s*\*\*(correctIndex|answerIndex|problemId|statement|solution|correction|'
     r'text|options|choices|prompt|explanation|body|teach|points|config|title|eyebrow)')
@@ -229,8 +233,11 @@ def check(corpus: str, slug: str) -> int:
         if re.match(r'—\s*`', after):
             continue          # «**title** Нөхцөлөөс жагсаалт руу — `esh-sets-l1-we1`»:
                               # the ЭШ drafts point at a problem id this way
-        if re.search(r'\*\*esh-[\w-]+\*\*\s*$', before):
-            continue          # «**esh-sets-p2** — <the problem>»: an item label
+        if re.search(r'\*\*[a-z][\w-]*\d\*\*\s*$', before):
+            continue          # «**esh-sets-p2** — …», «**ef-pr1** — …»: a bold
+                              # problem id followed by its statement. Matched by
+                              # shape (lowercase token ending in a digit) so the
+                              # rule is not per-corpus.
         if in_facts_block(content, m.start()) and (
                 re.search(r'(?:\*\*|\$)\s*$', before) or re.match(r'—\s*\n', after)):
             continue          # a FACTS row in the compressed ЭШ format is
@@ -253,14 +260,7 @@ def check(corpus: str, slug: str) -> int:
                 advisory.append(f'«{w}» ...{ctx[-58:]}')
 
     print(f'\n  ids {len(want) - sum(f.startswith("MISSING") for f in fails)}/{len(want)}')
-    if emdash:
-        print(f'\n  {len(emdash)} em-dash parenthetical(s) in Mongolian prose — ADVISORY '
-              f'(voice reference §9: one in 1,147 published passages; use ( ) or [ ], '
-              f'or restructure with тул / учраас / бөгөөд / Иймд):')
-        for e in emdash[:8]:
-            print(f'    {e}')
-        if len(emdash) > 8:
-            print(f'    ... and {len(emdash) - 8} more')
+    fails += [f'EM-DASH PARENTHETICAL (§9): ...{e}...' for e in emdash]
     if advisory:
         print(f'\n  {len(advisory)} bare imperative(s) — ADVISORY, judge each:')
         for a in advisory:
