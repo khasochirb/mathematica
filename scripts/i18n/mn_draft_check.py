@@ -116,6 +116,16 @@ def content_of(src: str) -> str:
                   '', body, flags=re.S)
 
 
+def in_facts_block(content: str, pos: int) -> bool:
+    """True when pos sits inside a **FACTS:** list of the compressed ЭШ draft
+    format, which ends at the next bold ALL-CAPS section heading."""
+    start = content.rfind('**FACTS:**', 0, pos)
+    if start == -1:
+        return False
+    nxt = re.search(r'\n\*\*[A-ZА-Я][A-ZА-Я ]+:\*\*', content[start + 10:pos])
+    return nxt is None
+
+
 def check(corpus: str, slug: str) -> int:
     root = pathlib.Path(__file__).resolve().parents[2]
     draft = root / 'memory' / 'mn-drafts' / f'{corpus}-{slug}.md'
@@ -216,6 +226,19 @@ def check(corpus: str, slug: str) -> int:
             continue          # the SECOND dash in «— **answerIndex 0** — explanation»:
                               # the older drafts separate the key from its
                               # explanation that way, so it is scaffolding too
+        if re.match(r'—\s*`', after):
+            continue          # «**title** Нөхцөлөөс жагсаалт руу — `esh-sets-l1-we1`»:
+                              # the ЭШ drafts point at a problem id this way
+        if re.search(r'\*\*esh-[\w-]+\*\*\s*$', before):
+            continue          # «**esh-sets-p2** — <the problem>»: an item label
+        if in_facts_block(content, m.start()) and (
+                re.search(r'(?:\*\*|\$)\s*$', before) or re.match(r'—\s*\n', after)):
+            continue          # a FACTS row in the compressed ЭШ format is
+                              # «N. **label** — $latex$ — explanation», i.e. the
+                              # algebra drafts' three-column fact table written
+                              # inline. Those two dashes are column separators.
+                              # Only inside the block: «**«Аль нь ч биш»** — …»
+                              # in ordinary prose is a real parenthetical.
         if re.search(r'(?:^|\n)#{1,4} [^\n]*$', before):
             continue          # a markdown heading («## Lesson 2 — Онцгой үржвэрүүд»):
                               # the draft's own outline, not a string that ships
