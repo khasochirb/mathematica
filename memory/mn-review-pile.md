@@ -1,6 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
-**For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.**
+**For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
+Updated 17 Sep 2026, after the first geometry topic.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -8,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All thirteen
+**Voice reference §9 is fully applied and no longer a question.** All fourteen
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -39,7 +40,9 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** ten drafts, and roughly 1,400 problem statements.
+**Scale if it changes:** fourteen drafts, and roughly 1,650 problem statements
+— `geometry/foundations` alone added about 250, being three times the size of
+an algebra topic.
 
 ---
 
@@ -80,23 +83,47 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 178 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 205 of them.**
+
+> **Correction, 17 Sep 2026. This section said 178 and said the policy was
+> applied nowhere. Both were wrong**, on two independent counts.
+>
+> - **Nine were already converted.** `algebra-1/linear-functions` (7, four of
+>   them inside answer options), `algebra-1/functions` (1) and
+>   `geometry/foundations` (1) carried `{,}` inside `$...$`. The survey could
+>   not see them because it was counting decimal *points*. All nine are
+>   reverted. One instance applied is worse than either policy applied
+>   uniformly; that is the second time it has had to be repaired by hand, so
+>   `mn_draft_check.py` now fails on any `{,}` inside `$...$` where the English
+>   has a period. It tells that apart from item 2c's thousands separators by
+>   checking the English rather than the shape, since `109{,}350` and `2{,}5`
+>   are the same shape to a regex.
+> - **The count itself was low.** The survey regex required a non-word
+>   character after the decimal, so every decimal glued to a variable —
+>   `$2.5t$`, `$1.05n$` — was skipped. Counting every `\d+\.\d+` inside `$...$`
+>   gives **205**. The table below is the corrected one.
+>
+> Nothing about the decision changes; the number you would be ruling on is 205
+> rather than 178.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirteen drafts:
+Counted across the fourteen drafts:
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
-| `algebra-1/linear-equations` | 12 |
+| `algebra-1/linear-equations` | 20 |
 | `algebra-1/inequalities` | 10 |
+| `algebra-1/systems-of-equations` | 8 |
 | `10/quadratic-functions` | 7 |
+| `algebra-1/linear-functions` | 7 |
+| `geometry/foundations` | 5 |
 | `esh/number-sets-and-intervals` | 3 |
-| `algebra-1/systems-of-equations` | 2 |
-| **total** | **178** |
+| `algebra-1/functions` | 1 |
+| **total** | **205** |
 
 Exponential functions carries four fifths of them because growth factors
 (`$b = 1.05$`, `$V = 800(0.75)^t$`) are decimals by nature.
@@ -104,7 +131,7 @@ Exponential functions carries four fifths of them because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-178 places rather than eight. It also touches `check[]` neighbourhoods, though
+205 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -126,6 +153,22 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **өндөрсөлт / урагшлалт** | rise / run | `linear-functions` L1 | throughout |
 | **тогтмол гишүүн** | constant term | `expressions-and-operations` L1 | 2 |
 | **онцгой үржвэр** | special products | `polynomials-and-factoring` L2 | lesson title |
+| **цацраг** / **эсрэг цацраг** | ray / opposite rays | `geometry/foundations` L2, L5–L8 | throughout |
+| **транспортир** | protractor | `geometry/foundations` L5, L6, L8 | 9 |
+| **дэлгэсэн өнцөг** | straight angle | `geometry/foundations` L6 | throughout L6 |
+| **хэтэрсэн өнцөг** | reflex angle | `geometry/foundations` L6 | 2 |
+| **шугаман хос** | linear pair | `geometry/foundations` L7 | throughout L7 |
+| **өнцөг нэмэх постулат** | Angle Addition Postulate | `geometry/foundations` practice | 1 |
+
+**The geometry rate is three times the algebra rate, and that is the sources
+speaking.** А/492 is a grade 10–12 standard, so it is silent on plane geometry;
+the dictionary's a–i range holds 20 of the 75 terms this strand needs; the
+shipped grade 6–8 mirrors carry almost none of the vocabulary. Counts and the
+full inventory are in `memory/mn-drafts/GEOMETRY-TERMS.md`. Two of the seven
+above are worth your eye before the other twelve geometry topics are drafted:
+**«цацраг»**, because its 10 corpus uses are all *light* rays and it is threaded
+through five lessons, and **«дэлгэсэн өнцөг»**, because *straight* and *right*
+both want «тэгш» in Mongolian and lesson 6 leans hard on keeping them apart.
 
 ---
 
@@ -153,6 +196,36 @@ Ministry silent. Does not touch any topic drafted since.
 
 ---
 
+### 4c. `statement` in a proof: «өгүүлбэр» against the book's «хэллэг»
+
+The printed dictionary uses «хэллэг» for *statement* throughout, including at
+p. 84 where *"this new statement is called the converse"* becomes «…урвуу
+хэллэг гэж нэрлэдэг». The drafts use **«өгүүлбэр»**, because «хэллэг» reads as
+*phrase* or *idiom* in ordinary Mongolian and `geometry/foundations` lesson 8
+asks a student to pair a **statement** with a **reason** in two columns.
+
+**This is a live conflict with a printed source and I did not settle it.** It is
+cheap now and expensive later: unit 2 is *Reasoning & Proof* and every topic in
+it is built on the word. Worth ruling on before that unit is drafted.
+
+### 4d. Two dictionary overrides of the `mn-translation` skill glossary
+
+The skill's geometry list calls itself *"canonical — do not improvise
+synonyms"*, but two of its angle-pair entries never shipped and the dictionary
+prints something else:
+
+| English | skill glossary | shipped uses | dictionary | drafts use |
+|---|---|---|---|---|
+| complementary angles | нэмэлт өнцөг | 1 | **гүйцээлт хоёр өнцөг** | dictionary |
+| adjacent angles | зэргэлдээ өнцөг | **0** | **залгаа хоёр өнцөг** | dictionary |
+
+The authority order in `docs/MONGOLIAN.md` puts the dictionary above the shipped
+corpus, so the drafts follow the dictionary and say so where they do. **The skill
+file is yours to amend, not mine** — and «гүйцээлт» is also the skill's word for
+*complement* in probability, so adopting it here makes one word carry two
+meanings. That collision is the reason this is a question rather than a
+correction.
+
 ## 5. Things you said to ask about, which I have not decided
 
 ### 5a. The English term on first use
@@ -173,7 +246,36 @@ English-medium exam is a content decision, not a translation one.
 
 ---
 
-## 6. Two English content bugs found while drafting
+## 6. Bugs found while drafting that are not translation questions
+
+### 6a. Single-asterisk italics ship as literal asterisks. 3,024 of them.
+
+`components/esh/MathText.tsx`, which every genmath lesson renders through,
+splits on `$$…$$`, `$…$` and `**…**` and nothing else. A single `*word*`
+therefore reaches the student with its asterisks visible. Counting prose
+strings only (skipping `check[]`, where `*` is multiplication):
+
+| | |
+|---|---|
+| data files affected | **68** |
+| strings affected | **3,024** |
+| includes shipped Mongolian mirrors | yes — `6-mn`, `7-mn`, `8-mn` |
+| worst single file | `ib-ai-sl/statistics-and-probability.json`, 306 |
+
+**This is a ship-mode fix and I did not start it** — the mode rule in
+`CLAUDE.md` says to write the other mode's work down rather than begin it. It
+is one alternative in one regex plus an `<em>` branch, not 3,024 edits, and it
+is worth doing before the Mongolian geometry strand lands, because those drafts
+mirror the English's italics exactly.
+
+The drafts are **not** stripped of italics in the meantime. `geometry/foundations`
+carries 7 where its English carries 15; every one mirrors the English. Stripping
+them would lose emphasis the English keeps, and would have to be undone when the
+renderer is fixed. `mn_draft_check.py` now counts the English's italics and fails
+only on italics a draft *introduces*, which is what the `mn-translation` skill
+actually asks for.
+
+### 6b. Two English content bugs
 
 Not translation questions. Both are on live English pages.
 

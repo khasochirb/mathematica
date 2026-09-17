@@ -75,14 +75,31 @@ RUSSIAN = ['любой', 'любые', 'если', 'который', 'котор
 # records). All thirteen drafts reached zero on 16 Sep 2026, so the reason to
 # keep it advisory is gone and it is FATAL now. An advisory nobody has to act on
 # is how the count got to 864 in the first place.
+# The `(?:<br>)?` is not a loophole: inside a step table a cell's fields are
+# separated by `<br>` exactly as they are separated by a space elsewhere, so
+# «… нь —<br>**options**» is the same scaffolding as «… нь — **options**». Four
+# tapQuestion prompts in geometry/foundations were charged for the draft's own
+# table syntax because the separator happened to be a line break.
 EMDASH_SCAFFOLD = re.compile(
-    r'—\s*\*\*(correctIndex|answerIndex|problemId|statement|solution|correction|'
-    r'text|options|choices|prompt|explanation|body|teach|points|config|title|eyebrow)')
+    r'—\s*(?:<br>)?\s*\*\*(correctIndex|answerIndex|problemId|statement|solution|'
+    r'correction|text|options|choices|prompt|explanation|body|teach|points|config|'
+    r'title|eyebrow|given|prove|rows|intro)')
 
 # §7 — decimal COMMA, thousands SPACE. 56 comma-decimals against 5 period ones.
 # Only judged outside $...$: inside math the decimal point is LaTeX, and a comma
 # there would change what KaTeX renders and desync the English mirror.
 DECIMAL_POINT = re.compile(r'(?<![\w.])\d+\.\d+(?![\w.])')
+
+# §7 again, the other side of it. Review pile item 2d holds math-mode decimals
+# at the English's period until Khas rules on 178 of them, and item 2c holds
+# thousands separators at `{,}` because that is what the English writes. So a
+# `{,}` inside $...$ is correct when the English has one and wrong when the
+# English has a period there — the second is item 2d applied to one instance,
+# which is worse than either policy applied uniformly. Twelve had crept in
+# across three drafts, four of them inside answer options, and a `$b \le 16{,}25$`
+# earlier had to be reverted for the same reason. Judged against the English
+# rather than by shape, because `109{,}350` and `2{,}5` look alike to a regex.
+MATH_COMMA = re.compile(r'\d+(?:\{,\}\d+)+')
 
 # §8 — case suffixes on numerals and Latin symbols take a hyphen (264 uses).
 NO_HYPHEN_SUFFIX = re.compile(r'(?<=[A-Za-z0-9])(ийн|ыг|ийг|аас|ээс|оос|өөс|тай|той|тэй)\b')
@@ -139,10 +156,19 @@ def check(corpus: str, slug: str) -> int:
     content = content_of(draft.read_text(encoding='utf-8'))
     d = json.loads(source.read_text(encoding='utf-8'))
     fails = []
+    notes = []          # true but not actionable by the draft; printed, never fatal
 
     for m in re.finditer(r'(?<!\\)\$([^$\n]+?)(?<!\\)\$', content):
         if CYR.search(re.sub(r'\\text\{[^}]*\}', '', m.group(1))):
             fails.append(f'CYR-IN-MATH: ${m.group(1)}$')
+
+    src_text = source.read_text(encoding='utf-8')
+    for m in re.finditer(r'(?<!\\)\$([^$\n]+?)(?<!\\)\$', content):
+        for c in MATH_COMMA.finditer(m.group(1)):
+            period = c.group(0).replace('{,}', '.')
+            if period in src_text:
+                fails.append(f'MATH DECIMAL COMMA (review pile 2d is NOT applied): '
+                             f'«{c.group(0)}» in ${m.group(1)}$')
 
     for w in INFORMAL:
         for m in re.finditer(w, content):
@@ -153,9 +179,44 @@ def check(corpus: str, slug: str) -> int:
             fails.append(f'RUSSIAN: «{content[m.start():m.end()]}» in '
                          f'...{content[max(0, m.start()-45):m.end()+25]}...')
 
+    # EMPHASIS. `mn-translation` §5: "Single *italics* in EN may carry over only
+    # where EN had it; never introduce new single-asterisk." A flat count could
+    # not tell those two apart, so every carried-over italic read as a failure —
+    # geometry/foundations drew seven findings for mirroring the English exactly.
+    # Counting the source's own italics separates them.
+    #
+    # Worth knowing while reading this: components/esh/MathText.tsx, which
+    # genmath renders through, splits on `$$`, `$` and `**` only, so a single
+    # asterisk ships as a literal asterisk TODAY — in English and in the four
+    # shipped Mongolian mirrors alike (3,024 strings across 68 data files).
+    # That is a renderer bug, not a translation one, and stripping the italics
+    # out of the Mongolian would lose emphasis the English keeps. Logged for a
+    # ship-mode session; this check only guards against adding more.
     prose = re.sub(r'\$[^$\n]*\$', '', content)
-    for m in re.finditer(r'(?<![*\\])\*(?!\*)([^*\n]{1,80})\*(?!\*)', prose):
-        fails.append(f'EMPHASIS: *{m.group(1)}*')
+    ital = re.compile(r'(?<![*\\])\*(?!\*)([^*\n]{1,80})\*(?!\*)')
+    drafted_ital = [m.group(1) for m in ital.finditer(prose)]
+    src_ital = []
+
+    def _walk_ital(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k not in ('check', 'verify'):
+                    _walk_ital(v)
+        elif isinstance(o, list):
+            for v in o:
+                _walk_ital(v)
+        elif isinstance(o, str):
+            src_ital.extend(ital.findall(re.sub(r'\$[^$\n]*\$', '', o)))
+
+    _walk_ital(d)
+    if len(drafted_ital) > len(src_ital):
+        for w in drafted_ital:
+            fails.append(f'EMPHASIS INTRODUCED: *{w}* '
+                         f'({len(drafted_ital)} in the draft, {len(src_ital)} in the English)')
+    elif drafted_ital:
+        notes.append(f'emphasis: {len(drafted_ital)} single-asterisk italics carried over '
+                     f'from the English\'s {len(src_ital)} (MathText renders them literally '
+                     f'until the renderer learns italics)')
 
     want = []
     for l in d['lessons']:
@@ -190,11 +251,30 @@ def check(corpus: str, slug: str) -> int:
                 continue
             for q, (opts, ci) in zip(src, drafted):
                 name = q.get('title') or q.get('prompt', '')[:34]
+                cells = [o.strip().strip('`') for o in opts.split('·')]
                 n = len(opts.split('` · `'))
                 if n != len(q['options']):
                     fails.append(f'{label} OPTION COUNT {l["slug"]}/{name}: {n} != {len(q["options"])}')
                 if int(ci) != q['correctIndex']:
                     fails.append(f'{label} CORRECT INDEX {l["slug"]}/{name}: {ci} != {q["correctIndex"]}')
+                # Option ORDER. mn_apply swaps strings in place, so a reordered
+                # option list desyncs the mirror from correctIndex silently. The
+                # index check above only catches a reorder that MOVED the answer;
+                # five reorderings in geometry/foundations were caught that way,
+                # and a sixth that kept the index would not have been.
+                #
+                # Judged as a PERMUTATION, not position by position. Plenty of
+                # options differ from the English on purpose — the ЭШ drafts
+                # write intervals `]a, b[`, prefer \varnothing to \emptyset, and
+                # escape `\|` because a bare pipe would end the markdown table
+                # cell — and a straight equality check reported all of those as
+                # errors. A permutation is the one shape that is never a
+                # translation decision: the same options, moved.
+                if n == len(q['options']):
+                    now = [c.replace(r'\|', '|') for c in cells]
+                    if sorted(now) == sorted(q['options']) and now != q['options']:
+                        fails.append(f'{label} OPTION ORDER {l["slug"]}/{name}: '
+                                     f'reordered — {now} vs {q["options"]}')
 
     # ---- voice, per docs/mn-voice-reference.md ----------------------------
     # Judge PROSE only. Two things are stripped first, both machinery rather
@@ -265,6 +345,8 @@ def check(corpus: str, slug: str) -> int:
         print(f'\n  {len(advisory)} bare imperative(s) — ADVISORY, judge each:')
         for a in advisory:
             print(f'    {a}')
+    for n in notes:
+        print(f'\n  NOTE: {n}')
     if fails:
         print(f'\n--- {len(fails)} finding(s) ---')
         for f in fails:

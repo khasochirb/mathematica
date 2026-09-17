@@ -12,6 +12,14 @@ Once a draft is approved, Build assembles it into the mirror, `mn_skeleton.py`
 checks the structure, `verify:genmath` re-runs every `check[]`, and the draft
 stays here as the record of what was approved.
 
+**`GEOMETRY-TERMS.md` is shared, not a draft.** The thirteen geometry topics
+cite it instead of re-deciding the same 75 words thirteen times, and each
+topic's own Terminology table lists only what it adds. It also carries the
+strand-level finding that geometry is far less grounded than algebra was: 20 of
+the 75 terms are in the dictionary's a–i range, А/492 is a grade 10–12 standard
+and so silent on plane geometry, and the shipped grade 6–8 mirrors carry almost
+none of the vocabulary.
+
 ## Conventions settled by corpus evidence, not per topic
 
 These came out of drafting `esh/sets-and-operations` and hold for every ЭШ topic
