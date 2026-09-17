@@ -376,8 +376,8 @@ $|X|$-ийг зай гэж уншаарай: $|X| = k$ нь $\pm k$ болж х�
 - `al34-t1` — $|x + 4| = 9$-ийг бодоорой.
   **solution:** $x + 4 = 9 \to x = 5$; эсвэл $x + 4 = -9 \to x = -13$.
 - `al34-t2` — $|3x - 1| > 8$-ийг бодоорой.
-  **solution:** $3x - 1 > 8 \to x > 3$; эсвэл $3x - 1 < -8 \to
-  x < -\dfrac{7}{3}$. Хоёр цацраг.
+  **solution:** $3x - 1 > 8 \to x > 3$; эсвэл
+  $3x - 1 < -8 \to x < -\dfrac{7}{3}$. Хоёр цацраг.
 
 ### Interactive — same twelve steps, same kinds, same order
 

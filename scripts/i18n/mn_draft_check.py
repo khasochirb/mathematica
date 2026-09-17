@@ -158,6 +158,17 @@ def check(corpus: str, slug: str) -> int:
     fails = []
     notes = []          # true but not actionable by the draft; printed, never fatal
 
+    # A draft is hand-wrapped at 79 columns, so it is easy to break a line in
+    # the middle of $...$. The delimiters then re-pair across the wrap — the
+    # closing `$` of one span joins the opening `$` of the next — and the prose
+    # caught between them is reported as Cyrillic inside maths. That misnames
+    # the fault three times over: nothing is wrong with the maths, the wrap is.
+    # Checked first so the accurate message is the one the writer reads.
+    for n, ln in enumerate(content.split('\n'), 1):
+        if len(re.findall(r'(?<!\\)\$', ln)) % 2:
+            fails.append(f'MATH SPANS A LINE BREAK (line {n} of the content, '
+                         f'rewrap so $...$ stays on one line): {ln.strip()[:70]}')
+
     for m in re.finditer(r'(?<!\\)\$([^$\n]+?)(?<!\\)\$', content):
         if CYR.search(re.sub(r'\\text\{[^}]*\}', '', m.group(1))):
             fails.append(f'CYR-IN-MATH: ${m.group(1)}$')

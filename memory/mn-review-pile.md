@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 17 Sep 2026, after the first geometry topic.**
+Updated 17 Sep 2026, after the first two geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All fourteen
+**Voice reference §9 is fully applied and no longer a question.** All fifteen
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** fourteen drafts, and roughly 1,650 problem statements
+**Scale if it changes:** fifteen drafts, and roughly 1,850 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -110,7 +110,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fourteen drafts:
+Counted across the fifteen drafts:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -160,6 +160,32 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **шугаман хос** | linear pair | `geometry/foundations` L7 | throughout L7 |
 | **өнцөг нэмэх постулат** | Angle Addition Postulate | `geometry/foundations` practice | 1 |
 
+**`geometry/reasoning-and-proof` adds fourteen more, and they are a different
+problem.** They are not listed one by one here because they form groups that
+should be ruled on together, and `memory/mn-drafts/geometry-reasoning-and-proof.md`
+§Notes has them in those groups with the reasoning for each. The summary:
+
+| group | terms |
+|---|---|
+| the two kinds of reasoning | индуктив сэтгэлгээ · дедуктив сэтгэлгээ |
+| conjecture machinery | зүй тогтол (pattern) · эсрэг жишээ (counterexample) |
+| conditionals | нөхцөлт өгүүлбэр · урвуу өгүүлбэр · эсрэг урвуу өгүүлбэр · хос нөхцөлт өгүүлбэр · хэрэв бөгөөд зөвхөн хэрэв · силлогизмын хууль |
+| the reason column | тэнцэтгэлийн нэмэх / хасах / үржүүлэх / хуваах чанар · шилжих чанар |
+
+**Why logic is emptier than geometry was.** Geometry's plane vocabulary was
+thin because А/492 is a grade 10–12 standard. Logic is thin for a different
+reason: Mongolian school maths teaches proof *inside* geometry rather than as
+a named subject, so there is no settled word list to inherit at all. Every one
+of the fourteen scores zero in the ministry order, the dictionary's a–i range
+**and** the shipped corpus.
+
+**Two of the fourteen are worth answering before anything else.** «хэрэв
+бөгөөд зөвхөн хэрэв» for *if and only if* is a clumsy calque, and if you know
+the phrase Mongolian textbooks use, that one answer settles three terms at
+once. And the six property-of-equality names are **the reason column of every
+proof the course will ever print**, so they will be read more often than
+almost any other phrase on the site.
+
 **The geometry rate is three times the algebra rate, and that is the sources
 speaking.** А/492 is a grade 10–12 standard, so it is silent on plane geometry;
 the dictionary's a–i range holds 20 of the 75 terms this strand needs; the
@@ -189,6 +215,17 @@ deliberately does not.
 rewrite whichever way you rule. Adopting the dictionary's phrase would be a
 corpus-wide rename and should be its own pass.
 
+> **Update, 17 Sep 2026: routing around it has stopped working.** A proof cites
+> the Distributive Property **as a reason on a line of a two-column proof**, and
+> a reason must have a name. `geometry/reasoning-and-proof` lesson 5 does this
+> four times, and every algebraic-proof reason column the course ever writes
+> will do it again.
+>
+> The draft uses **«хаалт нээх чанар»**, which is what the algebra drafts
+> already teach, against the dictionary's «гишүүнчлэн үржүүлэх чанар» and the
+> corpus's «тархах хууль» (15 uses). So this item now has a concrete cost
+> attached rather than being free to leave open.
+
 ### 4b. `absolute value` — open since 13 Sep
 
 The book's «абсолют хэмжигдэхүүн» against 53 live uses of «абсолют утга».
@@ -206,7 +243,13 @@ asks a student to pair a **statement** with a **reason** in two columns.
 
 **This is a live conflict with a printed source and I did not settle it.** It is
 cheap now and expensive later: unit 2 is *Reasoning & Proof* and every topic in
-it is built on the word. Worth ruling on before that unit is drafted.
+it is built on the word.
+
+> **Update, 17 Sep 2026: unit 2 is now drafted, so "later" has started.**
+> «өгүүлбэр» appears in every lesson of `geometry/reasoning-and-proof` and will
+> appear in every proof of units 3–8. **This is the highest-value ruling in
+> this file after the register question**, because unlike the others its cost
+> grows with every topic drafted rather than staying fixed.
 
 ### 4d. Two dictionary overrides of the `mn-translation` skill glossary
 
@@ -275,7 +318,25 @@ renderer is fixed. `mn_draft_check.py` now counts the English's italics and fail
 only on italics a draft *introduces*, which is what the `mn-translation` skill
 actually asks for.
 
-### 6b. Two English content bugs
+### 6b. Terms the practice sets use that no lesson teaches
+
+Not translation questions either — gaps in the English. In each case the
+practice or test bank asks a student to use a named idea the lessons never
+name, so the Mongolian has to coin a term for a word the course never
+introduces.
+
+| Term | Asked in | Taught in |
+|---|---|---|
+| Angle Addition Postulate | `geometry/foundations` `geo1-pr-4` | nowhere |
+| contrapositive | `geometry/reasoning-and-proof` `geo2-ty-3` | nowhere |
+| biconditional | `geometry/reasoning-and-proof` `geo2-ty-5` | nowhere |
+| Law of Syllogism | `geometry/reasoning-and-proof` `geo2-pr-4` | lesson 3 teaches the move, never the name |
+
+Three of the four are in one topic. The Mongolian drafts coin all four and flag
+them; whether the **English** should introduce them in a lesson, or the
+practice items should stop asking for them by name, is your call.
+
+### 6c. Two English content bugs
 
 Not translation questions. Both are on live English pages.
 
