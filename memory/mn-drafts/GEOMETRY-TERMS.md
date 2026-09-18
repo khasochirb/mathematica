@@ -96,6 +96,13 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | leg (of a right triangle) | **катет** | corpus 38 · dictionary «налсан катет» for the adjacent leg |
 | sine / cosine | **синус / косинус** | ministry 8 / 4 · corpus 35 / 20 |
 | tangent (ratio) | **тангенс** | ministry 4 |
+| adjacent leg | **налсан катет** | **dictionary p. 21, p. 90** |
+| opposite leg | **эсрэг орших катет** | the pair-half the dictionary lacks; §4's rule, see §6 |
+| angle of elevation / depression | **дээшээ / доошоо харах өнцөг** | **dictionary p. 29**, both headwords |
+| arcsin / arccos / arctan | **арксинус / арккосинус / арктангенс** | **dictionary p. 33** |
+| law of sines / cosines | **синусын / косинусын теорем** | **ministry 1** · corpus 29 / dictionary p. 91 · corpus 19 |
+| Pythagorean theorem / triple | **Пифагорын теорем / гурвал** | corpus 6 / 4 |
+| circumscribed circle | **багтаасан тойрог** | **dictionary p. 63** · corpus 13 |
 | composite figure | **нийлмэл дүрс** | **shipped 7** |
 | figure | **дүрс** | ministry 17 · corpus 162 |
 | solid | **биет** | ministry 3 · corpus 52 |
@@ -275,3 +282,39 @@ for *reduction*, so nothing is wasted and each word says what it means.
 **Downstream:** `transformations` (unit 13) inherits «гомотет», not «томсголт».
 Nothing has shipped on either, so this correction is free today and would not
 have been in three units' time.
+
+
+---
+
+## 6. Trigonometry is the exception, and it says why the rest is thin
+
+**Found 18 Sep 2026, drafting `right-triangles-and-trig`.** Seven lessons, one
+coinage. Every geometry topic before it reported three to fourteen. The
+difference is not luck and it is worth stating, because it predicts which of
+the remaining topics will be cheap and which will not:
+
+- **А/492 is a grade 10–12 standard.** Plane geometry is taught in grades 7–9,
+  so the ministry is silent on it. **Trigonometry is grade 10–12**, so the
+  ministry is decisive on it: «синусын теорем» is the ministry's own phrase.
+- **The dictionary's transcribed range is A–I.** That range happens to contain
+  *acute triangle*, *adjacent side*, *angle of elevation*, *angle of
+  depression*, *arc sine*, *arc cosine*, *arc tangent* and the whole
+  cosine-ratio diagram on p. 90. The topics whose vocabulary starts with a
+  later letter — *opposite*, *polygon*, *parallel*, *ratio*, *square*,
+  *tangent*, *triangle*, *vertex*, *volume* — are exactly the ones the
+  dictionary cannot help with, and exactly the ones that have cost coinages.
+
+**Prediction for the remaining five topics**, so it can be checked rather than
+rediscovered: `circles` and `coordinate-geometry` should be cheap (ministry
+covers both, and *chord*, *arc*, *circumference*, *diameter* are all inside
+A–I), while `area-and-perimeter`, `surface-area-and-volume` and
+`transformations` should be dearer (*perimeter*, *polygon*, *volume*,
+*reflection*, *rotation*, *translation* all fall outside the transcribed
+range).
+
+**«эсрэг орших катет», and the §4 rule paying for itself.** The dictionary
+gives *adjacent side* → «налсан катет» but *opposite* is outside A–I, so only
+half the pair is grounded. §4 already settles it without a fresh decision:
+«эсрэг өнцөг» is taken by *vertical angles*, unit 6 solved the same collision
+with «эсрэг орших тал / өнцөг», so the leg is **«эсрэг орших катет»**. That is
+what a written-down rule is for.
