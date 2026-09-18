@@ -181,6 +181,24 @@ def check(corpus: str, slug: str) -> int:
                 fails.append(f'MATH DECIMAL COMMA (review pile 2d is NOT applied): '
                              f'«{c.group(0)}» in ${m.group(1)}$')
 
+    # OBJECTIVE MATH MODE. Every lesson route renders `{lesson.objective}` as a
+    # bare string — app/math/<grade>/[topic]/[lesson]/page.tsx and the ЭШ learn
+    # page alike — while `keyIdea` right beside it goes through <MathText>. So
+    # `$...$` in an objective ships the delimiters and the LaTeX source to the
+    # student, visibly. The English already does this 190 times across 69 data
+    # files (logged for a ship-mode session as review-pile 6d); what a draft
+    # must never do is ADD it where the English wrote plain text, because that
+    # makes the mirror strictly worse than the page it mirrors. Same shape as
+    # the EMPHASIS check above: mirroring is fine, introducing is not.
+    drafted_obj = re.findall(r'\*\*objective\*\*\s*\n\n(.+?)\n\n', content, re.S)
+    src_obj = [(l.get('slug'), l.get('objective') or '') for l in d.get('lessons') or []]
+    if len(drafted_obj) == len(src_obj):
+        for (s, en), mn in zip(src_obj, drafted_obj):
+            if '$' in mn and '$' not in en:
+                fails.append(f'OBJECTIVE MATH MODE {s}: the draft adds $...$ where the '
+                             f'English objective is plain text, and objectives do not '
+                             f'render maths — «{" ".join(mn.split())[:70]}»')
+
     for w in INFORMAL:
         for m in re.finditer(w, content):
             fails.append(f'REGISTER: ...{content[max(0, m.start()-40):m.end()+15]}...')

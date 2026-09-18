@@ -48,7 +48,7 @@ Shared vocabulary lives in `memory/mn-drafts/GEOMETRY-TERMS.md`.
 | dilation | **гомотет** | **ministry 1** · corpus 7 — **corrects «томсголт», Notes 1** |
 | centre of dilation | **гомотетын төв** | from the above |
 | indirect measurement | **шууд бус хэмжилт** | **coined**, transparent — Notes 3 |
-| geometric mean | **геометр дундаж** | **coined** — Notes 3 |
+| enlargement · reduction | **томсголт · багасгалт** | **coined** — Notes 1 |
 
 ---
 
@@ -444,7 +444,7 @@ Shared vocabulary lives in `memory/mn-drafts/GEOMETRY-TERMS.md`.
 
 **objective**
 
-Масштабын коэффициент нь $k$ байх төстэй дүрсийн периметр $k$, талбай $k^2$
+Масштабын коэффициент нь k байх төстэй дүрсийн периметр k, талбай k²
 харьцаатай байдгийг ашиглах.
 
 **concept**
@@ -728,11 +728,17 @@ and a student must not read one for the other.
 
 - **«шууд бус хэмжилт»** (*indirect measurement*) — literal and transparent,
   0 everywhere. It names a section heading, not a theorem, so the risk is low.
-- **«геометр дундаж»** (*geometric mean*) — in the terminology table but
-  **used nowhere in this topic's content**. It is listed because unit 8
-  (`right-triangles-and-trig`) needs it for the altitude-on-hypotenuse
-  relations, and the strand should agree the word once. Treat it as a
-  forward booking, not a shipped choice.
+- **«томсголт» · «багасгалт»** (*enlargement* · *reduction*) — coined, but
+  see note 1: «томсголт» is a word this strand already had, now doing the job
+  it literally names.
+
+> **A third term was listed here and has been removed.** «геометр дундаж»
+> (*geometric mean*) was booked for unit 8's altitude-on-hypotenuse relations.
+> Checking the English before committing to it: **"geometric mean" appears in
+> no geometry topic at all** — unit 8 is Pythagoras, classifying, special
+> triangles, SOH-CAH-TOA, elevation/depression and the sine/cosine laws, with
+> no altitude-on-hypotenuse lesson. The word was reserved for a lesson that
+> does not exist, so it is out of the table. Nothing to rule on.
 
 ### 4. Units are inherited, not chosen: feet in the lessons, dm and m in Practice
 

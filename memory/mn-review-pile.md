@@ -408,10 +408,10 @@ adopting either convention site-wide: «өнцгийн биссектрис (ang
 **Not used anywhere.** Worth settling soon — every draft has terms an
 English-medium exam will show in English.
 
-### 5b. Two English acronyms dropped, not translated
+### 5b. Three English acronyms dropped, not translated
 
-**FOIL**, **PEMDAS** and now **CPCTC**. Both spell English sentences and spell nothing in
-Mongolian. The lessons teach the rule and drop the acronym — for FOIL the
+**FOIL**, **PEMDAS** and now **CPCTC**. All three spell English sentences and spell
+nothing in Mongolian. The lessons teach the rule and drop the acronym — for FOIL the
 English itself says "the rule is just double distribution". The book does carry
 FOIL («Хоёр хоёргишүүнт үржүүлэх арга», p. 163), so this is a choice, not a
 gap. Flagging it because dropping a mnemonic a student may meet in an
@@ -510,6 +510,60 @@ Not translation questions. Both are on live English pages.
    «climbing means speeding up the hill... no — rising means the QUANTITY
    grows.» I read it as a deliberate device and wrote it that way in Mongolian.
    If it was a draft note that escaped, the English wants the same fix.
+
+---
+
+### 6d. Lesson objectives don't render maths. 190 of them contain it, and 20 are live in Mongolian.
+
+**Found 18 Sep 2026 while grounding `geometry/right-triangles-and-trig`, and
+it is the worst-looking of the three renderer bugs here** because it is above
+the fold on every lesson page.
+
+Every lesson route renders the objective as a bare string:
+
+```tsx
+<Section n="02" label={chrome("What you'll learn", lang)}>
+  <p …>{lesson.objective}</p>      // app/math/<grade>/[topic]/[lesson]/page.tsx
+</Section>
+```
+
+while `keyIdea`, seven lines below it in the same file, goes through
+`<MathText text={lesson.keyIdea} />`. So an objective containing `$...$` ships
+the delimiters and the raw LaTeX to the student. **190 objectives across 69
+data files do.** All eleven grade routes and the ЭШ learn page share the bug.
+
+**Twenty of them are already on production in Mongolian**, in the shipped
+mirrors. A Grade 8 student opening `/math/8/roots/solving-root-equations`
+reads, as the lesson's "What you'll learn":
+
+> `$x^2=k$ хэлбэрийн тэгшитгэлийг (хоёр шийд, $x=\pm\sqrt{k}$) болон $x^3=k$-г…`
+
+| | |
+|---|---|
+| data files affected | **69** |
+| objectives affected | **190** |
+| live in shipped MN mirrors | **20** across 9 files (`6-mn`, `7-mn`, `8-mn`, `algebra-1-mn`) |
+| worst single file | `ib-sl/number-and-algebra.json`, 9 |
+
+**The fix is one line per route** — wrap the objective in `<MathText>`, exactly
+as `keyIdea` already is. **This is ship-mode work and I did not start it**, per
+the mode rule in `CLAUDE.md`. It is the same shape as 6a and worth doing in the
+same session.
+
+**What I did fix, because it was mine:** seventeen drafted objectives across
+eight drafts had `$...$` where the **English objective is plain text** — the
+English writes `x² + bx + c` and `90°` and `f(x)` in Unicode precisely because
+this field does not render maths, and my drafts had "improved" that into
+`$x^2 + bx + c$`. That would have made the Mongolian strictly worse than the
+English on those lines: the English renders correctly today, the mirror would
+not have. All seventeen are reverted to the English's own plain-text
+convention, and `mn_draft_check.py` now fails on an objective that introduces
+`$` the English does not have. Same shape as the EMPHASIS check: mirroring the
+English is fine, introducing is not.
+
+**Note the division of labour, because it is the point.** The gate stops the
+mirror getting worse than the English; it cannot make the English right. The
+190 need the renderer.
 
 ---
 
