@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 18 Sep 2026, after the first three geometry topics.**
+Updated 18 Sep 2026, after the first four geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All sixteen
+**Voice reference §9 is fully applied and no longer a question.** All seventeen
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** sixteen drafts, and roughly 2,050 problem statements
+**Scale if it changes:** seventeen drafts, and roughly 2,250 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -110,7 +110,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the sixteen drafts:
+Counted across the seventeen drafts:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -159,6 +159,9 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **хэтэрсэн өнцөг** | reflex angle | `geometry/foundations` L6 | 2 |
 | **шугаман хос** | linear pair | `geometry/foundations` L7 | throughout L7 |
 | **өнцөг нэмэх постулат** | Angle Addition Postulate | `geometry/foundations` practice | 1 |
+| **адил талт / элдэв талт гурвалжин** | equilateral / scalene triangle | `geometry/triangles-and-congruence` L1 | throughout |
+| **алс дотоод өнцөг** | remote interior angles | `geometry/triangles-and-congruence` L2 | throughout L2 |
+| **өөртэйгөө тэнцэх чанар** | Reflexive Property | `geometry/triangles-and-congruence` L6 | 1 |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -316,7 +319,7 @@ English-medium exam will show in English.
 
 ### 5b. Two English acronyms dropped, not translated
 
-**FOIL** and **PEMDAS**. Both spell English sentences and spell nothing in
+**FOIL**, **PEMDAS** and now **CPCTC**. Both spell English sentences and spell nothing in
 Mongolian. The lessons teach the rule and drop the acronym — for FOIL the
 English itself says "the rule is just double distribution". The book does carry
 FOIL («Хоёр хоёргишүүнт үржүүлэх арга», p. 163), so this is a choice, not a
@@ -324,6 +327,29 @@ gap. Flagging it because dropping a mnemonic a student may meet in an
 English-medium exam is a content decision, not a translation one.
 
 ---
+
+### 5c. The congruence acronyms are Mongolianised — **applied, and the biggest reversible call so far**
+
+`geometry/triangles-and-congruence` writes **ТТТ · ТӨТ · ӨТӨ · ӨӨТ · ГК** for
+SSS · SAS · ASA · AAS · HL (and **ӨӨӨ · ТТӨ** for the two that fail).
+
+These are not names, they are **mnemonics that spell the parts out in order**,
+and lessons 4 and 5 are *about* decoding them. «SAS» does none of that work for
+a Mongolian reader; «ТӨТ» does all of it on sight. Keeping the Latin would
+leave two lessons teaching a decoding skill for letters that cannot be decoded.
+
+**The precedent is yours:** the `mn-translation` skill's statistics glossary
+already writes **«ДАХ — дундаж абсолют хазайлт (MAD)»**.
+
+**The case against:** a student in an English-medium exam sees SSS and SAS.
+Smaller than it looks — ЭШ is Mongolian-only, and the SAT and IB hubs are
+English-only by the locked decision in `memory/expansion-vision.md` §4.7, so
+those forms reach that student through those hubs anyway.
+
+**Cost to reverse:** one find-and-replace, about 60 occurrences in one file.
+This is the most visible divergence from an English mirror in any draft, and
+it is fully reversible, which is why I made the call rather than blocking the
+topic on it.
 
 ## 6. Bugs found while drafting that are not translation questions
 
