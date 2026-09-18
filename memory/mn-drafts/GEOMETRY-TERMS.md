@@ -171,7 +171,36 @@ here.
 
 ---
 
-## 4. Notation
+## 4. Two ministry words this strand must NOT reuse
+
+**Found 18 Sep 2026 while drafting `parallel-and-perpendicular`.** Both were
+invisible from the English and neither would have shown up in a count. A term
+scoring zero is a gap; a term scoring one *in another sense* is a collision,
+and a collision is worse, because the count looks like permission.
+
+| Word | А/492 uses it for | So this strand |
+|---|---|---|
+| **солбисон** | **skew lines** — «Огторгуй дахь хоёр шулууны харилцан байршлыг тодорхойлох (параллель, огтлолцох, солбисон)» | must not use it for *alternate* angles |
+| **огтлогч** | a circle's **secant** — «Тойргийн хөвч, шүргэгч, огтлогчийн чанаруудыг хэрэглэх» | writes the full **«огтлогч шулуун»** for *transversal*, never the bare word, so `circles` keeps «огтлогч» |
+
+**The four transversal pair names, decided once here.** Built to state their
+own positions, which is what the lessons have to explain in English anyway:
+
+| English | Mongolian | literally |
+|---|---|---|
+| corresponding angles | **харгалзах өнцөг** | corresponding (corpus 5, this sense) |
+| alternate interior | **эсрэг талын дотоод өнцөг** | opposite-side interior |
+| alternate exterior | **эсрэг талын гадаад өнцөг** | opposite-side exterior |
+| same-side interior | **нэг талын дотоод өнцөг** | same-side interior |
+| same-side exterior | **нэг талын гадаад өнцөг** | same-side exterior (asked in practice, taught nowhere) |
+
+**«эсрэг талын …» always keeps «талын»**, because «эсрэг өнцөг» alone is
+*vertical angles* from unit 1. Flagged in the review pile; every geometry
+draft that uses these names should keep the full form.
+
+---
+
+## 5. Notation
 
 - Point names stay **Latin**: $A$, $B$, $C$ — per `mn-translation` rule 2.
 - $\triangle ABC$, $\angle ABC$, $\overline{AB}$, $\parallel$, $\perp$,

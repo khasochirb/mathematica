@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 17 Sep 2026, after the first two geometry topics.**
+Updated 18 Sep 2026, after the first three geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All fifteen
+**Voice reference §9 is fully applied and no longer a question.** All sixteen
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** fifteen drafts, and roughly 1,850 problem statements
+**Scale if it changes:** sixteen drafts, and roughly 2,050 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -110,7 +110,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fifteen drafts:
+Counted across the sixteen drafts:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -269,6 +269,42 @@ file is yours to amend, not mine** — and «гүйцээлт» is also the skil
 meanings. That collision is the reason this is a question rather than a
 correction.
 
+### 4e. Two ministry words that are already taken — a new failure mode
+
+**Found 18 Sep 2026, drafting `parallel-and-perpendicular`.** Everything above
+in this file is a *gap*: a term scores zero and has to be coined. These two are
+the opposite and they are worse, because **the count looks like permission**.
+The word scores in А/492 — but in a different sense, one this same course will
+need later.
+
+| Word | А/492 uses it for | What wanted it | Done |
+|---|---|---|---|
+| **солбисон** | **skew lines** (12-р анги) | *alternate* angles — the obvious Russian-tradition calque | **not used**; the pair names state their positions instead |
+| **огтлогч** | a circle's **secant** (10-р анги) | *transversal* | full **«огтлогч шулуун»** throughout, never the bare word, so `geometry/circles` keeps «огтлогч» |
+
+Both are recorded in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the remaining
+ten geometry topics inherit them instead of rediscovering them.
+
+**What replaced «солбисон», and the one thing worth your eye.** The four
+transversal pair names are built to state their own positions:
+
+| English | this draft | literally |
+|---|---|---|
+| alternate interior | **эсрэг талын дотоод өнцөг** | opposite-side interior |
+| alternate exterior | **эсрэг талын гадаад өнцөг** | opposite-side exterior |
+| same-side interior | **нэг талын дотоод өнцөг** | same-side interior |
+
+Lesson 1 of that unit is entirely about naming angles **by position**, and its
+English has to stop and explain that *alternate* means *opposite sides*. The
+Mongolian names say it, so the lesson teaches itself — this is the rewrite rule
+working, not a translation. **The risk:** «эсрэг өнцөг» alone is *vertical
+angles* from unit 1, so «эсрэг талын …» must always keep «талын». If a teacher
+would hear those as one family, say so before ten more geometry topics use
+both.
+
+**Whether to keep «огтлогч шулуун» is a decision for two topics at once**, this
+one and `circles`. The collision-free alternative is «хөндлөн шулуун».
+
 ## 5. Things you said to ask about, which I have not decided
 
 ### 5a. The English term on first use
@@ -331,8 +367,10 @@ introduces.
 | contrapositive | `geometry/reasoning-and-proof` `geo2-ty-3` | nowhere |
 | biconditional | `geometry/reasoning-and-proof` `geo2-ty-5` | nowhere |
 | Law of Syllogism | `geometry/reasoning-and-proof` `geo2-pr-4` | lesson 3 teaches the move, never the name |
+| same-side exterior angles | `geometry/parallel-and-perpendicular` `geo3-ty-2` | lesson 1 teaches four pair types, not this fifth one |
+| "perpendicular to one of two parallels ⟹ perpendicular to the other" | `geometry/parallel-and-perpendicular` `geo3-ty-4` | nowhere — the only one of these that is a theorem rather than a term |
 
-Three of the four are in one topic. The Mongolian drafts coin all four and flag
+Three of the first four are in one topic. The Mongolian drafts coin all four and flag
 them; whether the **English** should introduce them in a lesson, or the
 practice items should stop asking for them by name, is your call.
 
