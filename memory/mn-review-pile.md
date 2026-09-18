@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 18 Sep 2026, after the first four geometry topics.**
+Updated 18 Sep 2026, after the first five geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All seventeen
+**Voice reference §9 is fully applied and no longer a question.** All eighteen
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** seventeen drafts, and roughly 2,250 problem statements
+**Scale if it changes:** eighteen drafts, and roughly 2,500 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -110,7 +110,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the seventeen drafts:
+Counted across the eighteen drafts:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -162,6 +162,9 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **адил талт / элдэв талт гурвалжин** | equilateral / scalene triangle | `geometry/triangles-and-congruence` L1 | throughout |
 | **алс дотоод өнцөг** | remote interior angles | `geometry/triangles-and-congruence` L2 | throughout L2 |
 | **өөртэйгөө тэнцэх чанар** | Reflexive Property | `geometry/triangles-and-congruence` L6 | 1 |
+| **хүндийн төв** | centroid | `geometry/relationships-in-triangles` L3 | throughout L3 |
+| **өндрийн огтлолцлын цэг** | orthocenter | `geometry/relationships-in-triangles` L4 | ~15, incl. the lesson title |
+| **дундаж шугам** | midsegment | `geometry/relationships-in-triangles` L5 | throughout L5 |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -285,8 +288,23 @@ need later.
 | **солбисон** | **skew lines** (12-р анги) | *alternate* angles — the obvious Russian-tradition calque | **not used**; the pair names state their positions instead |
 | **огтлогч** | a circle's **secant** (10-р анги) | *transversal* | full **«огтлогч шулуун»** throughout, never the bare word, so `geometry/circles` keeps «огтлогч» |
 
-Both are recorded in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the remaining
-ten geometry topics inherit them instead of rediscovering them.
+**A third one turned up in unit 5, and it needed handling differently** —
+which is what turned this from an incident into a rule.
+
+| Word | А/492 uses it for | Wanted by | Kind |
+|---|---|---|---|
+| **медиан** | the **statistical median** (10-р анги, 4 uses; corpus 146, all statistics) | a triangle's median | **cross-strand** |
+
+A statistics lesson and a geometry lesson never share a page, so unlike the
+first two this one is **managed rather than avoided**: the term is introduced
+as **«гурвалжны медиан»** and shortened only inside the lesson. The rule the
+strand now follows:
+
+> **In-strand collision → the word is unavailable. Cross-strand collision →
+> keep the head noun on first use.**
+
+All three, and that rule, are in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the
+remaining eight geometry topics inherit them instead of rediscovering them.
 
 **What replaced «солбисон», and the one thing worth your eye.** The four
 transversal pair names are built to state their own positions:
@@ -395,6 +413,7 @@ introduces.
 | Law of Syllogism | `geometry/reasoning-and-proof` `geo2-pr-4` | lesson 3 teaches the move, never the name |
 | same-side exterior angles | `geometry/parallel-and-perpendicular` `geo3-ty-2` | lesson 1 teaches four pair types, not this fifth one |
 | "perpendicular to one of two parallels ⟹ perpendicular to the other" | `geometry/parallel-and-perpendicular` `geo3-ty-4` | nowhere — the only one of these that is a theorem rather than a term |
+| Heron's formula, the law of sines, Thales' theorem | `geometry/relationships-in-triangles` lesson 7 | nowhere — the law of sines is unit 8 |
 
 Three of the first four are in one topic. The Mongolian drafts coin all four and flag
 them; whether the **English** should introduce them in a lesson, or the

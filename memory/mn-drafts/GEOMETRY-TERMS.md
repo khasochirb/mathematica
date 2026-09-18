@@ -198,6 +198,24 @@ own positions, which is what the lessons have to explain in English anyway:
 *vertical angles* from unit 1. Flagged in the review pile; every geometry
 draft that uses these names should keep the full form.
 
+### The rule for the next collision: in-strand or cross-strand?
+
+**Added 18 Sep 2026, after «медиан» turned out to be a third case that needed
+handling differently from the first two.** А/492 fixes «медиан» for the
+**statistical** median (4 uses, all in the statistics strand; corpus 146, all
+statistics), and unit 5 needs it for a triangle's median.
+
+| | «солбисон», «огтлогч» | «медиан» |
+|---|---|---|
+| Both senses are | **geometry** — same strand | **geometry and statistics** — different strands |
+| Can they share a page? | yes | never |
+| So | **do not use the word** | **use it, with the head noun on first use** |
+
+So the rule this strand follows: **an in-strand collision means the word is
+unavailable; a cross-strand collision is managed by keeping the head noun**
+(«гурвалжны медиан» on first use, «медиан» thereafter inside the lesson).
+Check which kind you have before deciding.
+
 ---
 
 ## 5. Notation
