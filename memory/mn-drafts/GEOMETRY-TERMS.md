@@ -85,7 +85,7 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | sphere | **бөмбөрцөг** | ministry 1 · corpus 1 |
 | vertex | **орой** | ministry 1 · corpus 602 |
 | side | **тал** | ministry 16 · corpus 1166 |
-| diagonal | **диагонал** | dictionary |
+| diagonal | **диагональ** | **ministry 1** · corpus 33 · *corrected from the dictionary's «диагонал» 18 Sep 2026, ministry outranks it* |
 | exterior angle | **гадаад өнцөг** | **dictionary, exactly this** |
 | theorem | **теорем** | ministry 3 · corpus 82 |
 | axiom | **аксиом** | **dictionary, exactly this** |
@@ -197,6 +197,22 @@ own positions, which is what the lessons have to explain in English anyway:
 **«эсрэг талын …» always keeps «талын»**, because «эсрэг өнцөг» alone is
 *vertical angles* from unit 1. Flagged in the review pile; every geometry
 draft that uses these names should keep the full form.
+
+### A fourth collision, and this one is ours
+
+**Found 18 Sep 2026, drafting `quadrilaterals-and-polygons`.** §2 above records
+that **«эсрэг өнцөг»** for *vertical angles* came from the `mn-translation`
+skill glossary with **zero shipped uses** and no dictionary entry, and was
+flagged at the time. Unit 6 needs the same phrase for a parallelogram's
+**opposite angles** — same strand, four units apart, so by the rule below the
+word is unavailable and unit 6 writes **«эсрэг орших тал / өнцөг»** (~40 uses).
+
+**The cleaner fix is upstream:** *opposite* has the better claim on «эсрэг»,
+and *vertical angles* never had a grounded claim on anything. Candidates, all
+ungrounded: «оройн эсрэг өнцөг», «огтлолцлын эсрэг өнцөг», «вертикаль өнцөг».
+Not changed here — it is Khas's to rule on, and it is in the review pile.
+**The lesson for this file: a flagged ungrounded term is a debt, and this one
+came due four units later.**
 
 ### The rule for the next collision: in-strand or cross-strand?
 

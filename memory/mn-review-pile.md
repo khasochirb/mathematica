@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 18 Sep 2026, after the first five geometry topics.**
+Updated 18 Sep 2026, after the first six geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All eighteen
+**Voice reference §9 is fully applied and no longer a question.** All nineteen
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** eighteen drafts, and roughly 2,500 problem statements
+**Scale if it changes:** nineteen drafts, and roughly 2,750 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -110,7 +110,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the eighteen drafts:
+Counted across the nineteen drafts:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -165,6 +165,9 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **хүндийн төв** | centroid | `geometry/relationships-in-triangles` L3 | throughout L3 |
 | **өндрийн огтлолцлын цэг** | orthocenter | `geometry/relationships-in-triangles` L4 | ~15, incl. the lesson title |
 | **дундаж шугам** | midsegment | `geometry/relationships-in-triangles` L5 | throughout L5 |
+| **эсрэг орших тал / өнцөг** | opposite sides / angles | `geometry/quadrilaterals-and-polygons` | ~40 — see 4e |
+| **дельтоид** | kite | `geometry/quadrilaterals-and-polygons` L5 | throughout L5 |
+| **дараалсан өнцөг** · **харилцан хуваах** | consecutive angles · bisect each other | `geometry/quadrilaterals-and-polygons` L2–L3 | throughout |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -304,7 +307,24 @@ strand now follows:
 > keep the head noun on first use.**
 
 All three, and that rule, are in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the
-remaining eight geometry topics inherit them instead of rediscovering them.
+remaining seven geometry topics inherit them instead of rediscovering them.
+
+**A fourth one turned up in unit 6, and it is ours rather than the ministry's
+— which makes it the only one you can actually fix.** Unit 1 took
+**«эсрэг өнцөг»** for *vertical angles* from the `mn-translation` skill
+glossary; it had **zero shipped uses**, no dictionary entry, and was flagged
+at the time. Unit 6 needs the same phrase for a parallelogram's **opposite
+angles** — same strand, four units apart. So unit 6 writes «эсрэг орших тал /
+өнцөг» about 40 times.
+
+**Which term should move is the question.** *Opposite* has the better claim on
+«эсрэг», because that is what the word means; *vertical angles* never had a
+grounded claim on anything. Candidates for vertical angles, all ungrounded:
+«оройн эсрэг өнцөг», «огтлолцлын эсрэг өнцөг», «вертикаль өнцөг». **I did not
+change it** — that would rewrite a term already settled across four drafts on
+my own initiative. But it is cheap now and expensive after seven more topics,
+and it is the one place where a flagged ungrounded choice has since cost
+something measurable.
 
 **What replaced «солбисон», and the one thing worth your eye.** The four
 transversal pair names are built to state their own positions:
