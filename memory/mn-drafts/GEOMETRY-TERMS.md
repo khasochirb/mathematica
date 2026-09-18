@@ -151,7 +151,9 @@ built from grounded parts and defined on first use.
 | converse | **урвуу өгүүлбэр** | dictionary p. 84 prints «урвуу хэллэг»; see note |
 | translation (transformation) | **шилжүүлэлт** | 0 everywhere |
 | reflection | **тусгал** | corpus 9 |
-| dilation | **томсголт** | 0 everywhere |
+| dilation | **гомотет** | **ministry 1** · corpus 7 — corrected 18 Sep 2026, see §5 |
+| enlargement ($k>1$) | **томсголт** | 0 everywhere — the freed-up coinage, in its literal sense |
+| reduction ($0<k<1$) | **багасгалт** | 0 everywhere — pairs with the above |
 
 **«тэнцүү» for congruent, and why not «конгруэнт».** The dictionary lists four
 renderings and «конгруэнт» among them, but it scores zero in the ministry, the
@@ -242,3 +244,34 @@ Check which kind you have before deciding.
 - Degrees: $90^\circ$, and the suffix hyphenates — $90^\circ$-тай — per voice
   reference §8.
 - The ЭШ interval convention $]a, b[$ does not arise in this strand.
+
+---
+
+## 5. When grounding corrects this file, not the draft
+
+**Found 18 Sep 2026, drafting `similarity`.** §3 listed *dilation* →
+**«томсголт»** with «0 everywhere», i.e. a coinage this file invented. The
+grounding pass for unit 7 found the ministry already has the word:
+
+> «Координатын хавтгай дахь дүрсийг **гомотетоор** хувиргах, хувиргалтыг
+> матрицаар илэрхийлэх» — А/492, 10-р анги
+
+and the ЭШ bank uses it with a coefficient, exactly as unit 7 needs:
+«$k=-2$ **коэффициенттэй гомотетоор** хувиргахад». Ministry 1 · corpus 7
+beats a coinage at 0, so the table above now reads **«гомотет»**.
+
+**This is the second time a grounding pass corrected this file rather than
+confirming it** (the first: «диагонал» → «диагональ», drafting unit 6). The
+pattern is the same both times: a term entered here from a *lesson's* needs,
+before any topic actually exercised it, and the real check only happened when
+a topic did. **A row in this file is a proposal until a topic grounds it.**
+Rows marked «0 everywhere» are the ones to re-ground, not to trust.
+
+**The freed coinage found its real job.** «томсголт» literally means
+*enlargement*, which is precisely why it was wrong for *dilation* — a dilation
+with $0 < k < 1$ shrinks. Unit 7 uses it for *enlargement* and **«багасгалт»**
+for *reduction*, so nothing is wasted and each word says what it means.
+
+**Downstream:** `transformations` (unit 13) inherits «гомотет», not «томсголт».
+Nothing has shipped on either, so this correction is free today and would not
+have been in three units' time.

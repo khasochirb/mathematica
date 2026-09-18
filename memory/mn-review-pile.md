@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 18 Sep 2026, after the first six geometry topics.**
+Updated 18 Sep 2026, after the first seven geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All nineteen
+**Voice reference §9 is fully applied and no longer a question.** All twenty
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** nineteen drafts, and roughly 2,750 problem statements
+**Scale if it changes:** twenty drafts, and roughly 2,900 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -83,7 +83,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 205 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 234 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -104,34 +104,56 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178.
+> rather than 178. **It is 234 as of 18 Sep** — see the note under the table;
+> the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the nineteen drafts:
+Counted across the twenty drafts, 18 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
 | `algebra-1/linear-equations` | 20 |
+| `geometry/relationships-in-triangles` | 14 |
+| `geometry/similarity` | 11 |
 | `algebra-1/inequalities` | 10 |
 | `algebra-1/systems-of-equations` | 8 |
 | `10/quadratic-functions` | 7 |
 | `algebra-1/linear-functions` | 7 |
 | `geometry/foundations` | 5 |
 | `esh/number-sets-and-intervals` | 3 |
+| `geometry/quadrilaterals-and-polygons` | 3 |
 | `algebra-1/functions` | 1 |
-| **total** | **205** |
+| `geometry/parallel-and-perpendicular` | 1 |
+| **total** | **234** |
 
-Exponential functions carries four fifths of them because growth factors
+> **This table is regenerated, not maintained.** It read 205 across nineteen
+> drafts until 18 Sep, when re-running the count found three geometry drafts
+> had been written after the survey and never added — the number drifts every
+> time a draft lands. Regenerate before acting on it:
+>
+> ```
+> python3 - <<'PY'
+> import re, pathlib
+> for p in sorted(pathlib.Path('memory/mn-drafts').glob('*.md')):
+>     if p.name in ('README.md', 'GEOMETRY-TERMS.md'): continue
+>     t = p.read_text(encoding='utf-8')
+>     n = sum(len(re.findall(r'\d\.\d', m.group(1)))
+>             for m in re.finditer(r'(?<!\\)\$([^$\n]+?)(?<!\\)\$', t))
+>     if n: print(f'{p.name:55} {n}')
+> PY
+> ```
+
+Exponential functions carries three fifths of them because growth factors
 (`$b = 1.05$`, `$V = 800(0.75)^t$`) are decimals by nature.
 
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-205 places rather than eight. It also touches `check[]` neighbourhoods, though
+234 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -168,6 +190,9 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **эсрэг орших тал / өнцөг** | opposite sides / angles | `geometry/quadrilaterals-and-polygons` | ~40 — see 4e |
 | **дельтоид** | kite | `geometry/quadrilaterals-and-polygons` L5 | throughout L5 |
 | **дараалсан өнцөг** · **харилцан хуваах** | consecutive angles · bisect each other | `geometry/quadrilaterals-and-polygons` L2–L3 | throughout |
+| **шууд бус хэмжилт** | indirect measurement | `geometry/similarity` L6 | a section heading, ~6 |
+| **томсголт** · **багасгалт** | enlargement · reduction | `geometry/similarity` L6 | 4 — see below |
+| **геометр дундаж** | geometric mean | *reserved, used nowhere yet* | 0 — booked for unit 8 |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -204,6 +229,34 @@ above are worth your eye before the other twelve geometry topics are drafted:
 **«цацраг»**, because its 10 corpus uses are all *light* rays and it is threaded
 through five lessons, and **«дэлгэсэн өнцөг»**, because *straight* and *right*
 both want «тэгш» in Mongolian and lesson 6 leans hard on keeping them apart.
+
+### A coinage that grounding overturned — «томсголт» → «гомотет»
+
+**Worth your eye because it says something about the other twenty-odd rows
+above.** `GEOMETRY-TERMS.md` had booked **«томсголт»** for *dilation*, marked
+«0 everywhere» — a coinage. Drafting `geometry/similarity` grounded it
+properly and found the ministry already has the word:
+
+> «Координатын хавтгай дахь дүрсийг **гомотетоор** хувиргах» — А/492, 10-р анги
+
+with the ЭШ bank using it in exactly this unit's shape: «$k=-2$
+**коэффициенттэй гомотетоор** хувиргахад». Ministry 1 · corpus 7 against a
+coinage at 0, so the drafts and the terms file now say **«гомотет»**. Nothing
+shipped on the coinage, so the correction is free.
+
+**«томсголт» was then re-used for what it literally means** — *enlargement*
+($k>1$), paired with **«багасгалт»** for *reduction* — which is exactly why it
+was wrong for *dilation*, since a dilation with $0<k<1$ shrinks.
+
+**The lesson, and the reason it is here rather than only in the terms file.**
+This is the **second** grounding pass to correct that file instead of
+confirming it («диагонал» → «диагональ» was the first). Both times the term
+had entered from a *lesson's* needs before any topic exercised it. So: **a row
+in `GEOMETRY-TERMS.md` is a proposal until a topic grounds it**, and the rows
+marked «0 everywhere» — which is most of §3 above — are the ones most likely
+to have a real Mongolian word waiting behind them. That is an argument for
+ruling on the list rather than letting it ship by default, not an argument
+that the list is wrong.
 
 ---
 
@@ -307,7 +360,7 @@ strand now follows:
 > keep the head noun on first use.**
 
 All three, and that rule, are in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the
-remaining seven geometry topics inherit them instead of rediscovering them.
+remaining six geometry topics inherit them instead of rediscovering them.
 
 **A fourth one turned up in unit 6, and it is ours rather than the ministry's
 — which makes it the only one you can actually fix.** Unit 1 took
@@ -384,10 +437,16 @@ Smaller than it looks — ЭШ is Mongolian-only, and the SAT and IB hubs are
 English-only by the locked decision in `memory/expansion-vision.md` §4.7, so
 those forms reach that student through those hubs anyway.
 
-**Cost to reverse:** one find-and-replace, about 60 occurrences in one file.
-This is the most visible divergence from an English mirror in any draft, and
-it is fully reversible, which is why I made the call rather than blocking the
-topic on it.
+**Cost to reverse:** one find-and-replace, about 75 occurrences across two
+files — `geometry/similarity` lesson 3 now rides on the same call, writing the
+similarity criteria as **ӨӨ · ТТТ · ТӨТ төстэйн шинж**. This is the most
+visible divergence from an English mirror in any draft, and it is fully
+reversible, which is why I made the call rather than blocking the topics on it.
+
+**One thing survives either ruling: the qualifier.** «ТТТ **тэнцүү**-гийн
+шинж» and «ТТТ **төстэй**-н шинж» are different theorems, and the English
+distinguishes them only by context ("SSS congruence" vs "SSS similarity"). The
+Mongolian says which one every time, whichever alphabet the letters end up in.
 
 ## 6. Bugs found while drafting that are not translation questions
 
