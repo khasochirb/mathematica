@@ -89,8 +89,8 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | ring, annulus | **цагираг** | corpus 11 |
 | shaded region | **будсан муж** | «будсан» **shipped 31** + «муж» dictionary — the strand's only coinage in unit 11 |
 | strip / band | **зурвас** | **shipped 25** |
-| volume | **эзэлхүүн** | ministry 1 · corpus 23 |
-| surface area | **гадаргуугийн талбай** | **shipped 22** · corpus 32 |
+| volume | **эзэлхүүн** | ministry 1 · corpus 23 — **but «эзлэхүүн» scores corpus 140; see the note below** |
+| surface area | **гадаргуугийн талбай** | **shipped 32** · skill glossary — the ministry writes «гадаргуун»; see the note below |
 | net | **дэлгээс** | **shipped 11** · corpus 21 |
 | prism | **призм** | ministry 1 · **shipped 16** · corpus 33 |
 | pyramid | **пирамид** | ministry 1 · corpus 75 |
@@ -128,6 +128,29 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | composite figure | **нийлмэл дүрс** | **shipped 7** |
 | figure | **дүрс** | ministry 17 · corpus 162 |
 | solid | **биет** | ministry 3 · corpus 52 |
+
+**Two А/492 spellings this strand does NOT follow, and why.** Found
+19 Sep 2026 drafting `surface-area-and-volume`, both on the single ministry
+line that names all five solids: «Пирамид, цилиндр, призм, бөмбөрцөг, конусын
+**гадаргуун талбай**, **эзлэхүүнийг** олох томьёог мэдэх, хэрэглэх».
+
+| term | А/492 | shipped mirrors | ЭШ bank | adopted |
+|---|---|---|---|---|
+| surface area | гадаргуу**н** 1 | гадаргуу**гийн** **32** | гадаргуун 10 | **гадаргуугийн** |
+| volume | эз**лэ**хүүн 1 · эз**э**лхүүн 1 | эзлэхүүн **61** · эзэлхүүн 18 | эзлэхүүн **79** · эзэлхүүн 5 | **эзэлхүүн**, flagged |
+
+The first is settled: «гадаргуугийн» has shipped 32 times, the skill glossary
+fixes it, and «гадаргуун» is probably a slip — «гадаргуу» ends in a long vowel
+and takes «-гийн». А/492 makes others: it prints «томъёо» with a hard sign.
+
+**The second is NOT settled and is in the review pile as 2f.** Here the
+ministry is split one-to-one and, by the tie-breaker this file adopted in §1,
+the corpus should decide — and the corpus says **«эзлэхүүн» by 140 to 23**,
+the ЭШ bank by 79 to 5. The drafts keep «эзэлхүүн» because it has shipped and
+the skill glossary lists it, **but that is the shipped-term argument
+overriding the stated rule**, which is exactly the kind of quiet exception
+this file exists to prevent. Khas rules; until then, «эзэлхүүн» with this note
+attached.
 
 **When А/492 contradicts itself, the corpus breaks the tie.** Found
 19 Sep 2026, drafting `coordinate-geometry`. The standard writes **«параллел»**

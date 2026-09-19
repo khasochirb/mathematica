@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 19 Sep 2026, after the first eleven geometry topics.**
+Updated 19 Sep 2026, after the first twelve geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-four
+**Voice reference §9 is fully applied and no longer a question.** All twenty-five
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** twenty-four drafts, and roughly 3,700 problem statements
+**Scale if it changes:** twenty-five drafts, and roughly 3,900 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -119,7 +119,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-four drafts, 19 Sep 2026:
+Counted across the twenty-five drafts, 19 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -207,6 +207,49 @@ once** (nine of them use «параллель», `parallel-and-perpendicular` th
 long document assembled by several hands, and the next split it contains will
 be decided by whichever rule is in force. Ruling once settles all of them.
 Recorded in `GEOMETRY-TERMS.md` §1 as the working rule until you say otherwise.
+
+---
+
+### 2f. «эзэлхүүн» or «эзлэхүүн»? — **the corpus says our shipped term is the minority one**
+
+**Found 19 Sep 2026 drafting `geometry/surface-area-and-volume`.** Same shape
+as 2e, but this one is sharper: the tie-breaker I proposed in 2e points away
+from a term that is **already live in the grade 6–8 mirrors**.
+
+| form | А/492 | shipped mirrors | ЭШ bank | total corpus |
+|---|---|---|---|---|
+| **эзэлхүүн** | 1 | 18 | 5 | **23** |
+| **эзлэхүүн** | 1 | **61** | **79** | **140** |
+
+А/492 writes both, one each: «эзэлхүүн» on the calculus line, «эзлэхүүн» on
+the line that names all five solids. So the ministry is split exactly as it is
+on «параллел/параллель», and **2e's rule (a split source is broken by the
+corpus) says «эзлэхүүн» — by six to one overall, and by sixteen to one in the
+ЭШ bank, which is the exam our students actually sit.**
+
+**The drafts keep «эзэлхүүн»**, because it is what shipped and because your
+`mn-translation` skill glossary lists it. I want to be plain that this is **the
+shipped-term argument overriding the rule I proposed one item earlier**, and I
+did not flip it because changing a live term on my own authority is not my
+call.
+
+**Either answer creates work, and the second creates a rule:**
+
+- **«эзлэхүүн» wins** → 18 shipped strings change, plus this draft, plus an
+  edit to the skill glossary.
+- **«эзэлхүүн» wins** → 2e needs an explicit carve-out: *a term that has
+  already shipped is not overturned by a corpus count.* That carve-out should
+  be written down now rather than improvised at the next split.
+
+**A related one you do not need to rule on, recorded so you can see the
+pattern.** The same ministry line spells *surface area* «гадаргуу**н** талбай»
+where 32 shipped strings and the skill glossary write «гадаргуу**гийн**
+талбай». The drafts keep «гадаргуугийн»: it has shipped, the glossary fixes
+it, and «гадаргуун» is most likely a slip, since «гадаргуу» ends in a long
+vowel and takes «-гийн». А/492 makes others — it prints «томъёо» with a hard
+sign (flagged in unit 8) and «эзлэхүүн» on that same line. **The standard is
+authoritative on vocabulary, not on orthography**, and that distinction is
+worth stating once.
 
 ---
 
@@ -437,7 +480,7 @@ strand now follows:
 > keep the head noun on first use.**
 
 All three, and that rule, are in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the
-remaining two geometry topics inherit them instead of rediscovering them.
+remaining one geometry topic inherits them instead of rediscovering them.
 
 **A fourth one turned up in unit 6, and it is ours rather than the ministry's
 — which makes it the only one you can actually fix.** Unit 1 took

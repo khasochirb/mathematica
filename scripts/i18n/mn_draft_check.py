@@ -260,10 +260,19 @@ def check(corpus: str, slug: str) -> int:
     for l in d['lessons']:
         want += [p['id'] for p in l['workedExamples']] + [p['id'] for p in l['tryIt']]
     want += [p['id'] for p in d['practice']] + [p['id'] for p in d['testYourself']]
+    # The UNKNOWN-ID scan derives a stem from the first id and looks for
+    # anything shaped like it that the source does not have. The stem must be
+    # matched at a TOKEN boundary: `geometry/surface-area-and-volume` opens with
+    # `pr-we1` (prisms), giving the stem `pr`, and its practice ids are
+    # `geo11-pr-1` — which contains `pr-1` as a substring. Without the
+    # lookbehind every correctly-mirrored practice id was reported as invented,
+    # eleven findings on a clean draft. An unanchored scan on a two-letter stem
+    # is a false-positive machine, and a check that cries wolf gets ignored.
     stem = want[0].rsplit('-', 2)[0] if want else ''
     fails += [f'MISSING ID: {i}' for i in want if i not in content]
     fails += [f'UNKNOWN ID: {i}' for i in
-              sorted(set(re.findall(re.escape(stem) + r'-[a-z0-9\-]+', content)) - set(want))]
+              sorted(set(re.findall(r'(?<![A-Za-z0-9-])' + re.escape(stem) + r'-[a-z0-9\-]+',
+                                    content)) - set(want))]
 
     tables = re.findall(r'### Interactive.*?\n\n((?:\|.*\n)+)', content)
     if len(tables) != len(d['lessons']):
