@@ -55,7 +55,7 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | angle bisector | **өнцгийн биссектрис** | **dictionary, exactly this** · «биссектрис» corpus 8 |
 | midpoint | **дундаж цэг** | **ministry 2** («хэрчмийн дундаж цэгийн координат») · corpus 23 |
 | distance | **зай** | dictionary sense 1 · ministry «хоёр цэгийн хоорондох зай» |
-| parallel | **параллель** | ministry 2 · corpus 64 |
+| parallel | **параллель** | ministry 2 · corpus 64 — the ministry is split, see the note below |
 | perpendicular | **перпендикуляр** | ministry 4 · corpus 26 |
 | triangle | **гурвалжин** | ministry 1 · corpus 184 |
 | polygon | **олон өнцөгт** | ministry 3 · corpus 14 (the book sets it solid; see note) |
@@ -99,6 +99,14 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | theorem | **теорем** | ministry 3 · corpus 82 |
 | axiom | **аксиом** | **dictionary, exactly this** |
 | scale factor | **масштабын коэффициент** | **shipped 12** · corpus 24 |
+| coordinate | **координат** | **ministry 29** · corpus 189 |
+| coordinate plane | **координатын хавтгай** | **ministry 7** · corpus 21 |
+| origin | **координатын эх** | ministry 1 · **corpus 56** |
+| slope | **налалт** | **ministry 6** · corpus 148 |
+| equation of a line | **шулууны тэгшитгэл** | **ministry 6** · corpus 38 |
+| equation of a circle | **тойргийн тэгшитгэл** | **ministry 1** · corpus 12 · dictionary p. 56, p. 177 |
+| distance between two points | **хоёр цэгийн хоорондох зай** | **ministry 2, exactly this** |
+| midpoint of a segment | **хэрчмийн дундаж цэг** | **ministry 2, exactly this** |
 | symmetry | **тэгш хэм** | ministry 2 · corpus 81 |
 | rotation | **эргүүлэлт** | ministry 1 · corpus 17 |
 | hypotenuse | **гипотенуз** | dictionary · corpus 28 |
@@ -115,6 +123,19 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | composite figure | **нийлмэл дүрс** | **shipped 7** |
 | figure | **дүрс** | ministry 17 · corpus 162 |
 | solid | **биет** | ministry 3 · corpus 52 |
+
+**When А/492 contradicts itself, the corpus breaks the tie.** Found
+19 Sep 2026, drafting `coordinate-geometry`. The standard writes **«параллел»**
+(no soft sign) five times and **«параллель»** twice — including the short form
+in the very line that unit 10 lesson 4 is built on. `docs/MONGOLIAN.md` fixes
+the order ministry → dictionary → corpus but says nothing about a source that
+disagrees with itself.
+
+**Adopted: «параллель»**, because the corpus is decisive (64 against ~12) where
+the ministry is split 5–2. The rule this sets — *a split source does not
+outrank a unanimous one further down the order* — is mine, not the owner's, and
+it is in the review pile for a ruling. It governs every «параллель» in nine
+geometry drafts, so it is not a small call.
 
 **«олон өнцөгт», written apart.** The book sets it solid («олонөнцөгт», p. 85,
 p. 168) exactly as it sets «олонгишүүнт» solid, and the ministry writes it
@@ -303,6 +324,10 @@ range).
 > **Corrected rule: the dictionary's A–I range predicts nothing on its own.
 > What predicts cost is whether the topic is grade 10–12 content.** The
 > dictionary is a tiebreaker, not the driver.
+>
+> **Checked 19 Sep 2026:** `coordinate-geometry` came in at **three coinages in
+> six lessons**, the cheapest topic in the strand, and А/492 names four of its
+> six lessons almost verbatim. The revised rule holds.
 >
 > **Revised prediction for the remaining four:** `coordinate-geometry` cheap
 > (А/492 covers it heavily — the circle equation, the distance formula, the

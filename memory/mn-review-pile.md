@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 19 Sep 2026, after the first nine geometry topics.**
+Updated 19 Sep 2026, after the first ten geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-two
+**Voice reference §9 is fully applied and no longer a question.** All twenty-three
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** twenty-two drafts, and roughly 3,300 problem statements
+**Scale if it changes:** twenty-three drafts, and roughly 3,500 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -60,8 +60,16 @@ English mirror in 24 places. Verified mechanically safe first: **no `check[]`
 entry in that topic uses `m` as a symbol.** The gym problem keeps `C(m)` where
 $m$ is *months*, deliberately untouched.
 
-Reversing it is a find-and-replace in one file. I followed the ministry because
-a student who meets $m$ here and $k$ on the ЭШ paper is being mis-prepared.
+I followed the ministry because a student who meets $m$ here and $k$ on the
+ЭШ paper is being mis-prepared.
+
+> **Updated 19 Sep 2026: this now spans two files.** `geometry/coordinate-geometry`
+> lessons 3–5 are the same material (slope, slope-intercept form,
+> parallel/perpendicular by slope), so they use `k` too — otherwise the two
+> Mongolian mirrors would disagree with **each other**, which is worse than
+> either disagreeing with the English. Verified the same way before writing:
+> of that topic's **180 `check[]` entries, none uses a bare `m` as a symbol**.
+> Reversing it is now a find-and-replace across two files.
 
 ### 2b. The decimal comma on money — **applied, first instance worth seeing**
 
@@ -83,7 +91,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 251 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 265 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -104,19 +112,20 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 251 as of 19 Sep** — see the note under the table;
+> rather than 178. **It is 265 as of 19 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-two drafts, 19 Sep 2026:
+Counted across the twenty-three drafts, 19 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
 | `algebra-1/linear-equations` | 20 |
+| `geometry/coordinate-geometry` | 14 |
 | `geometry/relationships-in-triangles` | 14 |
 | `geometry/circles` | 12 |
 | `geometry/similarity` | 11 |
@@ -130,7 +139,7 @@ Counted across the twenty-two drafts, 19 Sep 2026:
 | `geometry/quadrilaterals-and-polygons` | 3 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **251** |
+| **total** | **265** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -155,11 +164,48 @@ Exponential functions carries three fifths of them because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-251 places rather than eight. It also touches `check[]` neighbourhoods, though
+265 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
 `$...$`.
+
+---
+
+### 2e. А/492 contradicts itself, and the authority order has no tie-breaker — **a rule I invented, please rule on it**
+
+**Found 19 Sep 2026, drafting `geometry/coordinate-geometry`.** This is not a
+terminology question; it is a question about the rule that decides
+terminology, which is why it sits in its own item.
+
+`docs/MONGOLIAN.md` fixes the authority order **ministry А/492 → the printed
+dictionary → the shipped corpus**. It says nothing about a source that
+disagrees with **itself**. А/492 does:
+
+| Spelling | А/492 | corpus |
+|---|---|---|
+| **параллел** (no soft sign) | **5** | ~12 |
+| **параллель** (soft sign) | **2** | **64** |
+
+Both are in the standard. The short form is in one of the two lines that
+`coordinate-geometry` lesson 4 is built on: «Хоёр шулууны **параллел**,
+перпендикуляр байх нөхцөлийг налалт ашиглан тодорхойлох».
+
+**What the drafts do:** they keep **«параллель»**, because the corpus is
+decisive (64 against ~12) where the ministry is split 5–2. The working rule
+that produces that answer is:
+
+> **A split source does not outrank a unanimous one further down the order.**
+
+**That rule is mine, not yours.** The opposite reading — *the ministry's more
+frequent form wins, full stop* — is just as defensible from the text of
+`MONGOLIAN.md`, and it would flip the spelling in **every geometry draft at
+once** (nine of them use «параллель», `parallel-and-perpendicular` throughout).
+
+**Why it matters beyond this word.** The same situation will recur: А/492 is a
+long document assembled by several hands, and the next split it contains will
+be decided by whichever rule is in force. Ruling once settles all of them.
+Recorded in `GEOMETRY-TERMS.md` §1 as the working rule until you say otherwise.
 
 ---
 
@@ -199,6 +245,8 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **төвийн өнцөг** | central angle | `geometry/circles` L1, L3, L6 | throughout |
 | **харгалзах нум** | intercepted arc | `geometry/circles`, every lesson | **has a rival, see 4f** |
 | **бага нум / их нум** | minor / major arc | `geometry/circles` L1 | 4 |
+| **зайн томьёо** · **дундаж цэгийн томьёо** | distance / midpoint formula | `geometry/coordinate-geometry` L1–L2 | throughout — the ministry states the task, never names the formula |
+| **координатын баталгаа** | coordinate proof | `geometry/coordinate-geometry` L6 | lesson title |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -366,7 +414,7 @@ strand now follows:
 > keep the head noun on first use.**
 
 All three, and that rule, are in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the
-remaining four geometry topics inherit them instead of rediscovering them.
+remaining three geometry topics inherit them instead of rediscovering them.
 
 **A fourth one turned up in unit 6, and it is ours rather than the ministry's
 — which makes it the only one you can actually fix.** Unit 1 took

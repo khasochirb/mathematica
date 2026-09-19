@@ -169,12 +169,21 @@ def check(corpus: str, slug: str) -> int:
             fails.append(f'MATH SPANS A LINE BREAK (line {n} of the content, '
                          f'rewrap so $...$ stays on one line): {ln.strip()[:70]}')
 
-    for m in re.finditer(r'(?<!\\)\$([^$\n]+?)(?<!\\)\$', content):
+    # MATH_SPAN. The body allows an escaped `\$` — a literal dollar sign inside
+    # maths, which the English writes as `$\$3$` for a price. `[^$\n]` alone
+    # rejected that, so the span ended at the price's own `$` and the regex
+    # then paired the CLOSING delimiter of one price with the OPENING one of
+    # the next, reporting the ordinary prose between two prices as Cyrillic
+    # inside maths. Found 19 Sep 2026 in `geometry/coordinate-geometry`
+    # lesson 5, whose English source is «a $\$3$ base fare plus $\$2$ a mile».
+    MATH_SPAN = r'(?<!\\)\$((?:\\\$|[^$\n])+?)(?<!\\)\$'
+
+    for m in re.finditer(MATH_SPAN, content):
         if CYR.search(re.sub(r'\\text\{[^}]*\}', '', m.group(1))):
             fails.append(f'CYR-IN-MATH: ${m.group(1)}$')
 
     src_text = source.read_text(encoding='utf-8')
-    for m in re.finditer(r'(?<!\\)\$([^$\n]+?)(?<!\\)\$', content):
+    for m in re.finditer(MATH_SPAN, content):
         for c in MATH_COMMA.finditer(m.group(1)):
             period = c.group(0).replace('{,}', '.')
             if period in src_text:
