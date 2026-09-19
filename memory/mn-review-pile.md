@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 19 Sep 2026, after the first ten geometry topics.**
+Updated 19 Sep 2026, after the first eleven geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-three
+**Voice reference §9 is fully applied and no longer a question.** All twenty-four
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** twenty-three drafts, and roughly 3,500 problem statements
+**Scale if it changes:** twenty-four drafts, and roughly 3,700 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -91,7 +91,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 265 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 267 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -112,14 +112,14 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 265 as of 19 Sep** — see the note under the table;
+> rather than 178. **It is 267 as of 19 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-three drafts, 19 Sep 2026:
+Counted across the twenty-four drafts, 19 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -137,9 +137,10 @@ Counted across the twenty-three drafts, 19 Sep 2026:
 | `geometry/right-triangles-and-trig` | 5 |
 | `esh/number-sets-and-intervals` | 3 |
 | `geometry/quadrilaterals-and-polygons` | 3 |
+| `geometry/area-and-perimeter` | 2 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **265** |
+| **total** | **267** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -164,7 +165,7 @@ Exponential functions carries three fifths of them because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-265 places rather than eight. It also touches `check[]` neighbourhoods, though
+267 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -214,6 +215,27 @@ Recorded in `GEOMETRY-TERMS.md` §1 as the working rule until you say otherwise.
 Each is built from grounded parts, defined on first use, and flagged in its
 draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 
+> **Read this list by WHERE the terms cluster — it is a finding about the
+> sources, not about the drafting.** With eleven of thirteen geometry topics
+> drafted, the coinages are concentrated almost entirely in six of them:
+> `foundations`, `reasoning-and-proof`, `parallel-and-perpendicular`,
+> `triangles-and-congruence`, `relationships-in-triangles`,
+> `quadrilaterals-and-polygons`. Those six are exactly the **grades 7–9 plane
+> geometry and proof** topics. The five that fall outside that band cost
+> **one to four coinages each**: `right-triangles-and-trig` 1,
+> `area-and-perimeter` 1, `similarity` 2, `coordinate-geometry` 3,
+> `circles` 4.
+>
+> The reason is structural and is now `GEOMETRY-TERMS.md` §6 version 3:
+> **А/492 covers grades 10–12, the shipped grade 6–8 mirrors cover grades
+> 5–8, and grades 7–9 plane geometry falls in the gap between them.**
+>
+> So the honest summary of this whole section is: **as far as our three
+> sources record it, Mongolian school maths has no settled vocabulary for
+> plane-geometry proof.** If you know a source that does — a school textbook
+> series, a teachers' handbook — one pointer would retire most of this list
+> at once, and would be worth more than ruling on the terms one by one.
+
 | Term | For | Where | Uses |
 |---|---|---|---|
 | **тэг үржвэрийн чанар** | zero-product property | `quadratic-equations` L2 | titles the lesson's central idea |
@@ -247,6 +269,7 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **бага нум / их нум** | minor / major arc | `geometry/circles` L1 | 4 |
 | **зайн томьёо** · **дундаж цэгийн томьёо** | distance / midpoint formula | `geometry/coordinate-geometry` L1–L2 | throughout — the ministry states the task, never names the formula |
 | **координатын баталгаа** | coordinate proof | `geometry/coordinate-geometry` L6 | lesson title |
+| **будсан муж** | shaded region | `geometry/area-and-perimeter` L6 | throughout — both halves grounded |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -414,7 +437,7 @@ strand now follows:
 > keep the head noun on first use.**
 
 All three, and that rule, are in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the
-remaining three geometry topics inherit them instead of rediscovering them.
+remaining two geometry topics inherit them instead of rediscovering them.
 
 **A fourth one turned up in unit 6, and it is ours rather than the ministry's
 — which makes it the only one you can actually fix.** Unit 1 took

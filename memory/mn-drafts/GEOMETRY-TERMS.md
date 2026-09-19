@@ -83,7 +83,12 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | semicircle | **хагас тойрог** | corpus 2 |
 | point of tangency | **шүргэх цэг** | corpus 4 |
 | area | **талбай** | ministry 9 · corpus 506 · dictionary |
-| perimeter | **периметр** | corpus 59 |
+| perimeter | **периметр** | **shipped 40** · corpus 59 |
+| apothem | **апофем** | **dictionary p. 31, a headword with its own definition** · corpus 4 |
+| regular polygon | **зөв олон өнцөгт** | **ministry 1** |
+| ring, annulus | **цагираг** | corpus 11 |
+| shaded region | **будсан муж** | «будсан» **shipped 31** + «муж» dictionary — the strand's only coinage in unit 11 |
+| strip / band | **зурвас** | **shipped 25** |
 | volume | **эзэлхүүн** | ministry 1 · corpus 23 |
 | surface area | **гадаргуугийн талбай** | **shipped 22** · corpus 32 |
 | net | **дэлгээс** | **shipped 11** · corpus 21 |
@@ -326,8 +331,26 @@ range).
 > dictionary is a tiebreaker, not the driver.
 >
 > **Checked 19 Sep 2026:** `coordinate-geometry` came in at **three coinages in
-> six lessons**, the cheapest topic in the strand, and А/492 names four of its
-> six lessons almost verbatim. The revised rule holds.
+> six lessons** and А/492 names four of its six lessons almost verbatim. The
+> revised rule held there.
+>
+> **And then failed, same day, on `area-and-perimeter` — so here is version 3.**
+> That topic is grades 5–8 mensuration, so А/492 is nearly silent and version 2
+> predicted a dozen coinages. **It cost one.** What carried it was the third
+> source both earlier versions left out: the **shipped grade 6–8 Mongolian
+> mirrors**, where «нийлмэл дүрс» scores 15, «тойргийн урт» 21, «зурвас» 25 and
+> «параллелограммын талбай» 6 — all of them **zero** in the ЭШ bank.
+>
+> **Version 3: a topic is cheap when it is covered by А/492 (grades 10–12) OR
+> by the shipped grade 6–8 mirrors. It is dear only when it falls in the gap
+> between them — grades 7–9 plane geometry and proof.** That fits all eleven
+> topics drafted so far, which neither earlier version did.
+>
+> **The consequence worth stating:** §3's forty-odd coinages are concentrated
+> almost entirely in the six grades-7–9 topics. Read the other way, that says
+> **Mongolian school maths, as far as these three sources record it, has no
+> settled vocabulary for plane-geometry proof.** That is a property of the
+> sources, and the expensive part of the strand is now behind us.
 >
 > **Revised prediction for the remaining four:** `coordinate-geometry` cheap
 > (А/492 covers it heavily — the circle equation, the distance formula, the
