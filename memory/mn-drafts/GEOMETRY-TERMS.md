@@ -128,6 +128,18 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | composite figure | **нийлмэл дүрс** | **shipped 7** |
 | figure | **дүрс** | ministry 17 · corpus 162 |
 | solid | **биет** | ministry 3 · corpus 52 |
+| transformation | **хувиргалт** | **ministry 10** · corpus 32 |
+| translation (slide) | **параллель зөөлт** | **ministry 1, exactly this** — «дүрсийг параллель зөөлтөөр хувиргах» |
+| dilation | **гомотет** | **ministry 1** · corpus 7 — «дүрсийг гомотетоор хувиргах» |
+| axis of symmetry | **тэгш хэмийн тэнхлэг** | corpus 6 |
+| point / rotational symmetry | **цэгийн / эргэлтийн тэгш хэм** | compositional on «тэгш хэм»; the ministry writes «тэгш хэмээр (цэгийн, тэнхлэгийн)» |
+| composition (of transformations) | **угсраа хувиргалт** | **dictionary p. 73**, which glosses it «(композиц)» itself |
+| preimage | **эх дүрс** | **corpus 32** |
+| vector | **вектор** | **ministry 26** · corpus 129 |
+| matrix · identity matrix | **матриц · нэгж матриц** | **ministry 18 · 1** · corpus 118 |
+| transformation matrix | **хувиргалтын матриц** | **ministry 1, exactly this** · corpus 13 |
+| determinant | **тодорхойлогч** | **ministry 2, exactly this** — «2x2 хэмжээстэй матрицын тодорхойлогчийг олох»; «детерминант» is 0 everywhere |
+| «2×2» (matrix size) | **$2 \times 2$ хэмжээстэй** | **ministry 2, exactly this** |
 
 **Two А/492 spellings this strand does NOT follow, and why.** Found
 19 Sep 2026 drafting `surface-area-and-volume`, both on the single ministry
@@ -214,8 +226,10 @@ built from grounded parts and defined on first use.
 | proof | **баталгаа** | corpus 11 |
 | postulate | **постулат** | dictionary prints «постулат (аксиом)» inside a sentence, not as a headword |
 | converse | **урвуу өгүүлбэр** | dictionary p. 84 prints «урвуу хэллэг»; see note |
-| translation (transformation) | **шилжүүлэлт** | 0 everywhere |
-| reflection | **тусгал** | corpus 9 |
+| ~~translation~~ | ~~**шилжүүлэлт**~~ | **moved to §1 as «параллель зөөлт»** — corrected 19 Sep 2026, see §9 |
+| reflection | **тусгал** | corpus 9 — but the ministry and the dictionary both say «тэгш хэм»; review pile 4g, see §9 |
+| rigid motion | **хатуу хөдөлгөөн** | compositional; «хөдөлгөөн» corpus 51, «хатуу» ordinary |
+| glide reflection | **гулсах тусгал** | 0 everywhere in every word order; both halves grounded separately |
 | dilation | **гомотет** | **ministry 1** · corpus 7 — corrected 18 Sep 2026, see §9 |
 | enlargement ($k>1$) | **томсголт** | 0 everywhere — the freed-up coinage, in its literal sense |
 | reduction ($0<k<1$) | **багасгалт** | 0 everywhere — pairs with the above |
@@ -474,3 +488,39 @@ for *reduction*, so nothing is wasted and each word says what it means.
 **Downstream:** `transformations` (unit 13) inherits «гомотет», not «томсголт».
 Nothing has shipped on either, so this correction is free today and would not
 have been in three units' time.
+
+**Found 19 Sep 2026, drafting `transformations` — the third and fourth times,
+and both in one pass.** §3 listed *translation* → **«шилжүүлэлт»** with «0
+everywhere»; it is still 0, and А/492 has had the word all along, in a line
+about exactly this lesson:
+
+> «Координатын хавтгай дахь дүрсийг **параллель зөөлтөөр** хувиргах,
+> хувиргалтыг матрицаар илэрхийлэх» — А/492, 10-р анги
+
+§3 had no entry at all for *composition*; the dictionary does, and glosses it
+itself: **«угсраа хувиргалт (композиц)»**, p. 73. Both are now §1 rows.
+
+The same pass turned up **«тодорхойлогч»** for *determinant* (ministry 2,
+verbatim) against **«детерминант»** at 0 — a coinage caught one draft before it
+was written rather than one unit after, which is the first time the order has
+gone that way.
+
+**Four corrections in eight units, and the shape has not changed:** every one
+was a row that entered from a lesson's needs before a topic exercised it
+(«диагонал», «томсголт», «шилжүүлэлт», and *composition*'s absence). The rule
+above holds and is worth restating in the strongest form the evidence now
+supports: **a «0 everywhere» row is not a coinage this file made, it is a
+question this file has not asked yet.** Of the seven such rows §3 carried
+before this unit, three have now been answered by a source; four remain.
+
+**And once, grounding pointed the other way.** For *reflection* both the
+ministry («дүрсийг **тэгш хэмээр (цэгийн, тэнхлэгийн)** хувиргах») and the
+dictionary («тэнхлэгийн хувь дахь **тэгшхэм**», p. 13, p. 73) say *symmetry*,
+against the shipped **«тусгал»** (corpus 9). Adopting the sources would give
+lessons 2 and 4 of `transformations` the same name, where the English keeps
+"Reflections" and "Symmetry" apart and lesson 4's content is precisely that a
+reflection can map a figure onto itself. The draft keeps «тусгал» and the
+divergence is **review pile 4g** — Khas's call, not this file's. It is the
+first time this file has knowingly declined a ministry word on grounds other
+than a spelling split (§4), and the reason is recorded so the decision can be
+reversed cheaply: nothing has shipped.

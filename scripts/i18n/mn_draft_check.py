@@ -178,17 +178,47 @@ def check(corpus: str, slug: str) -> int:
     # lesson 5, whose English source is «a $\$3$ base fare plus $\$2$ a mile».
     MATH_SPAN = r'(?<!\\)\$((?:\\\$|[^$\n])+?)(?<!\\)\$'
 
-    for m in re.finditer(MATH_SPAN, content):
-        if CYR.search(re.sub(r'\\text\{[^}]*\}', '', m.group(1))):
-            fails.append(f'CYR-IN-MATH: ${m.group(1)}$')
+    # Display maths, `$$...$$`, must be taken out FIRST. MATH_SPAN's body
+    # cannot contain `$`, so on `$$X$$` it skips the opening pair, matches
+    # `$X$` using the second delimiter of each pair, and leaves one orphan `$`
+    # at each end. On a wrapped paragraph the orphan dies at the line break
+    # and nothing shows; inside a step table, where a whole cell is one line,
+    # it pairs with the next span's opening delimiter and the Mongolian prose
+    # between them is reported as Cyrillic inside maths. Found 19 Sep 2026 in
+    # `geometry/transformations` lesson 7, the first step body to carry a
+    # display block — six findings, all phantom. Same family as the `\$` bug
+    # above: the regex was right about single spans and wrong about what sits
+    # next to them.
+    DISPLAY_SPAN = r'(?<!\\)\$\$(.+?)(?<!\\)\$\$'
+
+    def spans(text: str):
+        """Every maths span: display blocks first, then inline on what's left.
+
+        The display block is blanked out rather than deleted so the inline
+        pass sees the same line structure (newlines survive, everything else
+        becomes a space) — MATH_SPAN refuses to cross a line break and that
+        must keep meaning what it meant.
+        """
+        found = [m.group(1) for m in re.finditer(DISPLAY_SPAN, text, re.S)]
+        blanked = re.sub(DISPLAY_SPAN,
+                         lambda m: ''.join(c if c == '\n' else ' '
+                                           for c in m.group(0)),
+                         text, flags=re.S)
+        return found + [m.group(1) for m in re.finditer(MATH_SPAN, blanked)]
+
+    math = spans(content)
+
+    for s in math:
+        if CYR.search(re.sub(r'\\text\{[^}]*\}', '', s)):
+            fails.append(f'CYR-IN-MATH: ${s}$')
 
     src_text = source.read_text(encoding='utf-8')
-    for m in re.finditer(MATH_SPAN, content):
-        for c in MATH_COMMA.finditer(m.group(1)):
+    for s in math:
+        for c in MATH_COMMA.finditer(s):
             period = c.group(0).replace('{,}', '.')
             if period in src_text:
                 fails.append(f'MATH DECIMAL COMMA (review pile 2d is NOT applied): '
-                             f'«{c.group(0)}» in ${m.group(1)}$')
+                             f'«{c.group(0)}» in ${s}$')
 
     # OBJECTIVE MATH MODE. Every lesson route renders `{lesson.objective}` as a
     # bare string — app/math/<grade>/[topic]/[lesson]/page.tsx and the ЭШ learn

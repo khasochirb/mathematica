@@ -1,7 +1,8 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 19 Sep 2026, after the first twelve geometry topics.**
+Updated 19 Sep 2026, after all thirteen geometry topics — the strand is
+complete and this file now covers twenty-six drafts.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +10,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-five
+**Voice reference §9 is fully applied and no longer a question.** All twenty-six
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -91,7 +92,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 267 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 272 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -112,14 +113,14 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 267 as of 19 Sep** — see the note under the table;
+> rather than 178. **It is 272 as of 19 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-five drafts, 19 Sep 2026:
+Counted across the twenty-six drafts, 19 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -135,12 +136,13 @@ Counted across the twenty-five drafts, 19 Sep 2026:
 | `algebra-1/linear-functions` | 7 |
 | `geometry/foundations` | 5 |
 | `geometry/right-triangles-and-trig` | 5 |
+| `geometry/transformations` | 5 |
 | `esh/number-sets-and-intervals` | 3 |
 | `geometry/quadrilaterals-and-polygons` | 3 |
 | `geometry/area-and-perimeter` | 2 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **267** |
+| **total** | **272** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -165,7 +167,7 @@ Exponential functions carries three fifths of them because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-267 places rather than eight. It also touches `check[]` neighbourhoods, though
+272 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -313,6 +315,8 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **зайн томьёо** · **дундаж цэгийн томьёо** | distance / midpoint formula | `geometry/coordinate-geometry` L1–L2 | throughout — the ministry states the task, never names the formula |
 | **координатын баталгаа** | coordinate proof | `geometry/coordinate-geometry` L6 | lesson title |
 | **будсан муж** | shaded region | `geometry/area-and-perimeter` L6 | throughout — both halves grounded |
+| **хатуу хөдөлгөөн** | rigid motion | `geometry/transformations` L1–L6 | throughout — it carries the whole argument of L6 |
+| **гулсах тусгал** | glide reflection | `geometry/transformations` PRACTICE | 1, in `geo12-pr-8`'s solution — see below |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -377,6 +381,30 @@ marked «0 everywhere» — which is most of §3 above — are the ones most lik
 to have a real Mongolian word waiting behind them. That is an argument for
 ruling on the list rather than letting it ship by default, not an argument
 that the list is wrong.
+
+**It has now happened four times, and the last topic did it twice in one
+pass.** Drafting `geometry/transformations` (19 Sep) found *translation* →
+**«параллель зөөлт»** sitting in А/492 verbatim, against the file's coinage
+«шилжүүлэлт» at 0, and found the dictionary's **«угсраа хувиргалт
+(композиц)»** (p. 73) for *composition*, which the file had no entry for at
+all. The same pass caught **«тодорхойлогч»** for *determinant* (ministry 2,
+verbatim) one draft *before* I would have coined «детерминант» — the first
+time the order has run that way rather than a unit late.
+
+**So the headline number above is now measured, not guessed.** Of the seven
+«0 everywhere» rows `GEOMETRY-TERMS.md` §3 carried before this unit, a source
+answered three. That is a hit rate high enough that the remaining four, and
+the twenty-odd coinages in the table above, are worth an hour of your time
+rather than a default ship. **The strongest form the evidence supports: a
+«0 everywhere» row is not a word this file invented, it is a question this
+file has not asked yet.**
+
+**The one coinage in the last topic that stayed a coinage** is «гулсах тусгал»
+for *glide reflection*: zero in А/492, zero in the dictionary's a–i range,
+zero in the corpus, in every word order I tried. Both halves are grounded
+separately («гулсах» ships as a verb twenty times; «тусгал» ships nine), and
+it appears exactly once, naming a composition the student has just computed —
+so the exposure is one practice solution, not a lesson.
 
 ---
 
@@ -542,6 +570,45 @@ says, the whole topic should be rewritten around it — the theorem would read
 corpus, so the sources genuinely do not decide it. **If you know the phrase,
 that one answer settles the topic** — it is a find-and-replace in one file,
 but it touches every lesson.
+
+---
+
+### 4g. *Reflection*: both sources say «тэгш хэм», and that name is already lesson 4's
+
+**`geometry/transformations`, lessons 2 and 4.** The only term in the last
+geometry topic I could not settle from the sources — because here the sources
+are clear and following them breaks the topic.
+
+Both authorities call a reflection a kind of **symmetry**:
+
+| source | wording |
+|---|---|
+| А/492, 10-р анги | «…дүрсийг **тэгш хэмээр (цэгийн, тэнхлэгийн)** хувиргах…» |
+| dictionary p. 13, p. 73 | «**тэнхлэгийн хувь дахь тэгшхэм**» |
+
+The topic has seven lessons and two of them are affected. Lesson 2 is
+"Reflections (Flips)"; lesson 4 is literally "Symmetry", and its entire content
+is that *a reflection can map a figure onto itself*. Name them both «тэгш хэм»
+and lesson 4's sentence becomes «тэгш хэм дүрсийг өөр дээр нь буулгавал тэр
+дүрс тэгш хэмтэй» — true, circular, and useless as teaching.
+
+**The draft keeps the shipped «тусгал»**, which the grade 6–8 mirrors use nine
+times and in all three senses this topic needs («тэнхлэгийн тусгал», «толин
+тусгал», «шулуунаар тусгасан тусгал»). Lesson 4 then has «тэгш хэм» to itself
+and reads properly: «тусгал дүрсийг өөр дээр нь буулгавал тэр дүрс тэгш
+хэмтэй».
+
+**What I need from you.** This is the first time a draft has knowingly declined
+a ministry word for a reason other than a spelling split (4e). Either:
+
+- **keep «тусгал»** — the English's distinction survives, and one term in the
+  strand diverges from А/492 on purpose; or
+- **follow the ministry** — lessons 2 and 4 are rewritten around «тэнхлэгийн
+  тэгш хэм» vs «тэгш хэм», which I think is a thinner distinction than the
+  English carries, but it is your call and the divergence disappears.
+
+Nothing has shipped either way, so the reversal is one find-and-replace in one
+file plus two lesson rewrites if you pick the second.
 
 ---
 
@@ -742,6 +809,37 @@ English is fine, introducing is not.
 **Note the division of labour, because it is the point.** The gate stops the
 mirror getting worse than the English; it cannot make the English right. The
 190 need the renderer.
+
+---
+
+### 6e. How much the green gate is worth — four checker bugs in four days
+
+**Not a question for you; a caveat on the evidence the other items rest on.**
+Every draft in this pile ends with `ALL DRAFT CHECKS PASS`, and that line is
+worth less than it looks on a topic whose constructions the checker has not
+met before. Four times now, a topic has been the first to exercise an edge and
+the checker has been wrong at it:
+
+| found | topic that surfaced it | the bug | symptom |
+|---|---|---|---|
+| 17 Sep | `geometry/right-triangles-and-trig` | grounding counter did not stem | «тойрогт багтсан өнцөг» scored 0 against «…өнцгийн» — a real word looked like a coinage |
+| 19 Sep | `geometry/coordinate-geometry` | `$\$3$` prices mis-paired the span | Mongolian prose between two prices reported as Cyrillic-in-maths |
+| 19 Sep | `geometry/area-and-perimeter` | id stem matched inside another id | 11 phantom UNKNOWN IDs on a clean draft |
+| 19 Sep | `geometry/transformations` | `$$…$$` display maths split into two spans | 6 phantom Cyrillic-in-maths findings in lesson 7 |
+
+Each was fixed in the commit that found it, and all twenty-six drafts re-run
+clean after each fix — so the *current* green is real. The pattern is what
+matters: **all four were false positives, none was a false negative**, which
+is the safe direction to fail, but the fourth arrived on the last topic of the
+strand, so there is no reason to think the checker has now seen everything.
+
+**What this means for reading the pile.** The gate is evidence that a draft's
+ids, step kinds, counts and notation match the English. It is not evidence
+that the Mongolian is good — nothing checks that, which is the whole reason
+this file exists — and on a topic with a construction no earlier draft used,
+it is not yet evidence that the notation is right either. The three topics
+above needed a human to notice the finding was nonsense before the tool could
+be fixed.
 
 ---
 
