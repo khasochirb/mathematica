@@ -1,9 +1,9 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 19 Sep 2026, after all thirteen geometry topics and the first grade 9
-topic — the geometry strand is complete and this file now covers twenty-seven
-drafts.**
+Updated 19 Sep 2026, after all thirteen geometry topics and the first two
+grade 9 topics — the geometry strand is complete and this file now covers
+twenty-eight drafts.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -11,7 +11,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-seven
+**Voice reference §9 is fully applied and no longer a question.** All twenty-eight
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 283 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 327 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -114,18 +114,19 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 283 as of 19 Sep** — see the note under the table;
+> rather than 178. **It is 327 as of 19 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-seven drafts, 19 Sep 2026:
+Counted across the twenty-eight drafts, 19 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
+| `9/equations-and-formulas` | 44 |
 | `algebra-1/linear-equations` | 20 |
 | `geometry/coordinate-geometry` | 14 |
 | `geometry/relationships-in-triangles` | 14 |
@@ -144,7 +145,7 @@ Counted across the twenty-seven drafts, 19 Sep 2026:
 | `geometry/area-and-perimeter` | 2 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **283** |
+| **total** | **327** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -163,13 +164,13 @@ Counted across the twenty-seven drafts, 19 Sep 2026:
 > PY
 > ```
 
-Exponential functions carries three fifths of them because growth factors
+Exponential functions carries the largest share because growth factors
 (`$b = 1.05$`, `$V = 800(0.75)^t$`) are decimals by nature.
 
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-283 places rather than eight. It also touches `check[]` neighbourhoods, though
+327 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -257,6 +258,52 @@ worth stating once.
 
 ---
 
+### 2g. The authority order has nothing to say about a term the course already taught — **a rule I invented, and the one I am most confident about**
+
+**Found 19 Sep 2026 drafting `9/equations-and-formulas`.** Third gap in the
+same order, after 2e (a source contradicting itself) and 2f (a corpus count
+against a shipped term). This one is different from both: here the sources do
+not conflict at all, and the question is whether they are even the right place
+to look.
+
+Grade 9's `equations-and-formulas` re-teaches four lessons that the grade 8
+mirror **already ships in Mongolian**. For *identity* my own coinage would
+have been «ижилтгэл» (0 everywhere); А/492 writes **«адилтгал»** six times,
+and `data/genmath/8-mn/linear-equations.json` — live, for months — already
+teaches this exact concept with it:
+
+> «Тэгшитгэл гэдэг нэг хариутай оньсого төдийгүй **адилтгал** ч, боломжгүй
+> зүйл ч байж чадна…»
+
+The same shipped lesson fixes *no solution* as «шийдгүй» and *infinitely many*
+as «төгсгөлгүй олон» (I would have written «тоогүй олон», also 0).
+
+**Here ministry and shipped agree, so nothing is at stake today.** The rule is
+for the day they don't, and I want it written before that day:
+
+> **When a topic re-teaches material the student has already met in a shipped
+> mirror, the shipped wording wins — ahead of the ministry, ahead of the
+> dictionary — for the terms that overlap.**
+
+The reason is not authority, it is the student. A course that calls the same
+object «адилтгал» in grade 8 and something else in grade 9 has introduced a
+second concept where there is one. **The authority order answers "which word
+is most correct"; this answers "which word did we already teach them", and
+across a grade boundary the second question outranks the first.**
+
+Note this cuts the *opposite* way from 2f, where I kept a shipped term against
+a corpus count and asked you for a carve-out. Both point the same direction —
+**shipped beats counted** — which suggests one rule rather than two
+exceptions. If you accept that, 2e, 2f and this item collapse into: *sources
+choose a new word; a word already in front of students is not re-chosen.*
+
+**This will recur.** Grade 9 sits directly on top of the shipped grades 6–8,
+so every remaining grade 9 topic should be checked against those mirrors
+before its terminology is decided, not after. I have added that step to the
+drafting loop.
+
+---
+
 ## 3. Terms I coined — ungrounded, and I know it
 
 Each is built from grounded parts, defined on first use, and flagged in its
@@ -320,6 +367,9 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **хатуу хөдөлгөөн** | rigid motion | `geometry/transformations` L1–L6 | throughout — it carries the whole argument of L6 |
 | **гулсах тусгал** | glide reflection | `geometry/transformations` PRACTICE | 1, in `geo12-pr-8`'s solution — see below |
 | **эхний ялгавар** | first differences | `9/introduction-to-functions` L5 | throughout L5, incl. its keyIdea — the first grade 9 coinage |
+| **үсгэн тэгшитгэл** | literal equation | `9/equations-and-formulas` L4 | lesson title, concept 1 and the topic BLURB — the most exposed grade 9 coinage |
+| **боломжгүй тэгшитгэл** | contradiction (the species) | `9/equations-and-formulas` L2 | 4 — grown from the shipped «боломжгүй зүйл» |
+| **нөхцөлт тэгшитгэл** | conditional equation | `9/equations-and-formulas` L2 | 3 — rides on «нөхцөлт өгүүлбэр», itself flagged |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -418,6 +468,18 @@ already made it: *nonlinear* is **«шугаман биш»**, not «шугам�
 identical evidence that corrected «тэнцэтгэл бус» → «тэнцэтгэл биш» in
 `CLAUDE.md` (there: ministry 13 vs 0; here: corpus 1 vs 0). Say the word if
 you want the «бус» form anywhere.
+
+**Topic 2 pushed the rate back up, and the reason is instructive.** Grade 9's
+`equations-and-formulas` adds three coinages — «үсгэн тэгшитгэл», «боломжгүй
+тэгшитгэл», «нөхцөлт тэгшитгэл» — after topic 1 added one. All three name the
+*abstractions* (a species of equation, a kind of equation) rather than the
+*objects*; the objects in that topic were all settled already, three of them
+by a mirror that shipped months ago (item 2g). **The pattern across
+twenty-eight drafts now looks like this: sources name things, and they are
+much thinner on names for kinds of things.** «постулат», «урвуу өгүүлбэр»,
+«нөхцөлт өгүүлбэр», «индуктив сэтгэлгээ» and now these three are all the same
+shape. If you want to spend one sitting on the highest-leverage group in this
+file, it is that one.
 
 **The one coinage in the last geometry topic that stayed a coinage** is «гулсах тусгал»
 for *glide reflection*: zero in А/492, zero in the dictionary's a–i range,
@@ -860,6 +922,36 @@ this file exists — and on a topic with a construction no earlier draft used,
 it is not yet evidence that the notation is right either. The three topics
 above needed a human to notice the finding was nonsense before the tool could
 be fixed.
+
+---
+
+### 6f. Grade 9 re-teaches grade 8, and both are already live in English
+
+**Found 19 Sep 2026 drafting `9/equations-and-formulas`.** A curriculum
+observation, not a translation question — same class as 6c.
+
+Four of that topic's six lessons re-teach `8/linear-equations`:
+
+| `9/equations-and-formulas` | `8/linear-equations` |
+|---|---|
+| Variables on Both Sides | `variables-on-both-sides` |
+| No Solution & Infinitely Many | `one-none-or-infinite` |
+| The Full Pipeline | `simplify-before-solving` + `equations-with-parentheses` |
+| Modeling with Equations | `from-words-to-equations` |
+
+Only *Literal Equations* and *Rate, Time & Mixture* are new at grade 9. The
+same pattern is visible, more weakly, between `9/introduction-to-functions`
+and `8/linear-functions`.
+
+**This may be exactly what you want** — a deliberate spiral, with grade 9
+revisiting grade 8 at higher difficulty, is standard curriculum design and the
+grade 9 versions are meaningfully harder. I am flagging it only because a
+student who does both hubs meets four lessons twice, and because nobody
+sitting in a drafting session can tell an intended spiral from a copy-paste.
+**Nothing changed; I did not touch the English.**
+
+The translation consequence is real and is handled: grade 9 copies the shipped
+grade 8 Mongolian for every overlapping term (item 2g).
 
 ---
 

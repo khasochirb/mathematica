@@ -20,6 +20,47 @@ the 75 terms are in the dictionary's a–i range, А/492 is a grade 10–12 stan
 and so silent on plane geometry, and the shipped grade 6–8 mirrors carry almost
 none of the vocabulary.
 
+## Before the grounding pass: check what already shipped
+
+**Added 19 Sep 2026, drafting `9/equations-and-formulas`.** Four of that
+topic's six lessons re-teach `8/linear-equations`, which has been live in
+Mongolian for months, so three of its key terms («адилтгал», «шийдгүй»,
+«төгсгөлгүй олон») were decided long before the draft opened, and one of them
+is not what the grounding pass alone would have produced.
+
+So the loop now starts one step earlier: before grounding any term, ask
+whether a shipped mirror already teaches this material.
+
+```
+python3 - <<EOF
+import json, glob, os
+def slugs(p): return {l["slug"] for l in json.load(open(p, encoding="utf-8"))["lessons"]}
+mine = slugs("data/genmath/<corpus>/<slug>.json")
+for f in glob.glob("data/genmath/*-mn/*.json"):
+    en = f.replace("-mn/", "/")
+    if os.path.exists(en) and slugs(en) & mine:
+        print(f, sorted(slugs(en) & mine))
+EOF
+```
+
+**Slug overlap understates it** — the same lesson often carries different
+slugs in different grades, and in the case above only one of the four matched.
+So also skim the shipped mirror's lesson titles for the same concepts, and
+grep it for every term the draft is about to coin:
+
+```
+grep -o "<candidate term>" data/genmath/*-mn/*.json | sort | uniq -c
+```
+
+**Where a shipped mirror already teaches the concept, copy its wording** —
+ahead of the ministry, ahead of the dictionary — for the terms that overlap.
+A course that renames a term across a grade boundary has invented a second
+concept where there is one. Rationale and the rule's exact text: review
+pile 2g. This matters most for grades 9–12, which sit directly on top of the
+shipped grades 6–8.
+
+---
+
 ## Conventions settled by corpus evidence, not per topic
 
 These came out of drafting `esh/sets-and-operations` and hold for every ЭШ topic
