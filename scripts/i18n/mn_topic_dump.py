@@ -132,12 +132,39 @@ def corpora():
     return _MIN, _COR
 
 
+def stem(t):
+    """Trim the last word so a Mongolian case suffix cannot hide a match.
+
+    WHY THIS EXISTS. The counts below are literal substring matches, and
+    Mongolian inflects the final word of a noun phrase. Drafting
+    `geometry/circles` on 18 Sep 2026, «тойрогт багтсан өнцөг» (inscribed
+    angle) scored 0 in the ministry and was about to be written up as a
+    coinage — while А/492 says «Тойрогт багтсан **өнцгийн** чанар хэрэглэх»
+    on its own line. The term was grounded; the genitive hid it.
+
+    Two letters off the last word catches the common suffixes (-ийн/-ын,
+    -ыг/-ийг, -д/-т, -аар/-ээр) without shortening the phrase enough to
+    start matching unrelated words. Re-checked against the twenty-five terms
+    the strand had already flagged as coinages: exactly one — this one — was
+    a false negative, so the other flags stand. A STEM count much higher than
+    the exact count means «look at the source text before calling it a
+    coinage», not «it is grounded».
+    """
+    w = t.split()
+    w[-1] = w[-1][:max(3, len(w[-1]) - 2)]
+    return ' '.join(w)
+
+
 def ground(terms):
     """Count each Mongolian term in the ministry standard and the MN corpus."""
     m, c = corpora()
-    print(f"{'term':<34}{'ministry':>9}{'corpus':>8}")
+    print(f"{'term':<34}{'ministry':>9}{'corpus':>8}{'min*':>7}{'cor*':>7}  (* = stemmed)")
     for t in terms:
-        print(f"{t:<34}{len(re.findall(re.escape(t), m, re.I)):>9}{len(re.findall(re.escape(t), c, re.I)):>8}")
+        s = stem(t)
+        em, ec = len(re.findall(re.escape(t), m, re.I)), len(re.findall(re.escape(t), c, re.I))
+        sm, sc = len(re.findall(re.escape(s), m, re.I)), len(re.findall(re.escape(s), c, re.I))
+        flag = '  <- stemmed match, read the source' if (sm > em or sc > ec) else ''
+        print(f"{t:<34}{em:>9}{ec:>8}{sm:>7}{sc:>7}{flag}")
 
 
 def main():

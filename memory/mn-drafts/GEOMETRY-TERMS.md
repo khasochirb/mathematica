@@ -71,8 +71,17 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | chord | **хөвч** | ministry 1 · corpus 9 · dictionary |
 | arc | **нум** | ministry 2 · corpus 14 |
 | tangent (line) | **шүргэгч** | ministry 4 · corpus 80 |
-| sector | **сектор** | ministry 2 · corpus 12 |
+| sector | **дугуйн сектор** | **ministry 2, exactly this** · «сектор» corpus 12 |
 | circumference | **тойргийн урт** | dictionary · **shipped 12** |
+| disc (the region) | **дугуй** | **ministry 2** · corpus 85 · dictionary p. 62 — distinct from «тойрог», see §8 |
+| secant | **огтлогч** | **ministry 1**, same line as chord and tangent — §4 reserved it |
+| segment (of a circle) | **сегмент** | **ministry 1** · corpus 4 |
+| arc length | **тойргийн нумын урт** | **ministry 2, exactly this** |
+| sector area | **секторын талбай** | **ministry 1** |
+| inscribed angle | **тойрогт багтсан өнцөг** | **ministry 1** — found only after the §7 tool fix |
+| cyclic quadrilateral | **тойрогт багтсан дөрвөн өнцөгт** | **corpus 12** |
+| semicircle | **хагас тойрог** | corpus 2 |
+| point of tangency | **шүргэх цэг** | corpus 4 |
 | area | **талбай** | ministry 9 · corpus 506 · dictionary |
 | perimeter | **периметр** | corpus 59 |
 | volume | **эзэлхүүн** | ministry 1 · corpus 23 |
@@ -158,7 +167,7 @@ built from grounded parts and defined on first use.
 | converse | **урвуу өгүүлбэр** | dictionary p. 84 prints «урвуу хэллэг»; see note |
 | translation (transformation) | **шилжүүлэлт** | 0 everywhere |
 | reflection | **тусгал** | corpus 9 |
-| dilation | **гомотет** | **ministry 1** · corpus 7 — corrected 18 Sep 2026, see §5 |
+| dilation | **гомотет** | **ministry 1** · corpus 7 — corrected 18 Sep 2026, see §9 |
 | enlargement ($k>1$) | **томсголт** | 0 everywhere — the freed-up coinage, in its literal sense |
 | reduction ($0<k<1$) | **багасгалт** | 0 everywhere — pairs with the above |
 
@@ -254,7 +263,119 @@ Check which kind you have before deciding.
 
 ---
 
-## 5. When grounding corrects this file, not the draft
+## 6. Trigonometry is the exception, and it says why the rest is thin
+
+**Found 18 Sep 2026, drafting `right-triangles-and-trig`.** Seven lessons, one
+coinage. Every geometry topic before it reported three to fourteen. The
+difference is not luck and it is worth stating, because it predicts which of
+the remaining topics will be cheap and which will not:
+
+- **А/492 is a grade 10–12 standard.** Plane geometry is taught in grades 7–9,
+  so the ministry is silent on it. **Trigonometry is grade 10–12**, so the
+  ministry is decisive on it: «синусын теорем» is the ministry's own phrase.
+- **The dictionary's transcribed range is A–I.** That range happens to contain
+  *acute triangle*, *adjacent side*, *angle of elevation*, *angle of
+  depression*, *arc sine*, *arc cosine*, *arc tangent* and the whole
+  cosine-ratio diagram on p. 90. The topics whose vocabulary starts with a
+  later letter — *opposite*, *polygon*, *parallel*, *ratio*, *square*,
+  *tangent*, *triangle*, *vertex*, *volume* — are exactly the ones the
+  dictionary cannot help with, and exactly the ones that have cost coinages.
+
+**Prediction for the remaining five topics**, so it can be checked rather than
+rediscovered: `circles` and `coordinate-geometry` should be cheap (ministry
+covers both, and *chord*, *arc*, *circumference*, *diameter* are all inside
+A–I), while `area-and-perimeter`, `surface-area-and-volume` and
+`transformations` should be dearer (*perimeter*, *polygon*, *volume*,
+*reflection*, *rotation*, *translation* all fall outside the transcribed
+range).
+
+> **Checked 19 Sep 2026, drafting `circles`. Half right, and the wrong half
+> gives the better rule.** The verdict was right — four coinages in six
+> lessons — but the reason was not. Of the four words named above, only
+> *chord*, *circle*, *circumference* and *diameter* are actually in the
+> dictionary; **`arc` is not a geometry headword there at all**, and neither
+> are *central angle*, *sector*, *segment*, *secant* or *semicircle*. What
+> carried the topic was **А/492**, which names хөвч, шүргэгч, огтлогч, нум,
+> сектор, сегмент, нумын урт, секторын талбай and тойрогт багтсан өнцөг in
+> three lines, because circle geometry with arcs and sectors is grade 10–12
+> content.
+>
+> **Corrected rule: the dictionary's A–I range predicts nothing on its own.
+> What predicts cost is whether the topic is grade 10–12 content.** The
+> dictionary is a tiebreaker, not the driver.
+>
+> **Revised prediction for the remaining four:** `coordinate-geometry` cheap
+> (А/492 covers it heavily — the circle equation, the distance formula, the
+> midpoint formula are all ministry lines); `surface-area-and-volume` now
+> *cheaper* than first said, since the ministry covers solids and the shipped
+> grade 6–8 mirrors carry the measurement vocabulary («гадаргуугийн талбай»
+> 22, «призм» 16, «дэлгээс» 11); `area-and-perimeter` and `transformations`
+> stay dear, the first because plane mensuration is grades 5–8 and the second
+> because only «эргүүлэлт», «тусгал» and «гомотет» of its five words are
+> grounded.
+
+**«эсрэг орших катет», and the §4 rule paying for itself.** The dictionary
+gives *adjacent side* → «налсан катет» but *opposite* is outside A–I, so only
+half the pair is grounded. §4 already settles it without a fresh decision:
+«эсрэг өнцөг» is taken by *vertical angles*, unit 6 solved the same collision
+with «эсрэг орших тал / өнцөг», so the leg is **«эсрэг орших катет»**. That is
+what a written-down rule is for.
+
+
+---
+
+## 7. A tool bug that was quietly under-reporting grounding
+
+**Found 19 Sep 2026, drafting `circles`.** `mn_topic_dump.py --terms`, the
+grounding counter every draft opens with, matched terms **literally**.
+Mongolian inflects the last word of a noun phrase, so a term can be in the
+ministry standard and still score zero:
+
+| searched | А/492 actually prints | old count |
+|---|---|---|
+| «тойрогт багтсан **өнцөг**» | «Тойрогт багтсан **өнцгийн** чанар хэрэглэх» | **0** |
+
+*Inscribed angle* was one keystroke from being recorded here as a coinage.
+
+The script now also prints a **stemmed** count — last word trimmed by two
+characters — and flags any term whose stemmed count is higher, with the
+message «read the source». It deliberately does not claim the term is
+grounded: an over-broad stem like «огтл» matches 288 unrelated strings.
+
+**All twenty-five terms this strand had already flagged as coinages were
+re-checked against the fix. Exactly one — this one — was a false negative.**
+So §3 above is not quietly wrong, and the review pile's coinage list can be
+ruled on as it stands.
+
+
+---
+
+## 8. «тойрог» and «дугуй» are not the same word
+
+**Recorded 19 Sep 2026, drafting `circles`.** English says "circle" for both
+the curve and the region it encloses. Mongolian does not, and both sources
+agree on the split:
+
+> «Тойрог түүний дотор (дотоод муж) хоёрын нэгдэл нь **дугуй** юм»
+> — dictionary, p. 62
+> «Тойргийн нумын урт болон **дугуйн сектор**, сегментийн талбайг олох»
+> — А/492
+
+- **тойрог** = the curve. Its length is «тойргийн урт» (the circumference).
+- **дугуй** = the disc. Its area is «дугуйн талбай».
+
+So a sector is a piece of the **дугуй** («дугуйн сектор», the ministry's own
+phrase) while an arc is a piece of the **тойрог**. Any topic that computes
+both a circumference and an area in the same breath — `circles` lesson 6,
+and `area-and-perimeter` throughout — has to keep them apart, and the English
+it mirrors cannot show it where to.
+
+**This is the language being more precise than the source, not the mirror
+drifting.** Noted here so the next topic does not re-derive it.
+
+---
+
+## 9. When grounding corrects this file, not the draft
 
 **Found 18 Sep 2026, drafting `similarity`.** §3 listed *dilation* →
 **«томсголт»** with «0 everywhere», i.e. a coinage this file invented. The
@@ -282,39 +403,3 @@ for *reduction*, so nothing is wasted and each word says what it means.
 **Downstream:** `transformations` (unit 13) inherits «гомотет», not «томсголт».
 Nothing has shipped on either, so this correction is free today and would not
 have been in three units' time.
-
-
----
-
-## 6. Trigonometry is the exception, and it says why the rest is thin
-
-**Found 18 Sep 2026, drafting `right-triangles-and-trig`.** Seven lessons, one
-coinage. Every geometry topic before it reported three to fourteen. The
-difference is not luck and it is worth stating, because it predicts which of
-the remaining topics will be cheap and which will not:
-
-- **А/492 is a grade 10–12 standard.** Plane geometry is taught in grades 7–9,
-  so the ministry is silent on it. **Trigonometry is grade 10–12**, so the
-  ministry is decisive on it: «синусын теорем» is the ministry's own phrase.
-- **The dictionary's transcribed range is A–I.** That range happens to contain
-  *acute triangle*, *adjacent side*, *angle of elevation*, *angle of
-  depression*, *arc sine*, *arc cosine*, *arc tangent* and the whole
-  cosine-ratio diagram on p. 90. The topics whose vocabulary starts with a
-  later letter — *opposite*, *polygon*, *parallel*, *ratio*, *square*,
-  *tangent*, *triangle*, *vertex*, *volume* — are exactly the ones the
-  dictionary cannot help with, and exactly the ones that have cost coinages.
-
-**Prediction for the remaining five topics**, so it can be checked rather than
-rediscovered: `circles` and `coordinate-geometry` should be cheap (ministry
-covers both, and *chord*, *arc*, *circumference*, *diameter* are all inside
-A–I), while `area-and-perimeter`, `surface-area-and-volume` and
-`transformations` should be dearer (*perimeter*, *polygon*, *volume*,
-*reflection*, *rotation*, *translation* all fall outside the transcribed
-range).
-
-**«эсрэг орших катет», and the §4 rule paying for itself.** The dictionary
-gives *adjacent side* → «налсан катет» but *opposite* is outside A–I, so only
-half the pair is grounded. §4 already settles it without a fresh decision:
-«эсрэг өнцөг» is taken by *vertical angles*, unit 6 solved the same collision
-with «эсрэг орших тал / өнцөг», so the leg is **«эсрэг орших катет»**. That is
-what a written-down rule is for.

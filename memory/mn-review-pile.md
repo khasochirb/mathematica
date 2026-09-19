@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 18 Sep 2026, after the first eight geometry topics.**
+Updated 19 Sep 2026, after the first nine geometry topics.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -9,7 +9,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-one
+**Voice reference §9 is fully applied and no longer a question.** All twenty-two
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -40,7 +40,7 @@ student; the book sets *tasks*. That would put bare imperatives on `practice`
 and `testYourself` statements — the task wording §5 is actually about — and
 keep «та» in teaching prose.
 
-**Scale if it changes:** twenty-one drafts, and roughly 3,100 problem statements
+**Scale if it changes:** twenty-two drafts, and roughly 3,300 problem statements
 — `geometry/foundations` alone added about 250, being three times the size of
 an algebra topic.
 
@@ -83,7 +83,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 239 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 251 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -104,20 +104,21 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 239 as of 18 Sep** — see the note under the table;
+> rather than 178. **It is 251 as of 19 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-one drafts, 18 Sep 2026:
+Counted across the twenty-two drafts, 19 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
 | `algebra-1/linear-equations` | 20 |
 | `geometry/relationships-in-triangles` | 14 |
+| `geometry/circles` | 12 |
 | `geometry/similarity` | 11 |
 | `algebra-1/inequalities` | 10 |
 | `algebra-1/systems-of-equations` | 8 |
@@ -129,7 +130,7 @@ Counted across the twenty-one drafts, 18 Sep 2026:
 | `geometry/quadrilaterals-and-polygons` | 3 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **239** |
+| **total** | **251** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -154,7 +155,7 @@ Exponential functions carries three fifths of them because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-239 places rather than eight. It also touches `check[]` neighbourhoods, though
+251 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -195,6 +196,9 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **томсголт** · **багасгалт** | enlargement · reduction | `geometry/similarity` L6 | 4 — see below |
 | **онцгой тэгш өнцөгт гурвалжин** | special right triangles | `geometry/right-triangles-and-trig` L3 | lesson title |
 | **эсрэг орших катет** | opposite leg | `geometry/right-triangles-and-trig` L4–L6 | throughout — the dictionary has only the other half |
+| **төвийн өнцөг** | central angle | `geometry/circles` L1, L3, L6 | throughout |
+| **харгалзах нум** | intercepted arc | `geometry/circles`, every lesson | **has a rival, see 4f** |
+| **бага нум / их нум** | minor / major arc | `geometry/circles` L1 | 4 |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -362,7 +366,7 @@ strand now follows:
 > keep the head noun on first use.**
 
 All three, and that rule, are in `memory/mn-drafts/GEOMETRY-TERMS.md` §4 so the
-remaining five geometry topics inherit them instead of rediscovering them.
+remaining four geometry topics inherit them instead of rediscovering them.
 
 **A fourth one turned up in unit 6, and it is ours rather than the ministry's
 — which makes it the only one you can actually fix.** Unit 1 took
@@ -400,6 +404,32 @@ both.
 
 **Whether to keep «огтлогч шулуун» is a decision for two topics at once**, this
 one and `circles`. The collision-free alternative is «хөндлөн шулуун».
+
+### 4f. «харгалзах нум» for *intercepted arc*, against the «нумд тулсан» construction
+
+**`geometry/circles`, every lesson, and lesson 3's theorem is stated with it.**
+This is the one term in that topic I am not sure about even after the sources,
+which is what this file is for.
+
+The draft writes the intercepted arc as a noun phrase, **«харгалзах нум»**.
+«харгалзах» is grounded (corpus 5) and this strand already uses it for
+*corresponding* sides and angles, so the compound reads naturally and the head
+noun «нум» keeps it distinct from those.
+
+**But Mongolian school geometry, descended from the Russian tradition,
+normally expresses this relation from the angle's side**, with «тулсан»
+(resting on / subtending): «AB нумд тулсан өнцөг» for the angle, rather than
+naming *the intercepted arc* as a thing. If that is what a Mongolian textbook
+says, the whole topic should be rewritten around it — the theorem would read
+«нумд тулсан өнцөг тэр нумын хагастай тэнцүү» instead of «багтсан өнцөг
+харгалзах нумынхаа хагастай тэнцүү».
+
+**Neither scores anything** in А/492, the dictionary's A–I range, or the
+corpus, so the sources genuinely do not decide it. **If you know the phrase,
+that one answer settles the topic** — it is a find-and-replace in one file,
+but it touches every lesson.
+
+---
 
 ## 5. Things you said to ask about, which I have not decided
 
