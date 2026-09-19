@@ -1,8 +1,9 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 19 Sep 2026, after all thirteen geometry topics — the strand is
-complete and this file now covers twenty-six drafts.**
+Updated 19 Sep 2026, after all thirteen geometry topics and the first grade 9
+topic — the geometry strand is complete and this file now covers twenty-seven
+drafts.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -10,7 +11,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-six
+**Voice reference §9 is fully applied and no longer a question.** All twenty-seven
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -92,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 272 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 283 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -113,14 +114,14 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 272 as of 19 Sep** — see the note under the table;
+> rather than 178. **It is 283 as of 19 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-six drafts, 19 Sep 2026:
+Counted across the twenty-seven drafts, 19 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -129,6 +130,7 @@ Counted across the twenty-six drafts, 19 Sep 2026:
 | `geometry/coordinate-geometry` | 14 |
 | `geometry/relationships-in-triangles` | 14 |
 | `geometry/circles` | 12 |
+| `9/introduction-to-functions` | 11 |
 | `geometry/similarity` | 11 |
 | `algebra-1/inequalities` | 10 |
 | `algebra-1/systems-of-equations` | 8 |
@@ -142,7 +144,7 @@ Counted across the twenty-six drafts, 19 Sep 2026:
 | `geometry/area-and-perimeter` | 2 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **272** |
+| **total** | **283** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -167,7 +169,7 @@ Exponential functions carries three fifths of them because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-272 places rather than eight. It also touches `check[]` neighbourhoods, though
+283 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -317,6 +319,7 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **будсан муж** | shaded region | `geometry/area-and-perimeter` L6 | throughout — both halves grounded |
 | **хатуу хөдөлгөөн** | rigid motion | `geometry/transformations` L1–L6 | throughout — it carries the whole argument of L6 |
 | **гулсах тусгал** | glide reflection | `geometry/transformations` PRACTICE | 1, in `geo12-pr-8`'s solution — see below |
+| **эхний ялгавар** | first differences | `9/introduction-to-functions` L5 | throughout L5, incl. its keyIdea — the first grade 9 coinage |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -399,7 +402,24 @@ rather than a default ship. **The strongest form the evidence supports: a
 «0 everywhere» row is not a word this file invented, it is a question this
 file has not asked yet.**
 
-**The one coinage in the last topic that stayed a coinage** is «гулсах тусгал»
+**Grade 9 opens at the algebra rate, not the geometry rate.** The first grade 9
+topic, `9/introduction-to-functions`, adds fourteen terms and **one** of them is
+a coinage — «эхний ялгавар» for *first differences*, above. Everything else
+grounded: «өөрчлөлтийн хурд» ministry 1, «шугаман» ministry 9, «график»
+ministry 32, «цэгийн координат» ministry 4, «завсар» ministry 2. That is the
+sources speaking again, in the other direction this time: А/492 is a grade
+10–12 standard and grade 9's function vocabulary is exactly what it covers,
+where plane geometry is exactly what it does not. **Expect the remaining six
+grade 9 topics to need far less of your time than the thirteen geometry ones
+did.**
+
+One grade 9 decision was made rather than asked, and the reason is that you
+already made it: *nonlinear* is **«шугаман биш»**, not «шугаман бус», on the
+identical evidence that corrected «тэнцэтгэл бус» → «тэнцэтгэл биш» in
+`CLAUDE.md` (there: ministry 13 vs 0; here: corpus 1 vs 0). Say the word if
+you want the «бус» form anywhere.
+
+**The one coinage in the last geometry topic that stayed a coinage** is «гулсах тусгал»
 for *glide reflection*: zero in А/492, zero in the dictionary's a–i range,
 zero in the corpus, in every word order I tried. Both halves are grounded
 separately («гулсах» ships as a verb twenty times; «тусгал» ships nine), and
