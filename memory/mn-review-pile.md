@@ -1,9 +1,9 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 19 Sep 2026, after all thirteen geometry topics and the first two
-grade 9 topics — the geometry strand is complete and this file now covers
-twenty-eight drafts.**
+Updated 20 Sep 2026. The geometry strand is complete, and the queue has
+switched to ЭШ-first: this file now covers twenty-nine drafts, twenty-one of
+which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -11,7 +11,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-eight
+**Voice reference §9 is fully applied and no longer a question.** All twenty-nine
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 327 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 350 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -114,19 +114,20 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 327 as of 19 Sep** — see the note under the table;
+> rather than 178. **It is 350 as of 20 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-eight drafts, 19 Sep 2026:
+Counted across the twenty-nine drafts, 20 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
 | `9/equations-and-formulas` | 44 |
+| `11/sequences-and-series` | 23 |
 | `algebra-1/linear-equations` | 20 |
 | `geometry/coordinate-geometry` | 14 |
 | `geometry/relationships-in-triangles` | 14 |
@@ -145,7 +146,7 @@ Counted across the twenty-eight drafts, 19 Sep 2026:
 | `geometry/area-and-perimeter` | 2 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **327** |
+| **total** | **350** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -170,7 +171,7 @@ Exponential functions carries the largest share because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-327 places rather than eight. It also touches `check[]` neighbourhoods, though
+350 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -370,6 +371,8 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **үсгэн тэгшитгэл** | literal equation | `9/equations-and-formulas` L4 | lesson title, concept 1 and the topic BLURB — the most exposed grade 9 coinage |
 | **боломжгүй тэгшитгэл** | contradiction (the species) | `9/equations-and-formulas` L2 | 4 — grown from the shipped «боломжгүй зүйл» |
 | **нөхцөлт тэгшитгэл** | conditional equation | `9/equations-and-formulas` L2 | 3 — rides on «нөхцөлт өгүүлбэр», itself flagged |
+| **харьцаа** (of a progression) | common ratio | `11/sequences-and-series` L3, L5, L6 | throughout — the only ungrounded term in that topic; Russian says *denominator*, see 4h |
+| **нийлэхгүй** | diverge | `11/sequences-and-series` L6 | 5 — negated from the ministry's own «нийлэх» |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -469,7 +472,23 @@ identical evidence that corrected «тэнцэтгэл бус» → «тэнцэ
 `CLAUDE.md` (there: ministry 13 vs 0; here: corpus 1 vs 0). Say the word if
 you want the «бус» form anywhere.
 
-**Topic 2 pushed the rate back up, and the reason is instructive.** Grade 9's
+**The ЭШ-first queue changes what grounding looks like, and the first topic
+under it is the best-grounded in the programme.** `11/sequences-and-series`
+adds fourteen terms and **one** is ungrounded (4h). The reason is structural
+rather than lucky: А/492 is a grade 10–12 standard, so the ЭШ course's own
+subject matter is precisely what it covers, and the ЭШ past papers supply the
+rest in the exam's own words. Two terms came from the bank alone — «ялгавар»
+for *common difference* (four past papers, verbatim) and «рекуррент» for
+*recursive* (two) — neither of which А/492 names.
+
+**It also produced the first case where a source overrides the English's own
+vocabulary rather than supplying a word for it.** The English says "arithmetic
+sequence"; А/492 and 52 past-paper occurrences say «арифметик **прогресс**».
+Both «прогресс» and «дараалал» are ministry words doing different jobs, so
+nothing is lost — but a lesson *title* changes, which is new. Details in that
+draft's Notes 1.
+
+**Topic 2 of grade 9 pushed the rate back up, and the reason is instructive.** Grade 9's
 `equations-and-formulas` adds three coinages — «үсгэн тэгшитгэл», «боломжгүй
 тэгшитгэл», «нөхцөлт тэгшитгэл» — after topic 1 added one. All three name the
 *abstractions* (a species of equation, a kind of equation) rather than the
@@ -691,6 +710,34 @@ a ministry word for a reason other than a spelling split (4e). Either:
 
 Nothing has shipped either way, so the reversal is one find-and-replace in one
 file plus two lesson rewrites if you pick the second.
+
+---
+
+### 4h. A geometric progression's ratio: «харьцаа», or the Russian calque «хуваарь»?
+
+**`11/sequences-and-series`, lessons 3, 5 and 6.** The one term in that topic
+no source names — and the topic is otherwise the best-grounded in the
+programme, so this single gap stands out.
+
+The draft writes **«харьцаа»** (ratio), compositional on a word the ЭШ bank
+uses 55 times, always with the progression attached: «геометр прогрессийн
+харьцаа».
+
+**But Russian school maths calls it the progression's DENOMINATOR** —
+*знаменатель прогрессии* — and Mongolian school vocabulary follows the Russian
+tradition closely elsewhere in this very topic (that is why it says «прогресс»
+and not «дараалал» at all). If the textbooks calqued it, the right word is
+**«прогрессийн хуваарь»**.
+
+I did not use it because «хуваарь» is already *denominator* in our glossary
+(ministry 5 · corpus 176), and lesson 6 is full of fractions like $\tfrac12$
+where both senses would sit in one paragraph. That is a real cost, but so is
+using a word students have not met.
+
+**This is a one-answer question.** If you know which one Mongolian textbooks
+print, it settles three lessons and it is a find-and-replace in one file. The
+ЭШ past papers gave no help: they always specify a geometric progression by
+two of its terms or by $b_{n+1} = 2b_n$, never by naming the ratio.
 
 ---
 
