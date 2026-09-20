@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-five drafts, twenty-seven
+switched to ЭШ-first: this file now covers thirty-six drafts, twenty-eight
 of which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
@@ -12,7 +12,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-thirty-five drafts carry zero em-dash parentheticals in shipping prose, and
+thirty-six drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 398 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 424 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -121,7 +121,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-five drafts, 20 Sep 2026.
+Counted across the thirty-six drafts, 20 Sep 2026.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
 > The stored command counts a whole draft file, and six drafts *quote* decimal
@@ -144,6 +144,7 @@ Counted across the thirty-five drafts, 20 Sep 2026.
 |---|---|
 | `10/exponential-functions` | 144 |
 | `9/equations-and-formulas` | 44 |
+| `solid-geometry/cylinders-and-cones` | 26 |
 | `algebra-2/exponentials-and-logarithms` | 38 |
 | `algebra-1/linear-equations` | 20 |
 | `11/sequences-and-series` | 18 |
@@ -167,7 +168,7 @@ Counted across the thirty-five drafts, 20 Sep 2026.
 | `10/rational-expressions` | 1 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **398** |
+| **total** | **424** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -199,7 +200,12 @@ Counted across the thirty-five drafts, 20 Sep 2026.
 > rate, because it counts commas as well as points and reads outside `$...$`.
 > The stored command is correct; ad-hoc ones on these files are not.
 
-**Where the risk concentrates: approximations.** Four times now a draft has
+**Where the risk concentrates: approximations — now measured.**
+`solid-geometry/cylinders-and-cones` contributes 26, the third-largest of any
+draft, and **25 of the 26 are `\approx` values**; the single exception is an
+exact quarter. The house style of every solid-geometry solution is π-exact
+answer plus decimal gloss (`$= 48\pi \approx 150.8$`), so a ruling either way
+lands hardest there. Separately, four times now a draft has
 applied the decimal comma *inside* `$...$` by mistake, and every instance was a
 `\approx` value inherited from the English ($27.5$, $22.31$, $6.9$, $7.07$,
 $75.96$). The habit fires on the prose rule and the maths-mode context does not
@@ -1577,6 +1583,89 @@ empty; on this evidence it is not.
 
 Adding a unit to the course is a curriculum call and rule 4's route budget does
 not cover it, so it is yours. I changed nothing.
+
+---
+
+### 6k. Production ships *volume* spelled two ways — and my drafts picked the minority form 126 times
+
+**Found 20 Sep 2026, drafting `solid-geometry/cylinders-and-cones`.** Part live
+content bug, part drafting error, and the two have to be untangled before
+either can be fixed.
+
+| source | «эзлэхүүн» | «эзэлхүүн» |
+|---|---|---|
+| **ЭШ papers** | **78** | 3 |
+| А/492 | 1 — **10.12б**, the solid-geometry line | 1 — 11.10к, the calculus volume-of-revolution line |
+| **shipped mirrors** | **40** | **10** |
+| my drafts | 12 | **126** |
+
+**The live bug.** Three shipped mirrors, two spellings:
+`6-mn/geometry-area-volume`'s **topic title** is «Геометр: Талбай ба
+**эзлэхүүн**»; `8-mn/roots` writes «эзлэхүүн» eleven times;
+`7-mn/geometry-scale-and-circles` writes «эзэлхүүн» ten times. A student moving
+from grade 6 to grade 7 meets the word respelled, and one of the two is a page
+title. **No gate catches it** — `scripts/i18n/mn_terms.py` contains neither
+form.
+
+**The drafting error.** `geometry/surface-area-and-volume` (ЭШ Geometry unit 9,
+the topic whose whole subject is volume) uses «эзэлхүүн» 110 times and
+«эзлэхүүн» 7 — internally inconsistent, and on the minority side of the exam by
+78 to 3.
+
+**Why I cannot just decide it.** This is a *spelling* split, and
+`docs/MONGOLIAN.md` explicitly carves spelling out of the ministry's authority
+(the recurring orthography carve-out). The ministry uses both forms in
+different sections, so it does not break the tie either. The exam does, 78:3,
+and А/492's own solid-geometry line — 10.12б, the objective ЭШ Geometry units 9
+and 11 are both mapped to — writes «эзлэхүүн».
+
+**`solid-geometry/cylinders-and-cones` uses «эзлэхүүн»** on that basis, which
+means it currently disagrees with unit 9.
+
+**The cost of each ruling:**
+
+- **«эзлэхүүн»** (my recommendation): 126 replacements across drafts, 110 of
+  them in one file, plus a production fix to `7-mn/geometry-scale-and-circles`.
+- **«эзэлхүүн»**: 12 replacements in drafts, plus production fixes to
+  **two** mirrors including a page title, and divergence from the exam by 78:3.
+
+Either way **the production inconsistency needs fixing and a term-gate entry**,
+and that half is Build ship-mode work rather than a translation decision.
+
+---
+
+### 6l. Three terms where ЭШ Geometry unit 9 coined a word the exam already had
+
+**Same draft, same cause as 6k, but these are unambiguous — the exam has the
+word and unit 9 invented a different one.** Unlike 6k there is no spelling
+carve-out in play, so these need a yes rather than a ruling.
+
+| concept | unit 9 (`geometry/surface-area-and-volume`) | ЭШ bank | uses |
+|---|---|---|---|
+| lateral surface area | «хажуугийн талбай» — *compositional*, **0 everywhere** | **«хажуу гадаргуугийн талбай»** | **9** |
+| total surface area | *(not named)* | **«бүтэн гадаргуугийн талбай»** | **4** |
+| slant height of a cone | «налуу өндөр» — *compositional*, **0 everywhere** | **«байгуулагч»** | **8** |
+
+The exam's sentences are essentially unit 11's worked examples: «Конусын
+суурийн радиус 6 бол **хажуу гадаргуун талбайг** ол», «Конусын **байгуулагч**
+нь 12 нэгж, суурийн радиус нь 8 нэгж урттай байв».
+
+**Adopting «байгуулагч» also dissolves a collision.** «налуу өндөр» carried
+4e's fifth instance — «налуу» means *slope* in all 19 exam uses — so the
+exam's word removes a coinage and a collision together.
+
+This does **not** disturb «гадаргуугийн талбай» for surface area in general,
+which the shipped mirrors use 22 times and 2g protects.
+
+> **The common cause of 6k and 6l is worth more than the three terms.**
+> `geometry/surface-area-and-volume` was drafted **before the ЭШ-first
+> redirect**, when the exam bank was not consulted first. It is the only
+> geometry topic in the ЭШ course whose subject the exam covers densely, and it
+> was drafted as though the exam were silent. **The other twelve geometry
+> drafts share that provenance** — they are simply luckier, because the exam
+> says little about plane-geometry proof. Worth knowing before the pre-redirect
+> geometry drafts are reviewed: the question to ask each one is not "is this
+> well-formed Mongolian" but "did the exam already have a word".
 
 ---
 
