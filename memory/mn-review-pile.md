@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-four drafts, twenty-six
+switched to ЭШ-first: this file now covers thirty-five drafts, twenty-seven
 of which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
@@ -12,7 +12,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-thirty-four drafts carry zero em-dash parentheticals in shipping prose, and
+thirty-five drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 412 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 398 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -121,32 +121,39 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-four drafts, 20 Sep 2026. The table is unchanged from
-the thirty-two-draft run: the two `algebra-2` drafts added on 20 Sep —
-`radicals-and-rational-exponents` and `systems-and-nonlinear-models` — each
-contribute **zero** shipping decimals, being exact-valued throughout. They are
-the first drafts to add none.
+Counted across the thirty-five drafts, 20 Sep 2026.
 
-> The raw command now prints **413**. The extra one is a `22.31` inside
-> `systems-and-nonlinear-models`'s Notes, where a source bug's value is quoted
-> while documenting it — the long-standing over-count mode in which the survey
-> reads the Notes' own quotations. **412 is the shipping figure; 413 is the
-> file figure.**
+> **Second correction, 20 Sep: the number was 412 and it should have been 398.**
+> The stored command counts a whole draft file, and six drafts *quote* decimal
+> values inside their own **Notes for Khas** sections while documenting a
+> finding. Those 22 quotations were never subtracted, so every figure this
+> section has carried — 205, then 412 — was a file count wearing a shipping
+> count's label.
+>
+> Splitting the file at the Notes heading gives **398 shipping · 22 notes ·
+> 420 file**. The table below is shipping only, and the command underneath is
+> the corrected one. Nothing about the decision changes; the number you would
+> be ruling on is 398.
+>
+> The contaminated drafts are `algebra-2/exponentials-and-logarithms` (8),
+> `11/sequences-and-series` (5), `solid-geometry/lines-and-planes-in-space`
+> (3), `11/logarithms` (2), `9/introduction-to-functions` (2) and
+> `algebra-2/systems-and-nonlinear-models` (2).
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
-| `algebra-2/exponentials-and-logarithms` | 46 |
 | `9/equations-and-formulas` | 44 |
-| `11/sequences-and-series` | 23 |
+| `algebra-2/exponentials-and-logarithms` | 38 |
 | `algebra-1/linear-equations` | 20 |
-| `11/logarithms` | 15 |
+| `11/sequences-and-series` | 18 |
 | `geometry/coordinate-geometry` | 14 |
 | `geometry/relationships-in-triangles` | 14 |
+| `11/logarithms` | 13 |
 | `geometry/circles` | 12 |
-| `9/introduction-to-functions` | 11 |
 | `geometry/similarity` | 11 |
 | `algebra-1/inequalities` | 10 |
+| `9/introduction-to-functions` | 9 |
 | `algebra-1/systems-of-equations` | 8 |
 | `10/quadratic-functions` | 7 |
 | `algebra-1/linear-functions` | 7 |
@@ -155,11 +162,12 @@ the first drafts to add none.
 | `geometry/transformations` | 5 |
 | `esh/number-sets-and-intervals` | 3 |
 | `geometry/quadrilaterals-and-polygons` | 3 |
+| `solid-geometry/lines-and-planes-in-space` | 3 |
 | `geometry/area-and-perimeter` | 2 |
 | `10/rational-expressions` | 1 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **412** |
+| **total** | **398** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -169,12 +177,17 @@ the first drafts to add none.
 > ```
 > python3 - <<'PY'
 > import re, pathlib
+> tot = 0
 > for p in sorted(pathlib.Path('memory/mn-drafts').glob('*.md')):
 >     if p.name in ('README.md', 'GEOMETRY-TERMS.md'): continue
->     t = p.read_text(encoding='utf-8')
+>     # shipping prose only — everything before the Notes heading, which
+>     # quotes decimal values while documenting findings (see the correction)
+>     t = re.split(r'\n#+ *Notes for Khas',
+>                  p.read_text(encoding='utf-8'), maxsplit=1)[0]
 >     n = sum(len(re.findall(r'\d\.\d', m.group(1)))
 >             for m in re.finditer(r'(?<!\\)\$([^$\n]+?)(?<!\\)\$', t))
->     if n: print(f'{p.name:55} {n}')
+>     if n: print(f'{p.name:55} {n}'); tot += n
+> print(f'{"TOTAL":55} {tot}')
 > PY
 > ```
 >
@@ -185,6 +198,15 @@ the first drafts to add none.
 > grep returns 791 against the stored command's 412 — a 77% false-positive
 > rate, because it counts commas as well as points and reads outside `$...$`.
 > The stored command is correct; ad-hoc ones on these files are not.
+
+**Where the risk concentrates: approximations.** Four times now a draft has
+applied the decimal comma *inside* `$...$` by mistake, and every instance was a
+`\approx` value inherited from the English ($27.5$, $22.31$, $6.9$, $7.07$,
+$75.96$). The habit fires on the prose rule and the maths-mode context does not
+register. `mn_draft_check.py`'s `MATH DECIMAL COMMA` check catches them, and
+has now done so before a re-read twice running — but it is worth knowing that
+in the geometry and trigonometry strands nearly every math-mode decimal is an
+approximation, so that is where a ruling either way will bite.
 
 Exponential functions carries the largest share because growth factors
 (`$b = 1.05$`, `$V = 800(0.75)^t$`) are decimals by nature.
@@ -754,6 +776,51 @@ both.
 
 **Whether to keep «огтлогч шулуун» is a decision for two topics at once**, this
 one and `circles`. The collision-free alternative is «хөндлөн шулуун».
+
+#### Update, 20 Sep: «солбисон» was cashed in, and a fifth collision arrived
+
+**`solid-geometry/lines-and-planes-in-space` is the topic «солбисон» was kept
+free for**, and it uses the word exactly as the ministry does, in А/492's own
+trichotomy:
+
+> 12.5б: «Огторгуй дахь хоёр шулууны харилцан байршлыг тодорхойлох
+> (параллель, **огтлолцох**, **солбисон**)»
+
+One ministry line supplies all three of that topic's lesson-2 classifications
+verbatim. **This is the first time a reservation made in this file has been
+collected**, and it is worth recording because the cost was paid in one draft
+(`parallel-and-perpendicular` gave up the obvious calque for *alternate*) and
+the benefit landed in another two days later. That is exactly the kind of trade
+that gets silently reversed when nobody writes it down.
+
+**The fifth collision is «налуу», and it is the first that comes from the exam
+rather than the ministry.** *Oblique* (Russian наклонная) wants «налуу». But:
+
+| source | uses | sense |
+|---|---|---|
+| ЭШ papers | **19** | **slope**, every one — «$A$, $B$ цэгүүдийн налуу $\frac{4}{5}$» |
+| А/492 | 6 («налалт») | **slope** — 10.8в «шулууны налалтыг олох» |
+| shipped mirrors | 20 | slope |
+
+Zero uses anywhere for an oblique segment. And this is an **in-strand**
+collision by 4e's own test: ЭШ Geometry unit 8 is `coordinate-geometry`, which
+teaches slope, and unit 10 is this topic. Two units apart in one block.
+
+The exam even produces «**Налуу** перпендикуляр $-1/3$» meaning *the slope of
+the perpendicular*, which in unit 10's vocabulary would read as *the oblique
+perpendicular* — a contradiction in terms.
+
+4e's rule says in-strand ⟹ the word is unavailable. I could not make it
+unavailable: there is no other candidate («ташуу» 1, «хазгай» 4, «хэвгий» 0,
+none in any authority). **So the draft manages it instead, as «налуу хэрчим»
+(*oblique segment*), never bare** — the «гурвалжны медиан» pattern, which 4e
+reserves for cross-strand cases. That is a deliberate departure from the rule,
+and I would rather you saw it than found it.
+
+**With five instances, 4e has outgrown being a list.** Four kinds now appear:
+ministry-vs-ministry (солбисон, огтлогч), cross-strand (медиан),
+ours-and-fixable (эсрэг өнцөг), and now exam-vs-topic with no alternative
+available (налуу). A standing rule would be cheaper than a sixth entry.
 
 ### 4f. «харгалзах нум» for *intercepted arc*, against the «нумд тулсан» construction
 
@@ -1447,6 +1514,69 @@ The second and third are edits to `lib/esh-course.ts` — ship-mode work, not
 this session's. **The reason to decide is that the three coinages are only
 worth your review time if the lesson stays**, and they are the only ungrounded
 terms in an otherwise fully-grounded eight-unit block.
+
+---
+
+### 6j. Three CORE ministry objectives are claimed by a unit that teaches none of them
+
+**Found 20 Sep 2026, drafting `solid-geometry/lines-and-planes-in-space`.**
+This is a ship-mode finding about `lib/esh-course.ts`, and I think it is the
+most consequential one in section 6.
+
+That file maps ЭШ Geometry unit 10 as:
+
+```
+"lines-and-planes-in-space": ["10.12в", "11.5в", "11.5г"],
+```
+
+All three are **non-elective (core)**. The topic teaches none of them:
+
+| code | asks for | this topic has |
+|---|---|---|
+| 10.12в | «Биетүүдийн хавтгай огтлол байгуулах, огтлолын талбайг тооцоолох (диагональ, огтлол, тэнхлэг огтлол, суурьтай параллел огтлол)» | **0** mentions of a cross-section |
+| 11.5в | «Огторгуйн координатын систем, цэгийн координатыг ойлгох…» | **0** mentions of a coordinate |
+| 11.5г | «…хоёр цэгийн хоорондох зай, хэрчмийн дундаж цэг» (in space) | **0** |
+
+The topic is purely synthetic: axioms of a plane, skew lines, ⊥ to a plane,
+angles in space.
+
+**Two of the three are merely mis-attributed.** `vectors-matrices/vectors-in-
+space` opens with `coordinates-in-3d` and includes `the-box-diagonal`, which
+between them cover 11.5в and 11.5г — but that unit claims 11.8а–е instead. So
+those two codes are attached to the wrong unit rather than uncovered.
+Bookkeeping, and cheap to fix.
+
+**10.12в is the real one.** Nothing in the 72-topic course teaches constructing
+plane cross-sections of solids and computing their areas. The topic that does —
+`solid-geometry/cross-sections-and-similar-solids`, whose first lesson is
+literally `cross-sections-of-solids` — **is not in the ЭШ course at all**.
+Partial coverage exists only in `spheres` (sections of a sphere, 4 mentions)
+and one mention in `cylinders-and-cones`.
+
+**Why this is worse than an ordinary gap.** `MOE_NOT_YET_COVERED`'s own
+docstring is emphatic:
+
+> «The core list is empty, and lib/esh-course.test.ts asserts that… A core
+> objective may not silently reappear here. Silence about a gap is the thing
+> the list exists to prevent.»
+
+That list is rigorous and test-asserted — but the test can only check that a
+code is not *both* mapped and listed as missing. **It cannot check whether a
+mapping is truthful.** So a core objective can go uncovered by being falsely
+claimed, which is precisely the failure the list was built to prevent, reached
+by the one route the test does not watch. The gap list says the core list is
+empty; on this evidence it is not.
+
+**Two things would close it**, neither of which I have done:
+
+- a check that validates mappings against topic *content*, not just against the
+  gap list — even a keyword sanity check would have caught all three; and
+- a decision on 10.12в itself: either add
+  `solid-geometry/cross-sections-and-similar-solids` to the Geometry block, or
+  move 10.12в into `MOE_NOT_YET_COVERED` and accept a non-empty core list.
+
+Adding a unit to the course is a curriculum call and rule 4's route budget does
+not cover it, so it is yours. I changed nothing.
 
 ---
 
