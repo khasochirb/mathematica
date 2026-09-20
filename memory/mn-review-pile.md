@@ -2,8 +2,8 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty drafts, twenty-two of
-which feed the ЭШ course.**
+switched to ЭШ-first: this file now covers thirty-one drafts, twenty-three
+of which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -11,7 +11,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All thirty
+**Voice reference §9 is fully applied and no longer a question.** All thirty-one
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 365 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 411 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -114,18 +114,19 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 365 as of 20 Sep** — see the note under the table;
+> rather than 178. **It is 411 as of 20 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty drafts, 20 Sep 2026:
+Counted across the thirty-one drafts, 20 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
 | `10/exponential-functions` | 144 |
+| `algebra-2/exponentials-and-logarithms` | 46 |
 | `9/equations-and-formulas` | 44 |
 | `11/sequences-and-series` | 23 |
 | `algebra-1/linear-equations` | 20 |
@@ -147,7 +148,7 @@ Counted across the thirty drafts, 20 Sep 2026:
 | `geometry/area-and-perimeter` | 2 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **365** |
+| **total** | **411** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -172,7 +173,7 @@ Exponential functions carries the largest share because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-365 places rather than eight. It also touches `check[]` neighbourhoods, though
+411 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -376,6 +377,7 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **нийлэхгүй** | diverge | `11/sequences-and-series` L6 | 5 — negated from the ministry's own «нийлэх» |
 | **аравтын · натурал логарифм** | common · natural logarithm | `11/logarithms` L2, and the next draft | Russian calques; **«натурал» means *natural number* in the bank, 29 times** — see 4i |
 | **децибел · хүчиллэг · Рихтерийн хэмжүүр** | decibel · acidity · Richter scale | `11/logarithms` L6 | throughout L6 — chemistry and seismology, not maths; a science teacher's eye is worth more than mine |
+| **суурь солих томьёо** | change of base | `algebra-2/exponentials-and-logarithms` L3 | a concept, a worked example, a teach step and the facts table |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -1026,6 +1028,40 @@ sitting in a drafting session can tell an intended spiral from a copy-paste.
 
 The translation consequence is real and is handled: grade 9 copies the shipped
 grade 8 Mongolian for every overlapping term (item 2g).
+
+---
+
+### 6g. One ЭШ topic teaches logarithms three times
+
+**Found 20 Sep 2026, drafting `algebra-2/exponentials-and-logarithms`.** Same
+class as 6f — a curriculum observation, not a translation question — but
+sharper, because here the repetition is *inside a single ЭШ topic* rather than
+across two grades.
+
+**Илтгэгч ба логарифм функц** has three units, and this is what they cover:
+
+| ЭШ unit | source topic | logarithms? |
+|---|---|---|
+| 1 | `10/exponential-functions` | sets up the exponential |
+| 2 | `11/logarithms` | six lessons: definition, evaluating, laws, two kinds of equation, log scales |
+| 3 | `algebra-2/exponentials-and-logarithms` | four lessons: exponentials again, **definition again, laws again, equations again** |
+
+A student working the topic in order meets the definition of a logarithm
+twice, the three log laws twice, and log equations twice, in the same topic,
+weeks apart.
+
+**This may well be deliberate** — unit 3 is pitched harder (it adds change of
+base and one-to-one reasoning) and spaced repetition is real. But unit 3 does
+not *read* as a revisit; it reads as a first teaching, opening with "It's not a
+new creature" as though the reader had never met one. **If the spiral is
+intended, unit 3's framing should acknowledge unit 2**; if it is not intended,
+one of the two is redundant. Either way it is an English-content call and I
+changed nothing.
+
+**What I did do** is make the Mongolian consistent across all three, which is
+Notes 1 of that draft: the overlapping terms are copied, not re-decided, on
+2g's logic one tier down. If you rule against any of them, three drafts change
+together.
 
 ---
 
