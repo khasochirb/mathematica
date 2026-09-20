@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-two drafts, twenty-four
+switched to ЭШ-first: this file now covers thirty-three drafts, twenty-five
 of which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
@@ -11,9 +11,9 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All thirty-two
-drafts carry zero em-dash parentheticals in shipping prose, and the check is
-fatal rather than advisory, so the state cannot rot back.
+**Voice reference §9 is fully applied and no longer a question.** All
+thirty-three drafts carry zero em-dash parentheticals in shipping prose, and
+the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
 entries) and `docs/mn-voice-reference.md`. Their companion data files,
@@ -121,7 +121,10 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-two drafts, 20 Sep 2026:
+Counted across the thirty-three drafts, 20 Sep 2026. The table is unchanged
+from the thirty-two-draft run: `algebra-2/radicals-and-rational-exponents`
+contributes **zero**, being exact-valued throughout, and is the first draft to
+add none.
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -167,6 +170,14 @@ Counted across the thirty-two drafts, 20 Sep 2026:
 >     if n: print(f'{p.name:55} {n}')
 > PY
 > ```
+>
+> **Use that command and not a plain grep.** On 20 Sep a loose
+> `grep -oE '[0-9][.,][0-9]'` over a draft body returned twelve hits that
+> looked like unconverted decimals and were all coordinate pairs ($(0,3)$,
+> $(1,5)$) and ministry objective codes (10.1а, 11.3е). Across all drafts that
+> grep returns 791 against the stored command's 412 — a 77% false-positive
+> rate, because it counts commas as well as points and reads outside `$...$`.
+> The stored command is correct; ad-hoc ones on these files are not.
 
 Exponential functions carries the largest share because growth factors
 (`$b = 1.05$`, `$V = 800(0.75)^t$`) are decimals by nature.
@@ -306,7 +317,37 @@ so every remaining grade 9 topic should be checked against those mirrors
 before its terminology is decided, not after. I have added that step to the
 drafting loop.
 
----
+#### Update, 20 Sep: the first draft where this rule decided more than the ministry did
+
+**`algebra-2/radicals-and-rational-exponents`.** Until now 2g has settled one
+or two words per draft, always alongside a ministry that also had a view. Here
+it settles four, **the ministry has no view on any of them**, and three of the
+four are words the grounding pass would have got wrong:
+
+| term | `8-mn/roots` ships | what grounding alone would have produced |
+|---|---|---|
+| perfect square | **гүйцэд квадрат** (30 uses) | «бүрэн квадрат» |
+| perfect cube | **гүйцэд куб** (4) | «бүрэн куб» |
+| cube root | **куб язгуур** | «кубын язгуур» |
+| index (of a radical) | **индекс** (7) | «зэрэглэгч» / «үзүүлэлт» |
+
+А/492 contains none of the four, and the reason is structural rather than
+accidental: **it is a grade 10–12 standard and roots are taught in grade 8**,
+so the standard never says the words. The dictionary's supplied a–i range does
+not reach «язгуур» either. Without 2g the grounding pass would have had nothing
+to stand on and would have coined four terms contradicting Mongolian a student
+read last year.
+
+**This argues the rule is stated too weakly.** 2g is currently written as a
+tie-breaker for overlapping terms. Here it is not breaking a tie — it is the
+only source there is. The strong form:
+
+> **A shipped mirror is an authority, not a tie-breaker: below the ministry
+> where both speak, above everything where the ministry is silent.**
+
+That also covers the structural gap the four terms expose — А/492 starts at
+grade 10, so **every grade 6–9 term is outside it by construction**, and a
+rule that only breaks ties leaves all of them unsourced.
 
 ## 3. Terms I coined — ungrounded, and I know it
 
@@ -508,6 +549,37 @@ much thinner on names for kinds of things.** «постулат», «урвуу 
 «нөхцөлт өгүүлбэр», «индуктив сэтгэлгээ» and now these three are all the same
 shape. If you want to spend one sitting on the highest-leverage group in this
 file, it is that one.
+
+**The best-grounded topic in the programme is now
+`algebra-2/radicals-and-rational-exponents`**, which adds twenty terms and
+leaves **two** ungrounded — «ижил язгуурт гишүүд» (*like radicals*) and
+«язгуурын доорх илэрхийлэл» (*radicand*), both compositional and low-risk. The
+first is built from the exam's own adjectival «язгуурт» (as in «Квадрат
+язгуурт функц», 12 uses) and parallels «ижил төрлийн гишүүд» for *like terms*
+in `algebra-1/expressions-and-operations`, so a student meets a familiar shape;
+you may prefer the fully parallel «ижил төрлийн язгуурт гишүүд», which is
+longer. Everything else in the topic came from a source, and one term came from
+the exam **verbatim as a question stem**: *rationalize the denominator* is
+«хуваарийг иррационалаас чөлөөлөх», which the ЭШ bank asks in exactly those
+words.
+
+> **One term there is a deliberate borrowing you should see, because it makes
+> a promise about a topic that does not exist yet.** *Conjugate* is
+> **«хосмог»** — an А/492 word (3 uses), but all three are the **complex**
+> conjugate (12.4г, «хосмогоор үржүүлэх» in 12.4и). The standard never
+> discusses radical conjugates.
+>
+> I used it for the radical conjugate anyway because the English lesson is
+> built on the link: it says the conjugate trick is *"the same trick that
+> cleared complex denominators in Unit 2"*, and the fact card repeats it. One
+> word for one idea is what the source is arguing; a different word here would
+> break the cross-reference the lesson exists to make.
+>
+> **The cost: the word arrives in Mongolian before the topic that grounds it.**
+> `algebra-2/quadratics-and-complex-numbers` is not drafted, and when it is it
+> **must** use «хосмог» or the link fails retroactively. That is a constraint
+> on a future draft created by this one — flagging it so it is a decision you
+> made rather than one a later session inherits silently.
 
 **The one coinage in the last geometry topic that stayed a coinage** is «гулсах тусгал»
 for *glide reflection*: zero in А/492, zero in the dictionary's a–i range,
@@ -720,6 +792,38 @@ a ministry word for a reason other than a spelling split (4e). Either:
 Nothing has shipped either way, so the reversal is one find-and-replace in one
 file plus two lesson rewrites if you pick the second.
 
+#### Update, 20 Sep: evidence that this may not be a conflict at all
+
+**`algebra-2/radicals-and-rational-exponents` lesson 4 needs both ideas in one
+sentence** (the inverse's graph *is symmetric* about $y = x$; the inverse *is
+the reflection* of $f$). That forced another look, and the shipped mirrors turn
+out to already draw the line this topic needs:
+
+> `6-mn/integers`: «…**тэгш хэмтэй** — нэг тал нь нөгөөгийнхөө шулуунаар
+> тусгасан **тусгал** юм.»
+
+One sentence, both words, different jobs: **«тэгш хэмтэй» for the property**
+(being symmetric), **«тусгал» for the operation and its image** (the
+reflection). The counts fit a division of labour rather than a competition —
+«тэгш хэмтэй» is exam 31 / shipped 11 / ministry 1; «тусгал» is exam 0 /
+shipped 7 / ministry 0. They never contend for the same slot.
+
+The ministry's inverse-function line reads the same way: 11.3е says the graph
+is «шулууны хувьд **тэгш хэмтэй**» — the property, not the map. So the new
+draft writes *symmetric about y = x* as «y = x шулууны хувьд тэгш хэмтэй» and
+*the reflection* as «тусгал», in one lesson, with no collision.
+
+**If that split holds, 4g is not a ruling to make but a distinction to write
+down**, and `geometry/transformations` is already consistent with it: lesson 2's
+«тусгал» is the operation, lesson 4's «тэгш хэм» is the property. That is
+exactly the division above — the draft reached it from the English and the
+mirrors reached it independently.
+
+I have **not** edited `GEOMETRY-TERMS.md`, which lists the two as competitors
+in §3. Thirteen geometry drafts cite that file and the change should be yours.
+**This is now the cheapest item in the pile if the split is right**: one
+paragraph in one shared file, and 4g closes without rewriting anything.
+
 ---
 
 ### 4h. A geometric progression's ratio: «харьцаа», or the Russian calque «хуваарь»?
@@ -774,7 +878,7 @@ retroactively.
 
 ---
 
-### 4j. The ministry and the 2025 exam papers name the same object differently — **the first time this has happened**
+### 4j. The ministry and the ЭШ papers name the same object differently — **now twice**
 
 **`10/rational-expressions`, throughout.** Every earlier conflict in this file
 was ministry-vs-dictionary (4d), ministry-vs-itself (2e), or
@@ -803,6 +907,30 @@ it.
 А/492 *for ЭШ topics*? That would be a fifth clause in the authority order,
 alongside 2e, 2f and 2g. Say yes and this draft stands as written; say no and
 it is a handful of edits, since both terms are already on the page.
+
+#### Second instance, 20 Sep: *range*
+
+**`algebra-2/radicals-and-rational-exponents`, lesson 4.** The same split, on
+a much commoner word:
+
+| | ministry | ЭШ papers |
+|---|---|---|
+| domain | «тодорхойлогдох муж» (2) | «тодорхойлогдох муж» (25) |
+| range | «**дүр**» (2, as «тодорхойлогдох муж ба дүр») | «**утгын муж**» (31) |
+
+They agree on domain and split on range. The draft uses «утгын муж», which is
+also what `algebra-2/exponentials-and-logarithms` already used — so this one is
+*already* decided in the exam's favour across two drafts, which is the thing
+worth flagging rather than the word itself.
+
+**Why two instances matter more than one.** Both times the exam's word is the
+commoner by an order of magnitude, and both times the topic is an ЭШ topic. That
+is the same direction 2f and 2g point (*what students actually meet beats what a
+document counted*). **Four findings now argue for one rule**, and ruling 2e, 2f,
+2g and 4j separately will probably produce four compatible answers at four times
+the cost. A single clause — *for ЭШ topics the exam bank outranks А/492; where
+the ministry is silent the shipped mirrors outrank everything* — would close all
+four.
 
 ---
 
@@ -833,6 +961,55 @@ inconsistent until you rule. Concretely:
 **The cheapest moment to rule is now**: it lands again in
 `algebra-2/radicals-and-rational-exponents` (ЭШ Algebra unit 7), which is two
 drafts away, and after that in rational equations wherever they recur.
+
+#### Update, 20 Sep: it landed, and it is now a lesson title
+
+`algebra-2/radicals-and-rational-exponents` uses «хуурамч шийд» **17 times**,
+and its lesson 3 is *titled* «Язгуурт тэгшитгэл ба хуурамч шийд». A lesson
+title cannot be replaced by a description, so the hedge that carried the two
+logarithm drafts is no longer available anywhere this concept appears.
+
+I searched the ЭШ bank for an existing word before keeping the coinage —
+«хуурамч шийд», «гадны шийд», «илүүдэл шийд» — **zero hits each**. There is no
+exam wording to defer to, so 4j's rule would not decide this one either.
+
+**What changed is the cost of a reversal**, not the argument: it is now four
+drafts and a lesson title rather than three drafts, and the next two ЭШ Algebra
+units are radical and rational equations, so it will keep growing.
+
+---
+
+### 4l. A wrong grounding in an earlier draft: «харилцан нэг утгат» is not what the ministry says
+
+**Found 20 Sep while drafting `algebra-2/radicals-and-rational-exponents`,
+whose lesson 4 is Inverse Functions.** This is a correction, not a conflict —
+it needs a yes, not a ruling.
+
+`algebra-2-exponentials-and-logarithms.md` records *one-to-one* as
+**«харилцан нэг утгат»**, grounded as **"ministry 3, verbatim"**. It is not
+verbatim. А/492 writes «харилцан нэг **утгатай**» all three times, and in two
+of them the word is attributive — the position where a clipped «-т» would be
+most tempting:
+
+> 11.3е «…харилцан нэг **утгатай** функцийг таних, мэдэх»
+> 11.3е «…өгсөн функц нь харилцан нэг **утгатай** эсэхийг тодорхойлох»
+> 11.3ж «…харилцан нэг **утгатай** функцийн урвууг олох»
+
+So the ministry's own attributive form carries `-тай`, and the earlier draft's
+form appears in no source at all — not the standard, not the ЭШ bank, not any
+shipped mirror.
+
+The new draft uses «харилцан нэг утгатай», where the term carries lesson 4.
+**The two drafts are adjacent units in the same ЭШ Algebra block**, so as
+things stand a student would meet two spellings of one term inside one topic.
+
+**I have not edited the earlier draft.** It is in this pile awaiting your read
+and I would rather you saw the correction than found it silently applied. It is
+a one-word change on one line; say the word.
+
+*What this costs: nothing yet, which is the point.* It is the cheapest possible
+version of the failure 2g exists to prevent — a term renamed across a boundary
+— caught while both sides are still drafts and neither has shipped.
 
 ---
 
