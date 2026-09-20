@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers twenty-nine drafts, twenty-one of
+switched to ЭШ-first: this file now covers thirty drafts, twenty-two of
 which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
@@ -11,7 +11,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All twenty-nine
+**Voice reference §9 is fully applied and no longer a question.** All thirty
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 350 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 365 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -114,14 +114,14 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 350 as of 20 Sep** — see the note under the table;
+> rather than 178. **It is 365 as of 20 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the twenty-nine drafts, 20 Sep 2026:
+Counted across the thirty drafts, 20 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -129,6 +129,7 @@ Counted across the twenty-nine drafts, 20 Sep 2026:
 | `9/equations-and-formulas` | 44 |
 | `11/sequences-and-series` | 23 |
 | `algebra-1/linear-equations` | 20 |
+| `11/logarithms` | 15 |
 | `geometry/coordinate-geometry` | 14 |
 | `geometry/relationships-in-triangles` | 14 |
 | `geometry/circles` | 12 |
@@ -146,7 +147,7 @@ Counted across the twenty-nine drafts, 20 Sep 2026:
 | `geometry/area-and-perimeter` | 2 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **350** |
+| **total** | **365** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -171,7 +172,7 @@ Exponential functions carries the largest share because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-350 places rather than eight. It also touches `check[]` neighbourhoods, though
+365 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -373,6 +374,8 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **нөхцөлт тэгшитгэл** | conditional equation | `9/equations-and-formulas` L2 | 3 — rides on «нөхцөлт өгүүлбэр», itself flagged |
 | **харьцаа** (of a progression) | common ratio | `11/sequences-and-series` L3, L5, L6 | throughout — the only ungrounded term in that topic; Russian says *denominator*, see 4h |
 | **нийлэхгүй** | diverge | `11/sequences-and-series` L6 | 5 — negated from the ministry's own «нийлэх» |
+| **аравтын · натурал логарифм** | common · natural logarithm | `11/logarithms` L2, and the next draft | Russian calques; **«натурал» means *natural number* in the bank, 29 times** — see 4i |
+| **децибел · хүчиллэг · Рихтерийн хэмжүүр** | decibel · acidity · Richter scale | `11/logarithms` L6 | throughout L6 — chemistry and seismology, not maths; a science teacher's eye is worth more than mine |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -738,6 +741,30 @@ using a word students have not met.
 print, it settles three lessons and it is a find-and-replace in one file. The
 ЭШ past papers gave no help: they always specify a geometric progression by
 two of its terms or by $b_{n+1} = 2b_n$, never by naming the ratio.
+
+---
+
+### 4i. «натурал логарифм», when «натурал» already means *natural number* in the exam
+
+**`11/logarithms` lesson 2, and `algebra-2/exponentials-and-logarithms` next.**
+Neither *common logarithm* nor *natural logarithm* is named by А/492 or the
+dictionary's a–i range, so both drafts follow the Russian tradition:
+
+| English | draft | the calque | the grounded sense of the adjective |
+|---|---|---|---|
+| common log | **аравтын логарифм** | *десятичный* | «аравтын» = **decimal** (bank 10: «аравтын бутархай») |
+| natural log | **натурал логарифм** | *натуральный* | «натурал» = **natural number** (bank 29: «хэдэн натурал шийдтэй вэ?») |
+
+The first is comfortable. **The second puts a word the exam uses 29 times for
+*natural number* in front of a logarithm**, in a course where the same student
+meets both. I used it anyway — it is almost certainly what Mongolian textbooks
+print, and the collision is only in the adjective, not the noun — but I want to
+be plain that I chose a known collision rather than discovered no alternative.
+
+**Rule on this before the next draft if you can.** `algebra-2/exponentials-and-logarithms`
+is where $\ln$ and $e$ are actually taught, so the term earns its keep there
+rather than here; a ruling now settles both drafts at once instead of one
+retroactively.
 
 ---
 
