@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-six drafts, twenty-eight
+switched to ЭШ-first: this file now covers thirty-seven drafts, twenty-nine
 of which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
@@ -12,7 +12,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-thirty-six drafts carry zero em-dash parentheticals in shipping prose, and
+thirty-seven drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 424 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 440 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -121,7 +121,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-six drafts, 20 Sep 2026.
+Counted across the thirty-seven drafts, 20 Sep 2026.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
 > The stored command counts a whole draft file, and six drafts *quote* decimal
@@ -145,6 +145,7 @@ Counted across the thirty-six drafts, 20 Sep 2026.
 | `10/exponential-functions` | 144 |
 | `9/equations-and-formulas` | 44 |
 | `solid-geometry/cylinders-and-cones` | 26 |
+| `solid-geometry/spheres` | 16 |
 | `algebra-2/exponentials-and-logarithms` | 38 |
 | `algebra-1/linear-equations` | 20 |
 | `11/sequences-and-series` | 18 |
@@ -168,7 +169,7 @@ Counted across the thirty-six drafts, 20 Sep 2026.
 | `10/rational-expressions` | 1 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **424** |
+| **total** | **440** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -1666,6 +1667,92 @@ which the shipped mirrors use 22 times and 2g protects.
 > says little about plane-geometry proof. Worth knowing before the pre-redirect
 > geometry drafts are reviewed: the question to ask each one is not "is this
 > well-formed Mongolian" but "did the exam already have a word".
+
+---
+
+### 6m. The exam's subtopic labels are a term source I had not been using — and missing it cost a term the same day
+
+**Found 20 Sep 2026, drafting `solid-geometry/spheres`.** A method finding
+rather than a content one, but it corrected a draft committed an hour earlier
+and it will keep paying.
+
+`solid-geometry/cylinders-and-cones` recorded **«таслагдсан конус»** for
+*truncated cone* as its one ungrounded term, noting I had searched
+«таслагдсан», «таславсан» and «тайрсан» and found nothing. All three searches
+were real; all three came back empty. **I did not search «огтлогдсон».**
+
+The ЭШ bank carries it as a subtopic label:
+
+> `"subtopic": "Огтлогдсон конус"` — **12 questions**, all from the **2025A/B/C
+> papers**, all Section 2 fill-ins, all tier **hard**.
+
+That makes truncated cones one of the three most-tested solids in the bank. The
+term was not ungrounded; I had looked for it with the wrong three words.
+
+**What actually fixes this is not "search harder".** The bank's `subtopic`
+field is a **small controlled vocabulary naming exactly what the exam thinks
+its own topics are** — for `solid_geometry` the whole list is:
+
+| subtopic | count |
+|---|---|
+| Гурвалжин пирамид | 16 |
+| Тэгш өнцөгт параллелепипед | 12 |
+| Огтлогдсон конус | 12 |
+| Параллелепипед, пирамидын эзлэхүүн | 12 |
+| Конус | 6 |
+| the rest | 16 |
+
+Reading that list takes one command and would have supplied the term without
+guessing a synonym. **I had never used it as a term source in thirty-seven
+drafts**, and it is strictly better than free-text search for exactly the terms
+an ЭШ draft most needs: the names of the things the exam tests.
+
+**Added to the drafting loop** in `memory/mn-drafts/README.md`: dump the
+bank's subtopic labels for the topic's `skill_tag` before the grounding pass.
+
+> Note this is the **third** distinct search-method failure recorded in two
+> days: substring false positives («их тойрог» inside «орших тойрог», «ул»
+> inside «улам»), the decimal-survey over-count (2d), and now the wrong-synonym
+> miss. All three produced confident wrong statements that a second check
+> caught. The common lesson is that a bare count is not evidence — the contexts
+> or the controlled vocabulary have to be read.
+
+---
+
+### 6n. The exam does not test spheres at all, while the ministry requires them
+
+**Found 20 Sep 2026, drafting `solid-geometry/spheres`** — ЭШ Geometry unit 12,
+the last unit of the block.
+
+А/492's **10.12б is core (non-elective)** and names the sphere explicitly:
+
+> «Пирамид, цилиндр, призм, **бөмбөрцөг**, конусын гадаргуун талбай,
+> эзлэхүүнийг олох томьёог мэдэх, хэрэглэх»
+
+The exam bank contains **zero** occurrences of «бөмбөрцөг», «бөмбөрцг…»,
+«сфер» or «бөөрөнхий», and no sphere surface-area or volume question anywhere.
+(The 98 hits for «бөмбөг» are all probability urns and basketballs.) Of 74
+`solid_geometry` questions, the sphere's share is **0**, while truncated cones
+get 12 — see 6m's table.
+
+**This is the inverse of every 4j instance so far.** Those were all *the exam
+has a better word than the ministry*. This is *the ministry requires content
+the exam does not test*, which does not have the same answer, and it sits
+opposite 6i, where an ЭШ Algebra lesson taught content the exam does not test
+and the **ministry** was silent too.
+
+**I am not proposing to cut unit 12.** 10.12б is core; 54 papers is a sample,
+not the whole history; and a student who cannot do a sphere has a gap the
+syllabus says is real. But it is worth your eye, because:
+
+- it makes **«бөмбөрцөг» the only term in that draft with a single authority**
+  — the ministry line above — with no exam register to check it against, where
+  every other term in the topic had two or three sources; and
+- the pair {6i, 6n} is the shape of a question you may eventually want to
+  answer once: **when the exam and the syllabus disagree about what matters,
+  which one does the ЭШ course follow?** Today the course follows the syllabus
+  for coverage and the exam for wording, which is defensible but has never been
+  stated.
 
 ---
 

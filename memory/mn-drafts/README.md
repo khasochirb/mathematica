@@ -59,6 +59,46 @@ concept where there is one. Rationale and the rule's exact text: review
 pile 2g. This matters most for grades 9–12, which sit directly on top of the
 shipped grades 6–8.
 
+## For an ЭШ topic: read the exam's own subtopic labels before grounding
+
+**Added 20 Sep 2026, drafting `solid-geometry/spheres`.** The previous draft
+recorded «таслагдсан конус» for *truncated cone* as an ungrounded coinage after
+searching three synonyms. The exam has the word — **«Огтлогдсон конус»**, a
+12-question subtopic on the 2025 papers — and free-text search missed it
+because I guessed the wrong three words. Review pile 6m.
+
+The bank's `subtopic` field is a **small controlled vocabulary naming what the
+exam thinks its own topics are**, which is exactly the register an ЭШ draft
+should match. Dump it for the topic's `skill_tag` before grounding any term:
+
+```
+python3 - <<'EOF' solid_geometry
+import json, glob, collections, sys
+tag = sys.argv[1]
+subs = collections.Counter()
+for f in glob.glob("data/questions/*.json") + glob.glob("data/esh/**/*.json", recursive=True):
+    if "moe-curriculum" in f: continue
+    try: t = json.load(open(f, encoding="utf-8"))
+    except Exception: continue
+    def w(o):
+        if isinstance(o, dict):
+            if o.get("skill_tag") == tag and o.get("subtopic"):
+                subs[o["subtopic"]] += 1
+            for v in o.values(): w(v)
+        elif isinstance(o, list):
+            for v in o: w(v)
+    w(t)
+for s, n in subs.most_common(): print(f"{n:4d}  {s}")
+EOF
+```
+
+Two caveats. The field is **mixed**: most labels are Mongolian but some are
+English or snake_case (`cone_sector_angle`, `Solid of revolution`), so it
+supplements the corpus search rather than replacing it. And the counts are
+question counts, not term counts — a 12-question subtopic means the exam tests
+that object twelve times, which is a statement about coverage as much as
+wording.
+
 ---
 
 ## Conventions settled by corpus evidence, not per topic

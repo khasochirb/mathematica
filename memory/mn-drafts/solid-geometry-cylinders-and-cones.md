@@ -18,6 +18,11 @@ case suffixes (§8), condition before thing (§1).
 adds — **and four corrections to `geometry/surface-area-and-volume`**, which is
 ЭШ Geometry unit 9 and teaches the same solids. See Notes 1–4.
 
+> **Amended the same day.** Notes 5 originally recorded «таслагдсан конус» as a
+> coinage. The exam has the word — «Огтлогдсон конус», a 12-question subtopic
+> label on the 2025 papers — and the draft now uses it. See Notes 5 and review
+> pile 6m.
+
 **Shipped-mirror check:** no slug overlap, but `6-mn/geometry-area-volume` and
 `7-mn/geometry-scale-and-circles` both ship volume and surface-area Mongolian,
 and **they disagree with each other about how to spell *volume***. That is
@@ -47,7 +52,7 @@ Notes 1, and it is the largest finding in this draft.
 | sector | **сектор** | ministry 2 · exam 11 |
 | axis | **тэнхлэг** | ministry 6 · exam 102 |
 | apex | **орой** | ministry 1 · exam |
-| truncated cone | **таслагдсан конус** | **ungrounded** — Notes 5 |
+| truncated cone | **огтлогдсон конус** | **exam 12, verbatim subtopic label** — corrected, Notes 5 |
 | oblique cylinder | **налуу цилиндр** | qualified per 4e — Notes 4 |
 | capacity | **багтаамж** | shipped 3 |
 
@@ -59,7 +64,7 @@ Notes 1, and it is the largest finding in this draft.
 
 **BLURB:** Дэлгэж болдог бөөрөнхий биетүүд: цилиндрийн нууц тэгш өнцөгт,
 конусын нууц бялууны зүсэм, зайрмагны конус бүрт нуугдаж байдаг 3-4-5
-гурвалжин, мөн таны кофены аяга болох таслагдсан конус.
+гурвалжин, мөн таны кофены аяга болох огтлогдсон конус.
 
 ---
 
@@ -340,19 +345,19 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
 
 ---
 
-## Lesson 4 — Конусын эзлэхүүн ба таслагдсан конус (`cone-volume-and-the-truncated-cone`)
+## Lesson 4 — Конусын эзлэхүүн ба огтлогдсон конус (`cone-volume-and-the-truncated-cone`)
 
 **concreteComparison**
 
 Зайрмагны шалгалт: нэг халбага хайлаад конусыг яг амсар хүртэл нь дүүргэх нь
 зөвхөн халбаганы эзлэхүүн ⅓πr²h-тэй тэнцүү үед л болно, мөн доороосоо дээшээ
-өргөссөн таны кофены аяга бол таслагдсан конус бөгөөд баристагийн машин
+өргөссөн таны кофены аяга бол огтлогдсон конус бөгөөд баристагийн машин
 түүний эзлэхүүнийг миллилитр хүртэл мэддэг.
 
 **objective**
 
-Конусын (V = ⅓πr²h) ба таслагдсан конусын эзлэхүүнийг пирамидын ⅓ ба
-таслагдсан биетийн холимог томьёог дахин ашиглаж тооцоолох.
+Конусын (V = ⅓πr²h) ба огтлогдсон конусын эзлэхүүнийг пирамидын ⅓ ба
+огтлогдсон биетийн холимог томьёог дахин ашиглаж тооцоолох.
 
 **concept**
 
@@ -360,20 +365,20 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
    өөрөөр хэлбэл түүнийг тойрсон цилиндрийн гуравны нэг. Ижил ус хийх
    туршилт, ижил үр дүн.
 
-2. **Таслагдсан конус** (суурьтай параллель зүсвэл, радиусууд нь $R$ ба $r$):
+2. **Огтлогдсон конус** (суурьтай параллель зүсвэл, радиусууд нь $R$ ба $r$):
    $V = \frac{\pi h}{3}\left(R^2 + Rr + r^2\right)$, өөрөөр хэлбэл тойрогтой
-   болсон таслагдсан биетийн холимог. Түүний байгуулагч:
+   болсон огтлогдсон биетийн холимог. Түүний байгуулагч:
    $\ell^2 = h^2 + (R - r)^2$, мөн хажуу гадаргуу нь
    $S_{\text{хаж}} = \pi (R + r) \ell$.
 
-3. Эрүүл ухааны зангуу: $r = R$ тавибал таслагдсан томьёонууд цилиндрийнх рүү
+3. Эрүүл ухааны зангуу: $r = R$ тавибал огтлогдсон томьёонууд цилиндрийнх рүү
    нурна ($\pi R^2 h$ ба $2\pi R \ell$); $r = 0$ тавибал конусынх руу нурна.
-   Таслагдсан конус хоёрын хооронд интерполяци хийж байна, яг 3-р бүлэгтэй
+   Огтлогдсон конус хоёрын хооронд интерполяци хийж байна, яг 3-р бүлэгтэй
    адил.
 
 **keyIdea**
 
-Конус: V = ⅓πr²h. Таслагдсан конус: V = (πh/3)(R² + Rr + r²), байгуулагч
+Конус: V = ⅓πr²h. Огтлогдсон конус: V = (πh/3)(R² + Rr + r²), байгуулагч
 ℓ² = h² + (R−r)², S_хаж = π(R+r)ℓ.
 
 **facts**
@@ -381,8 +386,8 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
 | title | latex | explanation |
 |---|---|---|
 | Конусын эзлэхүүн | `V = \tfrac{1}{3}\pi r^2 h` | Өөрийн цилиндрийн гуравны нэг, бөөрөнхий болсон пирамидын ⅓. |
-| Таслагдсан эзлэхүүн | `V = \tfrac{\pi h}{3}(R^2 + Rr + r^2)` | Хоёр дугуй дээр нэмээд Rr холимог гишүүн. |
-| Таслагдсан хана | `S_{\text{хаж}} = \pi(R + r)\ell, \quad \ell^2 = h^2 + (R-r)^2` | Дундаж ирмэг × байгуулагч. |
+| Огтлогдсон эзлэхүүн | `V = \tfrac{\pi h}{3}(R^2 + Rr + r^2)` | Хоёр дугуй дээр нэмээд Rr холимог гишүүн. |
+| Огтлогдсон хана | `S_{\text{хаж}} = \pi(R + r)\ell, \quad \ell^2 = h^2 + (R-r)^2` | Дундаж ирмэг × байгуулагч. |
 
 **workedExamples**
 
@@ -390,7 +395,7 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
   ижил суурь, ижил өндөртэй цилиндрийн эзлэхүүнийг олоорой.
   **solution:** Конус: $V = \frac13 \pi \cdot 9 \cdot 4 = 12\pi \approx 37.7$.
   Цилиндр: $36\pi$, гурван конус түүнийг яг дүүргэнэ.
-- `sg44-we2` — **statement:** Таслагдсан конусын радиусууд $R = 5$, $r = 2$,
+- `sg44-we2` — **statement:** Огтлогдсон конусын радиусууд $R = 5$, $r = 2$,
   өндөр нь $4$. Байгуулагч, хажуу гадаргуу ба эзлэхүүнийг олоорой.
   **solution:** Байгуулагч: $\ell = \sqrt{4^2 + (5-2)^2} = \sqrt{25} = 5$
   (дахин 3-4-5). Хана: $\pi(5 + 2) \cdot 5 = 35\pi$. Эзлэхүүн:
@@ -402,7 +407,7 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
   **correction:** Шовх биетүүд (конус, пирамид) ⅓ агуулна; хавтгай оройтой нь
   (цилиндр, призм) агуулахгүй. Хэрэв таны конус ямар нэгэн байдлаар өөрийн
   цилиндрээ дийлсэн бол ␓ алга болсон байна.
-- **text:** Таслагдсан конусын эзлэхүүнд радиусуудыг дундажлах:
+- **text:** Огтлогдсон конусын эзлэхүүнд радиусуудыг дундажлах:
   $\pi((R+r)/2)^2 h$.
   **correction:** Эзлэхүүн ингэж дундажлагддаггүй, зөв холимог нь
   $\frac{\pi h}{3}(R^2 + Rr + r^2)$. Товчлол нь хязгаар дээр унадаг: $r = 0$
@@ -412,7 +417,7 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
 
 - `sg44-t1` — $r = 6$, $h = 8$: конусын эзлэхүүн?
   **solution:** $V = \frac13 \pi \cdot 36 \cdot 8 = 96\pi \approx 301.6$.
-- `sg44-t2` — Хувин бол таслагдсан конус: ёроолын радиус $2$, амсрын радиус
+- `sg44-t2` — Хувин бол огтлогдсон конус: ёроолын радиус $2$, амсрын радиус
   $5$, өндөр $4$ (бүгд дм-ээр). Хэдэн ЛИТР багтаах вэ? ($1$ дм³ $= 1$ л;
   $\pi \approx 3.14$ аваарай.)
   **solution:** $V = \frac{4\pi}{3}(4 + 10 + 25) = 52\pi$ дм³
@@ -426,9 +431,9 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
 | 0 | teach | **eyebrow** ⅓ буцаж ирлээ · **title** Конус бол дугуй пирамид<br>**body** 3-р бүлэгтэй ижил туршилт: дүүрэн конусыг түүнийг тойрсон цилиндр рүү юүлээрэй, гурван юүлэлт, нэг дүүрэлт. $V = \frac13 \pi r^2 h$. Кавальери үүнийг нарийвчилж баталгаажуулна: конусыг суурийн талбай ба өндөр нь тохирсон дурын пирамидтай зүсэлт зүсэлтээр нь харьцуулаарай. |
 | 1 | solid3d | **eyebrow** Тоглож үз · **title** Конус ба цилиндр<br>**teach** $r = 3, h = 4$ тавиад $V = 12\pi$-г уншаарай; ижил хэмжээтэй цилиндр $36\pi$ багтаана. Хэмжээсүүдийг алхмаар өөрчлөөрэй, 1:3 харьцаа хэзээ ч хөдлөхгүй. Шовх = үргэлж гуравны нэг.<br>**config** unchanged (`solid: cone`, `r: 3`, `h: 4`, `slant: 5`) |
 | 2 | tapQuestion | **eyebrow** Шалгая · **title** Халбаганы шалгалт<br>**prompt** $r = 3$, $h = 4$: конусын эзлэхүүн нь<br>**options** `$12\pi$` · `$36\pi$` · `$24\pi$` · `$16\pi$` — **correctIndex 0**<br>**explanation** $\frac13 \pi \cdot 9 \cdot 4 = 12\pi \approx 37.7$. ⅓-гүйгээр та цилиндрийн $36\pi$-г нэхэх байсан, гурав дахин өгөөмөр. |
-| 3 | teach | **eyebrow** Оройг нь тайрах · **title** Таслагдсан конус<br>**body** Суурьтай параллель зүсээрэй: радиусууд $R$ (доод) ба $r$ (дээд). Байгуулагчийн гурвалжин, жинхэнэ хэлбэрээр нь зурагдсан: дээш өндөр $h = 4$, хөндлөн радиусын зөрүү $R - r = 3$, ханын дагуу байгуулагч $\ell = 5$. Ханын талбай $\pi(R + r)\ell$ буюу дундаж ирмэгийг байгуулагчаар; эзлэхүүн $\frac{\pi h}{3}(R^2 + Rr + r^2)$ буюу 3-р бүлгийн гурван гишүүнт холимогийн тойрог хувилбар. |
-| 4 | workedSet | **eyebrow** Бодсон жишээ · **title** Конус, бүтэн ба тайрсан<br>**intro** Бүтэнд нь ⅓; тайрсанд нь гурван гишүүнт холимог.<br>**ex1** $R = 5$, $r = 2$, $h = 4$: таслагдсан эзлэхүүн? · алхам: $R^2 + Rr + r^2 = 25 + 10 + 4 = 39$. · алхам: $V = \frac{4\pi}{3} \cdot 39 = 52\pi$. · **хариу** $52\pi \approx 163.4$<br>**ex2** Ижил биет: хажуу гадаргуу? · алхам: $\ell = \sqrt{16 + 9} = 5$. · алхам: $S_{\text{хаж}} = \pi(5 + 2) \cdot 5 = 35\pi$. · **хариу** $35\pi \approx 110$ |
-| 5 | tryItSet | **eyebrow** Өөрөө туршиж үз · **title** Хувин ба аяга<br>**intro** Хязгаарыг шалгаарай: r = R бол цилиндр, r = 0 бол конус.<br>**p1** $r = 5$, $h = 12$: конусын эзлэхүүн? — **choices** `$100\pi$` · `$300\pi$` · `$60\pi$` — **answerIndex 0** — $\frac13 \pi \cdot 25 \cdot 12 = 100\pi$.<br>**p2** Таслагдсан конус $R = 4$, $r = 1$, $h = 4$: байгуулагч? — **choices** `$5$` · `$4$` · `$\sqrt{17}$` — **answerIndex 0** — $\ell = \sqrt{16 + (4-1)^2} = \sqrt{25} = 5$.<br>**p3** Таслагдсан конус $R = 4$, $r = 1$, $h = 4$: эзлэхүүн? — **choices** `$28\pi$` · `$21\pi$` · `$\dfrac{68\pi}{3}$` — **answerIndex 0** — $\frac{4\pi}{3}(16 + 4 + 1) = \frac{4\pi}{3} \cdot 21 = 28\pi$. |
+| 3 | teach | **eyebrow** Оройг нь тайрах · **title** Огтлогдсон конус<br>**body** Суурьтай параллель зүсээрэй: радиусууд $R$ (доод) ба $r$ (дээд). Байгуулагчийн гурвалжин, жинхэнэ хэлбэрээр нь зурагдсан: дээш өндөр $h = 4$, хөндлөн радиусын зөрүү $R - r = 3$, ханын дагуу байгуулагч $\ell = 5$. Ханын талбай $\pi(R + r)\ell$ буюу дундаж ирмэгийг байгуулагчаар; эзлэхүүн $\frac{\pi h}{3}(R^2 + Rr + r^2)$ буюу 3-р бүлгийн гурван гишүүнт холимогийн тойрог хувилбар. |
+| 4 | workedSet | **eyebrow** Бодсон жишээ · **title** Конус, бүтэн ба тайрсан<br>**intro** Бүтэнд нь ⅓; тайрсанд нь гурван гишүүнт холимог.<br>**ex1** $R = 5$, $r = 2$, $h = 4$: огтлогдсон эзлэхүүн? · алхам: $R^2 + Rr + r^2 = 25 + 10 + 4 = 39$. · алхам: $V = \frac{4\pi}{3} \cdot 39 = 52\pi$. · **хариу** $52\pi \approx 163.4$<br>**ex2** Ижил биет: хажуу гадаргуу? · алхам: $\ell = \sqrt{16 + 9} = 5$. · алхам: $S_{\text{хаж}} = \pi(5 + 2) \cdot 5 = 35\pi$. · **хариу** $35\pi \approx 110$ |
+| 5 | tryItSet | **eyebrow** Өөрөө туршиж үз · **title** Хувин ба аяга<br>**intro** Хязгаарыг шалгаарай: r = R бол цилиндр, r = 0 бол конус.<br>**p1** $r = 5$, $h = 12$: конусын эзлэхүүн? — **choices** `$100\pi$` · `$300\pi$` · `$60\pi$` — **answerIndex 0** — $\frac13 \pi \cdot 25 \cdot 12 = 100\pi$.<br>**p2** Огтлогдсон конус $R = 4$, $r = 1$, $h = 4$: байгуулагч? — **choices** `$5$` · `$4$` · `$\sqrt{17}$` — **answerIndex 0** — $\ell = \sqrt{16 + (4-1)^2} = \sqrt{25} = 5$.<br>**p3** Огтлогдсон конус $R = 4$, $r = 1$, $h = 4$: эзлэхүүн? — **choices** `$28\pi$` · `$21\pi$` · `$\dfrac{68\pi}{3}$` — **answerIndex 0** — $\frac{4\pi}{3}(16 + 4 + 1) = \frac{4\pi}{3} \cdot 21 = 28\pi$. |
 | 6 | funFact | **eyebrow** Сонирхолтой баримт · **title** Архимедийн бэлтгэл дасгал<br>**body** Архимед конус = цилиндрийн ⅓ гэдгийг өөрийн шилдэг бүтээл рүү (бөмбөрцөг, дараагийн бүлэг) хүрэх алхам болгон баталсан. Үр дүнг зуун жилийн өмнө Евдокс «шавхалтын арга»-аар мэдчихсэн байсан: конусыг дотор талаас нь ба гадна талаас нь нимгэн цилиндрийн багцуудын хооронд зай нь арилтал шахна. Тэр шахалт НЬ орчин үеийн хязгаарын тодорхойлолт юм; Грекчүүд «хязгааргүй» гэдгийг чангаар хэлэхээс л татгалзсан хэрэг. |
 | 7 | recap | **eyebrow** Эргэн дүгнэлт · **title** Конусын эзлэхүүн |
 
@@ -458,11 +463,11 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
   **solution:** Төмөр:
   $2\pi \cdot 3 \cdot 7 + \pi \cdot 9 = 42\pi + 9\pi = 51\pi \approx 160.2$ м².
   Ус: $\pi \cdot 9 \cdot 7 = 63\pi \approx 197.9$ м³.
-- `sg4-pr-6` — Таслагдсан конусын радиусууд $10$ ба $4$, өндөр $8$.
+- `sg4-pr-6` — Огтлогдсон конусын радиусууд $10$ ба $4$, өндөр $8$.
   Байгуулагч ба хажуу гадаргуугийн талбайг олоорой.
   **solution:** $\ell = \sqrt{64 + 36} = 10$;
   $S_{\text{хаж}} = \pi(10 + 4) \cdot 10 = 140\pi \approx 439.8$.
-- `sg4-pr-7` — Мөн тэр таслагдсан конусын ($R = 10$, $r = 4$, $h = 8$)
+- `sg4-pr-7` — Мөн тэр огтлогдсон конусын ($R = 10$, $r = 4$, $h = 8$)
   эзлэхүүнийг олоорой.
   **solution:**
   $V = \frac{8\pi}{3}(100 + 40 + 16) = \frac{8\pi}{3} \cdot 156 = 416\pi \approx 1306.9$.
@@ -488,7 +493,7 @@ S = πr² + πrℓ, мөн дэлгэсэн секторын зургийг эз
 - `sg4-ty-4` — Тэгш талт цилиндрийн (тэнхлэг огтлол нь квадрат) эзлэхүүн
   $54\pi$. Радиусыг нь олоорой.
   **solution:** $h = 2r$: $\pi r^2 \cdot 2r = 54\pi$ тул $r^3 = 27$, $r = 3$.
-- `sg4-ty-5` — Таслагдсан конус: $R = 7$, $r = 3$, $h = 3$. Байгуулагч ба
+- `sg4-ty-5` — Огтлогдсон конус: $R = 7$, $r = 3$, $h = 3$. Байгуулагч ба
   эзлэхүүнийг олоорой.
   **solution:** $\ell = \sqrt{9 + 16} = 5$.
   $V = \frac{3\pi}{3}(49 + 21 + 9) = 79\pi \approx 248.2$.
@@ -592,17 +597,34 @@ Per 4e's managed-collision pattern and yesterday's «налуу хэрчим»: 
 cylinder* is **«налуу цилиндр»**, never bare «налуу». Consistent with the
 previous draft; noted only so the pattern is visible as a pattern.
 
-### 5. «таслагдсан конус» is the one ungrounded term
+### 5. «огтлогдсон конус» — corrected the same day, from a coinage to the exam's own label
 
-*Truncated cone / frustum* scores **zero** in the ministry, the exam and the
+**This section originally read "the one ungrounded term" and recorded the
+coinage «таслагдсан конус». It was wrong, and the correction is worth keeping
+visible.**
+
+What I wrote: *truncated cone scores zero in the ministry, the exam and the
 shipped mirrors — I searched «таслагдсан», «таславсан», «тайрсан» and found
-nothing anywhere. Unit 9 does not cover frustums at all, so there is no
-internal precedent either; `solid-geometry/pyramids` has a `the-frustum` lesson
-but that topic is not in the ЭШ course.
+nothing anywhere.* All three searches were real and all three came back empty.
 
-«таслагдсан конус» (*cut-off cone*) is a transparent participle and matches the
-English's own «truncated». The alternative «тайрсан конус» is equally
-ungrounded and slightly more violent. One term, one lesson, cheap to reverse.
+**I did not search «огтлогдсон», which is the word.** The ЭШ bank carries it as
+a subtopic label:
+
+> `"subtopic": "Огтлогдсон конус"` — **12 questions**, all from the **2025A/B/C
+> papers**, all Section 2 fill-ins (Q2.4.2, Q2.4.3), all tier **hard**.
+
+Twelve questions makes it one of the three most-tested solids in the bank, tied
+with rectangular parallelepipeds and behind only triangular pyramids. It is the
+opposite of ungrounded.
+
+I found this the next hour, drafting `solid-geometry/spheres`, by listing the
+bank's `solid_geometry` subtopic labels — and **that list is a term source I
+had never used**. It is a small controlled vocabulary stating exactly what the
+exam thinks its own topics are, which is precisely the register an ЭШ draft
+should match. Review pile 6m.
+
+The draft now uses «огтлогдсон конус» throughout. Unit 9 does not cover
+frustums, so nothing else needs to follow.
 
 ### 6. The exam contains this topic almost verbatim
 
