@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-one drafts, twenty-three
+switched to ЭШ-first: this file now covers thirty-two drafts, twenty-four
 of which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
@@ -11,7 +11,7 @@ the md's you sent."* This file is that list and nothing else. Anything the
 dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
-**Voice reference §9 is fully applied and no longer a question.** All thirty-one
+**Voice reference §9 is fully applied and no longer a question.** All thirty-two
 drafts carry zero em-dash parentheticals in shipping prose, and the check is
 fatal rather than advisory, so the state cannot rot back.
 
@@ -93,7 +93,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 411 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 412 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -114,14 +114,14 @@ manuals disagree outright.
 >   gives **205**. The table below is the corrected one.
 >
 > Nothing about the decision changes; the number you would be ruling on is 205
-> rather than 178. **It is 411 as of 20 Sep** — see the note under the table;
+> rather than 178. **It is 412 as of 20 Sep** — see the note under the table;
 > the figure grows with every draft that lands.
 
 §7 says "every number a student reads", but the checks deliberately skip
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-one drafts, 20 Sep 2026:
+Counted across the thirty-two drafts, 20 Sep 2026:
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -146,9 +146,10 @@ Counted across the thirty-one drafts, 20 Sep 2026:
 | `esh/number-sets-and-intervals` | 3 |
 | `geometry/quadrilaterals-and-polygons` | 3 |
 | `geometry/area-and-perimeter` | 2 |
+| `10/rational-expressions` | 1 |
 | `algebra-1/functions` | 1 |
 | `geometry/parallel-and-perpendicular` | 1 |
-| **total** | **411** |
+| **total** | **412** |
 
 > **This table is regenerated, not maintained.** It read 205 across nineteen
 > drafts until 18 Sep, when re-running the count found three geometry drafts
@@ -173,7 +174,7 @@ Exponential functions carries the largest share because growth factors
 **Why this is your call and not a mechanical follow-on from 2b.** In KaTeX the
 change is `1.05` → `1{,}05`, which renders «1,05» correctly but makes every
 formula noisier to read and to edit, and it diverges from the English mirror in
-411 places rather than eight. It also touches `check[]` neighbourhoods, though
+412 places rather than eight. It also touches `check[]` neighbourhoods, though
 not `check[]` itself. If §7 governs maths mode, it is one scripted pass plus a
 render QA walk; if it governs prose only, nothing changes. **Prose decimals
 (item 2b) are already done either way** — this is only about the inside of
@@ -378,6 +379,9 @@ draft. None is in the dictionary's a–i range or in А/492 or the corpus.
 | **аравтын · натурал логарифм** | common · natural logarithm | `11/logarithms` L2, and the next draft | Russian calques; **«натурал» means *natural number* in the bank, 29 times** — see 4i |
 | **децибел · хүчиллэг · Рихтерийн хэмжүүр** | decibel · acidity · Richter scale | `11/logarithms` L6 | throughout L6 — chemistry and seismology, not maths; a science teacher's eye is worth more than mine |
 | **суурь солих томьёо** | change of base | `algebra-2/exponentials-and-logarithms` L3 | a concept, a worked example, a teach step and the facts table |
+| **хориотой утга** | excluded value | `10/rational-expressions` L1, L2, L5 | carries L1 entirely |
+| **хуурамч шийд** | extraneous solution | `10/rational-expressions` L5 | **21 uses** — and it reverses the two logarithm drafts, see 4k |
+| **хорогдуулах** | to cancel a factor | `10/rational-expressions` L2, L3 | corpus 1 — thin, but it cannot be confused with subtraction |
 
 **`geometry/reasoning-and-proof` adds fourteen more, and they are a different
 problem.** They are not listed one by one here because they form groups that
@@ -767,6 +771,68 @@ be plain that I chose a known collision rather than discovered no alternative.
 is where $\ln$ and $e$ are actually taught, so the term earns its keep there
 rather than here; a ruling now settles both drafts at once instead of one
 retroactively.
+
+---
+
+### 4j. The ministry and the 2025 exam papers name the same object differently — **the first time this has happened**
+
+**`10/rational-expressions`, throughout.** Every earlier conflict in this file
+was ministry-vs-dictionary (4d), ministry-vs-itself (2e), or
+ministry-vs-shipped-mirror (2f, 2g). This one is **ministry vs the ЭШ exam**,
+and nothing has shipped, so 2g does not decide it.
+
+| source | wording | where |
+|---|---|---|
+| А/492 | «**алгебрын бутархай**» | twice, in the line that *is* lesson 4: «Хуваарь нь шугаман эсвэл квадрат олон гишүүнт байх алгебрын бутархайг нэмэх, хасах» |
+| ЭШ papers 2025a/b/c | «**рационал илэрхийлэл**» | three times, as the section label |
+
+**The draft leads with «рационал илэрхийлэл»** and puts «алгебрын бутархай»
+beside it on first use, so a student meets both. My reasons: this is an ЭШ
+topic and the exam's own label is what the student reads on the paper; it
+matches the English's head term; and А/492 itself writes «**рационал**
+тэгшитгэл» for lesson 5, so the standard is not avoiding the word.
+
+**But I should be plain that this inverts the stated authority order.**
+`docs/MONGOLIAN.md` puts the ministry first and the ЭШ bank inside «corpus».
+Read strictly, «алгебрын бутархай» wins. My argument is that **the ЭШ bank is
+not ordinary corpus for an ЭШ topic — it is the exam the course exists to
+pass** — but that is a case for amending the order, not for quietly ignoring
+it.
+
+**So the real question is bigger than one word:** does the ЭШ bank outrank
+А/492 *for ЭШ topics*? That would be a fifth clause in the authority order,
+alongside 2e, 2f and 2g. Say yes and this draft stands as written; say no and
+it is a handful of edits, since both terms are already on the page.
+
+---
+
+### 4k. *Extraneous solution*: I coined «хуурамч шийд» after two drafts described it instead
+
+**Found 20 Sep 2026 across three drafts.** No Mongolian source names this
+concept. `11/logarithms` and `algebra-2/exponentials-and-logarithms`
+**described** it («тодорхойлогдох мужаас гадуурх нэр дэвшигч»), and I argued
+in the second that three topics describing one concept three ways would be
+worse than one coinage used consistently.
+
+**`10/rational-expressions` forced the issue: it needs the word twenty-one
+times.** Lesson 5 is built on it — the concept, a fact row, a commonMistake, a
+tapQuestion, a tryItSet option, the recap. Describing it twenty-one times is
+not writing anyone would read. So that draft coins **«хуурамч шийд»**
+(*fake solution*), which matches the English's own framing in that very
+lesson: "the counterfeit answer", "fake detector", "fake-check".
+
+**This is me reversing my own earlier choice**, and it leaves the three drafts
+inconsistent until you rule. Concretely:
+
+- **like «хуурамч шийд»** → two-line change to the logarithm drafts, all three
+  agree;
+- **prefer another word** → say it once, three drafts follow;
+- **prefer the description kept** → `10/rational-expressions` gets much
+  clumsier, and I would want to hear that explicitly.
+
+**The cheapest moment to rule is now**: it lands again in
+`algebra-2/radicals-and-rational-exponents` (ЭШ Algebra unit 7), which is two
+drafts away, and after that in rational equations wherever they recur.
 
 ---
 
