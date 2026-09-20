@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-three drafts, twenty-five
+switched to ЭШ-first: this file now covers thirty-four drafts, twenty-six
 of which feed the ЭШ course.**
 
 His instruction: *"let's push through most of the contents and then make it
@@ -12,7 +12,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-thirty-three drafts carry zero em-dash parentheticals in shipping prose, and
+thirty-four drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -121,10 +121,17 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-three drafts, 20 Sep 2026. The table is unchanged
-from the thirty-two-draft run: `algebra-2/radicals-and-rational-exponents`
-contributes **zero**, being exact-valued throughout, and is the first draft to
-add none.
+Counted across the thirty-four drafts, 20 Sep 2026. The table is unchanged from
+the thirty-two-draft run: the two `algebra-2` drafts added on 20 Sep —
+`radicals-and-rational-exponents` and `systems-and-nonlinear-models` — each
+contribute **zero** shipping decimals, being exact-valued throughout. They are
+the first drafts to add none.
+
+> The raw command now prints **413**. The extra one is a `22.31` inside
+> `systems-and-nonlinear-models`'s Notes, where a source bug's value is quoted
+> while documenting it — the long-standing over-count mode in which the survey
+> reads the Notes' own quotations. **412 is the shipping figure; 413 is the
+> file figure.**
 
 | Draft | Math-mode decimals |
 |---|---|
@@ -348,6 +355,25 @@ only source there is. The strong form:
 That also covers the structural gap the four terms expose — А/492 starts at
 grade 10, so **every grade 6–9 term is outside it by construction**, and a
 rule that only breaks ties leaves all of them unsourced.
+
+#### It happened again the very next draft
+
+`algebra-2/systems-and-nonlinear-models` needed a word for the **elimination
+method**. `8-mn/systems-of-linear-equations` ships **«устгах арга»** (4 uses,
+including the lesson body «Устгах аргаар бод»). My candidates would have been
+«нэмэх арга» or «арилгах арга», **both zero in all three sources**.
+
+А/492 names Gauss's method (11.2г) and Cramer's rule (11.2е) — the grade 11
+matrix machinery — but never the plain elimination a grade 8 student does,
+for the same structural reason as the roots vocabulary: **the standard starts
+where the technique is already assumed.** Meanwhile the *substitution* method
+in the same lesson is ministry-verbatim (10.5д, 11.2б) and agrees with the
+mirror, so the two sit side by side in one lesson with completely different
+provenance.
+
+Two consecutive drafts, five terms, one cause. **The grade 6–9 shipped mirrors
+are not a tie-breaker; for this material they are the only Mongolian that
+exists.**
 
 ## 3. Terms I coined — ungrounded, and I know it
 
@@ -1157,6 +1183,12 @@ Not translation questions. Both are on live English pages.
    grows.» I read it as a deliberate device and wrote it that way in Mongolian.
    If it was a draft note that escaped, the English wants the same fix.
 
+> **Update 20 Sep: see 6h.** Six more of these turned up, in three topics, and
+> the sweep that found them also vindicates the reading above — the
+> flounder-as-device genre is real and used on purpose elsewhere in the corpus,
+> which is why item 2 here should stay a judgement call and not be "fixed" by a
+> blanket rule.
+
 ---
 
 ### 6d. Lesson objectives don't render maths. 190 of them contain it, and 20 are live in Mongolian.
@@ -1305,6 +1337,116 @@ changed nothing.
 Notes 1 of that draft: the overlapping terms are copied, not re-decided, on
 2g's logic one tier down. If you rule against any of them, three drafts change
 together.
+
+---
+
+### 6h. Leaked authoring notes are a pattern, not accidents — six of them, in three topics, two of which I have never drafted
+
+**Found 20 Sep 2026, drafting `algebra-2/systems-and-nonlinear-models`.** Four
+English strings in one topic contain the author's own visible floundering,
+shipped as finished prose:
+
+| id | the English says |
+|---|---|
+| `a232-t1` | «(1)+(2): **wait —** kill $z$… **cleaner:** … **Let's verify integer path instead: actually** …» |
+| `a23-pr-4` | «$x = \frac{13}{7}$**... cleaner:** $-7x = -13$» |
+| `a23-ty-3` | «$y = \frac{5}{3}$**... check:** $-3y = -5$» |
+| `a234-we1` | «under the line $x + y = 6$, and **under... above?** $y \le 2x$ keeps…» |
+
+**The mathematics is correct in all four.** I re-solved the three systems with
+sympy and they match the stored answers exactly (`a232-t1` → $(11/7, 8/7,
+-5/7)$; `a23-pr-4` → $(13/7, 17/7, -2/7)$; `a23-ty-3` → $(11/3, 5/3, 14/3)$),
+and `a234-we1`'s corners $(0,0), (6,0), (2,4)$ are right. **This is a prose
+leak, not a wrong answer** — the author found the right result by a route they
+narrated while walking it, and never cleaned the narration up.
+
+**So I went looking for the rest of them, and there are two more topics.**
+
+My first instinct was that this is trivially greppable. It is not: `...`,
+«wait», «cleaner» and «actually» across all English genmath fields return
+**202 hits in 42,819 strings**, and a large share are legitimate — including a
+whole deliberate genre where a *fictional* student flounders and the reader
+must audit them («A classmate claims … 'because $c^2 = 9 - 16$… wait, $16 - 9
+= 7$'. Audit the reasoning.»). That device is exactly what 6c's second item
+turned out to be, and a naive check would condemn it.
+
+**What separates the bugs is whose voice it is in, not the words.** Restricting
+to `solution` and `correction` fields — where the text speaks as the course,
+not as a character — and dropping strings that quote a third party gives
+**6 hits in 11,188 strings**:
+
+| topic | id | the English says |
+|---|---|---|
+| `algebra-2/systems-and-nonlinear-models` | `a232-t1` | «(1)+(2): **wait —** kill $z$… **cleaner:** (2)+2×(… **Let's verify integer path instead: actually** …» |
+| ″ | `a234-we1` | «and **under... above?** $y \le 2x$ keeps…» |
+| ″ | `a23-pr-4` | «$x = \frac{13}{7}$**... cleaner:** $-7x = -13$» |
+| ″ | `a23-ty-3` | «$y = \frac{5}{3}$**... check:** $-3y = -5$» |
+| **`prob-stats/binomial-theorem`** | `bt-l4-t1` | «**$10 - $ wait —** $n = 4$: want $4 - k = 2$…» |
+| **`trigonometry/laws-of-sines-and-cosines`** | `trig6-pr-8` | «$= 10\sqrt2 + \frac{10\sqrt6}{3}$**... cleaner:** …» |
+
+**The last two are in topics I have not drafted and would not have seen.**
+`bt-l4-t1` is the worst of the six: it opens mid-error, with a discarded «$10
+-$» still on the page before the correct work starts.
+
+**All six are mathematically correct**, verified with sympy — the three
+systems, the trig value ($10\sqrt2 + \frac{10\sqrt6}{3} \approx 22.31$, which
+equals the printed $\frac{10(\sqrt6+\sqrt2)}{\sqrt3}$), and the binomial
+coefficient (coefficient of $x^2$ in $(x+5)^4$ is $\binom{4}{2}\cdot 5^2 =
+150$). Every one is a prose leak, not a wrong answer.
+
+**The viable check**, then, is narrower than I first thought and correspondingly
+worth having: *self-correction markers in `solution`/`correction` fields, minus
+quoted speech*. Precision on today's corpus is 6 in 11,188 with no false
+positives I can see. I have not written it — it is a gate change and this is a
+content session — but it is the one concrete follow-on I would suggest, and it
+is the difference between six known bugs and the seventh nobody finds.
+
+**Three of the four are solutions to three-variable systems**, which is where
+the arithmetic is heaviest and a student is most likely reading closely for a
+method to copy. «wait —» in a worked solution teaches that the method is
+guesswork.
+
+**What the Mongolian does.** I wrote all four clean, reconstructing the path
+the author actually took as a finished derivation. **So the MN and EN read
+differently for these four items — deliberately, and for the first time.** If
+you would rather the mirror preserve the English's shape, the English needs
+fixing first; I would rather repair the source than reproduce the floundering,
+but that is your call and it is four strings either way.
+
+---
+
+### 6i. One ЭШ lesson teaches material the exam does not test — the only one in eight units
+
+**Found 20 Sep 2026, drafting `algebra-2/systems-and-nonlinear-models`**, the
+last unit of ЭШ Algebra. Its lesson 4 is *Systems of Inequalities & the Corner
+Principle*, and the two halves have completely different standing:
+
+| half | ministry | exam bank |
+|---|---|---|
+| graphing a system of inequalities | **10.5г, verbatim**: «Хоёр хувьсагчтай шугаман тэнцэтгэл биш зохиох, тэнцэтгэл бишийн системийг бодох, шийдийг координатын хавтгайд дүрслэх» | present |
+| the corner principle, optimization, linear programming | **absent** | **absent** |
+
+The standard covers the drawing and stops before the optimizing. The exam bank
+agrees: «шугаман програмчлал», «боломжит муж» and «зорилгын функц» score
+**zero occurrences each**, in 54 past papers.
+
+**So this is the only lesson in eight ЭШ Algebra units teaching content the
+exam will not ask about** — and, not coincidentally, the only lesson in the
+block whose terminology is entirely ungrounded (three coinages, all in this
+half; details in that draft's Notes 3).
+
+The three options, none of which I have built:
+
+- **keep it** — what the draft does. Good mathematics, strong English, and
+  rule 7's legacy tier does not forbid extra content;
+- **mark it** beyond-syllabus in the Mongolian, for which the ЭШ course has no
+  mechanism today;
+- **cut it** from the ЭШ unit while keeping it in the `algebra-2` course.
+
+The second and third are edits to `lib/esh-course.ts` — ship-mode work, not
+this session's. **The reason to decide is that the three coinages are only
+worth your review time if the lesson stays**, and they are the only ungrounded
+terms in an otherwise fully-grounded eight-unit block.
 
 ---
 
