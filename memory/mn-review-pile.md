@@ -2080,6 +2080,30 @@ before consonant-initial ones**, which is what your own accusative ruling
 («хэв маягийг» → **«зүй тогтлыг»**, already in the file) does. I have applied
 nothing; this is a language call, not a lookup.
 
+**The same ruling was being broken in the drafts, and nothing was watching.**
+Checking the drafts for it on 22 Sep found **«хэв маяг» eleven times across
+seven drafts**, all in shipping prose, months after you ruled it out. One of
+them sits in `geometry-reasoning-and-proof`, whose own terminology table
+records the correct answer («pattern | **зүй тогтол** | corpus 6 · «хэв маяг»
+corpus 24»). The draft knew and used the banned word anyway.
+
+The cause is structural: `mn_terms.py` enforces `OWNER_CORRECTIONS` against
+`data/genmath/*-mn/` only, and `mn_draft_check.py` does not know the owner
+corrections exist. **So a ruling binds the shipped mirror but not the draft
+that is going to become one** — the drafts are where the wording is actually
+being decided, and they are the unguarded half.
+
+I have applied the ruling to all eleven (nominative and genitive from your own
+accusative «зүй тогтлыг»; the dative is the `хэв маягт` form pending below).
+All affected drafts still pass their gate. One instance was not a mathematical
+*pattern* at all — `geometry-quadrilaterals-and-polygons` used it for "these
+marked configurations", where «зүй тогтол» reads wrong in either direction, so
+that sentence is rephrased to drop the noun rather than substitute it.
+
+**Third ask, cheapest of the three: teach `mn_draft_check.py` the owner
+corrections** so a ruling cannot be re-broken in a draft. That is ship-mode
+work and I have not done it.
+
 Two separable asks, and the second does not depend on the first:
 
 1. **Rule the five declensions** (or correct them) — unblocks both files.

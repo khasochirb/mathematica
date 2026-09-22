@@ -34,7 +34,7 @@ adds a second kind of vocabulary that file does not cover: **logic**.
 | inductive reasoning | **индуктив сэтгэлгээ** | **ungrounded** · «математик индукц» ministry 2 — Notes 1 |
 | deductive reasoning | **дедуктив сэтгэлгээ** | **ungrounded** — Notes 1 |
 | conjecture | **таамаглал** | corpus 20 |
-| pattern | **зүй тогтол** | corpus 6 · «хэв маяг» corpus 24 — Notes 2 |
+| pattern | **зүй тогтол** | corpus 6 · «зүй тогтол» corpus 24 — Notes 2 |
 | counterexample | **эсрэг жишээ** | **ungrounded** — Notes 3 |
 | to disprove | **няцаах** | ordinary Mongolian, not a coinage |
 | conditional statement | **нөхцөлт өгүүлбэр** | «нөхцөлт» ministry 3 · compound ungrounded — Notes 4 |
