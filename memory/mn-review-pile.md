@@ -2,20 +2,21 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-two drafts**, thirty-four
+switched to ЭШ-first: this file now covers **forty-three drafts**, thirty-five
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 22 Sep: 39 of 72 units covered · 7 of 14 topics** — counting
+> **ЭШ progress, 22 Sep: 40 of 72 units covered · 8 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
 > биш (8/8), Илтгэгч ба логарифм функц (3/3), Дараалал цуваа (1/1), Геометр ба
-> хэмжигдэхүүн (12/12), Комплекс тоо (2/2), and **Тоо ба үсэгт илэрхийлэл
-> (4/4, entirely from shipped mirrors — it never needed drafting)**.
+> хэмжигдэхүүн (12/12), Комплекс тоо (2/2), **Комбинаторик (4/4, closed 22
+> Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4, entirely from shipped mirrors — it
+> never needed drafting).
 >
-> Remaining, by distance-to-complete: **Комбинаторик (1 — units 1–3
-> landed today)**, Функц ба график (4), Магадлал (4), Өгөгдлийн шинжилгээ (4),
-> Тригонометр (6), Анализын эхлэл (6), Вектор ба матриц (8).
+> Remaining, by distance-to-complete: Функц ба график (4), Магадлал (4),
+> Өгөгдлийн шинжилгээ (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -24,7 +25,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-two drafts carry zero em-dash parentheticals in shipping prose, and
+forty-three drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -133,7 +134,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-two drafts, 22 Sep 2026 — re-measured after drafts 40–42, none of which contributes any. Neither complex-numbers
+Counted across the forty-three drafts, 22 Sep 2026 — re-measured after drafts 40–43, none of which contributes any. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2193,6 +2194,15 @@ permutation, combination, the two principles). Units 2 and 4 — arrangements an
 the binomial theorem — will be thinner still, and I expect to be asking you
 about coinages there rather than reporting groundings.
 
+**Unit 4 shows the topic spans two sections of А/492, not one.** The binomial
+theorem is not in the combinatorics block at all: it sits in **11.4**, the
+sequences block — **11.4г** «(a+b)ⁿ бином задаргааны томьёо ашиглах» and
+**11.4е** «Биномын задаргааны гишүүний $C_n^k a^{n-k} b^k$, $0 \le k \le n$
+томьёог хэрэглэх» — with the rational-exponent extension at **12.9ж**. All
+three are elective too, so the conclusion stands with ten lines instead of
+seven. A keyword sweep of the combinatorics section would never have found
+them; reading the drafts' topic against the whole standard did.
+
 **No action needed on the curriculum mapping** — unlike 6j and 6o this is not a
 false claim, it is an honest gap, and `MOE_NOT_YET_COVERED` is not implicated.
 I am flagging it because it predicts where the next four drafts will be
@@ -2323,6 +2333,55 @@ And one in **our own exam solution text**, not the English course:
 `data/questions/2021a.json` calls the zero-allowed solutions of
 $x+y+z=7$ «тогтворгүй шийд» — *unstable* solutions. It reads as a slip for
 «сөрөг биш бүхэл шийд», which is what draft 42 uses.
+
+---
+
+### 6w. Our own ЭШ solution text spells «томьёо» with a hard sign, 41 times
+
+**Found 22 Sep 2026, reading the ten binomial questions for draft 43.** A third
+live spelling split, after 6k (эзлэхүүн) and 6r (диаграм) — and unlike both,
+this one is entirely in text **we** wrote.
+
+| source | «томьёо» (ь) | «томъёо» (ъ) |
+|---|---|---|
+| А/492 | **33** | 0 |
+| shipped mirrors | **89** | 0 |
+| drafts | **377** | 0 in shipping prose |
+| app code | 5 | 0 |
+| **`data/questions/`** | 11 | **41**, in 19 files |
+
+Every «томъёо» is in a field we authored: **37 in `solution`**, 4 in our own
+`test*` question bodies, **none in a transcribed exam question**. So this is
+not the exam's spelling; it is ours, and it disagrees with the ministry, the
+mirrors and the app.
+
+The same four 2025 solutions also contain an **untranslated English word**:
+«**multinomial** томъёогоор олно» (2025a–d).
+
+Both are fixes to `data/questions/` — ship-mode, under `esh-practice-test`, and
+not mine to make in a content session. `mn_terms.py` would catch the first if
+it scanned `data/questions/` as well as `data/genmath/*-mn/`; it currently does
+not, which is the same blind spot 6r found for the drafts.
+
+---
+
+### 6x. One notation change is not cosmetic, and I made it: $T_{k+1}$, not $T_k$
+
+**Draft 43, `prob-stats/binomial-theorem`.** 6t is about two spellings of one
+number ($C(n,r)$ against $C_n^k$) and I have left it to you. This one I
+changed, because the symbol means a *different term* under each convention.
+
+The English writes the general term $T_k = \binom{n}{k}a^{n-k}b^k$ with $k$
+from $0$, so the fifth term is $T_4$. Our own ЭШ solutions (test6a, test6b)
+write **$T_{k+1}$** and call the fifth term $T_5$, which is the Mongolian
+school convention. A student taught the English's form who reads «$T_5$-ыг ол»
+computes the sixth term. The English's own `bt-l4-w3` already strains against
+it: «the middle is the fifth, $k = 4$».
+
+The draft writes $T_{k+1}$ and names the ordinal wherever a term is found.
+**No number changes**; every $k$ and coefficient is the English's. Reversing
+it is five strings. I am flagging it because it is the first place I departed
+from the English's mathematical notation rather than its wording.
 
 ---
 
