@@ -417,26 +417,37 @@ Two consecutive drafts, five terms, one cause. **The grade 6–9 shipped mirrors
 are not a tie-breaker; for this material they are the only Mongolian that
 exists.**
 
-#### And once more, 22 Sep — but this time across strands
+#### And once more, 22 Sep — across strands, and **half of it was my own error**
 
-`prob-stats/counting-principles` (ЭШ Комбинаторик unit 1) took four core terms
-from `7-mn/probability`: «тооллын зарчим» (*counting principle*, 4 uses),
-«мод диаграмм» (*tree diagram*, 2), «гүйцээлт» (*complement*, 15) and
-«боломжит үр дүнгийн орон» (*sample space*, 11).
+`prob-stats/counting-principles` (ЭШ Комбинаторик unit 1) takes **two** core
+terms from `7-mn/probability`: «гүйцээлт» (*complement*, 15 uses) and
+«боломжит үр дүнгийн орон» (*sample space*, 11). А/492 is genuinely silent on
+both, checked under every phrasing I could construct.
 
-What is new is the **direction**. The five earlier cases were all vertical — a
-grade 9 or ЭШ unit borrowing from the grade 8 mirror of *the same subject*.
-These four cross from **probability into combinatorics**: a counting unit that
-teaches no probability at all inherits its vocabulary from the probability
-mirror, because counting is where probability's own machinery was first named
-in Mongolian on this site.
+> **I first wrote four, and two of those were not 2g cases at all.** I also
+> claimed «тооллын зарчим» for *counting principle* and «мод диаграмм» for
+> *tree diagram* under 2g. The ministry has a word for both — «үржвэрийн
+> зарчим»/«нийлбэрийн зарчим» (10.6в, 10.6г) and «модны схем» (10.15б, 11.13д,
+> 12.15а) — so the authority order never reached the mirror. The draft is
+> corrected; the cause was a case-sensitive keyword sweep of А/492 that could
+> not have matched «Факториалын» or «модны схем», whose negative result I then
+> read as "the ministry is silent". Full account in that draft's Notes 8, and
+> the method change is there too: **read the topic's ministry section in full
+> rather than grepping it.**
+
+What is new in the two that survive is the **direction**. The five earlier
+cases were all vertical — a grade 9 or ЭШ unit borrowing from the grade 8
+mirror of *the same subject*. These cross from **probability into
+combinatorics**: a counting unit that teaches no probability at all inherits
+vocabulary from the probability mirror, because counting is where probability's
+own machinery was first named in Mongolian on this site.
 
 That widens the rule rather than repeating it: **2g is not "look one grade
 down", it is "look wherever this site first said it in Mongolian"** — and that
 can be a different strand. I applied it on that reading. If you want 2g scoped
-to same-subject borrowing only, these four need re-grounding and I have no
-other source for them: А/492's combinatorics lines (below, 6s) name only
-«сэлгэмэл» and «хэсэглэл».
+to same-subject borrowing only, these two need re-grounding and I have no other
+source for them, since А/492's seven combinatorics lines (6s) cover neither
+complement nor sample space.
 
 ## 3. Terms I coined — ungrounded, and I know it
 
@@ -2086,25 +2097,42 @@ Two separable asks, and the second does not depend on the first:
 6n (the exam does not test spheres at all, while the ministry requires them),
 and it lands on the same seam from the other side.
 
-The standard has three combinatorics lines, and all three are marked elective:
+The standard has **seven** combinatorics lines, and all seven are elective:
 
 | code | elective | text |
 |---|---|---|
+| 10.6в | **yes** | Комбинаторикийн үржвэрийн зарчмыг мэдэх, хэрэглэх |
+| 10.6г | **yes** | Комбинаторикийн нийлбэрийн зарчмыг мэдэх, хэрэглэх |
+| 10.14а | **yes** | Факториалын томьёог мэдэх, хэрэглэх |
 | 10.14б | **yes** | Сэлгэмэл, хэсэглэлийн томьёог мэдэх, хэрэглэх |
 | 11.13а | **yes** | Сэлгэмэл, хэсэглэлийн томьёо хэрэглэн үзэгдлийн магадлалыг тооцоолох |
+| 12.14а | **yes** | Тодорхой зааглал өгсөн үед боломж тоолох |
 | 12.14б | **yes** | Давталттай хэсэглэлийг тооцоолох |
+
+> **Corrected within the hour of first writing this.** I published it as three
+> lines. The other four were missed by a case-sensitive keyword sweep — the
+> same error that put two wrong terms into the draft (2g above, and that
+> draft's Notes 8). The headline conclusion is unchanged: all of them, however
+> many, are elective.
 
 The ЭШ bank, meanwhile, carries **52 questions** across the topic's four
 units — `counting_principle` 20, `permutation_arrangement` 16,
 `binomial_theorem` 10, `combination_selection` 6.
 
-**Why this matters for drafting, not just for planning.** The ministry supplies
-exactly two words here — «сэлгэмэл» and «хэсэглэл» — and nothing else: no
-tree diagram, no sample space, no counting principle, no overcounting, no
-inclusion–exclusion. An elective line gets one sentence, not a vocabulary. So
-for a topic the exam tests 52 times, the authority order runs dry after two
-terms, which is what forced the cross-strand 2g reading above and the two
-coinages in the draft («давхар тоолол», «оруулах-хасах зарчим»).
+**Why this matters for drafting, not just for planning.** The seven lines
+supply seven words — факториал, сэлгэмэл, хэсэглэл, үржвэрийн зарчим,
+нийлбэрийн зарчим, давталттай хэсэглэл, зааглал — and then stop. There is no
+*sample space*, no *complement*, no *overcounting*, no *inclusion–exclusion*:
+an elective line gets one sentence, not a vocabulary. So for a topic the exam
+tests 52 times, the authority order runs dry after seven terms, which is what
+forces the surviving cross-strand 2g cases above and the two coinages in the
+draft («давхар тоолол», «оруулах-хасах зарчим»).
+
+Note what that means for the next three units, and it is the useful part: the
+ministry's seven words are **front-loaded onto units 1 and 3** (factorial,
+permutation, combination, the two principles). Units 2 and 4 — arrangements and
+the binomial theorem — will be thinner still, and I expect to be asking you
+about coinages there rather than reporting groundings.
 
 **No action needed on the curriculum mapping** — unlike 6j and 6o this is not a
 false claim, it is an honest gap, and `MOE_NOT_YET_COVERED` is not implicated.
@@ -2112,6 +2140,55 @@ I am flagging it because it predicts where the next four drafts will be
 thinnest on grounding, and because **"the ministry calls it elective" is not a
 reason to thin the content** when the exam asks 52 questions. I drafted it at
 full weight.
+
+---
+
+### 6t. The real exam and our own authored tests write binomial coefficients differently — 83 uses, three notations
+
+**Found 22 Sep 2026, grounding ЭШ Комбинаторик units 2–4.** This is the
+biggest open decision in the strand, and it has to be settled before
+`prob-stats/combinations` and `prob-stats/binomial-theorem` are drafted,
+because it changes every formula on the page.
+
+| notation | real past papers (2021–2025) | our authored `test*` papers |
+|---|---|---|
+| $C_n^k$ — the Russian/Mongolian school form | **26** | 8 |
+| $C(n,r)$ | **15** | 3 |
+| `\binom{n}{k}` — the international form | 5 | **26** |
+
+For permutations the same split exists with almost no data: the real papers
+write $A_n^k$ (2023a, 2023c — «$A_3^2 = 6$»), and `\binom`-style $P(n,r)$
+appears once, in an authored test. А/492 uses **no notation at all** for these
+— it names the formulas in words and never prints a symbol, so the standard
+cannot settle it.
+
+Three things follow, and they are separable:
+
+1. **The real papers and our authored papers disagree, and ours drifted.** The
+   exam a Mongolian student actually sits leads with $C_n^k$; our own generated
+   tests lead with `\binom`, 26 to 8. Whatever you rule for the lessons, the
+   authored tests should match the real papers — that is a `practice-test-authoring`
+   fidelity bug, not a translation question, and it is Build ship-mode work.
+   I am recording it, not fixing it.
+2. **The English source teaches the international form**, `P(n,r)` and
+   `\binom{n}{k}`, throughout `prob-stats`. A Mongolian rewrite that keeps it
+   teaches a notation the ЭШ paper mostly does not print.
+3. **The argument order is a genuine trap.** $C_5^2 = 10$ puts the *pool* in
+   the subscript and the *chosen* in the superscript — the reverse of what a
+   student who has seen $\binom{n}{k}$ vertically might assume, and the reverse
+   of the order in `\binom`'s own rendering. Teaching both without saying this
+   explicitly would be worse than teaching either alone.
+
+**What I would do, if you want a recommendation:** lead with $C_n^k$ and
+$A_n^k$ in the Mongolian ЭШ units, introduce `\binom{n}{k}` and $P(n,r)$ once
+per topic as «олон улсын бичлэг» with the argument-order warning, and leave the
+English `prob-stats` source untouched. That is the 5d move — rebuild for the
+audience rather than transliterate — and it is reversible, since notation is
+mechanical to swap.
+
+**I have not applied it.** Unit 2 (`permutations`) is being drafted now and
+needs the answer for its lesson 2; if you have not ruled by then I will draft
+it with $P(n,r)$ as the source has it, note every location, and switch after.
 
 ---
 

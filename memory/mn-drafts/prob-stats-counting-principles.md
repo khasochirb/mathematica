@@ -33,12 +33,12 @@ four units of this topic**, which is worth holding against Notes 5.
 
 | English | Mongolian | grounding |
 |---|---|---|
-| counting principle | **тооллын зарчим** | **shipped mirror 4** — 2g, Notes 1 |
-| tree diagram | **мод диаграмм** | **shipped mirror 2** — 2g, and a spelling problem, Notes 2 |
+| counting principle (umbrella) | **тооллын зарчим** | **shipped mirror 4** — 2g, Notes 1; the ministry names the two principles but not the umbrella |
+| tree diagram | **модны схем** | **ministry 10.15б, 11.13д, 12.15а** — corrected, Notes 2 |
 | complement | **гүйцээлт** | **shipped mirror 15** — 2g |
 | sample space | **боломжит үр дүнгийн орон** | **shipped mirror 11** |
-| multiplication principle | **үржүүлэх зарчим** | compositional on «тооллын зарчим» |
-| addition principle | **нэмэх зарчим** | compositional |
+| multiplication principle | **үржвэрийн зарчим** | **ministry 10.6в** — corrected, Notes 8 |
+| addition principle | **нийлбэрийн зарчим** | **ministry 10.6г** — corrected, Notes 8 |
 | organized list | **эмх цэгцтэй жагсаалт** | «жагсаалт» shipped 66 |
 | slot (in the slot method) | **нүд** | shipped 80 |
 | branch · leaf | **салбар · навч** | shipped 40 (but see Notes 3) · 5 |
@@ -59,12 +59,12 @@ four units of this topic**, which is worth holding against Notes 5.
 
 **TITLE:** Тооллын зарчим
 
-**BLURB:** Үржүүлэх ба нэмэх зарчим, гүйцээлтээр тоолох, мөн эмх цэгцтэй
+**BLURB:** Үржвэрийн ба нийлбэрийн зарчим, гүйцээлтээр тоолох, мөн эмх цэгцтэй
 жагсаалт: тоолохгүйгээр хэрхэн тоолох вэ.
 
 ---
 
-## Lesson 1 — Эмх цэгцтэй жагсаалт ба мод диаграмм (`lists-and-tree-diagrams`)
+## Lesson 1 — Эмх цэгцтэй жагсаалт ба модны схем (`lists-and-tree-diagrams`)
 
 **concreteComparison**
 
@@ -76,7 +76,7 @@ four units of this topic**, which is worth holding against Notes 5.
 
 **objective**
 
-Эмх цэгцтэй жагсаалт ба мод диаграмм байгуулж үр дүнг тоолох, мөн нэг нэгээр
+Эмх цэгцтэй жагсаалт ба модны схем байгуулж үр дүнг тоолох, мөн нэг нэгээр
 нь тоолохын оронд бүтцээс нь нийт тоог унших.
 
 **concept**
@@ -86,14 +86,14 @@ four units of this topic**, which is worth holding against Notes 5.
    учир нь санамсаргүй дараалалтай жагсаалт нэг үр дүнг алгасах эсвэл давтаж
    болох бөгөөд та үүнийг мэдэхгүй.
 
-2. **Мод диаграмм** шийдвэр тутамд нэг түвшин зурна: эхлээд талх тус бүрд нэг
+2. **Модны схем** шийдвэр тутамд нэг түвшин зурна: эхлээд талх тус бүрд нэг
    салбар, дараа нь талх БҮРЭЭС дүүргэгч тус бүрд нэг салбар. Үндэснээс навч
    хүртэлх бүрэн зам бүр нэг үр дүн тул үр дүнг тоолно гэдэг нь навчийг тоолно
    гэсэн үг.
 
 3. Мод товчлолыг илчилнэ: $2$ салбар тус бүрдээ $3$-ыг ургуулбал
    $2 \times 3 = 6$ навч. Та зуралгүйгээр тоог МЭДЭЖ чадна, тэр санаа дараагийн
-   хичээлд үржүүлэх зарчим болно.
+   хичээлд үржвэрийн зарчим болно.
 
 4. Жагсаалт ба мод үүрд хэрэгтэй хэвээр байна: ухаалаг томьёо гулсамтгай
    санагдах үед жижиг эмх цэгцтэй жагсаалт бол таны түүнийг шалгах газрын
@@ -158,7 +158,7 @@ four units of this topic**, which is worth holding against Notes 5.
 | 0 | teach | **eyebrow** Асуудал · **title** Чангаар тоолох нь бүтэлгүйтдэг<br>**beats** Сэндвич бүрийг нэрлээрэй: $2$ талх, $3$ дүүргэгч. Чангаар хийвэл та ЗААВАЛ будлина. · «Цагаан-хяруул, хөх тариан-бяслаг… цагаан-бяслагийг хэлчихсэн юм болов уу?» · Засвар нь ой тогтоолт биш. ЭМХЛЭЛТ. · Энэ бүхэл курс юмыг алгасалгүй тоолохоос эхэлнэ. |
 | 1 | teach | **eyebrow** 1-р багаж · **title** Эмх цэгцтэй жагсаалт<br>**beats** Эхний хэсгийг тогтоож сүүлчийнхийг эргүүлээрэй: ЦХ, ЦБ, ЦН, дараа нь ХХ, ХБ, ХН. · Толь бичгийн дараалал: хэрэв таны жагсаалт үг байсан бол цагаан толгойн дарааллаар байх байсан. · Алгасаж чадахгүй (хэв маягт завсар байхгүй). Давтаж чадахгүй (хэв маяг хэзээ ч буцдаггүй). · Зургаан сэндвич, баталгаатай. |
 | 2 | tapQuestion | **eyebrow** Сахилгаа шалгая · **title** Аюулгүй жагсаалтыг олоорой<br>**prompt** Хоёр зоосны үр дүнгийн аль жагсаалт нь ЭМХ ЦЭГЦТЭЙ вэ (эхний зоосыг тогтоож, хоёр дахийг эргүүлсэн)?<br>**options** `СС, СЗ, ЗС, ЗЗ` · `СЗ, ЗЗ, СС, ЗС` · `СС, ЗЗ, СЗ` — **correctIndex 0**<br>**explanation** СС, СЗ, ЗС, ЗЗ нь эхний зоосыг тогтоож (С, дараа нь З) хоёр дахийг эргүүлж байна. Хоёр дахь хувилбар холилдсон, байраа алдахад амархан. Гурав дахь нь нэг үр дүнг (ЗС) АЛГАССАН, яг үүнээс эмх цэгцтэй жагсаалт сэргийлдэг. |
-| 3 | teach | **eyebrow** 2-р багаж · **title** Мод диаграмм<br>**beats** Шийдвэр тутамд нэг ТҮВШИН: эхлээд талх салаалж, дараа нь талх бүр дүүргэгч ургуулна. · Үндэснээс навч хүртэлх зам бүр нэг бүрэн үр дүн. · Үр дүнг тоолох $=$ навчийг тоолох. · $2$ салбар $\times$ тус бүр $3$ мөчир $= 6$ навч, мод өөрөө өөрийгөө тоолно. |
+| 3 | teach | **eyebrow** 2-р багаж · **title** Модны схем<br>**beats** Шийдвэр тутамд нэг ТҮВШИН: эхлээд талх салаалж, дараа нь талх бүр дүүргэгч ургуулна. · Үндэснээс навч хүртэлх зам бүр нэг бүрэн үр дүн. · Үр дүнг тоолох $=$ навчийг тоолох. · $2$ салбар $\times$ тус бүр $3$ мөчир $= 6$ навч, мод өөрөө өөрийгөө тоолно. |
 | 4 | treeDiagram | **eyebrow** Тоглож үз · **title** Хувцасны мод, амьдаар<br>**teach** Гурван цамц, хоёр өмд. Их биеэс навч хүртэлх бүрэн зам бүр нэг хувцаслалт, дурын навч дээр дараад замыг нь асахыг хараарай. Мод зөвхөн үр дүнг тоолоод зогсохгүй тэднийг **жагсаана**, тоо нь нүдэнд багтахаар жижиг үед та үүн рүү гараа сунгадгийн учир нь энэ.<br>**config** unchanged (`mode: count`, 3 shirts × 2 pants) |
 | 5 | worked | **eyebrow** Бодсон жишээ · **title** Сэндвичний хүснэгт<br>**problemId** cp-l1-w1 |
 | 6 | worked | **eyebrow** Бодсон жишээ · **title** Зоос, дараа нь шоо<br>**problemId** cp-l1-w2 |
@@ -167,18 +167,18 @@ four units of this topic**, which is worth holding against Notes 5.
 | 9 | tip | **eyebrow** Үүрд хадгалаарай · **title** Жагсаалт бол газрын үнэн<br>**body** Энэ курсын томьёо бүр таны бичиж чадах жагсаалтын товчлол юм. Томьёо гулсамтгай санагдвал бодлогыг жагсаалт нь жижиг болтол агшааж, бичиж гаргаад томьёогоо түүнтэй харьцуулаарай. Мэргэжлийн хүмүүс яг үүнийг хийдэг. |
 | 10 | tryIt | **eyebrow** Таны ээлж · **title** Хоёр зоос<br>**problemId** cp-l1-t1 |
 | 11 | tryIt | **eyebrow** Таны ээлж · **title** Пиццаны модыг байгуулаарай<br>**problemId** cp-l1-t2 |
-| 12 | funFact | **eyebrow** Сонирхолтой баримт · **title** Магадлалаас хуучин мод<br>**body** Мод диаграмм 13-р зууны Рамон Люллийн бичээсүүдэд гарч ирсэн бөгөөд тэрээр үүнийг санааны хослолуудыг тоолоход ашигласан, энэ нь Паскаль, Ферма хоёр магадлалын онолыг үндэслэхээс 400 жилийн өмнө. Юу ч алгасалгүй тоолох хүсэл нь түүний эцэст ажиллуулсан санамсаргүй байдлын математикаас хамаагүй хуучин юм. |
-| 13 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу сурснаа эргэн харъя<br>**points** Эмх цэгцтэй жагсаалт эхний хэсгийг тогтоож сүүлчийнхийг эргүүлнэ, алгасалт ч үгүй, давталт ч үгүй. · Мод диаграмм шийдвэр тутамд нэг түвшин ургана; үр дүн нь НАВЧ. · Салбарын тоо модны дагуу үржинэ, энэ бол дараагийн хичээлийн урьдчилсан амт. |
+| 12 | funFact | **eyebrow** Сонирхолтой баримт · **title** Магадлалаас хуучин мод<br>**body** Модны схем 13-р зууны Рамон Люллийн бичээсүүдэд гарч ирсэн бөгөөд тэрээр үүнийг санааны хослолуудыг тоолоход ашигласан, энэ нь Паскаль, Ферма хоёр магадлалын онолыг үндэслэхээс 400 жилийн өмнө. Юу ч алгасалгүй тоолох хүсэл нь түүний эцэст ажиллуулсан санамсаргүй байдлын математикаас хамаагүй хуучин юм. |
+| 13 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу сурснаа эргэн харъя<br>**points** Эмх цэгцтэй жагсаалт эхний хэсгийг тогтоож сүүлчийнхийг эргүүлнэ, алгасалт ч үгүй, давталт ч үгүй. · Модны схем шийдвэр тутамд нэг түвшин ургана; үр дүн нь НАВЧ. · Салбарын тоо модны дагуу үржинэ, энэ бол дараагийн хичээлийн урьдчилсан амт. |
 
 ---
 
-## Lesson 2 — Үржүүлэх зарчим (`the-multiplication-principle`)
+## Lesson 2 — Үржвэрийн зарчим (`the-multiplication-principle`)
 
 **concreteComparison**
 
 Таны шүүгээнд $4$ цамц, $3$ өмд, $2$ хос гутал байна. Хувцаслана гэдэг нь
 дараалсан гурван шийдвэр, мөн үүний мод $4 \times 3 \times 2 = 24$ навчтай
-байх байсан. 24 навчтай мод хэн ч зурдаггүй. Үржүүлэх зарчим НЬ тэр мод,
+байх байсан. 24 навчтай мод хэн ч зурдаггүй. Үржвэрийн зарчим НЬ тэр мод,
 нэг мөр арифметик болж шахагдсан нь.
 
 **objective**
@@ -188,7 +188,7 @@ four units of this topic**, which is worth holding against Notes 5.
 
 **concept**
 
-1. **Үржүүлэх зарчим**: хэрэв даалгавар үе шаттай явагдвал, өөрөөр хэлбэл
+1. **Үржвэрийн зарчим**: хэрэв даалгавар үе шаттай явагдвал, өөрөөр хэлбэл
    эхлээд $a$ сонголттой, ДАРАА НЬ $b$ сонголттой, ДАРАА НЬ $c$ сонголттой
    бол нийт үр дүн нь $a \times b \times c$. Энэ бол таны зураагүй модны
    навчийн тоо яг мөн.
@@ -215,7 +215,7 @@ four units of this topic**, which is worth holding against Notes 5.
 
 | title | latex | explanation |
 |---|---|---|
-| Үржүүлэх зарчим | `\text{нийт} = a \times b \times c \times \cdots` | $a$ сонголттой үе шатны дараа $b$, $c$ сонголттой үе шат ирвэл үржвэр гарна, энэ нь харгалзах модны навчийн тоо. |
+| Үржвэрийн зарчим | `\text{нийт} = a \times b \times c \times \cdots` | $a$ сонголттой үе шатны дараа $b$, $c$ сонголттой үе шат ирвэл үржвэр гарна, энэ нь харгалзах модны навчийн тоо. |
 | Багасах нүд | `10 \times 9 \times 8 \times 7 = 5040` | Давталт хориотой үед дараалсан нүд бүр өмнөхөөсөө нэгээр цөөн сонголттой. |
 
 **workedExamples**
@@ -264,11 +264,11 @@ four units of this topic**, which is worth holding against Notes 5.
 
 | # | kind | Mongolian |
 |---|---|---|
-| 0 | teach | **eyebrow** Дэгээ · **title** Хэн ч зурдаггүй 24 навчтай мод<br>**beats** $4$ цамц, $3$ өмд, $2$ гутал: хувцаслана гэдэг бол мод. · $4$ салбар тус бүр $3$-ыг, тэр бүр $2$-ыг ургуулна, $24$ навч. · Зурахад: хоёр минут. $4 \times 3 \times 2$-ыг үржүүлэхэд: хоёр секунд. · Үржүүлэх зарчим НЬ тэр мод, шахагдсан нь. |
+| 0 | teach | **eyebrow** Дэгээ · **title** Хэн ч зурдаггүй 24 навчтай мод<br>**beats** $4$ цамц, $3$ өмд, $2$ гутал: хувцаслана гэдэг бол мод. · $4$ салбар тус бүр $3$-ыг, тэр бүр $2$-ыг ургуулна, $24$ навч. · Зурахад: хоёр минут. $4 \times 3 \times 2$-ыг үржүүлэхэд: хоёр секунд. · Үржвэрийн зарчим НЬ тэр мод, шахагдсан нь. |
 | 1 | teach | **eyebrow** Арга · **title** Нүд<br>**beats** Шийдвэр тутамд нэг нүд: $\underline{\;\;} \times \underline{\;\;} \times \underline{\;\;}$. · Нүд бүрд СОНГОЛТЫН ТООГ бичээрэй. · Хөндлөн үржүүлээрэй. Боллоо. · Хувцаслалт: $\underline{4} \times \underline{3} \times \underline{2} = 24$. |
 | 2 | tapQuestion | **eyebrow** Анхны нүд · **title** Цэсний тооцоо<br>**prompt** Цэсэнд $3$ үндсэн хоол, $4$ ундаа байна. Хоол дээр ундаа нэмсэн хэдэн хослол байх вэ?<br>**options** `$12$` · `$7$` · `$34$` — **correctIndex 0**<br>**explanation** Хоёр нүд: $3 \times 4 = 12$. $7$ гэсэн сатаах хувилбар нь $3 + 4$, нэмэх нь хослолыг биш ЗҮЙЛСИЙГ тоолж байна. «Дараа нь» үржүүлнэ. |
 | 3 | teach | **eyebrow** Нарийн заалт · **title** Нүд хэзээ хууль ёсны вэ<br>**beats** Нүд бүрийн ТОО өмнөх сонголтоос хамаарах ёсгүй. · Давталтгүй ПИН: эхний цифрийг юу ч сонгосон яг $9$ үлдэнэ. · Сонголтууд замаасаа хамаарч ӨӨРЧЛӨГДӨНӨ; тоо нь өөрчлөгдөхгүй. Энэ хангалттай. · Хэрэв сонголт нь дараагийн сонголтын ТООГ өөрчилдөг бол тохиолдлоор задлаарай (дараагийн хичээл). |
-| 4 | treeDiagram | **eyebrow** Үржихийг хараарай · **title** Гурван үе шат, нэг үржвэр<br>**teach** Ундаа, үндсэн хоол, амттан. Үе шат бүр салбарын тоог үржүүлнэ: $2 \times 3 \times 2 = 12$ бүрэн хоол. Арван хоёр байгааг мэдэхийн тулд та тэднийг жагсаах шаардлагагүй байсныг анзаараарай, модны хэлбэр арифметикийг хийж байна. Энэ бол үржүүлэх зарчим: **үе шат үржинэ**.<br>**config** unchanged (`mode: count`, 2 drinks × 3 mains × 2 desserts) |
+| 4 | treeDiagram | **eyebrow** Үржихийг хараарай · **title** Гурван үе шат, нэг үржвэр<br>**teach** Ундаа, үндсэн хоол, амттан. Үе шат бүр салбарын тоог үржүүлнэ: $2 \times 3 \times 2 = 12$ бүрэн хоол. Арван хоёр байгааг мэдэхийн тулд та тэднийг жагсаах шаардлагагүй байсныг анзаараарай, модны хэлбэр арифметикийг хийж байна. Энэ бол үржвэрийн зарчим: **үе шат үржинэ**.<br>**config** unchanged (`mode: count`, 2 drinks × 3 mains × 2 desserts) |
 | 5 | worked | **eyebrow** Бодсон жишээ · **title** Хувцаслалт<br>**problemId** cp-l2-w1 |
 | 6 | worked | **eyebrow** Бодсон жишээ · **title** Улсын дугаар<br>**problemId** cp-l2-w2 |
 | 7 | worked | **eyebrow** Бодсон жишээ · **title** Багасах нүд<br>**problemId** cp-l2-w3 |
@@ -276,12 +276,12 @@ four units of this topic**, which is worth holding against Notes 5.
 | 9 | tip | **eyebrow** Зуршил · **title** Нүдээ чангаар хэлээрэй<br>**body** Үржүүлэхээсээ өмнө өгүүлээрэй: «эхний шийдвэр, хэдэн арга вэ? хоёр дахь шийдвэр, ОДОО хэдэн арга вэ?» «Одоо» гэдэг үг багасах нүд бүрийг, нуугдсан хязгаарлалт бүрийг буруу хариу болохоос нь өмнө барьж авна. |
 | 10 | tryIt | **eyebrow** Таны ээлж · **title** Хоолны багц<br>**problemId** cp-l2-t1 |
 | 11 | tryIt | **eyebrow** Таны ээлж · **title** Давталтгүй код<br>**problemId** cp-l2-t2 |
-| 12 | funFact | **eyebrow** Сонирхолтой баримт · **title** Нууц үг яагаад урт байхыг хүсдэг вэ<br>**body** Нэмэлт тэмдэгт бүр боломжит нууц үгийн тоог бүхэл цагаан толгойгоор дахин үржүүлнэ. Найман жижиг үсэг $26^8 \approx 209$ тэрбум сонголт өгөх бөгөөд ердөө ХОЁР тэмдэгт нэмэхэд тэр нь $676$ дахин болно. Аюулгүй байдлын мэргэжилтнүүд ухаалаг байхаас илүү урт байхыг номлодгийн учир нь үржүүлэх зарчим хүнд ажлыг хийж байгаад оршино. |
+| 12 | funFact | **eyebrow** Сонирхолтой баримт · **title** Нууц үг яагаад урт байхыг хүсдэг вэ<br>**body** Нэмэлт тэмдэгт бүр боломжит нууц үгийн тоог бүхэл цагаан толгойгоор дахин үржүүлнэ. Найман жижиг үсэг $26^8 \approx 209$ тэрбум сонголт өгөх бөгөөд ердөө ХОЁР тэмдэгт нэмэхэд тэр нь $676$ дахин болно. Аюулгүй байдлын мэргэжилтнүүд ухаалаг байхаас илүү урт байхыг номлодгийн учир нь үржвэрийн зарчим хүнд ажлыг хийж байгаад оршино. |
 | 13 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу сурснаа эргэн харъя<br>**points** Дараалсан үе шат үржинэ: шийдвэр тутамд нэг нүд, нүдэнд тоо. · Давталтгүй бодлогод дараалсан нүд бүр нэгээр багасна. · Нүд тутмын ТОО замаас үл хамаарах үед хууль ёсны, эс бөгөөс тохиолдлоор задлаарай. |
 
 ---
 
-## Lesson 3 — Нэмэх зарчим ба тохиолдлоор задлах (`the-addition-principle`)
+## Lesson 3 — Нийлбэрийн зарчим ба тохиолдлоор задлах (`the-addition-principle`)
 
 **concreteComparison**
 
@@ -297,7 +297,7 @@ $3 \times 2 = 6$ биш. «Дараа нь» үржүүлсэн; «эсвэл» 
 
 **concept**
 
-1. **Нэмэх зарчим**: хэрэв даалгавар хэд хэдэн харилцан үл нийцэх аргын яг
+1. **Нийлбэрийн зарчим**: хэрэв даалгавар хэд хэдэн харилцан үл нийцэх аргын яг
    НЭГЭЭР нь гүйцэтгэгдэх бол, өөрөөр хэлбэл эхний төрлийн $a$ арга ЭСВЭЛ
    хоёр дахь төрлийн $b$ арга байвал нийт нь $a + b$. Хувилбарууд давхцах
    ёсгүй бөгөөд бүгдийг хамрах ёстой.
@@ -324,7 +324,7 @@ $3 \times 2 = 6$ биш. «Дараа нь» үржүүлсэн; «эсвэл» 
 
 | title | latex | explanation |
 |---|---|---|
-| Нэмэх зарчим | `\text{нийт} = a + b \quad (\text{үл нийцэх хувилбар})` | Нэг аялал, хэд хэдэн төрлийн зам: аль ч зам хоёр төрөлд тоологдоогүй бол тоог нэмээрэй. |
+| Нийлбэрийн зарчим | `\text{нийт} = a + b \quad (\text{үл нийцэх хувилбар})` | Нэг аялал, хэд хэдэн төрлийн зам: аль ч зам хоёр төрөлд тоологдоогүй бол тоог нэмээрэй. |
 | Зарчмуудыг холих | `(3 \times 4) + (2 \times 3) = 18` | Тохиолдол дотор үржүүлж, тохиолдлуудыг нэмнэ, энэ бол бодит тооллын бодлогын ердийн хэлбэр. |
 
 **workedExamples**
@@ -791,28 +791,48 @@ $4 \times 3 \times 2 \times 1$ байхаа больлоо. Хязгаарлал
 
 ## Notes for Khas
 
-### 1. 2g again, and this time from a topic in a different strand
+### 1. 2g from a topic in a different strand — **two of the four were not 2g at all**
 
-**`7-mn/probability` has been live for months and supplies four of this
-topic's core terms**, although it is a *probability* mirror and this is a
+> **Corrected 22 Sep, after the draft was first committed.** I claimed four
+> cross-strand 2g terms. **Two of them were wrong**: the ministry has a word for
+> both, so 2g — which only applies where the authorities are silent — never
+> entered into it. The cause is in Notes 8; the corrected state is below.
+
+**`7-mn/probability` has been live for months and supplies two of this topic's
+core terms**, although it is a *probability* mirror and this is a
 *combinatorics* topic:
 
-| term | shipped in `7-mn/probability` |
-|---|---|
-| counting principle | **тооллын зарчим** (4) |
-| tree diagram | **мод диаграмм** (2) |
-| complement | **гүйцээлт** (15) |
-| sample space | **боломжит үр дүнгийн орон** (11) |
+| term | shipped in `7-mn/probability` | ministry | verdict |
+|---|---|---|---|
+| complement | **гүйцээлт** (15) | silent | **2g — applied** |
+| sample space | **боломжит үр дүнгийн орон** (11) | silent | **2g — applied** |
+| tree diagram | мод диаграмм (2) | **модны схем** (10.15б, 11.13д, 12.15а) | **ministry wins — changed** |
+| counting principle | тооллын зарчим (4) | names the two principles, not the umbrella | **2g for the umbrella only** |
 
-Every previous 2g case has been *the same material one grade earlier*. This one
-is **the same vocabulary in an adjacent subject** — the counting principle and
-the tree diagram are taught in grade 7 as probability tools and reappear here as
+I confirmed the two surviving cases by searching А/492 for *complement* and
+*sample space* under every phrasing I could think of. Both are genuinely
+absent — which fits, since А/492 treats this whole area as elective and gives
+it seven one-line objectives (Notes 5).
+
+Every previous 2g case has been *the same material one grade earlier*. These
+two are **the same vocabulary in an adjacent subject** — complement and sample
+space are taught in grade 7 as probability tools and reappear here as
 combinatorics tools.
 
-**That widens 2g's scope slightly**, and in a direction worth stating: the
-question is not "does a mirror teach this topic?" but "does a mirror already
-use this word?". `mn-translation`'s own glossary lists all four under
-**Probability**, which is how I knew to look.
+**That still widens 2g's scope**, in the direction worth stating: the question
+is not "does a mirror teach this topic?" but "does a mirror already use this
+word?". But the correction sharpens the order of operations — **ask the
+ministry first, and ask it properly; only then ask the mirror.** Two of my four
+skipped the first step.
+
+### 2. «модны схем», not «мод диаграмм» — and the spelling split behind it
+
+> **Corrected 22 Sep.** This section originally argued for «мод диаграмм» on
+> 2g grounds. **The ministry names this object three times and calls it
+> «модны схем»** (10.15б «магадлалыг тооцоолоход **модны схем**…», 11.13д,
+> 12.15а). The draft now uses «модны схем» in all seven places. The spelling
+> question below is still real — it just no longer decides anything in *this*
+> draft, because the word «диаграмм» has left it.
 
 ### 2. «мод диаграмм» or «мод диаграм»? — a second live spelling split
 
@@ -845,9 +865,10 @@ confined to the single topic whose subject is scatter plots.
 «мод диаграм (tree diagram)» — against `7-mn/probability`'s own «мод диаграмм»
 and against the ministry.
 
-**This draft uses «мод диаграмм»**, following both the probability mirror (this
-topic's direct 2g source) and А/492, which writes «диаграмм» in all four of its
-uses.
+**This draft no longer uses either form** — see the correction at the top of
+this section; the object is «модны схем». The spelling finding is kept because
+it is about `data/genmath`, not about this draft: 25 live uses of the minority
+form remain wrong in production whatever this topic calls its trees.
 
 **Unlike 6k, this needs no ruling from you.** I wrote that the remedy was
 "a spelling-consistency entry in `scripts/i18n/mn_terms.py`, which currently
@@ -889,14 +910,31 @@ needs the term eleven times.
 ### 5. The whole of Комбинаторик is elective in the ministry, and the exam tests it 52 times
 
 **Worth your eye before I draft the other three units.** Every combinatorics
-objective in А/492 is marked elective (сонгон судлах):
+objective in А/492 is marked elective (сонгон судлах) — **seven of them**:
 
-> 10.14а Факториал · 10.14б Сэлгэмэл, хэсэглэл · 11.12а, 11.12б · 12.14а,
-> 12.14б — **all `elective: true`**
+| code | text |
+|---|---|
+| 10.6в | Комбинаторикийн **үржвэрийн зарчмыг** мэдэх, хэрэглэх |
+| 10.6г | Комбинаторикийн **нийлбэрийн зарчмыг** мэдэх, хэрэглэх |
+| 10.14а | **Факториалын** томьёог мэдэх, хэрэглэх |
+| 10.14б | **Сэлгэмэл, хэсэглэлийн** томьёог мэдэх, хэрэглэх |
+| 11.13а | Сэлгэмэл, хэсэглэлийн томьёо хэрэглэн үзэгдлийн магадлалыг тооцоолох |
+| 12.14а | Тодорхой **зааглал** өгсөн үед боломж тоолох |
+| 12.14б | **Давталттай хэсэглэлийг** тооцоолох |
+
+> **Corrected 22 Sep.** This table first listed six lines and cited two codes
+> that do not exist (11.12а, 11.12б). It also missed 10.6в and 10.6г entirely —
+> the two that supply this draft's lesson 2 and lesson 3 names. Notes 8 has the
+> cause.
 
 Meanwhile the ЭШ bank carries **52 questions** across this topic's four units:
 `counting_principle` 20, `permutation_arrangement` 16, `binomial_theorem` 10,
 `combination_selection` 6.
+
+Note that 12.14а — *counting under given restrictions* — is lesson 4's exact
+subject, and 10.6в/10.6г are lessons 2 and 3. So the ministry's coverage of
+this topic is **wider than I first reported**: five of my six lessons have a
+line, and only complementary counting and inclusion–exclusion do not.
 
 **This is the mirror image of review pile 6n**, where the ministry required
 spheres and the exam never tested them. Here the ministry treats the whole
@@ -940,3 +978,48 @@ split is the one already in the corpus — **bare for the operation, soft for th
 advice** — and a 1a ruling either way should leave these six alone. If you
 disagree, the rule to apply is "any imperative a student could follow becomes
 soft", which would change «хас» in the two recap bullets and nothing else.
+
+### 8. Why four of this draft's groundings were wrong — the grounding sweep was case-sensitive
+
+**This is the note that matters most in this file.** Corrections 1, 2 and 5
+above all have one cause, and it is a method failure, not a judgement call.
+
+My grounding sweep searched А/492 with a hand-written keyword list, matched
+**case-sensitively**, against the objective text. It therefore missed:
+
+| what I missed | why |
+|---|---|
+| 10.14а «**Ф**акториалын» | capital Ф; my pattern was `факториал` |
+| 10.6в, 10.6г «үржвэрийн/нийлбэрийн зарчим» | my keyword list had «тоолол» and «комбинатор» but not «зарчим» |
+| 10.15б, 11.13д, 12.15а «модны схем» | I searched «диаграмм» for *tree diagram* and never «схем» |
+| 12.14а «зааглал» | not a word I thought to try |
+
+Then, having found nothing, I concluded **"the ministry is silent"** and went to
+the shipped mirror under 2g. The conclusion was drawn from a search that could
+not have found the thing it was looking for, and it read as positive evidence
+in Notes 1.
+
+Three consequences, all of which I have applied to this draft:
+
+1. *Tree diagram* is **«модны схем»** (7 changes).
+2. The two principles are **«үржвэрийн зарчим»** and **«нийлбэрийн зарчим»**
+   (9 and 5 changes). These are the ministry's own words for this draft's two
+   central lessons, and I had coined around them.
+3. Notes 1's four-term cross-strand 2g claim is **two terms**, and review pile
+   2g's new subsection needs the same correction.
+
+**What changes in the method, for the next three units and everything after:**
+search А/492 case-insensitively, search it by *concept* rather than by the
+Mongolian word I already have in mind, and — the actual fix — **read all seven
+objectives of the topic's ministry section in full before drafting**, rather
+than grepping for terms. The section is seven lines. Reading it takes less time
+than the search did, and it cannot miss a word for being spelled differently
+than I guessed.
+
+> This is the same failure family as the four substring false positives (6m,
+> Notes 3) and the case-only duplicates in the exam's subtopic labels: **a
+> pattern that cannot match is indistinguishable from an absent term**, and I
+> have now read the second as the first four times in four days. The difference
+> here is that a substring false positive produces a wrong *count*, while this
+> one produced four wrong *words* in shipping prose — and the draft check
+> cannot catch it, because «үржүүлэх зарчим» is well-formed Mongolian.
