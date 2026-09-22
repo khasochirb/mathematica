@@ -2,14 +2,15 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-eight drafts, thirty
+switched to ЭШ-first: this file now covers thirty-nine drafts, thirty-one
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 22 Sep: 30 of 72 units · 5 of 14 topics complete** —
+> **ЭШ progress, 22 Sep: 32 of 72 units · 6 of 14 topics complete** —
 > Олонлог (3/3), Тэгшитгэл тэнцэтгэл биш (8/8), Илтгэгч ба логарифм функц
-> (3/3), Дараалал цуваа (1/1), Геометр ба хэмжигдэхүүн (12/12). The queue runs
-> by distance-to-complete; **Комплекс тоо is next at two units**, one of which
-> is drafted.
+> (3/3), Дараалал цуваа (1/1), Геометр ба хэмжигдэхүүн (12/12), **Комплекс тоо
+> (2/2)**. The queue runs by distance-to-complete; next are Комбинаторик, Функц
+> ба график, Тоо ба үсэгт илэрхийлэл, Магадлал and Өгөгдлийн шинжилгээ at four
+> units each.
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -18,7 +19,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-thirty-eight drafts carry zero em-dash parentheticals in shipping prose, and
+thirty-nine drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -127,8 +128,8 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-eight drafts, 22 Sep 2026. `11/complex-numbers`
-adds none.
+Counted across the thirty-nine drafts, 22 Sep 2026. Neither complex-numbers
+draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
 > The stored command counts a whole draft file, and six drafts *quote* decimal
@@ -1675,7 +1676,7 @@ and that half is Build ship-mode work rather than a translation decision.
 
 ---
 
-### 6l. Three terms where ЭШ Geometry unit 9 coined a word the exam already had
+### 6l. Four terms where an earlier draft coined a word an authority already had
 
 **Same draft, same cause as 6k, but these are unambiguous — the exam has the
 word and unit 9 invented a different one.** Unlike 6k there is no spelling
@@ -1697,6 +1698,27 @@ exam's word removes a coinage and a collision together.
 
 This does **not** disturb «гадаргуугийн талбай» for surface area in general,
 which the shipped mirrors use 22 times and 2g protects.
+
+#### Fourth instance, 22 Sep — and the first where the ministry and 2g agree
+
+**`algebra-2/quadratics-and-complex-numbers`.** *Completing the square*:
+
+| form | ministry | exam | shipped mirrors | my drafts |
+|---|---|---|---|---|
+| «бүтэн квадрат **ялгах**» | **1 — 10.5б, verbatim** | 0 | **5** | 0 |
+| «бүтэн квадрат **болгох**» | 0 | 0 | 1 | **7** |
+
+> 10.5б: «Квадрат тэгшитгэлийг **бүтэн квадрат ялгах** аргаар бодох, ерөнхий
+> томьёо гаргах, шийдийг шинжлэх»
+
+All seven «болгох» are in `algebra-1/quadratic-equations`, which recorded the
+term as "corpus 1". **This is the first 6l case where the ministry and the
+shipped mirrors point the same way** — the earlier three had А/492 silent and
+the mirrors silent too, so 2g had to carry them alone. Here both authorities
+agree, 5 against 1, and only my draft dissents.
+
+The new draft uses «бүтэн квадрат ялгах». `algebra-1/quadratic-equations`
+should follow: a seven-instance find-and-replace in an unshipped draft.
 
 > **The common cause of 6k and 6l is worth more than the three terms.**
 > `geometry/surface-area-and-volume` was drafted **before the ЭШ-first
@@ -1793,6 +1815,87 @@ syllabus says is real. But it is worth your eye, because:
   which one does the ЭШ course follow?** Today the course follows the syllabus
   for coverage and the exam for wording, which is defensible but has never been
   stated.
+
+---
+
+### 6o. A second false mapping — and the exam tests this one 33 times
+
+**Found 22 Sep 2026, drafting `algebra-2/quadratics-and-complex-numbers`.**
+Same class as 6j, worse consequences.
+
+Ministry **11.1б** and **11.1в** are both **core** and both about quadratic
+inequalities:
+
+> 11.1б «Квадрат тэнцэтгэл биш бодох (шийдийг тоон шулуун дээр дүрслэх)»
+> 11.1в «Квадрат тэнцэтгэл бишийг графикийн аргаар бодох, квадрат гурван
+> гишүүнт үргэлж эерэг (сөрөг) утгатай байх нөхцөлийг мэдэх»
+
+`lib/esh-course.ts` assigns both to **`algebra-1/inequalities`**, ЭШ Algebra
+unit 2:
+
+```
+"inequalities": ["10.5а", "10.5г", "11.1б", "11.1в", "12.1а"],
+```
+
+**That topic has no quadratic content.** Its lessons are
+`solving-and-graphing-inequalities`, `multi-step-inequalities`,
+`compound-inequalities`, `absolute-value-equations-and-inequalities`, and the
+file contains **zero** occurrences of "quadratic", "parabola" or "$x^2$".
+
+**The exam tests this 33 times** — `skill_tag: quadratic_inequality`, plus 3
+more under `quadratic_inequality_parameter`. It is one of the most-tested tags
+in the bank.
+
+**Why this is worse than 6j's case.** There, 10.12в was genuinely uncovered but
+rarely tested. Here:
+
+- the content **does** exist — in `algebra-2/quadratics-and-complex-numbers`
+  lesson 4, which claims only `12.4г` and so never shows up against these
+  codes;
+- so a student working the **Algebra** block to learn inequalities reaches unit
+  2, which promises 11.1б/в and does not deliver, while the real teaching sits
+  in **Комплекс тоо** — a topic they may never open;
+- and it is heavily examined.
+
+**Two fixes, neither of which I have made.** Moving 11.1б/11.1в onto
+`quadratics-and-complex-numbers` is honest bookkeeping and cheap. Moving the
+*lesson* into the Algebra block is a curriculum call and yours.
+
+> **Both 6j and 6o were found the same way**: reading a unit's actual content
+> against its claimed objectives, while drafting it. Neither is visible to
+> `lib/esh-course.test.ts`, which can only check that a code is not both mapped
+> and listed as missing. **Two instances in three days is enough to say the
+> check I suggested under 6j — validate mappings against topic content — would
+> pay for itself.** A keyword sanity check would have caught both.
+
+---
+
+### 6p. Комплекс тоо teaches complex numbers twice — in a two-unit topic
+
+**Found 22 Sep 2026.** Same family as 6g (one ЭШ topic teaching logarithms
+three times), but sharper in one respect: **this topic has exactly two units
+and both introduce $i$ from scratch.**
+
+| ЭШ unit | source topic | complex numbers? |
+|---|---|---|
+| 1 | `11/complex-numbers` | **six lessons** — i, a+bi, multiplying, conjugates & division, complex roots, the complex plane |
+| 2 | `algebra-2/quadratics-and-complex-numbers` | **one 13-step lesson** covering powers of i, arithmetic, conjugates and division — plus a third lesson on complex roots |
+
+Unit 2's lesson 2 opens «$x^2 = -1$ бодит шийдгүй» as though the reader had
+never met $i$ — after unit 1 has already done powers of $i$, the complex plane
+and the conjugate-root theorem. Its lesson 3 then re-teaches unit 1's lesson 5.
+
+**Three of unit 2's four lessons are revision**, in fact: lesson 1 re-teaches
+`10/quadratic-functions` and `algebra-1/quadratic-equations`. **Only lesson 4
+(quadratic inequalities) teaches something no other drafted topic does** — and
+that is the lesson whose objectives are mis-filed, per 6o.
+
+**What I did:** made the Mongolian consistent across both units, copying every
+overlapping term from `11/complex-numbers` rather than re-deciding it — the 6g
+remedy. **What I did not do:** touch the repetition, which is an English-content
+call. If the spiral is deliberate, unit 2's lesson 2 should acknowledge unit 1
+instead of re-introducing $i$; if it is not, the cheaper cut is obvious at 13
+steps against 54.
 
 ---
 
