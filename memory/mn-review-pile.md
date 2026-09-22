@@ -2,10 +2,10 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-one drafts**, thirty-three
+switched to ЭШ-first: this file now covers **forty-two drafts**, thirty-four
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 22 Sep: 38 of 72 units covered · 7 of 14 topics** — counting
+> **ЭШ progress, 22 Sep: 39 of 72 units covered · 7 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -13,7 +13,7 @@ of which feed the ЭШ course.**
 > хэмжигдэхүүн (12/12), Комплекс тоо (2/2), and **Тоо ба үсэгт илэрхийлэл
 > (4/4, entirely from shipped mirrors — it never needed drafting)**.
 >
-> Remaining, by distance-to-complete: **Комбинаторик (2 — units 1 and 2
+> Remaining, by distance-to-complete: **Комбинаторик (1 — units 1–3
 > landed today)**, Функц ба график (4), Магадлал (4), Өгөгдлийн шинжилгээ (4),
 > Тригонометр (6), Анализын эхлэл (6), Вектор ба матриц (8).
 
@@ -24,7 +24,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-one drafts carry zero em-dash parentheticals in shipping prose, and
+forty-two drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -133,7 +133,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-one drafts, 22 Sep 2026 — re-measured after drafts 40 and 41, neither of which contributes any. Neither complex-numbers
+Counted across the forty-two drafts, 22 Sep 2026 — re-measured after drafts 40–42, none of which contributes any. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -1565,6 +1565,41 @@ you would rather the mirror preserve the English's shape, the English needs
 fixing first; I would rather repair the source than reproduce the floundering,
 but that is your call and it is four strings either way.
 
+#### Correction, 22 Sep: the scan was not complete — there are at least twelve
+
+Drafting `prob-stats/combinations` turned up a leak in a **`correction`**
+field — «…$3·11·5·9$/... **wait, cancel systematically**…» — which is inside
+the scope above and which the scan did not report. So I rescanned: course-voice
+fields (`solution`, `correction`, `explanation`, `body`, `teach`, `text`,
+`concept`, `concreteComparison`, `keyIdea`), markers widened to include
+«hmm», and every hit read in context rather than counted.
+
+**Six more**, for twelve in all:
+
+| topic | id / field | the English says | status in Mongolian |
+|---|---|---|---|
+| `prob-stats/combinations` | l2 commonMistake, `correction` | «leaving 3·11·5·9/... **wait, cancel systematically**» | draft 42, written clean |
+| ″ | l2 tip, `body` | «the $6$ eats $10 \cdot 9$'s $\dots$" **wait**, $6$ divides $9 \times 10 = 90$? Check:» | draft 42, written clean |
+| `8/the-real-number-system` | `rns6-we3`, `solution` | «$2^2=4<8<9=3^2$**? No,** $9>8$ so…» | **already clean in the shipped mirror** — its translator fixed it silently |
+| `algebra-2/radicals-and-rational-exponents` | commonMistake, `text` | «$8^{2/3}$ as the square root of $8^3$**... wait,** as $(\sqrt{8})^3$» | **already clean in my draft 33** — I fixed it silently and did not record it |
+| `11/statistics-and-data` | quick-check `explanation` | «$50 − 34 = 16\%$ below**... wait:** BELOW $-1σ$ is 16%» | not mirrored |
+| `integrated-1/systems-of-equations-and-inequalities` | `im1-u5-l3-t3`, `solution` | «$19x = 137$**... let us instead** eliminate $x$ … **Hmm — check against the other route**» | not mirrored |
+
+All six are mathematically correct; I re-solved the two systems-shaped ones.
+
+**Two of the six are in `solution`/`correction` fields**, which is exactly the
+scope I called complete with "no false positives I can see". Precision was
+fine; **recall was not**, and I reported it as if it were. I cannot reconstruct
+from the record why the first scan dropped `rns6-we3` («actually» was on its
+list). The honest statement is: twelve known, found by two scans that
+disagree, so assume more.
+
+**And two had already been fixed silently in Mongolian** — once by the grade 8
+translator, once by me. Silent fixes are the right output and the wrong
+record: the English stays broken, and the next person to read the EN/MN
+difference sees drift where there is a repair. From here I note every such
+repair in the draft's Notes.
+
 ---
 
 ### 6i. One ЭШ lesson teaches material the exam does not test — the only one in eight units
@@ -2216,6 +2251,15 @@ thirty, all mechanical). One sentence of lesson 2's tip names $A_n^k$, states
 that $A_8^3 = P(8,3) = 336$, and warns which index is which. I think that
 sentence survives either ruling.
 
+**Unit 3 (`combinations`) is drafted the same way**, and the stakes are now
+concrete: **237** $C(n,r)$ occurrences would move, counted. Two strings name
+$C_n^k$ with the index warning (lesson 1's notation beat, lesson 2's formula
+fact). **Lesson 7 keeps `\binom` on the exam's own evidence** — the real 2021
+papers' stars-and-bars solutions are the five `\binom` uses in the real
+papers, so that lesson already matches. The trap if you switch: $C(n,r) \to
+C_n^r$ moves the arguments into index positions, so it has to be done by
+pattern, not by eye.
+
 ---
 
 ### 6u. The rewrite cannot add anything — only replace, string for string
@@ -2243,6 +2287,42 @@ sentence, the honest answer is that the English source is missing one, and
 adding it to both sides is a content change to the English course. That is
 ship-mode work and a different decision from any in this file. I would rather
 raise it than keep hiding additions inside tips.
+
+---
+
+### 6v. A live English funFact states the arithmetic backwards
+
+**Found 22 Sep 2026, drafting `prob-stats/combinations`.** Every earlier
+source bug in this file was messy prose around correct maths (6h). This one is
+a wrong fact, live in English now.
+
+Lesson 1's funFact, on a 6-of-45 lottery with $C(45,6) = 8{,}145{,}060$
+tickets: *«The division by 6! is not your friend here; without it you'd
+"only" wait 30 years.»*
+
+Dividing by $6!$ makes the ticket count **smaller**, so it is exactly your
+friend. Without it the count is $P(45,6) = 5{,}864{,}443{,}200$ — about
+**16 million years** at one ticket a day. «30 years» is what you get by
+dividing by $6!$ a *second* time ($8{,}145{,}060 / 720 / 365 \approx 31$).
+Verified by computation. A student who follows the sentence learns the
+reverse of the lesson it closes.
+
+The Mongolian (draft 42) says the true thing. **The English needs the same
+fix** — ship-mode, one string.
+
+Same topic, smaller, all recorded in draft 42's Notes 1:
+
+- **lesson 6 funFact title contradicts its body**: «The \$1.5 million comma»
+  over a body that says \$5 million (the real settlement);
+- **lesson 5's lock-in question has two distractors worth the same**:
+  $C(14,6) = C(15,5) = 3003$, so a student can eliminate both without doing
+  the problem;
+- **`cb-l4-w3`** calls a thirteen-question bank «a 5-question quiz bank».
+
+And one in **our own exam solution text**, not the English course:
+`data/questions/2021a.json` calls the zero-allowed solutions of
+$x+y+z=7$ «тогтворгүй шийд» — *unstable* solutions. It reads as a slip for
+«сөрөг биш бүхэл шийд», which is what draft 42 uses.
 
 ---
 
