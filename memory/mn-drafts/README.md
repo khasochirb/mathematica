@@ -184,3 +184,35 @@ College Board and the IB write, and those hubs exist to rehearse their exams.
 The General Math courses keep it too unless Khas says otherwise; they are not
 ЭШ preparation.
 
+
+---
+
+## You cannot add. You can only replace
+
+Found 22 Sep 2026, drafting `prob-stats/permutations`, when the gate rejected a
+lesson for having 14 step kinds where the English had 14 different ones.
+
+`mn_walk.py` visits the English source and the Mongolian mirror **in the same
+order**, and `mn_apply.py` hard-fails on a count mismatch. So the Mongolian
+mirror must have:
+
+- the same number of lessons, in the same order;
+- the same step kinds, in the same order, within every lesson;
+- **the same number of beats in a beat array**, the same number of options in
+  an options array, the same number of concepts, facts and recap points.
+
+A rewrite may change what any one of those strings *says* — that is the whole
+point of «we rewrite, we don't translate» — but it may not change **how many**
+there are. Adding a step, adding a beat, or splitting one concept into two all
+break the apply.
+
+**So when the Mongolian version needs to say something the English does not**
+(the commonest case so far: a note about what the ЭШ paper prints, where the
+English has no reason to mention it), it has to fit inside a string that
+already exists. The `tip` body and the `explanation` of a `tapQuestion` are the
+roomiest, because both are single free-prose strings with no length contract.
+
+If the addition genuinely cannot fit anywhere, that is a signal the *English
+source* is missing a step, and the honest fix is to raise it for Khas rather
+than to smuggle it in — a step added to both sides is a content change to the
+English course, which is ship-mode work.

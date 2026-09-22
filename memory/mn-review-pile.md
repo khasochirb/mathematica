@@ -2,10 +2,10 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty drafts**, thirty-two
+switched to ЭШ-first: this file now covers **forty-one drafts**, thirty-three
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 22 Sep: 37 of 72 units covered · 7 of 14 topics** — counting
+> **ЭШ progress, 22 Sep: 38 of 72 units covered · 7 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -13,8 +13,8 @@ of which feed the ЭШ course.**
 > хэмжигдэхүүн (12/12), Комплекс тоо (2/2), and **Тоо ба үсэгт илэрхийлэл
 > (4/4, entirely from shipped mirrors — it never needed drafting)**.
 >
-> Remaining, by distance-to-complete: **Комбинаторик (3 — unit 1 landed
-> today)**, Функц ба график (4), Магадлал (4), Өгөгдлийн шинжилгээ (4),
+> Remaining, by distance-to-complete: **Комбинаторик (2 — units 1 and 2
+> landed today)**, Функц ба график (4), Магадлал (4), Өгөгдлийн шинжилгээ (4),
 > Тригонометр (6), Анализын эхлэл (6), Вектор ба матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -24,7 +24,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty drafts carry zero em-dash parentheticals in shipping prose, and
+forty-one drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -133,7 +133,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty drafts, 22 Sep 2026 — re-measured after draft 40, which contributes none. Neither complex-numbers
+Counted across the forty-one drafts, 22 Sep 2026 — re-measured after drafts 40 and 41, neither of which contributes any. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2210,9 +2210,39 @@ English `prob-stats` source untouched. That is the 5d move — rebuild for the
 audience rather than transliterate — and it is reversible, since notation is
 mechanical to swap.
 
-**I have not applied it.** Unit 2 (`permutations`) is being drafted now and
-needs the answer for its lesson 2; if you have not ruled by then I will draft
-it with $P(n,r)$ as the source has it, note every location, and switch after.
+**Unit 2 (`permutations`) is drafted and did exactly that** — $P(n,r)$
+throughout, with every switch location listed in that draft's Notes 3 (about
+thirty, all mechanical). One sentence of lesson 2's tip names $A_n^k$, states
+that $A_8^3 = P(8,3) = 336$, and warns which index is which. I think that
+sentence survives either ruling.
+
+---
+
+### 6u. The rewrite cannot add anything — only replace, string for string
+
+**Found 22 Sep 2026 in the same draft**, when the gate rejected a lesson I had
+given an extra teach step.
+
+`mn_walk.py` walks the English source and the Mongolian mirror in the same
+order and `mn_apply.py` hard-fails on a count mismatch, so the mirror must
+carry **the same number of lessons, step kinds, beats, options, concepts, facts
+and recap points** — in the same order. A rewrite may change what any string
+says, which is the whole point, but never how many strings there are.
+
+This has not bitten in forty drafts because until now every draft only ever
+*replaced*. It bit here because the Mongolian version had something to say that
+the English has no reason to say — that the ЭШ paper prints $A_n^k$. English
+readers do not sit ЭШ, so no English step exists to carry it.
+
+**I fitted it into the tip's body**, which is one free-prose string with no
+length contract, and recorded the constraint in `memory/mn-drafts/README.md`.
+
+Worth your eye because it will recur, and because the workaround has a ceiling:
+the next time a Mongolian rewrite needs a genuinely new *step* rather than a
+sentence, the honest answer is that the English source is missing one, and
+adding it to both sides is a content change to the English course. That is
+ship-mode work and a different decision from any in this file. I would rather
+raise it than keep hiding additions inside tips.
 
 ---
 
@@ -2225,6 +2255,21 @@ it with $P(n,r)$ as the source has it, note every location, and switch after.
 - **The freshman's-dream funFact describes the nickname** instead of saying
   «оюутан», which the voice reference's smell test §3 reserves for university
   students.
+- **Every English spelling-word in `prob-stats/permutations` is now a
+  Mongolian one**, and this is the least cheap veto in this list because seven
+  answers change with it. MOON, MISSISSIPPI, BANANA, LEVEL, BALLOON, SEEDED and
+  TATTOO are chosen for their repeated letters; translated literally they make a
+  Mongolian lesson about English spelling. The exam does this with Mongolian
+  words («ДЭВТЭР», «ШАТАР», «ТОЙРОГ»), so I replaced all seven — АЛАГ,
+  МИССИСИПИ, ХУРУУ, БАНАН, ХООЛООР, ТОГТООХ, БОЛОРМАА — kept each slot's role
+  and recomputed every count. All seven verified mechanically, along with the
+  exam's own three as a control.
+  **One replacement changed the question, not just the word:** the drill slot's
+  error model needs the wrong method to give a wrong answer, and «БАНАН»
+  (А×2, Н×2) makes $\frac{5!}{2\cdot2}$ and $\frac{5!}{2!\,2!}$ both $30$, so
+  the distractor collapses. «ХУРУУ» (У×3) separates $20$ from $40$. Full table
+  in that draft's Notes 2. The word I am least sure of is «БОЛОРМАА», a given
+  name rather than a common noun.
 - **Mongolian-native images replace English ones** where they land better:
   таван хошуу мал for sorting like terms, цагаан сарын золголт for
   everyone-meets-everyone. This is the rewrite rule doing its job, but it is
