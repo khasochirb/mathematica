@@ -20,6 +20,27 @@ the 75 terms are in the dictionary's a–i range, А/492 is a grade 10–12 stan
 and so silent on plane geometry, and the shipped grade 6–8 mirrors carry almost
 none of the vocabulary.
 
+## Before anything: is this unit already mirrored?
+
+**Added 22 Sep 2026.** The step below asks *does a shipped mirror teach this
+material?*, which is a question about terminology. It does **not** ask *is this
+topic already mirrored?*, which is a question about whether to draft at all —
+and on 18 Sep `algebra-1/quadratic-equations` was drafted although
+`algebra-1-mn/quadratic-equations.json` had been live for months. Review pile
+6q.
+
+```
+SLUG=algebra-1/quadratic-equations
+test -f "data/genmath/${SLUG%%/*}-mn/${SLUG#*/}.json" \
+  && echo "ALREADY SHIPPED — do not draft; reconcile instead" \
+  || echo "not mirrored — draft it"
+```
+
+Five ЭШ units are already mirrored this way, four of them the whole of
+**Тоо ба үсэгт илэрхийлэл**. Run this before opening a topic.
+
+---
+
 ## Before the grounding pass: check what already shipped
 
 **Added 19 Sep 2026, drafting `9/equations-and-formulas`.** Four of that

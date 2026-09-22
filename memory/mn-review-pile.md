@@ -5,12 +5,16 @@ Updated 22 Sep 2026. The geometry strand is complete, and the queue has
 switched to ЭШ-first: this file now covers thirty-nine drafts, thirty-one
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 22 Sep: 32 of 72 units · 6 of 14 topics complete** —
-> Олонлог (3/3), Тэгшитгэл тэнцэтгэл биш (8/8), Илтгэгч ба логарифм функц
-> (3/3), Дараалал цуваа (1/1), Геометр ба хэмжигдэхүүн (12/12), **Комплекс тоо
-> (2/2)**. The queue runs by distance-to-complete; next are Комбинаторик, Функц
-> ба график, Тоо ба үсэгт илэрхийлэл, Магадлал and Өгөгдлийн шинжилгээ at four
-> units each.
+> **ЭШ progress, 22 Sep: 36 of 72 units covered · 7 of 14 topics** — counting
+> shipped mirrors as well as drafts, which earlier figures in this file did not
+> (review pile 6q). Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл биш (8/8),
+> Илтгэгч ба логарифм функц (3/3), Дараалал цуваа (1/1), Геометр ба
+> хэмжигдэхүүн (12/12), Комплекс тоо (2/2), and **Тоо ба үсэгт илэрхийлэл
+> (4/4, entirely from shipped mirrors — it never needed drafting)**.
+>
+> Remaining, by distance-to-complete: **Комбинаторик, Функц ба график,
+> Магадлал, Өгөгдлийн шинжилгээ** (4 units each), Анализын эхлэл and
+> Тригонометр (6), Вектор ба матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -1699,26 +1703,38 @@ exam's word removes a coinage and a collision together.
 This does **not** disturb «гадаргуугийн талбай» for surface area in general,
 which the shipped mirrors use 22 times and 2g protects.
 
-#### Fourth instance, 22 Sep — and the first where the ministry and 2g agree
+#### Fourth instance, 22 Sep — two senses, not one wrong word
 
-**`algebra-2/quadratics-and-complex-numbers`.** *Completing the square*:
+**`algebra-2/quadratics-and-complex-numbers`.** *Completing the square*.
 
-| form | ministry | exam | shipped mirrors | my drafts |
-|---|---|---|---|---|
-| «бүтэн квадрат **ялгах**» | **1 — 10.5б, verbatim** | 0 | **5** | 0 |
-| «бүтэн квадрат **болгох**» | 0 | 0 | 1 | **7** |
+**I first wrote this entry as "ministry and mirrors say «ялгах», only my draft
+says «болгох», seven instances". That was wrong, and the real picture is more
+useful.** Reading the shipped mirror's contexts instead of counting them shows
+it uses **both, for different jobs**:
 
-> 10.5б: «Квадрат тэгшитгэлийг **бүтэн квадрат ялгах** аргаар бодох, ерөнхий
-> томьёо гаргах, шийдийг шинжлэх»
+| use | shipped `algebra-1-mn/quadratic-equations` |
+|---|---|
+| **the method's name** | «бүтэн квадрат **ялгах**» — «$x^2 + 6x - 7 = 0$-ийг бүтэн квадрат ялгаж бод», «(бүтэн квадрат ялгах эсвэл томьёогоор)» |
+| **turning an expression into a square** | «бүтэн квадрат **болгох**» — «$x^2 - 10x$-г бүтэн квадрат болгохын тулд нэмэх нь» |
 
-All seven «болгох» are in `algebra-1/quadratic-equations`, which recorded the
-term as "corpus 1". **This is the first 6l case where the ministry and the
-shipped mirrors point the same way** — the earlier three had А/492 silent and
-the mirrors silent too, so 2g had to carry them alone. Here both authorities
-agree, 5 against 1, and only my draft dissents.
+That distinction is real and worth keeping: «ялгах» *separates out* a complete
+square (the technique), «болгох» *makes something into* one (what you do to an
+expression). The ministry's 10.5б names the technique and uses «ялгах»:
 
-The new draft uses «бүтэн квадрат ялгах». `algebra-1/quadratic-equations`
-should follow: a seven-instance find-and-replace in an unshipped draft.
+> «Квадрат тэгшитгэлийг **бүтэн квадрат ялгах** аргаар бодох»
+
+**So the defect in `algebra-1/quadratic-equations` is narrower than I said.**
+Of its seven «болгох», most are the legitimate "turn into" sense — including
+one that matches the shipped mirror's sentence almost verbatim. What is wrong
+is that it names **the method** «болгох»: its terminology table row, its
+method list, and its test-yourself item `al8-ty-3`, whose shipped counterpart
+says «ялгах» in the same sentence.
+
+**Roughly three uses to change, not seven, and a terminology-table row** — and
+the row is the one that matters, since it is what the next draft would copy.
+
+The new draft uses «бүтэн квадрат ялгах» for the method throughout and does not
+need the other sense.
 
 > **The common cause of 6k and 6l is worth more than the three terms.**
 > `geometry/surface-area-and-volume` was drafted **before the ЭШ-first
@@ -1896,6 +1912,65 @@ remedy. **What I did not do:** touch the repetition, which is an English-content
 call. If the spiral is deliberate, unit 2's lesson 2 should acknowledge unit 1
 instead of re-introducing $i$; if it is not, the cheaper cut is obvious at 13
 steps against 54.
+
+---
+
+### 6q. The ЭШ queue has been counting my drafts, not Mongolian coverage — one topic needed no work, and one topic was drafted twice
+
+**Found 22 Sep 2026, choosing the next target.** Not a translation question; a
+correction to how I have been reporting progress, and it changes what happens
+next.
+
+Every progress figure I have given — "30 of 72 units", "six of fourteen
+topics" — counted **drafts in `memory/mn-drafts/`**. It ignored the twenty-five
+`data/genmath/*-mn/` mirrors that have been **live in Mongolian for months**.
+Some ЭШ units draw on grade 6–8 topics that are already mirrored, so they were
+never work to begin with.
+
+Counting *coverage* instead — a unit is covered if its source topic has a
+shipped mirror **or** a draft:
+
+| | units |
+|---|---|
+| already shipped in MN | **5** |
+| drafted | 31 |
+| neither | 36 |
+| **total** | 72 |
+
+**So the course is 36 of 72 covered, and 7 of 14 topics — not 6.**
+
+**Тоо ба үсэгт илэрхийлэл needs no drafts at all.** All four of its units —
+`8/the-real-number-system`, `8/exponents-and-scientific-notation`, `8/roots`,
+`7/percent-applications` — already ship in Mongolian. It has been sitting in my
+queue at "4 units left" for days and the correct number is zero.
+
+**And one topic was drafted that was already live.** ЭШ Algebra unit 5 is
+`algebra-1/quadratic-equations`, which has shipped as
+`algebra-1-mn/quadratic-equations.json`. I drafted it on **18 September** — the
+day *before* the shipped-mirror check was added to the drafting loop (19 Sep,
+per `README.md`). Its header makes no mention of a mirror, because the check
+did not exist yet.
+
+**That draft is therefore a retranslation of live Mongolian**, which is exactly
+what 2g exists to prevent, and the 6l entry above is the first divergence found
+between them. There may be more; nobody has diffed them.
+
+**Two things worth your call:**
+
+- **Should `algebra-1/quadratic-equations`'s draft be reconciled against the
+  shipped mirror, or discarded in favour of it?** 2g's logic says the shipped
+  wording wins wherever they differ, which would make the draft a list of
+  corrections rather than a translation. That is a smaller job than it sounds
+  and I would rather do it than leave two Mongolian versions of one topic.
+- **The remaining queue is five topics, not six**, and the four-unit tier is
+  now Комбинаторик, Функц ба график, Магадлал and Өгөгдлийн шинжилгээ.
+
+> **The general lesson is about the check, not the count.** The shipped-mirror
+> step added on 19 Sep asks *does a mirror teach this material?* — a question
+> about terminology. It does not ask *is this unit already mirrored?* — a
+> question about whether to draft at all. The first question saved four terms
+> in `solid-geometry/cylinders-and-cones`; the second would have saved a whole
+> draft. I have added it to the loop.
 
 ---
 
