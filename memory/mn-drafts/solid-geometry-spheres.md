@@ -3,8 +3,12 @@
 **STATUS: DRAFT. Written by Claude. Not applied, not gated, not shipped.**
 
 **This closes an ЭШ topic.** *Геометр ба хэмжигдэхүүн* is a twelve-unit block
-and this is unit 12, so with it Geometry becomes the **fifth of fourteen** ЭШ
-topics fully drafted.
+and this is unit 12, so with it Geometry becomes the fifth ЭШ topic fully
+**drafted**.
+
+> **Superseded 22 Sep, review pile 6q.** Counting *coverage* rather than
+> drafts — five ЭШ units already ship in Mongolian and were never work —
+> Geometry is the **sixth of fourteen covered** topics, not the fifth.
 
 **Four lessons, 30 items, 28 interactive steps, 12 nested tryItSet problems.**
 (8 workedExamples + 8 tryIt + 8 practice + 6 testYourself; the other 22 `id`

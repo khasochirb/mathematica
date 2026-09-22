@@ -2,19 +2,20 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-nine drafts, thirty-one
+switched to ЭШ-first: this file now covers **forty drafts**, thirty-two
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 22 Sep: 36 of 72 units covered · 7 of 14 topics** — counting
+> **ЭШ progress, 22 Sep: 37 of 72 units covered · 7 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
-> (review pile 6q). Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл биш (8/8),
-> Илтгэгч ба логарифм функц (3/3), Дараалал цуваа (1/1), Геометр ба
+> (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
+> each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
+> биш (8/8), Илтгэгч ба логарифм функц (3/3), Дараалал цуваа (1/1), Геометр ба
 > хэмжигдэхүүн (12/12), Комплекс тоо (2/2), and **Тоо ба үсэгт илэрхийлэл
 > (4/4, entirely from shipped mirrors — it never needed drafting)**.
 >
-> Remaining, by distance-to-complete: **Комбинаторик, Функц ба график,
-> Магадлал, Өгөгдлийн шинжилгээ** (4 units each), Анализын эхлэл and
-> Тригонометр (6), Вектор ба матриц (8).
+> Remaining, by distance-to-complete: **Комбинаторик (3 — unit 1 landed
+> today)**, Функц ба график (4), Магадлал (4), Өгөгдлийн шинжилгээ (4),
+> Тригонометр (6), Анализын эхлэл (6), Вектор ба матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -23,7 +24,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-thirty-nine drafts carry zero em-dash parentheticals in shipping prose, and
+forty drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -132,7 +133,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-nine drafts, 22 Sep 2026. Neither complex-numbers
+Counted across the forty drafts, 22 Sep 2026 — re-measured after draft 40, which contributes none. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -415,6 +416,27 @@ provenance.
 Two consecutive drafts, five terms, one cause. **The grade 6–9 shipped mirrors
 are not a tie-breaker; for this material they are the only Mongolian that
 exists.**
+
+#### And once more, 22 Sep — but this time across strands
+
+`prob-stats/counting-principles` (ЭШ Комбинаторик unit 1) took four core terms
+from `7-mn/probability`: «тооллын зарчим» (*counting principle*, 4 uses),
+«мод диаграмм» (*tree diagram*, 2), «гүйцээлт» (*complement*, 15) and
+«боломжит үр дүнгийн орон» (*sample space*, 11).
+
+What is new is the **direction**. The five earlier cases were all vertical — a
+grade 9 or ЭШ unit borrowing from the grade 8 mirror of *the same subject*.
+These four cross from **probability into combinatorics**: a counting unit that
+teaches no probability at all inherits its vocabulary from the probability
+mirror, because counting is where probability's own machinery was first named
+in Mongolian on this site.
+
+That widens the rule rather than repeating it: **2g is not "look one grade
+down", it is "look wherever this site first said it in Mongolian"** — and that
+can be a different strand. I applied it on that reading. If you want 2g scoped
+to same-subject borrowing only, these four need re-grounding and I have no
+other source for them: А/492's combinatorics lines (below, 6s) name only
+«сэлгэмэл» and «хэсэглэл».
 
 ## 3. Terms I coined — ungrounded, and I know it
 
@@ -1795,6 +1817,28 @@ bank's subtopic labels for the topic's `skill_tag` before the grounding pass.
 > caught. The common lesson is that a bare count is not evidence — the contexts
 > or the controlled vocabulary have to be read.
 
+#### One caveat on the subtopic field, found the first time I leaned on it
+
+Dumping the four combinatorics `skill_tag`s on 22 Sep returned **18 distinct
+labels for 52 questions**, and the vocabulary is much noisier than
+`solid_geometry`'s was:
+
+- **Case-only duplicates**: «тоолол»/«Тоолол», «тоолох»/«Тоолох» — four labels,
+  two concepts.
+- **Two labels are English**: `stars_and_bars` (3 questions) and
+  `Permutations with restrictions` (3). Whoever tagged these had no Mongolian
+  for them, which is itself a finding — they are the two subtopics my draft had
+  to coin around.
+- **«сэлгэл» once against «сэлгэмэл» five times** — and «сэлгэмэл» is the
+  ministry's word (10.14б), so the singleton is a typo, not a variant.
+
+So the field is still the best term source for ЭШ drafts and I am keeping it in
+the loop, but **it is a tagger's free text with a small vocabulary, not a
+controlled one**. Read it case-folded, treat singletons as suspect, and do not
+take a label's *spelling* as authority the way 6m's «Огтлогдсон конус» invited
+— that one happened to agree with the ministry. Cleaning the labels is Build
+ship-mode work on the bank, not a translation decision; noting it here only.
+
 ---
 
 ### 6n. The exam does not test spheres at all, while the ministry requires them
@@ -1971,6 +2015,103 @@ between them. There may be more; nobody has diffed them.
 > question about whether to draft at all. The first question saved four terms
 > in `solid-geometry/cylinders-and-cones`; the second would have saved a whole
 > draft. I have added it to the loop.
+
+---
+
+### 6r. A held-back file keeps an *already-ruled* term wrong in production — and the gate prints "clean"
+
+**Found 22 Sep 2026, drafting `prob-stats/counting-principles`**, while
+checking whether *tree diagram* is spelled «мод диаграмм» or «мод диаграм».
+
+The spelling split is real and live:
+
+| source | «диаграмм» | «диаграм» |
+|---|---|---|
+| А/492 | **4** | 0 |
+| ЭШ papers | **13** | 0 |
+| shipped mirrors | **35** | **25** |
+
+All 25 minority-form uses sit in **one file**,
+`data/genmath/8-mn/scatter-plots-and-bivariate-data.json` — the topic whose
+entire subject is scatter plots. `8-mn/systems-of-linear-equations`, one grade
+and one shelf away, writes «диаграмм».
+
+**Unlike 6k, this is not an open ruling.** `scripts/i18n/mn_terms.py` already
+carries the correction, grounded on the ministry's four uses:
+
+```
+(r"диаграм(?!м)", "диаграмм", "10.13в, 11.11а", ...)
+```
+
+**So why is it still wrong in production?** Because that file is held back
+*whole*. It contains three inflected forms of «хэв маяг» — the word you ruled
+against on 13 Sep (*"pattern is зүй тогтол period. never хэв маяг."*) — whose
+declensions have no ruling yet, so they sit in `PENDING_FORMS` and the file is
+skipped entirely rather than half-converted. The skip is the right call on its
+own terms; the side effect is that **an unrelated, fully-decided term stays
+wrong in 25 places, and `npm run verify:mn-terms` still ends with "clean"**.
+The hold-back is reported one line above that word, which is how I found it,
+but nothing marks it as a *regression* rather than a deferral.
+
+**Unblocking it is eight words.** Five forms, across two files:
+
+| pending form | uses | my proposal |
+|---|---|---|
+| `хэв маягаас` | 3 (scatter-plots) | зүй тогтлоос |
+| `хэв маягт` | 1 (scatter-plots) | зүй тогтолд |
+| `хэв маяггүй` | 1 + 1 (both files) | зүй тогтолгүй |
+| `хэв маягаар` | 1 (real-number-system) | зүй тогтлоор |
+| `хэв маяггүйгээр` | 1 (real-number-system) | зүй тогтолгүйгээр |
+
+The pattern behind the proposal — and the thing I actually need you to check —
+is that the stem's final о **drops before vowel-initial suffixes and stays
+before consonant-initial ones**, which is what your own accusative ruling
+(«хэв маягийг» → **«зүй тогтлыг»**, already in the file) does. I have applied
+nothing; this is a language call, not a lookup.
+
+Two separable asks, and the second does not depend on the first:
+
+1. **Rule the five declensions** (or correct them) — unblocks both files.
+2. **Independently: should a hold-back that strands a ruled term report as
+   clean?** This is Build ship-mode work, so I am only writing it down: the
+   check could list "held back, N ruled corrections not applied" and exit
+   non-zero, or apply the ruled terms and hold back only the pending ones.
+   Today a second such collision would be equally invisible.
+
+---
+
+### 6s. Every combinatorics objective in А/492 is **elective** — and the exam asks 52 questions on it
+
+**Found 22 Sep 2026, grounding ЭШ Комбинаторик.** The exact mirror image of
+6n (the exam does not test spheres at all, while the ministry requires them),
+and it lands on the same seam from the other side.
+
+The standard has three combinatorics lines, and all three are marked elective:
+
+| code | elective | text |
+|---|---|---|
+| 10.14б | **yes** | Сэлгэмэл, хэсэглэлийн томьёог мэдэх, хэрэглэх |
+| 11.13а | **yes** | Сэлгэмэл, хэсэглэлийн томьёо хэрэглэн үзэгдлийн магадлалыг тооцоолох |
+| 12.14б | **yes** | Давталттай хэсэглэлийг тооцоолох |
+
+The ЭШ bank, meanwhile, carries **52 questions** across the topic's four
+units — `counting_principle` 20, `permutation_arrangement` 16,
+`binomial_theorem` 10, `combination_selection` 6.
+
+**Why this matters for drafting, not just for planning.** The ministry supplies
+exactly two words here — «сэлгэмэл» and «хэсэглэл» — and nothing else: no
+tree diagram, no sample space, no counting principle, no overcounting, no
+inclusion–exclusion. An elective line gets one sentence, not a vocabulary. So
+for a topic the exam tests 52 times, the authority order runs dry after two
+terms, which is what forced the cross-strand 2g reading above and the two
+coinages in the draft («давхар тоолол», «оруулах-хасах зарчим»).
+
+**No action needed on the curriculum mapping** — unlike 6j and 6o this is not a
+false claim, it is an honest gap, and `MOE_NOT_YET_COVERED` is not implicated.
+I am flagging it because it predicts where the next four drafts will be
+thinnest on grounding, and because **"the ministry calls it elective" is not a
+reason to thin the content** when the exam asks 52 questions. I drafted it at
+full weight.
 
 ---
 

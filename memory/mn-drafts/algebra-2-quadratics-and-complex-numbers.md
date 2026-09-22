@@ -3,8 +3,12 @@
 **STATUS: DRAFT. Written by Claude. Not applied, not gated, not shipped.**
 
 **This closes an ЭШ topic.** *Комплекс тоо* is a two-unit block and this is
-unit 2, so with it **six of fourteen** ЭШ topics are fully drafted and the
-course stands at **32 of 72 units**.
+unit 2.
+
+> **Corrected 22 Sep, review pile 6q.** This first said "six of fourteen topics
+> and 32 of 72 units", which counted drafts only. Counting shipped mirrors too,
+> the course is **36 of 72 units and 7 of 14 topics** — Тоо ба үсэгт илэрхийлэл
+> was already fully mirrored and never needed drafting.
 
 **Four lessons, 30 items, 49 interactive steps, no nested tryItSet problems** —
 the thin-interactive `algebra-2` shape.
