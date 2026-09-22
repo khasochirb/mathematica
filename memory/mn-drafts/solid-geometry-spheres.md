@@ -3,7 +3,7 @@
 **STATUS: DRAFT. Written by Claude. Not applied, not gated, not shipped.**
 
 **This closes an ЭШ topic.** *Геометр ба хэмжигдэхүүн* is a twelve-unit block
-and this is unit 12, so with it Geometry becomes the **sixth of fourteen** ЭШ
+and this is unit 12, so with it Geometry becomes the **fifth of fourteen** ЭШ
 topics fully drafted.
 
 **Four lessons, 30 items, 28 interactive steps, 12 nested tryItSet problems.**
@@ -648,6 +648,24 @@ contribute **42**, behind only `10/exponential-functions` (144) and
 ---
 
 **ЭШ status:** **Геометр ба хэмжигдэхүүн is complete — twelve of twelve.**
-That makes **six of fourteen** ЭШ topics fully drafted: Sets, Algebra,
-Exponentials & Logarithms, Functions (partial per its own note), Geometry, and
-the Algebra block's five. The next target is queue item 5.
+
+**Corrected 22 Sep.** This section first said "six of fourteen" and listed
+Functions among the complete topics. Functions is **3 of 7**, so the true count
+is **five of fourteen**: Олонлог (3/3), Тэгшитгэл тэнцэтгэл биш (8/8), Илтгэгч
+ба логарифм функц (3/3), Дараалал цуваа (1/1), and Геометр ба хэмжигдэхүүн
+(12/12). **30 of 72 units.**
+
+The queue is ordered by distance-to-complete, and the next target is
+**Комплекс тоо — two units**, the cheapest remaining topic:
+`11/complex-numbers` then `algebra-2/quadratics-and-complex-numbers`. The
+second of those carries a standing commitment from
+`algebra-2/radicals-and-rational-exponents`: it **must** use «хосмог» for
+*conjugate*, or that draft's cross-reference to the complex-denominator trick
+fails retroactively.
+
+| remaining topic | units left |
+|---|---|
+| **Комплекс тоо** | **2** |
+| Комбинаторик · Функц ба график · Тоо ба үсэгт илэрхийлэл · Магадлал · Өгөгдлийн шинжилгээ | 4 each |
+| Анализын эхлэл · Тригонометр | 6 each |
+| Вектор ба матриц | 8 |

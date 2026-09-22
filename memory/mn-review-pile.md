@@ -1,9 +1,15 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 20 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers thirty-seven drafts, twenty-nine
+Updated 22 Sep 2026. The geometry strand is complete, and the queue has
+switched to ЭШ-first: this file now covers thirty-eight drafts, thirty
 of which feed the ЭШ course.**
+
+> **ЭШ progress, 22 Sep: 30 of 72 units · 5 of 14 topics complete** —
+> Олонлог (3/3), Тэгшитгэл тэнцэтгэл биш (8/8), Илтгэгч ба логарифм функц
+> (3/3), Дараалал цуваа (1/1), Геометр ба хэмжигдэхүүн (12/12). The queue runs
+> by distance-to-complete; **Комплекс тоо is next at two units**, one of which
+> is drafted.
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -12,7 +18,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-thirty-seven drafts carry zero em-dash parentheticals in shipping prose, and
+thirty-eight drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -121,7 +127,8 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the thirty-seven drafts, 20 Sep 2026.
+Counted across the thirty-eight drafts, 22 Sep 2026. `11/complex-numbers`
+adds none.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
 > The stored command counts a whole draft file, and six drafts *quote* decimal
@@ -978,7 +985,7 @@ retroactively.
 
 ---
 
-### 4j. The ministry and the ЭШ papers name the same object differently — **now twice**
+### 4j. The ministry and the ЭШ papers name the same object differently — **three times, and the third points the other way**
 
 **`10/rational-expressions`, throughout.** Every earlier conflict in this file
 was ministry-vs-dictionary (4d), ministry-vs-itself (2e), or
@@ -1031,6 +1038,39 @@ document counted*). **Four findings now argue for one rule**, and ruling 2e, 2f,
 the cost. A single clause — *for ЭШ topics the exam bank outranks А/492; where
 the ministry is silent the shipped mirrors outrank everything* — would close all
 four.
+
+#### Third instance, 22 Sep — and the first that points the OTHER way
+
+**`11/complex-numbers`.** *Conjugate*:
+
+| source | wording | count |
+|---|---|---|
+| А/492 | «**хосмог**» | **3** — 12.4г twice, 12.4з once |
+| ЭШ papers | «**нөхөр тоо**» | **2** — both in solution prose |
+
+Both exam uses are squarely in this topic — «Хуваагчийн **нөхөр тоогоор**
+үржүүлбэл» (division) and «комплекс шийдүүд **нөхөр тоонууд**» (the
+conjugate-root theorem) — so it is a real conflict, not a near-miss.
+
+**The draft uses «хосмог», which is the first time I have recommended the
+ministry over the exam in this item.** The reason is that 4j's real argument
+has never been *the exam is the authority*; it has been *the exam's word is
+commoner by an order of magnitude and is what the student reads on the paper*.
+Here:
+
+- the gap is **3 against 2**, not 78:3 (volume) or 31:2 (range);
+- the ministry's three sit in **objectives** — what a student must learn —
+  while the exam's two are one author's phrasing in two solutions;
+- «хосмог» appears in a *defining* line («хосмог тоонууд байна гэсэн үр дүнг
+  гаргах»), which is where a term is coined rather than used.
+
+**This sharpens what 4j is asking, and I think it settles the wording.** If the
+rule is "the exam wins for ЭШ topics", this case hands the decision to two
+lines of solution prose over three ministry objectives, which I doubt anyone
+intends. If the rule is **"the commoner, more student-facing word wins"**, this
+case goes to the ministry and *all four earlier instances still go to the
+exam*. **That second reading is the only one that survives all five**, and it
+is what I would suggest you adopt if you rule on 4j.
 
 ---
 
