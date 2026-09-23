@@ -2,21 +2,21 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **fifty drafts**, forty-three
+switched to ЭШ-first: this file now covers **fifty-one drafts**, forty-four
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 47 of 72 units covered · 9 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 48 of 72 units covered · 10 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
 > биш (8/8), Илтгэгч ба логарифм функц (3/3), Дараалал цуваа (1/1), Геометр ба
 > хэмжигдэхүүн (12/12), Комплекс тоо (2/2), **Комбинаторик (4/4, closed 22
-> Sep)**, **Магадлал (4/4, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
+> Sep)**, **Магадлал (4/4, closed 23 Sep)**, **Өгөгдлийн шинжилгээ (4/4, closed
+> 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Өгөгдлийн шинжилгээ (1 — units 1–3
-> drafted 23 Sep), Функц ба график (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> Remaining, by distance-to-complete: Функц ба график (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -26,7 +26,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-fifty drafts carry zero em-dash parentheticals in shipping prose, and
+fifty-one drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -107,7 +107,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 1,236 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 1,335 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -135,7 +135,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fifty drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126** and **draft 50 (`two-variable-data`) 101**, taking the total from 440 to 1,236. Probability is where the decimals live. Neither complex-numbers
+Counted across the fifty-one drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101** and **draft 51 (`inference-and-studies`) 99**, taking the total from 440 to 1,335. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2639,6 +2639,22 @@ distributions-and-position.json`, `lessons[5].concept[2]`. Draft 49 writes
 
 A mixed-script check (any word containing both Latin and Cyrillic letters) on
 the English corpus would have caught it and has, today, zero false positives.
+
+### 6ae. *Bias* is «хазайлт» by the glossary — and «стандарт хазайлт» shares the page
+
+**Found 23 Sep 2026, drafting `prob-stats/inference-and-studies` (draft 51).**
+The `mn-translation` glossary and the shipped grade 7 mirror (14 uses) give
+*bias* as «хазайлт». In this unit lesson 2 is *about* bias and lessons 4–6 are
+about the *standard deviation* of $\hat{p}$, so sentences need both. With
+А/492's «хазайлтууд» (spread measures, 11.11в) and *deviation* $x - \bar{x}$,
+the word now carries four meanings in one ЭШ topic; *skew* would have been a
+fifth, which draft 48 avoided with the participle «хазайсан».
+
+**Draft 51 follows the glossary** (34 bias-sense uses) and never lets
+*standard deviation* appear as a bare «хазайлт». The option, if you want it:
+**«өрөөсгөл»** (*one-sided*), the everyday word for a biased judgement,
+ungrounded in our sources, which would free «хазайлт» for deviation. It would
+reach the shipped grade 7 mirror. One ruling; nothing converted.
 
 ---
 
