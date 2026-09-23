@@ -18,7 +18,7 @@ beats, recaps, titles and fact shorthand. Intervals in the bank's form.
 **Mirror pre-check** (6q): no `calculus-mn` mirror. Draft it.
 
 **Ministry sections read in full first**: 11.10, 12.8. The unit is mapped
-(`lib/esh-course.ts:263`) to eleven codes, 11.10а–г, 11.10е and 12.8а–е. It
+(`lib/esh-course.ts:264`) to eleven codes, 11.10а–г, 11.10е and 12.8а–е. It
 teaches six fully, two in part and **three not at all**: Notes 1.
 
 **Exam check** (6m): 36 bank questions contain an integral. The bank's phrasing
@@ -554,7 +554,7 @@ $6 \cdot \frac{2}{3}x^{3/2} + 4x^{-1} + e^x + C = 4x^{3/2} + \frac{4}{x} + e^x +
 
 ### 1. Mapping: eleven codes claimed, three untaught, two in part
 
-`lib/esh-course.ts:263` maps this unit to 11.10а, б, в, г, е and 12.8а–е.
+`lib/esh-course.ts:264` maps this unit to 11.10а, б, в, г, е and 12.8а–е.
 
 - **Taught**:
 - 11.10а: integration as the inverse of differentiation, with the family and the
@@ -635,7 +635,8 @@ integrals.
 
 ### 6. Decimals
 
-**3** inside `$...$`, by the stored 2d command: `3.75` and `2.67` in `cal52-we1`,
+**3** inside `$...$`, by the stored 2d command: `3.75` and `2.67` in
+`cal52-we1`,
 `1.75` in `cal52-t1` (Riemann sums against their exact fractions). All come from
 the English and stay points (2d is not applied). No prose decimals. 2d stands
 at **1,550** across sixty-six drafts.
