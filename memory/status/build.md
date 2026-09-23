@@ -18,7 +18,7 @@ touching any of those; it is not summarised here.
 
 **Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
 `memory/mn-drafts/` (rewrite, not translation, per `docs/MONGOLIAN.md`).
-75 drafts now, 68 of them feeding the ЭШ course. **ЭШ coverage, re-measured
+76 drafts now, 68 of them feeding the ЭШ course. **ЭШ coverage, re-measured
 against `lib/esh-course.ts`: 72 of 72 units, 14 of 14 topics. The ЭШ course
 is fully covered** (counting shipped mirrors). Комбинаторик, Магадлал,
 Өгөгдлийн шинжилгээ, Функц ба график and Тригонометр closed this week;
@@ -27,10 +27,13 @@ is fully covered** (counting shipped mirrors). Комбинаторик, Маг�
 printed `buildsOn`, though the apply walker requires it). Every draft passes
 `scripts/i18n/mn_draft_check.py` and every numeric claim was re-computed.
 Open questions for Khas are in `memory/mn-review-pile.md`, the only place
-they live.
+they live. **Its new section 0 ranks the whole pile**: rulings by how much
+text each moves, applied calls that need only a yes, and a ship-mode list for
+Build ordered by how many students see each problem. Start there. The non-ЭШ
+queue has begun (`9/inequalities-and-absolute-value`, draft 76).
 
 **Landed where:** branch `claude/grade-6-math-verify-xe1tak` (last commit
-`b559615`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
+`23556f3`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
 merged, nothing deployed, no migrations.
 
 **Blocked on:** Khas's review of the pile. The rulings that gate the most
@@ -78,6 +81,14 @@ matrix as $E$, never $I$; my lean is $E$ throughout the Mongolian) and **6bb**
   partial fractions (2); and 16 of the bank's 36 integral questions use a
   linear inner function the course never shows. Also one false fact in live English: `the-derivative` lesson 2
   states "f ↗ ⟺ f′ > 0" (fails for x³, which the same lesson teaches).
+- **6bd — the largest live bug in the pile.** `components/lesson/FactCard.tsx`
+  sends `fact.latex` through `MathText`, which typesets only `$...$`. The grade
+  routes 2–12 store most facts as bare LaTeX, so **417 English key-fact cards**
+  (grades 2–4, 6, 9–12) and 4 in the live `6-mn` mirror show raw source like
+  `y = a \cdot b^x`. One line fixes most of it: typeset the whole string when
+  it has no `$`. Grade 9's seven cards also carry literal `\u2192` escapes
+  that need the real characters. Found by reading the code; one page load
+  confirms it.
 - **6bc — live English inside two shipped Mongolian pages.** `mn_walk.py`
   translates widget config only through `WIDGET_PROSE`, which omits six kinds
   whose config holds visible prose (`stepProof` 23, `congruentTriangles` 6,
