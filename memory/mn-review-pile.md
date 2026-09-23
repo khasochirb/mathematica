@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **fifty-three drafts**, forty-six
+switched to ЭШ-first: this file now covers **fifty-four drafts**, forty-seven
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 50 of 72 units covered · 10 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 51 of 72 units covered · 10 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -16,8 +16,8 @@ the figure carried until then, thirty-eight, was one low).
 > 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Функц ба график (2 — units 4–5
-> drafted 23 Sep), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> Remaining, by distance-to-complete: Функц ба график (1 — units 4–6
+> drafted 23 Sep; unit 7 `algebra-2/rational-functions` is left), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -27,7 +27,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-fifty-three drafts carry zero em-dash parentheticals in shipping prose, and
+fifty-four drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -136,7 +136,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fifty-three drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** and **draft 53 (`algebra-2/functions-and-transformations`) 11**, taking the total from 440 to 1,393. Probability is where the decimals live. Neither complex-numbers
+Counted across the fifty-four drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** and **draft 54 (`algebra-2/polynomial-functions`) 0**, taking the total from 440 to 1,393. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2697,6 +2697,59 @@ core), 11.3е (inverse function, core), 11.3и and 11.3к. It teaches only
 `algebra-2/radicals-and-rational-exponents` lesson 4 («Inverse Functions»),
 which is ЭШ Тэгшитгэл unit 7 and is mapped only to 10.2а. The same shape as
 6j's two bookkeeping codes: move 11.3д, 11.3е, 11.3к to that unit.
+
+### 6ah. 12.2 is taught in a unit mapped elsewhere; three wrong facts in `algebra-2/polynomial-functions`
+
+**Found 23 Sep 2026, drafting `algebra-2/polynomial-functions` (draft 54).**
+
+**Mis-attributed codes, the third case after 6j and 6ag.** The unit is mapped
+to 10.3в (y = axⁿ from a value table, n = −2…3) and 11.3б (power functions)
+and teaches neither: no table, no negative exponent. It teaches 12.2б
+(division, quotient, remainder), 12.2в (Bezout, degree 3 and 4 equations,
+unknown coefficient), 10.2д (cube formulas) and 10.5в (biquadratic). 12.2б,
+12.2в and 10.2д are mapped to `algebra-1/polynomials-and-factoring`, whose
+English has 0 hits for remainder, synthetic or cube. Move them here.
+
+**Three wrong facts in live English** (corrected inside the Mongolian strings,
+draft Notes 2):
+- Lesson 1 teach [2]: "the cubic term is 97% of the total". At x = 100 the
+  term is 2,000,000 and the total 1,950,093, so the term is 102.6% of the total.
+- Lesson 4 concept 3: the box x(10 − 2x)(8 − 2x) = 48 "may have three
+  algebraic roots but one physical answer". Its roots are 1, 2, 6; **two** lie
+  in 0 < x < 4.
+- Lesson 3 teach [5]: a² ± ab + b² "almost never factors further over the
+  reals". For b ≠ 0 it never does (discriminant −3b²).
+
+Also: tapQuestion [6] in lesson 4 offers a box cubic with roots 1, 6, −2; no
+corner-cut box has a negative root product. And the funFact says Gauss was 21
+in 1799; he was 22.
+
+### 6ai. `buildsOn` is walked but never dumped: 42 drafts lack it, and the ЭШ spine shows English
+
+**Found 23 Sep 2026, drafting `algebra-2/polynomial-functions` (draft 54).**
+
+**The draft gap.** `mn_walk.py` line 114 walks the topic's `buildsOn` string,
+so `mn_apply.py` will hard-fail on a missing index for every topic that has
+one. `mn_topic_dump.py` never prints it, so the drafts never saw it: of the 43
+earlier drafts whose English topic carries `buildsOn`, **42 have no Mongolian
+for it**. Only `geometry/reasoning-and-proof` writes it. (`esh/sets-and-operations`
+lists `buildsOn` as structural, but its English has none, so nothing is lost
+there.) Draft 54 writes it. The other 42 each need one short line. That is content work and it is cheap. Cheaper still:
+make the dump print it and make `mn_draft_check.py` count it, so the gap can't
+come back.
+
+**The live gap, ship-mode.** On the ЭШ hub, `getEshUnit` replaces the data's
+`buildsOn` with the spine's (`lib/esh-course.ts`, `live()`'s fourth argument),
+and `CourseShell` prints it under the Mongolian label «Тулгуур сэдэв нь:».
+Five spine entries hard-code **English** there: «Factoring from Unit 4.»,
+«Set operations and complements from Unit 1.», «Set operations from Unit 1;
+the counting habits of Unit 2.», «The log laws from Unit 2.», «Combinations
+from Unit 3.». An ЭШ student sees English under a Mongolian heading on those
+five units. They are not in any mirror or draft, so the pipeline cannot reach
+them: they need Mongolian written into `lib/esh-course.ts`, or a localized
+field. The label is Khas's; the five lines under it are ordinary content, and
+Mongolian for them can be drafted in a content session and written in by a ship
+session.
 
 ---
 
