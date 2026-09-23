@@ -2911,8 +2911,9 @@ the first unit of ЭШ Анализын эхлэл.**
   never here (they are in unit 4, `applications-of-derivatives`; the bank asks
   about normals 19 times). **Taught here but mapped elsewhere**: 10.3д and
   11.9а (mapped to unit 1, 6aq), **12.7а** (eˣ, ln x, sin x, cos x with the
-  sum and constant-multiple rules is lesson 4 whole; mapped to unit 3, where
-  tg x arrives), and 11.9ж in part (rise and fall from the sign of f′). The
+  sum and constant-multiple rules is lesson 4 whole; mapped to unit 3; its
+  fifth function, tg x, is differentiated nowhere in the course), and 11.9ж
+  in part (rise and fall from the sign of f′). The
   codes sit one unit behind where they are taught. A ship-mode session should
   re-map units 1–3 together.
 - **A false fact in the English**: lesson 2's fact "f ↗ ⟺ f′ > 0". The

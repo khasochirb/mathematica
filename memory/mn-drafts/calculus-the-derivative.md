@@ -580,8 +580,10 @@ Taught here but **mapped elsewhere**:
   tangent (6aq).
 - **12.7а** (the derivatives of eˣ, ln x, sin x, cos x and tg x, with the
   constant-multiple and sum rules) is lesson 4 almost whole: four of its five
-  functions. It is mapped to unit 3 (`differentiation-techniques`), where tg x
-  arrives with the quotient rule.
+  functions. It is mapped to unit 3 (`differentiation-techniques`). **The
+  fifth, tg x, is taught nowhere in the calculus course**: 0 derivatives of
+  tan x in all six units, although unit 3's quotient rule could produce one in
+  a line.
 - **11.9ж** in part: increasing and decreasing read from the sign of f′ (lesson
   2 concept 2), and rates of change (lesson 1).
 
