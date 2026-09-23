@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **sixty-three drafts**, fifty-six
+switched to ЭШ-first: this file now covers **sixty-four drafts**, fifty-seven
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 60 of 72 units covered · 12 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 61 of 72 units covered · 12 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -17,7 +17,7 @@ the figure carried until then, thirty-eight, was one low).
 > closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Анализын эхлэл (4 — units 1–2 drafted
+> Remaining, by distance-to-complete: Анализын эхлэл (3 — units 1–3 drafted
 > 23 Sep), Вектор ба матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -27,7 +27,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-sixty-three drafts carry zero em-dash parentheticals in shipping prose, and
+sixty-four drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -136,7 +136,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the sixty-three drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** and **draft 63 (`the-derivative`) 7**, taking the total from 440 to 1,545. Probability is where the decimals live. Neither complex-numbers
+Counted across the sixty-four drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** **draft 63 (`the-derivative`) 7** and **draft 64 (`differentiation-techniques`) 0**, taking the total from 440 to 1,545. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2925,6 +2925,30 @@ the first unit of ЭШ Анализын эхлэл.**
 - **Coined terms**: «ялгаврын харьцаа» (difference quotient), «агшин зуурын
   хурд», «дифференциалчлагдах», «хугарлын цэг» (corner). The draft's Notes 3
   lists them for correction.
+
+### 6as. Differentiation techniques: 12.7г and tg x untaught but claimed, 11.9к taught but mapped next door
+
+**Found 23 Sep 2026, drafting `calculus/differentiation-techniques` (draft
+64), ЭШ Анализын эхлэл unit 3.**
+
+- **12.7г** (elective: parametric and implicit derivatives) is mapped here
+  (`lib/esh-course.ts:260`) and taught nowhere in the course: 0 hits for
+  "implicit" or "parametric" in all six calculus units. Because the mapping
+  claims it, the untaught-codes list that `lib/esh-course.test.ts` asserts
+  does not report it. Either teach it or move it to that list with a reason.
+- **12.7а's tg x** is also claimed here and differentiated nowhere (6ar). The
+  quotient-rule lesson could close it with one worked example.
+- **11.9к** (the second derivative) is this unit's lesson 4, mapped to unit 4.
+  The bank's four second-derivative questions (all $e^{-kx}$) need exactly
+  this unit.
+- **Two overclaims in the English**: `cal32-t2` asks to show $\frac{x}{x+3}$
+  "increasing everywhere on its domain" (false across the asymptote:
+  y(−4) = 4, y(0) = 0); `cal3-pr-7` calls $e^{3x}\sin x$ "a product of two
+  chains" (sin x is not a composite). The draft corrects both in Mongolian.
+- **Term choices to confirm**: «давхар функц» (ministry) over the bank's
+  «нийлмэл функц»; «давхар функцийн дүрэм» for the chain rule; «II эрэмбийн
+  уламжлал» (ministry) over the bank's «2-р эрэмбийн»; a Mongolian mnemonic
+  for the quotient rule that I made up. Draft Notes 2–3.
 
 ---
 
