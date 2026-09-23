@@ -2734,9 +2734,19 @@ one. `mn_topic_dump.py` never prints it, so the drafts never saw it: of the 43
 earlier drafts whose English topic carries `buildsOn`, **42 have no Mongolian
 for it**. Only `geometry/reasoning-and-proof` writes it. (`esh/sets-and-operations`
 lists `buildsOn` as structural, but its English has none, so nothing is lost
-there.) Draft 54 writes it. The other 42 each need one short line. That is content work and it is cheap. Cheaper still:
-make the dump print it and make `mn_draft_check.py` count it, so the gap can't
-come back.
+there.) Draft 54 writes it.
+
+**Backfilled 23 Sep, in the commit after draft 54.** All 42 now carry a
+`**buildsOn:**` line after their BLURB. The audit also found that the four
+earliest drafts (`10/quadratic-functions`, `algebra-1/inequalities`,
+`algebra-1/linear-equations`, `algebra-1/systems-of-equations`) had **no topic
+TITLE or BLURB either**. Both are walked strings, so both are now written. The
+lines keep the home-course unit numbers («7-р нэгж»), as the shipped
+`algebra-1-mn/quadratic-equations` mirror does: the string renders only on
+home-course pages, because the ЭШ spine replaces it. What would stop this
+recurring: make the dump print `buildsOn` and make `mn_draft_check.py` require
+the three topic-level strings. That is a small tooling change for a ship
+session.
 
 **The live gap, ship-mode.** On the ЭШ hub, `getEshUnit` replaces the data's
 `buildsOn` with the spine's (`lib/esh-course.ts`, `live()`'s fourth argument),
