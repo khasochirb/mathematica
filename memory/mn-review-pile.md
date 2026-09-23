@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **fifty-six drafts**, forty-nine
+switched to ЭШ-first: this file now covers **fifty-seven drafts**, fifty
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 53 of 72 units covered · 11 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 54 of 72 units covered · 11 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -16,8 +16,8 @@ the figure carried until then, thirty-eight, was one low).
 > 23 Sep)**, **Функц ба график (7/7, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Тригонометр (5 — unit 1 drafted 23
-> Sep), Анализын эхлэл (6), Вектор ба матриц (8).
+> Remaining, by distance-to-complete: Тригонометр (4 — units 1–2 drafted
+> 23 Sep), Анализын эхлэл (6), Вектор ба матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -26,7 +26,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-fifty-six drafts carry zero em-dash parentheticals in shipping prose, and
+fifty-seven drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -107,7 +107,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 1,416 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 1,445 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -135,7 +135,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fifty-six drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** and **draft 56 (`trigonometry/right-triangle-trigonometry`) 20**, taking the total from 440 to 1,416. Probability is where the decimals live. Neither complex-numbers
+Counted across the fifty-seven drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** and **draft 57 (`special-triangles-and-exact-values`) 29**, taking the total from 440 to 1,445. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2803,6 +2803,16 @@ is not a vocabulary question the pipeline can fix after the fact: it changes
 LaTeX inside answer options (`\tan 30°` vs `\operatorname{tg} 30°`), so it
 wants a ruling **before the trigonometry topic ships**. Five more trig units
 follow; each will carry the same choice.
+
+### 6al. Two more leaked-working solutions, in `trigonometry/special-triangles-and-exact-values`
+
+**Found 23 Sep 2026, drafting it (draft 57).** `trig24-t1` («…makes each half
+an equilateral**... more directly:** area $= s^2\sin\theta$») and `trig2-ty-4`
+(«…and $8\sin 30° = 4$**... assembling:**»). Both written clean in the draft
+(its Notes 1); the first finishes the route the statement's own hint asks for.
+6h's count rises by two, to 25–26. The same draft hedges an unconfirmed fun
+fact (Prony's tables, "4,000 pages", "dozens of volumes") and corrects
+«$1.41 + 1.73 = 3.15$» (it is 3.14; $\sqrt2 + \sqrt3 \approx 3.15$).
 
 ---
 
