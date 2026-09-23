@@ -279,7 +279,7 @@ $\vec{v}$ векторуудын ямар нэг эвлүүлэг болно. Ш
    диагональ.
 
 2. Дундаж цэг дундажлана: $BC$ хэрчмийн $M$ дундаж цэг
-   $\overrightarrow{AM} = \tfrac{1}{2}(\overrightarrow{AB} + \overrightarrow{AC})$
+$\overrightarrow{AM} = \tfrac{1}{2}(\overrightarrow{AB} + \overrightarrow{AC})$
    тэнцэтгэлийг хангана. Энэ бол $ABC$ гурвалжны $A$ оройгоос татсан **медиан**
    вектор ч мөн: нэг томьёо, хоёр нэр.
 
@@ -296,10 +296,10 @@ $\vec{v}$ векторуудын ямар нэг эвлүүлэг болно. Ш
 **facts**
 
 - **title** Параллелограммын диагональ · **latex**
-  `\overrightarrow{AC} = \vec{u} + \vec{v},\quad \overrightarrow{BD} = \vec{v} - \vec{u}`
+`\overrightarrow{AC} = \vec{u} + \vec{v},\quad \overrightarrow{BD} = \vec{v} - \vec{u}`
   · **explanation** A оройгоос гарах хоёр талын векторын нийлбэр ба ялгавар.
 - **title** Медиан, дундаж цэг · **latex**
-  `\overrightarrow{AM} = \tfrac{1}{2}(\overrightarrow{AB} + \overrightarrow{AC})`
+`\overrightarrow{AM} = \tfrac{1}{2}(\overrightarrow{AB} + \overrightarrow{AC})`
   · **explanation** BC-ийн дундаж цэг рүү: хоёр талын аяллыг дундажил.
 - **title** Арга · **latex**
   `\vec{u}, \vec{v} \text{ нэрлэх} \to \text{ирмэгээр алхах}` · **explanation**
@@ -314,7 +314,7 @@ $\vec{v}$ векторуудын ямар нэг эвлүүлэг болно. Ш
   $|\overrightarrow{AC}| = \sqrt{25 + 16} = \sqrt{41}$.
 - `vm23-we2` — **statement:** Мөн тэр параллелограмм: нөгөө
   $\overrightarrow{BD}$ диагональ ба түүний уртыг олоорой. **solution:**
-  $\overrightarrow{BD} = \overrightarrow{AD} - \overrightarrow{AB} = (1 - 4,\; 3 - 1) = (-3, 2)$;
+$\overrightarrow{BD} = \overrightarrow{AD} - \overrightarrow{AB} = (1 - 4,\; 3 - 1) = (-3, 2)$;
   $|\overrightarrow{BD}| = \sqrt{9 + 4} = \sqrt{13}$.
 - `vm23-we3` — **statement:** $ABC$ гурвалжинд $\overrightarrow{AB} = (6, 2)$ ба
   $\overrightarrow{AC} = (2, 4)$. $BC$ тал руу татсан $\overrightarrow{AM}$
@@ -376,8 +376,9 @@ $\vec{v}$ векторуудын ямар нэг эвлүүлэг болно. Ш
 
 **concept**
 
-1. $P$ нь $AB$ хэрчмийг $AP : PB = m : n$ харьцаагаар хуваадаг бол $$P = \frac{n
-   \cdot A + m \cdot B}{m + n}.$$ Жин загалмайлж байгааг анхаараарай: $B$ цэг
+1. $P$ нь $AB$ хэрчмийг $AP : PB = m : n$ харьцаагаар хуваадаг бол
+   $$P = \frac{n \cdot A + m \cdot B}{m + n}.$$ Жин загалмайлж байгааг
+   анхаараарай: $B$ цэг
    $m$ жин, $A$ цэг $n$ жин авна. Хэзээ ч алдахгүй санамж: ОЙР байгаа үзүүр ИХ
    жин авах ба ойр эсэхийг харьцаа шийднэ.
 
@@ -412,7 +413,7 @@ AP : PB = m : n ⇒ P = (n·A + m·B)/(m + n); дундаж цэг бол 1:1 т
 
 - `vm24-we1` — **statement:** $A(1, 2)$ ба $B(7, 8)$ бол $P$ цэг $AB$ хэрчмийг
   $AP : PB = 2 : 1$ харьцаагаар хуваана. $P$ цэгийг олоорой. **solution:**
-  $P = \dfrac{1 \cdot A + 2 \cdot B}{3} = \left(\dfrac{1 + 14}{3}, \dfrac{2 + 16}{3}\right) = (5, 6)$:
+$P = \dfrac{1 \cdot A + 2 \cdot B}{3} = \left(\dfrac{1 + 14}{3}, \dfrac{2 + 16}{3}\right) = (5, 6)$:
   2:1 хуваалтын шаардсанаар $B$ хүртэлх замын гуравны хоёрт.
 - `vm24-we2` — **statement:** $A(-4, 3)$ ба $B(6, -1)$ цэгүүдийн дундаж цэгийг
   олоорой. **solution:**
@@ -507,7 +508,7 @@ AP : PB = m : n ⇒ P = (n·A + m·B)/(m + n); дундаж цэг бол 1:1 т
   $\vec{u} = \overrightarrow{AB} = (5, -2)$.
 - `vm2-ty-4` — **statement:** $A(-1, 4)$, $B(9, -6)$ бол $P$ цэг $AB$ хэрчмийг
   $AP : PB = 2 : 3$ харьцаагаар хуваана. $P$ цэгийг олоорой. **solution:**
-  $P = \frac{3A + 2B}{5} = \left(\frac{-3 + 18}{5}, \frac{12 - 12}{5}\right) = (3, 0)$.
+$P = \frac{3A + 2B}{5} = \left(\frac{-3 + 18}{5}, \frac{12 - 12}{5}\right) = (3, 0)$.
 - `vm2-ty-5` — **statement:** $A(0,0)$, $B(6, 0)$, $C(0, 6)$ оройтой $ABC$
   гурвалжны медиануудын огтлолцлын цэгийг $G = \tfrac{1}{3}(A + B + C)$
   томьёогоор олоорой. **solution:** $G = (2, 2)$.
