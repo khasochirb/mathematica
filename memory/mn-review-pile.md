@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **fifty-two drafts**, forty-five
+switched to ЭШ-first: this file now covers **fifty-three drafts**, forty-six
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 49 of 72 units covered · 10 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 50 of 72 units covered · 10 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -16,8 +16,8 @@ the figure carried until then, thirty-eight, was one low).
 > 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Функц ба график (3 — unit 4 drafted
-> 23 Sep), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> Remaining, by distance-to-complete: Функц ба график (2 — units 4–5
+> drafted 23 Sep), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -27,7 +27,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-fifty-two drafts carry zero em-dash parentheticals in shipping prose, and
+fifty-three drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -108,7 +108,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 1,382 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 1,393 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -136,7 +136,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fifty-two drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** and **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47**, taking the total from 440 to 1,382. Probability is where the decimals live. Neither complex-numbers
+Counted across the fifty-three drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** and **draft 53 (`algebra-2/functions-and-transformations`) 11**, taking the total from 440 to 1,393. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2675,6 +2675,28 @@ twice: the dictionary's «битүү / задгай завсар» and the shipp
 mirror's «битүү / задгай тойрог». `algebra-1/inequalities` (13 Sep) wrote
 «будсан / будаагүй цэг» (9 uses) and called it uncertain in its own Notes 3.
 Two drafts, one idea, two pairs. I would align the older draft; one ruling.
+
+### 6ag. Live: three English statements use a bare `$` for dollars; and three core/elective codes attached to the wrong unit
+
+**Found 23 Sep 2026, drafting `algebra-2/functions-and-transformations`
+(draft 53).**
+
+**Rendering bug, live.** `a214-we2` («A taxi charges a $4 flag fee … then
+$1.50 per km»), `a214-t2` («$10 for up to 5 GB, then $2 per extra GB») and
+`a21-ty-6` («$30/month … plus $4 per extra visit») write the dollar sign
+unescaped. MathText pairs them into a maths span, so the student reads «4 flag
+fee covering the first 2 km, then» as italic maths with its spaces gone. A
+scan of every maths span in all 212 English files for four or more plain words
+finds **these three and nothing else** (the other hits are variable names such
+as $PA \cdot PB$). Fix: `\$` in three strings. The scan would make a cheap
+gate.
+
+**Mis-attributed codes.** The unit is mapped to 11.3д (composite function,
+core), 11.3е (inverse function, core), 11.3и and 11.3к. It teaches only
+11.3и. Composition and inverses are taught in
+`algebra-2/radicals-and-rational-exponents` lesson 4 («Inverse Functions»),
+which is ЭШ Тэгшитгэл unit 7 and is mapped only to 10.2а. The same shape as
+6j's two bookkeeping codes: move 11.3д, 11.3е, 11.3к to that unit.
 
 ---
 
