@@ -24,8 +24,7 @@ in the bank.
 (determinant and inverse) belong to unit 6.
 
 **Exam check** (6m): «матриц» 107 in the bank, «нэгж матриц» 8, «элемент» 42,
-«мөр» 8, «багана» 6, «хэмжээсийг / хэмжээстэй» 7. «тэг матриц» 0 in the bank,
-but
+«мөр» 8, «багана» 6, «хэмжээсийг / хэмжээтэй» 7. «тэг матриц» 0 in the bank, but
 the ministry names it (10.4г). The bank writes the identity as **$E$**, never
 $I$ (Notes 3).
 
@@ -119,7 +118,7 @@ $I$ (Notes 3).
   хэмжээстэй (2 мөр, 3 багана). $a_{12}$ нь 1-р мөр, 2-р баганад байрлах $-1$;
   $a_{23}$ нь 2-р мөр, 3-р баганад байрлах $2$.
 - `vm51-we2` — **statement:**
-$\begin{pmatrix} x + 1 & 4 \\ 3 & 2y \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 3 & 10 \end{pmatrix}$
+  $\begin{pmatrix} x + 1 & 4 \\ 3 & 2y \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 3 & 10 \end{pmatrix}$
   байх $x$ ба $y$-г олоорой. **solution:** Элементүүдийг тулгавал: $x + 1 = 6$
   тул $x = 5$; $2y = 10$ тул $y = 5$.
 - `vm51-we3` — **statement:** Дэлгүүр A ба B барааг бямба, ням гарагт зарсан:
@@ -144,7 +143,7 @@ $\begin{pmatrix} x + 1 & 4 \\ 3 & 2y \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 3 
   ба $b_{31}$ элементийг олоорой. **solution:** $3 \times 2$; $b_{31} = 1$ (3-р
   мөр, 1-р багана).
 - `vm51-t2` — **statement:**
-$\begin{pmatrix} 3t & 1 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} 12 & 1 \\ 0 & 5 \end{pmatrix}$
+  $\begin{pmatrix} 3t & 1 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} 12 & 1 \\ 0 & 5 \end{pmatrix}$
   байх $t$-г олоорой. **solution:** $3t = 12$, тиймээс $t = 4$.
 
 ### Interactive — 12 steps, kinds and order unchanged
@@ -212,7 +211,7 @@ $\begin{pmatrix} 3t & 1 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} 12 & 1 \\ 0 & 5
 **workedExamples**
 
 - `vm52-we1` — **statement:**
-$\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} 4 & 5 \\ -2 & 1 \end{pmatrix}$
+  $\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} 4 & 5 \\ -2 & 1 \end{pmatrix}$
   нийлбэрийг бодоорой. **solution:** Элемент бүрээр:
   $\begin{pmatrix} 6 & 4 \\ -2 & 4 \end{pmatrix}$.
 - `vm52-we2` — **statement:**
@@ -222,7 +221,7 @@ $\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} 4 & 5 \\ -2 & 1
   $3B = \begin{pmatrix} 0 & 3 \\ -3 & 6 \end{pmatrix}$. Ялгавар нь:
   $\begin{pmatrix} 2 & 1 \\ 9 & -6 \end{pmatrix}$.
 - `vm52-we3` — **statement:**
-$\;2X + \begin{pmatrix} 1 & 0 \\ 4 & -2 \end{pmatrix} = \begin{pmatrix} 7 & 6 \\ 0 & 4 \end{pmatrix}$
+  $\;2X + \begin{pmatrix} 1 & 0 \\ 4 & -2 \end{pmatrix} = \begin{pmatrix} 7 & 6 \\ 0 & 4 \end{pmatrix}$
   тэгшитгэлээс $X$ матрицыг олоорой. **solution:**
   $2X = \begin{pmatrix} 6 & 6 \\ -4 & 6 \end{pmatrix}$, тиймээс
   $X = \begin{pmatrix} 3 & 3 \\ -2 & 3 \end{pmatrix}$.
@@ -241,7 +240,7 @@ $\;2X + \begin{pmatrix} 1 & 0 \\ 4 & -2 \end{pmatrix} = \begin{pmatrix} 7 & 6 \\
 - `vm52-t1` — **statement:** $3\begin{pmatrix} 2 & -1 \\ 4 & 0 \end{pmatrix}$-г
   бодоорой. **solution:** $\begin{pmatrix} 6 & -3 \\ 12 & 0 \end{pmatrix}$.
 - `vm52-t2` — **statement:**
-$\begin{pmatrix} 5 & 2 \\ 1 & -3 \end{pmatrix} - \begin{pmatrix} 2 & 4 \\ -1 & 1 \end{pmatrix}$
+  $\begin{pmatrix} 5 & 2 \\ 1 & -3 \end{pmatrix} - \begin{pmatrix} 2 & 4 \\ -1 & 1 \end{pmatrix}$
   ялгаврыг бодоорой. **solution:**
   $\begin{pmatrix} 3 & -2 \\ 2 & -4 \end{pmatrix}$.
 
@@ -282,7 +281,7 @@ $\begin{pmatrix} 5 & 2 \\ 1 & -3 \end{pmatrix} - \begin{pmatrix} 2 & 4 \\ -1 & 1
 **concept**
 
 1. Жор:
-$$(AB)_{ij} = (A \text{-ийн } i \text{-р мөр}) \cdot (B \text{-ийн } j \text{-р багана})$$
+   $$(AB)_{ij} = (A \text{-ийн } i \text{-р мөр}) \cdot (B \text{-ийн } j \text{-р багана})$$
    хариуны нүд бүрт нэг скаляр үржвэр. $2\times 2$ матрицуудын хувьд энэ нь
    дөрвөн скаляр үржвэр.
 
@@ -322,10 +321,10 @@ $$(AB)_{ij} = (A \text{-ийн } i \text{-р мөр}) \cdot (B \text{-ийн } j
   $AB = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix}$.
 - `vm53-we2` — **statement:** Ижил $A, B$ матрицуудын хувьд $BA$-г бодоод
   $AB$-тэй харьцуулаарай. **solution:**
-$BA = \begin{pmatrix} 5\cdot1 + 6\cdot3 & 5\cdot2 + 6\cdot4 \\ 7\cdot1 + 8\cdot3 & 7\cdot2 + 8\cdot4 \end{pmatrix} = \begin{pmatrix} 23 & 34 \\ 31 & 46 \end{pmatrix} \ne AB$.
+  $BA = \begin{pmatrix} 5\cdot1 + 6\cdot3 & 5\cdot2 + 6\cdot4 \\ 7\cdot1 + 8\cdot3 & 7\cdot2 + 8\cdot4 \end{pmatrix} = \begin{pmatrix} 23 & 34 \\ 31 & 46 \end{pmatrix} \ne AB$.
   Дараалал чухал, үүрд.
 - `vm53-we3` — **statement:** Матрицыг баганаар үржүүлэх:
-$\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 4 \\ 5 \end{pmatrix}$
+  $\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 4 \\ 5 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:** Хоёр скаляр үржвэр:
   $\binom{2\cdot4 + (-1)\cdot5}{0\cdot4 + 3\cdot5} = \binom{3}{15}$. «Хувиргалт»
   сэдвийн матрицыг цэгээр үржүүлэх нь яг энэ, зөвхөн $2\times1$ хамтрагчтай.
@@ -342,11 +341,10 @@ $\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 4 \\ 5 \end{pmatri
 **tryIt**
 
 - `vm53-t1` — **statement:**
-$\begin{pmatrix} 1 & 0 \\ 2 & 3 \end{pmatrix}\begin{pmatrix} 4 & 1 \\ 0 & 5 \end{pmatrix}$
+  $\begin{pmatrix} 1 & 0 \\ 2 & 3 \end{pmatrix}\begin{pmatrix} 4 & 1 \\ 0 & 5 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:**
   $\begin{pmatrix} 4 & 1 \\ 8 & 17 \end{pmatrix}$.
-- `vm53-t2` — **statement:** $A$ нь $2 \times 3$, $B$ нь $3 \times 4$
-  хэмжээстэй.
+- `vm53-t2` — **statement:** $A$ нь $2 \times 3$, $B$ нь $3 \times 4$ хэмжээстэй.
   $AB$ ямар хэмжээстэй вэ? $BA$ оршин байх уу? **solution:** $AB$ нь
   $2 \times 4$ (дотоод 3-ууд гар барина). $BA$ оршихын тулд $4 = 2$ байх ёстой:
   оршихгүй.
@@ -396,7 +394,7 @@ $I$: диагональ дээрээ нэгүүд, бусад газар тэг�
    эвддэг нь өөр өөр матрицуудыг холих явдал.)
 
 3. Шалгалтын хэв маягууд: диагональ матрицыг элемент бүрээр нь зэрэгт дэвшүүлнэ:
-$\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}$;
+   $\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}$;
    зарим матриц ДАВТАГДАНА ($90°$-ын эргүүлэлт дөрвөн алхамд $I$ руу буцна:
    $R^4 = I$); зарим нь «үхнэ»: $A^2 = O$ байх тэг биш матриц оршдог. Энэ бол
    тоонд хэзээ ч байгаагүй, зөвхөн матрицад л байдаг үзэгдэл.
@@ -412,7 +410,7 @@ I бол үржүүлэхийн 1 (AI = IA = A); зэрэг хуулбарууд
   `I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},\quad AI = IA = A` ·
   **explanation** Юу ч хийдэггүй хувиргалт; матрицын ертөнцийн 1.
 - **title** Диагональ матрицын зэрэг · **latex**
-`\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}`
+  `\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}`
   · **explanation** Диагональ бол хялбар зам: элементүүд бие даан зэрэгт
   дэвшинэ.
 - **title** Давталт · **latex** `R_{90°}^4 = I` · **explanation** Дөрвөн удаа
@@ -481,17 +479,17 @@ I бол үржүүлэхийн 1 (AI = IA = A); зэрэг хуулбарууд
   $a_{13}$ ба $a_{22}$-г олоорой. **solution:** $2 \times 3$; $a_{13} = 0$,
   $a_{22} = 4$.
 - `vm5-pr-2` — **statement:**
-$\begin{pmatrix} 2x & 3 \\ 1 & y - 2 \end{pmatrix} = \begin{pmatrix} 8 & 3 \\ 1 & 5 \end{pmatrix}$
+  $\begin{pmatrix} 2x & 3 \\ 1 & y - 2 \end{pmatrix} = \begin{pmatrix} 8 & 3 \\ 1 & 5 \end{pmatrix}$
   байх $x, y$-г олоорой. **solution:** $x = 4$, $y = 7$.
 - `vm5-pr-3` — **statement:**
-$3\begin{pmatrix} 1 & -1 \\ 2 & 0 \end{pmatrix} - 2\begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix}$-г
+  $3\begin{pmatrix} 1 & -1 \\ 2 & 0 \end{pmatrix} - 2\begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix}$-г
   бодоорой. **solution:** $\begin{pmatrix} -1 & -5 \\ 8 & -6 \end{pmatrix}$.
 - `vm5-pr-4` — **statement:**
-$\begin{pmatrix} 2 & 1 \\ 3 & 0 \end{pmatrix}\begin{pmatrix} 1 & -2 \\ 4 & 5 \end{pmatrix}$
+  $\begin{pmatrix} 2 & 1 \\ 3 & 0 \end{pmatrix}\begin{pmatrix} 1 & -2 \\ 4 & 5 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:**
   $\begin{pmatrix} 6 & 1 \\ 3 & -6 \end{pmatrix}$.
 - `vm5-pr-5` — **statement:**
-$\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}\begin{pmatrix} 5 \\ -2 \end{pmatrix}$
+  $\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}\begin{pmatrix} 5 \\ -2 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:** $\binom{1}{-11}$.
 - `vm5-pr-6` — **statement:** $A$ нь $4 \times 2$, $B$ нь $2 \times 3$
   хэмжээстэй. $AB$ ба $BA$ ямар хэмжээстэй вэ? **solution:** $AB$ нь
@@ -508,7 +506,7 @@ $\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}\begin{pmatrix} 5 \\ -2 \end{pmatr
 ## TEST YOURSELF
 
 - `vm5-ty-1` — **statement:**
-$\;3X - \begin{pmatrix} 2 & 1 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 7 & -4 \\ 6 & 2 \end{pmatrix}$
+  $\;3X - \begin{pmatrix} 2 & 1 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 7 & -4 \\ 6 & 2 \end{pmatrix}$
   тэгшитгэлээс $X$-г олоорой. **solution:**
   $3X = \begin{pmatrix} 9 & -3 \\ 6 & 6 \end{pmatrix}$:
   $X = \begin{pmatrix} 3 & -1 \\ 2 & 2 \end{pmatrix}$.
@@ -519,7 +517,7 @@ $\;3X - \begin{pmatrix} 2 & 1 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 7 & -4 \\
   $AB = \begin{pmatrix} 1 & 3 \\ 2 & 7 \end{pmatrix}$,
   $BA = \begin{pmatrix} 7 & 3 \\ 2 & 1 \end{pmatrix}$: тэнцүү биш.
 - `vm5-ty-3` — **statement:**
-$\begin{pmatrix} 2 & k \\ 1 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 10 \\ 7 \end{pmatrix}$
+  $\begin{pmatrix} 2 & k \\ 1 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 10 \\ 7 \end{pmatrix}$
   байх $k$-г олоорой. **solution:** Дээд мөр: $2 + 2k = 10$, $k = 4$ (доод
   мөрөөр шалгавал: $1 + 6 = 7$ ✓).
 - `vm5-ty-4` — **statement:**
