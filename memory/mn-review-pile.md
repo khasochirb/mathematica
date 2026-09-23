@@ -3274,7 +3274,9 @@ bare LaTeX, so students see source such as
 | 10 · 11 · 12 | 69 · 79 · 79 |
 | 7 · 8 | 0 (they delimit with `$`) |
 
-**417 English cards and 4 Mongolian ones.** The ЭШ learn page also uses
+**417 English cards and 4 Mongolian ones.** Found by reading the renderer and
+the data, not by a browser walk; one page load (any grade 10 lesson) confirms
+it. The ЭШ learn page also uses
 `FactCard`, but its four formulas are delimited and render correctly.
 
 **The fix is ship mode.** In `FactCard`, typeset the whole string when it
