@@ -18,33 +18,46 @@ touching any of those; it is not summarised here.
 
 **Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
 `memory/mn-drafts/` (rewrite, not translation, per `docs/MONGOLIAN.md`).
-52 drafts now, 45 of them feeding the ЭШ course. ЭШ coverage, re-measured
-against `lib/esh-course.ts`: **49 of 72 units, 10 of 14 topics**;
-Комбинаторик, Магадлал and Өгөгдлийн шинжилгээ closed this week, Функц ба
-график at unit 4 of 7. Every draft passes `scripts/i18n/mn_draft_check.py`
-and every numeric claim was re-computed. Open questions for Khas are in
-`memory/mn-review-pile.md`, the only place they live.
+56 drafts now, 49 of them feeding the ЭШ course. ЭШ coverage, re-measured
+against `lib/esh-course.ts`: **53 of 72 units, 11 of 14 topics**;
+Комбинаторик, Магадлал, Өгөгдлийн шинжилгээ and Функц ба график closed this
+week, Тригонометр at unit 1 of 6. Also backfilled the `buildsOn` string into
+42 drafts and topic title/blurb into 4 (the dump never printed `buildsOn`,
+though the apply walker requires it). Every draft passes
+`scripts/i18n/mn_draft_check.py` and every numeric claim was re-computed.
+Open questions for Khas are in `memory/mn-review-pile.md`, the only place
+they live.
 
 **Landed where:** branch `claude/grade-6-math-verify-xe1tak` (last commit
-`c131ade`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
+`b437934`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
 merged, nothing deployed, no migrations.
 
 **Blocked on:** Khas's review of the pile. The rulings that gate the most
 text: 6aa (coin and dice vocabulary, «орхих» / «тоотой тал» vs the drafts'
 «шидэх» / «зураас»), 6ab (the ЭШ divides by $n$, our SD lesson teaches
 $n - 1$), 6ac (dot plot vs scatter plot naming), 6ae (*bias* = «хазайлт»
-beside «стандарт хазайлт»), 6af (open/closed dots).
+beside «стандарт хазайлт»), 6af (open/closed dots), 6aj («пропорционал» vs
+«пропорциональ»), and **6ak (`\tan` vs «tg»), which must be settled before
+any trigonometry ships** because it changes LaTeX inside answer options.
 
 **Others should know:** ship-mode findings, written down and not done:
 
+- **6ai** — five ЭШ spine entries in `lib/esh-course.ts` (`live()`'s fourth
+  argument) render **English** `buildsOn` text under the Mongolian label
+  «Тулгуур сэдэв нь:». Also: make `mn_topic_dump.py` print `buildsOn` and make
+  `mn_draft_check.py` require the three topic-level strings.
+- **6ah** — `algebra-2/polynomial-functions` teaches ministry 12.2б/12.2в/10.2д,
+  which are mapped to `algebra-1/polynomials-and-factoring` (teaches none of
+  them); and three wrong facts in its live English (the "97%" claim, a box
+  with "one physical answer" that has two, a bracket that "almost never"
+  factors and in fact never does).
 - **6z** — six live ЭШ practice solutions in `data/questions/` defer to "the
   corpus" instead of solving; three teach a wrong method or wrong data.
 - **6ad** — `prob-stats/distributions-and-position` lesson 6 concept 3 says
   «памятlets» in live English: the only mixed-script word in 212 files.
-- **6j, 6af** — ЭШ units claiming ministry codes they do not teach (10.12в
-  core; 12.3е elective).
-- **6h** — 20–21 leaked authoring notes, most in question *statements*; one
-  (`dp-l2-t1`) with a wrong solution too.
+- **6j, 6af, 6ag** — ЭШ units claiming ministry codes they do not teach.
+- **6h, 6aj** — 23–24 leaked authoring notes in live English, most in
+  question *statements*; one (`dp-l2-t1`) with a wrong solution too.
 - Nothing here touches auth, RLS or student data.
 
 ---
