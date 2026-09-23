@@ -18,10 +18,10 @@ touching any of those; it is not summarised here.
 
 **Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
 `memory/mn-drafts/` (rewrite, not translation, per `docs/MONGOLIAN.md`).
-56 drafts now, 49 of them feeding the ЭШ course. ЭШ coverage, re-measured
-against `lib/esh-course.ts`: **53 of 72 units, 11 of 14 topics**;
-Комбинаторик, Магадлал, Өгөгдлийн шинжилгээ and Функц ба график closed this
-week, Тригонометр at unit 1 of 6. Also backfilled the `buildsOn` string into
+61 drafts now, 54 of them feeding the ЭШ course. ЭШ coverage, re-measured
+against `lib/esh-course.ts`: **58 of 72 units, 12 of 14 topics**;
+Комбинаторик, Магадлал, Өгөгдлийн шинжилгээ, Функц ба график and Тригонометр
+closed this week. Left: Анализын эхлэл (6), Вектор ба матриц (8). Also backfilled the `buildsOn` string into
 42 drafts and topic title/blurb into 4 (the dump never printed `buildsOn`,
 though the apply walker requires it). Every draft passes
 `scripts/i18n/mn_draft_check.py` and every numeric claim was re-computed.
@@ -29,7 +29,7 @@ Open questions for Khas are in `memory/mn-review-pile.md`, the only place
 they live.
 
 **Landed where:** branch `claude/grade-6-math-verify-xe1tak` (last commit
-`b437934`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
+`cb08717`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
 merged, nothing deployed, no migrations.
 
 **Blocked on:** Khas's review of the pile. The rulings that gate the most
@@ -56,8 +56,14 @@ any trigonometry ships** because it changes LaTeX inside answer options.
 - **6ad** — `prob-stats/distributions-and-position` lesson 6 concept 3 says
   «памятlets» in live English: the only mixed-script word in 212 files.
 - **6j, 6af, 6ag** — ЭШ units claiming ministry codes they do not teach.
-- **6h, 6aj** — 23–24 leaked authoring notes in live English, most in
-  question *statements*; one (`dp-l2-t1`) with a wrong solution too.
+- **6h, 6aj–6ap** — 27–28 leaked authoring notes in live English, most in
+  question *statements*; one (`dp-l2-t1`) with a wrong solution too. Every
+  one inside a drafted topic is written clean in its draft.
+- **6am, 6an, 6ao** — three ministry items the trigonometry units claim and
+  never teach: sector area (11.6б), sec/csc/cot (12.6а), the auxiliary-angle
+  formula (12.6б/г).
+- **6ap** — `mn_draft_check.py` should also fail on mixed-script words (a
+  sweep found one Latin «a» inside a Mongolian word in an older draft).
 - Nothing here touches auth, RLS or student data.
 
 ---
