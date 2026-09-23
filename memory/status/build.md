@@ -18,19 +18,19 @@ touching any of those; it is not summarised here.
 
 **Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
 `memory/mn-drafts/` (rewrite, not translation, per `docs/MONGOLIAN.md`).
-67 drafts now, 60 of them feeding the ЭШ course. ЭШ coverage, re-measured
-against `lib/esh-course.ts`: **64 of 72 units, 13 of 14 topics**;
-Комбинаторик, Магадлал, Өгөгдлийн шинжилгээ, Функц ба график and Тригонометр
-closed this week, and Анализын эхлэл (6/6) today. Left: Вектор ба
-матриц (8). Also backfilled the `buildsOn` string into
-42 drafts and topic title/blurb into 4 (the dump never printed `buildsOn`,
-though the apply walker requires it). Every draft passes
+75 drafts now, 68 of them feeding the ЭШ course. **ЭШ coverage, re-measured
+against `lib/esh-course.ts`: 72 of 72 units, 14 of 14 topics. The ЭШ course
+is fully covered** (counting shipped mirrors). Комбинаторик, Магадлал,
+Өгөгдлийн шинжилгээ, Функц ба график and Тригонометр closed this week;
+Анализын эхлэл (6/6) and Вектор ба матриц (8/8) today. Also backfilled the
+`buildsOn` string into 42 drafts and topic title/blurb into 4 (the dump never
+printed `buildsOn`, though the apply walker requires it). Every draft passes
 `scripts/i18n/mn_draft_check.py` and every numeric claim was re-computed.
 Open questions for Khas are in `memory/mn-review-pile.md`, the only place
 they live.
 
 **Landed where:** branch `claude/grade-6-math-verify-xe1tak` (last commit
-`7420a3a`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
+`b559615`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
 merged, nothing deployed, no migrations.
 
 **Blocked on:** Khas's review of the pile. The rulings that gate the most
@@ -39,7 +39,11 @@ text: 6aa (coin and dice vocabulary, «орхих» / «тоотой тал» vs
 $n - 1$), 6ac (dot plot vs scatter plot naming), 6ae (*bias* = «хазайлт»
 beside «стандарт хазайлт»), 6af (open/closed dots), 6aj («пропорционал» vs
 «пропорциональ»), and **6ak (`\tan` vs «tg»), which must be settled before
-any trigonometry ships** because it changes LaTeX inside answer options.
+any trigonometry ships** because it changes LaTeX inside answer options. New
+from the vectors-and-matrices unit: **6az** (the bank writes the identity
+matrix as $E$, never $I$; my lean is $E$ throughout the Mongolian) and **6bb**
+(composition: the ministry's «дараалсан хувиргалт» or the dictionary's
+«угсраа хувиргалт»).
 
 **Others should know:** ship-mode findings, written down and not done:
 
@@ -74,6 +78,29 @@ any trigonometry ships** because it changes LaTeX inside answer options.
   partial fractions (2); and 16 of the bank's 36 integral questions use a
   linear inner function the course never shows. Also one false fact in live English: `the-derivative` lesson 2
   states "f ↗ ⟺ f′ > 0" (fails for x³, which the same lesson teaches).
+- **6bc — live English inside two shipped Mongolian pages.** `mn_walk.py`
+  translates widget config only through `WIDGET_PROSE`, which omits six kinds
+  whose config holds visible prose (`stepProof` 23, `congruentTriangles` 6,
+  `treeDiagram` 5, `conjectureTest` 4, `compositeArea` 3, `conditionalFlip`
+  1). Two are already live: `6-mn/geometry-area-volume` and
+  `7-mn/geometry-scale-and-circles` render `compositeArea` labels and captions
+  in English («rectangle 6×4», «L-shaped room: 24 + 6 = 30 m²»). Add the
+  paths, translate, regenerate.
+- **6ba — the exam's Cayley–Hamilton questions are taught nowhere.** Eight
+  bank questions (every 2023 and 2024 variant) are solved with
+  A² − (tr A)A + (det A)E = O; the skill graph has `cayley-hamilton`; no unit
+  teaches the trace or the theorem. Natural home: `determinants-and-inverses`
+  lesson 2, in English first.
+- **6aw — the ЭШ spine lists `vector-arithmetic` as unit 1 and
+  `vectors-and-coordinates` as unit 2**, but arithmetic depends on
+  coordinates (and the home spine has them the other way round). Swap
+  `live(1)` and `live(2)`.
+- **6ax, 6ay, 6az, 6ba, 6bc** — false or stale claims in live English: a
+  section-formula tip that is backwards (6ax); "the capstone" on a unit that
+  two more units follow (6ba); "the trillionth Fibonacci number in
+  microseconds" (6az); three mixed-script typos in `data/questions/` (6ay);
+  an overclaim about elimination (6bc). Also 12.5г is half-taught and
+  examined (6ay).
 - Nothing here touches auth, RLS or student data.
 
 ---
