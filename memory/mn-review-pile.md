@@ -37,6 +37,84 @@ been supplied; several items below would probably be answered by them.
 
 ---
 
+## 0. Where to start: the whole pile, ranked
+
+**Built 23 Sep 2026, when the ЭШ course reached 72 of 72.** Everything below
+section 0 is the evidence; this section is the order to read it in. Items are
+ranked by how much drafted text a ruling moves, or, for ship-mode work, by how
+many students see the problem today. Every row names the item where the
+evidence lives. Nothing here is new except 6bd.
+
+### 0a. Rulings, highest leverage first
+
+| # | Item | The decision | My lean | What it moves |
+|---|---|---|---|---|
+| 1 | **1a** | «та» + polite imperative, or the voice reference's bare imperative? | none; a split (bare in practice/test statements, «та» in teaching prose) is set out, not adopted | every one of the seventy-five drafts. The scale written in 1a predates fifty of them |
+| 2 | **2d** | Does the decimal comma apply inside `$...$`? | none: your call | **1,568** math-mode decimals, one scripted pass + a render walk |
+| 3 | **§3, two groups** | *if and only if*, and the six property-of-equality names (the reason column of every proof) | answer these two before any other coinage; or point me to a textbook series, which would retire most of §3 | settles 3 + 6 terms at once, and every future proof |
+| 4 | **4c** | *statement*: «өгүүлбэр» or the dictionary's «хэллэг»? | «өгүүлбэр» (the drafts) | every lesson of `reasoning-and-proof`, every later proof |
+| 5 | **6ak** | `\tan` or «tg» / «ctg»? | none | **blocks trigonometry shipping**: it changes LaTeX inside answer options across six units |
+| 6 | **6aa** | Coins and dice: the exam's «орхих» / «тоотой тал», or the drafts' «шидэх» / «зураас»? | the exam's | **blocks drafts 40–47 shipping**; ~150 draft uses |
+| 7 | **6t** | Lead with $C_n^k$, $A_n^k$ (the real exam) or $C(n,r)$, $P(n,r)$? | $C_n^k$ / $A_n^k$, other forms named once | ~30 switches in unit 2, 237 in unit 3 |
+| 8 | **2e · 2f · 2g · 4j** | One authority rule instead of four: *"sources choose a new word; a word already in front of students is not re-chosen"*, plus *"for ЭШ topics the bank outranks А/492"* | adopt both | settles every future split; decides 2f (volume) and 4j's three instances |
+| 9 | **6k / 2f** | Volume: «эзлэхүүн» (exam 78:3) or «эзэлхүүн» (shipped mirrors, drafts)? | «эзлэхүүн» | 126 draft replacements + a live-mirror fix either way |
+| 10 | **4e** | Which of *vertical angles* and *opposite* gives up «эсрэг»? And a standing collision rule? | *opposite* keeps «эсрэг»; adopt the rule | ~40 uses; cheaper before more geometry ships |
+| 11 | **6az** | Identity matrix $E$ or $I$ in the Mongolian? | $E$ | vectors-and-matrices units 5–8 |
+| 12 | **4g + 6bb** | Reflection «тусгал» (geometry drafts) or «тэгш хэм» (ministry, bank; the vector drafts)? Composition «угсраа» or the ministry's «дараалсан»? | «тусгал» for the operation, «тэгш хэмтэй» for the property; «угсраа» | 13 geometry drafts; the two strands now differ |
+| 13 | **6aj** | «пропорционал» (exam) or «пропорциональ» (97 mirror uses)? | the exam's | an `mn_terms.py` sweep either way |
+| 14 | **6ac · 6ae · 6y** | dot vs scatter plot; *bias* «хазайлт»; *independent* «үл хамаарах» against grade 7's «хараат бус» | ministry forms; one sentence in the ЭШ lesson for 6y | the statistics strand |
+| 15 | **4k** | *Extraneous solution* «хуурамч шийд» (coined), or the description? | the coinage | four drafts, one lesson title |
+| 16 | **6at** | Concavity: «хотгор» for f″ > 0? | yes (plain meaning) | flips every concavity answer in one lesson + 3 practice items |
+| 17 | **4h · 4i · 4f · 4a · 4b · 4d** | progression ratio; «натурал логарифм»; intercepted arc; distributive law; absolute value; two glossary overrides | as the drafts stand | one or two drafts each |
+| 18 | **5a · 5b** | English gloss on a term's first use? Dropping FOIL/PEMDAS/CPCTC? | none on 5a; drop on 5b | site-wide convention |
+| 19 | **§3, the rest** | ~45 single coinages, and the coinage confirmations inside 6am, 6an, 6ar, 6as, 6au, 6av, 6aw, 6ax, 6bb | as drafted | one term each |
+
+**Curriculum calls** (they change the English course; the Mongolian follows):
+**6ab** (the ЭШ divides by $n$, our lesson teaches $n - 1$, and it is live), **6i**
+(keep, mark or cut the linear-programming half-lesson), **6aq** (the limits
+unit), **6g** and **6p** (topics that teach the same thing twice), **6n**
+(syllabus or exam decides coverage), **6b** (terms practice sets use but no lesson
+teaches), **6f** (grade 9 re-teaches grade 8), **6c** item 2 (device or leak),
+**6h** (repair the English rather than mirror its leaks: my lean), **6q**
+(reconcile the duplicate `algebra-1/quadratic-equations` draft with its mirror:
+my lean).
+
+### 0b. Already applied, needs only a yes
+
+**2a** $y = kx + b$ · **2b** decimal comma on money in prose · **5c**
+Mongolian congruence acronyms (ТТТ, ТӨТ…) · **5d** SOH-CAH-TOA rebuilt as
+Э/Г · Н/Г · Э/Н · **6x** $T_{k+1}$ for the binomial general term · **4l** one-word
+grounding correction · **6l** four exam terms replacing earlier coinages ·
+**6r** the five «зүй тогтол» declensions (this one also unblocks a held-back
+file) · §3 «хосмог» (binds a future draft) · §7 the style list, including the
+seven Mongolian spelling-words in `permutations`.
+
+### 0c. Ship-mode work for Build, by how many students see it today
+
+| # | Item | What is wrong | Where |
+|---|---|---|---|
+| 1 | **6bd** (new) | Key-fact formulas render as raw LaTeX source | **417 English fact cards** in grades 2–4 and 9–12, plus 4 in the live `6-mn` mirror; one component |
+| 2 | **6a** | Single-asterisk italics show as literal asterisks | 3,024 strings, including the live 6–8 mirrors; one regex in `MathText.tsx` |
+| 3 | **6d** | Lesson objectives render raw `$...$` | 190 objectives, 20 of them live in Mongolian |
+| 4 | **6z** | Six ЭШ practice solutions defer to "the corpus"; three are mathematically wrong | live ЭШ practice hub |
+| 5 | **6bc** | Widget prose is never translated; English inside two live Mongolian pages | `6-mn`, `7-mn` `compositeArea`; six widget kinds |
+| 6 | **6r · 6k · 6w** | Ruled or majority spellings wrong in production («диаграм» ×25, volume two ways, «томъёо» ×41) | live mirrors and ЭШ solutions |
+| 7 | **6ai** | Five ЭШ units show English `buildsOn` under a Mongolian label | `lib/esh-course.ts` |
+| 8 | **6h family** (6h, 6aj, 6al, 6am, 6ap, 6ax) | 27–28 leaked authoring notes in English statements and solutions | live English |
+| 9 | **Wrong facts in English** (6v, 6ah, 6ar, 6au, 6av, 6ax, 6ay, 6az, 6ba, 6bc) | backwards arithmetic, false claims, a backwards exam tip, a stale "capstone" | live English; every one is already correct in its Mongolian draft |
+| 10 | **6ag · 6ad · 6ay** | bare `$` for dollars ×3; «памятlets»; three mixed-script typos in the bank | live |
+| 11 | **Mappings** (6j, 6o, 6af, 6an, 6ao, 6aq–6av, 6aw, 6ay) | ЭШ units claim ministry codes they do not teach; unit order wrong in Вектор ба матриц | `lib/esh-course.ts` |
+| 12 | **Examined but untaught** (6ba, 6as, 6au, 6ay) | Cayley–Hamilton ×8, implicit differentiation ×4, $u = ax + b$ integrals ×16, the plane's equation ×2 | English content first |
+| 13 | **Gates** (6ap, 6ax, 6h, 6r, 6j/6o) | mixed-script, `$$` spans, leak markers, held-back honesty, mapping-vs-content | `scripts/` |
+| 14 | **6t** fidelity | authored test papers lead with `\binom` against the real exam | `data/questions/test*` |
+
+### 0d. Nothing needed from you
+
+6e (checker bugs, fixed), 6m (applied to the loop), 6s, 6u (workaround
+recorded), and §3's two resolved notes (гомотет, прогресс).
+
+---
+
 ## 1. Blocking — one ruling, everything downstream waits on it
 
 ### 1a. Register: «та» or the bare imperative?
@@ -3177,6 +3255,39 @@ the first unit of ЭШ Анализын эхлэл.**
   every" large system; iterative methods solve many), and the zero-row reading
   made conditional on the other rows.
 - **With this draft all 72 ЭШ units are covered.**
+
+### 6bd. Key-fact formulas render as raw LaTeX on the grade routes
+
+**Found 23 Sep 2026, preparing `9/inequalities-and-absolute-value`.**
+
+`components/lesson/FactCard.tsx` renders `fact.latex` through `MathText`,
+which typesets only what sits inside `$...$` and prints everything else as
+plain text. The grade routes 2–12 use `FactCard`. Most of their facts store
+bare LaTeX, so students see source such as
+`y = a \cdot b^x \quad (b > 0,\ b \neq 1)`:
+
+| grade | facts with bare LaTeX |
+|---|---|
+| 2 · 3 · 4 | 40 · 67 · 72 |
+| 6 | 4, and 4 more in the live `6-mn` mirror |
+| 9 | 7, all prose with a literal `\u2192` / `\u00d7` / `\u2264` escape («distribute \u2192 herd \u2192 isolate») |
+| 10 · 11 · 12 | 69 · 79 · 79 |
+| 7 · 8 | 0 (they delimit with `$`) |
+
+**417 English cards and 4 Mongolian ones.** The ЭШ learn page also uses
+`FactCard`, but its four formulas are delimited and render correctly.
+
+**The fix is ship mode.** In `FactCard`, typeset the whole string when it
+contains no `$`; that repairs grades 2–4, 6 and 10–12 in one line. Grade 9's
+seven strings are prose and need their escapes replaced by the real
+characters (→, ×, ≤) in the data.
+
+**Draft side, done.** The three grade-9 drafts had written all 36 of their
+fact cells as bare LaTeX, while their English delimits with `$`; once applied,
+those cards would have shown raw source. All 36 now follow the English's form,
+with words outside the maths, and the grade-9 escapes become real arrows. The
+grade 10 and 11 drafts mirror their English's bare form, which the
+`FactCard` fix covers.
 
 ---
 
