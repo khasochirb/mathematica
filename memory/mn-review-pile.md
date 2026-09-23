@@ -2,10 +2,10 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-four drafts**, thirty-six
+switched to ЭШ-first: this file now covers **forty-five drafts**, thirty-seven
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 23 Sep: 41 of 72 units covered · 8 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 42 of 72 units covered · 8 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -14,7 +14,7 @@ of which feed the ЭШ course.**
 > Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4, entirely from shipped mirrors — it
 > never needed drafting).
 >
-> Remaining, by distance-to-complete: **Магадлал (3 — unit 1 landed 23 Sep)**,
+> Remaining, by distance-to-complete: **Магадлал (2 — units 1 and 2 landed 23 Sep)**,
 > Функц ба график (4), Өгөгдлийн шинжилгээ (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
@@ -25,7 +25,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-four drafts carry zero em-dash parentheticals in shipping prose, and
+forty-five drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -106,7 +106,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 492 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 636 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -134,7 +134,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-four drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, the first probability draft, taking the total from 440 to 492. Neither complex-numbers
+Counted across the forty-five drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52** and **draft 45 (`conditional-probability`) 144**, taking the total from 440 to 636. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -1600,6 +1600,26 @@ translator, once by me. Silent fixes are the right output and the wrong
 record: the English stays broken, and the next person to read the EN/MN
 difference sees drift where there is a repair. From here I note every such
 repair in the draft's Notes.
+
+#### And a third scan, 23 Sep: leaks in *question statements*
+
+Neither scan above looked at `statement` fields — the text a student reads
+**before** answering. Draft 45 found one there, and a scan of every English
+`statement` finds:
+
+| topic | id | the English says |
+|---|---|---|
+| `prob-stats/conditional-probability` | `cd-l4-t1` | «…$90\%$ of dry days**... wait —** find $P(\ldots)$» |
+| `algebra-2/rational-functions` | `a274-t1` | «$= \frac{4x+2}{x(x+1)}$**... wait — simplify smartly:** solve…» |
+| `vectors-matrices/vector-arithmetic` | `vm24-we3` | «$B(6, 7)$**... wait — check it,** then find $AP : PB$» — *borderline*: it may be deliberate |
+
+Plus one in draft 44's source, an explanation that trails off mid-thought:
+«3, 5, 7... — 3 and 5 are odd primes» on a six-sided die.
+
+**So the honest count is 14 or 15, in three field classes, found by three scans
+that each missed something the next one caught.** Statement leaks are the
+worst class: a student meets «wait —» in the question itself. `cd-l4-t1` is
+written clean in draft 45; the other two are in topics not yet drafted.
 
 ---
 
