@@ -80,6 +80,8 @@ College Board and the IB write, and those hubs exist to rehearse their exams.
 тооны шулуун дээрх огтлолцол ба нэгдэл, абсолют утгыг зай гэж унших нь: ЭШ-ийн
 тэнцэтгэл бишийн хариу бүр энэ хэлээр бичигддэг.
 
+**buildsOn:** 1–2-р нэгжийн олонлогийн үйлдэл ба тоолол.
+
 ---
 
 ## Lesson 1 — `the-family-of-number-sets`

@@ -77,6 +77,8 @@ from question bodies and solutions; see the table below.
 **BLURB:** Факториал, бүх буюу зарим зүйлийн байрлуулалт, давтагдсан үсэг,
 мөн хязгаарлалттай суулт.
 
+**buildsOn:** 1-р нэгжийн үржвэрийн зарчим.
+
 ---
 
 ## Lesson 1 — Факториал: бүгдийг байрлуулах нь (`factorials`)

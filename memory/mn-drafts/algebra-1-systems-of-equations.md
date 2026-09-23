@@ -41,6 +41,18 @@ own objectives («графикийн аргаар», «орлуулах арга
 
 ---
 
+## Topic-level strings
+
+**TITLE:** Тэгшитгэлийн систем
+
+**BLURB:** Хоёр нөхцөл, хоёр үл мэдэгдэгч: системийг графикаар, орлуулах ба зайлуулах аргаар бодох, зөв хэрэгслийг сонгох, шийдгүй ба төгсгөлгүй олон шийдтэй тохиолдлыг унших.
+
+**buildsOn:** Шугаман тэгшитгэл (2-р нэгж) ба шулууны график (5-р нэгж).
+
+> Added 23 Sep 2026: this early draft had no topic-level strings (review pile 6ai).
+
+---
+
 ## Lesson 1 — Графикаар бодох (`solving-by-graphing`)
 
 **concreteComparison**

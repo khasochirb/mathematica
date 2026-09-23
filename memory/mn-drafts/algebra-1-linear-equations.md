@@ -37,6 +37,18 @@ where an interval appears (none does in this topic).
 
 ---
 
+## Topic-level strings
+
+**TITLE:** Шугаман тэгшитгэл бодох
+
+**BLURB:** Нэг алхамт тэгшитгэлээс хоёр талдаа хувьсагчтай тэгшитгэл, бутархай, онцгой тохиолдол, томьёо хувиргах хүртэл: алгебрыг бүхэлд нь хөдөлгөдөг жинлүүрийн логик.
+
+**buildsOn:** Илэрхийлэл хялбарчлах ба хаалт нээх чанар (1-р нэгж).
+
+> Added 23 Sep 2026: this early draft had no topic-level strings (review pile 6ai).
+
+---
+
 ## Lesson 1 — Нэг ба хоёр алхамт тэгшитгэл (`one-and-two-step-equations`)
 
 **concreteComparison**

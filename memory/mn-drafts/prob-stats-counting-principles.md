@@ -62,6 +62,8 @@ four units of this topic**, which is worth holding against Notes 5.
 **BLURB:** Үржвэрийн ба нийлбэрийн зарчим, гүйцээлтээр тоолох, мөн эмх цэгцтэй
 жагсаалт: тоолохгүйгээр хэрхэн тоолох вэ.
 
+**buildsOn:** Юу ч үгүй: хичээл эндээс, тэгээс эхэлнэ.
+
 ---
 
 ## Lesson 1 — Эмх цэгцтэй жагсаалт ба модны схем (`lists-and-tree-diagrams`)

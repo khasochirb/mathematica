@@ -37,6 +37,16 @@ it here, and diverging from the bank would cost a student exam fidelity.
 
 ---
 
+## Topic-level strings
+
+**TITLE:** Квадрат функц ба парабол
+
+**BLURB:** y = ax² + bx + c функцийн график: орой, тэгш хэмийн тэнхлэг, хувиргалт, хамгийн их ба хамгийн бага утгын бодлого.
+
+> Added 23 Sep 2026: this early draft had no topic-level strings (review pile 6ai).
+
+---
+
 ## Lesson 1 — Парабол танилцуулга (`meet-the-parabola`)
 
 **concreteComparison**

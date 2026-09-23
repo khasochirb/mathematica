@@ -36,6 +36,18 @@ honour. It costs nothing in this topic; it will bite in a later one.
 
 ---
 
+## Topic-level strings
+
+**TITLE:** Шугаман тэнцэтгэл биш
+
+**BLURB:** Тэнцэтгэл бишийг бодож тоон шулуун дээр дүрслэх, сөрөг тоогоор үржүүлэхэд тэмдэг эргэх дүрэм, «ба» ба «эсвэл» нийлмэл нөхцөл, абсолют утгатай тэгшитгэл: ганц хариуны оронд мужийн алгебр.
+
+**buildsOn:** Шугаман тэгшитгэл бодох (2-р нэгж) ба тоон шулуун.
+
+> Added 23 Sep 2026: this early draft had no topic-level strings (review pile 6ai).
+
+---
+
 ## Lesson 1 — Тэнцэтгэл биш бодох ба зурах (`solving-and-graphing-inequalities`)
 
 **concreteComparison**
