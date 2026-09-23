@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-nine drafts**, forty-two
+switched to ЭШ-first: this file now covers **fifty drafts**, forty-three
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 46 of 72 units covered · 9 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 47 of 72 units covered · 9 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -15,7 +15,7 @@ the figure carried until then, thirty-eight, was one low).
 > Sep)**, **Магадлал (4/4, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Өгөгдлийн шинжилгээ (2 — units 1–2
+> Remaining, by distance-to-complete: Өгөгдлийн шинжилгээ (1 — units 1–3
 > drafted 23 Sep), Функц ба график (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
@@ -26,7 +26,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-nine drafts carry zero em-dash parentheticals in shipping prose, and
+fifty drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -107,7 +107,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 1,135 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 1,236 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -135,7 +135,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-nine drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100** and **draft 49 (`distributions-and-position`) 126**, taking the total from 440 to 1,135. Probability is where the decimals live. Neither complex-numbers
+Counted across the fifty drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126** and **draft 50 (`two-variable-data`) 101**, taking the total from 440 to 1,236. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2604,6 +2604,22 @@ writes «цэгэн график», which keeps the two apart. **`two-variable-d
 next-but-one ЭШ unit, is where it has to be decided**, because that unit is
 about scatter plots and 10.13в is its only ministry code. Grade 6 is shipped
 and is not this rewrite's to change.
+
+**Update, same day, drafting `two-variable-data` (draft 50):** grade 8 adds a
+third name. `8-mn/scatter-plots-and-bivariate-data` calls the scatter plot
+**«тархалтын диаграм»**, 15 times including its title, where «тархалт» is also
+this topic's word for *distribution*. Draft 50 follows А/492 with «цэгэн
+диаграмм» (12 uses) and draft 49's closing tip does the same. So the state is:
+
+| phrase | grade 6 | grade 7 / glossary | grade 8 | А/492 | drafts 48–50 |
+|---|---|---|---|---|---|
+| dot plot | «цэгэн диаграмм» | «цэгэн график» | — | — | «цэгэн график» |
+| scatter plot | — | «хамаарлын график» (glossary) | «тархалтын диаграм» | **«цэгэн диаграмм»** | «цэгэн диаграмм» |
+
+The same unit found the outlier's third shipped name: grade 6 «онцгой утга»,
+grade 7 «хэт утга», grade 8 «гаж цэг». The drafts use «хэт утга» throughout.
+Neither is this rewrite's to change in shipped mirrors; both want one line
+from you so the next grade-level pass knows which way to go.
 
 ### 6ad. A live English concept contains a Cyrillic-corrupted word — the only one in 212 files
 
