@@ -2438,6 +2438,51 @@ mirrors' descriptive «давхцахгүй үзэгдэл» (6 uses).
 
 ---
 
+### 6z. **Live in production:** six ЭШ practice solutions defer to "the corpus" instead of solving — and three are mathematically wrong
+
+**Found 23 Sep 2026, grounding `prob-stats/random-variables`. This is the most
+serious item in this file**: it is not a draft, not English source, and not a
+wording question. It is student-facing Mongolian text on the live ЭШ practice
+hub, and in three places it contradicts the answer key printed beneath it.
+
+Every one of these is a site-authored `**Бодолт.**` solution in
+`data/questions/`. **All six answer keys are correct** — I re-derived each by
+computation — so a student who checks their answer is marked right. The
+problem is what they read when they open the solution:
+
+| file · Q | what the solution does | the truth |
+|---|---|---|
+| **2022b Q10** | misreads its own denominator as $a+2b$, gets $rac{8}{11}$, writes «**Хм**, … хариу D-тэй (=8/15) **тохирохгүй**», speculates the *question* must be different, tries two more denominators, then «Хариу: **D**» | the question as printed gives $rac{12t-4t}{3t+12t} = rac{8}{15}$ in one line. **The solution tells a student the answer key is suspect when it is right.** |
+| **test1a Q35** | solves the *equation* $x^2 - 3x - 4 = 0$ instead of the inequality, gets sum $3$, then «**харин корпусаас 6**» | $(x-4)(x+1) < 0$ gives $x \in \{0,1,2,3\}$, sum $6$. **Wrong method, then an appeal to authority.** |
+| **2022b Q30** | computes with $\sum y = 23$ and $\sum y^2 = 110$ — **numbers that are not in its question** ($25$ and $171$) — gets $0.75$, then «**корпусын хариу** $\sqrt{5.01}$ тул $\sigma^2 \approx 5.01$» | with the printed data: $\frac{271}{10} - 4.7^2 = 5.01$, $\sigma = \sqrt{5.01}$. **Arithmetic on a different problem.** |
+| **2022b Q18** | «Тархалтын магадлалуудыг ашиглавал $E(X)$-ийг тооцоолно. (**Корпусаас** $E = \frac{5}{2}$ хариу гарна.)» — no solution at all | $a = \frac{1}{6}$, $E = \frac{1}{6} + \frac{2}{6} + 2 = \frac{5}{2}$ |
+| **test3a Q15** | correct, but hedges the obvious: «III хувилбар нь **корпусаар** тэнцүү байх боломжтой» | $k(x) = 2^{2x} = 4^x$ exactly |
+| **test3a Q32** | «**Корпусын** асуултын тэгшитгэлийг хангах хос $(r, s) = (6, 2)$» — and **the question itself is broken**: a vector equation typeset as binomial coefficients, $\binom{8}{46} = r \binom{1}{9} + s \binom{1}{-4}$ | $r(1,9) + s(1,-4) = (8, 46)$ at $(6,2)$ — but a student sees $\binom{8}{46}$, which as printed is $0$ |
+
+**How this happened is visible in the text:** the solutions were written
+*towards* a known key ("the corpus") by an author who sometimes could not
+derive it, and the working — including the doubt — was shipped. It is the 6h
+pattern (leaked authoring notes) in its most harmful form: in Mongolian, in the
+live ЭШ bank, and in three cases teaching a wrong method.
+
+**Scope of what I checked:** the word «корпус»/«corpus» in every `solution` in
+`data/questions/` — six hits, all listed. Solutions that went wrong *without*
+naming the corpus would not show up in this search, so treat six as a floor.
+
+**What it needs, none of which is mine to do in a content session:** rewrite
+the six solutions and fix test3a Q32's typesetting (`pmatrix`, not `\binom`),
+under `esh-practice-test` — ship-mode, and each is short. Then a gate:
+`scripts/verify-practice-test.py` checks answer keys by sympy but not whether
+the prose solution reaches them; a check for «корпус», «Хм», «тохирохгүй» and
+the other self-doubt markers in `solution` fields would have caught all six.
+
+(6t's count moves slightly: three of the authored papers' `\binom` uses are
+these misrendered vectors, so authored `\binom` is 23, not 26. The conclusion
+— real papers prefer $C_n^k$, our authored tests prefer `\binom` — is
+unchanged.)
+
+---
+
 ## 7. Style decisions I made without asking, listed so you can veto cheaply
 
 - **«хамгийн их / хамгийн бага утга», not «максимум / минимум».** Corpus 92/87.
