@@ -14,6 +14,41 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-09-23 — mode: content
+
+**Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
+`memory/mn-drafts/` (rewrite, not translation, per `docs/MONGOLIAN.md`).
+52 drafts now, 45 of them feeding the ЭШ course. ЭШ coverage, re-measured
+against `lib/esh-course.ts`: **49 of 72 units, 10 of 14 topics**;
+Комбинаторик, Магадлал and Өгөгдлийн шинжилгээ closed this week, Функц ба
+график at unit 4 of 7. Every draft passes `scripts/i18n/mn_draft_check.py`
+and every numeric claim was re-computed. Open questions for Khas are in
+`memory/mn-review-pile.md`, the only place they live.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (last commit
+`c131ade`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
+merged, nothing deployed, no migrations.
+
+**Blocked on:** Khas's review of the pile. The rulings that gate the most
+text: 6aa (coin and dice vocabulary, «орхих» / «тоотой тал» vs the drafts'
+«шидэх» / «зураас»), 6ab (the ЭШ divides by $n$, our SD lesson teaches
+$n - 1$), 6ac (dot plot vs scatter plot naming), 6ae (*bias* = «хазайлт»
+beside «стандарт хазайлт»), 6af (open/closed dots).
+
+**Others should know:** ship-mode findings, written down and not done:
+
+- **6z** — six live ЭШ practice solutions in `data/questions/` defer to "the
+  corpus" instead of solving; three teach a wrong method or wrong data.
+- **6ad** — `prob-stats/distributions-and-position` lesson 6 concept 3 says
+  «памятlets» in live English: the only mixed-script word in 212 files.
+- **6j, 6af** — ЭШ units claiming ministry codes they do not teach (10.12в
+  core; 12.3е elective).
+- **6h** — 20–21 leaked authoring notes, most in question *statements*; one
+  (`dp-l2-t1`) with a wrong solution too.
+- Nothing here touches auth, RLS or student data.
+
+---
+
 ## 2026-09-04 04:20 UTC — mode: ship
 
 **Did:** Visual polish pass across the whole site on the owner's request
