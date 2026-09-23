@@ -2,10 +2,10 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-five drafts**, thirty-seven
+switched to ЭШ-first: this file now covers **forty-six drafts**, thirty-eight
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 23 Sep: 42 of 72 units covered · 8 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 43 of 72 units covered · 8 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -14,7 +14,7 @@ of which feed the ЭШ course.**
 > Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4, entirely from shipped mirrors — it
 > never needed drafting).
 >
-> Remaining, by distance-to-complete: **Магадлал (2 — units 1 and 2 landed 23 Sep)**,
+> Remaining, by distance-to-complete: **Магадлал (1 — units 1–3 landed 23 Sep)**,
 > Функц ба график (4), Өгөгдлийн шинжилгээ (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
@@ -25,7 +25,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-five drafts carry zero em-dash parentheticals in shipping prose, and
+forty-six drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -106,7 +106,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 636 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 719 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -134,7 +134,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-five drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52** and **draft 45 (`conditional-probability`) 144**, taking the total from 440 to 636. Probability is where the decimals live. Neither complex-numbers
+Counted across the forty-six drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52** **draft 45 (`conditional-probability`) 144** and **draft 46 (`random-variables`) 83**, taking the total from 440 to 719. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2243,7 +2243,7 @@ because it changes every formula on the page.
 |---|---|---|
 | $C_n^k$ — the Russian/Mongolian school form | **26** | 8 |
 | $C(n,r)$ | **15** | 3 |
-| `\binom{n}{k}` — the international form | 5 | **26** |
+| `\binom{n}{k}` — the international form | 5 | **23** (26 before three misrendered vectors were excluded — 6z) |
 
 For permutations the same split exists with almost no data: the real papers
 write $A_n^k$ (2023a, 2023c — «$A_3^2 = 6$»), and `\binom`-style $P(n,r)$
@@ -2255,7 +2255,7 @@ Three things follow, and they are separable:
 
 1. **The real papers and our authored papers disagree, and ours drifted.** The
    exam a Mongolian student actually sits leads with $C_n^k$; our own generated
-   tests lead with `\binom`, 26 to 8. Whatever you rule for the lessons, the
+   tests lead with `\binom`, 23 to 8. Whatever you rule for the lessons, the
    authored tests should match the real papers — that is a `practice-test-authoring`
    fidelity bug, not a translation question, and it is Build ship-mode work.
    I am recording it, not fixing it.
@@ -2348,6 +2348,13 @@ Same topic, smaller, all recorded in draft 42's Notes 1:
   $C(14,6) = C(15,5) = 3003$, so a student can eliminate both without doing
   the problem;
 - **`cb-l4-w3`** calls a thirteen-question bank «a 5-question quiz bank».
+
+A second live English error of the same kind, found in draft 46
+(`prob-stats/random-variables`, lesson 3 funFact): **"European roulette pays
+36-to-1 odds on a wheel with 37 pockets … expected net = −1/37"**. At 36-to-1
+the expected net is exactly $0$ — the game would be fair, contradicting the
+sentence's own conclusion. The real single-number payout is **35-to-1**, which
+gives $-\frac{1}{37}$. Verified by computation; the Mongolian says 35.
 
 And one in **our own exam solution text**, not the English course:
 `data/questions/2021a.json` calls the zero-allowed solutions of
