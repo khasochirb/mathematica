@@ -18,11 +18,11 @@ touching any of those; it is not summarised here.
 
 **Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
 `memory/mn-drafts/` (rewrite, not translation, per `docs/MONGOLIAN.md`).
-64 drafts now, 57 of them feeding the ЭШ course. ЭШ coverage, re-measured
-against `lib/esh-course.ts`: **61 of 72 units, 12 of 14 topics**;
+67 drafts now, 60 of them feeding the ЭШ course. ЭШ coverage, re-measured
+against `lib/esh-course.ts`: **64 of 72 units, 13 of 14 topics**;
 Комбинаторик, Магадлал, Өгөгдлийн шинжилгээ, Функц ба график and Тригонометр
-closed this week; Анализын эхлэл is half done (units 1–3). Left: Анализын
-эхлэл (3), Вектор ба матриц (8). Also backfilled the `buildsOn` string into
+closed this week, and Анализын эхлэл (6/6) today. Left: Вектор ба
+матриц (8). Also backfilled the `buildsOn` string into
 42 drafts and topic title/blurb into 4 (the dump never printed `buildsOn`,
 though the apply walker requires it). Every draft passes
 `scripts/i18n/mn_draft_check.py` and every numeric claim was re-computed.
@@ -30,7 +30,7 @@ Open questions for Khas are in `memory/mn-review-pile.md`, the only place
 they live.
 
 **Landed where:** branch `claude/grade-6-math-verify-xe1tak` (last commit
-`1e8a849`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
+`7420a3a`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
 merged, nothing deployed, no migrations.
 
 **Blocked on:** Khas's review of the pile. The rulings that gate the most
@@ -65,12 +65,14 @@ any trigonometry ships** because it changes LaTeX inside answer options.
   formula (12.6б/г).
 - **6ap** — `mn_draft_check.py` should also fail on mixed-script words (a
   sweep found one Latin «a» inside a Mongolian word in an older draft).
-- **6aq, 6ar, 6as** — the calculus units' ministry codes sit one unit behind
-  where they are taught (10.3д/11.9а, 12.7а, 11.9к). **12.7г** (implicit and
-  parametric derivatives) and **tg x's derivative** are claimed by
-  `differentiation-techniques` and taught nowhere, so the untaught-codes list
-  asserted by `lib/esh-course.test.ts` does not report them. Re-map units 1–3
-  together. Also one false fact in live English: `the-derivative` lesson 2
+- **6aq–6av** — calculus mapping audit, all six units: **nine ministry codes
+  are claimed by a calculus unit and taught nowhere** (12.7г, 11.9и, 11.9м,
+  12.8б/д/е, 11.10и/к, 12.8ж), so the untaught-codes list asserted by
+  `lib/esh-course.test.ts` does not report them; taught codes sit one unit
+  behind where they are taught. Re-map units 1–6 in one pass. Two of the
+  gaps are examined: implicit differentiation (4 bank questions) and
+  partial fractions (2); and 16 of the bank's 36 integral questions use a
+  linear inner function the course never shows. Also one false fact in live English: `the-derivative` lesson 2
   states "f ↗ ⟺ f′ > 0" (fails for x³, which the same lesson teaches).
 - Nothing here touches auth, RLS or student data.
 
