@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **fifty-one drafts**, forty-four
+switched to ЭШ-first: this file now covers **fifty-two drafts**, forty-five
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 48 of 72 units covered · 10 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 49 of 72 units covered · 10 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -16,7 +16,8 @@ the figure carried until then, thirty-eight, was one low).
 > 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Функц ба график (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> Remaining, by distance-to-complete: Функц ба график (3 — unit 4 drafted
+> 23 Sep), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -26,7 +27,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-fifty-one drafts carry zero em-dash parentheticals in shipping prose, and
+fifty-two drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -107,7 +108,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 1,335 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 1,382 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -135,7 +136,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fifty-one drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101** and **draft 51 (`inference-and-studies`) 99**, taking the total from 440 to 1,335. Probability is where the decimals live. Neither complex-numbers
+Counted across the fifty-two drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** and **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47**, taking the total from 440 to 1,382. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2655,6 +2656,25 @@ fifth, which draft 48 avoided with the participle «хазайсан».
 **«өрөөсгөл»** (*one-sided*), the everyday word for a biased judgement,
 ungrounded in our sources, which would free «хазайлт» for deviation. It would
 reach the shipped grade 7 mirror. One ruling; nothing converted.
+
+### 6af. A second claimed-but-untaught code (12.3е), and two drafts disagreeing on open/closed dots
+
+**Found 23 Sep 2026, drafting `9/piecewise-and-absolute-value-graphs`
+(draft 52).**
+
+**12.3е.** `lib/esh-course.ts` maps ЭШ Функц ба график unit 4 to 12.3е
+(elective): «Функцийн модул, $y = f(x)$ функцийн (тэгшитгэлийн) график өгсөн
+үед $y = |f(x)|$, $y = f(|x|)$ функцийн графикийг байгуулах». The topic
+teaches $|x|$, $a|x - h| + k$, piecewise and step functions, and **neither
+$|f(x)|$ nor $f(|x|)$**. 6j's pattern on an elective code, so no test notices.
+Ship-mode: a lesson (the two constructions are one lesson's worth) or a
+mapping change.
+
+**Open and closed dots.** Draft 52 writes **«битүү / задгай цэг»**, grounded
+twice: the dictionary's «битүү / задгай завсар» and the shipped grade 7
+mirror's «битүү / задгай тойрог». `algebra-1/inequalities` (13 Sep) wrote
+«будсан / будаагүй цэг» (9 uses) and called it uncertain in its own Notes 3.
+Two drafts, one idea, two pairs. I would align the older draft; one ruling.
 
 ---
 
