@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **seventy-two drafts**, sixty-five
+switched to ЭШ-first: this file now covers **seventy-three drafts**, sixty-six
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 69 of 72 units covered · 13 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 70 of 72 units covered · 13 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -17,7 +17,7 @@ the figure carried until then, thirty-eight, was one low).
 > closed 23 Sep)**, **Анализын эхлэл (6/6, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining: Вектор ба матриц (3 — units 1–5 drafted 23 Sep; unit 2 first,
+> Remaining: Вектор ба матриц (2 — units 1–6 drafted 23 Sep; unit 2 first,
 > because unit 1 depends on it: 6aw).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -27,7 +27,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-seventy-two drafts carry zero em-dash parentheticals in shipping prose, and
+seventy-three drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -136,7 +136,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the seventy-two drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** **draft 63 (`the-derivative`) 7** **draft 64 (`differentiation-techniques`) 0** **draft 65 (`applications-of-derivatives`) 2** **draft 66 (`integrals`) 3** **draft 67 (`applications-of-integrals`) 11** **draft 68 (`vectors-matrices/vectors-and-coordinates`) 6** **draft 69 (`vector-arithmetic`) 0** **draft 70 (`the-dot-product`) 0** **draft 71 (`vectors-in-space`) 0** and **draft 72 (`matrices-and-operations`) 0**, taking the total from 440 to 1,567. Probability is where the decimals live. Neither complex-numbers
+Counted across the seventy-three drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** **draft 63 (`the-derivative`) 7** **draft 64 (`differentiation-techniques`) 0** **draft 65 (`applications-of-derivatives`) 2** **draft 66 (`integrals`) 3** **draft 67 (`applications-of-integrals`) 11** **draft 68 (`vectors-matrices/vectors-and-coordinates`) 6** **draft 69 (`vector-arithmetic`) 0** **draft 70 (`the-dot-product`) 0** **draft 71 (`vectors-in-space`) 0** **draft 72 (`matrices-and-operations`) 0** and **draft 73 (`determinants-and-inverses`) 0**, taking the total from 440 to 1,567. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -3109,6 +3109,29 @@ the first unit of ЭШ Анализын эхлэл.**
   the geometry course's transformations topic). On the ЭШ spine that is not
   safe: `transformation-matrices` is unit 7, after this one. The draft makes the
   claim conditional.
+
+### 6ba. The exam's Cayley–Hamilton questions: eight in the bank, taught nowhere
+
+**Found 23 Sep 2026, drafting `vectors-matrices/determinants-and-inverses` (draft 73).**
+
+- **Eight bank questions need the Cayley–Hamilton theorem** for a 2×2 matrix,
+  $A^2 - (\operatorname{tr} A)A + (\det A)E = O$. There is one in every 2023
+  variant ($A^3 = pA + qE$ given $\det A = 1$) and one in every 2024 variant
+  ($A - 3A^{-1} = 5E$, find $x^2 + y^2$). Each bank solution names the theorem
+  and uses the trace. The skill graph has it (`cayley-hamilton`, weight 0.36,
+  "thin"). No unit teaches the trace or the theorem, and the ministry does not
+  list it. The natural home is this unit's lesson 2 (the 2024 questions need
+  the inverse). The English needs it first; the Mongolian follows.
+- **"The capstone" is stale.** The blurb, the lesson 4 title and the last
+  funFact call this unit the end of the course, but units 7 and 8 follow it in
+  both spines. The Mongolian drops the claim. The English wants the same edit
+  (ship mode).
+- **Reflection is «тэгш хэмтэй хувиргалт» here**, following the bank (23) and
+  the ministry, while `geometry-transformations` keeps «тусгал» pending 4g.
+  This unit has no symmetry lesson, so 4g's circularity problem does not arise.
+- **Three softened funFacts**: Leibniz's date (1693, not the 1680s); "no neat
+  recipe" for 3×3 inverses (the adjugate is one); Cramer's sand-grain count,
+  which holds only for cofactor expansion.
 
 ---
 
