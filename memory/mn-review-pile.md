@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **seventy-one drafts**, sixty-four
+switched to ЭШ-first: this file now covers **seventy-two drafts**, sixty-five
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 68 of 72 units covered · 13 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 69 of 72 units covered · 13 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -17,7 +17,7 @@ the figure carried until then, thirty-eight, was one low).
 > closed 23 Sep)**, **Анализын эхлэл (6/6, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining: Вектор ба матриц (4 — units 1–4 drafted 23 Sep; unit 2 first,
+> Remaining: Вектор ба матриц (3 — units 1–5 drafted 23 Sep; unit 2 first,
 > because unit 1 depends on it: 6aw).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -27,7 +27,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-seventy-one drafts carry zero em-dash parentheticals in shipping prose, and
+seventy-two drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -136,7 +136,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the seventy-one drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** **draft 63 (`the-derivative`) 7** **draft 64 (`differentiation-techniques`) 0** **draft 65 (`applications-of-derivatives`) 2** **draft 66 (`integrals`) 3** **draft 67 (`applications-of-integrals`) 11** **draft 68 (`vectors-matrices/vectors-and-coordinates`) 6** **draft 69 (`vector-arithmetic`) 0** **draft 70 (`the-dot-product`) 0** and **draft 71 (`vectors-in-space`) 0**, taking the total from 440 to 1,567. Probability is where the decimals live. Neither complex-numbers
+Counted across the seventy-two drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** **draft 63 (`the-derivative`) 7** **draft 64 (`differentiation-techniques`) 0** **draft 65 (`applications-of-derivatives`) 2** **draft 66 (`integrals`) 3** **draft 67 (`applications-of-integrals`) 11** **draft 68 (`vectors-matrices/vectors-and-coordinates`) 6** **draft 69 (`vector-arithmetic`) 0** **draft 70 (`the-dot-product`) 0** **draft 71 (`vectors-in-space`) 0** and **draft 72 (`matrices-and-operations`) 0**, taking the total from 440 to 1,567. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -3089,6 +3089,26 @@ the first unit of ЭШ Анализын эхлэл.**
 - **English**: the lesson 1 funFact's "Physics uses 4 (spacetime)" for
   √(x² + y² + …) is wrong (the interval carries a minus sign). The Mongolian
   drops it.
+
+### 6az. Matrices: the exam writes the identity as E; one false claim in the English
+
+**Found 23 Sep 2026, drafting `vectors-matrices/matrices-and-operations` (draft 72).**
+
+- **$E$ or $I$? Needs a ruling.** The bank writes the identity matrix as $E$
+  («$E$ нь нэгж матриц» ×4, $A^3 = pA + qE$ ×4) and never as $I$; the course
+  writes $I$. The draft keeps $I$ and glosses $E$ twice. The alternative is $E$
+  throughout the Mongolian: my lean, for an exam-first course. Units 6 and 7
+  meet the same choice.
+- **Mapping clean.** 10.4а–г all taught; no gaps.
+- **English, ship mode**: the lesson 4 funFact's "the trillionth Fibonacci
+  number in microseconds" is false (it has about 2.09 × 10¹¹ digits). The
+  Mongolian says the thousandth, from about fourteen matrix products. Two
+  smaller softenings: AI chips "judged by one number", and photo blending "at
+  60 frames a second".
+- **Framing**: lesson 3 opens "you already own the engine" (matrix × point from
+  the geometry course's transformations topic). On the ЭШ spine that is not
+  safe: `transformation-matrices` is unit 7, after this one. The draft makes the
+  claim conditional.
 
 ---
 
