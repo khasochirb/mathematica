@@ -2,20 +2,20 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-six drafts**, thirty-eight
-of which feed the ЭШ course.**
+switched to ЭШ-first: this file now covers **forty-seven drafts**, forty of
+which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
+the figure carried until today, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 43 of 72 units covered · 8 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 44 of 72 units covered · 9 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
 > биш (8/8), Илтгэгч ба логарифм функц (3/3), Дараалал цуваа (1/1), Геометр ба
 > хэмжигдэхүүн (12/12), Комплекс тоо (2/2), **Комбинаторик (4/4, closed 22
-> Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4, entirely from shipped mirrors — it
-> never needed drafting).
+> Sep)**, **Магадлал (4/4, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
+> entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: **Магадлал (1 — units 1–3 landed 23 Sep)**,
-> Функц ба график (4), Өгөгдлийн шинжилгээ (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> Remaining, by distance-to-complete: Функц ба график (4), Өгөгдлийн шинжилгээ (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -25,7 +25,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-six drafts carry zero em-dash parentheticals in shipping prose, and
+forty-seven drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -106,7 +106,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 719 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 909 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -134,7 +134,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-six drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52** **draft 45 (`conditional-probability`) 144** and **draft 46 (`random-variables`) 83**, taking the total from 440 to 719. Probability is where the decimals live. Neither complex-numbers
+Counted across the forty-seven drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** and **draft 47 (`binomial-distribution`) 190**, taking the total from 440 to 909. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -1621,6 +1621,39 @@ that each missed something the next one caught.** Statement leaks are the
 worst class: a student meets «wait —» in the question itself. `cd-l4-t1` is
 written clean in draft 45; the other two are in topics not yet drafted.
 
+#### And a fourth, 23 Sep: read every statement with an ellipsis, not the markers
+
+Draft 47 found `prob-stats/binomial-distribution` `bd-p-6`, a **statement**:
+
+> «A $10$-question multiple-choice quiz has $5$ options each. **A guesser needs
+> at most...** find $P(\text{exactly } 2 \text{ correct})$ with $p = 0.2$.»
+
+A sentence abandoned mid-thought, carrying none of the marker words. So instead
+of widening the marker list again I read **every English `statement` that
+contains an ellipsis: 27 of 8,702.** Sixteen are legitimate (fill-in stems
+ending «is…», a truncated decimal, two deliberate student-voice audits, one
+stylistic pause). The
+rest:
+
+| topic | id | the English says | |
+|---|---|---|---|
+| `prob-stats/binomial-distribution` | `bd-p-6` | «A guesser needs at most**...** find…» | new · draft 47, written clean |
+| `prob-stats/inference-and-studies` | `in-p-7` | «A city poll ($n = 1111$**... use** $1100$) **— actually:** compute…» | new · not drafted |
+| `solid-geometry/lines-and-planes-in-space` | `sg1-pr-3` | «(b) $AB'$ and $DC'$**... just (a), plus:** how many edges…» | new · **my draft 35 had silently asked a different question** and dropped the half `check[]` tests; corrected 23 Sep, its Notes 8 |
+| `trigonometry/laws-of-sines-and-cosines` | `trig62-t2` | «$b = 8\sqrt{2} \cdot \frac{\sqrt3}{2}$**... simpler:** $b = 4\sqrt{6}$» | new · not drafted |
+| ″ | `trig64-we2` | «sighted with $\angle QPR = 30°$**... simpler classic:** from two points…» | new · not drafted |
+| `8/linear-functions` | `lf5-we2` | «double the cost of $3.5$**…** of $14$ pounds vs $7$?» | new · **already clean in the shipped grade 8 mirror** — another silent fix |
+| `prob-stats/distributions-and-position` | `dp-l2-t1` | «$6$th from the top, $3$rd from the bottom**...** compute her percentile…» | borderline |
+| `trigonometry/identities-and-equations` | `trig5-ty-4` | «on $[0, 2\pi)$**...** then give the GENERAL solution» | borderline |
+| plus the three already listed above | `cd-l4-t1`, `a274-t1`, `vm24-we3` | | |
+
+**Six new clear leaks and two borderline**, all in the class that matters most:
+the question itself. `in-p-7` contains «actually», which was on the marker
+list, and the third scan still did not report it. **The count of 14 or 15
+becomes 20 or 21, plus two more borderline, found by four passes** — and this one is the first I would call
+complete for its class, because it reads every candidate rather than searching
+for words. Leaks without an ellipsis or a marker remain unbounded.
+
 ---
 
 ### 6i. One ЭШ lesson teaches material the exam does not test — the only one in eight units
@@ -2459,7 +2492,7 @@ problem is what they read when they open the solution:
 
 | file · Q | what the solution does | the truth |
 |---|---|---|
-| **2022b Q10** | misreads its own denominator as $a+2b$, gets $rac{8}{11}$, writes «**Хм**, … хариу D-тэй (=8/15) **тохирохгүй**», speculates the *question* must be different, tries two more denominators, then «Хариу: **D**» | the question as printed gives $rac{12t-4t}{3t+12t} = rac{8}{15}$ in one line. **The solution tells a student the answer key is suspect when it is right.** |
+| **2022b Q10** | misreads its own denominator as $a+2b$, gets $\frac{8}{11}$, writes «**Хм**, … хариу D-тэй (=8/15) **тохирохгүй**», speculates the *question* must be different, tries two more denominators, then «Хариу: **D**» | the question as printed gives $\frac{12t-4t}{3t+12t} = \frac{8}{15}$ in one line. **The solution tells a student the answer key is suspect when it is right.** |
 | **test1a Q35** | solves the *equation* $x^2 - 3x - 4 = 0$ instead of the inequality, gets sum $3$, then «**харин корпусаас 6**» | $(x-4)(x+1) < 0$ gives $x \in \{0,1,2,3\}$, sum $6$. **Wrong method, then an appeal to authority.** |
 | **2022b Q30** | computes with $\sum y = 23$ and $\sum y^2 = 110$ — **numbers that are not in its question** ($25$ and $171$) — gets $0.75$, then «**корпусын хариу** $\sqrt{5.01}$ тул $\sigma^2 \approx 5.01$» | with the printed data: $\frac{271}{10} - 4.7^2 = 5.01$, $\sigma = \sqrt{5.01}$. **Arithmetic on a different problem.** |
 | **2022b Q18** | «Тархалтын магадлалуудыг ашиглавал $E(X)$-ийг тооцоолно. (**Корпусаас** $E = \frac{5}{2}$ хариу гарна.)» — no solution at all | $a = \frac{1}{6}$, $E = \frac{1}{6} + \frac{2}{6} + 2 = \frac{5}{2}$ |
@@ -2487,6 +2520,43 @@ the other self-doubt markers in `solution` fields would have caught all six.
 these misrendered vectors, so authored `\binom` is 23, not 26. The conclusion
 — real papers prefer $C_n^k$, our authored tests prefer `\binom` — is
 unchanged.)
+
+
+### 6aa. Coins and dice: the exam says «орхих» and «тоотой тал» — the whole probability strand says «шидэх» and «зураас»
+
+**Found 23 Sep 2026, drafting `prob-stats/binomial-distribution` (draft 47).
+One ruling for the whole strand, wanted before any of drafts 40–47 ships.**
+
+Measured across `data/questions/`:
+
+| | the exam | shipped `7-mn/probability` | drafts 40–47 |
+|---|---|---|---|
+| heads | «сүлдтэй тал» (2025b, 2025d) | «сүлд» | «сүлд» |
+| tails | **«тоотой тал»** (2025a, 2025c) · «зураас» **0** | «зураас» 5 | coin-sense «зураас» **22** |
+| toss / roll | **«орхих»** in **18** papers — coin (2025a–d), die (2022a–d §2, 2023a–d, 2024a–d, test5a–b), knucklebone (2024a–d) · «шид-» for a coin or die **0** | «шид-» 45 | «шид-» **150** |
+
+A Mongolian coin has the Soyombo on one face and the **number** on the other;
+the exam names the faces for what is on them. «зураас» (a stripe, a dash) names
+nothing on the coin, and draft 42 also uses it **39 times** for the *bars* of
+stars and bars, so one word carries two meanings two units apart. «тоотой тал»
+removes that collision for free.
+
+**Why this is not a search and replace.** The 150 «шид-» forms mix coin and die
+tosses with basketball free throws, and free throws keep «шидэлт» under any
+ruling — the exam itself writes «3 онооны шидэлт» (test2a–b). The conversion
+is item-by-item reading. I have not given a coin/ball split, because I have not
+made one.
+
+**Why nothing is converted yet.** 6r: half a conversion is worse than none.
+Drafts 40–47 are mutually consistent today. The `mn-translation` skill's
+«H = сүлд, T = зураас» gloss and the grade 7 mirror are separate decisions
+(А/492 does not rule on grade 7), and the skill is ship-mode.
+
+**The ruling wanted:** (a) the exam's «орхих» and «сүлдтэй / тоотой тал»
+across drafts 40–47, in one pass; (b) keep «шидэх» and «сүлд / зураас»; or
+(c) the faces from the exam, the verb unchanged. I lean (a): it is what the
+student will read on the day, and 6m already made the exam's own labels a
+term source.
 
 ---
 

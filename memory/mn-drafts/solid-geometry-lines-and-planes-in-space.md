@@ -490,9 +490,12 @@ drafts the grounding pass runs alone.
 - `sg1-pr-2` — Хоёр өөр хавтгай нийтлэг цэгтэй. Тэдний огтлолцол юу вэ?
   **solution:** Шулуун. Хавтгайнууд ганц цэг хуваалцаж чадахгүй: нэг цэг
   хуваалцвал тэр цэгийг дайрсан бүхэл шулууныг хуваалцана.
-- `sg1-pr-3` — Шоонд $AB$ ба $C'D'$ ирмэгийн хамаарлыг тодорхойлоорой.
-  **solution:** $C'D'$ нь $AB$-ийн эсрэг талд дээд талстад байгаа боловч ижил
-  зүүн-баруун чиглэлтэй бөгөөд хоёул $ABC'D'$ хавтгайд оршино: **параллель**.
+- `sg1-pr-3` — $ABCDA'B'C'D'$ шоонд $AD$ ба $B'C'$ ирмэгийг ангилаарай. Мөн
+  $BC$-тэй солбисон ирмэг хэд байх вэ?
+  **solution:** $AD$ ба $B'C'$ хоёулаа урдаас хойш чиглэнэ: $B'C'$ бол дээш
+  өргөсөн $BC$, $BC \parallel AD$, тиймээс тэд **параллель**. $BC$-тэй
+  солбисон ирмэг: ирмэг бүрт байдаг 3-4-4 хуваалтаар
+  $11 - 3\ (\text{параллель}) - 4\ (\text{огтлолцох}) = 4$ солбисон ирмэг.
 - `sg1-pr-4` — $PF \perp \alpha$, $PF = 9$, налуу хэрчим $PA = 15$. $FA$-г
   олоорой.
   **solution:** $FA = \sqrt{15^2 - 9^2} = \sqrt{225 - 81} = \sqrt{144} = 12$
@@ -735,3 +738,18 @@ which now splits at the Notes heading and prints 398.
 **2d stands at 398 shipping across 35 drafts**, with this topic adding three.
 It is the first draft in three to add any, and only because it is a
 trigonometry-adjacent topic.
+
+### 8. Correction, 23 Sep: `sg1-pr-3` asked a different question
+
+Found three days later, while reading every English statement with an
+ellipsis (review pile 6h, fourth pass). The English statement is a leak:
+«(b) $AB'$ and $DC'$**... just (a), plus:** how many edges are skew to $BC$?».
+This draft had replaced it with a question the English does not ask («$AB$ ба
+$C'D'$») and dropped the skew-edge count, which is the half the item's
+`check[]` (`11 - 3 - 4 == 4`) actually tests. Correct mathematics, wrong item,
+and not recorded — the failure 6h's second pass says to stop making.
+
+Now: the question that survives the leak, (a) plus the count, matching the
+English solution. $AD \parallel B'C'$, and of the $11$ other edges $3$ are
+parallel to $BC$, $4$ meet it and $4$ ($A'B'$, $C'D'$, $AA'$, $DD'$) are skew,
+enumerated.
