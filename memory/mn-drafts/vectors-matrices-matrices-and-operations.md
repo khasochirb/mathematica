@@ -24,7 +24,8 @@ in the bank.
 (determinant and inverse) belong to unit 6.
 
 **Exam check** (6m): «матриц» 107 in the bank, «нэгж матриц» 8, «элемент» 42,
-«мөр» 8, «багана» 6, «хэмжээсийг / хэмжээтэй» 7. «тэг матриц» 0 in the bank, but
+«мөр» 8, «багана» 6, «хэмжээсийг / хэмжээстэй» 7. «тэг матриц» 0 in the bank,
+but
 the ministry names it (10.4г). The bank writes the identity as **$E$**, never
 $I$ (Notes 3).
 
@@ -37,7 +38,7 @@ $I$ (Notes 3).
 | matrix | **матриц** | ministry 10.4 · bank 107 |
 | row · column | **мөр · багана** | bank 8 · 6 |
 | entry | **элемент** | bank 42 |
-| dimension | **хэмжээс** («2 × 3 хэмжээтэй матриц») | ministry 10.4д «2x2 хэмжээстэй» · bank 7 |
+| dimension | **хэмжээс** («2 × 3 хэмжээстэй матриц») | ministry 10.4д, 11.2д «2x2 хэмжээстэй» · `geometry-transformations` · bank 7 |
 | square · diagonal matrix | **квадрат · диагональ матриц** | compositional |
 | zero matrix | **тэг матриц** | ministry 10.4г |
 | identity matrix | **нэгж матриц** | ministry 10.4г · bank 8 |
@@ -79,7 +80,7 @@ $I$ (Notes 3).
 **concept**
 
 1. **Матриц** бол тоонуудын тэгш өнцөгт хүснэгт. Түүний **хэмжээс** нь мөр ×
-   багана: $2 \times 3$ хэмжээтэй матриц 2 мөр, 3 баганатай. Үргэлж мөр
+   багана: $2 \times 3$ хэмжээстэй матриц 2 мөр, 3 баганатай. Үргэлж мөр
    түрүүлнэ: $a_{ij}$ хаяг $i$-р мөр, $j$-р багана гэсэн үг.
 
 2. Хоёр матриц хэмжээс нь ижил БӨГӨӨД харгалзах элемент бүр нь тэнцүү үед л
@@ -115,10 +116,10 @@ $I$ (Notes 3).
 - `vm51-we1` — **statement:**
   $A = \begin{pmatrix} 5 & -1 & 3 \\ 0 & 7 & 2 \end{pmatrix}$ матрицын хэмжээс,
   $a_{12}$ ба $a_{23}$ элементүүдийг олоорой. **solution:** $A$ нь $2 \times 3$
-  хэмжээтэй (2 мөр, 3 багана). $a_{12}$ нь 1-р мөр, 2-р баганад байрлах $-1$;
+  хэмжээстэй (2 мөр, 3 багана). $a_{12}$ нь 1-р мөр, 2-р баганад байрлах $-1$;
   $a_{23}$ нь 2-р мөр, 3-р баганад байрлах $2$.
 - `vm51-we2` — **statement:**
-  $\begin{pmatrix} x + 1 & 4 \\ 3 & 2y \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 3 & 10 \end{pmatrix}$
+$\begin{pmatrix} x + 1 & 4 \\ 3 & 2y \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 3 & 10 \end{pmatrix}$
   байх $x$ ба $y$-г олоорой. **solution:** Элементүүдийг тулгавал: $x + 1 = 6$
   тул $x = 5$; $2y = 10$ тул $y = 5$.
 - `vm51-we3` — **statement:** Дэлгүүр A ба B барааг бямба, ням гарагт зарсан:
@@ -143,7 +144,7 @@ $I$ (Notes 3).
   ба $b_{31}$ элементийг олоорой. **solution:** $3 \times 2$; $b_{31} = 1$ (3-р
   мөр, 1-р багана).
 - `vm51-t2` — **statement:**
-  $\begin{pmatrix} 3t & 1 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} 12 & 1 \\ 0 & 5 \end{pmatrix}$
+$\begin{pmatrix} 3t & 1 \\ 0 & 5 \end{pmatrix} = \begin{pmatrix} 12 & 1 \\ 0 & 5 \end{pmatrix}$
   байх $t$-г олоорой. **solution:** $3t = 12$, тиймээс $t = 4$.
 
 ### Interactive — 12 steps, kinds and order unchanged
@@ -155,7 +156,7 @@ $I$ (Notes 3).
 | 2 | tapQuestion | **eyebrow** Хаягийг шалга · **title** Элементийг ол<br>**prompt** $\begin{pmatrix} 7 & 2 & -3 \\ 4 & 0 & 9 \end{pmatrix}$ матрицын $a_{21}$ элемент аль нь вэ?<br>**explanation** 2-р мөр, 1-р багана: $4$. ($a_{12} = 2$ бол мөр, баганыг нь сольсон ихэр нь: сонгодог андуурал.)<br>**options** `$4$` · `$2$` · `$7$` · `$0$` — **correctIndex 0** |
 | 3 | worked | **eyebrow** Бодсон жишээ · **title** Хэмжээс ба хаяг<br>**problemId** `vm51-we1` |
 | 4 | worked | **eyebrow** Бодсон жишээ · **title** Тэнцүү байдлаар байцаах<br>**problemId** `vm51-we2` |
-| 5 | tapQuestion | **eyebrow** Шуурхай шалгалт · **title** Тэнцүү үү, үгүй юү?<br>**prompt** $2 \times 3$ хэмжээтэй матриц $3 \times 2$ хэмжээтэй матрицтай хэзээ нэгэн цагт тэнцүү байж болох уу?<br>**explanation** Элементүүдийг харьцуулахаас ӨМНӨ хэмжээс ижил байх ёстой. Хэмжээс өөр бол яриа тэндээ дуусна.<br>**options** `Хэзээ ч үгүй: хэмжээс өөр` · `Тийм, бүх элемент таарвал` · `Хоёулаа тэг матриц байвал л` · `Мөр, баганыг нь сольсон матрицууд байвал л` — **correctIndex 0** |
+| 5 | tapQuestion | **eyebrow** Шуурхай шалгалт · **title** Тэнцүү үү, үгүй юү?<br>**prompt** $2 \times 3$ хэмжээстэй матриц $3 \times 2$ хэмжээстэй матрицтай хэзээ нэгэн цагт тэнцүү байж болох уу?<br>**explanation** Элементүүдийг харьцуулахаас ӨМНӨ хэмжээс ижил байх ёстой. Хэмжээс өөр бол яриа тэндээ дуусна.<br>**options** `Хэзээ ч үгүй: хэмжээс өөр` · `Тийм, бүх элемент таарвал` · `Хоёулаа тэг матриц байвал л` · `Мөр, баганыг нь сольсон матрицууд байвал л` — **correctIndex 0** |
 | 6 | worked | **eyebrow** Бодсон жишээ · **title** Өгөгдлийн матрицыг унших<br>**problemId** `vm51-we3` |
 | 7 | tip | **eyebrow** Дадал · **title** Хэмжээсийг чангаар хэл<br>**body** Матрицын аливаа үйлдлийн өмнө матриц бүрийн хэмжээсийг нэрлээрэй («2 × 3»). Матрицын бараг бүх алдаа, ялангуяа удахгүй ирэх үржүүлэх үйлдэлд, хэтэрхий оройтож баригдсан хэмжээсийн алдаа байдаг. |
 | 8 | tryIt | **eyebrow** Туршаад үз · **title** Өндөр матриц<br>**problemId** `vm51-t1` |
@@ -211,7 +212,7 @@ $I$ (Notes 3).
 **workedExamples**
 
 - `vm52-we1` — **statement:**
-  $\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} 4 & 5 \\ -2 & 1 \end{pmatrix}$
+$\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} 4 & 5 \\ -2 & 1 \end{pmatrix}$
   нийлбэрийг бодоорой. **solution:** Элемент бүрээр:
   $\begin{pmatrix} 6 & 4 \\ -2 & 4 \end{pmatrix}$.
 - `vm52-we2` — **statement:**
@@ -221,7 +222,7 @@ $I$ (Notes 3).
   $3B = \begin{pmatrix} 0 & 3 \\ -3 & 6 \end{pmatrix}$. Ялгавар нь:
   $\begin{pmatrix} 2 & 1 \\ 9 & -6 \end{pmatrix}$.
 - `vm52-we3` — **statement:**
-  $\;2X + \begin{pmatrix} 1 & 0 \\ 4 & -2 \end{pmatrix} = \begin{pmatrix} 7 & 6 \\ 0 & 4 \end{pmatrix}$
+$\;2X + \begin{pmatrix} 1 & 0 \\ 4 & -2 \end{pmatrix} = \begin{pmatrix} 7 & 6 \\ 0 & 4 \end{pmatrix}$
   тэгшитгэлээс $X$ матрицыг олоорой. **solution:**
   $2X = \begin{pmatrix} 6 & 6 \\ -4 & 6 \end{pmatrix}$, тиймээс
   $X = \begin{pmatrix} 3 & 3 \\ -2 & 3 \end{pmatrix}$.
@@ -240,7 +241,7 @@ $I$ (Notes 3).
 - `vm52-t1` — **statement:** $3\begin{pmatrix} 2 & -1 \\ 4 & 0 \end{pmatrix}$-г
   бодоорой. **solution:** $\begin{pmatrix} 6 & -3 \\ 12 & 0 \end{pmatrix}$.
 - `vm52-t2` — **statement:**
-  $\begin{pmatrix} 5 & 2 \\ 1 & -3 \end{pmatrix} - \begin{pmatrix} 2 & 4 \\ -1 & 1 \end{pmatrix}$
+$\begin{pmatrix} 5 & 2 \\ 1 & -3 \end{pmatrix} - \begin{pmatrix} 2 & 4 \\ -1 & 1 \end{pmatrix}$
   ялгаврыг бодоорой. **solution:**
   $\begin{pmatrix} 3 & -2 \\ 2 & -4 \end{pmatrix}$.
 
@@ -253,7 +254,7 @@ $I$ (Notes 3).
 | 2 | tapQuestion | **eyebrow** Нүүдлийг шалга · **title** Нэг элемент<br>**prompt** $2\begin{pmatrix} 3 & -2 \\ 1 & 5 \end{pmatrix} + \begin{pmatrix} 0 & 4 \\ -1 & 1 \end{pmatrix}$ илэрхийллийн 1-р мөр, 2-р баганын элемент нь…<br>**explanation** $2 \cdot (-2) + 4 = 0$. Нүд бүрийг бие даан бодно: нэг элементийн тухай хариулахад бүтэн матриц хэрэггүй.<br>**options** `$0$` · `$2$` · `$-4$` · `$4$` — **correctIndex 0** |
 | 3 | worked | **eyebrow** Бодсон жишээ · **title** Энгийн нэмэх<br>**problemId** `vm52-we1` |
 | 4 | worked | **eyebrow** Бодсон жишээ · **title** Эвлүүлэг<br>**problemId** `vm52-we2` |
-| 5 | tapQuestion | **eyebrow** Шуурхай шалгалт · **title** Эхлээд хэмжээс<br>**prompt** $A$ нь $2 \times 3$, $B$ нь $3 \times 2$ хэмжээтэй. $A + B$ юу вэ?<br>**explanation** Нэмэх үйлдэл нүднүүдийг хослуулна; хэмжээс өөр бол зарим нүд хосгүй үлдэнэ. (Үржүүлэх бол өөр түүх: дараагийн хичээлд.)<br>**options** `Тодорхойлогдоогүй: хэмжээс өөр` · `$2 \times 2$ матриц` · `$3 \times 3$ матриц` · `$2 \times 3$ матриц` — **correctIndex 0** |
+| 5 | tapQuestion | **eyebrow** Шуурхай шалгалт · **title** Эхлээд хэмжээс<br>**prompt** $A$ нь $2 \times 3$, $B$ нь $3 \times 2$ хэмжээстэй. $A + B$ юу вэ?<br>**explanation** Нэмэх үйлдэл нүднүүдийг хослуулна; хэмжээс өөр бол зарим нүд хосгүй үлдэнэ. (Үржүүлэх бол өөр түүх: дараагийн хичээлд.)<br>**options** `Тодорхойлогдоогүй: хэмжээс өөр` · `$2 \times 2$ матриц` · `$3 \times 3$ матриц` · `$2 \times 3$ матриц` — **correctIndex 0** |
 | 6 | worked | **eyebrow** Бодсон жишээ · **title** X-г ол<br>**problemId** `vm52-we3` |
 | 7 | tip | **eyebrow** Шалгалтын дадал · **title** Нэг элемент хэрэгтэй юу? Нэгийг л бод<br>**body** Асуулт 3A − 2B-ийн ганц элементийг асуувал хоёр үржүүлсэн матрицыг бүтнээр нь бүү байгуулаарай: эвлүүлгийг тэр ганц нүдэн дээр хийгээрэй. Хурдан, бас алдах газар цөөн. |
 | 8 | tryIt | **eyebrow** Туршаад үз · **title** Нэгийг үржүүл<br>**problemId** `vm52-t1` |
@@ -281,7 +282,7 @@ $I$ (Notes 3).
 **concept**
 
 1. Жор:
-   $$(AB)_{ij} = (A \text{-ийн } i \text{-р мөр}) \cdot (B \text{-ийн } j \text{-р багана})$$
+$$(AB)_{ij} = (A \text{-ийн } i \text{-р мөр}) \cdot (B \text{-ийн } j \text{-р багана})$$
    хариуны нүд бүрт нэг скаляр үржвэр. $2\times 2$ матрицуудын хувьд энэ нь
    дөрвөн скаляр үржвэр.
 
@@ -321,10 +322,10 @@ $I$ (Notes 3).
   $AB = \begin{pmatrix} 19 & 22 \\ 43 & 50 \end{pmatrix}$.
 - `vm53-we2` — **statement:** Ижил $A, B$ матрицуудын хувьд $BA$-г бодоод
   $AB$-тэй харьцуулаарай. **solution:**
-  $BA = \begin{pmatrix} 5\cdot1 + 6\cdot3 & 5\cdot2 + 6\cdot4 \\ 7\cdot1 + 8\cdot3 & 7\cdot2 + 8\cdot4 \end{pmatrix} = \begin{pmatrix} 23 & 34 \\ 31 & 46 \end{pmatrix} \ne AB$.
+$BA = \begin{pmatrix} 5\cdot1 + 6\cdot3 & 5\cdot2 + 6\cdot4 \\ 7\cdot1 + 8\cdot3 & 7\cdot2 + 8\cdot4 \end{pmatrix} = \begin{pmatrix} 23 & 34 \\ 31 & 46 \end{pmatrix} \ne AB$.
   Дараалал чухал, үүрд.
 - `vm53-we3` — **statement:** Матрицыг баганаар үржүүлэх:
-  $\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 4 \\ 5 \end{pmatrix}$
+$\begin{pmatrix} 2 & -1 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} 4 \\ 5 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:** Хоёр скаляр үржвэр:
   $\binom{2\cdot4 + (-1)\cdot5}{0\cdot4 + 3\cdot5} = \binom{3}{15}$. «Хувиргалт»
   сэдвийн матрицыг цэгээр үржүүлэх нь яг энэ, зөвхөн $2\times1$ хамтрагчтай.
@@ -341,10 +342,11 @@ $I$ (Notes 3).
 **tryIt**
 
 - `vm53-t1` — **statement:**
-  $\begin{pmatrix} 1 & 0 \\ 2 & 3 \end{pmatrix}\begin{pmatrix} 4 & 1 \\ 0 & 5 \end{pmatrix}$
+$\begin{pmatrix} 1 & 0 \\ 2 & 3 \end{pmatrix}\begin{pmatrix} 4 & 1 \\ 0 & 5 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:**
   $\begin{pmatrix} 4 & 1 \\ 8 & 17 \end{pmatrix}$.
-- `vm53-t2` — **statement:** $A$ нь $2 \times 3$, $B$ нь $3 \times 4$ хэмжээтэй.
+- `vm53-t2` — **statement:** $A$ нь $2 \times 3$, $B$ нь $3 \times 4$
+  хэмжээстэй.
   $AB$ ямар хэмжээстэй вэ? $BA$ оршин байх уу? **solution:** $AB$ нь
   $2 \times 4$ (дотоод 3-ууд гар барина). $BA$ оршихын тулд $4 = 2$ байх ёстой:
   оршихгүй.
@@ -358,7 +360,7 @@ $I$ (Notes 3).
 | 2 | tapQuestion | **eyebrow** Хөдөлгүүрийг шалга · **title** Ганц нүд<br>**prompt** $A = \begin{pmatrix} 2 & 3 \\ 1 & 0 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 4 \\ 5 & 2 \end{pmatrix}$ бол $(AB)_{12}$ элемент нь…<br>**explanation** $A$-ийн 1-р мөр · $B$-ийн 2-р багана: $2 \cdot 4 + 3 \cdot 2 = 14$.<br>**options** `$14$` · `$12$` · `$17$` · `$8$` — **correctIndex 0** |
 | 3 | worked | **eyebrow** Бодсон жишээ · **title** Дөрвөн скаляр үржвэр<br>**problemId** `vm53-we1` |
 | 4 | worked | **eyebrow** Бодсон жишээ · **title** Сольж хар<br>**problemId** `vm53-we2` |
-| 5 | tapQuestion | **eyebrow** Шуурхай шалгалт · **title** Гар барилт<br>**prompt** $P$ нь $3 \times 2$, $Q$ нь $2 \times 5$ хэмжээтэй. $PQ$ үржвэр нь…<br>**explanation** Дотоод 2-ууд гар бариад алга болно; гадаад $3$ ба $5$ үлдэнэ: $3 \times 5$.<br>**options** `$3 \times 5$` · `$2 \times 2$` · `$5 \times 3$` · `тодорхойлогдоогүй` — **correctIndex 0** |
+| 5 | tapQuestion | **eyebrow** Шуурхай шалгалт · **title** Гар барилт<br>**prompt** $P$ нь $3 \times 2$, $Q$ нь $2 \times 5$ хэмжээстэй. $PQ$ үржвэр нь…<br>**explanation** Дотоод 2-ууд гар бариад алга болно; гадаад $3$ ба $5$ үлдэнэ: $3 \times 5$.<br>**options** `$3 \times 5$` · `$2 \times 2$` · `$5 \times 3$` · `тодорхойлогдоогүй` — **correctIndex 0** |
 | 6 | worked | **eyebrow** Бодсон жишээ · **title** Матрицыг баганаар үржүүлэх<br>**problemId** `vm53-we3` |
 | 7 | tip | **eyebrow** Шалгалтын дадал · **title** Нэг хуруу мөрөнд, нөгөө нь баганад<br>**body** Бодитоор мөрдөөрэй: зүүн хуруу A-ийн мөрийг, баруун хуруу B-ийн баганыг дагаж, хамт алхах зуураа үржүүлнэ. Механик ажил, гэхдээ гишүүн алгасахыг бараг боломжгүй болгоно. |
 | 8 | tryIt | **eyebrow** Туршаад үз · **title** Найрсаг үржвэр<br>**problemId** `vm53-t1` |
@@ -394,7 +396,7 @@ $I$: диагональ дээрээ нэгүүд, бусад газар тэг�
    эвддэг нь өөр өөр матрицуудыг холих явдал.)
 
 3. Шалгалтын хэв маягууд: диагональ матрицыг элемент бүрээр нь зэрэгт дэвшүүлнэ:
-   $\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}$;
+$\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}$;
    зарим матриц ДАВТАГДАНА ($90°$-ын эргүүлэлт дөрвөн алхамд $I$ руу буцна:
    $R^4 = I$); зарим нь «үхнэ»: $A^2 = O$ байх тэг биш матриц оршдог. Энэ бол
    тоонд хэзээ ч байгаагүй, зөвхөн матрицад л байдаг үзэгдэл.
@@ -410,7 +412,7 @@ I бол үржүүлэхийн 1 (AI = IA = A); зэрэг хуулбарууд
   `I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},\quad AI = IA = A` ·
   **explanation** Юу ч хийдэггүй хувиргалт; матрицын ертөнцийн 1.
 - **title** Диагональ матрицын зэрэг · **latex**
-  `\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}`
+`\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}^n = \begin{pmatrix} a^n & 0 \\ 0 & b^n \end{pmatrix}`
   · **explanation** Диагональ бол хялбар зам: элементүүд бие даан зэрэгт
   дэвшинэ.
 - **title** Давталт · **latex** `R_{90°}^4 = I` · **explanation** Дөрвөн удаа
@@ -479,20 +481,20 @@ I бол үржүүлэхийн 1 (AI = IA = A); зэрэг хуулбарууд
   $a_{13}$ ба $a_{22}$-г олоорой. **solution:** $2 \times 3$; $a_{13} = 0$,
   $a_{22} = 4$.
 - `vm5-pr-2` — **statement:**
-  $\begin{pmatrix} 2x & 3 \\ 1 & y - 2 \end{pmatrix} = \begin{pmatrix} 8 & 3 \\ 1 & 5 \end{pmatrix}$
+$\begin{pmatrix} 2x & 3 \\ 1 & y - 2 \end{pmatrix} = \begin{pmatrix} 8 & 3 \\ 1 & 5 \end{pmatrix}$
   байх $x, y$-г олоорой. **solution:** $x = 4$, $y = 7$.
 - `vm5-pr-3` — **statement:**
-  $3\begin{pmatrix} 1 & -1 \\ 2 & 0 \end{pmatrix} - 2\begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix}$-г
+$3\begin{pmatrix} 1 & -1 \\ 2 & 0 \end{pmatrix} - 2\begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix}$-г
   бодоорой. **solution:** $\begin{pmatrix} -1 & -5 \\ 8 & -6 \end{pmatrix}$.
 - `vm5-pr-4` — **statement:**
-  $\begin{pmatrix} 2 & 1 \\ 3 & 0 \end{pmatrix}\begin{pmatrix} 1 & -2 \\ 4 & 5 \end{pmatrix}$
+$\begin{pmatrix} 2 & 1 \\ 3 & 0 \end{pmatrix}\begin{pmatrix} 1 & -2 \\ 4 & 5 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:**
   $\begin{pmatrix} 6 & 1 \\ 3 & -6 \end{pmatrix}$.
 - `vm5-pr-5` — **statement:**
-  $\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}\begin{pmatrix} 5 \\ -2 \end{pmatrix}$
+$\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}\begin{pmatrix} 5 \\ -2 \end{pmatrix}$
   үржвэрийг бодоорой. **solution:** $\binom{1}{-11}$.
 - `vm5-pr-6` — **statement:** $A$ нь $4 \times 2$, $B$ нь $2 \times 3$
-  хэмжээтэй. $AB$ ба $BA$ ямар хэмжээстэй вэ? **solution:** $AB$ нь
+  хэмжээстэй. $AB$ ба $BA$ ямар хэмжээстэй вэ? **solution:** $AB$ нь
   $4 \times 3$; $BA$ оршихгүй ($3 \ne 4$).
 - `vm5-pr-7` — **statement:** $A = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}$
   бол $A^2$-г бодоорой. **solution:**
@@ -506,7 +508,7 @@ I бол үржүүлэхийн 1 (AI = IA = A); зэрэг хуулбарууд
 ## TEST YOURSELF
 
 - `vm5-ty-1` — **statement:**
-  $\;3X - \begin{pmatrix} 2 & 1 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 7 & -4 \\ 6 & 2 \end{pmatrix}$
+$\;3X - \begin{pmatrix} 2 & 1 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 7 & -4 \\ 6 & 2 \end{pmatrix}$
   тэгшитгэлээс $X$-г олоорой. **solution:**
   $3X = \begin{pmatrix} 9 & -3 \\ 6 & 6 \end{pmatrix}$:
   $X = \begin{pmatrix} 3 & -1 \\ 2 & 2 \end{pmatrix}$.
@@ -517,7 +519,7 @@ I бол үржүүлэхийн 1 (AI = IA = A); зэрэг хуулбарууд
   $AB = \begin{pmatrix} 1 & 3 \\ 2 & 7 \end{pmatrix}$,
   $BA = \begin{pmatrix} 7 & 3 \\ 2 & 1 \end{pmatrix}$: тэнцүү биш.
 - `vm5-ty-3` — **statement:**
-  $\begin{pmatrix} 2 & k \\ 1 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 10 \\ 7 \end{pmatrix}$
+$\begin{pmatrix} 2 & k \\ 1 & 3 \end{pmatrix}\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 10 \\ 7 \end{pmatrix}$
   байх $k$-г олоорой. **solution:** Дээд мөр: $2 + 2k = 10$, $k = 4$ (доод
   мөрөөр шалгавал: $1 + 6 = 7$ ✓).
 - `vm5-ty-4` — **statement:**
@@ -581,8 +583,9 @@ No gaps. 10.4д–е (the 2×2 determinant and inverse) are mapped to unit 6.
   (10.4б). «скаляраар үржүүлэх» is avoided on purpose. «скаляр үржвэр» is the
   dot product (unit 3), and the two would collide.
 - **«хэмжээс»** (dimension): the ministry writes «2x2 хэмжээстэй», the bank
-  «хэмжээсийг» and «хэмжээтэй». The draft uses «2 × 3 хэмжээтэй матриц» and the
-  noun «хэмжээс».
+  «хэмжээсийг» and «хэмжээтэй». The draft follows the ministry, as
+  `geometry-transformations` lesson 7 already does: «2 × 3 хэмжээстэй матриц»,
+  and the noun «хэмжээс».
 - **«байр солих чанар»** (commutativity): the standard school phrase. It is in
   neither the ministry text nor the bank.
 - **«гар барих»** (the "handshake" rule for dimensions): an image, not a term.
