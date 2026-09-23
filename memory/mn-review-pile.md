@@ -2,23 +2,22 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **fifty-four drafts**, forty-seven
+switched to ЭШ-first: this file now covers **fifty-five drafts**, forty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 51 of 72 units covered · 10 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 52 of 72 units covered · 11 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
 > биш (8/8), Илтгэгч ба логарифм функц (3/3), Дараалал цуваа (1/1), Геометр ба
 > хэмжигдэхүүн (12/12), Комплекс тоо (2/2), **Комбинаторик (4/4, closed 22
 > Sep)**, **Магадлал (4/4, closed 23 Sep)**, **Өгөгдлийн шинжилгээ (4/4, closed
-> 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
+> 23 Sep)**, **Функц ба график (7/7, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Функц ба график (1 — units 4–6
-> drafted 23 Sep; unit 7 `algebra-2/rational-functions` is left), Тригонометр (6), Анализын эхлэл (6), Вектор ба
-> матриц (8).
+> Remaining, by distance-to-complete: Тригонометр (6), Анализын эхлэл (6),
+> Вектор ба матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -27,7 +26,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-fifty-four drafts carry zero em-dash parentheticals in shipping prose, and
+fifty-five drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -108,7 +107,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 1,393 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 1,396 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -136,7 +135,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the fifty-four drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** and **draft 54 (`algebra-2/polynomial-functions`) 0**, taking the total from 440 to 1,393. Probability is where the decimals live. Neither complex-numbers
+Counted across the fifty-five drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** and **draft 55 (`algebra-2/rational-functions`) 3**, taking the total from 440 to 1,396. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2760,6 +2759,32 @@ them: they need Mongolian written into `lib/esh-course.ts`, or a localized
 field. The label is Khas's; the five lines under it are ordinary content, and
 Mongolian for them can be drafted in a content session and written in by a ship
 session.
+
+### 6aj. «пропорционал» or «пропорциональ»; and three more leaked-working strings
+
+**Found 23 Sep 2026, drafting `algebra-2/rational-functions` (draft 55).**
+
+**The spelling is split, and the ministry is silent.** Measured:
+
+| source | «пропорционал» | «пропорциональ» |
+|---|---|---|
+| ministry А/492 | 0 | 0 |
+| exam bank | **3** (subtopic labels, incl. «урвуу пропорционал функц») | 0 |
+| shipped mirrors | 0 | **97** |
+| drafts before 55 | 27 | 3 |
+| `mn-translation` skill glossary | | «пропорциональ хамаарал», «пропорциональ тогтмол» |
+
+By the authority order the exam decides when the ministry is silent, and draft
+55 writes «пропорционал». If you agree, the 97 mirror uses, the 3 draft uses
+and the skill glossary want a `mn_terms.py` sweep. If you prefer the mirrors'
+spelling, it is 30 draft uses the other way. One ruling either way.
+
+**Four leaked-working strings in `algebra-2/rational-functions`**, all written
+clean in draft 55 (its Notes 3): the `a274-t1` statement (already in 6h), and
+three new ones: the `a274-we1` solution («**... verify numerically:**»), the
+`a274-t2` solution («$1 = 3$**?? More carefully:**»), and lesson 3
+tapQuestion [6] option 4 («$\dfrac{4}{x}$**... after cancelling the $x$'s**»,
+an option that names its own error). 6h's count rises by three.
 
 ---
 
