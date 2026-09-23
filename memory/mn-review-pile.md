@@ -2,10 +2,10 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-three drafts**, thirty-five
+switched to ЭШ-first: this file now covers **forty-four drafts**, thirty-six
 of which feed the ЭШ course.**
 
-> **ЭШ progress, 22 Sep: 40 of 72 units covered · 8 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 41 of 72 units covered · 8 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -14,8 +14,8 @@ of which feed the ЭШ course.**
 > Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4, entirely from shipped mirrors — it
 > never needed drafting).
 >
-> Remaining, by distance-to-complete: Функц ба график (4), Магадлал (4),
-> Өгөгдлийн шинжилгээ (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> Remaining, by distance-to-complete: **Магадлал (3 — unit 1 landed 23 Sep)**,
+> Функц ба график (4), Өгөгдлийн шинжилгээ (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -25,7 +25,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-three drafts carry zero em-dash parentheticals in shipping prose, and
+forty-four drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -106,7 +106,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 440 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 492 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -134,7 +134,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-three drafts, 22 Sep 2026 — re-measured after drafts 40–43, none of which contributes any. Neither complex-numbers
+Counted across the forty-four drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, the first probability draft, taking the total from 440 to 492. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -2382,6 +2382,39 @@ The draft writes $T_{k+1}$ and names the ordinal wherever a term is found.
 **No number changes**; every $k$ and coefficient is the English's. Reversing
 it is five strings. I am flagging it because it is the first place I departed
 from the English's mathematical notation rather than its wording.
+
+---
+
+### 6y. *Independent*: the ministry says «үл хамаарах», the shipped grade 7 mirror says «хараат бус»
+
+**Found 23 Sep 2026, grounding `prob-stats/probability-models`** (Магадлал
+unit 1).
+
+| source | «үл хамаарах» | «хараат бус» |
+|---|---|---|
+| А/492 | **3** — 10.15б (core), 11.13б, 11.13г | 0 |
+| `scripts/i18n/mn_terms.py` GLOSSARY | **1** | 0 |
+| `.claude/skills/mn-translation` glossary | 0 | **1** |
+| `7-mn/probability` (shipped) | 0 | **13** |
+
+The ministry outranks the shipped corpus and 2g only fills silence, so ЭШ
+drafts use **«үл хамаарах»** — named once in draft 44, used throughout the next
+unit. **Two things follow, and only one is a question for you:**
+
+1. **Grade 7 and ЭШ will name independence differently.** I am not proposing
+   to change the grade 7 mirror: А/492 is the grades 10–12 standard and does
+   not rule on grade 7, and a student meets the two words years apart. But it
+   is a vocabulary step the course takes without saying so; if you want it
+   said, one sentence in the ЭШ lesson would do it.
+2. **The two glossaries in the repo contradict each other** — the skill file
+   every session reads says «хараат бус» with no caveat, `mn_terms.py` beside
+   it says «үл хамаарах». The skill file is the one a future session will
+   trust. That is a one-line fix to a skill, which a content session should not
+   make unasked; I am flagging it.
+
+The same unit shows the order working without conflict for *mutually
+exclusive*: the ministry's «**нийцгүй**» (10.15а, core) over the other
+mirrors' descriptive «давхцахгүй үзэгдэл» (6 uses).
 
 ---
 
