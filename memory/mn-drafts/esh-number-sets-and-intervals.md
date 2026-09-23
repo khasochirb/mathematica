@@ -639,8 +639,11 @@ $a \le 4$ бол огтлолцлыг олоорой.
   no complements, so the overline rule does not bite here.
 - **Lesson 2 introduces `]a, b[` in prose and in fact 2.** It is new notation
   relative to the English source and deliberate — see the bracket finding at the
-  top. The lessons still *write* in the standard convention; the reversed form
-  is taught as something to read, not adopted as the house style.
+  top. **Corrected 23 Sep:** this bullet used to say the lessons still *write*
+  in the standard convention. They do not: the lesson content writes the
+  reversed form 78 times and the standard form 8, all 8 in the places that
+  teach it as the alternative. The top of this file was right; this bullet
+  predated that change.
 - The four blackboard-bold set symbols stay Latin: `\mathbb{N}`, `\mathbb{Z}`,
   `\mathbb{Q}`, `\mathbb{R}`.
 - No Cyrillic inside `$...$`; `$\text{ба} \to \cap$` and

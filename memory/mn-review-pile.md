@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **forty-eight drafts**, forty-one
+switched to ЭШ-first: this file now covers **forty-nine drafts**, forty-two
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 45 of 72 units covered · 9 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 46 of 72 units covered · 9 of 14 topics** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -15,8 +15,8 @@ the figure carried until then, thirty-eight, was one low).
 > Sep)**, **Магадлал (4/4, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining, by distance-to-complete: Өгөгдлийн шинжилгээ (3 — unit 1 drafted
-> 23 Sep), Функц ба график (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
+> Remaining, by distance-to-complete: Өгөгдлийн шинжилгээ (2 — units 1–2
+> drafted 23 Sep), Функц ба график (4), Тригонометр (6), Анализын эхлэл (6), Вектор ба
 > матриц (8).
 
 His instruction: *"let's push through most of the contents and then make it
@@ -26,7 +26,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-forty-eight drafts carry zero em-dash parentheticals in shipping prose, and
+forty-nine drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -107,7 +107,7 @@ Seven instances, all inside `$...$` in `10/exponential-functions`
 rendering question (`\,` versus `{,}`), not just a character swap, and the two
 manuals disagree outright.
 
-### 2d. Math-mode decimals — **not applied. Surveyed: 1,009 of them.**
+### 2d. Math-mode decimals — **not applied. Surveyed: 1,135 of them.**
 
 > **Correction, 17 Sep 2026. This section said 178 and said the policy was
 > applied nowhere. Both were wrong**, on two independent counts.
@@ -135,7 +135,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the forty-eight drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190** and **draft 48 (`describing-data`) 100**, taking the total from 440 to 1,009. Probability is where the decimals live. Neither complex-numbers
+Counted across the forty-nine drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100** and **draft 49 (`distributions-and-position`) 126**, taking the total from 440 to 1,135. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -1644,7 +1644,7 @@ rest:
 | `trigonometry/laws-of-sines-and-cosines` | `trig62-t2` | «$b = 8\sqrt{2} \cdot \frac{\sqrt3}{2}$**... simpler:** $b = 4\sqrt{6}$» | new · not drafted |
 | ″ | `trig64-we2` | «sighted with $\angle QPR = 30°$**... simpler classic:** from two points…» | new · not drafted |
 | `8/linear-functions` | `lf5-we2` | «double the cost of $3.5$**…** of $14$ pounds vs $7$?» | new · **already clean in the shipped grade 8 mirror** — another silent fix |
-| `prob-stats/distributions-and-position` | `dp-l2-t1` | «$6$th from the top, $3$rd from the bottom**...** compute her percentile…» | borderline |
+| `prob-stats/distributions-and-position` | `dp-l2-t1` | «$6$th from the top, $3$rd from the bottom**...** compute her percentile…» | borderline in the statement — **but its solution is also wrong** («faster than $62.5\%$»; she beats $25\%$). Draft 49, written clean, its Notes 1 |
 | `trigonometry/identities-and-equations` | `trig5-ty-4` | «on $[0, 2\pi)$**...** then give the GENERAL solution» | borderline |
 | plus the three already listed above | `cd-l4-t1`, `a274-t1`, `vm24-we3` | | |
 
@@ -2604,6 +2604,25 @@ writes «цэгэн график», which keeps the two apart. **`two-variable-d
 next-but-one ЭШ unit, is where it has to be decided**, because that unit is
 about scatter plots and 10.13в is its only ministry code. Grade 6 is shipped
 and is not this rewrite's to change.
+
+### 6ad. A live English concept contains a Cyrillic-corrupted word — the only one in 212 files
+
+**Found 23 Sep 2026, drafting `prob-stats/distributions-and-position`.**
+Lesson 6 (`position-capstone`), concept 3, student-visible in English now:
+
+> «Technical audiences take z; parents, patients, and **памятlets** take
+> percentiles.»
+
+*Pamphlets*, with its first half replaced by Cyrillic. I scanned every string
+in the 212 English `data/genmath/` files for Cyrillic: 27 hits, and **26 are
+deliberate** (ЭШ, «БАЯРЛАЛАА» as a letter-drawing example, «самбар тоолуур»,
+the Mongolian number names in grade 4). **This is the only word that mixes
+scripts.** One string, one word, ship-mode: `data/genmath/prob-stats/
+distributions-and-position.json`, `lessons[5].concept[2]`. Draft 49 writes
+«ухуулах хуудас».
+
+A mixed-script check (any word containing both Latin and Cyrillic letters) on
+the English corpus would have caught it and has, today, zero false positives.
 
 ---
 
