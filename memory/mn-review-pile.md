@@ -2,11 +2,11 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **seventy-four drafts**, sixty-seven
+switched to ЭШ-first: this file now covers **seventy-five drafts**, sixty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
-> **ЭШ progress, 23 Sep: 71 of 72 units covered · 13 of 14 topics** — counting
+> **ЭШ progress, 23 Sep: 72 of 72 units covered · 14 of 14 topics. The ЭШ course is fully covered.** — counting
 > shipped mirrors as well as drafts, which earlier figures in this file did not
 > (review pile 6q). Both numbers are re-measured against `lib/esh-course.ts`
 > each time, never incremented. Covered: Олонлог (3/3), Тэгшитгэл тэнцэтгэл
@@ -14,11 +14,11 @@ the figure carried until then, thirty-eight, was one low).
 > хэмжигдэхүүн (12/12), Комплекс тоо (2/2), **Комбинаторик (4/4, closed 22
 > Sep)**, **Магадлал (4/4, closed 23 Sep)**, **Өгөгдлийн шинжилгээ (4/4, closed
 > 23 Sep)**, **Функц ба график (7/7, closed 23 Sep)**, **Тригонометр (6/6,
-> closed 23 Sep)**, **Анализын эхлэл (6/6, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
+> closed 23 Sep)**, **Анализын эхлэл (6/6, closed 23 Sep)**, **Вектор ба матриц (8/8, closed 23 Sep)**, and Тоо ба үсэгт илэрхийлэл (4/4,
 > entirely from shipped mirrors — it never needed drafting).
 >
-> Remaining: Вектор ба матриц (1 — units 1–7 drafted 23 Sep; unit 2 first,
-> because unit 1 depends on it: 6aw).
+> Remaining: none. Вектор ба матриц was drafted unit 2 first, because unit 1
+> depends on it (6aw).
 
 His instruction: *"let's push through most of the contents and then make it
 ready for review. review as in the stuff that you're not sure even after using
@@ -27,7 +27,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-seventy-four drafts carry zero em-dash parentheticals in shipping prose, and
+seventy-five drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -136,7 +136,7 @@ manuals disagree outright.
 `$...$` because the decimal point there is LaTeX, not Mongolian punctuation.
 So `$x = 3.4$` in an answer option still renders a point.
 
-Counted across the seventy-four drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** **draft 63 (`the-derivative`) 7** **draft 64 (`differentiation-techniques`) 0** **draft 65 (`applications-of-derivatives`) 2** **draft 66 (`integrals`) 3** **draft 67 (`applications-of-integrals`) 11** **draft 68 (`vectors-matrices/vectors-and-coordinates`) 6** **draft 69 (`vector-arithmetic`) 0** **draft 70 (`the-dot-product`) 0** **draft 71 (`vectors-in-space`) 0** **draft 72 (`matrices-and-operations`) 0** **draft 73 (`determinants-and-inverses`) 0** and **draft 74 (`transformation-matrices`) 1**, taking the total from 440 to 1,568. Probability is where the decimals live. Neither complex-numbers
+Counted across the seventy-five drafts, 23 Sep 2026 — drafts 40–43 contributed none; **draft 44 (`prob-stats/probability-models`) contributes 52**, **draft 45 (`conditional-probability`) 144**, **draft 46 (`random-variables`) 83** **draft 47 (`binomial-distribution`) 190**, **draft 48 (`describing-data`) 100**, **draft 49 (`distributions-and-position`) 126**, **draft 50 (`two-variable-data`) 101**, **draft 51 (`inference-and-studies`) 99** **draft 52 (`9/piecewise-and-absolute-value-graphs`) 47** **draft 53 (`algebra-2/functions-and-transformations`) 11** **draft 54 (`algebra-2/polynomial-functions`) 0** **draft 55 (`algebra-2/rational-functions`) 3** **draft 56 (`trigonometry/right-triangle-trigonometry`) 20** **draft 57 (`special-triangles-and-exact-values`) 29** **draft 58 (`radians-and-the-unit-circle`) 9** **draft 59 (`graphs-of-trig-functions`) 5** **draft 60 (`identities-and-equations`) 12** **draft 61 (`laws-of-sines-and-cosines`) 35** **draft 62 (`calculus/limits-and-continuity`) 32** **draft 63 (`the-derivative`) 7** **draft 64 (`differentiation-techniques`) 0** **draft 65 (`applications-of-derivatives`) 2** **draft 66 (`integrals`) 3** **draft 67 (`applications-of-integrals`) 11** **draft 68 (`vectors-matrices/vectors-and-coordinates`) 6** **draft 69 (`vector-arithmetic`) 0** **draft 70 (`the-dot-product`) 0** **draft 71 (`vectors-in-space`) 0** **draft 72 (`matrices-and-operations`) 0** **draft 73 (`determinants-and-inverses`) 0** **draft 74 (`transformation-matrices`) 1** and **draft 75 (`systems-in-three-unknowns`) 0**, taking the total from 440 to 1,568. Probability is where the decimals live. Neither complex-numbers
 draft adds any.
 
 > **Second correction, 20 Sep: the number was 412 and it should have been 398.**
@@ -3129,9 +3129,10 @@ the first unit of ЭШ Анализын эхлэл.**
 - **Reflection is «тэгш хэмтэй хувиргалт» here**, following the bank (23) and
   the ministry, while `geometry-transformations` keeps «тусгал» pending 4g.
   This unit has no symmetry lesson, so 4g's circularity problem does not arise.
-- **Three softened funFacts**: Leibniz's date (1693, not the 1680s); "no neat
-  recipe" for 3×3 inverses (the adjugate is one); Cramer's sand-grain count,
-  which holds only for cofactor expansion.
+- **Two softened funFacts**: "no neat recipe" for 3×3 inverses (the adjugate is
+  one); Cramer's sand-grain count, which holds only for cofactor expansion.
+  (Leibniz "in the 1680s" is defensible from his unpublished manuscripts and is
+  kept.)
 
 ### 6bb. Transformation matrices: composition has two words; one coined term, one calque
 
@@ -3152,6 +3153,30 @@ the first unit of ЭШ Анализын эхлэл.**
 - **Overlap with unit 6.** Unit 6's lesson 4 teaches columns as destinations,
   composition right to left, and det as the area factor; this unit teaches all
   three again. Repetition, not contradiction.
+
+### 6bc. Widget prose the pipeline cannot carry, and one live English leak
+
+**Found 23 Sep 2026, drafting `vectors-matrices/systems-in-three-unknowns` (draft 75), the last ЭШ unit.**
+
+- **`mn_walk.py` skips the prose inside six widget kinds.** It translates a
+  widget's config only through the paths in `WIDGET_PROSE`. Across every
+  English topic, these kinds hold visible prose in `config` and are not listed:
+  `stepProof` (23 steps), `congruentTriangles` (6), `treeDiagram` (5),
+  `conjectureTest` (4), `compositeArea` (3), `conditionalFlip` (1). Nine
+  geometry drafts, four prob-stats drafts and this one draft that prose in
+  full, but a regenerated mirror would still show the English.
+- **Live today:** the shipped `6-mn/geometry-area-volume` and
+  `7-mn/geometry-scale-and-circles` mirrors each have a `compositeArea` step,
+  and `CompositeArea.tsx` renders its `label` and `caption`. Mongolian students
+  see «rectangle 6×4», «rectangle 3×2» and «L-shaped room: 24 + 6 = 30 m²» in
+  English. The fix is ship mode (add the paths, translate, regenerate), and
+  the translation tables for those mirrors are gitignored, so `mn_terms.py
+  --fix`-style re-application is the likely route.
+- **Unit 8 itself is clean.** 11.2г–е all taught; the bank never examines the
+  unit's methods by name. One overclaim softened (elimination "solves almost
+  every" large system; iterative methods solve many), and the zero-row reading
+  made conditional on the other rows.
+- **With this draft all 72 ЭШ units are covered.**
 
 ---
 

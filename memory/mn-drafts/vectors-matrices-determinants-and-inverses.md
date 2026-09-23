@@ -156,7 +156,7 @@ det = ad − bc: талбайн масштабын коэффициент (тэ�
 | 7 | tip | **eyebrow** Шалгалтын дадал · **title** det = 0 асуулт бол коллинеар байдлын асуулт<br>**body** «$k$-ийн ямар утгад матриц урвуугүй вэ?» гэдэг бол «Вектор ба координат» нэгжийн коллинеар шалгуур, өөр хувцастай. ad − bc = 0 гэж тавибал та багануудыг хөндлөн үржүүлж байна. Ижил рефлекс, шинэ үгс. |
 | 8 | tryIt | **eyebrow** Туршаад үз · **title** Талбай хадгалагч<br>**problemId** `vm61-t1` |
 | 9 | tryIt | **eyebrow** Туршаад үз · **title** Квадрат тэгшитгэлээр урвуугүй<br>**problemId** `vm61-t2` |
-| 10 | funFact | **eyebrow** Сонирхолтой баримт · **title** Тодорхойлогч түрүүлж иржээ<br>**body** Тодорхойлогчийг Японд Сэки 1683 онд, Европт Лейбниц 1690-ээд оны эхээр судалжээ: матриц нэрээ авахаас бараг 170 жилийн ӨМНӨ. Тоо нь тэгтлээ хэрэгтэй байсан тул түүнийг хадгалах хүснэгтийг зохиосон хэрэг. |
+| 10 | funFact | **eyebrow** Сонирхолтой баримт · **title** Тодорхойлогч түрүүлж иржээ<br>**body** Тодорхойлогчийг Японд Сэки, Европт Лейбниц хоёулаа 1680-аад онд судалжээ: матриц нэрээ авахаас бараг 170 жилийн ӨМНӨ. Тоо нь тэгтлээ хэрэгтэй байсан тул түүнийг хадгалах хүснэгтийг зохиосон хэрэг. |
 | 11 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** $\det = ad - bc$: хөндлөн үржүүлээд, хас. · $|\det|$ талбайг өөрчилнө; сөрөг бол чиглэл солигдоно. · $\det = 0$: баганууд коллинеар, урвуу матриц байхгүй. |
 
 ---
@@ -617,10 +617,11 @@ Mongolian follows the English. Logged as 6ba.
 
 ### 5. Softened claims
 
-- **Leibniz "in the 1680s"** (lesson 1 funFact). His determinant work is usually
-  dated to the 1693 letter to l'Hôpital; Seki's is 1683. The Mongolian says Seki
-  in 1683 and Leibniz in the early 1690s. "170 years before matrices got their
-  name" holds for Seki: 1850 − 1683 = 167.
+- **Leibniz "in the 1680s"** (lesson 1 funFact): kept, after a second look. His
+  published statement is the 1693 letter to l'Hôpital, but his unpublished
+  manuscripts on determinants (edited by Knobloch) begin in 1678, so the English
+  is defensible. Seki's is 1683. "170 years before matrices got their name":
+  1850 − 1683 = 167.
 - **"Gaussian elimination rather than a neat recipe"** (lesson 2 funFact). There
   is a recipe for 3×3 inverses (the adjugate), and the ministry lists 3×3
   inverses (11.2д, elective). The Mongolian says "usually".
