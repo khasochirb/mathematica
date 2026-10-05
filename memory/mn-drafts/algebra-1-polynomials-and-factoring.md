@@ -46,6 +46,9 @@ call needed from Khas, listed in the Notes.
 | perfect square | **бүтэн квадрат** | ministry 1 · corpus 16 |
 | conjugate | **хосмог** | ministry 3 · dictionary p. 196 |
 | does not factor | **үл задрах** | dictionary p. 222, «үл задрах олон гишүүнт» |
+| special products | **хураангуй үржүүлэхийн адилтгал** | Khas's ruling, 5 Oct 2026 (t07) |
+| distributive property | **гишүүнчлэн үржүүлэх чанар** | Khas's ruling, 5 Oct 2026 (4a) |
+| FOIL | **FOIL (эхний, гадна, дотор, сүүлийн гишүүд)**, once | Khas's ruling, 5 Oct 2026 (5b) |
 
 **Three notes on the spelling.** The book sets these compounds solid —
 «олонгишүүнт», «хоёргишүүнт», «нэггишүүнт» — and flags its own habit at
@@ -59,7 +62,8 @@ point the dictionary itself concedes.
 letters, and the Mongolian rendering is just a description of what it does. The
 English lesson says so itself: «for binomials this is nicknamed FOIL, but the
 rule is just double distribution». The Mongolian keeps the rule and drops the
-acronym, which is the rewrite doing its job.
+acronym, which is the rewrite doing its job. (Ruled 5 Oct 2026, 5b: FOIL stays
+once, glossed, in lesson 1 concept 3.)
 
 ---
 
@@ -67,11 +71,11 @@ acronym, which is the rewrite doing its job.
 
 **TITLE:** Олон гишүүнт ба үржигдэхүүнд задлах
 
-**BLURB:** Олон гишүүнтийг нэмэх, хасах, үржүүлэх; байнга тохиолддог онцгой
-үржвэрүүд; мөн задлах: ХИЕХ, гурван гишүүнт, квадратын ялгавар. Үржүүлэлтийг
+**BLURB:** Олон гишүүнтийг нэмэх, хасах, үржүүлэх; байнга тохиолддог хураангуй
+үржүүлэхийн адилтгалууд; мөн задлах: ХИЕХ, гурван гишүүнт, квадратын ялгавар. Үржүүлэлтийг
 урагш нь, дараа нь ухраад ажиллуулна.
 
-**buildsOn:** Ижил гишүүд, хаалт нээх чанар, зэргийн дүрмүүд (1-р нэгж).
+**buildsOn:** Ижил гишүүд, гишүүнчлэн үржүүлэх чанар, зэргийн дүрмүүд (1-р нэгж).
 
 ---
 
@@ -101,7 +105,7 @@ $x^2$-тэйгээ, $x$ нь $x$-тэйгээ нийлнэ. Харин үржү�
 
 3. **Үржүүлэхдээ** гишүүн бүрийг гишүүн бүрээр үржүүлнэ. $(x + 3)(2x - 5)$
    дөрвөн золголт өгнө: $2x^2 - 5x + 6x - 15 = 2x^2 + x - 15$. Хоёр гишүүнтийн
-   хувьд үүнийг англиар FOIL гэж нэрлэдэг ч дүрэм нь ердөө л давхар задлалт.
+   хувьд үүнийг англиар FOIL (эхний, гадна, дотор, сүүлийн гишүүд) гэж нэрлэдэг ч дүрэм нь ердөө л давхар задлалт.
 
 **keyIdea**
 
@@ -166,7 +170,7 @@ $x^2$-тэйгээ, $x$ нь $x$-тэйгээ нийлнэ. Харин үржү�
 
 ---
 
-## Lesson 2 — Онцгой үржвэрүүд (`special-products`)
+## Lesson 2 — Хураангуй үржүүлэхийн адилтгалууд (`special-products`)
 
 **concreteComparison**
 
@@ -227,7 +231,7 @@ $(a \pm b)^2 = a^2 \pm 2ab + b^2$ ба $(a + b)(a - b) = a^2 - b^2$: рефле�
 
 - `al72-t1` — $(x + 6)^2$, $(4x - 3)^2$, $(5x + 2)(5x - 2)$-ийг задлаарай.
   **solution:** $x^2 + 12x + 36$; $\;16x^2 - 24x + 9$; $\;25x^2 - 4$.
-- `al72-t2` — $97^2$-ийг онцгой үржвэр ашиглан толгойдоо бодоорой.
+- `al72-t2` — $97^2$-ийг хураангуй үржүүлэхийн адилтгал ашиглан толгойдоо бодоорой.
   **solution:** $97^2 = (100 - 3)^2 = 10000 - 600 + 9 = 9409$.
 
 ### Interactive — same twelve steps, same kinds, same order
@@ -345,7 +349,7 @@ $p + q = b$. $b$, $c$-ийн тэмдэг хаана хайхыг тань хэ�
 
 Тэргүүлэх коэффициенттэй болоход оньсого эрчлэгддэг: $2x^2 + 7x + 3$ дээр
 үржвэр нь $a \cdot c = 6$, нийлбэр нь 7 болох хоёр тоог хайгаад дунд гишүүнийг
-хувааж, бүлэглэнэ. Дээр нь: 2-р хичээлийн онцгой үржвэрүүд одоо ухарч ажиллана.
+хувааж, бүлэглэнэ. Дээр нь: 2-р хичээлийн хураангуй үржүүлэхийн адилтгалууд одоо ухарч ажиллана.
 
 **objective**
 
@@ -372,7 +376,7 @@ ax² + bx + c-ийг дунд гишүүнийг хуваах аргаар за�
 **keyIdea**
 
 $a \ne 1$ үед: үржвэр нь $ac$, нийлбэр нь $b$ болох хоёр тоогоор $bx$-ийг
-хувааж, дараа нь бүлэглээрэй; ухарсан онцгой үржвэрүүдийг цэнэглэсэн байлгаж,
+хувааж, дараа нь бүлэглээрэй; ухарсан хураангуй үржүүлэхийн адилтгалуудыг цэнэглэсэн байлгаж,
 юу ч хөдлөхөө болих хүртэл задлаарай.
 
 **facts**
@@ -501,6 +505,7 @@ $a \ne 1$ үед: үржвэр нь $ac$, нийлбэр нь $b$ болох х�
 3. **«онцгой үржвэр» for special products.** Built from «онцгой» plus the
    grounded «үржвэр»; the dictionary reaches `special` alphabetically but the
    entry is not in the batch you have sent. Low risk, listed for completeness.
+   Ruled 5 Oct 2026 (t07): the draft now writes «хураангуй үржүүлэхийн адилтгал».
 
 4. `absolute value` (review queue §5a) is still open and still does not touch
    this topic.

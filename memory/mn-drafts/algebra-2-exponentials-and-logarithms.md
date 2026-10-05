@@ -49,7 +49,7 @@ New here:
 | asymptote | **асимптот** | **corpus 24** |
 | one-to-one | **харилцан нэг утгат** | **ministry 3, verbatim** — from the inverse-function line |
 | change of base | **суурь солих томьёо** | **ungrounded** — Notes 2 |
-| extraneous candidate | *(described, not named)* | Notes 3 |
+| extraneous candidate | *(described, not named)*: **тодорхойлогдох мужаас гадуурх шийд** | Khas's ruling, 5 Oct 2026 (R10, 4k) — Notes 3 |
 | doubling time | **хоёр дахин нэмэгдэх хугацаа** | compositional; 0 as a phrase |
 | Rule of 72 | **72-ын дүрэм** | compositional |
 
@@ -175,7 +175,8 @@ f(x) = a·bˣ алхам тутамд b-гаар үржүүлнэ: b = 1 + r н�
 **objective**
 
 Илтгэгч ба логарифм хэлбэрийн хооронд хөрвүүлэх, логарифмын утгыг толгойдоо
-олох, мөн логарифм функцийг тусгагдсан илтгэгч байдлаар графикт буулгах.
+олох, мөн логарифм функцийг y = x шулууны хувьд тэгш хэмтэй хувиргасан илтгэгч
+функц байдлаар графикт буулгах.
 
 **concept**
 
@@ -379,8 +380,8 @@ log_b x нь b-д x хүрэхийн тулд хэрэгтэй илтгэгч, �
 3. **Логарифм тэгшитгэл**: тал бүрийг нэг логарифм болгон хураагаад, дараа нь
    доторхыг тэнцүүлэх ($\log_2 A = \log_2 B \to A = B$) эсвэл илтгэгч хэлбэрт
    задлаарай. ТОДОРХОЙЛОГДОХ МУЖИЙН ШАЛГАЛТ заавал хийнэ: анхны логарифмын
-   аль нэгний доторхыг $\le 0$ болгох нэр дэвшигч нь хуурамч, яг язгуурт
-   тэгшитгэлийн адил механик.
+   аль нэгний доторхыг $\le 0$ болгох нэр дэвшигч нь тодорхойлогдох мужаас гадуурх
+   шийд, яг язгуурт тэгшитгэлийн адил механик.
 
 **keyIdea**
 
@@ -524,7 +525,8 @@ you to see the choice.** There is no grounded Mongolian noun for it. Rather
 than coin one, lesson 4 says what happens: «анхны логарифмын аль нэгний
 доторхыг $\le 0$ болгох нэр дэвшигч нь хуурамч», and the recap says «мужийг
 шалга». `11/logarithms` did the same thing («тодорхойлогдох мужаас гадуурх нэр
-дэвшигч»), so the two drafts are consistent.
+дэвшигч»), so the two drafts are consistent. **Khas's ruling, 5 Oct 2026 (R10,
+4k): lesson 4's «нь хуурамч» now reads «нь тодорхойлогдох мужаас гадуурх шийд».**
 
 **This will need a real noun eventually.** Extraneous solutions come back in
 radical equations (`algebra-2/radicals-and-rational-exponents`, ЭШ Algebra unit

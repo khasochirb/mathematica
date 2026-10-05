@@ -33,7 +33,7 @@ the joins that an em dash was carrying before (§11).
 | power, degree | **зэрэг** | ministry 11 · corpus 235 |
 | base (of a power) | **суурь** | ministry 3 · corpus 155 · dictionary «үндэс, суурь» |
 | exponent | **илтгэгч** | ministry 8 · corpus 104 · dictionary |
-| order of operations | **үйлдлийн дараалал** | corpus 10 |
+| order of operations | **үйлдлийн дараалал**; PEMDAS (үйлдлийн дараалал) once, in the lesson 3 funFact | corpus 10 · PEMDAS: Khas's ruling, 5 Oct 2026 (5b) |
 | bracket | **хаалт** | corpus 34 |
 | to expand brackets | **хаалт нээх** | dictionary, `expand` |
 | equivalent expression | **тэнцүү илэрхийлэл** | corpus 7 · dictionary `equivalent` |
@@ -41,6 +41,7 @@ the joins that an em dash was carrying before (§11).
 | integer | **бүхэл тоо** | dictionary |
 | perimeter | **периметр** | corpus 59 |
 | difference | **ялгавар** | ministry 2 · corpus 65 · dictionary |
+| to cancel (a common factor) | **хураах** (хураана, хураагдана) | Khas's ruling, 5 Oct 2026 (t38) |
 
 Carried from units 4 and 5 so the strand agrees with itself: **олон гишүүнт**,
 **үржигдэхүүн болгон задлах**, **бүтэн квадрат**, **нийлбэр**, **үржвэр**.
@@ -48,7 +49,8 @@ Carried from units 4 and 5 so the strand agrees with itself: **олон гишү
 **Two English acronyms dropped rather than translated,** on the same reasoning
 that dropped FOIL in unit 4. **PEMDAS** spells an English sentence and spells
 nothing in Mongolian, so lesson 3 names the four ranks instead, which is what
-the acronym stands for anyway. Lesson 2's **«distributive property»** is not
+the acronym stands for anyway. (Ruled 5 Oct 2026, 5b: PEMDAS is back once, with
+a gloss, in the lesson 3 funFact title.) Lesson 2's **«distributive property»** is not
 named at all: the wording is the open question in unit 4's Notes, and this
 lesson can teach the move («хаалт нээх», «гишүүн бүрээр үржүүлэх») without
 depending on the ruling. The lesson title says what happens, not what it is
@@ -264,7 +266,7 @@ $14$ биш.
 
 2. Гурван дүрэм илтгэгчийг хөдөлгөнө: **үржих** үед $a^m \cdot a^n = a^{m+n}$
    (хувь нь овоорно), **хуваах** үед $\dfrac{a^m}{a^n} = a^{m-n}$ (хувь нь
-   хорогдоно), **зэрэг дэвшүүлэх** үед $(a^m)^n = a^{mn}$ (хувийн хувь). Мөн
+   хураагдана), **зэрэг дэвшүүлэх** үед $(a^m)^n = a^{mn}$ (хувийн хувь). Мөн
    $a \ne 0$ бол $a^0 = 1$, учир нь $a^n$-ийг өөрт нь хуваахад нэг үлдэнэ.
 
 3. **Үйлдлийн дараалал**: хаалт, дараа нь зэрэг, дараа нь үржих ба хуваах
@@ -323,13 +325,13 @@ $14$ биш.
 | 3 | teach | **eyebrow** Дараалал · **title** Хаалт, зэрэг, үржих-хуваах, нэмэх-хасах<br>**body** **Хаалт**, дараа нь **зэрэг**, дараа нь **үржих ба хуваах** (нэг зэрэглэл, зүүнээс баруун тийш), эцэст нь **нэмэх ба хасах** (нэг зэрэглэл, зүүнээс баруун тийш). «Нэг зэрэглэл» гэдэг нь чухал: $12 \div 3 \times 2$ нь зүүнээс баруун тийш явж $4 \times 2 = 8$ болохоос $12 \div 6 = 2$ БИШ. |
 | 4 | tapQuestion | **eyebrow** Дарааллыг шалгах · **title** Ижил зэрэглэлийн тулаан<br>**prompt** $18 \div 2 \cdot 3 = $ ?<br>**options** `$27$` · `$3$` · `$12$` · `$1$` — **correctIndex 0**<br>**explanation** Зүүнээс баруун тийш: $18 \div 2 = 9$, дараа нь $9 \cdot 3 = 27$. $3$ гарсан бол эхлээд үржүүлсэн хэрэг; хуваах ба үржих нь ижил зэрэглэлтэй. |
 | 5 | worked | **eyebrow** Бодсон жишээ · **title** Бүтэн дараалал ажиллаж байна<br>**problemId** `al13-we1` |
-| 6 | teach | **eyebrow** Зэргийн дүрмүүд · **title** Хувиудаа тоолоорой<br>**body** $2^5 \cdot 2^3$ гэдэг нь 2-ын таван хувь, хажууд нь гурван хувь: нийт найман хувь, өөрөөр хэлбэл $2^8$. Хуваалт хувийг хорогдуулна: $\dfrac{2^8}{2^6} = 2^2$. Харин $(2^3)^4$ нь гурван хувийн дөрвөн хувь: $2^{12}$. **Үржвэрт нэм. Ноогдворт хас. Зэрэг дэвшүүлэхэд үржүүл.** |
+| 6 | teach | **eyebrow** Зэргийн дүрмүүд · **title** Хувиудаа тоолоорой<br>**body** $2^5 \cdot 2^3$ гэдэг нь 2-ын таван хувь, хажууд нь гурван хувь: нийт найман хувь, өөрөөр хэлбэл $2^8$. Хуваалт хувийг хураана: $\dfrac{2^8}{2^6} = 2^2$. Харин $(2^3)^4$ нь гурван хувийн дөрвөн хувь: $2^{12}$. **Үржвэрт нэм. Ноогдворт хас. Зэрэг дэвшүүлэхэд үржүүл.** |
 | 7 | worked | **eyebrow** Бодсон жишээ · **title** Хоёр дүрэм зэрэг<br>**problemId** `al13-we2` |
 | 8 | tapQuestion | **eyebrow** Дүрмийг шалгах · **title** Суурийг хэвээр нь үлдээгээрэй<br>**prompt** $5^6 \cdot 5^2 = $ ?<br>**options** `$5^8$` · `$25^8$` · `$5^{12}$` · `$25^{12}$` — **correctIndex 0**<br>**explanation** Хувь нь овоорно: $5^{6+2} = 5^8$. Суурь хэзээ ч өөрчлөгдөхгүй; $25^8$ нь суурийг нь бас үржүүлсэн хэрэг. |
 | 9 | tip | **eyebrow** Зуршил · **title** Бодохоосоо өмнө доогуур нь зураарай<br>**body** Урт илэрхийлэл дээр хийх гэж буй үйлдлийнхээ доогуур зураад, ЗӨВХӨН түүнийг хийгээд, бүтэн мөрөө дахин бичээрэй. Мөр бүрд нэг үйлдэл гэдэг нь удаан мэт санагдах ч үнэндээ хурдан, учир нь дарааллын алдааг тархахаас нь өмнө харагдуулдаг. |
 | 10 | tryIt | **eyebrow** Туршиж үз · **title** Зэрэг үржвэрээс өмнө<br>**problemId** `al13-t1` |
 | 11 | tryIt | **eyebrow** Туршиж үз · **title** Дүрмүүдийг холбоорой<br>**problemId** `al13-t2` |
-| 12 | funFact | **eyebrow** Сонирхолтой баримт · **title** Дараалал таны бодсоноос залуу<br>**body** Үйлдлийн дарааллыг эртний хүмүүс тогтоогоогүй. Энэ нь 1900-аад оны орчимд л бат болсон бөгөөд шалтгаан нь сурах бичгийн хэвлэн нийтлэгчид алгебрын номууд хоорондоо зөрөхгүй байхыг шаардсанд оршино. Математик нь өөрчлөгдөөгүй; ЗӨВШИЛЦӨЛ нь стандартчлагдсан юм, замын аль талаар явахыг тогтоосонтой адил. |
+| 12 | funFact | **eyebrow** Сонирхолтой баримт · **title** PEMDAS (үйлдлийн дараалал) таны бодсоноос залуу<br>**body** Үйлдлийн дарааллыг эртний хүмүүс тогтоогоогүй. Энэ нь 1900-аад оны орчимд л бат болсон бөгөөд шалтгаан нь сурах бичгийн хэвлэн нийтлэгчид алгебрын номууд хоорондоо зөрөхгүй байхыг шаардсанд оршино. Математик нь өөрчлөгдөөгүй; ЗӨВШИЛЦӨЛ нь стандартчлагдсан юм, замын аль талаар явахыг тогтоосонтой адил. |
 | 13 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** Хаалт, зэрэг, үржих-хуваах, нэмэх-хасах; зэрэглэл дотроо зүүнээс баруун тийш. · $a^m a^n = a^{m+n}$, $\frac{a^m}{a^n} = a^{m-n}$, $(a^m)^n = a^{mn}$, $a^0 = 1$. · Зэргийн дүрэм хэрэглэхэд суурь хэзээ ч өөрчлөгдөхгүй. |
 
 ---
@@ -460,7 +462,7 @@ $14$ биш.
 - `al1-ty-5` — Тэгш өнцөгтийн урт нь өргөнөө ($w$) гурав дахин авснаас 5-аар
   бага. Периметрийг бичээд хялбарчлаарай.
   **solution:** Урт $= 3w - 5$; периметр $= 2w + 2(3w - 5) = 8w - 10$.
-- `al1-ty-6` — Хэвлэлийн газар хуудас тутамд \$0,15, дээр нь \$2 үйлчилгээний
+- `al1-ty-6` — Хэвлэлийн газар хуудас тутамд \$0.15, дээр нь \$2 үйлчилгээний
   хураамж авдаг. $p$ хуудас хэвлэх зардлыг илэрхийлээд 200 хуудсанд утгыг нь
   олоорой.
   **solution:** Зардал $= 0,15p + 2$; $p = 200$ үед: $30 + 2 = 32$ доллар.
@@ -484,9 +486,11 @@ $14$ биш.
    reasoning in the Terminology section above. The second one is deliberately
    routed around your open unit-4 ruling («тархах хууль» versus «гишүүнчлэн
    үржүүлэх чанар»): this lesson teaches the move without naming the law, so
-   whichever way you rule, nothing here has to be rewritten.
+   whichever way you rule, nothing here has to be rewritten. Ruled 5 Oct 2026
+   (5b): PEMDAS is back once, glossed, in the lesson 3 funFact title.
 
 4. **\$0,15 per page** in `al1-ty-6` now uses the decimal comma per voice
    reference §7. The English shows \$0.15. This is the first shipping price to
    diverge in notation from its English mirror, and it is worth you seeing one
-   before I apply it across the bank.
+   before I apply it across the bank. Ruled 5 Oct 2026 (2b undone): money keeps
+   the decimal point, and the draft now writes \$0.15.

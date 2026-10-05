@@ -26,6 +26,7 @@ where an interval appears (none does in this topic).
 | formula | **томьёо** | ministry 33 · corpus 100 |
 | substitute | **орлуулах** | ministry 2 · corpus 15 |
 | balance | **тэнцвэр** | corpus 45 |
+| distributive property | **гишүүнчлэн үржүүлэх чанар** | Khas's ruling, 5 Oct 2026 (4a) |
 
 **Two phrases I could not ground. Both are now settled — 15 Sep 2026.**
 
@@ -43,7 +44,7 @@ where an interval appears (none does in this topic).
 
 **BLURB:** Нэг алхамт тэгшитгэлээс хоёр талдаа хувьсагчтай тэгшитгэл, бутархай, онцгой тохиолдол, томьёо хувиргах хүртэл: алгебрыг бүхэлд нь хөдөлгөдөг жинлүүрийн логик.
 
-**buildsOn:** Илэрхийлэл хялбарчлах ба хаалт нээх чанар (1-р нэгж).
+**buildsOn:** Илэрхийлэл хялбарчлах ба гишүүнчлэн үржүүлэх чанар (1-р нэгж).
 
 > Added 23 Sep 2026: this early draft had no topic-level strings (review pile 6ai).
 
@@ -435,7 +436,7 @@ $C = \dfrac{5}{9}(F - 32)$ томьёо Фаренгейтийг Цельс рү
   **solution:** $2x - 1 = 15$, $x = 8$.
 - `al2-ty-4` — $3(2x - 5) = 6x + 1$ хэдэн шийдтэй вэ?
   **solution:** $6x - 15 = 6x + 1$ → $-15 = 1$, худал: шийдгүй.
-- `al2-ty-5` — Машины түрээс өдөрт \$45, дээр нь км тутамд \$0,20 болно. Нэг
+- `al2-ty-5` — Машины түрээс өдөрт \$45, дээр нь км тутамд \$0.20 болно. Нэг
   өдрийн түрээс \$81 болжээ. Хэдэн км явсан бэ?
   **solution:** $45 + 0.2k = 81 \to 0.2k = 36 \to k = 180$ км.
 - `al2-ty-6` — $S = \dfrac{n}{2}(a + L)$-г $L$-ээр бодоод, $S = 55$, $n = 10$,

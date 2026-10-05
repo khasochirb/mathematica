@@ -984,7 +984,7 @@ the English itself uses *quota* loosely.
 Nothing anywhere names the method. «од» (star) is transparent; «зураас» (bar)
 is the ordinary word for a line or dash, and the one risk is that the
 `mn-translation` glossary uses «зураас» for *tails* on a coin (H = сүлд,
-T = зураас). They never meet in one lesson, so I kept it. The ministry name,
+T = зураас). They never meet in one lesson, so I kept it. (Khas's ruling, 5 Oct 2026, 6aa, renames tails «тоотой тал», so the collision is gone; «зураас» for bars stays.) The ministry name,
 «давталттай хэсэглэл», is the formal one and leads the lesson title.
 
 ### 6. «тэгш хэмийн чанар» for $C(n,r) = C(n,n-r)$
