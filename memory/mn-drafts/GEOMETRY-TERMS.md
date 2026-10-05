@@ -1,5 +1,7 @@
 # Geometry strand — shared terminology
 
+5 Oct 2026: Khas's rulings applied (see memory/mn-review-pile.md §0)
+
 **Built 17 Sep 2026, before drafting any geometry topic.** Thirteen topics,
 roughly 500 items, cite this file instead of re-deciding the same words
 thirteen times. Each draft's own Terminology table lists only what it adds.
@@ -89,7 +91,7 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | ring, annulus | **цагираг** | corpus 11 |
 | shaded region | **будсан муж** | «будсан» **shipped 31** + «муж» dictionary — the strand's only coinage in unit 11 |
 | strip / band | **зурвас** | **shipped 25** |
-| volume | **эзэлхүүн** | ministry 1 · corpus 23 — **but «эзлэхүүн» scores corpus 140; see the note below** |
+| volume | **эзэлхүүн** | **Khas's ruling, 5 Oct 2026** (vol) · ministry 1 · corpus 23 — «эзлэхүүн» (corpus 140) is not used; see the note below |
 | surface area | **гадаргуугийн талбай** | **shipped 32** · skill glossary — the ministry writes «гадаргуун»; see the note below |
 | net | **дэлгээс** | **shipped 11** · corpus 21 |
 | prism | **призм** | ministry 1 · **shipped 16** · corpus 33 |
@@ -117,11 +119,11 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | hypotenuse | **гипотенуз** | dictionary · corpus 28 |
 | leg (of a right triangle) | **катет** | corpus 38 · dictionary «налсан катет» for the adjacent leg |
 | sine / cosine | **синус / косинус** | ministry 8 / 4 · corpus 35 / 20 |
-| tangent (ratio) | **тангенс** | ministry 4 |
+| tangent (ratio) | **тангенс** | ministry 4 · written $\operatorname{tg}$ (Khas's ruling 6ak, 5 Oct 2026) |
 | adjacent leg | **налсан катет** | **dictionary p. 21, p. 90** |
 | opposite leg | **эсрэг орших катет** | the pair-half the dictionary lacks; §4's rule, see §6 |
 | angle of elevation / depression | **дээшээ / доошоо харах өнцөг** | **dictionary p. 29**, both headwords |
-| arcsin / arccos / arctan | **арксинус / арккосинус / арктангенс** | **dictionary p. 33** |
+| arcsin / arccos / arctan | **арксинус / арккосинус / арктангенс** | **dictionary p. 33** · arctan written $\operatorname{arctg}$ (Khas's ruling 6ak, 5 Oct 2026) |
 | law of sines / cosines | **синусын / косинусын теорем** | **ministry 1** · corpus 29 / dictionary p. 91 · corpus 19 |
 | Pythagorean theorem / triple | **Пифагорын теорем / гурвал** | corpus 6 / 4 |
 | circumscribed circle | **багтаасан тойрог** | **dictionary p. 63** · corpus 13 |
@@ -133,13 +135,26 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | dilation | **гомотет** | **ministry 1** · corpus 7 — «дүрсийг гомотетоор хувиргах» |
 | axis of symmetry | **тэгш хэмийн тэнхлэг** | corpus 6 |
 | point / rotational symmetry | **цэгийн / эргэлтийн тэгш хэм** | compositional on «тэгш хэм»; the ministry writes «тэгш хэмээр (цэгийн, тэнхлэгийн)» |
-| composition (of transformations) | **угсраа хувиргалт** | **dictionary p. 73**, which glosses it «(композиц)» itself |
+| composition (of transformations) | **дараалсан хувиргалт** | **Khas's ruling, 5 Oct 2026** (6bb); was the dictionary's «угсраа хувиргалт (композиц)», p. 73 |
 | preimage | **эх дүрс** | **corpus 32** |
 | vector | **вектор** | **ministry 26** · corpus 129 |
 | matrix · identity matrix | **матриц · нэгж матриц** | **ministry 18 · 1** · corpus 118 |
 | transformation matrix | **хувиргалтын матриц** | **ministry 1, exactly this** · corpus 13 |
 | determinant | **тодорхойлогч** | **ministry 2, exactly this** — «2x2 хэмжээстэй матрицын тодорхойлогчийг олох»; «детерминант» is 0 everywhere |
 | «2×2» (matrix size) | **$2 \times 2$ хэмжээстэй** | **ministry 2, exactly this** |
+| reflection | **тэгш хэм**: «тэнхлэгийн / цэгийн тэгш хэм»; the operation «X-ийн хувьд тэгш хэмтэй хувиргах» | **Khas's ruling, 5 Oct 2026** (4g) · ministry «тэгш хэмээр (цэгийн, тэнхлэгийн)» — replaces §3's «тусгал» |
+| rigid motion | **хатуу биеийн хөдөлгөөн** | **Khas's ruling, 5 Oct 2026** (t30) — replaces §3's «хатуу хөдөлгөөн» |
+| glide reflection | **гулсах тэгш хэм** | **Khas's ruling, 5 Oct 2026** (t31) — replaces §3's «гулсах тусгал» |
+| vertical angles | **босоо өнцөг** | **Khas's ruling, 5 Oct 2026** (4e) — replaces §2/§3's «эсрэг өнцөг» |
+| protractor | **транспортир шугам** | **Khas's ruling, 5 Oct 2026** (t09) |
+| reflex angle | **рефлекс өнцөг** | **Khas's ruling, 5 Oct 2026** (t11) |
+| linear pair | **хамар өнцөг** (pair: «хамар өнцгүүд») | **Khas's ruling, 5 Oct 2026** (t12) |
+| remote interior angle | **гурвалжны гадаад өнцөгтэй хамар бус дотоод өнцөг** on first use in a lesson, then «хамар бус дотоод өнцөг» | **Khas's ruling, 5 Oct 2026** (t15) |
+| Reflexive Property | **тэнцэтгэлийн рефлекс чанар** | **Khas's ruling, 5 Oct 2026** (t16) |
+| kite | **цаасан шувуу** | **Khas's ruling, 5 Oct 2026** (t20) |
+| consecutive angles (parallelogram) | **өрөөл өнцөг** | **Khas's ruling, 5 Oct 2026** (t21) |
+| central angle | **төв өнцөг** | **Khas's ruling, 5 Oct 2026** (t25) |
+| intercepted arc | no noun; the «нумд тулсан» construction: «X нумд тулсан өнцөг», «өнцгийн тулсан нум» | **Khas's ruling, 5 Oct 2026** (4f) — drops «харгалзах нум» |
 
 **Two А/492 spellings this strand does NOT follow, and why.** Found
 19 Sep 2026 drafting `surface-area-and-volume`, both on the single ministry
@@ -149,7 +164,7 @@ line that names all five solids: «Пирамид, цилиндр, призм, �
 | term | А/492 | shipped mirrors | ЭШ bank | adopted |
 |---|---|---|---|---|
 | surface area | гадаргуу**н** 1 | гадаргуу**гийн** **32** | гадаргуун 10 | **гадаргуугийн** |
-| volume | эз**лэ**хүүн 1 · эз**э**лхүүн 1 | эзлэхүүн **61** · эзэлхүүн 18 | эзлэхүүн **79** · эзэлхүүн 5 | **эзэлхүүн**, flagged |
+| volume | эз**лэ**хүүн 1 · эз**э**лхүүн 1 | эзлэхүүн **61** · эзэлхүүн 18 | эзлэхүүн **79** · эзэлхүүн 5 | **эзэлхүүн**, Khas's ruling 5 Oct 2026 |
 
 The first is settled: «гадаргуугийн» has shipped 32 times, the skill glossary
 fixes it, and «гадаргуун» is probably a slip — «гадаргуу» ends in a long vowel
@@ -162,7 +177,7 @@ the ЭШ bank by 79 to 5. The drafts keep «эзэлхүүн» because it has sh
 the skill glossary lists it, **but that is the shipped-term argument
 overriding the stated rule**, which is exactly the kind of quiet exception
 this file exists to prevent. Khas rules; until then, «эзэлхүүн» with this note
-attached.
+attached. **Ruled 5 Oct 2026: «эзэлхүүн» everywhere.**
 
 **When А/492 contradicts itself, the corpus breaks the tie.** Found
 19 Sep 2026, drafting `coordinate-geometry`. The standard writes **«параллел»**
@@ -195,7 +210,7 @@ the dictionary prints something different:
 | complementary angles | нэмэлт өнцөг | **1** | **гүйцээлт хоёр өнцөг** | dictionary |
 | adjacent angles | зэргэлдээ өнцөг | **0** | **залгаа хоёр өнцөг** | dictionary |
 | supplementary angles | дүүргэгч өнцөг | **0** | *not in a–i* | skill's, flagged |
-| vertical angles | эсрэг өнцөг | **0** | *not in a–i* | skill's, flagged |
+| vertical angles | эсрэг өнцөг | **0** | *not in a–i* | **босоо өнцөг**, Khas's ruling 5 Oct 2026 |
 | circumference | тойргийн урт | 12 | тойргийн урт | agree |
 
 So the rule the skill states for itself does not survive contact with the
@@ -215,7 +230,7 @@ built from grounded parts and defined on first use.
 |---|---|---|
 | ray | **цацраг** | corpus 10, but as a *light* ray; the geometric sense is untested |
 | supplementary angles | **дүүргэгч өнцөг** | the skill glossary, 0 shipped |
-| vertical angles | **эсрэг өнцөг** | the skill glossary, 0 shipped |
+| vertical angles | **босоо өнцөг** | **Khas's ruling, 5 Oct 2026** (4e); was the skill glossary's «эсрэг өнцөг», 0 shipped |
 | perpendicular bisector | **перпендикуляр биссектрис** | both halves grounded, the compound is not |
 | corresponding angles | **харгалзах өнцөг** | «харгалзах» corpus 5 |
 | interior angle | **дотоод өнцөг** | mirrors the dictionary's «гадаад өнцөг» |
@@ -227,9 +242,9 @@ built from grounded parts and defined on first use.
 | postulate | **постулат** | dictionary prints «постулат (аксиом)» inside a sentence, not as a headword |
 | converse | **урвуу өгүүлбэр** | dictionary p. 84 prints «урвуу хэллэг»; see note |
 | ~~translation~~ | ~~**шилжүүлэлт**~~ | **moved to §1 as «параллель зөөлт»** — corrected 19 Sep 2026, see §9 |
-| reflection | **тусгал** | corpus 9 — but the ministry and the dictionary both say «тэгш хэм»; review pile 4g, see §9 |
-| rigid motion | **хатуу хөдөлгөөн** | compositional; «хөдөлгөөн» corpus 51, «хатуу» ordinary |
-| glide reflection | **гулсах тусгал** | 0 everywhere in every word order; both halves grounded separately |
+| reflection | **тэгш хэм** («тэнхлэгийн / цэгийн тэгш хэм»; «X-ийн хувьд тэгш хэмтэй хувиргах») | **Khas's ruling, 5 Oct 2026** (4g); was «тусгал» — see §1 and §9 |
+| rigid motion | **хатуу биеийн хөдөлгөөн** | **Khas's ruling, 5 Oct 2026** (t30) |
+| glide reflection | **гулсах тэгш хэм** | **Khas's ruling, 5 Oct 2026** (t31) |
 | dilation | **гомотет** | **ministry 1** · corpus 7 — corrected 18 Sep 2026, see §9 |
 | enlargement ($k>1$) | **томсголт** | 0 everywhere — the freed-up coinage, in its literal sense |
 | reduction ($0<k<1$) | **багасгалт** | 0 everywhere — pairs with the above |
@@ -292,6 +307,7 @@ word is unavailable and unit 6 writes **«эсрэг орших тал / өнц�
 and *vertical angles* never had a grounded claim on anything. Candidates, all
 ungrounded: «оройн эсрэг өнцөг», «огтлолцлын эсрэг өнцөг», «вертикаль өнцөг».
 Not changed here — it is Khas's to rule on, and it is in the review pile.
+**Ruled 5 Oct 2026 (4e): vertical angles are «босоо өнцөг», which frees «эсрэг».**
 **The lesson for this file: a flagged ungrounded term is a debt, and this one
 came due four units later.**
 
@@ -524,3 +540,5 @@ divergence is **review pile 4g** — Khas's call, not this file's. It is the
 first time this file has knowingly declined a ministry word on grounds other
 than a spelling split (§4), and the reason is recorded so the decision can be
 reversed cheaply: nothing has shipped.
+
+**Ruled 5 Oct 2026 (4g): «тэгш хэм» everywhere, and `transformations` now applies it.**
