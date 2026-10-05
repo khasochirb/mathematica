@@ -29,7 +29,7 @@ form excluded*), **12.6б** (identities; sum, difference, double-angle and
 reduction, auxiliary angle). The auxiliary angle is not taught: Notes 2.
 
 **Exam check** (6m): «тригонометрийн тэгшитгэл» (3); general solutions written
-«$\pi k, k \in \mathbb{Z}$» (5). `\tan` as in draft 56 (review pile 6ak).
+«$\pi k, k \in \mathbb{Z}$» (5). «tg» (`\operatorname{tg}`) by Khas's ruling, 5 Oct 2026 (6ak), as in draft 56.
 
 ---
 
@@ -47,6 +47,7 @@ reduction, auxiliary angle). The auxiliary angle is not taught: Notes 2.
 | general solution | **ерөнхий шийд** | exam 5 (for differential equations); ministry «шийдийн ерөнхий хэлбэр» (11.7е) |
 | extraneous / lost solutions | **гээгдсэн шийд** | compositional |
 | reference triangle | **жишиг гурвалжин** | built on «жишиг өнцөг» (draft 58) |
+| tan (notation) | **tg** (`\operatorname{tg}`) | **Khas's ruling, 5 Oct 2026** (6ak); ministry 11.7д |
 
 ---
 
@@ -88,10 +89,10 @@ sin²θ + cos²θ = 1 (ба түүний хувиргалтууд)-ийг аши
    ХЭМЖЭЭГ сэргээнэ, квадрат язгуурын $\pm$ хоёрдмол байдлыг МӨЧ шийднэ (3-р
    нэгжийн Б · С · Т · К). Нэг утга ба нэг мөч $=$ өнцгийн бүх дүр төрх.
 
-3. $\tan\theta = \frac{\sin\theta}{\cos\theta}$-тай хамт гурван утга бүгд
+3. $\operatorname{tg}\theta = \frac{\sin\theta}{\cos\theta}$-тай хамт гурван утга бүгд
    гинжлэгдэнэ. II мөчид $\sin\theta = \frac{5}{13}$ өгөгдвөл:
    $\cos\theta = -\sqrt{1 - \frac{25}{169}} = -\frac{12}{13}$ (сөрөг: II мөч),
-   дараа нь $\tan\theta = -\frac{5}{12}$. 1-р нэгжийн 5-12-13 гурвалжин, одоо
+   дараа нь $\operatorname{tg}\theta = -\frac{5}{12}$. 1-р нэгжийн 5-12-13 гурвалжин, одоо
    тэмдэгтэйгээ тойрог дээр амьдарч байна.
 
 **keyIdea**
@@ -104,17 +105,17 @@ $\sin^2\theta + \cos^2\theta = 1$ бол бүх өнцөгт хүчинтэй т
 
 - **title** Адилтгал · **latex** `\sin^2\theta + \cos^2\theta = 1` · **explanation** x² + y² = 1, өөрөөр нэрлэсэн. Бүх θ-д, үл хамаарах зүйлгүй.
 - **title** Хайлт · **latex** `\cos\theta = \pm\sqrt{1 - \sin^2\theta}` · **explanation** Язгуур хэмжээг өгнө; мөч тэмдгийг сонгоно.
-- **title** Гинж · **latex** `\tan\theta = \frac{\sin\theta}{\cos\theta}` · **explanation** Хоёр утга мэдэгдвэл гурвуулаа мэдэгдэнэ.
+- **title** Гинж · **latex** `\operatorname{tg}\theta = \frac{\sin\theta}{\cos\theta}` · **explanation** Хоёр утга мэдэгдвэл гурвуулаа мэдэгдэнэ.
 
 **workedExamples**
 
 - `trig51-we1` — **statement:** $\theta$ нь II мөчид, $\sin\theta = \frac{5}{13}$
-  бол $\cos\theta$ ба $\tan\theta$-г яг олоорой.
+  бол $\cos\theta$ ба $\operatorname{tg}\theta$-г яг олоорой.
   **solution:** $\cos^2\theta = 1 - \frac{25}{169} = \frac{144}{169}$, тиймээс
   $\cos\theta = \pm\frac{12}{13}$. II мөч: косинус сөрөг, эндээс
   $\cos\theta = -\frac{12}{13}$. Тэгвэл
-  $\tan\theta = \frac{5/13}{-12/13} = -\frac{5}{12}$: сөрөг, II мөчид зөв.
-- `trig51-we2` — **statement:** $\theta$ нь III мөчид, $\tan\theta = 2$ бол
+  $\operatorname{tg}\theta = \frac{5/13}{-12/13} = -\frac{5}{12}$: сөрөг, II мөчид зөв.
+- `trig51-we2` — **statement:** $\theta$ нь III мөчид, $\operatorname{tg}\theta = 2$ бол
   $\sin\theta$ ба $\cos\theta$-г яг олоорой.
   **solution:** Жишиг гурвалжин байгуулъя: эсрэг 2, налсан 1, гипотенуз
   $\sqrt{5}$. Хэмжээ: $|\sin\theta| = \frac{2}{\sqrt5} = \frac{2\sqrt5}{5}$,
@@ -136,15 +137,15 @@ $\sin^2\theta + \cos^2\theta = 1$ бол бүх өнцөгт хүчинтэй т
 **tryIt**
 
 - `trig51-t1` — **statement:** $\theta$ нь III мөчид, $\cos\theta = -\frac{3}{5}$
-  бол $\sin\theta$ ба $\tan\theta$-г яг олоорой.
+  бол $\sin\theta$ ба $\operatorname{tg}\theta$-г яг олоорой.
   **solution:** $\sin^2\theta = 1 - \frac{9}{25} = \frac{16}{25}$:
   $\sin\theta = \pm\frac{4}{5}$, III мөч $-\frac{4}{5}$-ийг шаардана. Тэгвэл
-  $\tan\theta = \frac{-4/5}{-3/5} = \frac{4}{3}$: III мөчийн тангенсын ёсоор
+  $\operatorname{tg}\theta = \frac{-4/5}{-3/5} = \frac{4}{3}$: III мөчийн тангенсын ёсоор
   эерэг.
 - `trig51-t2` — **statement:** $\frac{1 - \cos^2\theta}{\cos^2\theta}$
   илэрхийллийг квадрат зэрэгтэй ганц функц болгон хялбарчлаарай.
   **solution:** Хүртвэр нь $\sin^2\theta$ (хувиргасан адилтгал):
-  $\frac{\sin^2\theta}{\cos^2\theta} = \tan^2\theta$. $1 - \cos^2$ ба
+  $\frac{\sin^2\theta}{\cos^2\theta} = \operatorname{tg}^2\theta$. $1 - \cos^2$ ба
   $1 - \sin^2$-ыг харангуутаа танихад адилтгалын ажлын тал оршдог.
 
 ### Interactive — 8 steps, kinds and order unchanged
@@ -152,10 +153,10 @@ $\sin^2\theta + \cos^2\theta = 1$ бол бүх өнцөгт хүчинтэй т
 | # | kind | content |
 |---|---|---|
 | 0 | teach | **eyebrow** Холбоос · **title** Нэг тойрог, нэг хязгаарлалт<br>**body** Өнцөг бүрийн $(\cos\theta, \sin\theta)$ нэгж тойрог ДЭЭР оршдог тул тойргийн тэгшитгэлийг дагана: $$\sin^2\theta + \cos^2\theta = 1.$$ Энэ бол **адилтгал**: бодох тэгшитгэл биш, θ бүрт үнэн. Синус, косинус хэзээ ч бие даасан биш гэсэн үг: нэгийг нь мэдвэл нөгөө нь хоёр нэр дэвшигчид ($\pm$ хос) бэхлэгдэнэ. |
-| 1 | workedSet | **eyebrow** Бодсон жишээ · **title** Нэг утга ба нэг мөч = бүгд<br>**intro** Хэмжээнд язгуур, тэмдэгт Б · С · Т · К, тангенст харьцаа.<br>**ex1** $\sin\theta = \frac{5}{13}$, θ нь II мөчид. $\cos\theta$ ба $\tan\theta$-г олоорой. · алхам: $\cos^2\theta = 1 - \frac{25}{169} = \frac{144}{169}$, эндээс $|\cos\theta| = \frac{12}{13}$; II мөч тул сөрөг. · алхам: $\cos\theta = -\frac{12}{13}$; $\tan\theta = \frac{5/13}{-12/13} = -\frac{5}{12}$. · **хариу** $\cos\theta = -\tfrac{12}{13}$, $\tan\theta = -\tfrac{5}{12}$ |
+| 1 | workedSet | **eyebrow** Бодсон жишээ · **title** Нэг утга ба нэг мөч = бүгд<br>**intro** Хэмжээнд язгуур, тэмдэгт Б · С · Т · К, тангенст харьцаа.<br>**ex1** $\sin\theta = \frac{5}{13}$, θ нь II мөчид. $\cos\theta$ ба $\operatorname{tg}\theta$-г олоорой. · алхам: $\cos^2\theta = 1 - \frac{25}{169} = \frac{144}{169}$, эндээс $|\cos\theta| = \frac{12}{13}$; II мөч тул сөрөг. · алхам: $\cos\theta = -\frac{12}{13}$; $\operatorname{tg}\theta = \frac{5/13}{-12/13} = -\frac{5}{12}$. · **хариу** $\cos\theta = -\tfrac{12}{13}$, $\operatorname{tg}\theta = -\tfrac{5}{12}$ |
 | 2 | tapQuestion | **eyebrow** Шалга · **title** Тэмдгийг хэн сонгох вэ?<br>**prompt** $\cos\theta = \frac{4}{5}$, $\theta$ нь IV мөчид. $\sin\theta$ хэд вэ?<br>**explanation** $\sin^2 = 1 - \frac{16}{25} = \frac{9}{25}$ нь $|\sin| = \frac{3}{5}$ өгнө; IV мөч (тэнхлэгээс доош) синусыг СӨРӨГ болгоно. Адилтгал тэмдэг хэзээ ч сонгодоггүй: мөч сонгоно.<br>**options** `$-\dfrac{3}{5}$: хэмжээ адилтгалаас, хасах тэмдэг IV мөчөөс` · `$\dfrac{3}{5}$: квадрат язгуур эерэг` · `$-\dfrac{4}{5}$` · `$\dfrac{5}{3}$` — **correctIndex 0** |
-| 3 | teach | **eyebrow** Урвуугаар унших · **title** 1 − cos²-г харангуутаа тань<br>**body** Адилтгалын чадвар бол голдуу хэв таних: $1 - \cos^2\theta$ хаана гарна, тэр нь $\sin^2\theta$ ӨӨРӨӨ; $1 - \sin^2\theta$ хаана гарна, тэр нь $\cos^2\theta$. Боломжгүй мэт хялбарчлал нэг орлуулгаар нурна: $\frac{1 - \cos^2\theta}{\cos^2\theta} = \frac{\sin^2\theta}{\cos^2\theta} = \tan^2\theta$. Нүдээ дасгалжуулаарай; алгебр нь дараа нь бүртгэл л. |
-| 4 | workedSet | **eyebrow** Бодсон жишээ · **title** Тангенсаас хос руу<br>**intro** Тангенсын утга жишиг гурвалжин байгуулна; мөч түүнд тэмдэг өгнө.<br>**ex1** $\tan\theta = 2$, θ нь III мөчид. $\sin\theta$ ба $\cos\theta$-г олоорой. · алхам: Жишиг гурвалжин: эсрэг 2, налсан 1, гипотенуз $\sqrt5$, эндээс хэмжээ $\frac{2}{\sqrt5}, \frac{1}{\sqrt5}$. · алхам: III мөч: хоёулаа сөрөг: $\sin\theta = -\frac{2\sqrt5}{5}$, $\cos\theta = -\frac{\sqrt5}{5}$. · **хариу** $-\tfrac{2\sqrt5}{5}$ ба $-\tfrac{\sqrt5}{5}$ |
+| 3 | teach | **eyebrow** Урвуугаар унших · **title** 1 − cos²-г харангуутаа тань<br>**body** Адилтгалын чадвар бол голдуу хэв таних: $1 - \cos^2\theta$ хаана гарна, тэр нь $\sin^2\theta$ ӨӨРӨӨ; $1 - \sin^2\theta$ хаана гарна, тэр нь $\cos^2\theta$. Боломжгүй мэт хялбарчлал нэг орлуулгаар нурна: $\frac{1 - \cos^2\theta}{\cos^2\theta} = \frac{\sin^2\theta}{\cos^2\theta} = \operatorname{tg}^2\theta$. Нүдээ дасгалжуулаарай; алгебр нь дараа нь бүртгэл л. |
+| 4 | workedSet | **eyebrow** Бодсон жишээ · **title** Тангенсаас хос руу<br>**intro** Тангенсын утга жишиг гурвалжин байгуулна; мөч түүнд тэмдэг өгнө.<br>**ex1** $\operatorname{tg}\theta = 2$, θ нь III мөчид. $\sin\theta$ ба $\cos\theta$-г олоорой. · алхам: Жишиг гурвалжин: эсрэг 2, налсан 1, гипотенуз $\sqrt5$, эндээс хэмжээ $\frac{2}{\sqrt5}, \frac{1}{\sqrt5}$. · алхам: III мөч: хоёулаа сөрөг: $\sin\theta = -\frac{2\sqrt5}{5}$, $\cos\theta = -\frac{\sqrt5}{5}$. · **хариу** $-\tfrac{2\sqrt5}{5}$ ба $-\tfrac{\sqrt5}{5}$ |
 | 5 | tryItSet | **eyebrow** Өөрөө туршиж үз · **title** Адилтгалын дасгал<br>**intro** Хэмжээг адилтгалаас, тэмдгийг мөчөөс аваарай.<br>**p1** $\cos\theta = -\frac{3}{5}$, θ нь III мөчид. $\sin\theta$ хэд вэ? — **choices** `$-\dfrac{4}{5}$` · `$\dfrac{4}{5}$` · `$-\dfrac{3}{4}$` — **answerIndex 0** — Хэмжээ $\frac{4}{5}$ адилтгалаас; III мөч тэнхлэгээс доор: сөрөг.<br>**p2** Хялбарчлаарай: $\sin^2 25° + \cos^2 25°$. — **choices** `$1$` · `$25$` · `Тооны машин хэрэгтэй` — **answerIndex 0** — Адилтгал БҮХ өнцөгт хүчинтэй: $25°$, $137°$, юу ч бай. Ямар ч тооны машин 1-ээс сайжруулж чадахгүй.<br>**p3** Хялбарчлаарай: $(1 - \sin\theta)(1 + \sin\theta)$. — **choices** `$\cos^2\theta$` · `$1 - \sin\theta$` · `$\sin^2\theta$` — **answerIndex 0** — Квадратын ялгавар: $1 - \sin^2\theta = \cos^2\theta$. Алгебрын үндэс ба адилтгал нэг ээлжинд хамт ажиллана. |
 | 6 | tip | **eyebrow** Дадал · **title** Адилтгалаар шалга<br>**body** (sin, cos) хос барьж байх бүртээ квадрат дэвшүүлээд нэмэх нь гурван секунд: яг 1 биш бол дээр нь ямар нэг зүйл эвдэрсэн. Энэ ганц шалгалт тэмдгийн алдаа, буруу хуулсан бутархай, урвуулсан харьцааг барина: гаргасан яг утгын хариу бүртээ ажиллуулаарай. |
 | 7 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** sin²θ + cos²θ = 1: бүх өнцөгт үнэн тойргийн тэгшитгэл. · Нэг утга ба мөчөөс бусад нь: хэмжээнд язгуур, тэмдэгт Б · С · Т · К, тангенст харьцаа. · 1 − cos²θ-г sin²θ ГЭЖ хар (эсрэгээр ч): таних нь ур чадвар. |
@@ -386,7 +387,7 @@ $\cos 2\theta$ солигдох боломжтой гурван хэлбэртэ
 
 2. Хязгаарын ба хоосон тохиолдол: $\sin\theta = \pm 1$ эсвэл $0$ тэнхлэг ДЭЭР
    бууна: эргэлт бүрт нэг эсвэл хоёр онцгой шийд; $|k| > 1$ бол шийдгүй (тойрог
-   хүрч чадахгүй). $\tan\theta = k$-ийн хувьд $\pi$ урттай цонх бүрт яг НЭГ шийд
+   хүрч чадахгүй). $\operatorname{tg}\theta = k$-ийн хувьд $\pi$ урттай цонх бүрт яг НЭГ шийд
    (4-р нэгжийн үргэлж өсөх салаа), тиймээс $[0; 2\pi[$-д хоёр.
 
 3. Том тэгшитгэл АЛГЕБРААР суурь тохиолдол болж буурна: $\sin\theta$-г хувьсагч
@@ -462,8 +463,8 @@ sin/cos = k-г Б · С · Т · К-ийн хоёр мөч дэх жишиг ө�
 | 3 | tapQuestion | **eyebrow** Шалга · **title** Бодохоосоо өмнө тоол<br>**prompt** $[0; 2\pi[$ дээр тус бүр хэдэн шийдтэй вэ: (i) $\sin\theta = 0.4$, (ii) $\sin\theta = 1$, (iii) $\sin\theta = 3$?<br>**explanation** Дотоод өндөр: эргэлт бүрт хоёр огтлолцол. Хязгаарын $1$: нэг удаа, $\frac{\pi}{2}$ дээр хүрнэ. $3$ бол тойргоос бүрмөсөн гадна: хоосон. Эхлээд тоолбол боломжгүй тэгшитгэлийг ажил дэмий болохоос өмнө барина.<br>**options** `(i) хоёр, (ii) нэг, (iii) шийдгүй` · `(i) нэг, (ii) хоёр, (iii) нэг` · `Бүгд хоёр` · `(i) хоёр, (ii) хоёр, (iii) хоёр` — **correctIndex 0** |
 | 4 | teach | **eyebrow** Хүнд бүрхүүл · **title** Эхлээд алгебр, дараа нь тойрог<br>**body** Нууцалсан квадрат тэгшитгэл: $\sin\theta$-г үсэг гэж үзээрэй. $2\sin^2\theta - \sin\theta - 1 = 0$ нь $2s^2 - s - 1$ шиг задарна: $(2s+1)(s-1)$: тусад нь ажиллуулах ХОЁР суурь тэгшитгэл өгнө. Төмөр дүрэм: **тригонометрийн үржигдэхүүнд хэзээ ч бүү хуваа**: $\sin\theta\cos\theta = \sin\theta$ нь $\sin\theta(\cos\theta - 1) = 0$ болох ёстой, хуваалтын хөнөөх $\sin\theta = 0$ бүлгийг хадгална. |
 | 5 | workedSet | **eyebrow** Бодсон жишээ · **title** Синусын квадрат тэгшитгэл<br>**intro** Бүрхүүлийг задлаад, суурь тохиолдол бүрийг ажиллуулаарай.<br>**ex1** $[0; 2\pi[$ дээр $2\sin^2\theta - \sin\theta - 1 = 0$-ийг бодоорой. · алхам: $(2\sin\theta + 1)(\sin\theta - 1) = 0$: $\sin\theta = -\frac{1}{2}$ эсвэл $1$. · алхам: $-\frac{1}{2}$: III/IV мөч, жишиг $\frac{\pi}{6}$: $\frac{7\pi}{6}, \frac{11\pi}{6}$. $1$: орой $\frac{\pi}{2}$. Нийт гурав. · **хариу** $\tfrac{\pi}{2}, \tfrac{7\pi}{6}, \tfrac{11\pi}{6}$ |
-| 6 | tryItSet | **eyebrow** Өөрөө туршиж үз · **title** Өнцөг агнах, бүрэн журам<br>**intro** Тусгаарлах, тоолох, мөч, жишиг, шалгах.<br>**p1** $[0; 2\pi[$ дээр $2\sin\theta = \sqrt{3}$-ыг бодоорой. — **choices** `$\dfrac{\pi}{3}$ ба $\dfrac{2\pi}{3}$` · `зөвхөн $\dfrac{\pi}{3}$` · `$\dfrac{\pi}{6}$ ба $\dfrac{5\pi}{6}$` — **answerIndex 0** — $\sin\theta = \frac{\sqrt3}{2}$: I ба II мөч, жишиг $\frac{\pi}{3}$: $\frac{\pi}{3}, \frac{2\pi}{3}$. Ганц хариуны уруу татлага (хоёр дахь хувилбар) уруудах огтлолцлыг мартдаг.<br>**p2** $[0; 2\pi[$ дээр $\tan\theta = -1$-ийг бодоорой. — **choices** `$\dfrac{3\pi}{4}$ ба $\dfrac{7\pi}{4}$` · `зөвхөн $\dfrac{3\pi}{4}$` · `$\dfrac{\pi}{4}$ ба $\dfrac{5\pi}{4}$` — **answerIndex 0** — Сөрөг тангенс: II ба IV мөч, жишиг $\frac{\pi}{4}$: $\frac{3\pi}{4}$ ба $\frac{7\pi}{4}$: π цонх бүрт нэг, тангенсын өвөрмөц зай.<br>**p3** $[0; 2\pi[$ дээр $\cos^2\theta = \cos\theta$ хэдэн шийдтэй вэ? (Задлаарай!) — **choices** `Гурав: $\cos\theta = 0$ хоёрыг, $\cos\theta = 1$ нэгийг өгнө` · `Хоёр` · `Нэг` — **answerIndex 0** — $\cos\theta(\cos\theta - 1) = 0$: $\cos\theta = 0$ нь $\frac{\pi}{2}, \frac{3\pi}{2}$ дээр; $\cos\theta = 1$ нь $0$ дээр. Гурав: $\cos\theta$-д хуваасан бол хоёрыг нь устгах байв. |
-| 7 | funFact | **eyebrow** Сонирхолтой баримт · **title** Нар мандах тэгшитгэл<br>**body** Аль ч өдрийн нар мандах цаг тригонометрийн тэгшитгэлийн шийд: «нар мандах тэгшитгэл» $\cos\omega = -\tan\phi\tan\delta$ таны өргөрөг $\phi$ ба нарны хазайлт $\delta$-г холбоно. Хүснэгттэй ажиллах таны түвшний хүн энэ ганц тэгшитгэлтэй бол дэлхийн хаана ч, аль ч жилийн аль ч өдрийн нар мандахыг тооцоолж чадна. |
+| 6 | tryItSet | **eyebrow** Өөрөө туршиж үз · **title** Өнцөг агнах, бүрэн журам<br>**intro** Тусгаарлах, тоолох, мөч, жишиг, шалгах.<br>**p1** $[0; 2\pi[$ дээр $2\sin\theta = \sqrt{3}$-ыг бодоорой. — **choices** `$\dfrac{\pi}{3}$ ба $\dfrac{2\pi}{3}$` · `зөвхөн $\dfrac{\pi}{3}$` · `$\dfrac{\pi}{6}$ ба $\dfrac{5\pi}{6}$` — **answerIndex 0** — $\sin\theta = \frac{\sqrt3}{2}$: I ба II мөч, жишиг $\frac{\pi}{3}$: $\frac{\pi}{3}, \frac{2\pi}{3}$. Ганц хариуны уруу татлага (хоёр дахь хувилбар) уруудах огтлолцлыг мартдаг.<br>**p2** $[0; 2\pi[$ дээр $\operatorname{tg}\theta = -1$-ийг бодоорой. — **choices** `$\dfrac{3\pi}{4}$ ба $\dfrac{7\pi}{4}$` · `зөвхөн $\dfrac{3\pi}{4}$` · `$\dfrac{\pi}{4}$ ба $\dfrac{5\pi}{4}$` — **answerIndex 0** — Сөрөг тангенс: II ба IV мөч, жишиг $\frac{\pi}{4}$: $\frac{3\pi}{4}$ ба $\frac{7\pi}{4}$: π цонх бүрт нэг, тангенсын өвөрмөц зай.<br>**p3** $[0; 2\pi[$ дээр $\cos^2\theta = \cos\theta$ хэдэн шийдтэй вэ? (Задлаарай!) — **choices** `Гурав: $\cos\theta = 0$ хоёрыг, $\cos\theta = 1$ нэгийг өгнө` · `Хоёр` · `Нэг` — **answerIndex 0** — $\cos\theta(\cos\theta - 1) = 0$: $\cos\theta = 0$ нь $\frac{\pi}{2}, \frac{3\pi}{2}$ дээр; $\cos\theta = 1$ нь $0$ дээр. Гурав: $\cos\theta$-д хуваасан бол хоёрыг нь устгах байв. |
+| 7 | funFact | **eyebrow** Сонирхолтой баримт · **title** Нар мандах тэгшитгэл<br>**body** Аль ч өдрийн нар мандах цаг тригонометрийн тэгшитгэлийн шийд: «нар мандах тэгшитгэл» $\cos\omega = -\operatorname{tg}\phi\operatorname{tg}\delta$ таны өргөрөг $\phi$ ба нарны хазайлт $\delta$-г холбоно. Хүснэгттэй ажиллах таны түвшний хүн энэ ганц тэгшитгэлтэй бол дэлхийн хаана ч, аль ч жилийн аль ч өдрийн нар мандахыг тооцоолж чадна. |
 | 8 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** sin/cos = k: Б · С · Т · К-ийн хоёр мөч дэх жишиг өнцөг, эргэлт бүрт хоёр (хязгаарт: нэг; |k| > 1: шийдгүй). · Квадрат бүрхүүл sin θ-г хувьсагч гэж үзэхэд задарна; үржигдэхүүн бүр суурь тохиолдол. · Задал, тригонометрийн илэрхийлэлд хэзээ ч бүү хуваа: хуваалт бүлэг шийдийг устгана. |
 
 ---
@@ -471,10 +472,10 @@ sin/cos = k-г Б · С · Т · К-ийн хоёр мөч дэх жишиг ө�
 ## PRACTICE
 
 - `trig5-pr-1` — **statement:** $\theta$ нь II мөчид, $\sin\theta = \frac{8}{17}$
-  бол $\cos\theta$ ба $\tan\theta$-г яг олоорой.
+  бол $\cos\theta$ ба $\operatorname{tg}\theta$-г яг олоорой.
   **solution:** $\cos^2\theta = 1 - \frac{64}{289} = \frac{225}{289}$: II мөч,
-  эндээс $\cos\theta = -\frac{15}{17}$; $\tan\theta = -\frac{8}{15}$.
-- `trig5-pr-2` — **statement:** Хялбарчлаарай: $\cos\theta + \sin\theta\tan\theta$.
+  эндээс $\cos\theta = -\frac{15}{17}$; $\operatorname{tg}\theta = -\frac{8}{15}$.
+- `trig5-pr-2` — **statement:** Хялбарчлаарай: $\cos\theta + \sin\theta\operatorname{tg}\theta$.
   **solution:**
   $\cos\theta + \sin\theta \cdot \frac{\sin\theta}{\cos\theta} = \frac{\cos^2\theta + \sin^2\theta}{\cos\theta} = \frac{1}{\cos\theta}$
   (секанс). Адилтгал хүртвэрийг нураана.
@@ -510,28 +511,28 @@ sin/cos = k-г Б · С · Т · К-ийн хоёр мөч дэх жишиг ө�
 
 ## TEST YOURSELF
 
-- `trig5-ty-1` — **statement:** $\theta$ нь II мөчид, $\tan\theta = -\frac{3}{4}$
+- `trig5-ty-1` — **statement:** $\theta$ нь II мөчид, $\operatorname{tg}\theta = -\frac{3}{4}$
   бол $\sin\theta$ ба $\cos\theta$-г яг олж, адилтгалаар шалгаарай.
   **solution:** Жишиг гурвалжин 3-4-5: хэмжээ $\frac{3}{5}, \frac{4}{5}$. II мөч:
   синус эерэг, косинус сөрөг: $\sin\theta = \frac{3}{5}$,
   $\cos\theta = -\frac{4}{5}$. Адилтгал: $\frac{9 + 16}{25} = 1$ ✓; харьцаа:
   $-\frac{3}{4}$ ✓.
-- `trig5-ty-2` — **statement:** $\tan 15°$-ыг яг бодоод (sin 15° ба cos 15°,
+- `trig5-ty-2` — **statement:** $\operatorname{tg} 15°$-ыг яг бодоод (sin 15° ба cos 15°,
   эсвэл тангенсын ялгаврын томьёогоор) хялбарчлаарай.
   **solution:**
-  $\tan 15° = \frac{\sin 15°}{\cos 15°} = \frac{\sqrt6 - \sqrt2}{\sqrt6 + \sqrt2}$;
+  $\operatorname{tg} 15° = \frac{\sin 15°}{\cos 15°} = \frac{\sqrt6 - \sqrt2}{\sqrt6 + \sqrt2}$;
   хосмогоор үржүүлбэл:
   $\frac{(\sqrt6 - \sqrt2)^2}{4} = \frac{8 - 4\sqrt3}{4} = 2 - \sqrt{3} \approx 0.268$.
-- `trig5-ty-3` — **statement:** $\dfrac{\sin 2\theta}{1 + \cos 2\theta} = \tan\theta$
+- `trig5-ty-3` — **statement:** $\dfrac{\sin 2\theta}{1 + \cos 2\theta} = \operatorname{tg}\theta$
   адилтгалыг батлаарай (аль хэлбэрүүдийг ашигласнаа хэлээрэй), $\theta = 45°$
   дээр шалгаарай.
   **solution:** Хүртвэр: $2\sin\theta\cos\theta$. Хуваарь: зөвхөн косинустай
   хэлбэрээр $1 + (2\cos^2\theta - 1) = 2\cos^2\theta$. Харьцаа:
-  $\frac{2\sin\theta\cos\theta}{2\cos^2\theta} = \tan\theta$ ∎. $45°$ дээр: зүүн
-  тал $= \frac{1}{1 + 0} = 1 = \tan 45°$ ✓.
-- `trig5-ty-4` — **statement:** $[0; 2\pi[$ дээр $\sqrt{3}\tan\theta = 1$-ийг
+  $\frac{2\sin\theta\cos\theta}{2\cos^2\theta} = \operatorname{tg}\theta$ ∎. $45°$ дээр: зүүн
+  тал $= \frac{1}{1 + 0} = 1 = \operatorname{tg} 45°$ ✓.
+- `trig5-ty-4` — **statement:** $[0; 2\pi[$ дээр $\sqrt{3}\operatorname{tg}\theta = 1$-ийг
   бодоод, дараа нь ЕРӨНХИЙ шийдийг өгөөрэй.
-  **solution:** $\tan\theta = \frac{\sqrt3}{3}$: эерэг, эндээс I, III мөч;
+  **solution:** $\operatorname{tg}\theta = \frac{\sqrt3}{3}$: эерэг, эндээс I, III мөч;
   жишиг $\frac{\pi}{6}$: $\theta = \frac{\pi}{6}, \frac{7\pi}{6}$. Ерөнхий
   шийд (тангенс $\pi$ тутамд давтагдана): $\theta = \frac{\pi}{6} + \pi k$,
   $k \in \mathbb{Z}$.
