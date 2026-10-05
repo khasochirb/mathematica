@@ -866,7 +866,8 @@ unit could reasonably take it for a histogram.
 **Draft: «цэгэн диаграмм»**, 12 uses. That leaves grade 8 disagreeing with
 upper-secondary, which is the grade 6 dot-plot problem (6ac) from the other
 side: three shipped or drafted meanings for two phrases. One ruling on 6ac
-settles all of it.
+settles all of it. **Ruling applied, 5 Oct 2026 (6ac):** the scatter plot is
+now «хамаарлын график» throughout the content.
 
 ### 2. Five terms taken from grade 8 or built
 
@@ -875,7 +876,8 @@ settles all of it.
 - **outlier → «хэт утга»**, as in drafts 48–49. Grade 8 says «гаж цэг», so the
   shipped mirrors now use three words for one idea (grade 6 «онцгой утга»,
   grade 7 «хэт утга», grade 8 «гаж цэг»). Draft 48's Notes 4 recorded the
-  first two; this is the third.
+  first two; this is the third. **Ruling applied, 5 Oct 2026:** «онцгой утга»
+  throughout, and the mnemonic follows as «ХТТО».
 - **explanatory / response variable → «тайлбарлагч хувьсагч / хариу
   хувьсагч»**. Ungrounded. The dictionary's «үл хамааран / хамааран
   хувьсагч» is *independent / dependent*, which the English deliberately does
