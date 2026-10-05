@@ -41,7 +41,7 @@ Shared vocabulary lives in `memory/mn-drafts/GEOMETRY-TERMS.md`.
 | English | Mongolian | grounding |
 |---|---|---|
 | surface area | **гадаргуугийн талбай** | **shipped 32** · skill glossary — **but see Notes 1** |
-| volume | **эзэлхүүн** | ministry 1 · skill glossary — **but see Notes 2** |
+| volume | **эзэлхүүн** | ministry 1 · skill glossary · **Khas's ruling, 5 Oct 2026** — Notes 2 |
 | prism | **призм** | ministry 1 · **shipped 16** · corpus 33 |
 | cylinder | **цилиндр** | ministry 1 · corpus 10 · dictionary |
 | pyramid | **пирамид** | ministry 1 · corpus 75 |
@@ -735,7 +735,7 @@ more, because here **the corpus points away from what we have shipped**:
 broken by the corpus, and the corpus says «эзлэхүүн» by six to one.** The ЭШ
 bank, which is the exam our students sit, writes «эзлэхүүн» 79 times against 5.
 
-**The drafts keep «эзэлхүүн» anyway**, because the `mn-translation` skill
+**Khas ruled «эзэлхүүн» on 5 Oct 2026; this draft keeps it.** The drafts kept «эзэлхүүн» before the ruling because the `mn-translation` skill
 glossary lists it and because it is what shipped. But I want to be plain:
 **by the rule I proposed in 2e, this one should probably flip**, and I have
 not flipped it because it would change a live shipped term on my own
