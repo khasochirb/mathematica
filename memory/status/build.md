@@ -41,12 +41,21 @@ touching any of those; it is not summarised here.
 - **Drafted** 72–75 (vector/matrix unit 1) and 76 (`9/inequalities-and-absolute-value`), the first draft in the non-ЭШ queue.
 - **Fixed** «скаляр үржвэр» to «тоон үржвэр» where it meant scalar multiple (8 places).
 - **Recorded everything** in `memory/mn-review-pile.md` §0r.
+- **Round 2 answered and applied to all 76 drafts:**
+  - English term once, at its first use in each topic (5a);
+  - «битүү цэг / онгорхой цэг» for markers;
+  - the БАГ/ИХэр and ХАТҮ memory aids dropped;
+  - «хараат бус» for probability independence;
+  - perm p4 «НАРАН»;
+  - «дундаж шугам» and «огтлол» keep both meanings.
+- **Round-1 leftovers fixed:** a case-insensitive sweep found capitalised forms the first pass had missed (midline ×11, tolerance ×5, «УГСРАА», `kI`, one fact title, one iff), plus four typos.
+- **Drafted 77**, `9/inequalities-in-two-variables`, with the rulings applied from the start.
 
-**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `57a4973`). Nothing deployed, and nothing touches production.
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `b0f3c5b`). Nothing deployed, and nothing touches production.
 
-**Blocked on:**
-- **Round 2 of the decision page, from Khas:** SD n or n−1, open/closed markers, the SCSO mnemonic, independence wording, English-gloss scope, the seven permutation words, and two term collisions the rulings created.
-- **5a in particular:** Khas said yes to an English gloss on a term's first use, but nothing is applied until round 2 says where.
+**Blocked on:** nothing. Next in the queue: grade 9 `data-distributions`, `linear-models-and-variation`, then grades 10–12.
+
+- **6ab, for Build (ship mode):** Khas chose to teach SD dividing by $n$ first, with $n - 1$ mentioned once. That changes the English `prob-stats/describing-data` lesson 4 answers and `check[]`. The plan is in review pile §0r, and draft 48 follows once the English changes.
 
 **Others should know (Build, ship mode, later):**
 - **6bd (new).** FactCard renders key-fact formulas as raw LaTeX: 417 English cards in grades 2–4, 6 and 9–12, plus 4 in the live `6-mn`.
