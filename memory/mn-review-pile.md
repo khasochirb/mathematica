@@ -103,7 +103,21 @@ exam outranks А/492.*
 
 **Skipped by Khas, still open:** 4d, t03 and t05.
 
-**Waiting on round 2 (published on the same page, not yet answered):**
+**Round 2, answered 5 Oct 2026:**
+- **5a-2 → A.** The English term is shown once, for every new term, the first time it appears in each topic. A term counts as new if it is a row in that draft's Terminology table. Transliterations (вектор, матриц…) are skipped.
+- **6be-2 → C**, with Khas's own words: «битүү цэг» for the filled marker and «онгорхой цэг» for the hollow one. This applies on number lines and graphs alike. «задгай / битүү завсар» (open/closed interval) is unchanged.
+- **mnem-2 → B.** The БАГ/ИХэр memory aid is dropped, and the rule is stated plainly.
+- **6y-2 → B.** Probability independence is «хараат бус» everywhere. «үл хамааран» (regardless) is left alone.
+- **t48-2 and t59-2 → A.** «дундаж шугам» and «огтлол» each keep both meanings.
+- **perm.** Khas typed «Банана» for p4. That word gives 6!/(3!·2!) = 60, not the English's 30. Khas then chose «НАРАН», which gives 5!/(2!·2!) = 30. The other six words stay.
+- **6ab-2 → C.** Teach $n$ first and mention $n - 1$ once, for samples. **This is not applied to the Mongolian yet**, because it is an English-source change: the answers and `check[]` move. The plan for Build:
+  - In `prob-stats/describing-data` lesson 4 (`standard-deviation`), lead with $\sigma = \sqrt{\sum (x_i - \bar{x})^2 / n}$.
+  - Add one line naming $n - 1$ for samples.
+  - Recompute every worked answer, tryIt, practice and test value in that lesson ($\sqrt{2/3} \to \sqrt{1/2}$ and so on), and update `verify[]`.
+  - Run `verify:genmath`.
+  - Then re-run draft 48's lesson 4 against the new English.
+
+**Round 2 as it was asked** (kept for the record):
 - 6ab: SD by $n$ or $n-1$, explained.
 - 6be: open/closed markers, explained.
 - mnem: the SCSO mnemonic, explained.
@@ -112,8 +126,7 @@ exam outranks А/492.*
 - perm: Khas said *change some*; round 2 lists the seven words one by one.
 - t48 and t59: both rulings created a collision, described next.
 
-5a is the large one: until its scope is set, no English glosses have been
-added.
+5a is now ruled (above) and is being applied to every draft.
 
 **Things the pass surfaced, for Khas to glance at:**
 1. **t04 and slope-intercept form.** «шулуун өнцгийн коэффициенттэй тэгшитгэл»
