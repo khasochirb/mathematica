@@ -14,6 +14,49 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-10-05 — mode: content
+
+**Did:**
+- **Built the decision page.** Khas asked for a clickable page instead of a document, so I published one with a database, which only Khas can see: claude.ai/artifact/Y4xkjVZeUheuTWESszomNg. Round 1 is answered: 107 choices, read back from the page.
+- **Applied every round-1 ruling to all 76 drafts:**
+  - tg/ctg/arctg;
+  - $C_n^r$ / $A_n^r$;
+  - identity matrix $E$;
+  - «тэгш хэм» for reflection;
+  - «дараалсан хувиргалт»;
+  - «босоо өнцөг»;
+  - «онцгой утга»;
+  - «эзэлхүүн»;
+  - grade-6 plot names;
+  - extraneous solutions described in words, with no coined name;
+  - «гишүүнчлэн үржүүлэх чанар»;
+  - «нумд тулсан»;
+  - the «гарцаагүй бөгөөд хүрэлцээтэй нөхцөл» construction for *if and only if*;
+  - «пропорционал»;
+  - FOIL, PEMDAS and CPCTC kept with a gloss;
+  - money keeps its decimal point;
+  - 22 of Khas's own replacement words.
+- **Gate.** All 76 drafts pass `mn_draft_check.py`.
+- **Checker change.** `mn_draft_check.py` now exempts `\$` prices from the decimal-comma check, because Khas undid 2b.
+- **Drafted** 72–75 (vector/matrix unit 1) and 76 (`9/inequalities-and-absolute-value`), the first draft in the non-ЭШ queue.
+- **Fixed** «скаляр үржвэр» to «тоон үржвэр» where it meant scalar multiple (8 places).
+- **Recorded everything** in `memory/mn-review-pile.md` §0r.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `57a4973`). Nothing deployed, and nothing touches production.
+
+**Blocked on:**
+- **Round 2 of the decision page, from Khas:** SD n or n−1, open/closed markers, the SCSO mnemonic, independence wording, English-gloss scope, the seven permutation words, and two term collisions the rulings created.
+- **5a in particular:** Khas said yes to an English gloss on a term's first use, but nothing is applied until round 2 says where.
+
+**Others should know (Build, ship mode, later):**
+- **6bd (new).** FactCard renders key-fact formulas as raw LaTeX: 417 English cards in grades 2–4, 6 and 9–12, plus 4 in the live `6-mn`.
+- **6bc (new).** Widget prose is never walked by the i18n pipeline, so English shows inside the live `6-mn` and `7-mn` `compositeArea`.
+- **6ba (new).** Cayley–Hamilton appears in 8 exam-bank questions and is taught nowhere.
+- **Production mirrors still carry spellings that are now ruled against:** «пропорциональ» ×97, both volume spellings, «хэт утга» and «цэгэн график». Fix these with an `mn_terms.py` sweep, not by hand.
+- **The 6q merge and the 6h English clean-up** are ship work, both approved by Khas.
+
+---
+
 ## 2026-09-23 — mode: content
 
 **Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
