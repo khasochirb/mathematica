@@ -799,14 +799,14 @@ introduces it.
    fourth Latin-root word in the same reason column starts to read as a
    different language.
 
-9. **«гишүүнчлэн үржүүлэх чанар» for the Distributive Property — review pile 4a is no
+9. **«хаалт нээх чанар» for the Distributive Property — review pile 4a is no
    longer avoidable.** The algebra drafts route around naming the law: they
    teach the move («хаалт нээх», «гишүүн бүрээр үржүүлэх») and never give it a
    name, so 4a could stay open at no cost. **A proof cannot do that.** Lesson 5
    cites the Distributive Property as a reason on a line of a two-column proof,
    and a reason must have a name.
 
-   I used **«гишүүнчлэн үржүүлэх чанар»**, which is consistent with what the algebra
+   I used **«хаалт нээх чанар»**, which is consistent with what the algebra
    drafts already teach. The dictionary's «гишүүнчлэн үржүүлэх чанар» (p. 190)
    is the alternative, and the shipped corpus's «тархах хууль» (15 uses) is the
    third. **Your 4a ruling now has a concrete cost attached**: it is four
