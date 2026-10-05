@@ -26,6 +26,8 @@ everywhere in the ЭШ bank, so almost nothing here rests on my judgement.
 | root (of an equation) | **шийд** | glossary, and the bank's own word |
 | opens up / down | **дээшээ / доошоо нээлттэй** | see the note below |
 
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 9 terms.
+
 **One phrase I could not ground: «дээшээ / доошоо нээлттэй»** (opens up /
 down). The corpus describes direction by where the vertex is and whether $a$
 is positive, not with a verb for "opening". A natural Mongolian phrasing may
@@ -59,8 +61,8 @@ $y = ax^2$-ийн график, өөрөөр хэлбэл **парабол** ю�
 
 **objective**
 
-Хүснэгтээс $y = ax^2$-ийн графикийг байгуулж, оройг болон тэгш хэмийн
-тэнхлэгийг нэрлэж, $a$ муруйг хэрхэн эргүүлэх, өргөсгөх, нарийсгахыг урьдчилан
+Хүснэгтээс $y = ax^2$-ийн графикийг байгуулж, оройг (vertex) болон тэгш хэмийн
+тэнхлэгийг (axis of symmetry) нэрлэж, $a$ муруйг хэрхэн эргүүлэх, өргөсгөх, нарийсгахыг урьдчилан
 хэлэх.
 
 **concept**
@@ -76,8 +78,8 @@ $y = ax^2$-ийн график, өөрөөр хэлбэл **парабол** ю�
    тэнхлэг нь $x = 0$.
 
 3. $a$-ийн тэмдэг чиглэлийг сонгоно: $a > 0$ бол парабол **дээшээ** нээлттэй
-   (орой нь хамгийн бага утга), $a < 0$ бол **доошоо** нээлттэй (орой нь
-   хамгийн их утга). $y = -x^2$ бол $y = x^2$-ийг эргүүлсэн хэлбэр.
+   (opens up; орой нь хамгийн бага утга, minimum value), $a < 0$ бол **доошоо** нээлттэй (opens down; орой нь
+   хамгийн их утга, maximum value). $y = -x^2$ бол $y = x^2$-ийг эргүүлсэн хэлбэр.
 
 4. $a$-ийн хэмжээ өргөнийг тогтооно: $|a| > 1$ бол **нарийн** ($y$ хурдан
    өснө: $y = 3x^2$ өндөр бүрийг гурав дахин ихэсгэнэ), $|a| < 1$ бол
@@ -176,7 +178,7 @@ $y = a(x-h)^2 + k$-ээс оройг $(h, k)$ болон тэнхлэгийг $x
 **keyIdea**
 
 $y = a(x-h)^2 + k$: орой $(h, k)$, тэнхлэг $x = h$. Хаалтыг тэгтэй тэнцүүлсэн
-шийд нь $h$ бөгөөд харагдахтайгаа эсрэг тэмдэгтэй.
+шийд (root) нь $h$ бөгөөд харагдахтайгаа эсрэг тэмдэгтэй.
 
 **facts**
 
@@ -245,7 +247,7 @@ $y = ax^2 + bx + c$-ээс ординат тэнхлэгтэй огтлолцо�
    Муруй ординат тэнхлэгийг үргэлж $(0, c)$ цэгт огтолно.
 
 2. **Тэгш хэмийн тэнхлэг** нь $x = -\tfrac{b}{2a}$. $y = x^2 - 4x + 3$-ийн
-   хувьд: $x = \tfrac{4}{2} = 2$. (Энэ бол квадрат тэгшитгэлийн томьёоны
+   хувьд: $x = \tfrac{4}{2} = 2$. (Энэ бол квадрат тэгшитгэлийн томьёоны (quadratic formula)
    $\tfrac{-b}{2a}$ хэсэг нь хоёр шийдийн дундаж, өөрөөр хэлбэл толь яг хаана
    зогсох цэг.)
 
@@ -326,7 +328,7 @@ $x = -b/2a$; оройг тэр $x$-ийг буцаан орлуулж олно.
 
 **objective**
 
-Абсцисс тэнхлэгтэй огтлолцох цэгийг $ax^2+bx+c=0$-ийн шийдтэй холбож,
+Абсцисс тэнхлэгтэй огтлолцох цэгийг (x-intercept) $ax^2+bx+c=0$-ийн шийдтэй холбож,
 үржигдэхүүнд задалсан хэлбэрээс шийдийг уншиж, дискриминантаар огтлолцлын тоог
 урьдчилан хэлэх.
 
@@ -688,3 +690,5 @@ $1$ ба $3$ дээр огтолж байна. Энэ бол санамсарг�
 5. Lesson 5's «Квадрат бол тэгш өнцөгтүүдийн аварга» renders the English "The
    square is the champion rectangle". It is a joke, and jokes are the first
    thing to die in translation. Kill it if it does not land.
+
+6. **Round 2 (5 Oct 2026), 5a:** English shown once at first use, 9 terms: vertex, axis of symmetry, opens up, opens down, minimum value, maximum value (lesson 1 concept 3, where the English's own parentheses hold them, so each gloss shares that bracket), root, quadratic formula (the only form in which «квадрат тэгшитгэл» occurs), x-intercept. «парабол», «квадрат функц», «дискриминант» skipped as transliterations.

@@ -28,6 +28,8 @@ where an interval appears (none does in this topic).
 | balance | **тэнцвэр** | corpus 45 |
 | distributive property | **гишүүнчлэн үржүүлэх чанар** | Khas's ruling, 5 Oct 2026 (4a) |
 
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 10 terms.
+
 **Two phrases I could not ground. Both are now settled — 15 Sep 2026.**
 
 - ~~«урвуу үйлдэл»~~ **CONFIRMED by the dictionary.** `inverse` lists
@@ -54,13 +56,13 @@ where an interval appears (none does in this topic).
 
 **concreteComparison**
 
-Тэгшитгэл бол тэнцвэртэй жинлүүр: $x + 3 = 7$ гэдэг нь хоёр таваг ижил жинтэй
+Тэгшитгэл (equation) бол тэнцвэртэй (balanced) жинлүүр: $x + 3 = 7$ гэдэг нь хоёр таваг ижил жинтэй
 гэсэн үг. ХОЁУЛАНГААС нь 3-ыг авбал жинлүүр тэнцвэрээ хадгалж, нөгөө талд нь
 4 үлдэж, нууцлаг хайрцаг $x$ ганцаараа үлдэнэ.
 
 **objective**
 
-Урвуу үйлдлээр нэг ба хоёр алхамт шугаман тэгшитгэл бодож, шийдээ орлуулан
+Урвуу үйлдлээр нэг ба хоёр алхамт шугаман тэгшитгэл (linear equation) бодож, шийдээ (solution) орлуулан (substitute)
 шалгах.
 
 **concept**
@@ -82,7 +84,7 @@ where an interval appears (none does in this topic).
 **keyIdea**
 
 Тэгшитгэл бол тэнцвэртэй жинлүүр: хоёр талд нь үйлдлүүдийг эсрэг дарааллаар
-задалж, хувьсагч ганцаараа үлдэх хүртэл үргэлжлүүлээд, дараа нь орлуулж шалгаарай.
+задалж, хувьсагч (variable) ганцаараа үлдэх хүртэл үргэлжлүүлээд, дараа нь орлуулж шалгаарай.
 
 **facts**
 
@@ -152,7 +154,7 @@ where an interval appears (none does in this topic).
 
 **concept**
 
-1. $x$ хоёр талд байвал ижил тэнцвэрийн үйлдлүүдээр **хувьсагчтай гишүүдийг
+1. $x$ хоёр талд байвал ижил тэнцвэрийн үйлдлүүдээр **хувьсагчтай гишүүдийг (variable terms)
    нэг талд, тогтмол гишүүдийг нөгөө талд цуглуулаарай**. $2g + 30 = 5g + 18$:
    хоёр талаас нь $2g$-г хасаарай ($30 = 3g + 18$), 18-ыг хасаарай ($12 = 3g$),
    хуваагаарай ($g = 4$).
@@ -163,7 +165,7 @@ where an interval appears (none does in this topic).
 
 3. Тэгшитгэлд хаалт байвал **эхлээд хаалтыг нээгээд, тал бүрийг хялбарчилж,
    ДАРАА нь цуглуулаарай.** Бүтэн дараалал: хаалт нээх → тал бүр дээрх ижил
-   гишүүдийг нэгтгэх → хувьсагчийг нэг тал руу → тогтмолуудыг нөгөө тал руу →
+   гишүүдийг (like terms) нэгтгэх → хувьсагчийг нэг тал руу → тогтмолуудыг нөгөө тал руу →
    хуваах.
 
 **keyIdea**
@@ -317,7 +319,7 @@ where an interval appears (none does in this topic).
 
 **concreteComparison**
 
-$C = \dfrac{5}{9}(F - 32)$ томьёо Фаренгейтийг Цельс рүү хөрвүүлдэг. Үүнийг $F$
+$C = \dfrac{5}{9}(F - 32)$ томьёо (formula) Фаренгейтийг Цельс рүү хөрвүүлдэг. Үүнийг $F$
 -ЭЭР бодох нь урвуу хөрвүүлэгчийг нэг удаа байгуулж өгнө, тиймээс нөгөө зүг рүү
 хөрвүүлэх болгонд тэгшитгэлээ дахин бодох шаардлагагүй болно.
 
@@ -469,3 +471,5 @@ $C = \dfrac{5}{9}(F - 32)$ томьёо Фаренгейтийг Цельс рү
 4. Lesson 2's «бүх $x$-ээ нэг хашаанд туусан» renders the English "herding all
    the x's to one pen". It is a joke about livestock, which ought to travel
    well here — but it is a joke, so kill it if it does not land.
+
+5. Round 2 (5 Oct 2026, 5a): English shown once at first use, 10 terms: equation, balanced (the «balance» row, as the English words it there), linear equation, solution, substitute, variable, variable terms (one gloss, covering the «term» row too), like terms, formula. Skipped: коэффициент (transliteration); «гишүүнчлэн үржүүлэх чанар» (only in buildsOn, never in the body).

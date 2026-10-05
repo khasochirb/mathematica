@@ -54,6 +54,8 @@ against sympy, so this is a prose leak and not a wrong answer.
 | linear programming | **шугаман програмчлал** | **ungrounded** — Notes 3 |
 | constraint | **хязгаарлалт** | exam 1 · shipped mirror 1 |
 
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 16 terms.
+
 ---
 
 ## Topic-level strings
@@ -74,11 +76,11 @@ against sympy, so this is a prose leak and not a wrong answer.
 
 Хоёр утасны багц: нэг нь ГБ тутамдаа хямд боловч суурь хураамж нь өндөр, нөгөө
 нь эсрэгээрээ. «Хэдэн ГБ хэрэглэхэд үнэ нь тэнцэх вэ?» гэсэн тэнцвэрийн асуулт
-бол хоёр тэгшитгэлийн систем, мөн хариу нь ганц огтлолцох цэг юм.
+бол хоёр тэгшитгэлийн систем (system of equations), мөн хариу нь ганц огтлолцох цэг (crossing point) юм.
 
 **objective**
 
-2×2 шугаман системийг орлуулах ба устгах аргаар чөлөөтэй бодох, онцгой
+2×2 шугаман системийг орлуулах (substitution) ба устгах аргаар (elimination) чөлөөтэй бодох, онцгой
 тохиолдлыг ангилах, мөн хоёр нөхцөлтэй түүхийг систем болгон хөрвүүлэх.
 
 **concept**
@@ -94,8 +96,8 @@ against sympy, so this is a prose leak and not a wrong answer.
    ХОЁУЛАНД нь шалгаж дуусгаарай.
 
 3. Онцгой төгсгөлүүд: хувьсагч бүгд арилаад ХУДАЛ өгүүлбэр үлдвэл ($0 = 7$)
-   параллель шулуунууд, шийдгүй; ҮНЭН өгүүлбэр үлдвэл ($0 = 0$) нэг шулуун хоёр
-   удаа, төгсгөлгүй олон шийд. Алгебр нь геометрийг оношилно.
+   параллель шулуунууд, шийдгүй (no solution); ҮНЭН өгүүлбэр үлдвэл ($0 = 0$) нэг шулуун хоёр
+   удаа, төгсгөлгүй олон шийд (infinitely many solutions). Алгебр нь геометрийг оношилно.
 
 **keyIdea**
 
@@ -186,7 +188,7 @@ against sympy, so this is a prose leak and not a wrong answer.
    $2x + 3y = 8$. (2)+(3): $3x + y = 5$. Жижиг системийг бодъё: $x = 1, y = 2$;
    дараа нь $z = 6 - 1 - 2 = 3$. БҮХ гурван эх тэгшитгэлд шалгаарай.
 
-3. Геометр: тэгшитгэл бүр нь огторгуй дахь ХАВТГАЙ. Гурван хавтгай ихэвчлэн
+3. Геометр: тэгшитгэл бүр нь огторгуй дахь ХАВТГАЙ (plane). Гурван хавтгай ихэвчлэн
    нэг цэгт уулзана; доройтсон байрлал (параллель хавтгай, эсвэл нэг шулуунаар
    уулзах хавтгайнууд) нь өмнөхтэй ижил $0 = $ худал / $0 = 0$ оношийг өгнө.
 
@@ -285,7 +287,7 @@ against sympy, so this is a prose leak and not a wrong answer.
    $(3, 4)$ ба $(-4, -3)$.
 
 3. Орлуулсан тэгшитгэл нь квадрат тул түүний дискриминант огтлолцлыг ТООЛНО:
-   $D > 0$ бол хоёр, $D = 0$ бол нэг (шүргэгч, шулуун зурж өнгөрнө),
+   $D > 0$ бол хоёр, $D = 0$ бол нэг (шүргэгч (tangent), шулуун зурж өнгөрнө),
    $D < 0$ бол огт үгүй (цэвэр алдалт). Геометр ба 2-р бүлэг нэг л судлагдахуун.
 
 **keyIdea**
@@ -365,12 +367,12 @@ against sympy, so this is a prose leak and not a wrong answer.
 
 **objective**
 
-Шугаман тэнцэтгэл бишийн системийг боломжит муж болгон графикт буулгах, оройн
-цэгийг олох, мөн мужийн дээр шугаман зорилгын функцийг оновчлох.
+Шугаман тэнцэтгэл бишийн системийг (system of inequalities) боломжит муж (feasible region) болгон графикт буулгах, оройн
+цэгийг (corner point) олох, мөн мужийн дээр шугаман зорилгын функцийг (objective function) оновчлох.
 
 **concept**
 
-1. Нэг тэнцэтгэл биш нь хагас хавтгай: зааглах шулуун ($=$) дээр нэг тал.
+1. Нэг тэнцэтгэл биш нь хагас хавтгай (half-plane): зааглах шулуун (boundary line) ($=$) дээр нэг тал.
    Аль талыг сонгохын тулд нэг цэгийг (боломжтой бол эх цэгийг) шалгаарай;
    хатуу тэмдэгт бол зааглах шулууныг тасархайгаар, $\le/\ge$ бол бүтнээр
    зураарай. СИСТЕМИЙН шийд нь бүх хагас хавтгай давхцах газар буюу **боломжит
@@ -378,13 +380,13 @@ against sympy, so this is a prose leak and not a wrong answer.
 
 2. Мужийн **оройн цэгүүд** нь зааглах шулуунуудын хосын огтлолцол, өөрөөр
    хэлбэл 1-р хичээлийн жижиг 2×2 системүүд. $x \ge 0, y \ge 0$ мэт
-   хязгаарлалт (сөрөг тооны бялуу жигнэж болохгүй) мужийг эхний мужид
+   хязгаарлалт (constraint) (сөрөг тооны бялуу жигнэж болохгүй) мужийг эхний мужид
    хашина.
 
 3. **Оройн зарчим**: $P = 30x + 20y$ мэт шугаман зорилгын функц боломжит
    мужийн ОРОЙ ДЭЭР хамгийн их ба бага утгадаа хүрнэ. Тэгэхээр оновчлол гэдэг
    нь: орой олох, орой бүрт $P$-г тооцох, ялагчийг сонгох. Энэ бол **шугаман
-   програмчлал** буюу үйлдвэр, нислэгийн хуваарь ажиллуулдаг алгоритм юм.
+   програмчлал** (linear programming) буюу үйлдвэр, нислэгийн хуваарь ажиллуулдаг алгоритм юм.
 
 **keyIdea**
 
@@ -683,6 +685,10 @@ from both directions in two days: last draft I wrongly suspected the 412 was
 inflated by coordinate pairs (it was not), and this draft I wrongly wrote
 "zero" before checking (the shipping prose is zero; the file is not).
 **The number to act on is 412 of shipping Mongolian across 34 drafts.**
+
+### 8. Round 2 (5 Oct 2026)
+
+5a: English shown once at first use for 16 terms (system of equations, crossing point, substitution, elimination, no solution, infinitely many solutions, plane, tangent, system of inequalities, feasible region, corner point, objective function, half-plane, boundary line, constraint, linear programming), in the English source's own wording at that spot. Skipped: three-variable system and nonlinear (only in TITLE and lesson headings), discriminant (transliteration). No 6be or 6y hits.
 
 ---
 

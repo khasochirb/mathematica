@@ -27,6 +27,8 @@ in the ЭШ bank, most of them heavily:
 | модул | 6 | 4 |
 | шийдийн олонлог | 4 | 0 |
 
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 6 terms.
+
 The absolute-value words match your ruling exactly: «абсолют утга» for the
 value, «модул» for the bars. Two notes on that ruling from the corpus, neither
 contradicting it:
@@ -105,8 +107,8 @@ checklist rather than as three separate observations.
 
 **TITLE:** $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$: үүрлэсэн гэр бүл
 
-**COMPARISON:** Матрёшка хүүхэлдэй: натурал тоонууд бүхэл тоонуудын дотор,
-бүхэл тоонууд рационал тоонуудын дотор, рационал тоонууд бодит тоонуудын дотор
+**COMPARISON:** Матрёшка хүүхэлдэй: натурал тоонууд бүхэл тоонуудын (integers) дотор,
+бүхэл тоонууд рационал тоонуудын дотор, рационал тоонууд бодит тоонуудын (reals) дотор
 багтана. Иррационал тоонууд бол сүүлийн хоёр хүүхэлдэйн хоорондох зай.
 
 **OBJECTIVE:** Тоог $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$
@@ -229,7 +231,7 @@ reversed form, since recognising it is the skill the paper actually demands.
 буудал ДЭЭР зогсоно, гадагш харвал зогсолгүй өнгөрнө гэсэн үг. Хооронд нь байгаа
 зам хоёр тохиолдолд ч үйлчилнэ.
 
-**OBJECTIVE:** Тэнцэтгэл биш, тооны шулуун дээрх зураг, завсрын бичиглэл гурвын
+**OBJECTIVE:** Тэнцэтгэл биш (inequality), тооны шулуун дээрх зураг, завсрын (interval) бичиглэл гурвын
 хооронд чөлөөтэй хөрвүүлэх; ЭШ-д тохиолддог хоёр өөр хаалтны бичиглэлийг
 хоёуланг нь уншиж чадах.
 
@@ -242,7 +244,7 @@ reversed form, since recognising it is the skill the paper actually demands.
 $[a, b]$ хоёр төгсгөлийг хоёуланг нь оруулна ($a \le x \le b$); $]a, b[$
 хоёуланг нь хасна ($a < x < b$); $[a, b[$ ба $]a, b]$ холимог. Дүрэм нь ганц:
 **хаалт дотогшоо харвал төгсгөл орно, гадагш харвал орохгүй.** Тооны шулуун
-дээр дүүрэн цэг ба хоосон цэг.
+дээр битүү цэг ба онгорхой цэг.
 
 **Хоёр өөр бичиглэл бий, хоёуланг нь таних хэрэгтэй.** Бид ЭШ-ийн хувилбарууд
 шиг **эргүүлсэн дөрвөлжин хаалт** хэрэглэнэ. Гадаадын сурах бичиг, мөн SAT, IB-д
@@ -346,7 +348,7 @@ answers it. The two-piece union stays where the English put it, because the
 
 **OBJECTIVE:** Тооны шулуун дээр завсруудыг огтлолцуулж, нэгтгэх; нэгдэл хоёр
 тасархай хэсэг хэвээр үлдэх, огтлолцол хоосон болох тохиолдлыг таних; тэнцэтгэл
-бишийн системийн шийдийн олонлогийг бичих.
+бишийн системийн шийдийн олонлогийг (solution set) бичих.
 
 **KEY IDEA:** Огтлолцол: $[\max]a,c[, \min]b,d[]$, хоосон байж болно. Нэгдэл:
 хүрэлцэж байвал нийлнэ, үгүй бол $\cup$-тэй хоёр хэсэг.
@@ -471,7 +473,7 @@ somewhere else.
 
 **TEACHING:**
 
-$|x - a|$ гэдэг нь $x$-ээс $a$ хүртэлх **зай**. Босоо зураасыг нь **модул** гэж,
+$|x - a|$ гэдэг нь $x$-ээс $a$ хүртэлх **зай** (distance). Босоо зураасыг нь **модул** гэж,
 гарч ирэх утгыг нь **абсолют утга** гэж нэрлэнэ (ЭШ-ийн зарим хувилбар «абсолют
 хэмжээ» гэж бичсэн байдаг, ижил зүйл).
 
@@ -677,3 +679,4 @@ $a \le 4$ бол огтлолцлыг олоорой.
    It is Russian rather than Mongolian, but it is universally recognised here
    and I could not find a Mongolian nesting object that reads as clearly. Worth
    one look from you.
+6. **Round 2 (5 Oct 2026).** 5a: this draft has no «Terminology added» table, so the term table at the top stands in for it. English shown once at first use for 6 terms (integers, reals, inequality, interval, solution set, distance). «зай» is glossed in lesson 4, its first use in the distance sense; lesson 1's «хоорондох зай» is the gap between the dolls. Skipped: рационал, натурал, иррационал, абсолют (transliterations) and модул (the English source has no word for the bars; lesson 4 names them in Mongolian). 6be: lesson 2's «дүүрэн цэг ба хоосон цэг» is now «битүү цэг ба онгорхой цэг».

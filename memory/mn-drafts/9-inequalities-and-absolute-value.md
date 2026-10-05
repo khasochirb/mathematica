@@ -687,3 +687,9 @@ prices \$0.80, \$0.50, \$0.75 and \$0.60 become «\$0,80» and so on (2b), and
 «25 ± 0.5 mm» becomes «25 ± 0,5 мм». 2d rises to **1,631** across seventy-six
 drafts. **Khas's ruling, 5 Oct 2026 (R15, 2b undone): the prose prices now
 keep the decimal point again; «25 ± 0,5 мм» keeps its comma.**
+
+### 6. Round 2 (5 Oct 2026)
+
+- Round 2 (5 Oct 2026, 5a): English shown once at first use, 21 terms: multi-step inequality, flip rule, flip the symbol, ray, open circle, closed circle, test point, compound inequality, sandwich inequality (the English's own word for the «давхар» row), overlap, union, empty set, absolute-value equation, absolute-value inequality, band, tails, tolerance, break-even, feasibility, fixed costs, unit cost.
+- Round 2 (5 Oct 2026, 6be): the number-line markers are now «онгорхой цэг / битүү цэг» (lesson 1 concept 3, lesson 6 funFact); Terminology row updated. Lesson 2's «Хэрчим: −2 дээр задгай, 3 дээр битүү» and lesson 6's «хашаа задгай уу, битүү юү» stay: they describe the segment and the fence (interval sense), not the drawn marker.
+- Round 2 (5 Oct 2026, mnem-2): lesson 4 concept 3 is now a plain statement of the rule; the БАГ / ИХэр hook is gone (Notes 1).

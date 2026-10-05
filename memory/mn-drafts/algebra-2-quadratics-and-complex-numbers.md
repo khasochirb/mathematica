@@ -43,6 +43,8 @@ in this draft.
 | sign region | **тэмдгийн муж** | compositional; «муж» exam 83 |
 | empty solution set | **хоосон олонлог** | settled in `esh/sets-and-operations` |
 
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 7 terms.
+
 > **Carried in unchanged from `11/complex-numbers`:** комплекс тоо, хуурмаг
 > нэгж, бодит хэсэг, хуурмаг хэсэг, **хосмог**, модул. And from
 > `algebra-1/quadratic-equations` and `10/quadratic-functions`: парабол,
@@ -68,8 +70,8 @@ in this draft.
 **concreteComparison**
 
 GPS координат нь «олтлоо тойроод яв» гэдгээс дээр. Стандарт хэлбэр ax² + bx + c
-оройг нуудаг бол оройн хэлбэр a(x − h)² + k НЬ өөрөө координат юм. Бүтэн
-квадрат ялгах бол энэ хоёрын хоорондох хөрвүүлэгч.
+оройг (vertex) нуудаг бол оройн хэлбэр (vertex form) a(x − h)² + k НЬ өөрөө координат юм. Бүтэн
+квадрат ялгах (completing the square) бол энэ хоёрын хоорондох хөрвүүлэгч.
 
 **objective**
 
@@ -96,7 +98,7 @@ GPS координат нь «олтлоо тойроод яв» гэдгээс 
 **keyIdea**
 
 Оройн хэлбэр оройг харуулна; бүтэн квадрат ялгах нь (b/2)²-ийг нэмээд хасаж,
-шаардлагатай бол эхлээд a-г гаргаж аваад дурын квадрат гурван гишүүнтийг тэр
+шаардлагатай бол эхлээд a-г гаргаж аваад дурын квадрат гурван гишүүнтийг (quadratic trinomial) тэр
 хэлбэрт хөрвүүлнэ.
 
 **facts**
@@ -361,7 +363,7 @@ i-тэй бол квадрат тэгшитгэлийн томьёо хэзээ 
 **objective**
 
 Шийдийг нь олоод шийдүүдийн хооронд ба гадна дахь параболын тэмдгийг уншиж
-квадрат тэнцэтгэл биш бодох.
+квадрат тэнцэтгэл биш (quadratic inequality) бодох.
 
 **concept**
 
@@ -376,7 +378,7 @@ i-тэй бол квадрат тэгшитгэлийн томьёо хэзээ 
 
 3. Бодит шийдгүй бол огтлолцол байхгүй: парабол бүхэлдээ нэг талд амьдарна.
    $x^2 + 2x + 5 > 0$ ($D = -16$): үргэлж үнэн (дээшээ нээлттэй, дээгүүр
-   хөвнө); $x^2 + 2x + 5 < 0$: хэзээ ч үнэн биш, шийдийн олонлог хоосон.
+   хөвнө); $x^2 + 2x + 5 < 0$: хэзээ ч үнэн биш, шийдийн олонлог хоосон (empty solution set).
 
 **keyIdea**
 
@@ -428,7 +430,7 @@ i-тэй бол квадрат тэгшитгэлийн томьёо хэзээ 
 | # | kind | Mongolian |
 |---|---|---|
 | 0 | teach | **eyebrow** Асуудал · **title** Цэг биш, муж<br>**body** Тэгшитгэл агшинг тогтооно, бөмбөг $t = 2$ ба $t = 4$-д 40 м-Д байна. Бодит хязгаарлалт нь муж байдаг: хэзээ түүнээс ДЭЭШ байна вэ? Квадратын хувьд энэ бол завсрын асуулт бөгөөд шийдүүдээ барьсан бол параболын зураг нэг харцаар хариулна. |
-| 1 | parabolaGraph | **eyebrow** Тоглож үз · **title** Тэмдгийн мужийг уншаарай<br>**teach** Энэ параболын шийдүүд эрэг дээр байна. Муруй шийдүүдийнхээ дунд чанд тэнхлэгээс ДООГУУР, гадна нь ДЭЭГҮҮР байна, шийдүүдийг чирээд зүй тогтол хэзээ ч өөрчлөгддөггүйг (дээшээ нээлттэй байх зуур) баталгаажуулаарай. Тэмдгийн муж шийдүүдэд наалдсан байдаг.<br>**config** unchanged (`mode: roots`, `a: 1`, `k: -4`) |
+| 1 | parabolaGraph | **eyebrow** Тоглож үз · **title** Тэмдгийн мужийг уншаарай<br>**teach** Энэ параболын шийдүүд эрэг дээр байна. Муруй шийдүүдийнхээ дунд чанд тэнхлэгээс ДООГУУР, гадна нь ДЭЭГҮҮР байна, шийдүүдийг чирээд зүй тогтол хэзээ ч өөрчлөгддөггүйг (дээшээ нээлттэй байх зуур) баталгаажуулаарай. Тэмдгийн муж (sign region) шийдүүдэд наалдсан байдаг.<br>**config** unchanged (`mode: roots`, `a: 1`, `k: -4`) |
 | 2 | teach | **eyebrow** Арга · **title** Шийд, зураг, тэмдэг<br>**body** Гурван алхам. (1) $ax^2 + bx + c = 0$ ТЭГШИТГЭЛИЙГ бодоорой, үржигдэхүүнд задлах эсвэл томьёогоор. (2) Параболыг төсөөлөөрэй: $a$-гийн тэмдгээр дээш эсвэл доош; дээшээ бол шийдүүдийн хооронд сөрөг. (3) Тэмдгийг тааруулаарай: $< 0$ нь сөрөг мужийг, $> 0$ нь эерэгийг хүснэ; $\le/\ge$ зааглах шийдийг хадгалж, чанд тэмдэг хаяна. |
 | 3 | worked | **eyebrow** Бодсон жишээ · **title** Шийдүүдийн хооронд<br>**problemId** a224-we1 |
 | 4 | tapQuestion | **eyebrow** Мужуудаа шалгая · **title** Аль муж вэ?<br>**prompt** $x^2 - 9 > 0$ яг хэзээ биелэх вэ:<br>**options** `$x < -3$ эсвэл $x > 3$` · `$-3 < x < 3$` · `зөвхөн $x > 3$` · `$x \ne \pm 3$` — **correctIndex 0**<br>**explanation** Шийд $\pm 3$, дээшээ нээлттэй: ГАДНА нь эерэг. Ганц сүүлт хариу $(-4)^2 - 9 = 7 > 0$ гэдгийг мартаж байна. |
@@ -638,6 +640,10 @@ drill-chant pattern kept in `10/rational-expressions`, `11/logarithms` and
 `algebra-2/systems-and-nonlinear-models`: a two-verb staccato pair mirroring
 the English's own «Add and subtract the magic square», in a title rather than
 in task wording. Review pile 1a.
+
+### 8. Round 2 (5 Oct 2026)
+
+5a: English shown once at first use for 7 terms (vertex, vertex form, completing the square, quadratic trinomial, quadratic inequality, empty solution set, sign region). «оройн цэг» itself never occurs in the body, so the gloss sits on its short form «оройг», the body's word for the vertex. Skipped: number line (not in the body). No 6be or 6y hits («үл хамаарах зүйлгүйгээр» is the without-exception sense).
 
 ---
 

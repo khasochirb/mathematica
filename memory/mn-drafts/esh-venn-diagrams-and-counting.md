@@ -20,6 +20,8 @@ four words I would otherwise have invented:
 So: «Венн диаграмм», «дугуй» for a circle, «огтлолцох хэсэг» for the overlap,
 «муж» for a region. All four are the exam's own words, not mine.
 
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 4 terms.
+
 **One caveat on «муж».** It is polysemous in this very course: the ЭШ bank uses
 it far more often for a function's domain and range («тодорхойлогдох муж»,
 «утгын муж»). Both senses are attested, and this topic is where the diagram
@@ -65,7 +67,7 @@ start, so the two skills are one dictionary rather than two topics.
 баруун туяанд, хоёуланд нь, эсвэл харанхуйд. Хүн бүр яг нэг бүсэд байна;
 диаграммын бүх агуулга үүгээр дуусна.
 
-**OBJECTIVE:** Хоёр олонлогийн бодлогыг огтлолцолгүй дөрвөн муж болгон задлах,
+**OBJECTIVE:** Хоёр олонлогийн бодлогыг огтлолцолгүй дөрвөн муж (region) болгон задлах,
 муж бүрийг олонлогийн бичиглэлээр нэрлэх, мужийн тоо ба олонлогийн тооны
 хооронд чөлөөтэй шилжих.
 
@@ -91,7 +93,7 @@ $|A| = (\text{зөвхөн } A) + |A \cap B|$, эндээс
 $\text{зөвхөн } A = |A| - |A \cap B|$. **Нөгөө чиг нь таних**: «Аль нь
 $A \cap \overline{B}$ олонлогийг дүрсэлсэн байна вэ?» гэсэн хэлбэрээр бичиглэл
 өгөөд зурагт аль муж будагдсаныг асууна. Хариу нь дээрх хүснэгтийн хоёр дахь
-мөр, өөрөөр хэлбэл $A$ дугуйгаас огтлолцох хэсгийг хасч авсан муж.
+мөр, өөрөөр хэлбэл $A$ дугуйгаас (circle) огтлолцох хэсгийг (overlap) хасч авсан муж.
 
 Дүүргэх дараалал үргэлж нэг: **эхлээд огтлолцол**, дараа нь зөвхөн-мужууд,
 хамгийн сүүлд гадна тал. Огтлолцлыг мэдэхгүйгээр зөвхөн-мужийг олох арга байхгүй.
@@ -226,7 +228,7 @@ $0$).
 
 **FACTS:**
 
-1. **Нэмэх–хасах зарчим** — $|A \cup B| = |A| + |B| - |A \cap B|$ —
+1. **Нэмэх–хасах зарчим (inclusion–exclusion)** — $|A \cup B| = |A| + |B| - |A \cap B|$ —
    Хоёуланг нь нэм, давхар тоологдсон огтлолцлыг хас.
 2. **Мужийн хэлбэр** —
    $|A \cup B| = |A \setminus B| + |A \cap B| + |B \setminus A|$ —
@@ -650,3 +652,4 @@ $4$ нь аль нь ч дургүй. Хоёуланд нь дуртай нь х
    `check[]` is unaffected.
 5. Lesson 1 opens with a stage-lighting image and lesson 3 reuses it for three
    beams. Both are the English author's metaphor, kept because they carry.
+6. **Round 2 (5 Oct 2026).** 5a: this draft has no «Terminology added» table, so the four exam words named at the top and item 2's «нэмэх–хасах зарчим» stand in for one. English shown once at first use for 4 terms (region, circle, overlap, inclusion–exclusion; the last on its lesson 2 fact title, its first prose use). Skipped: Венн диаграмм (transliteration). No 6be or 6y hits: «дүүргэсэн» in lesson 2 means a union filling the universe, not a marker.
