@@ -1,7 +1,7 @@
 # The review pile — what is still uncertain after the glossary and the voice reference
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
-Updated 22 Sep 2026. The geometry strand is complete, and the queue has
+Updated 22 Sep 2026; **Khas's 5 Oct 2026 rulings applied to every draft, see §0r**. The geometry strand is complete, and the queue has
 switched to ЭШ-first: this file now covers **seventy-six drafts**, sixty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
@@ -48,6 +48,107 @@ section 0 is the evidence; this section is the order to read it in. Items are
 ranked by how much drafted text a ruling moves, or, for ship-mode work, by how
 many students see the problem today. Every row names the item where the
 evidence lives. Nothing here is new except 6bd.
+
+### 0r. Ruled 5 Oct 2026 on the decision page, and applied to every draft
+
+Khas answered round 1 of the clickable decision page
+(claude.ai/artifact/Y4xkjVZeUheuTWESszomNg) on 5 Oct 2026. **Most of 0a and 0b
+below is now settled**; those tables stay as the record of what was asked.
+Every change ruling is applied across all seventy-six drafts. Each draft's
+Terminology table cites "Khas's ruling, 5 Oct 2026", and all seventy-six pass
+`mn_draft_check.py`. The Notes sections keep their original discussion as
+history, so old forms still appear there on purpose.
+
+**Kept as drafted (no text moved):**
+- 1a: polite «та» everywhere.
+- 2d: a point inside formulas, a comma in sentences.
+- 2c: a comma for thousands inside formulas.
+- 4c: «өгүүлбэр».
+- 4h: «харьцаа».
+- 6ae: «хазайлт».
+- 6at: «хотгор» means f″ > 0.
+- The equality-property names, as drafted.
+- 6i and 6aq: both kept in the ЭШ course, unmarked.
+- 6h: fix the English; the Mongolian stays clean. This is ship work for Build.
+- 6q: merge the draft's fixes into the shipped page. This is ship work: the mirror is regenerated, never hand-edited.
+- t06, t08, t10, t13, t14, t17–t19, t22–t24, t26–t29, t33, t35–t37, t39–t47, t49–t54, t57 and t60–t62 are confirmed as drafted.
+
+**Approved:** 2a, 5c, 5d, 6l, 6r, 6x, the Mongolian images and the authority
+rule. The rule is: *a word students already see is not re-chosen; for ЭШ, the
+exam outranks А/492.*
+
+**Undone:** 2b. Money keeps its decimal point in prose («\$0.15»).
+`mn_draft_check.py` now exempts `\$` amounts from the decimal-comma check.
+
+**Changed, and applied:**
+
+| Item | Ruling |
+|---|---|
+| 6ak | `\operatorname{tg}`, `\operatorname{ctg}`, `\operatorname{arctg}`; «tg» in plain text |
+| 6t | $C_n^r$, $A_n^r$; the international forms named once per counting topic |
+| 6az | identity matrix $E$ |
+| 4g · 6bb | reflection is «тэгш хэм» everywhere («X-ийн хувьд тэгш хэмтэй хувиргах»); composition is «дараалсан хувиргалт» |
+| 4e | vertical angles are «босоо өнцөг» (Khas's own word); «эсрэг» stays for *opposite* |
+| outlier | «онцгой утга» |
+| vol | «эзэлхүүн». Ministry quotes and corpus counts keep «эзлэхүүн» verbatim |
+| 6ac | grade 6 names: scatter «хамаарлын график», dot plot «цэгэн диаграмм» |
+| 4k | no coined name; described as «тодорхойлогдох мужаас гадуурх шийд» or «анхны тэгшитгэлийг хангахгүй гадны шийд» |
+| 4a | «гишүүнчлэн үржүүлэх чанар» |
+| 4f | the «нумд тулсан» construction |
+| iff | «A байх гарцаагүй бөгөөд хүрэлцээтэй нөхцөл нь B» |
+| 6aj | «пропорционал» |
+| 5b | FOIL, PEMDAS and CPCTC kept, each with a gloss |
+| 6aa | «шидэх» kept; coin faces «сүлдтэй тал» / «тоотой тал» |
+| t01–t63 | Khas's own words, as typed: t01, t02, t04, t07, t09, t11, t12, t15, t16, t20, t21, t25, t30, t31, t32, t34, t38, t48, t55, t58, t59 and t63; t56 makes vectors «параллель» |
+
+**Skipped by Khas, still open:** 4d, t03 and t05.
+
+**Waiting on round 2 (published on the same page, not yet answered):**
+- 6ab: SD by $n$ or $n-1$, explained.
+- 6be: open/closed markers, explained.
+- mnem: the SCSO mnemonic, explained.
+- 6y: «хараат бус» everywhere, or the ministry word plus one mention.
+- 5a: Khas said *yes* to an English gloss on first use; round 2 asks where.
+- perm: Khas said *change some*; round 2 lists the seven words one by one.
+- t48 and t59: both rulings created a collision, described next.
+
+5a is the large one: until its scope is set, no English glosses have been
+added.
+
+**Things the pass surfaced, for Khas to glance at:**
+1. **t04 and slope-intercept form.** «шулуун өнцгийн коэффициенттэй тэгшитгэл»
+   is, in the Russian-school tradition, the name of $y = kx + b$ (уравнение
+   прямой с угловым коэффициентом), not point-slope form. Applied as typed. If
+   point-slope was meant, the usual name is «өгөгдсөн цэгийг дайрсан, өгөгдсөн
+   өнцгийн коэффициенттэй шулууны тэгшитгэл».
+2. **Two collisions the rulings created** (already asked in round 2):
+   - «дундаж шугам» is now both *midsegment* and the trig *midline*.
+   - «огтлол» is now both *shear* and *cross-section*.
+3. **Coinage residue.** Bare «хуурамч» remains where the English says *fake* or
+   *phantom* as a metaphor:
+   - `10-rational-expressions`, lines 458–537;
+   - `algebra-2-radicals-and-rational-exponents`, lines 261 and 360–367;
+   - `algebra-2-rational-functions`, lines 450 and 459;
+   - `11-logarithms`, lines 424–500.
+
+   A few use it as a noun («Хуурамчийг нь олоорой»), which can read as the
+   retired name surviving. Say if those should go too.
+4. **Long lesson title.** The radical-equation wording makes
+   `algebra-2/radicals…` Lesson 3's title «Язгуурт тэгшитгэл ба анхны
+   тэгшитгэлийг хангахгүй гадны шийд». It was not shortened, because a short
+   form would be a new coinage.
+5. **Mnemonic letters.** The SCSO mnemonic «ХТТХ» became «ХТТО» after the coin
+   words changed. Round 2 asks about it.
+6. **Combinations notation.**
+   - Objectives are plain text, so they now carry Unicode Cₙʳ and Aₙʳ.
+   - The counting-principles outcome codes changed from С/З to С/Т.
+   - `conditional-probability` and `random-variables` only *use* $C_n^r$, so they got no international-forms sentence.
+7. **«тусгал» kept on purpose** where it means light, a literal mirror or a
+   simile («толин тусгал шиг», «сүүдэр тусгана», «тусгалын» in
+   `geometry-right-triangles-and-trig`).
+8. **An unrelated fix found on the way.** *Scalar multiple* had been written
+   «скаляр үржвэр», which is the *dot product*, in drafts 68 and 71. It is now
+   «тоон үржвэр» (8 places).
 
 ### 0a. Rulings, highest leverage first
 
