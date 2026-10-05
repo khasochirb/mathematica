@@ -56,7 +56,7 @@ Shared vocabulary lives in `memory/mn-drafts/GEOMETRY-TERMS.md`.
 | shaded region | **будсан муж** | «будсан» **shipped 31** + «муж» dictionary — Notes 2 |
 | strip / band | **зурвас** | **shipped 25** |
 | ring, annulus | **цагираг** | corpus 11 |
-| area of a rhombus / kite | **ромбын / дельтоидын талбай** | compositional; «дельтоид» is unit 6's coinage |
+| area of a rhombus / kite | **ромбын / цаасан шувууны талбай** | compositional; «цаасан шувуу» is **Khas's ruling, 5 Oct 2026** (replaces unit 6's «дельтоид») |
 
 ---
 

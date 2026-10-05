@@ -365,6 +365,9 @@ def check(corpus: str, slug: str) -> int:
     # reported two decimal points that were inside math all along.
     prose_only = re.sub(r'`[^`\n]*`', '',
                         re.sub(r'(?<!\\)\$[^$\n]*?(?<!\\)\$', '', content))
+    # Money keeps its decimal point in prose: Khas's ruling of 5 Oct 2026
+    # (review pile 2b, undone). «\$0.25» is a price, not §7's decimal comma.
+    prose_only = re.sub(r'\\\$\d[\d,]*\.\d+', '', prose_only)
 
     for m in DECIMAL_POINT.finditer(prose_only):
         ctx = ' '.join(prose_only[max(0, m.start() - 40):m.end() + 20].split())
