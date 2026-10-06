@@ -14,6 +14,25 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-10-06 — mode: content
+
+**Did:**
+- **Drafted 78 and 79:** `9/linear-models-and-variation` and `9/data-distributions`. **Grade 9 is now fully drafted (7/7).** Every number was re-computed by script, and both drafts pass `mn_draft_check.py`.
+- **Started grade 10** (4 topics), drafting in parallel; each draft is gated before it is committed.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `17bf1fd`). Nothing deployed.
+
+**Blocked on:** nothing.
+
+**Others should know (Build, ship mode):**
+- **New review pile item 6bf.** The English writes the KaTeX thousands brace `{,}` outside maths in **37 strings across 13 files**, including the live `7-mn/sampling-and-statistics`, so students see "$1{,}400". The fix is one scripted replacement outside `$…$`, then regenerating that mirror.
+- **One stray escaped dollar** in `9/data-distributions` lesson 5: "\$302-minute".
+- **One wrong English claim** in `dd4-we2`: it says the median is "center-right", but it is exactly centred.
+- **6bc again:** the `9/linear-models` `rateMeter` carries English labels in its config.
+- **Bin-word split for Khas:** grade 6's shipped histogram word is «интервал», and the ЭШ drafts use the ministry's «завсар». This is draft 79's Notes 2.
+
+---
+
 ## 2026-10-05 — mode: content
 
 **Did:**
