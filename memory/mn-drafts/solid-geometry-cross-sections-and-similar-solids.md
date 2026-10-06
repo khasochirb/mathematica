@@ -31,7 +31,10 @@ units of this course and not re-glossed: «тэнхлэг огтлол», «ба
 `cylinders-and-cones`); «хагас бөмбөрцөг», «бөмбөгөр таг», «их тойрог»,
 «огторгуйн диагональ», «…-д багтсан» (unit 5, `spheres`); «проекц»,
 «налуу хэрчим», «хоёр талст өнцөг», $\operatorname{tg}$ (unit 1,
-`lines-and-planes-in-space`); «апофем», «зөв олон өнцөгт», «эзэлхүүн»
+`lines-and-planes-in-space`); «талс», «хажуу талс», «хажуу ирмэг»,
+«талсын диагональ» (unit 2, `prisms-and-the-cube`, draft 96); «зөв дөрвөн
+өнцөгт пирамид», «огтлогдсон пирамид», пирамидын «апофем», «их / бага суурь»
+(unit 3, `pyramids`, draft 97); «апофем», «зөв олон өнцөгт», «эзэлхүүн»
 (`GEOMETRY-TERMS.md`, Khas's ruling 5 Oct 2026 for the last);
 «адил хажуут гурвалжин», «адил талт гурвалжин»
 (`geometry-triangles-and-congruence`); «төстэй» (`geometry-similarity`);
@@ -56,17 +59,13 @@ and «Гурвалжин пирамид» (16); its stems give «хажуу та
 | regular hexagon | **зөв зургаан өнцөгт** | ministry «зөв олон өнцөгт» + exam «зургаан өнцөгт» 4 |
 | ellipse | **эллипс** | `12-conic-sections` · dictionary · transliteration, not glossed |
 | similar solids | **төстэй биет** | compositional on «төстэй» (`geometry-similarity`, exam 14) + «биет» |
-| frustum (of a pyramid) | **огтлогдсон пирамид** | compositional on the exam's subtopic label «Огтлогдсон конус» (12) |
 | combined (composite) solid | **нийлмэл биет** | **exam 22, verbatim** · `geometry-surface-area-and-volume` |
 | silo | **тарианы цамхаг** | **coined**, descriptive — Notes 2 |
 | washer | **шайб** | transliteration (technical usage), not glossed — Notes 2 |
 | capsule | **капсул** | transliteration, not glossed |
 | stereometry | **огторгуйн геометр** | compositional on ministry «огторгуй» (11.5в, 12.5б) |
-| lateral face (of a pyramid) | **хажуу талс** | **exam 16, verbatim** («Пирамидын хажуу талс бүр суурийн хавтгайтай $60°$ өнцөг үүсгэнэ») |
-| lateral edge (of a pyramid) | **хажуу ирмэг** | compositional: exam «хажуу талс» + «ирмэг» 22 — Notes 2 |
-| regular square pyramid | **зөв дөрвөн өнцөгт пирамид** | compositional on ministry «зөв олон өнцөгт»; the Russian-school name |
 
-English shown once at first use (5a, Khas's ruling 5 Oct 2026): 11 terms.
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 7 terms.
 Not glossed: ellipse, washer, capsule (transliterations).
 
 ---
@@ -212,7 +211,7 @@ a × a√2; налуу зүсэлт зургаан өнцөгт ч гарган�
    зэргээс язгуур гаргаж $k$-г олоод, хэрэгтэй зэрэгтээ дахин дэвшүүлээрэй.
 
 3. Ийм учраас пирамидыг өндрийн хагаст огтлоход доод хэсэг буюу огтлогдсон
-   пирамид (frustum) эзэлхүүний $\frac78$-г авна (дээд хэсэг: $k = \frac12$,
+   пирамид эзэлхүүний $\frac78$-г авна (дээд хэсэг: $k = \frac12$,
    эзэлхүүн $\frac18$). Том амьтдад зузаан хөл хэрэгтэй байдаг (жин $k^3$-аар,
    ясны огтлол ердөө $k^2$-аар өснө), загвар төмөр замын иж бүрдэлд масштабын
    коэффициентийг бичдэг нь ч мөн үүнтэй холбоотой.
@@ -399,8 +398,8 @@ a × a√2; налуу зүсэлт зургаан өнцөгт ч гарган�
 
 1. **Бүгдийг боддог таван гурвалжин**: (1) хайрцаг, кубын өгсөлт: эхлээд
    суурийн диагональ, дараа нь огторгуйн диагональ; (2) пирамидын хоёр
-   гурвалжин: хажуу талсын (lateral face) апофемтэй $h$–$r$–$m$ ба хажуу
-   ирмэгтэй (lateral edge) $h$–$R$–$\ell$; (3) конусын $r$–$h$–$\ell$
+   гурвалжин: хажуу талсын апофемтэй $h$–$r$–$m$ ба хажуу
+   ирмэгтэй $h$–$R$–$\ell$; (3) конусын $r$–$h$–$\ell$
    (тэнхлэг огтлол); (4) бөмбөрцгийн $d$–$r$–$R$ (огтлол); (5) шулуун ба
    хавтгайн хоорондох өнцгийн гурвалжин (өндөр, сүүдэр, налуу хэрчим).
    Бүгд Пифагор дээр нэмээд магадгүй нэг тригонометрийн харьцаа.
@@ -438,8 +437,7 @@ a × a√2; налуу зүсэлт зургаан өнцөгт ч гарган�
 
 **workedExamples**
 
-- `sg64-we1` — **statement:** Зөв дөрвөн өнцөгт пирамидын (regular square
-  pyramid) хажуу ирмэг $\ell = 6$ бөгөөд суурийн хавтгайтай $45°$ өнцөг
+- `sg64-we1` — **statement:** Зөв дөрвөн өнцөгт пирамидын хажуу ирмэг $\ell = 6$ бөгөөд суурийн хавтгайтай $45°$ өнцөг
   үүсгэнэ. Өндөр ба суурийн талыг олоорой. **solution:** Ирмэгийн сүүдэр нь
   суурийн диагоналийн хагас $R$; $45°$-тай (2б) гурвалжин:
   $h = 6\sin 45° = 3\sqrt{2}$ ба $R = 6\cos 45° = 3\sqrt{2}$. Суурийн тал:
@@ -564,7 +562,7 @@ a × a√2; налуу зүсэлт зургаан өнцөгт ч гарган�
 
 ## Notes for Khas
 
-### 1. English claims checked; one double-answer option; one pipeline gap
+### 1. English claims checked; one double-answer option; 6bi and 6bj apply here
 
 Every number in the topic was re-computed by script
 (`scratchpad/cross-sections-and-similar-solids/verify.py`, 87 assertions:
@@ -584,17 +582,14 @@ Mongolian names Radon, Hounsfield and Cormack, which the English leaves out.
   Suggested distractor: `$h = 3\sin 60°$`. The Mongolian keeps the options
   (order and index unchanged) and its explanation says why $6\sin 60°$ also
   lands on $3\sqrt3$.
-- **`mn_walk.py` does not carry this topic's teach bodies or recap
-  bullets.** Its `teach` branch reads `beats` only and its `recap` branch
-  `points` only. This topic's eight teach steps use `body`, and its four
-  recaps use `bullets`, so a regenerated mirror shows all of them in
-  English. Corpus-wide: **823 teach steps in 121 English topic files carry
-  `body` and no `beats`** (207 more carry both), and **all 24 `bullets`
-  recaps are in `solid-geometry`**. It is already live:
-  `algebra-1-mn/quadratic-equations` shows **12 English teach bodies** on a
-  Mongolian page. Same family as 6bc. The draft writes both fields in
-  Mongolian anyway (the recap ones under **points**, the format's name).
-  Not in the review pile yet.
+- **This topic is hit by review pile 6bi and 6bj** (both logged today by
+  the drafts for units 2 and 3). 6bi: `mn_walk.py` walks a teach step's
+  `beats` but not its `body`, and a recap's `points` but not its `bullets`;
+  all eight teach steps here use `body` and all four recaps use `bullets`, so
+  a mirror built today would show them in English. 6bj: the lesson player
+  reads `points`, so these four recaps should crash it in English too. The
+  draft gives Mongolian for every one of these strings (the recap lines
+  under **points**, the format's name), ready for whichever fix lands.
 - **`sg62-t2` asks for "what fraction of the original SURFACE"** and
   answers with the lateral surface ($\frac19$). The Mongolian asks for what
   the answer gives: the top piece's lateral surface as a fraction of the
@@ -626,26 +621,21 @@ Mongolian names Radon, Hounsfield and Cormack, which the English leaves out.
   «диагональ огтлол». The exam has the object («Куб огтлол») but not the
   phrase. 10.12в writes «параллел»; this strand keeps «параллель» per
   `GEOMETRY-TERMS.md`.
-- **«хажуу ирмэг»** for a pyramid's lateral edge is compositional: the exam
-  says «хажуу талс» (16) for the face and «ирмэг» (22) for edges, but never
-  joins «хажуу ирмэг». It is the obvious pair to «хажуу талс».
-- **«огтлогдсон пирамид»** follows the exam's own subtopic label
-  «Огтлогдсон конус» (12), which unit 4 adopted.
+- **Pyramid vocabulary is reused from drafts 96 and 97**, not re-chosen:
+  «хажуу талс», «хажуу ирмэг», «зөв дөрвөн өнцөгт пирамид»,
+  «огтлогдсон пирамид», пирамидын «апофем», «талсын диагональ». Those units
+  come earlier in this course, so the terms are carried in (header) and not
+  re-glossed here. Lesson 4's $m$ is the face apothem, as in draft 97.
 - **«тарианы цамхаг»** is coined. The obvious loan «силос» means *silage*
   (fermented fodder) in Mongolian usage, so a student would read «силос» as
   the feed, not the tower. One term, cheap to reverse.
 - **«шайб»** for washer is the technical loan (Russian шайба); no source in
   the repo has it. A plain description («цагираг хэлбэрийн нимгэн эд анги»)
   is the alternative if you prefer no loan.
-- **«зөв дөрвөн өнцөгт пирамид»** for *regular square pyramid*: the
-  ministry's «зөв олон өнцөгт» plus the Russian-school name (правильная
-  четырёхугольная пирамида). Glossed once at `sg64-we1`.
 - **«Галилео»** follows the shipped `7-mn/probability`. `12-conic-sections`
   writes «Галилей»; one of them should move.
-- **Consistency nit in two earlier drafts:** `cylinders-and-cones` lesson 3
-  step 0 and `lines-and-planes-in-space` each write «тэгш хажуут
-  гурвалжин» once. The exam says «адил хажуут» (20) and every geometry draft
-  uses it; this draft does too.
+- **Isosceles is «адил хажуут»** (exam 20), as every geometry draft now
+  writes it.
 - **Power verb.** 6bg is open on «зэрэгт өргөх» versus «зэрэгт
   дэвшүүлэх». This is an ЭШ topic, so it takes the ЭШ column:
   «дэвшүүлэх».
