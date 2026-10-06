@@ -18,9 +18,11 @@ touching any of those; it is not summarised here.
 
 **Did:**
 - **Drafted 78 and 79:** `9/linear-models-and-variation` and `9/data-distributions`. **Grade 9 is now fully drafted (7/7).** Every number was re-computed by script, and both drafts pass `mn_draft_check.py`.
-- **Started grade 10** (4 topics), drafting in parallel; each draft is gated before it is committed.
+- **Grade 10 is complete:** drafts 80–83 (`polynomials-and-factoring`, `quadratic-equations`, `probability-and-counting`, `radicals-and-rational-exponents`). They were written by parallel agents to a fixed brief, and I gated and spot-checked each one. Between them, 768 numeric assertions were verified.
+- **Review pile 6bg:** seven word splits between the shipped grade 6–8 mirrors and the ЭШ drafts, each needing one line from Khas.
+- **Review pile 6bh:** the English errors found in drafts 78–83.
 
-**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `17bf1fd`). Nothing deployed.
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `ab17d33`). Nothing deployed.
 
 **Blocked on:** nothing.
 
