@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026; **Khas's 5 Oct 2026 rulings applied to every draft, see §0r**. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **eighty-three drafts**, sixty-eight
+switched to ЭШ-first: this file now covers **eighty-seven drafts**, sixty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
@@ -20,7 +20,7 @@ the figure carried until then, thirty-eight, was one low).
 > Remaining: none. Вектор ба матриц was drafted unit 2 first, because unit 1
 > depends on it (6aw).
 >
-> **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (**complete**: draft 79 `9/data-distributions` done 6 Oct, «интервал» vs the ЭШ drafts' «завсар» for a bin is its Notes 2; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (**complete**, drafts 80–83 on 6 Oct; their word splits are 6bg), 11 (4),
+> **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (**complete**: draft 79 `9/data-distributions` done 6 Oct, «интервал» vs the ЭШ drafts' «завсар» for a bin is its Notes 2; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (**complete**, drafts 80–83 on 6 Oct; their word splits are 6bg), 11 (**complete**, drafts 84–87 on 6 Oct),
 > 12 (7), `algebra-2/sequences-and-series`, `solid-geometry` (3). SAT and IB stay
 > English by decision.
 
@@ -31,7 +31,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-eighty-three drafts carry zero em-dash parentheticals in shipping prose, and
+eighty-seven drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -3455,6 +3455,8 @@ two strands now disagree on purpose. Each row needs one word from Khas.
 | x-axis | «$x$ тэнхлэг» (`algebra-1-mn`) | «абсцисс тэнхлэг» (`10-quadratic-functions`) | draft 81 |
 | favourable outcome | «тохирох» (grade 7) | «таатай» (47 uses) | draft 82 |
 | marble · hearts · spinner | «сахир» · «гар» · «эргэгч» (grade 7) | «бөмбөлөг» · «зүрх» · — | draft 82 |
+| correlation · third factor | «хамаарал» · «гуравдагч хүчин зүйл» (grade 8) | «корреляц» (ministry 10.13в) · «далд хувьсагч» | draft 86 Notes 3 |
+| amplitude vs range | «далайц» for both (grades 6–8 range; trig amplitude) | — | draft 85 Notes |
 | product / power rules | «үржвэрийн чанар», «зэргийн дүрэм», «зэрэгт өргөх» (grades 7–8) | «Үржвэрийн дүрэм», «зэргийн хууль», «зэрэгт дэвшүүлэх» (`algebra-2` radicals) | draft 83 Notes 2 |
 
 Also: the live `algebra-1-mn/quadratic-equations` still says «үржвэр тэгтэй
@@ -3474,6 +3476,18 @@ them in every draft, so the live mirror needs an `mn_terms.py` pass (ship mode).
 - `9/data-distributions`: `dd4-we2` "center-right" median (it is centred);
   L5 stray "\$302-minute".
 - `10/polynomials-and-factoring`: L4 objective carries `$...$` (6d).
+- `11/functions-and-transformations`: L1 step 4 option 3 keeps leftover working
+  ("$2a + 1 + 3$… so $2a+4$", same value as option 2); two "this year" claims
+  false for grade 11; an em dash inside a correct option.
+- `11/statistics-and-data`: L5 step 2 leaked authoring note ("wait: BELOW −1σ
+  is 16%"); L1 "14 points above every normal game" (12 above the highest);
+  Higgs "years at 3–4 sigma" (Dec 2011 → Jul 2012).
+- `11/trigonometry-and-the-unit-circle`: L6 step 4 titled "Catch the peak",
+  answer is the bottom; objectives of L1, L2, L5 carry `$...$` (6d).
+- `11/polynomial-functions`: L1 "two dips and a hill" for a cubic (one hill,
+  one dip) and "down, up, down" (up, down, up); L2 "$x^3$ is a million times
+  $x$" at 100 (ten thousand); L3 tryIt p2 says the cubic "passes straight
+  through both" zeros but the answer bounces at 5; `pf5-we2` garbled check.
 
 ## 7. Style decisions I made without asking, listed so you can veto cheaply
 
