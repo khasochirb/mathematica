@@ -19,10 +19,12 @@ touching any of those; it is not summarised here.
 **Did:**
 - **Drafted 78 and 79:** `9/linear-models-and-variation` and `9/data-distributions`. **Grade 9 is now fully drafted (7/7).** Every number was re-computed by script, and both drafts pass `mn_draft_check.py`.
 - **Grade 10 is complete:** drafts 80–83 (`polynomials-and-factoring`, `quadratic-equations`, `probability-and-counting`, `radicals-and-rational-exponents`). They were written by parallel agents to a fixed brief, and I gated and spot-checked each one. Between them, 768 numeric assertions were verified.
+- **Grade 11 is complete:** drafts 84–87 (`functions-and-transformations`, `statistics-and-data`, `trigonometry-and-the-unit-circle`, `polynomial-functions`), with 581 verified assertions. Their English errors are in 6bh.
+- **Decision page, round 3:** the 6bg word splits are on the same page as clickable cards (claude.ai/artifact/Y4xkjVZeUheuTWESszomNg), waiting on Khas.
 - **Review pile 6bg:** seven word splits between the shipped grade 6–8 mirrors and the ЭШ drafts, each needing one line from Khas.
 - **Review pile 6bh:** the English errors found in drafts 78–83.
 
-**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `ab17d33`). Nothing deployed.
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `04a7e6f`). Nothing deployed.
 
 **Blocked on:** nothing.
 
