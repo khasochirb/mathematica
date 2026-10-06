@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026; **Khas's 5 Oct 2026 rulings applied to every draft, see §0r**. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **ninety-four drafts**, sixty-eight
+switched to ЭШ-first: this file now covers **ninety-eight drafts**, sixty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
@@ -21,7 +21,7 @@ the figure carried until then, thirty-eight, was one low).
 > depends on it (6aw).
 >
 > **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (**complete**: draft 79 `9/data-distributions` done 6 Oct, «интервал» vs the ЭШ drafts' «завсар» for a bin is its Notes 2; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (**complete**, drafts 80–83 on 6 Oct; their word splits are 6bg), 11 (**complete**, drafts 84–87 on 6 Oct),
-> 12 (**complete**, drafts 88–94 on 6 Oct), `algebra-2/sequences-and-series`, `solid-geometry` (3). SAT and IB stay
+> 12 (**complete**, drafts 88–94 on 6 Oct), `algebra-2/sequences-and-series` and `solid-geometry` (3): **complete**, drafts 95–98 on 6 Oct. **The non-ЭШ queue is fully drafted.** SAT and IB stay
 > English by decision.
 
 His instruction: *"let's push through most of the contents and then make it
@@ -31,7 +31,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-ninety-four drafts carry zero em-dash parentheticals in shipping prose, and
+ninety-eight drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -3459,6 +3459,8 @@ two strands now disagree on purpose. Each row needs one word from Khas.
 | amplitude vs range | «далайц» for both (grades 6–8 range; trig amplitude) | — | draft 85 Notes |
 | a parabola "opens up" | «нээгддэг» (exam bank 9; `12-conic-sections`) | «нээлттэй» (`10-quadratic-functions`, which flagged it as unsupported) | draft 94 Notes 2 |
 | cosecant | `\operatorname{cosec}` (Russian-school, like tg/ctg) | `\csc` | draft 93 Notes |
+| repeating decimal | «үелсэн бутархай» (grade 8 page; draft 95) | «үет бутархай» (exam) · «давтагдах бутархай» (`11-sequences`, no source) | draft 95 Notes 2 |
+| Galileo | «Галилео» (grade 7 page; draft 98) | «Галилей» (`12-conic-sections`) | draft 98 |
 | product / power rules | «үржвэрийн чанар», «зэргийн дүрэм», «зэрэгт өргөх» (grades 7–8) | «Үржвэрийн дүрэм», «зэргийн хууль», «зэрэгт дэвшүүлэх» (`algebra-2` radicals) | draft 83 Notes 2 |
 
 Also: the live `algebra-1-mn/quadratic-equations` still says «үржвэр тэгтэй
@@ -3497,6 +3499,15 @@ them in every draft, so the live mirror needs an `mn_terms.py` pass (ship mode).
   `12/trigonometric-identities` (sec, csc, cot used before they are defined);
   `12/conic-sections` (grade pointers to untaught topics; "2,200 years" is
   ~1,850; Apollonius not "the oldest math book still in print").
+- Drafts 95–98: `algebra-2/sequences-and-series` (`a282-t2` "≈ 493.3" is
+  ≈ 492.6; the tile pattern does not add "the SAME number"); `solid-geometry/
+  prisms-and-the-cube` (`sg2-pr-7` garbled; an oblique-prism exam tip that is
+  bad advice; the TV box needs the face diagonal, not the space diagonal);
+  `solid-geometry/pyramids` (slant ÷ half-base is the golden ratio, not π/2;
+  the Moscow papyrus is Middle Kingdom); `solid-geometry/cross-sections`
+  (**L4 step 2 has two correct options**: $h = 6\sin 60°$ is also true;
+  `sg62-t2` asks for a fraction of the "original SURFACE" but answers lateral
+  to lateral).
 - **Widgets with hard-coded English labels** (6bc family): `TangentGraph`,
   `AreaGraph`, `ConicGraph`, plus the `rateMeter` config. A Mongolian mirror
   shows English inside every step that uses them.
