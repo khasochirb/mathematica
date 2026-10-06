@@ -20,15 +20,20 @@ touching any of those; it is not summarised here.
 - **Drafted 78 and 79:** `9/linear-models-and-variation` and `9/data-distributions`. **Grade 9 is now fully drafted (7/7).** Every number was re-computed by script, and both drafts pass `mn_draft_check.py`.
 - **Grade 10 is complete:** drafts 80–83 (`polynomials-and-factoring`, `quadratic-equations`, `probability-and-counting`, `radicals-and-rational-exponents`). They were written by parallel agents to a fixed brief, and I gated and spot-checked each one. Between them, 768 numeric assertions were verified.
 - **Grade 11 is complete:** drafts 84–87 (`functions-and-transformations`, `statistics-and-data`, `trigonometry-and-the-unit-circle`, `polynomial-functions`), with 581 verified assertions. Their English errors are in 6bh.
+- **Grade 12 and the last four topics:** drafts 88–98 are done (grade 12 ×7, `algebra-2/sequences-and-series`, `solid-geometry` ×3). **The non-ЭШ queue is fully drafted: 98 drafts in all.**
+- **Slope is now $k$:** approved ruling 2a was applied to four grade 9/12 drafts that still used $m$. No English `check[]` uses a bare $m$.
 - **Decision page, round 3:** the 6bg word splits are on the same page as clickable cards (claude.ai/artifact/Y4xkjVZeUheuTWESszomNg), waiting on Khas.
 - **Review pile 6bg:** seven word splits between the shipped grade 6–8 mirrors and the ЭШ drafts, each needing one line from Khas.
 - **Review pile 6bh:** the English errors found in drafts 78–83.
 
-**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `04a7e6f`). Nothing deployed.
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `152aef8`). Nothing deployed.
 
 **Blocked on:** nothing.
 
 **Others should know (Build, ship mode):**
+- **HIGH, LIVE, review pile 6bj:** all 24 solid-geometry recap steps store their lines under `bullets`, but `LessonPlayer.tsx:1405` reads `step.points.map`. The last step of every solid-geometry lesson should therefore throw, including three live ЭШ units. Confirmed by code reading, not yet in a browser. The fix is to rename the field in the six JSON files.
+- **6bi:** the i18n walker skips a teach step's `body` and a recap's `bullets`. All 12 teach bodies in the live `algebra-1-mn/quadratic-equations` are English.
+- **6bc family:** `TangentGraph`, `AreaGraph` and `ConicGraph` hard-code English labels.
 - **New review pile item 6bf.** The English writes the KaTeX thousands brace `{,}` outside maths in **37 strings across 13 files**, including the live `7-mn/sampling-and-statistics`, so students see "$1{,}400". The fix is one scripted replacement outside `$…$`, then regenerating that mirror.
 - **One stray escaped dollar** in `9/data-distributions` lesson 5: "\$302-minute".
 - **One wrong English claim** in `dd4-we2`: it says the median is "center-right", but it is exactly centred.
