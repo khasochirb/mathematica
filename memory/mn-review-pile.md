@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026; **Khas's 5 Oct 2026 rulings applied to every draft, see §0r**. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **seventy-eight drafts**, sixty-eight
+switched to ЭШ-first: this file now covers **seventy-nine drafts**, sixty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
@@ -20,7 +20,7 @@ the figure carried until then, thirty-eight, was one low).
 > Remaining: none. Вектор ба матриц was drafted unit 2 first, because unit 1
 > depends on it (6aw).
 >
-> **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (1 left: `data-distributions`; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (4), 11 (4),
+> **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (**complete**: draft 79 `9/data-distributions` done 6 Oct, «интервал» vs the ЭШ drafts' «завсар» for a bin is its Notes 2; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (4), 11 (4),
 > 12 (7), `algebra-2/sequences-and-series`, `solid-geometry` (3). SAT and IB stay
 > English by decision.
 
@@ -31,7 +31,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-seventy-eight drafts carry zero em-dash parentheticals in shipping prose, and
+seventy-nine drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
