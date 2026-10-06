@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026; **Khas's 5 Oct 2026 rulings applied to every draft, see §0r**. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **eighty-seven drafts**, sixty-eight
+switched to ЭШ-first: this file now covers **ninety-four drafts**, sixty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
@@ -21,7 +21,7 @@ the figure carried until then, thirty-eight, was one low).
 > depends on it (6aw).
 >
 > **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (**complete**: draft 79 `9/data-distributions` done 6 Oct, «интервал» vs the ЭШ drafts' «завсар» for a bin is its Notes 2; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (**complete**, drafts 80–83 on 6 Oct; their word splits are 6bg), 11 (**complete**, drafts 84–87 on 6 Oct),
-> 12 (7), `algebra-2/sequences-and-series`, `solid-geometry` (3). SAT and IB stay
+> 12 (**complete**, drafts 88–94 on 6 Oct), `algebra-2/sequences-and-series`, `solid-geometry` (3). SAT and IB stay
 > English by decision.
 
 His instruction: *"let's push through most of the contents and then make it
@@ -31,7 +31,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-eighty-seven drafts carry zero em-dash parentheticals in shipping prose, and
+ninety-four drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -3457,6 +3457,8 @@ two strands now disagree on purpose. Each row needs one word from Khas.
 | marble · hearts · spinner | «сахир» · «гар» · «эргэгч» (grade 7) | «бөмбөлөг» · «зүрх» · — | draft 82 |
 | correlation · third factor | «хамаарал» · «гуравдагч хүчин зүйл» (grade 8) | «корреляц» (ministry 10.13в) · «далд хувьсагч» | draft 86 Notes 3 |
 | amplitude vs range | «далайц» for both (grades 6–8 range; trig amplitude) | — | draft 85 Notes |
+| a parabola "opens up" | «нээгддэг» (exam bank 9; `12-conic-sections`) | «нээлттэй» (`10-quadratic-functions`, which flagged it as unsupported) | draft 94 Notes 2 |
+| cosecant | `\operatorname{cosec}` (Russian-school, like tg/ctg) | `\csc` | draft 93 Notes |
 | product / power rules | «үржвэрийн чанар», «зэргийн дүрэм», «зэрэгт өргөх» (grades 7–8) | «Үржвэрийн дүрэм», «зэргийн хууль», «зэрэгт дэвшүүлэх» (`algebra-2` radicals) | draft 83 Notes 2 |
 
 Also: the live `algebra-1-mn/quadratic-equations` still says «үржвэр тэгтэй
@@ -3484,6 +3486,20 @@ them in every draft, so the live mirror needs an `mn_terms.py` pass (ship mode).
   Higgs "years at 3–4 sigma" (Dec 2011 → Jul 2012).
 - `11/trigonometry-and-the-unit-circle`: L6 step 4 titled "Catch the peak",
   answer is the bottom; objectives of L1, L2, L5 carry `$...$` (6d).
+- Grade 12 (drafts 88–94), each in its own Notes 1: `12/vectors` (two unit
+  vectors sum to a unit vector only at 120°, not "aligned"; a missing symbol;
+  a leaked authoring note); `12/derivatives` (free fall is two
+  differentiations, not three; duplicate option); `12/limits-and-continuity`
+  (points at a non-existent "Grade 10 rational-function graphs"); 
+  `12/applications-of-derivatives` ("Grade 8's point-slope form" ×4, never
+  taught); `12/integrals` (2.542 is 2.543; error "about 0.46" is 0.479;
+  "university" for grade 12 objectives; a "… wait —" left in an option);
+  `12/trigonometric-identities` (sec, csc, cot used before they are defined);
+  `12/conic-sections` (grade pointers to untaught topics; "2,200 years" is
+  ~1,850; Apollonius not "the oldest math book still in print").
+- **Widgets with hard-coded English labels** (6bc family): `TangentGraph`,
+  `AreaGraph`, `ConicGraph`, plus the `rateMeter` config. A Mongolian mirror
+  shows English inside every step that uses them.
 - `11/polynomial-functions`: L1 "two dips and a hill" for a cubic (one hill,
   one dip) and "down, up, down" (up, down, up); L2 "$x^3$ is a million times
   $x$" at 100 (ten thousand); L3 tryIt p2 says the cubic "passes straight
