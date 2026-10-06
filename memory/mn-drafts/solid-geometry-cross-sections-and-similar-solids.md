@@ -66,7 +66,8 @@ and «Гурвалжин пирамид» (16); its stems give «хажуу та
 | lateral edge (of a pyramid) | **хажуу ирмэг** | compositional: exam «хажуу талс» + «ирмэг» 22 — Notes 2 |
 | regular square pyramid | **зөв дөрвөн өнцөгт пирамид** | compositional on ministry «зөв олон өнцөгт»; the Russian-school name |
 
-English shown once at first use (5a, Khas's ruling 5 Oct 2026): 10 terms.
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 11 terms.
+Not glossed: ellipse, washer, capsule (transliterations).
 
 ---
 
