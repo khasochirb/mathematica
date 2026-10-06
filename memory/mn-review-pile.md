@@ -3505,6 +3505,21 @@ them in every draft, so the live mirror needs an `mn_terms.py` pass (ship mode).
   $x$" at 100 (ten thousand); L3 tryIt p2 says the cubic "passes straight
   through both" zeros but the answer bounces at 5; `pf5-we2` garbled check.
 
+### 6bj. LIVE: every solid-geometry recap step should crash the lesson player
+
+**Found 6 Oct 2026 by the drafting agent for draft 96; verified in code, not
+in a browser.** `components/genmath/interactive/LessonPlayer.tsx:1405` renders
+a recap with `step.points.map(...)`, and the type in `lib/genmath-interactive.ts:1300`
+declares `points: string[]`. **All 24 recap steps in `data/genmath/solid-geometry/*.json`
+store their lines under `bullets` instead**, and nothing in the codebase maps
+`bullets` → `points` (grepped). So `step.points` is undefined, and reaching the
+last step of any solid-geometry lesson should throw. **Three of those topics are
+live ЭШ units** (`lib/esh-course.ts:426–428`: lines-and-planes, cylinders-and-cones,
+spheres). No other corpus has the problem. `verify:genmath` does not catch it.
+Ship mode, high priority: rename `bullets` → `points` in the six JSON files (the
+data fix, which also makes 6bi's walker see them), confirm in the browser, deploy
+on Khas's word.
+
 ### 6bi. The i18n walker skips teach `body` and recap `bullets`: one live page shows English
 
 **Found 6 Oct 2026, drafting `solid-geometry/pyramids` (draft 97); verified.**
