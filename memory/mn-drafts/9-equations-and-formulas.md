@@ -417,8 +417,8 @@ $C = \frac{5}{9}(F - 32)$ томьёо Фаренгейтийг Цельс рү�
 - `eqf4-t1` — $d = rt$-г $t$-ийн хувьд бодоод, $d = 240$, $r = 80$ үеийн $t$-г
   олоорой.
   **solution:** $t = \frac{d}{r} = \frac{240}{80} = 3$.
-- `eqf4-t2` — $y = mx + b$-г $x$-ийн хувьд бодоорой.
-  **solution:** $y - b = mx \to x = \frac{y - b}{m}$.
+- `eqf4-t2` — $y = kx + b$-г $x$-ийн хувьд бодоорой.
+  **solution:** $y - b = kx \to x = \frac{y - b}{k}$.
 
 ### Interactive — same eight steps, same kinds, same order
 
@@ -770,3 +770,5 @@ months ago by a mirror that shipped.
 `inequalities-and-absolute-value`, `inequalities-in-two-variables`,
 `linear-models-and-variation`, `piecewise-and-absolute-value-graphs`,
 `data-distributions`.
+
+- **2a (Khas approved, 5 Oct 2026):** the slope is $k$, as in А/492's «y=kx+b»: $y = kx + b$, $k = \frac{y_2 - y_1}{x_2 - x_1}$. No English `check[]` uses a bare $m$ (verified across grades 9–12). $m$ is kept where it means something else (minutes, months, mass).
