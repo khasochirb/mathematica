@@ -542,16 +542,27 @@ told to reuse. On four words it disagrees with `8-mn`, which a grade 10
 student has already read, and the authority rule (5 Oct 2026: *a word students
 already see is not re-chosen*) sends this draft to the shipped word:
 
-| idea | `8-mn` (used here) | `algebra-2` draft |
+| idea | shipped (used here) | `algebra-2` draft |
 |---|---|---|
-| to square | **квадратлах** (shipped 10) | «квадратдах» (0 shipped) |
-| $\sqrt{ab} = \sqrt a \sqrt b$ | **үржвэрийн чанар** | «Үржвэрийн дүрэм» (a fact title) |
-| exponent laws | **зэргийн дүрэм** | «зэргийн хууль» |
-| raise to a power | **зэрэгт өргөх** (shipped 6) | «зэрэгт дэвшүүлэх» (shipped 2) |
+| to square | **квадратлах** (`7-mn`, 10 uses) | «квадратдах» (0 shipped) |
+| $\sqrt{ab} = \sqrt a \sqrt b$ | **үржвэрийн чанар** (`8-mn/roots`) | «Үржвэрийн дүрэм» (a fact title) |
+| exponent laws | **зэргийн дүрэм** (`8-mn/exponents…`) | «зэргийн хууль» |
+| raise to a power | **зэрэгт өргөх** (`8-mn`, 6 uses) | «зэрэгт дэвшүүлэх» (`7-mn`/`algebra-1-mn`, 2 uses) |
 
 So a student moving from this topic to the ЭШ unit would meet two verbs for
 squaring. I have not touched the algebra-2 draft. If you agree, aligning it is
 a mechanical pass (about 29 «квадратд-» forms).
+
+**The same split runs through grade 10 itself.** `10-polynomials-and-factoring`
+(draft 80) writes «квадрат зэрэгт дэвшүүлэх» for squaring a binomial, and
+`10-quadratic-equations` (draft 81) has both «квадрат зэрэгт дэвшүүлж» and a
+bare «квадратла». Both verbs are good Mongolian and both are shipped
+somewhere, so nothing is wrong; but four grade 10 topics now use three forms
+(«квадратлах», «квадрат зэрэгт өргөх», «квадрат зэрэгт дэвшүүлэх»). I chose
+«квадратлах» because this topic says *square both sides* about thirty times
+and the short verb keeps the routine readable («тусгаарлах → квадратлах →
+бодох → шалгах»). One line from you on *to square* / *raise to a power*
+settles all four.
 
 Everything the sibling actually decided is reused unchanged: «рационал
 илтгэгч», «ижил язгуурт гишүүд» (still ungrounded there; Notes 2 of that
