@@ -3505,6 +3505,19 @@ them in every draft, so the live mirror needs an `mn_terms.py` pass (ship mode).
   $x$" at 100 (ten thousand); L3 tryIt p2 says the cubic "passes straight
   through both" zeros but the answer bounces at 5; `pf5-we2` garbled check.
 
+### 6bi. The i18n walker skips teach `body` and recap `bullets`: one live page shows English
+
+**Found 6 Oct 2026, drafting `solid-geometry/pyramids` (draft 97); verified.**
+`scripts/i18n/mn_walk.py` walks a `teach` step's `beats` but never its `body`,
+and a `recap`'s `points` but never `bullets`. Across the English corpus that is
+1,042 teach bodies and 24 recap bullets that a mirror built today would leave
+in English. **Live now:** all 12 teach bodies of
+`data/genmath/algebra-1-mn/quadratic-equations.json` are English. The grade
+6–8 mirrors are unaffected (they use `beats`). The drafts already give
+Mongolian for these strings. Ship mode (Build): add the two fields to the
+walker, which changes the walk order, so regenerate `algebra-1-mn/
+quadratic-equations` in the same change (and fold in 6q's merge there).
+
 ## 7. Style decisions I made without asking, listed so you can veto cheaply
 
 - **«хамгийн их / хамгийн бага утга», not «максимум / минимум».** Corpus 92/87.
