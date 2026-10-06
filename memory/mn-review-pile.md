@@ -2,7 +2,7 @@
 
 **For Khas. Built 16 Sep 2026, after drafting all eight `algebra-1` topics.
 Updated 22 Sep 2026; **Khas's 5 Oct 2026 rulings applied to every draft, see §0r**. The geometry strand is complete, and the queue has
-switched to ЭШ-first: this file now covers **seventy-nine drafts**, sixty-eight
+switched to ЭШ-first: this file now covers **eighty-three drafts**, sixty-eight
 of which feed the ЭШ course** (re-measured 23 Sep against `lib/esh-course.ts`;
 the figure carried until then, thirty-eight, was one low).
 
@@ -20,7 +20,7 @@ the figure carried until then, thirty-eight, was one low).
 > Remaining: none. Вектор ба матриц was drafted unit 2 first, because unit 1
 > depends on it (6aw).
 >
-> **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (**complete**: draft 79 `9/data-distributions` done 6 Oct, «интервал» vs the ЭШ drafts' «завсар» for a bin is its Notes 2; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (4), 11 (4),
+> **Next queue, non-ЭШ Mongolian mirrors:** grade 9 (**complete**: draft 79 `9/data-distributions` done 6 Oct, «интервал» vs the ЭШ drafts' «завсар» for a bin is its Notes 2; draft 78 `9/linear-models-and-variation` done 6 Oct; draft 77 `9/inequalities-in-two-variables` done 5 Oct, one coinage: «оройн зарчим» for *corner principle*, its Notes 2), 10 (**complete**, drafts 80–83 on 6 Oct; their word splits are 6bg), 11 (4),
 > 12 (7), `algebra-2/sequences-and-series`, `solid-geometry` (3). SAT and IB stay
 > English by decision.
 
@@ -31,7 +31,7 @@ dictionary, the voice reference or ministry order А/492 settled is **not** here
 — it is settled, and recorded in the draft it belongs to.
 
 **Voice reference §9 is fully applied and no longer a question.** All
-seventy-nine drafts carry zero em-dash parentheticals in shipping prose, and
+eighty-three drafts carry zero em-dash parentheticals in shipping prose, and
 the check is fatal rather than advisory, so the state cannot rot back.
 
 The two references are `docs/en-mn-math-glossary.md` (a–i, 746 of 3,937
@@ -3439,6 +3439,41 @@ maths spans removed, finds **37 strings in 13 files**, including the **live**
 `integrated-2`, `precalculus`. Ship mode (Build): one scripted replacement of
 `{,}` → `,` outside maths, then regenerate the affected mirror. The Mongolian
 drafts write «\$1,400».
+
+### 6bg. Word splits the non-ЭШ drafts surfaced: one line each settles them
+
+**Found 6 Oct 2026, drafts 79–83.** By the authority rule ("a word students
+already see is not re-chosen"), the grade 9–10 drafts follow the **shipped
+grade 6–8 and algebra-1 mirrors**. Where those differ from the ЭШ drafts, the
+two strands now disagree on purpose. Each row needs one word from Khas.
+
+| sense | grade 9–10 drafts (shipped mirrors) | ЭШ / earlier drafts | where |
+|---|---|---|---|
+| histogram bin | «интервал» (grade 6, 52 uses) | «завсар» (ministry 10.13а) | draft 79 Notes 2 |
+| to factor | «үржигдэхүүнд задлах» (exam, grade 6, `algebra-1-mn`) | «үржигдэхүүн болгон задлах» (ministry 10.2б, `algebra-1`/`10-rational-expressions` drafts) | drafts 80–81 |
+| to square | «квадратлах» (grade 7) · «квадрат зэрэгт дэвшүүлэх» (drafts 80–81) | «квадратдах» (`algebra-2` radicals) · grade 8 «квадрат зэрэгт өргөх» | draft 83 Notes 2 |
+| x-axis | «$x$ тэнхлэг» (`algebra-1-mn`) | «абсцисс тэнхлэг» (`10-quadratic-functions`) | draft 81 |
+| favourable outcome | «тохирох» (grade 7) | «таатай» (47 uses) | draft 82 |
+| marble · hearts · spinner | «сахир» · «гар» · «эргэгч» (grade 7) | «бөмбөлөг» · «зүрх» · — | draft 82 |
+| product / power rules | «үржвэрийн чанар», «зэргийн дүрэм», «зэрэгт өргөх» (grades 7–8) | «Үржвэрийн дүрэм», «зэргийн хууль», «зэрэгт дэвшүүлэх» (`algebra-2` radicals) | draft 83 Notes 2 |
+
+Also: the live `algebra-1-mn/quadratic-equations` still says «үржвэр тэгтэй
+тэнцэх шинж», «давхар шийд», «тархах хууль»; the rulings (t01, t02, 4a) replace
+them in every draft, so the live mirror needs an `mn_terms.py` pass (ship mode).
+
+### 6bh. English errors found in drafts 78–83 (ship mode; the Mongolian is already right)
+
+- `10/probability-and-counting`: L3 quick check on $C_7^2$ ("14 = divided by r
+  instead of r!" is false: 14 is 7·2); L5 "Second fraction" has two equal
+  options ($\tfrac49$, $\tfrac{16}{36}$); L6 lightning "~40×" is ~7×; L2 "more
+  deck orders than atoms in our galaxy" is unsupported (52! ≈ 8×10⁶⁷).
+- `10/radicals-and-rational-exponents`: L2 "1.41 + 1.73 = 3.15" (is 3.14);
+  L4 "√512 … same value" (it is ≈ 22.6, not 4).
+- `10/quadratic-equations`: L1 funFact attributes al-Khwarizmi's "a square and
+  ten roots equal thirty-nine" (c. 820) to the Babylonians.
+- `9/data-distributions`: `dd4-we2` "center-right" median (it is centred);
+  L5 stray "\$302-minute".
+- `10/polynomials-and-factoring`: L4 objective carries `$...$` (6d).
 
 ## 7. Style decisions I made without asking, listed so you can veto cheaply
 
