@@ -540,7 +540,7 @@ Numbers and answers exactly as the English (graded against stored keys).
 
 ## Notes for Khas
 
-**1. Distributive property: «гишүүнчлэн үржүүлэх чанар», not the live mirror's «тархах хууль».** Your ruling of 5 Oct 2026 (4a) overrides the word students see today, exactly as `8-linear-equations` already applied it. Lesson 5 uses it in the concreteComparison, objective, concept 3, step 2's title, step 5's title, a tryIt explanation and the recap. The dictionary's reason stands: «тархалт» is the probability word.
+**1. Distributive property: «гишүүнчлэн үржүүлэх чанар», not the live mirror's «тархах хууль».** Your ruling of 5 Oct 2026 (4a) overrides the word students see today, exactly as `8-linear-equations` already applied it. Lesson 5 uses it in the concreteComparison, objective, concept 3, `eq-we2`, step 2's title, step 5's title, step 7's first explanation and the recap. The dictionary's reason stands: «тархалт» is the probability word.
 
 **2. *Like terms* changes name between grade 7 and grade 8, and this draft does not fix that.** This mirror and `7-mn/equations-and-inequalities` ship «ижил гишүүд» (corpus 28, every later algebra draft); `8-mn/linear-equations` ships «ижил төстэй гишүүд», and its rewrite (`8-linear-equations`, Notes 2 there) kept it. Grade 6 keeps its own live word, which is also the majority word. One ruling would settle all three grades.
 
@@ -558,6 +558,8 @@ Numbers and answers exactly as the English (graded against stored keys).
 
 **8. Live-mirror errors this rewrite removes**, for whoever regenerates `6-mn`: «чи» throughout (against the «та» ruling); «7-оор үржүүлнэ» and «$-7$-оор» in lesson 6 (долоо takes «-гоор»); «Хоёр дахин үржих хөлгийн самбар» for the chessboard. «тархах хууль» goes per note 1.
 
-**9. Bare-imperative advisories, judged and kept** (the gate lists them): they sit in titles and eyebrows («Хэсгүүдийг нэрлэ», «Тэнцвэрээ хадгал», «Утгыг нь ол»), which the brief allows bare, and in the quoted phrase «$x$-ийг ол» in lesson 3's funFact, which is the saying being explained, not an instruction.
+**9. Zero bare-imperative advisories from the gate.** The bare forms that remain are not on its list and sit where the brief allows them: titles and eyebrows («Хэсгүүдийг нэрлэ», «Тэнцвэрээ хадгал», «Утгыг нь ол»), and the quoted saying «$x$-ийг ол» in lesson 3's funFact, which is explained, not addressed to the student. Every statement, intro, teach and explanation is polite («олоорой», «бодоорой», «аваарай») or descriptive («хасна»).
 
 **10. 5a (English shown once at first use), 18 terms:** power, base, exponent, squared/cubed (one row, both glossed in concept 3), perfect square, order of operations, expression, variable, constant, term, evaluate, substitute, equivalent expressions, like terms, distributive property, equation, one-step equation, inverse operation. Earlier mentions inside quoted lesson titles in the chapter-complete cards («Үйлдлийн дараалал», «Хувьсагч ба илэрхийлэл», «Тэнцүү илэрхийлэл», «Нэг алхамт тэгшитгэл») are skipped, as in the earlier drafts, and the gloss waits for the next prose use. Skipped: коэффициент (transliteration).
+
+**11. Verification.** `agents/6-expressions-and-equations/verify.py` in the session scratchpad: 272 assertions pass, covering every pure-arithmetic equality in the content (118 spans), every substitution, equivalence and equation in the topic (sympy), the ₮ taxi rescaling, the rice arithmetic in note 6, and the structural counts the gate does not check (concepts, facts, mistakes, beats, recap points, workedSet steps per example).
