@@ -32,7 +32,7 @@ English's does (lesson 1 only).
 every worked example and try-it keeps its numbers and its `check[]`. Where the
 Mongolian states something extra (a value that the English `check[]` already
 asserts but the English prose never shows), it is listed in Notes 7 and
-verified. 118 assertions, all pass:
+verified. 132 assertions, all pass:
 `scratchpad/agents/integrated-1-quantities-and-expressions/verify.py`.
 
 Shared vocabulary inherited from `algebra-1/expressions-and-operations` and
