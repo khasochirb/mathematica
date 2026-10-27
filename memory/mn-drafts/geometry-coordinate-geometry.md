@@ -60,7 +60,7 @@ Shared vocabulary lives in `memory/mn-drafts/GEOMETRY-TERMS.md`.
 | distance formula | **зайн томьёо** | **coined** — Notes 1 |
 | midpoint formula | **дундаж цэгийн томьёо** | **coined** — Notes 1 |
 | coordinate proof | **координатын баталгаа** | **coined** — Notes 1 |
-| quadrant | **квадрант** | 0 everywhere — Notes 3 |
+| quadrant | **мөч** | the live `6-mn/coordinate-plane` and the ЭШ exam (27 Oct 2026, aligned with the grade 6 rewrite; was «квадрант», 0 everywhere) — Notes 3 |
 
 English shown once at first use (5a, Khas's ruling 5 Oct 2026): 11 terms.
 
