@@ -593,7 +593,7 @@ Strings the topic dump (`mn_topic_dump.py`) does not print, drafted here so the 
 
 **1. Every term is the live mirror's, except one spelling and one hyphenation.** This is the grade that first teaches ratio and rate in Mongolian, so there was nothing upstream to defer to and nothing to coin. «харьцаа», «хольц», «тэнцүү харьцаа», «харьцааны хүснэгт», «хамгийн энгийн хэлбэр», «хөндлөн үржүүлэх», «хурдац», «нэгж хурдац», «пропорц», «масштабын коэффициент» are all as students already see them. GCF is copied from `6-mn/factors-and-multiples` and its sibling draft: «хамгийн их ерөнхий хуваагч (ХИЕХ)». In the simplest-form fact card the English `\gcd(a,b)` becomes `\text{ХИЕХ}(a,b)`, so the card uses the abbreviation the lesson teaches. No coinages.
 
-**2. *Unit price*: «нэгж үнэ» here, «нэгжийн үнэ» in the grade 7 draft.** The live `6-mn` mirror writes «нэгж үнэ» (4), parallel to «нэгж хурдац». The live `7-mn` mirror and the `7-proportional-relationships` draft write «нэгжийн үнэ». By 2g the grade that teaches it first decides, so I kept grade 6's word. If you prefer «нэгжийн үнэ» (it is the more grammatical genitive), this draft changes in 9 places; if you keep «нэгж үнэ», grade 7 changes instead.
+**2. *Unit price*: «нэгж үнэ» here, «нэгжийн үнэ» in the grade 7 draft.** The live `6-mn` mirror writes «нэгж үнэ» (4), parallel to «нэгж хурдац». The live `7-mn` mirror and the `7-proportional-relationships` draft write «нэгжийн үнэ». By 2g the grade that teaches it first decides, so I kept grade 6's word. If you prefer «нэгжийн үнэ» (it is the more grammatical genitive), this draft changes in 7 places; if you keep «нэгж үнэ», grade 7 changes instead.
 
 **3. «хурдац» is kept.** It is thin, as the grade 7 draft's Notes 3 says (not in А/492 or the dictionary), but it has 121 live uses and this topic's title is built on it. *Speed* stays «хурд».
 
@@ -615,4 +615,4 @@ Strings the topic dump (`mn_topic_dump.py`) does not print, drafted here so the 
 
 **10. 5a:** English shown once at first use, 17 terms: ratio, mix, part-to-part ratio, part-to-whole ratio, simplest form, equivalent ratios, ratio table, greatest common factor, cross-multiplying, rate (lesson 3's closing fun fact, its first prose use), speed, unit rate (lesson 4's closing fun fact), unit price, better buy, word problem, proportion, scale factor.
 
-Verified: arithmetic assertions (sympy, all pass) in `/tmp/claude-0/-home-user-mathematica/2c09a9bc-48e8-50bc-b593-f4d20da90822/scratchpad/agents/6-ratios-and-rates/verify.py`. They cover every number the draft states, including the plain-₮ conversions.
+Verified: 114 arithmetic assertions (sympy, all pass) in `/tmp/claude-0/-home-user-mathematica/2c09a9bc-48e8-50bc-b593-f4d20da90822/scratchpad/agents/6-ratios-and-rates/verify.py`. They cover every number the draft states, including the plain-₮ conversions.
