@@ -14,6 +14,21 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-10-27 (later) — mode: content
+
+**Did:**
+- **Grades 6–8 rewritten:** 24 drafts in `memory/mn-drafts/{6,7,8}-*.md`. Khas said "start from 6th grade; grades 2–4 are dropped". That settles MONGOLIAN.md Group 4 as **redo**. All 24 pass `mn_draft_check.py`, about 2,900 numeric assertions are verified, and none coins a term. **The rewrite now covers everything from grade 6 up: 122 drafts.**
+- **Round 5 applied** (`b808559`), and the decision page republished with round 6: 10 cross-grade word picks.
+- **Review pile 0t:** the launch plan, the five items Build must fix before assembly, and every finding from the 24 helpers.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `f99f503`). Nothing deployed.
+
+**Blocked on:** Khas, for the 10 round-6 picks (they do not block assembly; they are one-word swaps), and for 6bj.
+
+**Others should know — NEXT SESSION IS SHIP MODE (Khas, 27 Oct):** assemble all 122 drafts into the `*-mn` mirrors on the working branch, and send Khas a **private preview link** to approve per grade or course. Deploy only on his word. Read pile 0t first. Do these before running `--fix` on anything: `mn_terms.py` maps scatter plot to dot plot's word; the ₮ `check[]` lines; the English widgets; the four live questions with two correct answers; and the live grade 6 east/left bug.
+
+---
+
 ## 2026-10-27 — mode: content
 
 **Did:**
