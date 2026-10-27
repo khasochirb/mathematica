@@ -5,6 +5,7 @@ import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { rectPrismVolume, rectPrismSurface, cylinderVolume, cylinderSurface, pyramidVolume, coneVolume, coneSurface, sphereVolume, sphereSurface, prismVolume } from "@/lib/geo";
 import { type Solid3DConfig } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 // A 3-D solid drawn in oblique projection, with adjustable dimensions and live
 // volume + surface-area readouts. Round solids show answers as exact multiples
@@ -15,6 +16,8 @@ const D = 0.42; // oblique depth factor
 
 export default function Solid3D({ config }: { config: Solid3DConfig }) {
   const { solid, color = GEO_ACCENT } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [l, setL] = useState(config.l ?? 4);
   const [w, setW] = useState(config.w ?? 3);
   const [h, setH] = useState(config.h ?? 5);
@@ -70,8 +73,10 @@ export default function Solid3D({ config }: { config: Solid3DConfig }) {
         </g>
       );
       const baseArea = (l * h) / 2;
-      volLine = `V = (base area)·length = ${baseArea}·${w} = ${prismVolume(baseArea, w)}`;
-      saLine = `SA = 2·base + lateral`;
+      volLine = mn
+        ? `V = (суурийн талбай)·урт = ${baseArea}·${w} = ${prismVolume(baseArea, w)}`
+        : `V = (base area)·length = ${baseArea}·${w} = ${prismVolume(baseArea, w)}`;
+      saLine = mn ? `SA = 2·суурь + хажуугийн талбай` : `SA = 2·base + lateral`;
     }
   } else if (solid === "cylinder") {
     const ry = r * s * D * 0.9, rx = r * s;
@@ -119,8 +124,10 @@ export default function Solid3D({ config }: { config: Solid3DConfig }) {
       </g>
     );
     const baseArea = b * b;
-    volLine = `V = ⅓·(base area)·h = ⅓·${baseArea}·${h} = ${round2(pyramidVolume(baseArea, h))}`;
-    saLine = `SA = base + 4 triangular faces`;
+    volLine = mn
+      ? `V = ⅓·(суурийн талбай)·h = ⅓·${baseArea}·${h} = ${round2(pyramidVolume(baseArea, h))}`
+      : `V = ⅓·(base area)·h = ⅓·${baseArea}·${h} = ${round2(pyramidVolume(baseArea, h))}`;
+    saLine = mn ? `SA = суурь + 4 гурвалжин тал` : `SA = base + 4 triangular faces`;
   } else {
     // sphere
     const rx = r * s;
@@ -140,9 +147,9 @@ export default function Solid3D({ config }: { config: Solid3DConfig }) {
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-1.5">
-        <button type="button" onClick={() => set(Math.max(min, val - 1))} disabled={val <= min} aria-label={`Decrease ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-3.5 w-3.5" /></button>
+        <button type="button" onClick={() => set(Math.max(min, val - 1))} disabled={val <= min} aria-label={mn ? `${label}: багасгах` : `Decrease ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-3.5 w-3.5" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 20, fontSize: 15, color: col }}>{val}</div>
-        <button type="button" onClick={() => set(Math.min(max, val + 1))} disabled={val >= max} aria-label={`Increase ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-3.5 w-3.5" /></button>
+        <button type="button" onClick={() => set(Math.min(max, val + 1))} disabled={val >= max} aria-label={mn ? `${label}: ихэсгэх` : `Increase ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-3.5 w-3.5" /></button>
       </div>
     </div>
   );
@@ -157,9 +164,9 @@ export default function Solid3D({ config }: { config: Solid3DConfig }) {
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-4">
-        {(solid === "rectPrism" || solid === "triangularPrism") && <>{stepper(l, setL, 2, 8, solid === "rectPrism" ? "l" : "base", color)}{stepper(w, setW, 2, 8, solid === "rectPrism" ? "w" : "length", "var(--fg-1)")}{stepper(h, setH, 2, 8, "h", GEO_BLUE)}</>}
+        {(solid === "rectPrism" || solid === "triangularPrism") && <>{stepper(l, setL, 2, 8, solid === "rectPrism" ? "l" : mn ? "суурь" : "base", color)}{stepper(w, setW, 2, 8, solid === "rectPrism" ? "w" : mn ? "урт" : "length", "var(--fg-1)")}{stepper(h, setH, 2, 8, "h", GEO_BLUE)}</>}
         {(solid === "cylinder" || solid === "cone") && <>{stepper(r, setR, 1, 6, "r", color)}{stepper(h, setH, 2, 8, "h", GEO_BLUE)}</>}
-        {solid === "pyramid" && <>{stepper(baseS, setBaseS, 2, 8, "base", color)}{stepper(h, setH, 2, 9, "h", GEO_BLUE)}</>}
+        {solid === "pyramid" && <>{stepper(baseS, setBaseS, 2, 8, mn ? "суурь" : "base", color)}{stepper(h, setH, 2, 9, "h", GEO_BLUE)}</>}
         {solid === "sphere" && stepper(r, setR, 1, 6, "r", color)}
       </div>
     </div>

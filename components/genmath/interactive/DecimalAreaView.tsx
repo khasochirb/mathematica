@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 // An area model on the unit square: factor `a` runs across (columns of tenths),
 // factor `b` runs up (rows of tenths). The overlap rectangle is the product in
 // hundredths — 0.3 × 0.4 fills a 3×4 = 12-square corner = 0.12. The two factor
@@ -15,6 +17,8 @@ export default function DecimalAreaView({
   color?: string;
   size?: number;
 }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const a = Math.max(0, Math.min(10, Math.round(aTenths)));
   const b = Math.max(0, Math.min(10, Math.round(bTenths)));
   const cell = size / 10;
@@ -31,7 +35,9 @@ export default function DecimalAreaView({
         width: size + 3,
       }}
       role="img"
-      aria-label={`Area model: ${(a / 10).toFixed(1)} across by ${(b / 10).toFixed(1)} up, product ${(a * b / 100).toFixed(2)}`}
+      aria-label={mn
+        ? `Талбайн загвар: хэвтээ ${(a / 10).toFixed(1)}, босоо ${(b / 10).toFixed(1)}, үржвэр ${(a * b / 100).toFixed(2)}`
+        : `Area model: ${(a / 10).toFixed(1)} across by ${(b / 10).toFixed(1)} up, product ${(a * b / 100).toFixed(2)}`}
     >
       {Array.from({ length: 100 }).map((_, i) => {
         const r = Math.floor(i / 10); // 0..9 top → bottom

@@ -6,10 +6,12 @@
 // bars so young readers can check their count against the axis, and an
 // optional highlighted bar for "look at THIS one" questions.
 import type { FigureSpec } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 const FALLBACK = ["#3b82f6", "#d97706", "#16a34a", "#dc2626", "#7c3aed", "#0891b2"];
 
 export default function BarChartView({ spec }: { spec: NonNullable<FigureSpec["barChart"]> }) {
+  const { lang } = useLang();
   const { categories, unit, highlight } = spec;
   const step = spec.step && spec.step > 0 ? spec.step : 1;
   const dataMax = Math.max(...categories.map((c) => c.value), 1);
@@ -35,7 +37,7 @@ export default function BarChartView({ spec }: { spec: NonNullable<FigureSpec["b
         height={H}
         viewBox={`0 0 ${W} ${H}`}
         role="img"
-        aria-label={`Bar chart: ${categories.map((c) => `${c.label} ${c.value}`).join(", ")}${unit ? ` (${unit})` : ""}`}
+        aria-label={`${lang === "mn" ? "Баганан диаграмм" : "Bar chart"}: ${categories.map((c) => `${c.label} ${c.value}`).join(", ")}${unit ? ` (${unit})` : ""}`}
       >
         {/* gridlines + axis numbers — the "lines" a young reader counts to */}
         {lines.map((v) => (

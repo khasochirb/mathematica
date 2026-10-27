@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 // A number line (default 0..1, major ticks at every tenth) with decimal points
 // plotted above it. Makes "0.45 sits left of 0.5" literal, and is the natural
 // tool for ordering and (later) rounding. Presentational only.
@@ -14,6 +16,8 @@ export default function DecimalNumberLineView({
   points: { value: number; label?: string; color?: string }[];
   width?: number;
 }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const pad = 18;
   const h = 86;
   const y = 56; // baseline
@@ -33,7 +37,11 @@ export default function DecimalNumberLineView({
       height={h}
       viewBox={`0 0 ${width} ${h}`}
       role="img"
-      aria-label={`Number line from ${min} to ${max} with ${points.map((p) => p.value).join(", ")} marked`}
+      aria-label={
+        mn
+          ? `Тоон шулуун (${min} … ${max}), тэмдэглэсэн цэгүүд: ${points.map((p) => p.value).join(", ")}`
+          : `Number line from ${min} to ${max} with ${points.map((p) => p.value).join(", ")} marked`
+      }
     >
       {/* axis */}
       <line x1={pad} y1={y} x2={width - pad} y2={y} stroke="var(--fg-3)" strokeWidth="1.5" />

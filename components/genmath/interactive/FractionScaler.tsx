@@ -10,6 +10,7 @@ import FractionBar from "@/components/genmath/interactive/FractionBar";
 
 export default function FractionScaler({ config }: { config: FractionScalerConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { num, den, maxSplit, color = "#e8913c" } = config;
   const [n, setN] = useState(1);
   const sNum = num * n;
@@ -24,7 +25,9 @@ export default function FractionScaler({ config }: { config: FractionScalerConfi
       <FractionBar num={sNum} den={sDen} color={color} />
 
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-2)" }}>
-        {n === 1 ? "the whole, in " + den + " pieces" : `each piece split into ${n} → ${sDen} pieces`}
+        {mn
+          ? (n === 1 ? `бүхэл, ${den} хэсэгт хуваасан` : `хэсэг бүрийг ${n} хэсэгт хуваавал → ${sDen} хэсэг`)
+          : n === 1 ? "the whole, in " + den + " pieces" : `each piece split into ${n} → ${sDen} pieces`}
       </div>
 
       {/* equivalence readout */}
@@ -58,7 +61,7 @@ export default function FractionScaler({ config }: { config: FractionScalerConfi
             × {n}
           </div>
           <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
-            top &amp; bottom
+            {mn ? "хүртвэр ба хуваарь" : "top & bottom"}
           </div>
         </div>
         <button
@@ -74,7 +77,9 @@ export default function FractionScaler({ config }: { config: FractionScalerConfi
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Same shaded amount — just more pieces. That is an <b style={{ color: "var(--fg-1)" }}>equivalent fraction</b>.
+        {mn
+          ? <>Будсан хэмжээ ижил — зөвхөн хэсэг нь олон болсон. Энэ бол <b style={{ color: "var(--fg-1)" }}>тэнцүү бутархай</b>.</>
+          : <>Same shaded amount — just more pieces. That is an <b style={{ color: "var(--fg-1)" }}>equivalent fraction</b>.</>}
       </div>
     </div>
   );

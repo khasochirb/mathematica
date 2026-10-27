@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/lib/lang-context";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import { type CompareToggleConfig, type FigureSpec, partToWhole, formatRatio } from "@/lib/genmath-interactive";
 
 type Mode = "partToPart" | "partToWhole";
 
 export default function CompareToggle({ config }: { config: CompareToggleConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [mode, setMode] = useState<Mode>("partToPart");
   const { groupA, groupB } = config;
 
@@ -21,8 +24,11 @@ export default function CompareToggle({ config }: { config: CompareToggleConfig 
 
   const [pwL, pwR] = partToWhole(groupA.count, groupB.count);
   const ratio = mode === "partToPart" ? formatRatio(groupA.count, groupB.count) : formatRatio(pwL, pwR);
-  const caption =
-    mode === "partToPart"
+  const caption = mn
+    ? mode === "partToPart"
+      ? `${groupA.count} ${groupA.token.plural} ба ${groupB.count} ${groupB.token.plural}`
+      : `Нийт ${pwR}, үүнээс ${groupA.count} нь ${groupA.token.plural}`
+    : mode === "partToPart"
       ? `${groupA.count} ${groupA.token.plural} to ${groupB.count} ${groupB.token.plural}`
       : `${groupA.count} ${groupA.token.plural} out of ${pwR} total`;
 
@@ -42,8 +48,8 @@ export default function CompareToggle({ config }: { config: CompareToggleConfig 
       {/* Segmented toggle */}
       <div className="mx-auto mt-4 grid max-w-sm grid-cols-2 gap-1 rounded-full p-1" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         {([
-          ["partToPart", "Group to group"],
-          ["partToWhole", "Group to total"],
+          ["partToPart", mn ? "Хэсэг ба хэсэг" : "Group to group"],
+          ["partToWhole", mn ? "Хэсэг ба бүхэл" : "Group to total"],
         ] as [Mode, string][]).map(([m, label]) => {
           const on = mode === m;
           return (

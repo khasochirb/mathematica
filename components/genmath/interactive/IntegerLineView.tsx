@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 // A number line that crosses zero: integer ticks, zero emphasized, negatives to
 // the left and positives to the right, with arrowheads to suggest it runs
 // forever both ways. Marked points are plotted above. Presentational; shared by
@@ -17,6 +19,8 @@ export default function IntegerLineView({
   width?: number;
   highlightFromZero?: number; // draw a distance band from 0 to this value
 }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const pad = 20;
   const h = 70;
   const y = 44;
@@ -28,7 +32,7 @@ export default function IntegerLineView({
   for (let v = min; v <= max; v++) ticks.push(v);
 
   return (
-    <svg width={width} height={h} viewBox={`0 0 ${width} ${h}`} role="img" aria-label={`Number line from ${min} to ${max}`}>
+    <svg width={width} height={h} viewBox={`0 0 ${width} ${h}`} role="img" aria-label={mn ? `Тоон шулуун: ${min} – ${max}` : `Number line from ${min} to ${max}`}>
       <defs>
         <marker id="il-arrow" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill="var(--fg-3)" />
@@ -41,7 +45,7 @@ export default function IntegerLineView({
         <>
           <line x1={x(0)} y1={y} x2={x(highlightFromZero)} y2={y} stroke="var(--accent)" strokeWidth="5" strokeLinecap="round" opacity="0.55" />
           <text x={(x(0) + x(highlightFromZero)) / 2} y={y - 28} textAnchor="middle" fontSize="11" fill="var(--accent)">
-            distance {Math.abs(highlightFromZero)}
+            {mn ? "зай" : "distance"} {Math.abs(highlightFromZero)}
           </text>
         </>
       )}

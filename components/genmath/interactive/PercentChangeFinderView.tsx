@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUp, ArrowDown } from "lucide-react";
+import { useLang } from "@/lib/lang-context";
 
 // Before/after bars for percent increase/decrease. Both bars share a scale
 // (the larger amount = full width). The change is highlighted — extended in
@@ -23,6 +24,8 @@ export default function PercentChangeFinderView({
   color?: string;
   showAnswer: boolean;
 }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const max = Math.max(original, final) || 1;
   const isIncrease = final > original;
   const change = Math.abs(final - original);
@@ -51,11 +54,11 @@ export default function PercentChangeFinderView({
   return (
     <div className="w-full" style={{ maxWidth: 360 }}>
       <div className="space-y-2">
-        <Row label="before" amount={original} />
-        <Row label="after" amount={final} />
+        <Row label={mn ? "өмнө" : "before"} amount={original} />
+        <Row label={mn ? "дараа" : "after"} amount={final} />
       </div>
       <div className="mt-3 flex items-center justify-center gap-2 text-[13px]" style={{ color: "var(--fg-2)" }}>
-        change of <b className="serif tabular" style={{ color: "var(--fg)" }}>{money(change, currency)}</b> on {money(original, currency)}
+        {mn ? <>өөрчлөлт: <b className="serif tabular" style={{ color: "var(--fg)" }}>{money(change, currency)}</b>, анхны дүн: {money(original, currency)}</> : <>change of <b className="serif tabular" style={{ color: "var(--fg)" }}>{money(change, currency)}</b> on {money(original, currency)}</>}
       </div>
       {showAnswer && (
         <div className="gm-fade mt-2 flex justify-center">
@@ -64,7 +67,7 @@ export default function PercentChangeFinderView({
             style={{ fontSize: 18, background: "var(--accent-wash)", color: "var(--accent)", border: "1px solid var(--accent-line)" }}
           >
             {isIncrease ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
-            {pctLabel}% {isIncrease ? "increase" : "decrease"}
+            {pctLabel}% {isIncrease ? (mn ? "өсөлт" : "increase") : mn ? "бууралт" : "decrease"}
           </span>
         </div>
       )}

@@ -19,6 +19,7 @@ const HYP = 6;
 
 export default function TrigRatios({ config }: { config: TrigRatiosConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { color = GEO_ACCENT } = config;
   const [theta, setTheta] = useState(config.start ?? 40);
   const rad = (theta * Math.PI) / 180;
@@ -50,13 +51,15 @@ export default function TrigRatios({ config }: { config: TrigRatiosConfig }) {
         <path d={arcPath(sx(B.x), sy(B.y), 20, degOf(B, A), degOf(B, C))} fill="none" stroke={GEO_BLUE} strokeWidth={2} />
         <text x={sx(B.x) - 30} y={sy(B.y) - 8} fontSize="12" fill={GEO_BLUE} fontWeight={700}>θ = {theta}°</text>
         {/* side labels */}
-        <text x={sx(adj / 2)} y={sy(0) + 15} fontSize="11" textAnchor="middle" fill="var(--fg-2)">adjacent ({fmt(adj)})</text>
-        <text x={sx(0) + 6} y={sy(opp / 2)} fontSize="11" textAnchor="start" fill="var(--fg-2)">opp ({fmt(opp)})</text>
-        <text x={sx((adj) / 2) + 20} y={sy(opp / 2) - 6} fontSize="11" textAnchor="middle" fill={color} fontWeight={700} transform={`rotate(${degOf(B, A)}, ${sx(adj / 2) + 20}, ${sy(opp / 2) - 6})`}>hyp ({HYP})</text>
+        <text x={sx(adj / 2)} y={sy(0) + 15} fontSize="11" textAnchor="middle" fill="var(--fg-2)">{mn ? "налсан катет" : "adjacent"} ({fmt(adj)})</text>
+        <text x={sx(0) + 6} y={sy(opp / 2)} fontSize="11" textAnchor="start" fill="var(--fg-2)">{mn ? "эсрэг" : "opp"} ({fmt(opp)})</text>
+        <text x={sx((adj) / 2) + 20} y={sy(opp / 2) - 6} fontSize="11" textAnchor="middle" fill={color} fontWeight={700} transform={`rotate(${degOf(B, A)}, ${sx(adj / 2) + 20}, ${sy(opp / 2) - 6})`}>{mn ? "гипотенуз" : "hyp"} ({HYP})</text>
       </svg>
 
       <div className="mt-2 grid grid-cols-3 gap-2 text-center text-[13px]">
-        {[["sin θ", "opp/hyp", r.sin], ["cos θ", "adj/hyp", r.cos], ["tan θ", "opp/adj", r.tan]].map(([name, form, val]: any) => (
+        {(mn
+          ? [["sin θ", "эсрэг/гипотенуз", r.sin], ["cos θ", "налсан/гипотенуз", r.cos], ["tan θ", "эсрэг/налсан", r.tan]]
+          : [["sin θ", "opp/hyp", r.sin], ["cos θ", "adj/hyp", r.cos], ["tan θ", "opp/adj", r.tan]]).map(([name, form, val]: any) => (
           <div key={name} className="rounded-xl p-2" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
             <div className="serif" style={{ color, fontWeight: 700 }}>{name}</div>
             <div className="text-[10px]" style={{ color: "var(--fg-3)" }}>{form}</div>
@@ -66,7 +69,7 @@ export default function TrigRatios({ config }: { config: TrigRatiosConfig }) {
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>angle θ</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "өнцөг θ" : "angle θ"}</span>
         <button type="button" onClick={() => setTheta((v) => Math.max(15, v - 5))} disabled={theta <= 15} aria-label={chrome("Smaller angle", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 40, fontSize: 17, color: "var(--fg)" }}>{theta}°</div>
         <button type="button" onClick={() => setTheta((v) => Math.min(75, v + 5))} disabled={theta >= 75} aria-label={chrome("Larger angle", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>

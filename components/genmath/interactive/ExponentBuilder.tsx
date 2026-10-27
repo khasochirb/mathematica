@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/lib/lang-context";
 import { Minus, Plus } from "lucide-react";
 import { type ExponentBuilderConfig } from "@/lib/genmath-interactive";
 
@@ -8,6 +9,8 @@ import { type ExponentBuilderConfig } from "@/lib/genmath-interactive";
 // expansion base × base × … (exponent copies) and its value appear. Makes "the
 // exponent counts how many times the base is multiplied" concrete.
 export default function ExponentBuilder({ config }: { config: ExponentBuilderConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { base: b0, exp: e0, minBase = 2, maxBase = 6, minExp = 1, maxExp = 5, color = "#e8913c" } = config;
   const [base, setBase] = useState(b0);
   const [exp, setExp] = useState(e0);
@@ -19,7 +22,7 @@ export default function ExponentBuilder({ config }: { config: ExponentBuilderCon
         type="button"
         onClick={() => set((v) => Math.max(lo, v - 1))}
         disabled={val <= lo}
-        aria-label={`Decrease ${label}`}
+        aria-label={mn ? `${label}: багасгах` : `Decrease ${label}`}
         className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
         style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
       >
@@ -30,7 +33,7 @@ export default function ExponentBuilder({ config }: { config: ExponentBuilderCon
         type="button"
         onClick={() => set((v) => Math.min(hi, v + 1))}
         disabled={val >= hi}
-        aria-label={`Increase ${label}`}
+        aria-label={mn ? `${label}: нэмэх` : `Increase ${label}`}
         className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35"
         style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
       >
@@ -47,7 +50,7 @@ export default function ExponentBuilder({ config }: { config: ExponentBuilderCon
         <span className="serif tabular" style={{ fontSize: 24, color: "var(--accent)", lineHeight: 1, position: "relative", top: -14 }}>{exp}</span>
       </div>
       <div className="mt-1 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        base <b style={{ color: "var(--fg-2)" }}>{base}</b>, exponent <b style={{ color: "var(--accent)" }}>{exp}</b>
+        {mn ? "суурь" : "base"} <b style={{ color: "var(--fg-2)" }}>{base}</b>, {mn ? "илтгэгч" : "exponent"} <b style={{ color: "var(--accent)" }}>{exp}</b>
       </div>
 
       {/* Expansion */}
@@ -76,17 +79,21 @@ export default function ExponentBuilder({ config }: { config: ExponentBuilderCon
 
       <div className="mt-4 flex items-center justify-around gap-3">
         <div className="text-center">
-          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>base</div>
-          <div className="mt-1"><Stepper label="base" val={base} set={setBase} lo={minBase} hi={maxBase} /></div>
+          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "суурь" : "base"}</div>
+          <div className="mt-1"><Stepper label={mn ? "суурь" : "base"} val={base} set={setBase} lo={minBase} hi={maxBase} /></div>
         </div>
         <div className="text-center">
-          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>exponent</div>
-          <div className="mt-1"><Stepper label="exponent" val={exp} set={setExp} lo={minExp} hi={maxExp} /></div>
+          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "илтгэгч" : "exponent"}</div>
+          <div className="mt-1"><Stepper label={mn ? "илтгэгч" : "exponent"} val={exp} set={setExp} lo={minExp} hi={maxExp} /></div>
         </div>
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        The exponent tells you <b style={{ color: "var(--fg-1)" }}>how many times</b> to multiply the base.
+        {mn ? (
+          <>Илтгэгч нь суурийг <b style={{ color: "var(--fg-1)" }}>хэдэн удаа</b> үржүүлэхийг заана.</>
+        ) : (
+          <>The exponent tells you <b style={{ color: "var(--fg-1)" }}>how many times</b> to multiply the base.</>
+        )}
       </div>
     </div>
   );

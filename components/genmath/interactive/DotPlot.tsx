@@ -26,7 +26,8 @@ function fmt(n: number): string {
 
 export default function DotPlot({ config }: { config: DotPlotConfig }) {
   const { lang } = useLang();
-  const { mode, data: data0, min, max, xLabel = "value" } = config;
+  const mn = lang === "mn";
+  const { mode, data: data0, min, max, xLabel = mn ? "утга" : "value" } = config;
   // meanMedian: the largest starting value is the one the steppers move
   const moveIx = useMemo(() => data0.indexOf(Math.max(...data0)), [data0]);
   const [moved, setMoved] = useState(data0[moveIx]);
@@ -131,14 +132,14 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
           <g>
             <path d={`M${px(muA)},${axisY + 2} l -7,12 l 14,0 Z`} fill="var(--accent)" />
             <text x={px(muA)} y={axisY + 26} fontSize="9.5" fill="var(--accent)" textAnchor="middle" className="tabular" fontWeight={700}>
-              mean {fmt(mu)}
+              {mn ? "дундаж" : "mean"} {fmt(mu)}
             </text>
           </g>
           {mode === "meanMedian" && (
             <g>
               <line x1={px(medA)} y1={axisY - 2} x2={px(medA)} y2={26} stroke={GEO_BLUE} strokeWidth={2} />
               <text x={px(medA)} y={18} fontSize="9.5" fill={GEO_BLUE} textAnchor="middle" className="tabular" fontWeight={700}>
-                median {fmt(med)}
+                {mn ? "медиан" : "median"} {fmt(med)}
               </text>
             </g>
           )}
@@ -158,25 +159,29 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
         {mode === "meanMedian" ? (
           <>
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              mean = <b style={{ color: "var(--accent)" }}>{fmt(mu)}</b> · median ={" "}
+              {mn ? "дундаж" : "mean"} = <b style={{ color: "var(--accent)" }}>{fmt(mu)}</b> · {mn ? "медиан" : "median"} ={" "}
               <b style={{ color: GEO_BLUE }}>{fmt(med)}</b>
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {pulled
+              {mn
+                ? pulled
+                  ? "ганц онцгой утга дунджийг чирлээ — медиан огт хөдөлсөнгүй"
+                  : "хөдөлдөг цэгийг баруун тийш түлхээд аль үзүүлэлт дагахыг хар"
+                : pulled
                 ? "one wild value dragged the mean — the median never moved"
                 : "push the movable dot right and watch which summary follows"}
             </div>
           </>
         ) : pick !== null ? (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            deviation: {data[pick]} − {fmt(mu)} ={" "}
+            {mn ? "хазайлт" : "deviation"}: {data[pick]} − {fmt(mu)} ={" "}
             <b style={{ color: data[pick] >= mu ? GREEN : RED }}>{fmt(data[pick] - mu)}</b>
           </div>
         ) : (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
             σ = <b style={{ color: "var(--accent)" }}>{fmt(sd)}</b>
             <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              — the typical stick length; tap a dot for its deviation
+              {mn ? "— савхны ердийн урт; цэг дээр дарж хазайлтыг нь хар" : "— the typical stick length; tap a dot for its deviation"}
             </span>
           </div>
         )}
@@ -195,7 +200,7 @@ export default function DotPlot({ config }: { config: DotPlotConfig }) {
             <Minus className="h-4 w-4" />
           </button>
           <div className="text-[12px]" style={{ color: "var(--fg-2)", minWidth: 110, textAlign: "center" }}>
-            movable dot at <b className="tabular" style={{ color: "var(--accent)" }}>{moved}</b>
+            {mn ? "хөдөлдөг цэг:" : "movable dot at"} <b className="tabular" style={{ color: "var(--accent)" }}>{moved}</b>
           </div>
           <button
             type="button"

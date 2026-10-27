@@ -5,8 +5,11 @@
 // the figure the pictograph lessons teach ABOUT; until 2026-08-13 those
 // lessons described symbol rows in prose because no renderer existed.
 import type { FigureSpec } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 export default function PictographView({ spec }: { spec: NonNullable<FigureSpec["pictograph"]> }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const symbol = spec.symbol ?? "●";
   const color = spec.color ?? "#3b82f6";
   const key = Math.max(1, spec.key);
@@ -14,7 +17,7 @@ export default function PictographView({ spec }: { spec: NonNullable<FigureSpec[
   return (
     <div className="gm-fade flex justify-center rounded-xl p-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
       <div>
-        <table role="img" aria-label={`Pictograph, one ${symbol} means ${key}: ${spec.rows.map((r) => `${r.label} ${r.value}`).join(", ")}`}>
+        <table role="img" aria-label={`${mn ? `Зурган диаграмм, нэг ${symbol} = ${key}` : `Pictograph, one ${symbol} means ${key}`}: ${spec.rows.map((r) => `${r.label} ${r.value}`).join(", ")}`}>
           <tbody>
             {spec.rows.map((row) => {
               const whole = Math.floor(row.value / key);

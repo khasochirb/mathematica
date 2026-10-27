@@ -20,6 +20,7 @@ function fmt(x: number, dp = 3): string {
 
 export default function BinomialBars({ config }: { config: BinomialBarsConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { n0 = 6, p0 = 0.5, nMax = 14, showMuSigma = false, highlightK } = config;
   const [n, setN] = useState(n0);
   const [p, setP] = useState(p0);
@@ -88,7 +89,7 @@ export default function BinomialBars({ config }: { config: BinomialBarsConfig })
             );
           })}
           <text x={W - padR} y={axisY + 26} fontSize="10" fill="var(--fg-2)" textAnchor="end">
-            successes k
+            {mn ? "амжилтын тоо k" : "successes k"}
           </text>
 
           {showMuSigma && (
@@ -120,12 +121,14 @@ export default function BinomialBars({ config }: { config: BinomialBarsConfig })
             μ = np = <b style={{ color: "var(--accent)" }}>{fmt(mu, 2)}</b>, σ = √(np(1−p)) ={" "}
             <b style={{ color: "var(--accent)" }}>{fmt(sd, 2)}</b>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {p === 0.5 ? "p = ½ — a symmetric pile" : p < 0.5 ? "p < ½ — the pile leans left, tail to the right" : "p > ½ — the pile leans right, tail to the left"}
+              {mn
+                ? p === 0.5 ? "p = ½: тэгш хэмтэй хэлбэр" : p < 0.5 ? "p < ½: зүүн тийш хэлбийж, сүүл нь баруун тийш сунана" : "p > ½: баруун тийш хэлбийж, сүүл нь зүүн тийш сунана"
+                : p === 0.5 ? "p = ½ — a symmetric pile" : p < 0.5 ? "p < ½ — the pile leans left, tail to the right" : "p > ½ — the pile leans right, tail to the left"}
             </div>
           </div>
         ) : (
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            X ~ B({n}, {fmt(p, 2)}) — tap a bar for its exact probability
+            X ~ B({n}, {fmt(p, 2)}){mn ? ": багана дээр дарж яг магадлалыг нь хар" : " — tap a bar for its exact probability"}
           </div>
         )}
       </div>
@@ -133,18 +136,18 @@ export default function BinomialBars({ config }: { config: BinomialBarsConfig })
       {/* steppers */}
       <div className="mt-3 flex items-center justify-center gap-6">
         <div className="flex items-center gap-2">
-          {stepBtn(-1, n <= 1, () => { setN((v) => Math.max(1, v - 1)); setPick(null); }, "Decrease n")}
+          {stepBtn(-1, n <= 1, () => { setN((v) => Math.max(1, v - 1)); setPick(null); }, mn ? "n утгыг багасгах" : "Decrease n")}
           <div className="text-[12px]" style={{ color: "var(--fg-2)", minWidth: 52, textAlign: "center" }}>
             n = <b className="tabular" style={{ color: GEO_BLUE }}>{n}</b>
           </div>
-          {stepBtn(1, n >= nMax, () => { setN((v) => Math.min(nMax, v + 1)); setPick(null); }, "Increase n")}
+          {stepBtn(1, n >= nMax, () => { setN((v) => Math.min(nMax, v + 1)); setPick(null); }, mn ? "n утгыг ихэсгэх" : "Increase n")}
         </div>
         <div className="flex items-center gap-2">
-          {stepBtn(-1, p <= 0.1, () => { setP((v) => Math.round((v - 0.1) * 100) / 100); setPick(null); }, "Decrease p")}
+          {stepBtn(-1, p <= 0.1, () => { setP((v) => Math.round((v - 0.1) * 100) / 100); setPick(null); }, mn ? "p утгыг багасгах" : "Decrease p")}
           <div className="text-[12px]" style={{ color: "var(--fg-2)", minWidth: 56, textAlign: "center" }}>
             p = <b className="tabular" style={{ color: GEO_BLUE }}>{fmt(p, 2)}</b>
           </div>
-          {stepBtn(1, p >= 0.9, () => { setP((v) => Math.round((v + 0.1) * 100) / 100); setPick(null); }, "Increase p")}
+          {stepBtn(1, p >= 0.9, () => { setP((v) => Math.round((v + 0.1) * 100) / 100); setPick(null); }, mn ? "p утгыг ихэсгэх" : "Increase p")}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/lib/lang-context";
 import { Minus, Plus, Check, X } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { canFormTriangle } from "@/lib/geo";
@@ -15,6 +16,8 @@ const H = 200;
 
 export default function TriangleInequality({ config }: { config: TriangleInequalityConfig }) {
   const { a: a0 = 4, b: b0 = 5, c: c0 = 6, max = 12 } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [a, setA] = useState(a0); // left arm (from left base end)
   const [b, setB] = useState(b0); // right arm (from right base end)
   const [c, setC] = useState(c0); // base
@@ -45,8 +48,8 @@ export default function TriangleInequality({ config }: { config: TriangleInequal
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: col }}>{label} = {val}</div>
       <div className="mt-1 flex items-center gap-1.5">
-        <button type="button" onClick={() => set((v) => Math.max(1, v - 1))} disabled={val <= 1} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
-        <button type="button" onClick={() => set((v) => Math.min(max, v + 1))} disabled={val >= max} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.max(1, v - 1))} disabled={val <= 1} aria-label={mn ? `${label} багасгах` : `Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.min(max, v + 1))} disabled={val >= max} aria-label={mn ? `${label} нэмэгдүүлэх` : `Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
@@ -89,10 +92,10 @@ export default function TriangleInequality({ config }: { config: TriangleInequal
       <div className="mt-2 rounded-xl p-3 text-center" style={forms ? { background: "rgba(80,160,90,0.1)", border: "1px solid rgba(80,160,90,0.5)" } : { background: "rgba(200,60,60,0.08)", border: "1px solid rgb(200,60,60)" }}>
         <span className="inline-flex items-center gap-1.5 text-[15px]" style={{ color: "var(--fg)" }}>
           {forms ? <Check className="h-4 w-4" style={{ color: "rgb(70,150,80)" }} /> : <X className="h-4 w-4" style={{ color: "rgb(200,60,60)" }} />}
-          <b>{forms ? "These close into a triangle" : "These can't close"}</b>
+          <b>{forms ? (mn ? "Гурвалжин болж хаагдана" : "These close into a triangle") : mn ? "Хаагдахгүй" : "These can't close"}</b>
         </span>
         <div className="mt-0.5 serif tabular text-[13px]" style={{ color: "var(--fg-1)" }}>
-          two shorter sides: {otherTwo} {otherTwo > longest ? ">" : otherTwo === longest ? "=" : "<"} {longest} (longest side)
+          {mn ? "богино хоёр талын нийлбэр" : "two shorter sides"}: {otherTwo} {otherTwo > longest ? ">" : otherTwo === longest ? "=" : "<"} {longest} {mn ? "(хамгийн урт тал)" : "(longest side)"}
         </div>
       </div>
 
@@ -103,7 +106,7 @@ export default function TriangleInequality({ config }: { config: TriangleInequal
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        A triangle closes only when the <b style={{ color: "var(--fg-1)" }}>two shorter sides sum to more</b> than the longest.
+        {mn ? <>Гурвалжин зөвхөн <b style={{ color: "var(--fg-1)" }}>богино хоёр талын нийлбэр</b> хамгийн урт талаас их үед хаагдана.</> : <>A triangle closes only when the <b style={{ color: "var(--fg-1)" }}>two shorter sides sum to more</b> than the longest.</>}
       </div>
     </div>
   );

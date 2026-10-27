@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 import { useState } from "react";
 import { ArrowLeftRight, Smile, Frown } from "lucide-react";
 import { type OrderFlipConfig, formatRatio } from "@/lib/genmath-interactive";
@@ -8,6 +10,8 @@ import { type OrderFlipConfig, formatRatio } from "@/lib/genmath-interactive";
 // NUMBERS. Forward: a cocoa : b milk (good). Flipped: b cocoa : a milk (mud).
 // That's what makes "order matters" true — the actual mix changes.
 export default function OrderFlip({ config }: { config: OrderFlipConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [flipped, setFlipped] = useState(false);
 
   const countA = flipped ? config.b : config.a; // number on tokenA (e.g. cocoa)
@@ -56,7 +60,7 @@ export default function OrderFlip({ config }: { config: OrderFlipConfig }) {
         </span>
         <div>
           <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
-            {config.tokenA.label} : {config.tokenB.label} = {formatRatio(countA, countB)} makes
+            {config.tokenA.label} : {config.tokenB.label} = {formatRatio(countA, countB)} {mn ? "— гарах үр дүн" : "makes"}
           </div>
           <div className="serif" style={{ fontSize: 18, color: "var(--fg)" }}>{outcome}</div>
         </div>
@@ -71,7 +75,7 @@ export default function OrderFlip({ config }: { config: OrderFlipConfig }) {
           style={{ background: "var(--accent)", color: "var(--accent-ink, #fff)", border: "1px solid var(--accent)" }}
         >
           <ArrowLeftRight className="h-4 w-4" />
-          Flip the order
+          {mn ? "Дарааллыг солих" : "Flip the order"}
         </button>
       </div>
     </div>

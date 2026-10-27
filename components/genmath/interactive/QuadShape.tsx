@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { type QuadShapeConfig } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 // A canonical quadrilateral drawn with the marks that DEFINE its type —
 // parallel arrows, congruence ticks, right-angle squares, equal-angle arcs —
@@ -44,6 +45,8 @@ export default function QuadShape({ config }: { config: QuadShapeConfig }) {
   const { type, showDiagonals = false, caption } = config;
   const spec = SHAPES[type];
   const [diagOn, setDiagOn] = useState(false);
+  const { lang } = useLang();
+  const mn = lang === "mn";
 
   const V = spec.v.map(([x, y]) => ({ x, y }));
   const [A, B, C, D] = V;
@@ -181,17 +184,29 @@ export default function QuadShape({ config }: { config: QuadShapeConfig }) {
           className="gm-press mt-3 w-full rounded-xl px-4 py-2.5 text-[14px] font-semibold"
           style={{ background: diagOn ? "var(--bg-2)" : "var(--accent)", border: "1px solid var(--line)", color: diagOn ? "var(--fg)" : "var(--accent-ink, #fff)" }}
         >
-          {diagOn ? "Hide the diagonals" : "Draw the diagonals"}
+          {mn ? (diagOn ? "Диагоналиудыг нуух" : "Диагоналиудыг зурах") : diagOn ? "Hide the diagonals" : "Draw the diagonals"}
         </button>
       )}
 
       {showDiags && (
         <div className="mt-3 rounded-xl p-3 text-center text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
+          {mn ? (
+            <>
+              {spec.diag.perpendicular && <span>Диагоналиуд <b style={{ color: GEO_BLUE }}>тэгш өнцгөөр</b> огтлолцоно. </span>}
+              {spec.diag.congruent && <span>Хоёр диагональ <b style={{ color: GEO_BLUE }}>уртаараа тэнцүү</b>. </span>}
+              {spec.diag.bisect && !spec.diag.congruent && !spec.diag.perpendicular && <span>Диагоналиуд <b style={{ color: GEO_BLUE }}>бие биенээ хагаслана</b>. </span>}
+              {spec.diag.bisect && (spec.diag.congruent || spec.diag.perpendicular) && <span>Мөн тэд <b>бие биенээ хагаслана</b>.</span>}
+              {Object.keys(spec.diag).length === 0 && <span>Ерийн трапецын диагоналиудад онцгой урт ч, өнцөг ч байхгүй.</span>}
+            </>
+          ) : (
+          <>
           {spec.diag.perpendicular && <span>The diagonals meet at a <b style={{ color: GEO_BLUE }}>right angle</b>. </span>}
           {spec.diag.congruent && <span>The two diagonals are <b style={{ color: GEO_BLUE }}>equal in length</b>. </span>}
           {spec.diag.bisect && !spec.diag.congruent && !spec.diag.perpendicular && <span>The diagonals <b style={{ color: GEO_BLUE }}>bisect each other</b>. </span>}
           {spec.diag.bisect && (spec.diag.congruent || spec.diag.perpendicular) && <span>They also <b>bisect each other</b>.</span>}
           {Object.keys(spec.diag).length === 0 && <span>In a general trapezoid the diagonals have no special length or angle.</span>}
+          </>
+          )}
         </div>
       )}
 

@@ -19,6 +19,7 @@ function fmt(n: number): string {
 
 export default function DistributionBars({ config }: { config: DistributionBarsConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { values, probs, pLabels, xLabel = "x", showMean = false, showSd = false } = config;
   const [pick, setPick] = useState<number | null>(null);
 
@@ -130,29 +131,29 @@ export default function DistributionBars({ config }: { config: DistributionBarsC
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         {pick !== null ? (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            x = {values[pick]}: contributes {values[pick]} · {pLabels?.[pick] ?? fmt(probs[pick])} ={" "}
+            x = {values[pick]}: {mn ? "" : "contributes "}{values[pick]} · {pLabels?.[pick] ?? fmt(probs[pick])} ={" "}
             <b style={{ color: "var(--accent)" }}>{fmt(values[pick] * probs[pick])}</b>
             <span className="ml-1 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              toward the mean
+              {mn ? "— математик дундажид оруулах хувь нэмэр" : "toward the mean"}
             </span>
           </div>
         ) : showSd ? (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
             μ = {fmt(mu)}, σ = <b style={{ color: "var(--accent)" }}>{fmt(sd)}</b>
             <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              — the whiskers reach one σ each way
+              {mn ? "— зураас хоёр тийш тус бүр нэг σ үргэлжилнэ" : "— the whiskers reach one σ each way"}
             </span>
           </div>
         ) : showMean ? (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
             E[X] = Σ x · P(x) = <b style={{ color: "var(--accent)" }}>{fmt(mu)}</b>
             <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              — the triangle marks the balance point
+              {mn ? "— гурвалжин тэнцвэрийн цэгийг заана" : "— the triangle marks the balance point"}
             </span>
           </div>
         ) : (
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            each bar is P(X = x); heights add to 1 — tap a bar for its share
+            {mn ? "багана бүр P(X = x); өндрүүдийн нийлбэр 1 — баганыг дарж хувь нэмрийг нь хар" : "each bar is P(X = x); heights add to 1 — tap a bar for its share"}
           </div>
         )}
       </div>

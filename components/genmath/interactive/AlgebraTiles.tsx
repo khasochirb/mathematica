@@ -23,6 +23,7 @@ function expr(a: number, b: number): string {
 
 export default function AlgebraTiles({ config }: { config: AlgebraTilesConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { x: x0, units: u0, mode = "build", maxX = 5, maxUnits = 8, color = "#e8913c" } = config;
   const [x, setX] = useState(x0);
   const [units, setUnits] = useState(u0);
@@ -74,14 +75,14 @@ export default function AlgebraTiles({ config }: { config: AlgebraTilesConfig })
         {showGrouped ? (
           <span style={{ color: collected || mode === "build" ? "var(--accent)" : "var(--fg)" }}>{expr(x, units)}</span>
         ) : (
-          <span style={{ color: "var(--fg-3)" }}>collect to simplify…</span>
+          <span style={{ color: "var(--fg-3)" }}>{mn ? "хялбарчлахын тулд бүлэглэ…" : "collect to simplify…"}</span>
         )}
       </div>
 
       {mode === "build" ? (
         <div className="mt-4 flex items-center justify-around gap-3">
           <div className="text-center">
-            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>x-tiles</div>
+            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "x-хавтан" : "x-tiles"}</div>
             <div className="mt-1 flex items-center gap-2">
               <button type="button" onClick={() => setX((v) => Math.max(0, v - 1))} disabled={x <= 0} aria-label={chrome("Fewer x", lang)} className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
               <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 18, color: "var(--fg)" }}>{x}</div>
@@ -89,7 +90,7 @@ export default function AlgebraTiles({ config }: { config: AlgebraTilesConfig })
             </div>
           </div>
           <div className="text-center">
-            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>units</div>
+            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "нэгж" : "units"}</div>
             <div className="mt-1 flex items-center gap-2">
               <button type="button" onClick={() => setUnits((v) => Math.max(0, v - 1))} disabled={units <= 0} aria-label={chrome("Fewer units", lang)} className="gm-press grid h-10 w-10 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
               <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 18, color: "var(--fg)" }}>{units}</div>
@@ -99,13 +100,17 @@ export default function AlgebraTiles({ config }: { config: AlgebraTilesConfig })
         </div>
       ) : (
         <div className="mt-4 flex items-center justify-center gap-3">
-          <button type="button" onClick={() => setCollected(false)} disabled={!collected} className="gm-press rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>Scatter</button>
-          <button type="button" onClick={() => setCollected(true)} disabled={collected} className="gm-press inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Check className="h-4 w-4" /> Collect like terms</button>
+          <button type="button" onClick={() => setCollected(false)} disabled={!collected} className="gm-press rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>{mn ? "Тараах" : "Scatter"}</button>
+          <button type="button" onClick={() => setCollected(true)} disabled={collected} className="gm-press inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Check className="h-4 w-4" /> {mn ? "Төсөөтэй гишүүдийг цуглуулах" : "Collect like terms"}</button>
         </div>
       )}
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        {mode === "build"
+        {mn
+          ? (mode === "build"
+            ? <><b style={{ color: "var(--accent)" }}>x</b>-хавтан бүр нэг үл мэдэгдэгч; жижиг дөрвөлжин бүр <b style={{ color: "var(--fg-1)" }}>1</b>.</>
+            : <><b style={{ color: "var(--accent)" }}>x</b>-хавтангуудыг нэг дор, нэгжүүдийг нэг дор бүлэглэ — энэ бол <b style={{ color: "var(--fg-1)" }}>төсөөтэй гишүүдийг</b> цуглуулах.</>)
+          : mode === "build"
           ? <>Each <b style={{ color: "var(--accent)" }}>x</b>-tile is one unknown; each small square is <b style={{ color: "var(--fg-1)" }}>1</b>.</>
           : <>Group the <b style={{ color: "var(--accent)" }}>x</b>-tiles together and the units together — that's combining <b style={{ color: "var(--fg-1)" }}>like terms</b>.</>}
       </div>

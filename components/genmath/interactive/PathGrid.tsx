@@ -16,6 +16,7 @@ import { latticePaths, nCr, type PathGridConfig } from "@/lib/genmath-interactiv
 
 export default function PathGrid({ config }: { config: PathGridConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { cols, rows } = config;
   const maxDiag = cols + rows;
   const [diag, setDiag] = useState(1);
@@ -112,10 +113,10 @@ export default function PathGrid({ config }: { config: PathGridConfig }) {
             }),
           )}
           <text x={px(0) - 6} y={py(0) - 20} fontSize="10.5" fill={GEO_BLUE} fontWeight={700}>
-            Start
+            {mn ? "Эхлэл" : "Start"}
           </text>
           <text x={px(cols) + 6} y={py(rows) + 24} fontSize="10.5" fill="var(--accent)" fontWeight={700} textAnchor="end">
-            Finish
+            {mn ? "Төгсгөл" : "Finish"}
           </text>
         </svg>
       </div>
@@ -127,19 +128,23 @@ export default function PathGrid({ config }: { config: PathGridConfig }) {
             <b style={{ color: "var(--accent)" }}>{value[pick[0]][pick[1]]}</b> ={" "}
             {feeders.map(([i, j]) => value[i][j]).join(" + ")}
             <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              — arrive from the left or from above
+              {mn ? "— зүүнээс эсвэл дээрээс ирнэ" : "— arrive from the left or from above"}
             </span>
           </div>
         ) : shownAll ? (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            paths to Finish: C({cols + rows}, {cols}) = <b style={{ color: "var(--accent)" }}>{total}</b>
+            {mn ? "Төгсгөл хүрэх зам:" : "paths to Finish:"} C({cols + rows}, {cols}) = <b style={{ color: "var(--accent)" }}>{total}</b>
             <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              — choose which {cols} of the {cols + rows} moves go right
+              {mn
+                ? `— нийт ${cols + rows} алхмаас баруун тийш явах ${cols} алхмаа сонго`
+                : `— choose which ${cols} of the ${cols + rows} moves go right`}
             </span>
           </div>
         ) : (
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            each corner counts the paths from Start — reveal the next diagonal, or tap a corner
+            {mn
+              ? "булан бүр Эхлэлээс ирэх замын тоог заана — дараагийн диагоналийг нээ, эсвэл булан дээр дар"
+              : "each corner counts the paths from Start — reveal the next diagonal, or tap a corner"}
           </div>
         )}
       </div>
@@ -156,7 +161,7 @@ export default function PathGrid({ config }: { config: PathGridConfig }) {
           <Minus className="h-4 w-4" />
         </button>
         <div className="text-[12px]" style={{ color: "var(--fg-2)", minWidth: 110, textAlign: "center" }}>
-          diagonals filled: <b className="tabular" style={{ color: GEO_BLUE }}>{diag}</b> / {maxDiag}
+          {mn ? "дүүргэсэн диагональ:" : "diagonals filled:"} <b className="tabular" style={{ color: GEO_BLUE }}>{diag}</b> / {maxDiag}
         </div>
         <button
           type="button"

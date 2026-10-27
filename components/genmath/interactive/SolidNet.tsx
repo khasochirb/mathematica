@@ -3,6 +3,7 @@
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { rectPrismSurface, cylinderSurface } from "@/lib/geo";
 import { type SolidNetConfig } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 // A solid unfolded into its flat NET, so surface area reads as the sum of the
 // face areas: a rectangular prism opens into 6 rectangles, a cylinder into two
@@ -11,6 +12,8 @@ const W = 320;
 
 export default function SolidNet({ config }: { config: SolidNetConfig }) {
   const { solid, color = GEO_ACCENT } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
 
   if (solid === "cylinder") {
     const r = config.r ?? 3, h = config.h ?? 5;
@@ -27,13 +30,13 @@ export default function SolidNet({ config }: { config: SolidNetConfig }) {
           <text x={cx} y={circR + 12} fontSize="11" textAnchor="middle" fill={color} fontWeight={700}>πr²</text>
           <rect x={rectX} y={rectY} width={rectW} height={rectH} fill={`${GEO_BLUE}14`} stroke="var(--fg-1)" strokeWidth={1.6} />
           <text x={cx} y={rectY + rectH / 2} fontSize="11" textAnchor="middle" fill={GEO_BLUE} fontWeight={700}>2πr × h</text>
-          <text x={cx} y={rectY + rectH + 14} fontSize="10" textAnchor="middle" fill="var(--fg-3)">width = circumference 2πr</text>
+          <text x={cx} y={rectY + rectH + 14} fontSize="10" textAnchor="middle" fill="var(--fg-3)">{mn ? "өргөн = тойргийн урт 2πr" : "width = circumference 2πr"}</text>
           <circle cx={cx} cy={rectY + rectH + circR + 20} r={circR} fill={`${color}18`} stroke="var(--fg-1)" strokeWidth={1.6} />
           <text x={cx} y={rectY + rectH + circR + 24} fontSize="11" textAnchor="middle" fill={color} fontWeight={700}>πr²</text>
         </svg>
         <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-          <span className="serif tabular">SA = 2πr² + 2πrh = <b style={{ color }}>{2 * r * r + 2 * r * h}π</b> ≈ {(cylinderSurface(r, h)).toFixed(1)}</span>
-          <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>two circles ({r * r}π each) + a wrapped rectangle ({2 * r * h}π).</div>
+          <span className="serif tabular">{mn ? "S" : "SA"} = 2πr² + 2πrh = <b style={{ color }}>{2 * r * r + 2 * r * h}π</b> ≈ {(cylinderSurface(r, h)).toFixed(1)}</span>
+          <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? <>хоёр дугуй (тус бүр {r * r}π) + ороосон тэгш өнцөгт ({2 * r * h}π).</> : <>two circles ({r * r}π each) + a wrapped rectangle ({2 * r * h}π).</>}</div>
         </div>
       </div>
     );
@@ -54,16 +57,16 @@ export default function SolidNet({ config }: { config: SolidNetConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340, display: "block", margin: "0 auto" }}>
-        {box(frontX, frontY - w * s, l * s, w * s, `${color}14`, `top ${l}×${w}`)}
+        {box(frontX, frontY - w * s, l * s, w * s, `${color}14`, mn ? `дээд ${l}×${w}` : `top ${l}×${w}`)}
         {box(frontX - w * s, frontY, w * s, h * s, `${GEO_BLUE}12`, `${w}×${h}`)}
-        {box(frontX, frontY, l * s, h * s, `${color}22`, `front ${l}×${h}`)}
+        {box(frontX, frontY, l * s, h * s, `${color}22`, mn ? `урд ${l}×${h}` : `front ${l}×${h}`)}
         {box(frontX + l * s, frontY, w * s, h * s, `${GEO_BLUE}12`, `${w}×${h}`)}
-        {box(frontX + l * s + w * s, frontY, l * s, h * s, `${color}14`, `back ${l}×${h}`)}
-        {box(frontX, frontY + h * s, l * s, w * s, `${color}14`, `bottom ${l}×${w}`)}
+        {box(frontX + l * s + w * s, frontY, l * s, h * s, `${color}14`, mn ? `ард ${l}×${h}` : `back ${l}×${h}`)}
+        {box(frontX, frontY + h * s, l * s, w * s, `${color}14`, mn ? `доод ${l}×${w}` : `bottom ${l}×${w}`)}
       </svg>
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-        <span className="serif tabular">SA = 2(lw + lh + wh) = 2({l * w} + {l * h} + {w * h}) = <b style={{ color }}>{rectPrismSurface(l, w, h)}</b></span>
-        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>the 6 faces come in 3 matching pairs.</div>
+        <span className="serif tabular">{mn ? "S" : "SA"} = 2(lw + lh + wh) = 2({l * w} + {l * h} + {w * h}) = <b style={{ color }}>{rectPrismSurface(l, w, h)}</b></span>
+        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? "6 тал 3 тохирох хос үүсгэнэ." : "the 6 faces come in 3 matching pairs."}</div>
       </div>
     </div>
   );

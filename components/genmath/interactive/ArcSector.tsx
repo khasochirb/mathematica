@@ -19,6 +19,7 @@ const STEPS = [30, 45, 60, 90, 120, 180, 270];
 
 export default function ArcSector({ config }: { config: ArcSectorConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { radius = 6, color = GEO_ACCENT } = config;
   const [ti, setTi] = useState(() => {
     const i = STEPS.indexOf(config.start ?? 90);
@@ -65,19 +66,19 @@ export default function ArcSector({ config }: { config: ArcSectorConfig }) {
 
       <div className="mt-2 grid grid-cols-2 gap-2 text-center text-[13px]">
         <div className="rounded-xl p-2" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-          <div className="serif" style={{ color, fontWeight: 700 }}>arc length</div>
+          <div className="serif" style={{ color, fontWeight: 700 }}>{mn ? "нумын урт" : "arc length"}</div>
           <div className="text-[10px]" style={{ color: "var(--fg-3)" }}>(θ/360)·2πr</div>
           <div className="serif tabular" style={{ color: "var(--fg)", fontSize: 14 }}>{arcCoef}π ≈ {fmt(arcLength(theta, radius))}</div>
         </div>
         <div className="rounded-xl p-2" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-          <div className="serif" style={{ color: GEO_BLUE, fontWeight: 700 }}>sector area</div>
+          <div className="serif" style={{ color: GEO_BLUE, fontWeight: 700 }}>{mn ? "секторын талбай" : "sector area"}</div>
           <div className="text-[10px]" style={{ color: "var(--fg-3)" }}>(θ/360)·πr²</div>
           <div className="serif tabular" style={{ color: "var(--fg)", fontSize: 14 }}>{areaCoef}π ≈ {fmt(sectorArea(theta, radius))}</div>
         </div>
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>angle θ</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "өнцөг θ" : "angle θ"}</span>
         <button type="button" onClick={() => setTi((v) => Math.max(0, v - 1))} disabled={ti <= 0} aria-label={chrome("Smaller", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 17, color: "var(--fg)" }}>{theta}°</div>
         <button type="button" onClick={() => setTi((v) => Math.min(STEPS.length - 1, v + 1))} disabled={ti >= STEPS.length - 1} aria-label={chrome("Larger", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>

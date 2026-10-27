@@ -18,6 +18,7 @@ const H = 300;
 
 export default function PolygonAngles({ config }: { config: PolygonAnglesConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { start = 5, minSides = 3, maxSides = 10, color = GEO_ACCENT } = config;
   const [n, setN] = useState(start);
   const [mode, setMode] = useState<"interior" | "exterior">(config.mode ?? "interior");
@@ -82,7 +83,11 @@ export default function PolygonAngles({ config }: { config: PolygonAnglesConfig 
               ({n} − 2) × 180° = <b style={{ color }}>{interiorSum}°</b>
             </div>
             <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {diagonalsFromVertex(n)} diagonal{diagonalsFromVertex(n) === 1 ? "" : "s"} from one corner → {n - 2} triangle{n - 2 === 1 ? "" : "s"}. Each angle of a regular {n}-gon = {eachInterior}°.
+              {mn ? (
+                <>Нэг оройгоос {diagonalsFromVertex(n)} диагональ → {n - 2} гурвалжин. Зөв {n} өнцөгтийн өнцөг бүр = {eachInterior}°.</>
+              ) : (
+                <>{diagonalsFromVertex(n)} diagonal{diagonalsFromVertex(n) === 1 ? "" : "s"} from one corner → {n - 2} triangle{n - 2 === 1 ? "" : "s"}. Each angle of a regular {n}-gon = {eachInterior}°.</>
+              )}
             </div>
           </>
         ) : (
@@ -91,7 +96,7 @@ export default function PolygonAngles({ config }: { config: PolygonAnglesConfig 
               {n} × {eachExterior}° = <b style={{ color: GEO_BLUE }}>360°</b>
             </div>
             <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              The exterior angles of any convex polygon always total 360°.
+              {mn ? "Дурын гүдгэр олон өнцөгтийн гадаад өнцгүүдийн нийлбэр үргэлж 360°." : "The exterior angles of any convex polygon always total 360°."}
             </div>
           </>
         )}
@@ -101,12 +106,12 @@ export default function PolygonAngles({ config }: { config: PolygonAnglesConfig 
       <div className="mt-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => setN((v) => Math.max(minSides, v - 1))} disabled={n <= minSides} aria-label={chrome("Fewer sides", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
-          <div className="serif tabular text-center" style={{ minWidth: 64, fontSize: 15, color: "var(--fg)" }}>{n} sides</div>
+          <div className="serif tabular text-center" style={{ minWidth: 64, fontSize: 15, color: "var(--fg)" }}>{mn ? `${n} тал` : <>{n} sides</>}</div>
           <button type="button" onClick={() => setN((v) => Math.min(maxSides, v + 1))} disabled={n >= maxSides} aria-label={chrome("More sides", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
         </div>
         <div className="flex rounded-full p-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
           {(["interior", "exterior"] as const).map((m) => (
-            <button key={m} type="button" onClick={() => setMode(m)} className="gm-press rounded-full px-3 py-1.5 text-[12px] font-semibold capitalize" style={{ background: mode === m ? "var(--accent)" : "transparent", color: mode === m ? "var(--accent-ink, #fff)" : "var(--fg-2)" }}>{m}</button>
+            <button key={m} type="button" onClick={() => setMode(m)} className="gm-press rounded-full px-3 py-1.5 text-[12px] font-semibold capitalize" style={{ background: mode === m ? "var(--accent)" : "transparent", color: mode === m ? "var(--accent-ink, #fff)" : "var(--fg-2)" }}>{mn ? (m === "interior" ? "дотоод" : "гадаад") : m}</button>
           ))}
         </div>
       </div>

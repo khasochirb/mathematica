@@ -63,6 +63,7 @@ function Stepper({
 
 export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const {
     mode,
     a: a0 = 3,
@@ -154,12 +155,16 @@ export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
 
         <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            z = <b style={{ color: GEO_ACCENT }}>{zLabel(a, b)}</b> · |z| = <b>{fmt2(mod)}</b> · arg z = <b>{fmt2(arg)}</b> rad ({Math.round(argDeg)}°)
+            z = <b style={{ color: GEO_ACCENT }}>{zLabel(a, b)}</b> · |z| = <b>{fmt2(mod)}</b> · arg z = <b>{fmt2(arg)}</b> {mn ? "рад" : "rad"} ({Math.round(argDeg)}°)
           </div>
           <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-            {showConjugate
-              ? <>the conjugate z̄ is z reflected in the REAL axis — same modulus, opposite argument</>
-              : <>|z| is the arrow&apos;s length (Pythagoras); arg z is its angle from the positive real axis</>}
+            {mn
+              ? showConjugate
+                ? <>хосмог z̄ нь БОДИТ тэнхлэгийн хувьд z цэгтэй тэгш хэмтэй: модул ижил, аргумент эсрэг тэмдэгтэй</>
+                : <>|z| бол сумны урт (Пифагор); arg z бол эерэг бодит тэнхлэгээс хэмжсэн өнцөг</>
+              : showConjugate
+                ? <>the conjugate z̄ is z reflected in the REAL axis — same modulus, opposite argument</>
+                : <>|z| is the arrow&apos;s length (Pythagoras); arg z is its angle from the positive real axis</>}
           </div>
         </div>
 
@@ -215,7 +220,9 @@ export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
             |z| = <b>{fmt2(rBase)}</b>, arg z = <b>{thetaDeg}°</b> → |z<sup style={{ fontSize: 11 }}>{nPow}</sup>| = <b style={{ color: GEO_ACCENT }}>{fmt2(modN)}</b>, arg = <b style={{ color: GEO_ACCENT }}>{argNdeg}°</b>
           </div>
           <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-            {rBase > 1 ? "spiralling OUT — each power stretches by |z| and turns by arg z" : rBase < 1 ? "spiralling IN — moduli shrink, arguments still add" : "walking the unit circle — modulus stays 1, only the argument grows"}
+            {mn
+              ? rBase > 1 ? "ГАДАГШ эргэлдэнэ: зэрэг бүр |z| дахин сунаж, arg z өнцгөөр эргэнэ" : rBase < 1 ? "ДОТОГШ эргэлдэнэ: модулууд багасна, аргументууд нэмэгдсээр" : "нэгж тойргоор алхана: модул 1 хэвээр, зөвхөн аргумент өснө"
+              : rBase > 1 ? "spiralling OUT — each power stretches by |z| and turns by arg z" : rBase < 1 ? "spiralling IN — moduli shrink, arguments still add" : "walking the unit circle — modulus stays 1, only the argument grows"}
           </div>
         </div>
 
@@ -265,10 +272,16 @@ export default function ArgandPlot({ config }: { config: ArgandPlotConfig }) {
 
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-          z<sup style={{ fontSize: 11 }}>n</sup> = w, arg w = <b style={{ color: RED }}>{phi}°</b> → <b style={{ color: GEO_BLUE }}>{nRoots} roots</b>, spaced <b>{Math.round(3600 / nRoots) / 10}°</b> apart
+          z<sup style={{ fontSize: 11 }}>n</sup> = w, arg w = <b style={{ color: RED }}>{phi}°</b> → {mn ? (
+            <><b style={{ color: GEO_BLUE }}>{nRoots} язгуур</b>, хоорондоо <b>{Math.round(3600 / nRoots) / 10}°</b> зайтай</>
+          ) : (
+            <><b style={{ color: GEO_BLUE }}>{nRoots} roots</b>, spaced <b>{Math.round(3600 / nRoots) / 10}°</b> apart</>
+          )}
         </div>
         <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-          first root at {fmt2(phi / nRoots)}° (arg w ÷ n), the rest every 360°/n — a regular {nRoots}-gon, always
+          {mn
+            ? `эхний язгуур ${fmt2(phi / nRoots)}° дээр (arg w ÷ n), бусад нь 360°/n тутамд: үргэлж зөв олон өнцөгт (n = ${nRoots})`
+            : `first root at ${fmt2(phi / nRoots)}° (arg w ÷ n), the rest every 360°/n — a regular ${nRoots}-gon, always`}
         </div>
       </div>
 

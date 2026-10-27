@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { type FigureSpec, type FigureGroupSpec, divideShift } from "@/lib/genmath-interactive";
 import FractionBar from "@/components/genmath/interactive/FractionBar";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
@@ -59,6 +60,8 @@ const WATER = "#9cc6e8";
 
 // A cross-multiply diagram for a:b vs c:d — the two diagonals you "multiply across".
 function CrossFigure({ a, b, c, d }: { a: number; b: number; c: number; d: number }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const p1 = a * d; // left ratio's cross-value
   const p2 = c * b; // right ratio's cross-value
   const leftBigger = p1 > p2;
@@ -70,7 +73,7 @@ function CrossFigure({ a, b, c, d }: { a: number; b: number; c: number; d: numbe
   );
   return (
     <div className="gm-fade flex flex-col items-center gap-2 rounded-xl p-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-      <svg width="220" height="150" viewBox="0 0 220 150" role="img" aria-label={`Cross multiply ${a} to ${b} versus ${c} to ${d}`}>
+      <svg width="220" height="150" viewBox="0 0 220 150" role="img" aria-label={mn ? `Хөндлөн үржүүлэх: ${a}:${b} ба ${c}:${d}` : `Cross multiply ${a} to ${b} versus ${c} to ${d}`}>
         <defs>
           <marker id="rf-arrow-j" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
             <path d="M0,0 L6,3 L0,6 Z" fill={JUICE} />
@@ -80,8 +83,8 @@ function CrossFigure({ a, b, c, d }: { a: number; b: number; c: number; d: numbe
           </marker>
         </defs>
         {/* row labels */}
-        <text x="14" y="45" fontSize="11" fill="var(--fg-3)">juice</text>
-        <text x="14" y="115" fontSize="11" fill="var(--fg-3)">water</text>
+        <text x="14" y="45" fontSize="11" fill="var(--fg-3)">{mn ? "шүүс" : "juice"}</text>
+        <text x="14" y="115" fontSize="11" fill="var(--fg-3)">{mn ? "ус" : "water"}</text>
         {/* diagonals */}
         <line x1="78" y1="52" x2="142" y2="108" stroke={JUICE} strokeWidth="2.5" markerEnd="url(#rf-arrow-j)" opacity="0.85" />
         <line x1="142" y1="52" x2="78" y2="108" stroke={WATER} strokeWidth="2.5" markerEnd="url(#rf-arrow-w)" opacity="0.85" />
@@ -100,7 +103,7 @@ function CrossFigure({ a, b, c, d }: { a: number; b: number; c: number; d: numbe
         </span>
       </div>
       <div className="text-[12px]" style={{ color: "var(--fg-2)" }}>
-        bigger product = stronger mix
+        {mn ? "их үржвэр = өтгөн хольц" : "bigger product = stronger mix"}
       </div>
     </div>
   );
@@ -108,6 +111,8 @@ function CrossFigure({ a, b, c, d }: { a: number; b: number; c: number; d: numbe
 
 // Two read-only mixes side by side — so a "which is more orange" question shows BOTH.
 function CompareMixFigure({ mixes }: { mixes: { a: number; b: number; label?: string }[] }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const Swatch = ({ m }: { m: { a: number; b: number; label?: string } }) => (
     <div className="flex flex-col items-center gap-1.5">
       <div className="flex flex-wrap content-start justify-center gap-1" style={{ maxWidth: 96 }}>
@@ -127,13 +132,15 @@ function CompareMixFigure({ mixes }: { mixes: { a: number; b: number; label?: st
   return (
     <div className="gm-fade flex items-center justify-center gap-5 rounded-xl p-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
       <Swatch m={mixes[0]} />
-      <span className="text-[12px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>vs</span>
+      <span className="text-[12px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "ба" : "vs"}</span>
       <Swatch m={mixes[1]} />
     </div>
   );
 }
 
 export default function RatioFigure({ figure }: { figure: FigureSpec }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode } = figure;
   const groups = figure.groups ?? [];
 
@@ -227,7 +234,7 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
         </div>
         <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
           <span className="serif tabular" style={{ fontSize: 17, color: "var(--fg)" }}>{a.toFixed(1)} × {b.toFixed(1)} = {(a * b).toFixed(2)}</span>
-          {" — "}{aT * bT} of 100 squares
+          {" — "}{mn ? `100 нүднээс ${aT * bT}` : `${aT * bT} of 100 squares`}
         </div>
       </div>
     );
@@ -252,7 +259,9 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
         </div>
         {shifts > 0 && (
           <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
-            ×10{shifts > 1 ? ` (${shifts} times)` : ""} on both
+            {mn
+              ? `хоёуланг нь ×10${shifts > 1 ? ` (${shifts} удаа)` : ""}`
+              : `×10${shifts > 1 ? ` (${shifts} times)` : ""} on both`}
           </div>
         )}
       </div>
@@ -267,7 +276,7 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
       <div className="gm-fade flex flex-col items-center gap-2 rounded-xl px-6 py-4" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <PercentBarView whole={whole} percent={percent} />
         <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-          <span className="serif tabular" style={{ fontSize: 16, color: "var(--fg)" }}>{percent}% of {fmt(whole)} = {fmt(value)}</span>
+          <span className="serif tabular" style={{ fontSize: 16, color: "var(--fg)" }}>{mn ? `${fmt(whole)} × ${percent}% = ${fmt(value)}` : `${percent}% of ${fmt(whole)} = ${fmt(value)}`}</span>
         </div>
       </div>
     );
@@ -333,7 +342,7 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
     return (
       <div className="gm-fade flex flex-col items-center gap-1.5">
         <span className="rounded-full px-2.5 py-0.5 text-[11px] uppercase tracking-wide" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-3)" }}>
-          group to group
+          {mn ? "хэсэг ба хэсэг" : "group to group"}
         </span>
         <div className="flex items-center justify-center gap-2">
           <GroupBox group={groups[0]} />
@@ -353,11 +362,11 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
   return (
     <div className="gm-fade flex flex-col items-center gap-1.5">
       <span className="rounded-full px-2.5 py-0.5 text-[11px] uppercase tracking-wide" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-3)" }}>
-        group to total
+        {mn ? "хэсэг ба бүхэл" : "group to total"}
       </span>
       <div className="relative rounded-2xl p-4 pt-7" style={{ background: "var(--bg-2)", border: "2px dashed var(--fg-3)" }}>
         <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-0.5 text-[12px]" style={{ background: "var(--fg-2)", color: "var(--bg)" }}>
-          Total = {total}
+          {mn ? "Нийт" : "Total"} = {total}
         </span>
         <div className="flex flex-wrap items-center justify-center gap-2">
           {/* the highlighted part, in its own box */}
@@ -378,11 +387,18 @@ export default function RatioFigure({ figure }: { figure: FigureSpec }) {
           ))}
         </div>
       </div>
-      <div className="text-[12px]" style={{ color: "var(--fg-2)" }}>
-        <span className="serif tabular" style={{ fontSize: 16, color: "var(--accent)" }}>{part.count}</span> {part.label}
-        {" "}out of{" "}
-        <span className="serif tabular" style={{ fontSize: 16, color: "var(--fg)" }}>{total}</span> total
-      </div>
+      {mn ? (
+        <div className="text-[12px]" style={{ color: "var(--fg-2)" }}>
+          нийт <span className="serif tabular" style={{ fontSize: 16, color: "var(--fg)" }}>{total}</span>, үүнээс{" "}
+          <span className="serif tabular" style={{ fontSize: 16, color: "var(--accent)" }}>{part.count}</span> {part.label}
+        </div>
+      ) : (
+        <div className="text-[12px]" style={{ color: "var(--fg-2)" }}>
+          <span className="serif tabular" style={{ fontSize: 16, color: "var(--accent)" }}>{part.count}</span> {part.label}
+          {" "}out of{" "}
+          <span className="serif tabular" style={{ fontSize: 16, color: "var(--fg)" }}>{total}</span> total
+        </div>
+      )}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { arcPath, GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import {
@@ -31,6 +32,14 @@ const INFO: Record<Center, { name: string; property: string; color: string }> = 
   orthocenter: { name: "orthocenter", property: "where the three altitudes meet", color: "#c05a9e" },
 };
 
+// Mongolian names (memory/mn-drafts/geometry-relationships-in-triangles.md terminology).
+const INFO_MN: Record<Center, { name: string; property: string }> = {
+  circumcenter: { name: "багтаасан тойргийн төв", property: "гурван оройгоос ижил зайд оршино" },
+  incenter: { name: "багтсан тойргийн төв", property: "гурван талаас ижил зайд оршино" },
+  centroid: { name: "хүндийн төв", property: "тэнцвэрийн цэг — медиан бүрийн оройгоос ⅔ хэсэгт оршино" },
+  orthocenter: { name: "өндрийн огтлолцлын цэг", property: "гурван өндөр яг энд огтлолцоно" },
+};
+
 const DEFAULT_TRIANGLE: [XY, XY, XY] = [
   { x: 1, y: 1 },
   { x: 9, y: 1 },
@@ -38,6 +47,8 @@ const DEFAULT_TRIANGLE: [XY, XY, XY] = [
 ];
 
 export default function TriangleCenters({ config }: { config: TriangleCentersConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { center, showCircle = false, caption } = config;
   const tri: [XY, XY, XY] = config.triangle
     ? [
@@ -234,12 +245,16 @@ export default function TriangleCenters({ config }: { config: TriangleCentersCon
         className="gm-press mt-3 w-full rounded-xl px-4 py-2.5 text-[14px] font-semibold"
         style={{ background: shown ? "var(--bg-2)" : "var(--accent)", border: "1px solid var(--line)", color: shown ? "var(--fg)" : "var(--accent-ink, #fff)" }}
       >
-        {shown ? "Hide the construction" : `Construct the ${info.name}`}
+        {mn
+          ? (shown ? "Байгуулалтыг нуух" : `Байгуулах: ${INFO_MN[center].name}`)
+          : shown ? "Hide the construction" : `Construct the ${info.name}`}
       </button>
 
       {shown && (
         <div className="mt-3 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-          The three lines meet at one point — the <b style={{ color: info.color }}>{info.name}</b> — {info.property}.
+          {mn
+            ? <>Гурван шулуун нэг цэгт огтлолцоно — энэ бол <b style={{ color: info.color }}>{INFO_MN[center].name}</b> — {INFO_MN[center].property}.</>
+            : <>The three lines meet at one point — the <b style={{ color: info.color }}>{info.name}</b> — {info.property}.</>}
         </div>
       )}
 

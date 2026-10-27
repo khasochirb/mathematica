@@ -16,6 +16,7 @@ import { type ProtractorConfig } from "@/lib/genmath-interactive";
 //   bisector: true — draws the tracking half-angle ray with equal-angle arcs.
 export default function Protractor({ config }: { config: ProtractorConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { initial, classify = false, bisector = false, labels, color = GEO_ACCENT } = config;
   const [deg, setDeg] = useState(clampProtractor(initial));
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -51,7 +52,8 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
   const half = bisect(deg);
   const bisPt = pt(halfDraw, rayLen - 12);
   const kind = classifyAngle(Math.max(1, deg));
-  const kindLabel = deg === 0 ? "zero" : kind;
+  const KIND_MN: Record<string, string> = { acute: "хурц өнцөг", right: "тэгш өнцөг", obtuse: "мохоо өнцөг", straight: "дэлгэсэн өнцөг" };
+  const kindLabel = deg === 0 ? (mn ? "тэг өнцөг" : "zero") : mn ? (KIND_MN[kind] ?? kind) : kind;
 
   const lab = labels ?? { vertex: "B", fixed: "C", moving: "A" };
 
@@ -138,21 +140,21 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
         {classify && (
           <div className="mt-1 text-[14px]" style={{ color: "var(--fg-1)" }}>
             {deg === 0 ? (
-              <span style={{ color: "var(--fg-3)" }}>open the angle…</span>
+              <span style={{ color: "var(--fg-3)" }}>{mn ? "өнцгийг нээ…" : "open the angle…"}</span>
             ) : (
               <>
-                This is <b style={{ color: "var(--accent)" }}>{kindLabel}</b>
-                {kind === "acute" && " — less than 90°"}
-                {kind === "right" && " — exactly 90°"}
-                {kind === "obtuse" && " — between 90° and 180°"}
-                {kind === "straight" && " — exactly 180°"}
+                {mn ? "Энэ бол " : "This is "}<b style={{ color: "var(--accent)" }}>{kindLabel}</b>
+                {kind === "acute" && (mn ? " — 90°-ээс бага" : " — less than 90°")}
+                {kind === "right" && (mn ? " — яг 90°" : " — exactly 90°")}
+                {kind === "obtuse" && (mn ? " — 90°-ээс их, 180°-аас бага" : " — between 90° and 180°")}
+                {kind === "straight" && (mn ? " — яг 180°" : " — exactly 180°")}
               </>
             )}
           </div>
         )}
         {bisector && deg >= 8 && (
           <div className="mt-1 text-[14px]" style={{ color: "var(--fg-1)" }}>
-            Bisector splits it: <span className="serif tabular" style={{ color: GEO_BLUE }}>{half}° + {half}° = {deg}°</span>
+            {mn ? "Биссектрис тэнцүү хоёр хуваана: " : "Bisector splits it: "}<span className="serif tabular" style={{ color: GEO_BLUE }}>{half}° + {half}° = {deg}°</span>
           </div>
         )}
       </div>
@@ -169,9 +171,9 @@ export default function Protractor({ config }: { config: ProtractorConfig }) {
           <Minus className="h-4 w-4" />
         </button>
         <div className="text-center text-[12px]" style={{ color: "var(--fg-3)", minWidth: 90 }}>
-          drag the ray
+          {mn ? "цацрагийг чир" : "drag the ray"}
           <br />
-          or step ±5°
+          {mn ? "эсвэл ±5° алхмаар" : "or step ±5°"}
         </div>
         <button
           type="button"

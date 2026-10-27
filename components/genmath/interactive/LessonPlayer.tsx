@@ -1370,7 +1370,7 @@ function StepBody({
             <span className="grid h-9 w-9 place-items-center rounded-full" style={{ background: "rgba(239,159,39,0.16)", color: "#b97316" }}>
               <Sparkles className="h-5 w-5" />
             </span>
-            <div className="eyebrow" style={{ color: "#b97316" }}>{step.eyebrow ?? "Fun fact"}</div>
+            <div className="eyebrow" style={{ color: "#b97316" }}>{step.eyebrow ?? chrome("Fun fact", lang)}</div>
           </div>
           <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(20px, 4vw, 28px)", lineHeight: 1.12, letterSpacing: "-0.02em", color: "var(--fg)" }}>
             {step.title}
@@ -1387,7 +1387,7 @@ function StepBody({
             <span className="grid h-9 w-9 place-items-center rounded-full" style={{ background: "var(--accent)", color: "var(--accent-ink, #fff)" }}>
               <Lightbulb className="h-5 w-5" />
             </span>
-            <div className="eyebrow" style={{ color: "var(--accent)" }}>{step.eyebrow ?? "Tip"}</div>
+            <div className="eyebrow" style={{ color: "var(--accent)" }}>{step.eyebrow ?? (lang === "mn" ? "Зөвлөгөө" : "Tip")}</div>
           </div>
           <h2 className="serif" style={{ fontWeight: 400, fontSize: "clamp(20px, 4vw, 28px)", lineHeight: 1.12, letterSpacing: "-0.02em", color: "var(--fg)" }}>
             {step.title}
@@ -1505,7 +1505,7 @@ export default function LessonPlayer({
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <div className="min-w-0">
-              <div className="eyebrow truncate">{crumb ?? `Courses · Grade 6 · ${topicTitle}`}</div>
+              <div className="eyebrow truncate">{crumb ?? (lang === "mn" ? `Хичээлүүд · 6-р анги · ${topicTitle}` : `Courses · Grade 6 · ${topicTitle}`)}</div>
               <div className="serif truncate" style={{ fontSize: 15, color: "var(--fg)" }}>
                 {lesson.title}
               </div>

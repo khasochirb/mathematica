@@ -16,6 +16,7 @@ import { type PatternGrowConfig } from "@/lib/genmath-interactive";
 //   doubling: dots double each stage — "stage n holds 2^(n−1) dots".
 export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { pattern, maxSteps = pattern === "odds" ? 5 : 5 } = config;
   const [n, setN] = useState(1);
   const done = n >= maxSteps;
@@ -76,7 +77,7 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
         <table className="mx-auto text-center" style={{ borderCollapse: "collapse" }}>
           <thead>
             <tr>
-              <th className="px-2.5 py-1 text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)", borderBottom: "1px solid var(--line)" }}>stage</th>
+              <th className="px-2.5 py-1 text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)", borderBottom: "1px solid var(--line)" }}>{mn ? "шат" : "stage"}</th>
               {Array.from({ length: n }).map((_, i) => (
                 <th key={i} className="serif tabular px-2.5 py-1 text-[13px]" style={{ color: "var(--fg-2)", borderBottom: "1px solid var(--line)" }}>{i + 1}</th>
               ))}
@@ -84,7 +85,7 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
           </thead>
           <tbody>
             <tr>
-              <td className="px-2.5 py-1 text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{pattern === "odds" ? "new dots" : "dots"}</td>
+              <td className="px-2.5 py-1 text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{pattern === "odds" ? (mn ? "шинэ цэг" : "new dots") : mn ? "цэг" : "dots"}</td>
               {Array.from({ length: n }).map((_, i) => (
                 <td key={i} className="serif tabular px-2.5 py-1 text-[14px]" style={{ color: i + 1 === n ? "var(--accent)" : "var(--fg)" }}>
                   {pattern === "odds" ? 2 * (i + 1) - 1 : Math.pow(2, i)}
@@ -93,7 +94,7 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
             </tr>
             {pattern === "odds" && (
               <tr>
-                <td className="px-2.5 py-1 text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>total</td>
+                <td className="px-2.5 py-1 text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "нийт" : "total"}</td>
                 {Array.from({ length: n }).map((_, i) => (
                   <td key={i} className="serif tabular px-2.5 py-1 text-[14px]" style={{ color: i + 1 === n ? "var(--accent)" : "var(--fg)" }}>
                     {(i + 1) * (i + 1)}
@@ -106,7 +107,18 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
       </div>
 
       <div className="mt-3 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-        {pattern === "odds" ? (
+        {mn ? (
+          pattern === "odds" ? (
+            <>
+              Шат {n}: <b className="serif tabular" style={{ color: "var(--accent)" }}>{added}</b> цэг нэмэгдэв → нийт{" "}
+              <b className="serif tabular" style={{ color: "var(--accent)" }}>{total} = {n}²</b>
+            </>
+          ) : (
+            <>
+              Шат {n}: <b className="serif tabular" style={{ color: "var(--accent)" }}>{added}</b> цэг — өмнөх шатныхаас хоёр дахин их
+            </>
+          )
+        ) : pattern === "odds" ? (
           <>
             Stage {n}: added <b className="serif tabular" style={{ color: "var(--accent)" }}>{added}</b> dots → total{" "}
             <b className="serif tabular" style={{ color: "var(--accent)" }}>{total} = {n}²</b>
@@ -118,7 +130,11 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
         )}
         {done && (
           <div className="mt-1.5 text-[13px]" style={{ color: "var(--fg-2)" }}>
-            {pattern === "odds"
+            {mn
+              ? pattern === "odds"
+                ? "Таамаглал: эхний n сондгой тооны нийлбэр үргэлж n² байна. (Зүй тогтол үүнийг санал болгож байна — баталгаа нь дараа.)"
+                : "Таамаглал: шат бүр хоёр дахин өснө — n дүгээр шатанд 2ⁿ⁻¹ цэг байна. Санал болгосон, хараахан батлагдаагүй."
+              : pattern === "odds"
               ? "Conjecture: the first n odd numbers always add up to n². (The pattern suggests it — proving it comes later.)"
               : "Conjecture: each stage doubles — stage n has 2ⁿ⁻¹ dots. Suggested, not yet proven."}
           </div>
@@ -134,7 +150,7 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> {mn ? "Дахин эхлэх" : "Reset"}
         </button>
         <button
           type="button"
@@ -143,12 +159,16 @@ export default function PatternGrow({ config }: { config: PatternGrowConfig }) {
           className="gm-press rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >
-          Next stage
+          {mn ? "Дараагийн шат" : "Next stage"}
         </button>
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Watch enough stages and a rule <b style={{ color: "var(--fg-1)" }}>suggests itself</b> — that's inductive reasoning.
+        {mn ? (
+          <>Хангалттай олон шат ажиглавал дүрэм <b style={{ color: "var(--fg-1)" }}>өөрөө тодорно</b> — энэ бол индуктив сэтгэлгээ.</>
+        ) : (
+          <>Watch enough stages and a rule <b style={{ color: "var(--fg-1)" }}>suggests itself</b> — that's inductive reasoning.</>
+        )}
       </div>
     </div>
   );

@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/lib/lang-context";
 import { type FractionDivideConfig, gcd } from "@/lib/genmath-interactive";
 
 const SHADE = "#e8913c";
 
 export default function FractionDivide({ config }: { config: FractionDivideConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { dividend, divisor } = config;
   const [counted, setCounted] = useState(false);
 
@@ -18,7 +21,15 @@ export default function FractionDivide({ config }: { config: FractionDivideConfi
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="mb-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
+        {mn ? (
+          <>
+            <b style={{ color: "var(--fg-1)" }}>{dividend.num}/{dividend.den}</b> дотор <b style={{ color: "var(--fg-1)" }}>{divisor.num}/{divisor.den}</b> хэмжээтэй хэсэг хэд багтах вэ?
+          </>
+        ) : (
+          <>
         How many <b style={{ color: "var(--fg-1)" }}>{divisor.num}/{divisor.den}</b> fit into <b style={{ color: "var(--fg-1)" }}>{dividend.num}/{dividend.den}</b>?
+          </>
+        )}
       </div>
 
       {/* the bar: D cells, dn shaded; when counted, group separators every vn cells */}
@@ -44,7 +55,7 @@ export default function FractionDivide({ config }: { config: FractionDivideConfi
         <div className="gm-fade mt-2 flex flex-wrap justify-center gap-1.5">
           {Array.from({ length: answer }).map((_, i) => (
             <span key={i} className="gm-pop rounded-full px-2 py-0.5 text-[11px]" style={{ background: "var(--accent-wash)", color: "var(--accent)", border: "1px solid var(--accent-line)", animationDelay: `${i * 70}ms` }}>
-              piece {i + 1}
+              {mn ? `${i + 1}-р хэсэг` : `piece ${i + 1}`}
             </span>
           ))}
         </div>
@@ -61,7 +72,15 @@ export default function FractionDivide({ config }: { config: FractionDivideConfi
           transition: "background .3s, border-color .3s",
         }}
       >
-        {counted ? (
+        {mn ? (
+          counted ? (
+            <span>
+              <b>{answer}</b> хэсэг багтана → {dividend.num}/{dividend.den} ÷ {divisor.num}/{divisor.den} = <b style={{ color: "var(--accent)" }}>{answer}</b>.
+            </span>
+          ) : (
+            <span>Хуваагчийн хэмжээтэй хэсгүүдийг тэмдэглээд хэд багтахыг тоол.</span>
+          )
+        ) : counted ? (
           <span>
             <b>{answer}</b> pieces fit → {dividend.num}/{dividend.den} ÷ {divisor.num}/{divisor.den} = <b style={{ color: "var(--accent)" }}>{answer}</b>.
           </span>
@@ -83,7 +102,7 @@ export default function FractionDivide({ config }: { config: FractionDivideConfi
             transition: "background .2s, color .2s",
           }}
         >
-          {counted ? "Reset" : "Count how many fit"}
+          {mn ? (counted ? "Дахин эхлэх" : "Хэд багтахыг тоолох") : counted ? "Reset" : "Count how many fit"}
         </button>
       </div>
     </div>

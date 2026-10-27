@@ -20,7 +20,8 @@ type Region = "onlyA" | "both" | "onlyB" | "neither" | null;
 
 export default function VennCounts({ config }: { config: VennCountsConfig }) {
   const { lang } = useLang();
-  const { mode, labelA, labelB, onlyA, onlyB, both, neither = 0, countNoun = "outcomes" } = config;
+  const mn = lang === "mn";
+  const { mode, labelA, labelB, onlyA, onlyB, both, neither = 0, countNoun = mn ? "үр дүн" : "outcomes" } = config;
   const [region, setRegion] = useState<Region>(null);
   const [beat, setBeat] = useState(0); // addition mode: 0 rest, 1 |A|, 2 |B|, 3 overlap, 4 formula
 
@@ -45,22 +46,34 @@ export default function VennCounts({ config }: { config: VennCountsConfig }) {
   const fullB = mode === "addition" && beat === 2;
 
   const regionChips: { key: Region & string; label: string; value: number }[] = [
-    { key: "onlyA", label: `only ${labelA}`, value: onlyA },
-    { key: "both", label: "both", value: both },
-    { key: "onlyB", label: `only ${labelB}`, value: onlyB },
-    ...(neither > 0 ? [{ key: "neither" as const, label: "neither", value: neither }] : []),
+    { key: "onlyA", label: mn ? `зөвхөн ${labelA}` : `only ${labelA}`, value: onlyA },
+    { key: "both", label: mn ? "аль алинд нь" : "both", value: both },
+    { key: "onlyB", label: mn ? `зөвхөн ${labelB}` : `only ${labelB}`, value: onlyB },
+    ...(neither > 0 ? [{ key: "neither" as const, label: mn ? "аль нь ч биш" : "neither", value: neither }] : []),
   ];
 
   const beatText = [
-    <>the two circles overlap — press <b>next</b> to count the union honestly</>,
+    mn ? (
+      <>хоёр дугуй давхцаж байна — нэгдлийг зөв тоолохын тулд <b>дараах</b> товчийг дар</>
+    ) : (
+      <>the two circles overlap — press <b>next</b> to count the union honestly</>
+    ),
     <>
-      <b style={{ color: GEO_BLUE }}>|{labelA}| = {sizeA}</b> — the whole left circle, overlap included
+      <b style={{ color: GEO_BLUE }}>|{labelA}| = {sizeA}</b> — {mn ? "зүүн дугуй бүхэлдээ, огтлолцлыг оруулаад" : "the whole left circle, overlap included"}
     </>,
     <>
-      <b style={{ color: GEO_BLUE }}>|{labelB}| = {sizeB}</b> — the whole right circle, overlap included
+      <b style={{ color: GEO_BLUE }}>|{labelB}| = {sizeB}</b> — {mn ? "баруун дугуй бүхэлдээ, огтлолцлыг оруулаад" : "the whole right circle, overlap included"}
     </>,
     <>
-      adding them counts the <b style={{ color: RED }}>{both} in the overlap twice</b>
+      {mn ? (
+        <>
+          тэдгээрийг нэмэхэд <b style={{ color: RED }}>огтлолцол дахь {both} нь хоёр удаа тоологдоно</b>
+        </>
+      ) : (
+        <>
+          adding them counts the <b style={{ color: RED }}>{both} in the overlap twice</b>
+        </>
+      )}
     </>,
     <>
       <span className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
@@ -134,7 +147,7 @@ export default function VennCounts({ config }: { config: VennCountsConfig }) {
             </text>
           )}
           <text x={14} y={H - 8} fontSize="10" fill="var(--fg-3)">
-            {total} {countNoun} in all
+            {mn ? <>нийт {total} {countNoun}</> : <>{total} {countNoun} in all</>}
           </text>
         </svg>
       </div>
@@ -153,7 +166,7 @@ export default function VennCounts({ config }: { config: VennCountsConfig }) {
               </div>
             ) : (
               <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-                the four regions never overlap and cover everyone — pick one
+                {mn ? "дөрвөн муж хоорондоо давхцахгүй бөгөөд бүгдийг хамарна — нэгийг нь сонго" : "the four regions never overlap and cover everyone — pick one"}
               </div>
             )}
           </div>
@@ -187,7 +200,7 @@ export default function VennCounts({ config }: { config: VennCountsConfig }) {
               className="gm-press rounded-full px-4 py-2 text-[13px]"
               style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
             >
-              {beat === 0 ? "next" : beat < 4 ? "next" : "replay"}
+              {beat === 0 ? (mn ? "дараах" : "next") : beat < 4 ? (mn ? "дараах" : "next") : mn ? "дахин тоглуулах" : "replay"}
             </button>
           </div>
         </>

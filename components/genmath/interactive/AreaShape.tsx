@@ -5,6 +5,7 @@ import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { rectangleArea, parallelogramArea, triangleArea, trapezoidArea, rhombusArea } from "@/lib/geo";
 import { type AreaShapeConfig } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 // A shape drawn to scale with its base/height (or diagonals) labelled, and its
 // area computed live from adjustable dimensions. One primitive covers
@@ -14,6 +15,8 @@ const H = 250;
 
 export default function AreaShape({ config }: { config: AreaShapeConfig }) {
   const { shape, color = GEO_ACCENT } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [base, setBase] = useState(config.base ?? 8);
   const [height, setHeight] = useState(config.height ?? 5);
   const [base2, setBase2] = useState(config.base2 ?? 4);
@@ -58,9 +61,9 @@ export default function AreaShape({ config }: { config: AreaShapeConfig }) {
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-1.5">
-        <button type="button" onClick={() => set(Math.max(min, val - 1))} disabled={val <= min} aria-label={`Decrease ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-3.5 w-3.5" /></button>
+        <button type="button" onClick={() => set(Math.max(min, val - 1))} disabled={val <= min} aria-label={mn ? `${label}: багасгах` : `Decrease ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-3.5 w-3.5" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 22, fontSize: 15, color: col }}>{val}</div>
-        <button type="button" onClick={() => set(Math.min(max, val + 1))} disabled={val >= max} aria-label={`Increase ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-3.5 w-3.5" /></button>
+        <button type="button" onClick={() => set(Math.min(max, val + 1))} disabled={val >= max} aria-label={mn ? `${label}: ихэсгэх` : `Increase ${label}`} className="gm-press grid h-8 w-8 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-3.5 w-3.5" /></button>
       </div>
     </div>
   );
@@ -93,7 +96,7 @@ export default function AreaShape({ config }: { config: AreaShapeConfig }) {
       </svg>
 
       <div className="mt-2 rounded-xl p-3 text-center text-[15px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-        <span className="serif tabular">Area = {formula[shape]} = <b style={{ color }}>{area}</b></span>
+        <span className="serif tabular">{mn ? "Талбай" : "Area"} = {formula[shape]} = <b style={{ color }}>{area}</b></span>
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-4">
@@ -101,9 +104,9 @@ export default function AreaShape({ config }: { config: AreaShapeConfig }) {
           <>{step(d1, setD1, 2, 12, "d₁", color)}{step(d2, setD2, 2, 12, "d₂", GEO_BLUE)}</>
         ) : (
           <>
-            {step(base, setBase, 2, 14, "base", color)}
-            {isTrap && step(base2, setBase2, 1, 12, "top", "var(--fg-1)")}
-            {step(height, setHeight, 2, 9, "height", GEO_BLUE)}
+            {step(base, setBase, 2, 14, mn ? "суурь" : "base", color)}
+            {isTrap && step(base2, setBase2, 1, 12, mn ? "дээд суурь" : "top", "var(--fg-1)")}
+            {step(height, setHeight, 2, 9, mn ? "өндөр" : "height", GEO_BLUE)}
           </>
         )}
       </div>

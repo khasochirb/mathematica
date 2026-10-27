@@ -1,11 +1,15 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type PercentGridConfig } from "@/lib/genmath-interactive";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
 
 export default function PercentGrid({ config }: { config: PercentGridConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { start = 0, color = "#e8913c" } = config;
   const [p, setP] = useState(Math.max(0, Math.min(100, Math.round(start))));
   const decimal = (p / 100).toFixed(2);
@@ -47,7 +51,7 @@ export default function PercentGrid({ config }: { config: PercentGridConfig }) {
         <DecimalGridView hundredths={p} color={color} />
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-2)" }}>
-        100 squares = 100% = one whole
+        {mn ? "100 нүд = 100% = нэг бүхэл" : "100 squares = 100% = one whole"}
       </div>
 
       {/* percent = fraction = decimal */}
@@ -60,8 +64,8 @@ export default function PercentGrid({ config }: { config: PercentGridConfig }) {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-        <Stepper label="ten" sub="+10%" d={10} />
-        <Stepper label="one" sub="+1%" d={1} />
+        <Stepper label={mn ? "арав" : "ten"} sub="+10%" d={10} />
+        <Stepper label={mn ? "нэг" : "one"} sub="+1%" d={1} />
       </div>
     </div>
   );

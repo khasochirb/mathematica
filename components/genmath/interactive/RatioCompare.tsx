@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Trophy, Equal } from "lucide-react";
+import { useLang } from "@/lib/lang-context";
 import { type RatioCompareConfig } from "@/lib/genmath-interactive";
 
 const WATER = "#9cc6e8"; // shared "water" blue so the juice colour is what stands out
@@ -69,6 +70,7 @@ function MixColumn({
   isWinner: boolean;
   isTie: boolean;
 }) {
+  const { lang } = useLang();
   const highlight = fair && (isWinner || isTie);
   return (
     <div className="flex flex-col items-center">
@@ -107,7 +109,7 @@ function MixColumn({
         </span>
         {fair && scale > 1 && (
           <div className="gm-fade text-[11px]" style={{ color: "var(--fg-3)" }}>
-            copied ×{scale}
+            {lang === "mn" ? <>×{scale} олшруулсан</> : <>copied ×{scale}</>}
           </div>
         )}
       </div>
@@ -116,6 +118,8 @@ function MixColumn({
 }
 
 export default function RatioCompare({ config }: { config: RatioCompareConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { left, right, unitNote } = config;
   const [fair, setFair] = useState(false);
 
@@ -151,10 +155,10 @@ export default function RatioCompare({ config }: { config: RatioCompareConfig })
       {/* legend */}
       <div className="mb-3 flex items-center justify-center gap-4 text-[12px]" style={{ color: "var(--fg-2)" }}>
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block h-3 w-3 rounded" style={{ background: left.token.color }} /> juice
+          <span className="inline-block h-3 w-3 rounded" style={{ background: left.token.color }} /> {mn ? "шүүс" : "juice"}
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block h-3 w-3 rounded" style={{ background: WATER }} /> water
+          <span className="inline-block h-3 w-3 rounded" style={{ background: WATER }} /> {mn ? "ус" : "water"}
         </span>
       </div>
 
@@ -204,7 +208,23 @@ export default function RatioCompare({ config }: { config: RatioCompareConfig })
           transition: "background .3s, border-color .3s",
         }}
       >
-        {fair ? (
+        {mn ? (
+          fair ? (
+            winner === "tie" ? (
+              <span>
+                Ус ижил (<b>{water}</b>), шүүс ижил (<b>{juiceL}</b> = <b>{juiceR}</b>) → хоёулаа{" "}
+                <b style={{ color: "var(--accent)" }}>яг адилхан амттай</b>.
+              </span>
+            ) : (
+              <span>
+                Одоо ус ижил (<b>{water}</b>). Шүүсийг жишье: <b>{juiceL}</b> ба <b>{juiceR}</b> →{" "}
+                <b style={{ color: "var(--accent)" }}>{winnerLabel}</b> {unitNote}.
+              </span>
+            )
+          ) : (
+            <span>Усны хэмжээ өөр тул жишихэд хэцүү. Эхлээд усыг тэнцүүл.</span>
+          )
+        ) : fair ? (
           winner === "tie" ? (
             <span>
               Same water (<b>{water}</b>), same juice (<b>{juiceL}</b> = <b>{juiceR}</b>) → they{" "}
@@ -235,7 +255,7 @@ export default function RatioCompare({ config }: { config: RatioCompareConfig })
             transition: "background .2s, color .2s",
           }}
         >
-          {fair ? "Reset" : "Make the water equal"}
+          {mn ? (fair ? "Дахин эхлэх" : "Усыг тэнцүүлэх") : fair ? "Reset" : "Make the water equal"}
         </button>
       </div>
     </div>

@@ -23,7 +23,8 @@ type Part = "min" | "q1" | "median" | "q3" | "max" | "iqr" | null;
 
 export default function BoxPlot({ config }: { config: BoxPlotConfig }) {
   const { lang } = useLang();
-  const { data, xLabel = "value", showFences = false } = config;
+  const mn = lang === "mn";
+  const { data, xLabel = mn ? "утга" : "value", showFences = false } = config;
   const [part, setPart] = useState<Part>(null);
   const [fences, setFences] = useState(showFences);
 
@@ -64,12 +65,12 @@ export default function BoxPlot({ config }: { config: BoxPlotConfig }) {
   }, [S.sorted]);
 
   const chips: { key: Part & string; label: string; value: number }[] = [
-    { key: "min", label: "min", value: S.sorted[0] },
+    { key: "min", label: mn ? "хамгийн бага" : "min", value: S.sorted[0] },
     { key: "q1", label: "Q1", value: S.q1 },
-    { key: "median", label: "median", value: S.q2 },
+    { key: "median", label: mn ? "медиан" : "median", value: S.q2 },
     { key: "q3", label: "Q3", value: S.q3 },
-    { key: "max", label: "max", value: S.sorted[S.sorted.length - 1] },
-    { key: "iqr", label: "IQR", value: S.iqr },
+    { key: "max", label: mn ? "хамгийн их" : "max", value: S.sorted[S.sorted.length - 1] },
+    { key: "iqr", label: mn ? "КХД" : "IQR", value: S.iqr },
   ];
 
   const hotX: Record<string, number | [number, number]> = {
@@ -173,22 +174,28 @@ export default function BoxPlot({ config }: { config: BoxPlotConfig }) {
             <b style={{ color: "var(--accent)" }}>{fmt(chips.find((c) => c.key === part)!.value)}</b>
             {part === "iqr" && (
               <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-                = Q3 − Q1 = {fmt(S.q3)} − {fmt(S.q1)} — the box's width
+                = Q3 − Q1 = {fmt(S.q3)} − {fmt(S.q1)} {mn ? "— хайрцгийн өргөн" : "— the box's width"}
               </span>
             )}
           </div>
         ) : fences ? (
           <div className="serif tabular text-[14px]" style={{ color: "var(--fg)" }}>
-            fences at Q1 − 1.5·IQR = {fmt(S.f.lower)} and Q3 + 1.5·IQR = {fmt(S.f.upper)}
-            {S.outliers.length > 0 ? (
-              <span style={{ color: RED }}> — {S.outliers.map(fmt).join(", ")} flagged</span>
+            {mn ? (
+              <>хилүүд: Q1 − 1.5·КХД = {fmt(S.f.lower)} ба Q3 + 1.5·КХД = {fmt(S.f.upper)}</>
             ) : (
-              <span style={{ color: "var(--fg-2)" }}> — nothing flagged</span>
+              <>fences at Q1 − 1.5·IQR = {fmt(S.f.lower)} and Q3 + 1.5·IQR = {fmt(S.f.upper)}</>
+            )}
+            {S.outliers.length > 0 ? (
+              <span style={{ color: RED }}>{mn ? ` — тэмдэглэсэн: ${S.outliers.map(fmt).join(", ")}` : ` — ${S.outliers.map(fmt).join(", ")} flagged`}</span>
+            ) : (
+              <span style={{ color: "var(--fg-2)" }}>{mn ? " — тэмдэглэсэн утга алга" : " — nothing flagged"}</span>
             )}
           </div>
         ) : (
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            five numbers summarize {data.length} values — pick one, or draw the fences
+            {mn
+              ? `таван тоо нийт ${data.length} утгыг тоймлоно — нэгийг нь сонго, эсвэл хилүүдийг зур`
+              : `five numbers summarize ${data.length} values — pick one, or draw the fences`}
           </div>
         )}
       </div>
@@ -219,7 +226,7 @@ export default function BoxPlot({ config }: { config: BoxPlotConfig }) {
               : { background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }
           }
         >
-          {fences ? "hide fences" : "show fences"}
+          {mn ? (fences ? "хилүүдийг нуух" : "хилүүдийг харуулах") : fences ? "hide fences" : "show fences"}
         </button>
       </div>
     </div>

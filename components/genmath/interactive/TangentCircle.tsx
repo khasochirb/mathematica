@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { type TangentCircleConfig } from "@/lib/genmath-interactive";
@@ -11,6 +12,8 @@ const W = 320;
 const H = 260;
 
 export default function TangentCircle({ config }: { config: TangentCircleConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { color = GEO_ACCENT } = config;
   const [shown, setShown] = useState(false);
 
@@ -63,12 +66,14 @@ export default function TangentCircle({ config }: { config: TangentCircleConfig 
       </svg>
 
       <button type="button" onClick={() => setShown((s) => !s)} className="gm-press mt-3 w-full rounded-xl px-4 py-2.5 text-[14px] font-semibold" style={{ background: shown ? "var(--bg-2)" : "var(--accent)", border: "1px solid var(--line)", color: shown ? "var(--fg)" : "var(--accent-ink, #fff)" }}>
-        {shown ? "Hide the tangents" : "Draw the two tangents from P"}
+        {mn ? (shown ? "Шүргэгчийг нуух" : "P цэгээс хоёр шүргэгч татах") : shown ? "Hide the tangents" : "Draw the two tangents from P"}
       </button>
 
       {shown && (
         <div className="mt-3 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-          Each tangent meets the radius at a <b style={{ color: GEO_BLUE }}>right angle</b>, and the two tangent segments <b style={{ color }}>PA = PB</b> are equal.
+          {mn
+            ? <>Шүргэгч бүр радиустайгаа <b style={{ color: GEO_BLUE }}>тэгш өнцөг</b> үүсгэнэ, хоёр шүргэгч хэрчим тэнцүү: <b style={{ color }}>PA = PB</b>.</>
+            : <>Each tangent meets the radius at a <b style={{ color: GEO_BLUE }}>right angle</b>, and the two tangent segments <b style={{ color }}>PA = PB</b> are equal.</>}
         </div>
       )}
     </div>

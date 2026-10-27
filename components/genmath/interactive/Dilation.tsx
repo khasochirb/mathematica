@@ -20,6 +20,7 @@ const KS = [0.5, 1, 1.5, 2, 2.5];
 
 export default function Dilation({ config }: { config: DilationConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { color = GEO_ACCENT } = config;
   const [ki, setKi] = useState(() => {
     const i = KS.indexOf(config.start ?? 2);
@@ -60,12 +61,21 @@ export default function Dilation({ config }: { config: DilationConfig }) {
       </svg>
 
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-        <div className="serif tabular">scale factor <b style={{ color }}>k = {fmt(k)}</b> — {k > 1 ? "an enlargement" : k < 1 ? "a reduction" : "no change"}</div>
-        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>Each image vertex is {fmt(k)} × as far from <b style={{ color: GEO_BLUE }}>O</b>; image sides are {fmt(k)} × the originals and parallel to them.</div>
+        {mn ? (
+          <>
+            <div className="serif tabular">масштабын коэффициент <b style={{ color }}>k = {fmt(k)}</b> — {k > 1 ? "томсголт" : k < 1 ? "багасгалт" : "өөрчлөлтгүй"}</div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>Дүрсийн орой бүр <b style={{ color: GEO_BLUE }}>O</b> төвөөс {fmt(k)} дахин хол; дүрсийн талууд эх дүрсийнхээс {fmt(k)} дахин урт бөгөөд тэдэнтэй параллель.</div>
+          </>
+        ) : (
+          <>
+            <div className="serif tabular">scale factor <b style={{ color }}>k = {fmt(k)}</b> — {k > 1 ? "an enlargement" : k < 1 ? "a reduction" : "no change"}</div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>Each image vertex is {fmt(k)} × as far from <b style={{ color: GEO_BLUE }}>O</b>; image sides are {fmt(k)} × the originals and parallel to them.</div>
+          </>
+        )}
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>scale factor</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "масштабын коэффициент" : "scale factor"}</span>
         <button type="button" onClick={() => setKi((v) => Math.max(0, v - 1))} disabled={ki <= 0} aria-label={chrome("Smaller", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 40, fontSize: 17, color: "var(--fg)" }}>{fmt(k)}</div>
         <button type="button" onClick={() => setKi((v) => Math.min(KS.length - 1, v + 1))} disabled={ki >= KS.length - 1} aria-label={chrome("Larger", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>

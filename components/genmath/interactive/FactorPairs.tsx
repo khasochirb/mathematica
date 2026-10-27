@@ -12,6 +12,7 @@ import { type FactorPairsConfig } from "@/lib/genmath-interactive";
 // row is short, showing cols is not a factor.
 export default function FactorPairs({ config }: { config: FactorPairsConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { n, color = "#e8913c" } = config;
   const [cols, setCols] = useState(1);
   const divides = n % cols === 0;
@@ -42,12 +43,12 @@ export default function FactorPairs({ config }: { config: FactorPairsConfig }) {
         {divides ? (
           <span className="inline-flex items-center gap-1.5 text-[14px]" style={{ color: "var(--fg-1)" }}>
             <Check className="h-4 w-4" style={{ color: "var(--accent)" }} />
-            <b className="serif tabular">{cols} × {other} = {n}</b> — a factor pair
+            <b className="serif tabular">{cols} × {other} = {n}</b> — {mn ? "хуваагчийн хос" : "a factor pair"}
           </span>
         ) : (
           <span className="inline-flex items-center gap-1.5 text-[14px]" style={{ color: "var(--fg-1)" }}>
             <X className="h-4 w-4" style={{ color: "rgb(200,60,60)" }} />
-            <span>{n} ÷ {cols} leaves a remainder — {cols} is not a factor</span>
+            <span>{mn ? <>{n} ÷ {cols} үлдэгдэлтэй — {cols} нь хуваагч биш</> : <>{n} ÷ {cols} leaves a remainder — {cols} is not a factor</>}</span>
           </span>
         )}
       </div>
@@ -64,8 +65,8 @@ export default function FactorPairs({ config }: { config: FactorPairsConfig }) {
           <Minus className="h-4 w-4" />
         </button>
         <div className="text-center" style={{ minWidth: 96 }}>
-          <div className="serif tabular" style={{ fontSize: 18, color: "var(--fg)" }}>{cols} wide</div>
-          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>columns</div>
+          <div className="serif tabular" style={{ fontSize: 18, color: "var(--fg)" }}>{mn ? <>өргөн {cols}</> : <>{cols} wide</>}</div>
+          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "багана" : "columns"}</div>
         </div>
         <button
           type="button"
@@ -80,7 +81,9 @@ export default function FactorPairs({ config }: { config: FactorPairsConfig }) {
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        A width that makes a <b style={{ color: "var(--fg-1)" }}>complete rectangle</b> is a factor of {n}.
+        {mn
+          ? <><b style={{ color: "var(--fg-1)" }}>Бүтэн тэгш өнцөгт</b> үүсгэдэг өргөн бол {n} тооны хуваагч.</>
+          : <>A width that makes a <b style={{ color: "var(--fg-1)" }}>complete rectangle</b> is a factor of {n}.</>}
       </div>
     </div>
   );

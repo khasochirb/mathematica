@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
@@ -14,6 +15,8 @@ const W = 320;
 const H = 300;
 
 export default function PythagoreanSquares({ config }: { config: PythagoreanSquaresConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { color = GEO_ACCENT } = config;
   const [a, setA] = useState(config.a ?? 3);
   const [b, setB] = useState(config.b ?? 4);
@@ -62,13 +65,13 @@ export default function PythagoreanSquares({ config }: { config: PythagoreanSqua
         <span className="serif tabular">
           <span style={{ color }}>{a * a}</span> + <span style={{ color: GEO_BLUE }}>{b * b}</span> = <b style={{ color: "#3fa06a" }}>{a * a + b * b}</b>
         </span>
-        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>c = √{a * a + b * b} = {fmt(c)}{Number.isInteger(c) ? " (a whole number — a Pythagorean triple!)" : ""}</div>
+        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>c = √{a * a + b * b} = {fmt(c)}{Number.isInteger(c) ? (mn ? " (бүхэл тоо: Пифагорын гурвал!)" : " (a whole number — a Pythagorean triple!)") : ""}</div>
       </div>
 
       <div className="mt-4 flex items-center justify-around gap-3">
         {[["a", a, setA, color], ["b", b, setB, GEO_BLUE]].map(([label, val, set, col]: any) => (
           <div key={label} className="text-center">
-            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>leg {label}</div>
+            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "катет" : "leg"} {label}</div>
             <div className="mt-1 flex items-center gap-2">
               <button type="button" onClick={() => set((v: number) => Math.max(2, v - 1))} disabled={val <= 2} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
               <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 17, color: col }}>{val}</div>

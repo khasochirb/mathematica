@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { useLang } from "@/lib/lang-context";
 import MathText from "@/components/esh/MathText";
 import { type NotationToggleConfig } from "@/lib/genmath-interactive";
 
 export default function NotationToggle({ config }: { config: NotationToggleConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { a, b, tokenA, tokenB } = config;
   const [active, setActive] = useState<number | null>(null);
 
-  const forms = [`$${a}:${b}$`, `${a} to ${b}`, `$\\dfrac{${a}}{${b}}$`];
+  const forms = [`$${a}:${b}$`, mn ? `${a} ба ${b}` : `${a} to ${b}`, `$\\dfrac{${a}}{${b}}$`];
 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
@@ -51,10 +54,13 @@ export default function NotationToggle({ config }: { config: NotationToggleConfi
 
       <div className="mt-3 flex items-center justify-center gap-1.5 text-center text-[13px]" style={{ color: active === null ? "var(--fg-3)" : "#2f9e6e" }}>
         {active === null ? (
-          "Tap each one — they all say the same thing"
+          mn ? "Бичлэг бүрийг дар — бүгд нэг л зүйлийг хэлнэ" : "Tap each one — they all say the same thing"
         ) : (
           <>
-            <Check className="h-4 w-4" /> Same ratio: {a} {tokenA.label} for every {b} {tokenB.label}
+            <Check className="h-4 w-4" />{" "}
+            {mn
+              ? `Ижил харьцаа: ${b} ${tokenB.label} тутамд ${a} ${tokenA.label}`
+              : `Same ratio: ${a} ${tokenA.label} for every ${b} ${tokenB.label}`}
           </>
         )}
       </div>

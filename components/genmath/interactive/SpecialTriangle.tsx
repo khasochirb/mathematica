@@ -17,6 +17,7 @@ const H = 240;
 
 export default function SpecialTriangle({ config }: { config: SpecialTriangleConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { type, color = GEO_ACCENT } = config;
   const [x, setX] = useState(config.start ?? 3);
   const is45 = type === "45-45-90";
@@ -75,19 +76,19 @@ export default function SpecialTriangle({ config }: { config: SpecialTriangleCon
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
         {is45 ? (
           <>
-            <div className="serif tabular">legs <b>{x}</b>, {x} · hypotenuse <b style={{ color }}>{x}√2 ≈ {fmt(t45.hyp)}</b></div>
-            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>Both legs equal; the hypotenuse is a leg times √2.</div>
+            <div className="serif tabular">{mn ? "катет" : "legs"} <b>{x}</b>, {x} · {mn ? "гипотенуз" : "hypotenuse"} <b style={{ color }}>{x}√2 ≈ {fmt(t45.hyp)}</b></div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? "Хоёр катет тэнцүү; гипотенуз = катет × √2." : "Both legs equal; the hypotenuse is a leg times √2."}</div>
           </>
         ) : (
           <>
-            <div className="serif tabular">short <b>{x}</b> · long <b>{x}√3 ≈ {fmt(t30.long)}</b> · hyp <b style={{ color }}>{2 * x}</b></div>
-            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>Sides are in the ratio x : x√3 : 2x; the hypotenuse is twice the short leg.</div>
+            <div className="serif tabular">{mn ? "богино" : "short"} <b>{x}</b> · {mn ? "урт" : "long"} <b>{x}√3 ≈ {fmt(t30.long)}</b> · {mn ? "гипотенуз" : "hyp"} <b style={{ color }}>{2 * x}</b></div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? "Талуудын харьцаа x : x√3 : 2x; гипотенуз нь богино катетаас хоёр дахин урт." : "Sides are in the ratio x : x√3 : 2x; the hypotenuse is twice the short leg."}</div>
           </>
         )}
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>size x</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "хэмжээ x" : "size x"}</span>
         <button type="button" onClick={() => setX((v) => Math.max(1, v - 1))} disabled={x <= 1} aria-label={chrome("Smaller", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 17, color: "var(--fg)" }}>{x}</div>
         <button type="button" onClick={() => setX((v) => Math.min(6, v + 1))} disabled={x >= 6} aria-label={chrome("Larger", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>

@@ -13,11 +13,14 @@ import { type BalanceScaleConfig } from "@/lib/genmath-interactive";
 //  - mul mode:  a·x = rhs    →  "split both into a groups"  →  x = rhs ÷ a
 export default function BalanceScale({ config }: { config: BalanceScaleConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode, coef = 1, b = 0, rhs, color = "#e8913c" } = config;
   const [solved, setSolved] = useState(false);
 
   const answer = mode === "add" ? rhs - b : Math.round(rhs / coef);
-  const actionLabel = mode === "add" ? `Subtract ${b} from both sides` : `Divide both sides by ${coef}`;
+  const actionLabel = mn
+    ? mode === "add" ? `Хоёр талаас ${b} хасах` : `Хоёр талыг ${coef} хэсэгт хуваах`
+    : mode === "add" ? `Subtract ${b} from both sides` : `Divide both sides by ${coef}`;
   const equation = mode === "add"
     ? `x + ${b} = ${rhs}`
     : `${coef === 1 ? "" : coef}x = ${rhs}`;
@@ -65,7 +68,7 @@ export default function BalanceScale({ config }: { config: BalanceScaleConfig })
       </div>
 
       <div className="mt-3 flex items-center justify-center gap-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
-        <span className="inline-flex items-center gap-1.5"><span style={{ width: 14, height: 11, borderRadius: 3, background: color, display: "inline-block" }} /> = x (unknown)</span>
+        <span className="inline-flex items-center gap-1.5"><span style={{ width: 14, height: 11, borderRadius: 3, background: color, display: "inline-block" }} /> {mn ? "= x (үл мэдэгдэх)" : "= x (unknown)"}</span>
         <span className="inline-flex items-center gap-1.5"><span style={{ width: 12, height: 12, borderRadius: "50%", background: "var(--fg-2)", display: "inline-block" }} /> = 1</span>
       </div>
 
@@ -97,7 +100,11 @@ export default function BalanceScale({ config }: { config: BalanceScaleConfig })
       )}
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Do the <b style={{ color: "var(--fg-1)" }}>same thing to both sides</b> and the balance is kept.
+        {mn ? (
+          <><b style={{ color: "var(--fg-1)" }}>Хоёр талд ижил үйлдэл</b> хийвэл тэнцвэр хадгалагдана.</>
+        ) : (
+          <>Do the <b style={{ color: "var(--fg-1)" }}>same thing to both sides</b> and the balance is kept.</>
+        )}
       </div>
     </div>
   );

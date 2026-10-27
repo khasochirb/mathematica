@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type RateMeterConfig, rateValue } from "@/lib/genmath-interactive";
@@ -23,6 +24,8 @@ interface StepperProps {
 }
 
 function Stepper({ label, unit, value, min, max, onDec, onInc, accentPlus }: StepperProps) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   return (
     <div
       className="flex flex-col gap-2 rounded-xl p-3"
@@ -36,7 +39,7 @@ function Stepper({ label, unit, value, min, max, onDec, onInc, accentPlus }: Ste
           type="button"
           onClick={onDec}
           disabled={value <= min}
-          aria-label={`Decrease ${label}`}
+          aria-label={mn ? `${label} багасгах` : `Decrease ${label}`}
           className="gm-press grid h-12 w-12 shrink-0 place-items-center rounded-full disabled:opacity-35"
           style={{
             background: "var(--bg-1)",
@@ -63,7 +66,7 @@ function Stepper({ label, unit, value, min, max, onDec, onInc, accentPlus }: Ste
           type="button"
           onClick={onInc}
           disabled={value >= max}
-          aria-label={`Increase ${label}`}
+          aria-label={mn ? `${label} нэмэх` : `Increase ${label}`}
           className="gm-press grid h-12 w-12 shrink-0 place-items-center rounded-full disabled:opacity-35"
           style={
             accentPlus

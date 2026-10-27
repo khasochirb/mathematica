@@ -1,11 +1,14 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type DecimalGridConfig } from "@/lib/genmath-interactive";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
 
 export default function DecimalGrid({ config }: { config: DecimalGridConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { start = 0, color = "#e8913c" } = config;
   const [h, setH] = useState(Math.max(0, Math.min(100, Math.round(start * 100))));
 
@@ -35,7 +38,7 @@ export default function DecimalGrid({ config }: { config: DecimalGridConfig }) {
         type="button"
         onClick={onDown}
         disabled={downDisabled}
-        aria-label={`One fewer ${label}`}
+        aria-label={mn ? `Нэгийг хасах: ${label}` : `One fewer ${label}`}
         className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
         style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
       >
@@ -53,7 +56,7 @@ export default function DecimalGrid({ config }: { config: DecimalGridConfig }) {
         type="button"
         onClick={onUp}
         disabled={upDisabled}
-        aria-label={`One more ${label}`}
+        aria-label={mn ? `Нэгийг нэмэх: ${label}` : `One more ${label}`}
         className="gm-press grid h-11 w-11 place-items-center rounded-full disabled:opacity-35"
         style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
       >
@@ -70,7 +73,7 @@ export default function DecimalGrid({ config }: { config: DecimalGridConfig }) {
       </div>
 
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-2)" }}>
-        the whole = 100 small squares
+        {mn ? "бүхэл = 100 жижиг дөрвөлжин" : "the whole = 100 small squares"}
       </div>
 
       {/* readout: decimal = fraction, with the place-value split */}
@@ -88,15 +91,25 @@ export default function DecimalGrid({ config }: { config: DecimalGridConfig }) {
       </div>
 
       <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        <b style={{ color: "var(--fg-1)" }}>{tenths}</b> tenth{tenths === 1 ? "" : "s"}
-        {" + "}
-        <b style={{ color: "var(--fg-1)" }}>{hundredths}</b> hundredth{hundredths === 1 ? "" : "s"}
+        {mn ? (
+          <>
+            аравны нэг: <b style={{ color: "var(--fg-1)" }}>{tenths}</b>
+            {" + "}
+            зууны нэг: <b style={{ color: "var(--fg-1)" }}>{hundredths}</b>
+          </>
+        ) : (
+          <>
+            <b style={{ color: "var(--fg-1)" }}>{tenths}</b> tenth{tenths === 1 ? "" : "s"}
+            {" + "}
+            <b style={{ color: "var(--fg-1)" }}>{hundredths}</b> hundredth{hundredths === 1 ? "" : "s"}
+          </>
+        )}
       </div>
 
       {/* two steppers — a tenth (whole column) and a hundredth (one square) */}
       <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
         <Stepper
-          label="tenth"
+          label={mn ? "аравны нэг" : "tenth"}
           sub="+0.1"
           onDown={() => step(-10)}
           onUp={() => step(10)}
@@ -104,7 +117,7 @@ export default function DecimalGrid({ config }: { config: DecimalGridConfig }) {
           upDisabled={h > 90}
         />
         <Stepper
-          label="hundredth"
+          label={mn ? "зууны нэг" : "hundredth"}
           sub="+0.01"
           onDown={() => step(-1)}
           onUp={() => step(1)}

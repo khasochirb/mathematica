@@ -4,9 +4,12 @@ import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { type DecimalCompareConfig } from "@/lib/genmath-interactive";
 import DecimalGridView from "@/components/genmath/interactive/DecimalGridView";
+import { useLang } from "@/lib/lang-context";
 
 export default function DecimalCompare({ config }: { config: DecimalCompareConfig }) {
   const { left, right, color = "#e8913c" } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const lh = Math.round(left * 100);
   const rh = Math.round(right * 100);
   const correct = lh > rh ? ">" : lh < rh ? "<" : "=";
@@ -47,7 +50,7 @@ export default function DecimalCompare({ config }: { config: DecimalCompareConfi
               type="button"
               onClick={() => !done && setPicked(sym)}
               disabled={done}
-              aria-label={`Pick ${sym}`}
+              aria-label={mn ? `${sym} сонгох` : `Pick ${sym}`}
               className="gm-press grid h-12 w-14 place-items-center rounded-xl serif"
               style={{
                 fontSize: 22,
@@ -75,14 +78,16 @@ export default function DecimalCompare({ config }: { config: DecimalCompareConfi
             <b className="serif tabular">{fmt(left)} {correct} {fmt(right)}</b>
             {" — "}
             {correct === "="
-              ? "same amount shaded."
-              : `${correct === ">" ? fmt(left) : fmt(right)} shades more of the whole.`}
+              ? mn ? "хоёулаа ижил хэмжээгээр будагдсан." : "same amount shaded."
+              : mn
+                ? `${correct === ">" ? fmt(left) : fmt(right)} нь бүхлийн илүү их хэсгийг будна.`
+                : `${correct === ">" ? fmt(left) : fmt(right)} shades more of the whole.`}
           </span>
         </div>
       )}
       {!done && (
         <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-          Tap the sign that makes it true.
+          {mn ? "Үнэн болгох тэмдгийг дар." : "Tap the sign that makes it true."}
         </div>
       )}
     </div>

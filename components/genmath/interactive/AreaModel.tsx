@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type AreaModelConfig, gcd } from "@/lib/genmath-interactive";
@@ -14,8 +15,10 @@ function Stepper({
   onDec,
   onInc,
   color,
+  mn,
 }: {
   label: string;
+  mn: boolean;
   value: number;
   max: number;
   onDec: () => void;
@@ -24,11 +27,11 @@ function Stepper({
 }) {
   return (
     <div className="flex items-center gap-2">
-      <button type="button" onClick={onDec} disabled={value <= 1} aria-label={`fewer ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+      <button type="button" onClick={onDec} disabled={value <= 1} aria-label={mn ? `${label} багасгах` : `fewer ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
         <Minus className="h-4 w-4" />
       </button>
       <span className="serif tabular text-center" style={{ minWidth: 54, fontSize: 16, color }}>{value}/{max}</span>
-      <button type="button" onClick={onInc} disabled={value >= max} aria-label={`more ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
+      <button type="button" onClick={onInc} disabled={value >= max} aria-label={mn ? `${label} нэмэх` : `more ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
         <Plus className="h-4 w-4" />
       </button>
     </div>
@@ -36,6 +39,8 @@ function Stepper({
 }
 
 export default function AreaModel({ config }: { config: AreaModelConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { aDen, bDen } = config;
   const [aNum, setANum] = useState(config.aNum);
   const [bNum, setBNum] = useState(config.bNum);
@@ -69,13 +74,13 @@ export default function AreaModel({ config }: { config: AreaModelConfig }) {
       {/* steppers */}
       <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
         <div className="text-center">
-          <div className="mb-1 text-[11px] uppercase tracking-wide" style={{ color: A_COLOR }}>columns</div>
-          <Stepper label="columns" value={aNum} max={aDen} onDec={() => setANum((v) => Math.max(1, v - 1))} onInc={() => setANum((v) => Math.min(aDen, v + 1))} color={A_COLOR} />
+          <div className="mb-1 text-[11px] uppercase tracking-wide" style={{ color: A_COLOR }}>{mn ? "багана" : "columns"}</div>
+          <Stepper mn={mn} label={mn ? "багана" : "columns"} value={aNum} max={aDen} onDec={() => setANum((v) => Math.max(1, v - 1))} onInc={() => setANum((v) => Math.min(aDen, v + 1))} color={A_COLOR} />
         </div>
         <span className="serif" style={{ fontSize: 20, color: "var(--fg-3)" }}>×</span>
         <div className="text-center">
-          <div className="mb-1 text-[11px] uppercase tracking-wide" style={{ color: B_COLOR }}>rows</div>
-          <Stepper label="rows" value={bNum} max={bDen} onDec={() => setBNum((v) => Math.max(1, v - 1))} onInc={() => setBNum((v) => Math.min(bDen, v + 1))} color={B_COLOR} />
+          <div className="mb-1 text-[11px] uppercase tracking-wide" style={{ color: B_COLOR }}>{mn ? "мөр" : "rows"}</div>
+          <Stepper mn={mn} label={mn ? "мөр" : "rows"} value={bNum} max={bDen} onDec={() => setBNum((v) => Math.max(1, v - 1))} onInc={() => setBNum((v) => Math.min(bDen, v + 1))} color={B_COLOR} />
         </div>
       </div>
 
@@ -84,7 +89,9 @@ export default function AreaModel({ config }: { config: AreaModelConfig }) {
         <span className="serif tabular">{aNum}/{aDen} × {bNum}/{bDen} = {prodNum}/{prodDen}</span>
         {simplified && <span className="serif tabular"> = <b style={{ color: "var(--accent)" }}>{simpNum}/{simpDen}</b></span>}
         <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>
-          the dark overlap is <b>{prodNum}</b> of <b>{prodDen}</b> little boxes
+          {mn
+            ? <>бараан давхцал: <b>{prodDen}</b> жижиг нүднээс <b>{prodNum}</b> нь</>
+            : <>the dark overlap is <b>{prodNum}</b> of <b>{prodDen}</b> little boxes</>}
         </div>
       </div>
     </div>

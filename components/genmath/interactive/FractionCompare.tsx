@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/lib/lang-context";
 import { Trophy, Equal } from "lucide-react";
 import { type FractionCompareConfig, gcd } from "@/lib/genmath-interactive";
 import FractionBar from "@/components/genmath/interactive/FractionBar";
@@ -9,6 +10,8 @@ type Side = "left" | "right";
 
 export default function FractionCompare({ config }: { config: FractionCompareConfig }) {
   const { left, right, color = "#e8913c" } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [same, setSame] = useState(false);
 
   const lcd = (left.den / gcd(left.den, right.den)) * right.den;
@@ -23,7 +26,7 @@ export default function FractionCompare({ config }: { config: FractionCompareCon
   const crossL = left.num * right.den;
   const crossR = right.num * left.den;
   const winner: Side | "tie" = crossL > crossR ? "left" : crossL < crossR ? "right" : "tie";
-  const winnerLabel = winner === "left" ? left.label ?? "the first" : right.label ?? "the second";
+  const winnerLabel = winner === "left" ? left.label ?? (mn ? "эхнийх" : "the first") : right.label ?? (mn ? "хоёр дахь нь" : "the second");
 
   const Row = ({ n, d, label, isWin }: { n: number; d: number; label?: string; isWin: boolean }) => (
     <div
@@ -63,16 +66,23 @@ export default function FractionCompare({ config }: { config: FractionCompareCon
         {same ? (
           winner === "tie" ? (
             <span className="inline-flex items-center justify-center gap-1.5">
-              <Equal className="h-4 w-4" aria-hidden /> Same-size pieces, same amount shaded — <b style={{ color: "var(--accent)" }}>they're equal</b>.
+              <Equal className="h-4 w-4" aria-hidden /> {mn ? <>Хэсгүүд ижил хэмжээтэй, будсан хэсгийн тоо ижил — <b style={{ color: "var(--accent)" }}>тэнцүү</b>.</> : <>Same-size pieces, same amount shaded — <b style={{ color: "var(--accent)" }}>they're equal</b>.</>}
             </span>
           ) : (
+            mn ? (
+            <span>
+              Одоо хэсгүүд ижил хэмжээтэй (хуваарь нь <b>{lcd}</b>). Будсан хэсгүүдийг жиш: <b>{numL}</b> ба <b>{numR}</b> →{" "}
+              <b style={{ color: "var(--accent)" }}>{winnerLabel}</b> нь их.
+            </span>
+            ) : (
             <span>
               Same-size pieces now (<b>{lcd}</b>ths). Compare the shaded pieces: <b>{numL}</b> vs <b>{numR}</b> →{" "}
               <b style={{ color: "var(--accent)" }}>{winnerLabel}</b> is bigger.
             </span>
+            )
           )
         ) : (
-          <span>Different-size pieces — hard to compare. Give them the same-size pieces first.</span>
+          <span>{mn ? "Хэсгүүдийн хэмжээ өөр — жишихэд хэцүү. Эхлээд хэсгүүдийг ижил хэмжээтэй болго." : "Different-size pieces — hard to compare. Give them the same-size pieces first."}</span>
         )}
       </div>
 
@@ -89,7 +99,7 @@ export default function FractionCompare({ config }: { config: FractionCompareCon
             transition: "background .2s, color .2s",
           }}
         >
-          {same ? "Reset" : "Give them the same-size pieces"}
+          {same ? (mn ? "Дахин эхлэх" : "Reset") : mn ? "Хэсгүүдийг ижил хэмжээтэй болгох" : "Give them the same-size pieces"}
         </button>
       </div>
     </div>

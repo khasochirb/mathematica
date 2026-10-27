@@ -39,7 +39,17 @@ function ruleText(t: TransformPlaneConfig): string {
   }
 }
 
-function nameText(t: TransformPlaneConfig): string {
+function nameText(t: TransformPlaneConfig, mn: boolean): string {
+  if (mn) {
+    switch (t.transform) {
+      case "translate": return "Параллель зөөлт (гулсуулах)";
+      case "reflectX": return "x тэнхлэгийн хувьд тэгш хэм (хөмрөх)";
+      case "reflectY": return "y тэнхлэгийн хувьд тэгш хэм (хөмрөх)";
+      case "reflectYeqX": return "y = x шулууны хувьд тэгш хэм (хөмрөх)";
+      case "rotate": return `Координатын эхийг тойруулан ${t.deg ?? 90}° эргүүлэлт (эргүүлэх)`;
+      case "dilate": return `Гомотет, масштабын коэффициент ${fmtK(t.k ?? 2)} (хэмжээ өөрчлөх)`;
+    }
+  }
   switch (t.transform) {
     case "translate": return "Translation (slide)";
     case "reflectX": return "Reflection over the x-axis (flip)";
@@ -59,6 +69,7 @@ function fmt(n: number): string {
 
 export default function TransformPlane({ config }: { config: TransformPlaneConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const color = config.color ?? GEO_ACCENT;
   const [shown, setShown] = useState(false);
 
@@ -141,7 +152,7 @@ export default function TransformPlane({ config }: { config: TransformPlaneConfi
       </div>
 
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-        <div className="serif" style={{ color }}>{nameText(config)}</div>
+        <div className="serif" style={{ color }}>{nameText(config, mn)}</div>
         <div className="mt-1 serif tabular text-[15px]">{ruleText(config)}</div>
         {shown && (
           <div className="mt-2 text-[12px] tabular" style={{ color: "var(--fg-2)" }}>
@@ -151,7 +162,9 @@ export default function TransformPlane({ config }: { config: TransformPlaneConfi
               </span>
             ))}
             <div className="mt-1" style={{ color: "var(--fg-3)" }}>
-              {isRigid ? "Same size and shape — the image is congruent to the original." : "Same shape, different size — the image is similar to the original."}
+              {mn
+                ? (isRigid ? "Хэмжээ, хэлбэр ижил — дүрс нь эх дүрстэйгээ тэнцүү." : "Хэлбэр ижил, хэмжээ өөр — дүрс нь эх дүрстэйгээ төстэй.")
+                : isRigid ? "Same size and shape — the image is congruent to the original." : "Same shape, different size — the image is similar to the original."}
             </div>
           </div>
         )}
@@ -164,7 +177,9 @@ export default function TransformPlane({ config }: { config: TransformPlaneConfi
           className="gm-press rounded-full px-5 py-2 text-[14px] font-medium"
           style={{ background: shown ? "var(--bg-2)" : "var(--accent)", border: "1px solid var(--accent)", color: shown ? "var(--fg)" : "var(--accent-ink, #fff)" }}
         >
-          {shown ? "Reset" : `Apply the ${config.transform === "dilate" ? "dilation" : config.transform === "rotate" ? "rotation" : config.transform === "translate" ? "translation" : "reflection"}`}
+          {mn
+            ? (shown ? "Дахин эхлэх" : config.transform === "dilate" ? "Гомотет хийх" : config.transform === "rotate" ? "Эргүүлэх" : config.transform === "translate" ? "Параллель зөөх" : "Тэгш хэмээр хувиргах")
+            : shown ? "Reset" : `Apply the ${config.transform === "dilate" ? "dilation" : config.transform === "rotate" ? "rotation" : config.transform === "translate" ? "translation" : "reflection"}`}
         </button>
       </div>
     </div>

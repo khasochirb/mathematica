@@ -20,6 +20,7 @@ const STEPS = [40, 60, 80, 100, 120, 140, 160];
 
 export default function CircleAngle({ config }: { config: CircleAngleConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode, color = GEO_ACCENT } = config;
   const [ti, setTi] = useState(() => {
     const i = STEPS.indexOf(config.start ?? 100);
@@ -44,7 +45,7 @@ export default function CircleAngle({ config }: { config: CircleAngleConfig }) {
         <circle cx={cx} cy={cy} r={R} fill="none" stroke="var(--fg-1)" strokeWidth={2} />
         {/* highlighted arc AB (the top minor arc) */}
         <path d={arcPath(cx, cy, R, degS(O, A), degS(O, B))} fill="none" stroke={color} strokeWidth={4} />
-        <text x={cx} y={cy - R - 8} fontSize="12" textAnchor="middle" fill={color} fontWeight={700}>arc = {theta}°</text>
+        <text x={cx} y={cy - R - 8} fontSize="12" textAnchor="middle" fill={color} fontWeight={700}>{mn ? "нум" : "arc"} = {theta}°</text>
         {/* radii + central angle */}
         <line x1={cx} y1={cy} x2={A.x} y2={A.y} stroke="var(--fg-1)" strokeWidth={1.8} />
         <line x1={cx} y1={cy} x2={B.x} y2={B.y} stroke="var(--fg-1)" strokeWidth={1.8} />
@@ -70,19 +71,19 @@ export default function CircleAngle({ config }: { config: CircleAngleConfig }) {
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
         {mode === "central" ? (
           <>
-            <div className="serif tabular">central angle <b style={{ color: GEO_BLUE }}>{theta}°</b> = arc <b style={{ color }}>{theta}°</b></div>
-            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>A central angle equals the measure of the arc it cuts off.</div>
+            <div className="serif tabular">{mn ? "төв өнцөг" : "central angle"} <b style={{ color: GEO_BLUE }}>{theta}°</b> = {mn ? "нум" : "arc"} <b style={{ color }}>{theta}°</b></div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? "Төв өнцөг тулсан нумынхаа хэмжээтэй тэнцүү." : "A central angle equals the measure of the arc it cuts off."}</div>
           </>
         ) : (
           <>
-            <div className="serif tabular">inscribed <b style={{ color: GEO_ACCENT }}>{inscribedAngle(theta)}°</b> = ½ of central <b style={{ color: GEO_BLUE }}>{theta}°</b></div>
-            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>An inscribed angle is half the central angle on the same arc.</div>
+            <div className="serif tabular">{mn ? "багтсан өнцөг" : "inscribed"} <b style={{ color: GEO_ACCENT }}>{inscribedAngle(theta)}°</b> = {mn ? "½ · төв өнцөг" : "½ of central"} <b style={{ color: GEO_BLUE }}>{theta}°</b></div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? "Ижил нумд тулсан багтсан өнцөг төв өнцгийн хагастай тэнцүү." : "An inscribed angle is half the central angle on the same arc."}</div>
           </>
         )}
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>central angle</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "төв өнцөг" : "central angle"}</span>
         <button type="button" onClick={() => setTi((v) => Math.max(0, v - 1))} disabled={ti <= 0} aria-label={chrome("Smaller", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 17, color: "var(--fg)" }}>{theta}°</div>
         <button type="button" onClick={() => setTi((v) => Math.min(STEPS.length - 1, v + 1))} disabled={ti >= STEPS.length - 1} aria-label={chrome("Larger", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>

@@ -1,11 +1,15 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { type IntegerCompareConfig } from "@/lib/genmath-interactive";
 import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
 
 export default function IntegerCompare({ config }: { config: IntegerCompareConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { left, right, min, max, color = "#e8913c" } = config;
   const correct = left < right ? "<" : left > right ? ">" : "=";
   const [picked, setPicked] = useState<string | null>(null);
@@ -64,12 +68,14 @@ export default function IntegerCompare({ config }: { config: IntegerCompareConfi
           {right_ ? <Check className="h-4 w-4" style={{ color: "var(--accent)" }} /> : <X className="h-4 w-4" style={{ color: "rgb(200,60,60)" }} />}
           <span>
             <b className="serif tabular">{left} {correct} {right}</b>
-            {correct === "=" ? " — they are equal." : ` — ${smaller} is further left, so it's smaller.`}
+            {correct === "="
+              ? mn ? " — тэнцүү." : " — they are equal."
+              : mn ? ` — ${smaller} нь илүү зүүн талд байгаа тул бага.` : ` — ${smaller} is further left, so it's smaller.`}
           </span>
         </div>
       ) : (
         <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-          Tap the sign — the number further left is smaller.
+          {mn ? "Тэмдгийг дар — илүү зүүн талд байгаа тоо нь бага." : "Tap the sign — the number further left is smaller."}
         </div>
       )}
     </div>

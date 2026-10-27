@@ -10,6 +10,7 @@ import { type IntegerSignRuleConfig } from "@/lib/genmath-interactive";
 // same signs → positive, different signs → negative (for both × and ÷).
 export default function IntegerSignRule({ config }: { config: IntegerSignRuleConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { a, b, op, color = "#e8913c" } = config;
   const ma = Math.abs(a);
   const mb = Math.abs(b);
@@ -49,13 +50,18 @@ export default function IntegerSignRule({ config }: { config: IntegerSignRuleCon
 
       <div className="mt-3 text-center text-[14px]">
         <span className="rounded-full px-3 py-1" style={{ background: same ? "rgba(22,163,74,0.12)" : "rgba(59,130,246,0.12)", color: same ? "#16a34a" : "#3b82f6" }}>
-          {same ? "same signs → positive" : "different signs → negative"}
+          {mn
+            ? (same ? "ижил тэмдэг → эерэг" : "өөр тэмдэг → сөрөг")
+            : same ? "same signs → positive" : "different signs → negative"}
         </span>
       </div>
 
       <div className="mt-3 text-center text-[12.5px]" style={{ color: "var(--fg-2)" }}>
-        Tap a number to flip its sign. The digits {opSym === "×" ? "multiply" : "divide"} the same way;
-        only the <b style={{ color: "var(--fg-1)" }}>sign</b> changes.
+        {mn
+          ? <>Тоон дээр дарж тэмдгийг нь соль. Цифрүүд {opSym === "×" ? "үржих" : "хуваах"} нь адилхан;
+            зөвхөн <b style={{ color: "var(--fg-1)" }}>тэмдэг</b> өөрчлөгдөнө.</>
+          : <>Tap a number to flip its sign. The digits {opSym === "×" ? "multiply" : "divide"} the same way;
+        only the <b style={{ color: "var(--fg-1)" }}>sign</b> changes.</>}
       </div>
     </div>
   );

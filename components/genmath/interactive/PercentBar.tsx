@@ -4,9 +4,12 @@ import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { type PercentBarConfig } from "@/lib/genmath-interactive";
 import PercentBarView from "@/components/genmath/interactive/PercentBarView";
+import { useLang } from "@/lib/lang-context";
 
 export default function PercentBar({ config }: { config: PercentBarConfig }) {
   const { whole, start = 0, color = "#e8913c" } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [p, setP] = useState(Math.max(0, Math.min(100, Math.round(start))));
   const value = Math.round((p / 100) * whole * 100) / 100;
   const fmt = (x: number) => (Number.isInteger(x) ? String(x) : x.toFixed(2).replace(/0+$/, "").replace(/\.$/, ""));
@@ -48,9 +51,19 @@ export default function PercentBar({ config }: { config: PercentBarConfig }) {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+        {mn ? (
+          <>
+            <span className="serif tabular" style={{ fontSize: 20, color: "var(--fg)" }}>{fmt(whole)}</span>
+            <span className="text-[15px]" style={{ color: "var(--fg-2)" }}>тооны</span>
+            <span className="serif tabular rounded-lg px-3 py-1" style={{ fontSize: 20, background: "var(--accent-wash)", color: "var(--accent)", border: "1px solid var(--accent-line)" }}>{p}%</span>
+          </>
+        ) : (
+          <>
         <span className="serif tabular rounded-lg px-3 py-1" style={{ fontSize: 20, background: "var(--accent-wash)", color: "var(--accent)", border: "1px solid var(--accent-line)" }}>{p}%</span>
         <span className="text-[15px]" style={{ color: "var(--fg-2)" }}>of</span>
         <span className="serif tabular" style={{ fontSize: 20, color: "var(--fg)" }}>{fmt(whole)}</span>
+          </>
+        )}
         <span style={{ color: "var(--fg-3)" }}>=</span>
         <span className="serif tabular" style={{ fontSize: 22, color: "var(--fg)" }}>{fmt(value)}</span>
       </div>

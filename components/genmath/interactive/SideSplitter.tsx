@@ -18,6 +18,7 @@ const TS = [0.25, 0.375, 0.5, 0.625, 0.75];
 
 export default function SideSplitter({ config }: { config: SideSplitterConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { ab = 8, ac = 12, color = GEO_ACCENT } = config;
   const [ti, setTi] = useState(() => {
     const i = TS.indexOf(config.start ?? 0.5);
@@ -73,11 +74,11 @@ export default function SideSplitter({ config }: { config: SideSplitterConfig })
         <span className="serif tabular">
           <span style={{ color }}>AD/DB = {ratio(ad, db)}</span> = <span style={{ color: GEO_BLUE }}>AE/EC = {ratio(ae, ec)}</span> <b style={{ color: "#3fa06a" }}>✓</b>
         </span>
-        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>DE ∥ BC, so the two sides split in the same ratio — wherever the line sits.</div>
+        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? "DE ∥ BC тул шулуун хаана ч байсан хоёр тал ижил харьцаагаар хуваагдана." : "DE ∥ BC, so the two sides split in the same ratio — wherever the line sits."}</div>
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>slide the line</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "шулууныг шилжүүл" : "slide the line"}</span>
         <button type="button" onClick={() => setTi((v) => Math.max(0, v - 1))} disabled={ti <= 0} aria-label={chrome("Up", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <button type="button" onClick={() => setTi((v) => Math.min(TS.length - 1, v + 1))} disabled={ti >= TS.length - 1} aria-label={chrome("Down", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>

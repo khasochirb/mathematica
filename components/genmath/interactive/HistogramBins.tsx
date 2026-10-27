@@ -13,7 +13,8 @@ import { binCounts, type HistogramBinsConfig } from "@/lib/genmath-interactive";
 
 export default function HistogramBins({ config }: { config: HistogramBinsConfig }) {
   const { lang } = useLang();
-  const { data, min, max, widths, start = 0, xLabel = "value" } = config;
+  const mn = lang === "mn";
+  const { data, min, max, widths, start = 0, xLabel = mn ? "утга" : "value" } = config;
   const [wIx, setWIx] = useState(Math.min(start, widths.length - 1));
 
   const w = widths[wIx];
@@ -92,11 +93,20 @@ export default function HistogramBins({ config }: { config: HistogramBinsConfig 
       {/* readout */}
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-          {data.length} values → <b style={{ color: "var(--accent)" }}>{counts.length}</b> bins of width{" "}
-          <b style={{ color: "var(--accent)" }}>{w}</b>
+          {mn ? (
+            <>
+              {data.length} утга → <b style={{ color: "var(--accent)" }}>{counts.length}</b> интервал, өргөн{" "}
+              <b style={{ color: "var(--accent)" }}>{w}</b>
+            </>
+          ) : (
+            <>
+              {data.length} values → <b style={{ color: "var(--accent)" }}>{counts.length}</b> bins of width{" "}
+              <b style={{ color: "var(--accent)" }}>{w}</b>
+            </>
+          )}
         </div>
         <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-          same data every time — only the grouping changes
+          {mn ? "өгөгдөл үргэлж ижил — зөвхөн бүлэглэлт өөрчлөгдөнө" : "same data every time — only the grouping changes"}
         </div>
       </div>
 
@@ -113,7 +123,7 @@ export default function HistogramBins({ config }: { config: HistogramBinsConfig 
                 : { background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }
             }
           >
-            width {wd}
+            {mn ? "өргөн" : "width"} {wd}
           </button>
         ))}
       </div>

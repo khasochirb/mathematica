@@ -48,6 +48,7 @@ function stdEqn(a: number, b: number, c: number): string {
 
 export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const {
     mode,
     a: a0 = mode === "shape" ? 1 : 1,
@@ -157,9 +158,9 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-2">
-        <button type="button" onClick={() => set((v) => Math.max(lo, Math.round((v - delta) * 100) / 100))} disabled={val <= lo} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.max(lo, Math.round((v - delta) * 100) / 100))} disabled={val <= lo} aria-label={`${mn ? "Багасгах" : "Decrease"} ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 40, fontSize: 16, color }}>{fmt(val)}</div>
-        <button type="button" onClick={() => set((v) => Math.min(hi, Math.round((v + delta) * 100) / 100))} disabled={val >= hi} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.min(hi, Math.round((v + delta) * 100) / 100))} disabled={val >= hi} aria-label={`${mn ? "Ихэсгэх" : "Increase"} ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
@@ -183,8 +184,8 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
           {/* axes */}
           <line x1={ppadL} y1={PH - ppadB} x2={PW - 8} y2={PH - ppadB} stroke="var(--fg-2)" strokeWidth={1.6} />
           <line x1={ppadL} y1={PH - ppadB} x2={ppadL} y2={8} stroke="var(--fg-2)" strokeWidth={1.6} />
-          <text x={PW - 10} y={PH - ppadB + 14} fontSize="10" fill="var(--fg-3)" textAnchor="end">time t (s)</text>
-          <text x={ppadL - 6} y={14} fontSize="10" fill="var(--fg-3)" textAnchor="end">h (m)</text>
+          <text x={PW - 10} y={PH - ppadB + 14} fontSize="10" fill="var(--fg-3)" textAnchor="end">{mn ? "хугацаа t (с)" : "time t (s)"}</text>
+          <text x={ppadL - 6} y={14} fontSize="10" fill="var(--fg-3)" textAnchor="end">{mn ? "h (м)" : "h (m)"}</text>
           {/* t ticks each second */}
           {Array.from({ length: Math.floor(tEnd) + 1 }, (_, i) => i).map((t) => (
             <g key={t}>
@@ -207,7 +208,7 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
               <circle cx={ptx(apexT)} cy={pty(apexH)} r={10} fill="none" stroke={GEO_BLUE} strokeWidth={1.4} opacity={0.5} className="gm-beacon" />
               <circle cx={ptx(apexT)} cy={pty(apexH)} r={3.4} fill={GEO_BLUE} />
               <text x={ptx(apexT)} y={pty(apexH) - 14} fontSize="10.5" fontWeight={700} fill={GEO_BLUE} textAnchor="middle">
-                vertex ({fmt(apexT)}, {fmt(apexH)})
+                {mn ? "орой" : "vertex"} ({fmt(apexT)}, {fmt(apexH)})
               </text>
             </g>
           )}
@@ -220,10 +221,16 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
 
         <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            h = {fmt(v0)}t − 5t²  ·  t = <b style={{ color: GEO_ACCENT }}>{tNow.toFixed(1)}</b> s, h = <b style={{ color: GEO_ACCENT }}>{Math.max(0, hNow).toFixed(1)}</b> m
+            h = {fmt(v0)}t − 5t²  ·  t = <b style={{ color: GEO_ACCENT }}>{tNow.toFixed(1)}</b> {mn ? "с" : "s"}, h = <b style={{ color: GEO_ACCENT }}>{Math.max(0, hNow).toFixed(1)}</b> {mn ? "м" : "m"}
           </div>
           <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>
-            {landed
+            {mn
+              ? (landed
+                ? <>Газардсан агшин: t = {fmt(tEnd)} с. Оргил цэг нь <b style={{ color: GEO_BLUE }}>орой</b> байлаа: t = {fmt(apexT)} с, h = {fmt(apexH)} м — хамгийн өндөр цэг, нислэгийн яг дунд.</>
+                : apexPassed
+                  ? <>Оргилыг давлаа — орой нь хамгийн их утга байв. Одоо доошилж байна.</>
+                  : <>Дээшилж байна… параболын орой хамгийн өндөр цэг болно.</>)
+              : landed
               ? <>Landed at t = {fmt(tEnd)} s. The peak was the <b style={{ color: GEO_BLUE }}>vertex</b>: t = {fmt(apexT)} s, h = {fmt(apexH)} m — highest point, halfway through the flight.</>
               : apexPassed
                 ? <>Past the peak — the vertex was the maximum. Coming down now.</>
@@ -233,7 +240,7 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
 
         <div className="mt-3 flex justify-center">
           <button type="button" onClick={replay} aria-label={chrome("Throw again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-            <RotateCcw className="h-3.5 w-3.5" /> Throw it again
+            <RotateCcw className="h-3.5 w-3.5" /> {mn ? "Дахин шидэх" : "Throw it again"}
           </button>
         </div>
       </div>
@@ -335,45 +342,60 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
       <div className="mt-2 rounded-xl p-3 text-center" style={{ transition: "background 0.35s ease, border-color 0.35s ease", background: mode === "roots" && rootCount === 0 ? "rgba(200,60,60,0.08)" : "var(--bg-2)", border: `1px solid ${mode === "roots" && rootCount === 0 ? RED : "var(--line)"}` }}>
         {mode === "shape" && (
           <>
+            {mn ? (
+            <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
+              <b style={{ color: GEO_ACCENT }}>{a > 0 ? "Дээшээ" : "Доошоо"}</b> нээгддэг{Math.abs(a) !== 1 && <> · y = x² параболоос {Math.abs(a) > 1 ? <b style={{ color: GEO_BLUE }}>нарийн</b> : <b style={{ color: GEO_BLUE }}>өргөн</b>}</>}
+            </div>
+            ) : (
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
               Opens <b style={{ color: GEO_ACCENT }}>{a > 0 ? "up" : "down"}</b>{Math.abs(a) !== 1 && <> · {Math.abs(a) > 1 ? <b style={{ color: GEO_BLUE }}>narrower</b> : <b style={{ color: GEO_BLUE }}>wider</b>} than y = x²</>}
             </div>
+            )}
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              a {a > 0 ? "> 0: happy cup" : "< 0: sad frown"} · |a| = {fmt(Math.abs(a))} {Math.abs(a) > 1 ? "(steep squeeze)" : Math.abs(a) < 1 ? "(gentle spread)" : ""} · blue dots: same height at ±x
+              {mn
+                ? <>a {a > 0 ? "> 0: аяга шиг" : "< 0: хөмөрсөн аяга шиг"} · |a| = {fmt(Math.abs(a))} {Math.abs(a) > 1 ? "(эгц, шахагдсан)" : Math.abs(a) < 1 ? "(намхан, дэлгэрсэн)" : ""} · цэнхэр цэгүүд: ±x дээр ижил өндөр</>
+                : <>a {a > 0 ? "> 0: happy cup" : "< 0: sad frown"} · |a| = {fmt(Math.abs(a))} {Math.abs(a) > 1 ? "(steep squeeze)" : Math.abs(a) < 1 ? "(gentle spread)" : ""} · blue dots: same height at ±x</>}
             </div>
           </>
         )}
         {mode === "vertex" && (
           <>
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              Vertex <b style={{ color: "var(--accent)" }}>({fmt(h)}, {fmt(k)})</b> · axis <b style={{ color: GEO_BLUE }}>x = {fmt(h)}</b>
+              {mn ? "Орой" : "Vertex"} <b style={{ color: "var(--accent)" }}>({fmt(h)}, {fmt(k)})</b> · {mn ? "тэнхлэг" : "axis"} <b style={{ color: GEO_BLUE }}>x = {fmt(h)}</b>
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              (x − h)² slides it sideways to h; + k lifts it to k. The vertex reads straight off the form.
+              {mn
+                ? "(x − h)² нь параболыг хажуу тийш h хүртэл шилжүүлнэ; + k нь k хүртэл өргөнө. Оройг энэ хэлбэрээс шууд уншина."
+                : "(x − h)² slides it sideways to h; + k lifts it to k. The vertex reads straight off the form."}
             </div>
           </>
         )}
         {mode === "standard" && (
           <>
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              axis x = −b/2a = <b style={{ color: GEO_BLUE }}>{fmt(vx)}</b> · vertex <b style={{ color: "var(--accent)" }}>({fmt(vx)}, {fmt(vy)})</b>
+              {mn ? "тэнхлэг" : "axis"} x = −b/2a = <b style={{ color: GEO_BLUE }}>{fmt(vx)}</b> · {mn ? "орой" : "vertex"} <b style={{ color: "var(--accent)" }}>({fmt(vx)}, {fmt(vy)})</b>
             </div>
             <div className="mt-0.5 text-[12px] serif tabular" style={{ color: "var(--fg-2)" }}>
-              x = −({fmt(b)})/(2·{fmt(a)}) = {fmt(vx)} · y-intercept (0, {fmt(c)}) = c, where the curve meets the y-axis
+              x = −({fmt(b)})/(2·{fmt(a)}) = {fmt(vx)} · {mn
+                ? <>y тэнхлэгтэй огтлолцох цэг (0, {fmt(c)}): муруй y тэнхлэгийг огтолдог газар, утга нь c</>
+                : <>y-intercept (0, {fmt(c)}) = c, where the curve meets the y-axis</>}
             </div>
           </>
         )}
         {mode === "roots" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              {rootCount === 2 && <><b style={{ color: GEO_BLUE }}>Two</b> x-intercepts — the equation has two real solutions</>}
-              {rootCount === 1 && <>It <b style={{ color: GEO_BLUE }}>kisses</b> the axis — exactly one solution (double root)</>}
-              {rootCount === 0 && <>No crossing — <b style={{ color: RED }}>no real solutions</b></>}
+              {mn && rootCount === 2 && <><b style={{ color: GEO_BLUE }}>Хоёр</b> огтлолцох цэг — тэгшитгэл хоёр бодит шийдтэй</>}
+              {mn && rootCount === 1 && <>Тэнхлэгийг <b style={{ color: GEO_BLUE }}>шүргэнэ</b> — яг нэг шийд (давхар язгуур)</>}
+              {mn && rootCount === 0 && <>Огтлолцолгүй — <b style={{ color: RED }}>бодит шийдгүй</b></>}
+              {!mn && rootCount === 2 && <><b style={{ color: GEO_BLUE }}>Two</b> x-intercepts — the equation has two real solutions</>}
+              {!mn && rootCount === 1 && <>It <b style={{ color: GEO_BLUE }}>kisses</b> the axis — exactly one solution (double root)</>}
+              {!mn && rootCount === 0 && <>No crossing — <b style={{ color: RED }}>no real solutions</b></>}
             </div>
             <div className="mt-0.5 text-[12px] serif tabular" style={{ color: "var(--fg-2)" }}>
-              {rootCount === 2 && <>x = {fmt(h)} ± {fmt(Math.round(Math.sqrt(under) * 100) / 100)} — where y = 0</>}
-              {rootCount === 1 && <>the vertex sits ON the x-axis: y = 0 exactly once</>}
-              {rootCount === 0 && <>the whole curve floats {a > 0 ? "above" : "below"} the axis — y never reaches 0</>}
+              {rootCount === 2 && <>x = {fmt(h)} ± {fmt(Math.round(Math.sqrt(under) * 100) / 100)} — {mn ? "энд y = 0" : "where y = 0"}</>}
+              {rootCount === 1 && (mn ? <>орой яг x тэнхлэг ДЭЭР байна: y = 0 ганцхан удаа</> : <>the vertex sits ON the x-axis: y = 0 exactly once</>)}
+              {rootCount === 0 && (mn ? <>муруй бүхэлдээ тэнхлэгээс {a > 0 ? "дээш" : "доош"} байрлана — y хэзээ ч 0 болохгүй</> : <>the whole curve floats {a > 0 ? "above" : "below"} the axis — y never reaches 0</>)}
             </div>
           </>
         )}
@@ -385,8 +407,8 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
           {mode === "shape" && stepper("a", a, stepA, -2, 2, 0.25, GEO_ACCENT)}
           {mode === "vertex" && (
             <>
-              {stepper("h (slide)", h, setH, min + 2, max - 2, 1)}
-              {stepper("k (lift)", k, setK, min + 2, max - 2, 1)}
+              {stepper(mn ? "h (шилжүүлэх)" : "h (slide)", h, setH, min + 2, max - 2, 1)}
+              {stepper(mn ? "k (өргөх)" : "k (lift)", k, setK, min + 2, max - 2, 1)}
             </>
           )}
           {mode === "standard" && (
@@ -395,15 +417,19 @@ export default function ParabolaGraph({ config }: { config: ParabolaGraphConfig 
               {stepper("c", c, setC, -6, 6, 1)}
             </>
           )}
-          {mode === "roots" && stepper("k (raise / lower)", k, setK, -5, 5, 1)}
+          {mode === "roots" && stepper(mn ? "k (өргөх / буулгах)" : "k (raise / lower)", k, setK, -5, 5, 1)}
         </div>
       )}
       {interactive && (
         <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-          {mode === "shape" && "step a — flip it negative, squash it toward 0, stretch it past 1"}
-          {mode === "vertex" && "slide (h) and lift (k) the parabola — watch the vertex and axis follow"}
-          {mode === "roots" && "raise and lower the curve — make two crossings, one kiss, then none"}
-          {mode === "standard" && "step b and c — the axis, vertex, and y-intercept recompute live"}
+          {mn && mode === "shape" && "a коэффициентийг өөрчил: сөрөг болгож хөмөр, тэг рүү ойртуулж дэлгэ, нэгээс их болгож нарийсга"}
+          {mn && mode === "vertex" && "параболыг шилжүүл (h), өргө (k) — орой ба тэнхлэг дагаж хөдөлнө"}
+          {mn && mode === "roots" && "муруйг өргөж, буулга — хоёр огтлолцол, нэг шүргэлт, дараа нь огт үгүй болго"}
+          {mn && mode === "standard" && "b ба c коэффициентийг өөрчил — тэнхлэг, орой, y тэнхлэгтэй огтлолцох цэг шууд дахин бодогдоно"}
+          {!mn && mode === "shape" && "step a — flip it negative, squash it toward 0, stretch it past 1"}
+          {!mn && mode === "vertex" && "slide (h) and lift (k) the parabola — watch the vertex and axis follow"}
+          {!mn && mode === "roots" && "raise and lower the curve — make two crossings, one kiss, then none"}
+          {!mn && mode === "standard" && "step b and c — the axis, vertex, and y-intercept recompute live"}
         </div>
       )}
     </div>

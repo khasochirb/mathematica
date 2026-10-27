@@ -12,6 +12,7 @@ import { type MultiplesGridConfig } from "@/lib/genmath-interactive";
 // skip-counting (k, 2k, 3k, …) is visible as a pattern across the chart.
 export default function MultiplesGrid({ config }: { config: MultiplesGridConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { max, start, color = "#e8913c" } = config;
   const [k, setK] = useState(Math.max(2, start));
   const cols = max % 10 === 0 ? 10 : 6;
@@ -48,10 +49,10 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
       </div>
 
       <div className="mt-3 text-center text-[14px]" style={{ color: "var(--fg-1)" }}>
-        {lang === "mn" && mnGenitiveApproved(k) ? (
+        {mn && mnGenitiveApproved(k) ? (
           <>
             <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>
-            {mnGenitiveEnding(k) ? `-${mnGenitiveEnding(k)}` : ""} үржвэрүүд:{" "}
+            {mnGenitiveEnding(k) ? `-${mnGenitiveEnding(k)}` : ""} хуваагдагчид:{" "}
           </>
         ) : (
           <>Multiples of <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>:{" "}</>
@@ -71,7 +72,7 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
           <Minus className="h-4 w-4" />
         </button>
         <div className="text-center" style={{ minWidth: 84 }}>
-          <div className="serif tabular" style={{ fontSize: 18, color: "var(--fg)" }}>count by {k}</div>
+          <div className="serif tabular" style={{ fontSize: 18, color: "var(--fg)" }}>{mn ? `${k} алхмаар` : `count by ${k}`}</div>
         </div>
         <button
           type="button"
@@ -86,7 +87,11 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Skip-count by {k} and every number you land on is a <b style={{ color: "var(--fg-1)" }}>multiple</b>.
+        {mn ? (
+          <>{k} алхмаар алгасаж тоол — буусан тоо бүр <b style={{ color: "var(--fg-1)" }}>хуваагдагч</b> байна.</>
+        ) : (
+          <>Skip-count by {k} and every number you land on is a <b style={{ color: "var(--fg-1)" }}>multiple</b>.</>
+        )}
       </div>
     </div>
   );

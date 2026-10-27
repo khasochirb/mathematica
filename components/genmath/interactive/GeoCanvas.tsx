@@ -50,6 +50,8 @@ function useSvgDrag(onMove: (x: number, y: number) => void) {
 // Mode: lineThrough
 // ---------------------------------------------------------------------------
 function LineThrough({ color }: { color: string }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [a, setA] = useState({ x: 100, y: 140 });
   const [b, setB] = useState({ x: 230, y: 80 });
   const [active, setActive] = useState<"a" | "b" | null>(null);
@@ -109,10 +111,16 @@ function LineThrough({ color }: { color: string }) {
       </svg>
 
       <div className="mt-3 text-center text-[15px]" style={{ color: "var(--fg-1)" }}>
-        <span className="q-math"><MathText text={"Line $\\overleftrightarrow{AB}$"} /></span> — drag either point; the line follows.
+        {mn ? (
+          <><span className="q-math"><MathText text={"$\\overleftrightarrow{AB}$ шулуун"} /></span> — аль ч цэгийг чир; шулуун дагаж хөдөлнө.</>
+        ) : (
+          <><span className="q-math"><MathText text={"Line $\\overleftrightarrow{AB}$"} /></span> — drag either point; the line follows.</>
+        )}
       </div>
       <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Through two points there is <b style={{ color: "var(--fg-1)" }}>exactly one</b> line.
+        {mn
+          ? <>Хоёр цэгийг дайрсан <b style={{ color: "var(--fg-1)" }}>яг нэг</b> шулуун байна.</>
+          : <>Through two points there is <b style={{ color: "var(--fg-1)" }}>exactly one</b> line.</>}
       </div>
     </div>
   );
@@ -144,8 +152,16 @@ const ENTITY_META: Record<Entity, { label: string; notation: string; blurb: stri
   rayBA: { label: "Ray BA", notation: "$\\overrightarrow{BA}$", blurb: "starts at $B$ — the **opposite** ray to $\\overrightarrow{AB}$" },
   segment: { label: "Segment", notation: "$\\overline{AB}$", blurb: "just the part **between** $A$ and $B$ — two endpoints" },
 };
+const ENTITY_META_MN: Record<Entity, { label: string; blurb: string }> = {
+  line: { label: "Шулуун", blurb: "**хоёр** тийшээ үүрд үргэлжилнэ" },
+  rayAB: { label: "AB цацраг", blurb: "$A$ цэгээс эхэлж, $B$ цэгийг дайраад цааш үргэлжилнэ" },
+  rayBA: { label: "BA цацраг", blurb: "$B$ цэгээс эхэлнэ — $\\overrightarrow{AB}$ цацрагийн **эсрэг** цацраг" },
+  segment: { label: "Хэрчим", blurb: "$A$ ба $B$ цэгийн **хоорондох** хэсэг л — хоёр төгсгөлийн цэгтэй" },
+};
 
 function EntityToggle({ color }: { color: string }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [entity, setEntity] = useState<Entity>("segment");
   const a = { x: 85, y: 105 };
   const b = { x: 235, y: 105 };
@@ -184,7 +200,7 @@ function EntityToggle({ color }: { color: string }) {
                 : { background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }
             }
           >
-            {ENTITY_META[k].label}
+            {mn ? ENTITY_META_MN[k].label : ENTITY_META[k].label}
           </button>
         ))}
       </div>
@@ -194,7 +210,7 @@ function EntityToggle({ color }: { color: string }) {
           <MathText text={meta.notation} />
         </span>
         <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-          <MathText text={meta.blurb} />
+          <MathText text={mn ? ENTITY_META_MN[entity].blurb : meta.blurb} />
         </div>
       </div>
     </div>
@@ -206,6 +222,7 @@ function EntityToggle({ color }: { color: string }) {
 // ---------------------------------------------------------------------------
 function SegmentAddition({ total, start, color }: { total: number; start: number; color: string }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const [t, setT] = useState(start);
   const { ab, bc, ac } = segmentParts(total, t);
   const atMid = ab === bc;
@@ -276,7 +293,7 @@ function SegmentAddition({ total, start, color }: { total: number; start: number
         </span>
         {atMid && (
           <div className="mt-1 text-[13px]" style={{ color: "var(--accent)" }}>
-            B is the midpoint — the two parts are congruent.
+            {mn ? "B бол дундаж цэг — хоёр хэсэг тэнцүү." : "B is the midpoint — the two parts are congruent."}
           </div>
         )}
       </div>
@@ -298,7 +315,7 @@ function SegmentAddition({ total, start, color }: { total: number; start: number
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[13px]"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <Crosshair className="h-4 w-4" /> Snap to midpoint
+          <Crosshair className="h-4 w-4" /> {mn ? "Дундаж цэг рүү" : "Snap to midpoint"}
         </button>
         <button
           type="button"
@@ -313,7 +330,9 @@ function SegmentAddition({ total, start, color }: { total: number; start: number
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Wherever <i>B</i> sits between <i>A</i> and <i>C</i>: <b style={{ color: "var(--fg-1)" }}>AB + BC = AC</b>.
+        {mn
+          ? <><i>B</i> цэг <i>A</i> ба <i>C</i> цэгийн хооронд хаана ч байсан: <b style={{ color: "var(--fg-1)" }}>AB + BC = AC</b>.</>
+          : <>Wherever <i>B</i> sits between <i>A</i> and <i>C</i>: <b style={{ color: "var(--fg-1)" }}>AB + BC = AC</b>.</>}
       </div>
     </div>
   );

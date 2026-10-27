@@ -19,6 +19,7 @@ function smallestCommonFactor(a: number, b: number): number {
 
 export default function FractionSimplify({ config }: { config: FractionSimplifyConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { num: num0, den: den0, color = "#3fb27f" } = config;
   const [num, setNum] = useState(num0);
   const [den, setDen] = useState(den0);
@@ -42,7 +43,7 @@ export default function FractionSimplify({ config }: { config: FractionSimplifyC
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <FractionBar num={num} den={den} color={color} />
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-2)" }}>
-        {den} pieces, {num} shaded
+        {mn ? <>{den} хэсэг, будагдсан нь {num}</> : <>{den} pieces, {num} shaded</>}
       </div>
 
       {/* readout */}
@@ -52,7 +53,7 @@ export default function FractionSimplify({ config }: { config: FractionSimplifyC
         </span>
         {simplest && changed && (
           <span className="gm-pop inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[12px] font-medium" style={{ background: "var(--accent-wash)", color: "var(--accent)", border: "1px solid var(--accent-line)" }}>
-            <Check className="h-3.5 w-3.5" /> simplest form
+            <Check className="h-3.5 w-3.5" /> {mn ? "хамгийн энгийн хэлбэр" : "simplest form"}
           </span>
         )}
       </div>
@@ -60,9 +61,9 @@ export default function FractionSimplify({ config }: { config: FractionSimplifyC
       {/* status line */}
       <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
         {simplest ? (
-          <>No number divides {num} and {den} — you cannot make bigger pieces.</>
+          mn ? <>{num}, {den} хоёрыг зэрэг хуваах тоо байхгүй — хэсгүүдийг томруулах боломжгүй.</> : <>No number divides {num} and {den} — you cannot make bigger pieces.</>
         ) : (
-          <>Both {num} and {den} can be divided by <b style={{ color: "var(--fg-1)" }}>{factor}</b> — merge the pieces.</>
+          mn ? <>{num}, {den} хоёулаа <b style={{ color: "var(--fg-1)" }}>{factor}</b> тоонд хуваагдана — хэсгүүдийг нэгтгэ.</> : <>Both {num} and {den} can be divided by <b style={{ color: "var(--fg-1)" }}>{factor}</b> — merge the pieces.</>
         )}
       </div>
 
@@ -75,7 +76,7 @@ export default function FractionSimplify({ config }: { config: FractionSimplifyC
           className="gm-press inline-flex items-center gap-2 rounded-full px-5 py-3 text-[14px] font-medium disabled:opacity-35"
           style={{ background: simplest ? "var(--bg-2)" : "var(--accent)", color: simplest ? "var(--fg-2)" : "var(--accent-ink, #fff)", border: "1px solid var(--accent)" }}
         >
-          Merge into bigger pieces {!simplest && `(÷${factor})`}
+          {mn ? "Том хэсэг болгон нэгтгэх" : "Merge into bigger pieces"} {!simplest && `(÷${factor})`}
         </button>
         {changed && (
           <button

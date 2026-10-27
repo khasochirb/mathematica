@@ -12,6 +12,7 @@ import { type OrderOfOpsConfig } from "@/lib/genmath-interactive";
 // which operation was just carried out and why it came first (PEMDAS order).
 export default function OrderOfOps({ config }: { config: OrderOfOpsConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { stages, color = "#e8913c" } = config;
   const [shown, setShown] = useState(1);
   const done = shown >= stages.length;
@@ -61,12 +62,14 @@ export default function OrderOfOps({ config }: { config: OrderOfOpsConfig }) {
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >
-          Next step
+          {mn ? "Дараагийн алхам" : "Next step"}
         </button>
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        {done ? "Done — operations followed PEMDAS order." : "Work one operation at a time, highest priority first."}
+        {done
+          ? (mn ? "Боллоо — үйлдлүүдийг үйлдлийн дарааллаар (PEMDAS) гүйцэтгэлээ." : "Done — operations followed PEMDAS order.")
+          : (mn ? "Нэг удаад нэг үйлдэл: хамгийн түрүүнд хийх ёстойгоос нь эхэл." : "Work one operation at a time, highest priority first.")}
       </div>
     </div>
   );
