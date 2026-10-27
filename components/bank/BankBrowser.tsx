@@ -18,7 +18,7 @@ import {
   recordCheckedResult,
   unitForms, localizeTopic } from "@/lib/problem-bank";
 import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
-import { type BankChrome, defaultBankChrome } from "./bank-chrome";
+import { type BankChrome, defaultBankChrome, levelLabel } from "./bank-chrome";
 
 // The unit's exercise set, textbook style: a numbered list that INTERLEAVES
 // the unit's problem types (round-robin), so consecutive problems are
@@ -34,6 +34,7 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
   const topic = useMemo(() => (lang === "mn" ? localizeTopic(topicEn, topicMn) : topicEn), [lang, topicEn, topicMn]);
   const unit = topic.units.find((u) => u.id === unitEn.id) ?? unitEn;
   const c = chrome ?? defaultBankChrome(topic);
+  const mn = lang === "mn";
   const { user } = useAuth();
   const [level, setLevel] = useState<BankLevel>(0);
 
@@ -57,7 +58,7 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div className="eyebrow">
-            {c.eyebrow} · {topic.title} · Unit {unitIndex + 1}
+            {mn && c.eyebrowMn ? c.eyebrowMn : c.eyebrow} · {topic.title} · {mn ? "Бүлэг" : "Unit"} {unitIndex + 1}
           </div>
         </div>
 
@@ -65,12 +66,23 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
           {unit.title}
         </h1>
         <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15.5, maxWidth: "58ch" }}>
+          {mn ? (
+            <>
+              Сурах бичиг шиг холимог дасгал: энэ бүлгийн бүх бодлогын хэлбэр
+              холилдож, улам хүндрэх дарааллаар ирнэ. Бодлого бүрийг цаасан дээр
+              бодоод <b>хариугаа оруулж шалга</b> — хариугаа өгсний дараа бодолт
+              нь нээгдэнэ. Аль ч бодлогын{" "}
+              <RefreshCw className="inline h-3.5 w-3.5 -mt-0.5" /> товчийг дарвал
+              ижил хэлбэрийн, шинэ тоотой бодлого гарна (нийт {total}).
+            </>
+          ) : (<>
           A mixed exercise set, like a textbook: every problem type this unit
           covers, shuffled together and getting harder as you go. Work each one
           on paper, then <b>enter your answer to check it</b> — the worked
           solution opens once you&apos;ve committed. Hit{" "}
           <RefreshCw className="inline h-3.5 w-3.5 -mt-0.5" /> on any problem for
           the same kind with new numbers ({total} in the pool).
+          </>)}
         </p>
 
         <div className="mt-5 flex items-center gap-2 flex-wrap">
@@ -86,7 +98,7 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
                   : { background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }
               }
             >
-              {lv === 0 ? "All levels" : LEVEL_LABELS[lv]}
+              {lv === 0 ? (mn ? "Бүх түвшин" : "All levels") : levelLabel(lv, LEVEL_LABELS, mn)}
             </button>
           ))}
         </div>
@@ -99,7 +111,11 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
           >
             <Zap className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
             <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
-              <b>Practice set</b> — quiz with instant feedback and retries.
+              {mn ? (
+                <><b>Дасгалын багц</b> — шууд үнэлгээ, дахин оролдлоготой сорил.</>
+              ) : (
+                <><b>Practice set</b> — quiz with instant feedback and retries.</>
+              )}
             </span>
             <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
           </Link>
@@ -111,14 +127,18 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
             >
               <BookOpen className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
               <span className="flex-1 text-[13px]" style={{ color: "var(--fg-1)" }}>
-                <b>Review the lessons</b> for this unit first.
+                {mn ? (
+                  <>Эхлээд энэ бүлгийн <b>хичээлүүдийг давт</b>.</>
+                ) : (
+                  <><b>Review the lessons</b> for this unit first.</>
+                )}
               </span>
               <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--fg-3)" }} />
             </Link>
           )}
         </div>
 
-        <ExerciseSet key={level} topic={topic} forms={forms} userId={user?.id} />
+        <ExerciseSet key={level} topic={topic} forms={forms} userId={user?.id} mn={mn} />
       </div>
     </div>
   );
@@ -151,7 +171,7 @@ function buildSlots(forms: BankForm[], rounds: number): Slot[] {
   return slots;
 }
 
-function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankForm[]; userId?: string | null }) {
+function ExerciseSet({ topic, forms, userId, mn }: { topic: BankTopic; forms: BankForm[]; userId?: string | null; mn: boolean }) {
   const maxRounds = forms.reduce((m, f) => Math.max(m, f.variants.length), 0);
   // Start with enough rounds to feel like a real set (~2 passes over the
   // types, at least 12 problems), never more than exists.
@@ -170,16 +190,23 @@ function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankFo
   return (
     <div className="mt-8">
       <div className="flex items-baseline justify-between gap-3 mb-1">
-        <div className="eyebrow">Exercises</div>
+        <div className="eyebrow">{mn ? "Дасгалууд" : "Exercises"}</div>
         <span className="mono text-[11px] tabular" style={{ color: "var(--fg-3)" }}>
-          {slots.length} of {totalSlots} shown
+          {mn ? `${slots.length}/${totalSlots} харагдаж байна` : `${slots.length} of ${totalSlots} shown`}
         </span>
       </div>
       <p className="mb-1 flex items-start gap-1.5 text-[12px]" style={{ color: "var(--fg-3)" }}>
         <PencilLine className="mt-[3px] h-3 w-3 flex-shrink-0" />
         <span>
+          {mn ? (
+            <>
+              Хариу нь тоо бол бичиж оруул; тоо биш бол сонголтоос сонго. Аль ч
+              тохиолдолд шалгах хүртэл бодолт хаалттай байна.
+            </>
+          ) : (<>
           Type the answer where it&apos;s a number; pick from the options where it
           isn&apos;t. Either way the solution stays closed until you check.
+          </>)}
         </span>
       </p>
       <div style={{ borderTop: "1px solid var(--line)" }}>
@@ -192,6 +219,7 @@ function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankFo
             initialIndex={spreadIndex(s.round, s.form.variants.length)}
             number={i + 1}
             userId={userId}
+            mn={mn}
           />
         ))}
       </div>
@@ -202,7 +230,7 @@ function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankFo
             onClick={() => setRounds((r) => r + 1)}
             className="btn btn-line text-[13px]"
           >
-            More problems (+{Math.min(forms.length, remaining)})
+            {mn ? "Илүү бодлого" : "More problems"} (+{Math.min(forms.length, remaining)})
           </button>
           <button
             type="button"
@@ -210,7 +238,7 @@ function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankFo
             className="text-[13px]"
             style={{ color: "var(--fg-2)", textDecoration: "underline", textUnderlineOffset: 3 }}
           >
-            Show all {totalSlots}
+            {mn ? `Бүгдийг харах (${totalSlots})` : `Show all ${totalSlots}`}
           </button>
         </div>
       )}
@@ -226,9 +254,9 @@ function ExerciseSet({ topic, forms, userId }: { topic: BankTopic; forms: BankFo
 // click away from an unsolved problem, which a student told us was too
 // tempting to resist; the way to the solution now runs through an answer.
 function ExerciseRow({
-  topic, form, mode, initialIndex, number, userId,
+  topic, form, mode, initialIndex, number, userId, mn,
 }: {
-  topic: BankTopic; form: BankForm; mode: AnswerMode; initialIndex: number; number: number; userId?: string | null;
+  topic: BankTopic; form: BankForm; mode: AnswerMode; initialIndex: number; number: number; userId?: string | null; mn: boolean;
 }) {
   const [idx, setIdx] = useState(initialIndex);
   const [outcome, setOutcome] = useState<AnswerOutcome | null>(null);
@@ -279,7 +307,7 @@ function ExerciseRow({
           {outcome && (
             <div className="mt-2.5 rounded-lg px-3.5 py-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
               <p className="font-sans" style={{ fontSize: 14, lineHeight: 1.55, color: "var(--fg-1)" }}>
-                <b>Answer: <MathText text={v.options[v.correctIndex]} /></b>{" "}
+                <b>{mn ? "Хариу: " : "Answer: "}<MathText text={v.options[v.correctIndex]} /></b>{" "}
                 <MathText text={v.explanation} />
               </p>
               <p className="mt-1.5 text-[12px]" style={{ color: "var(--fg-3)" }}>
@@ -288,7 +316,9 @@ function ExerciseRow({
               <div className="mt-2.5">
                 <button type="button" onClick={reroll} className="gm-press inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
                   <RefreshCw className="h-3.5 w-3.5" />
-                  {outcome.correct ? "Another like this" : "Try again with new numbers"}
+                  {outcome.correct
+                    ? (mn ? "Ийм бас нэгийг" : "Another like this")
+                    : (mn ? "Шинэ тоогоор дахин оролдох" : "Try again with new numbers")}
                 </button>
               </div>
             </div>
@@ -298,8 +328,8 @@ function ExerciseRow({
           <button
             type="button"
             onClick={reroll}
-            title="Same kind, new numbers"
-            aria-label="Same kind of problem with new numbers"
+            title={mn ? "Ижил хэлбэр, шинэ тоо" : "Same kind, new numbers"}
+            aria-label={mn ? "Ижил хэлбэрийн бодлого, шинэ тоогоор" : "Same kind of problem with new numbers"}
             className="gm-press grid h-8 w-8 place-items-center rounded-md"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >

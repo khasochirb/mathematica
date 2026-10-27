@@ -27,7 +27,7 @@ import {
   saveBankSession, localizeTopic } from "@/lib/problem-bank";
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
-import { type BankChrome, defaultBankChrome } from "./bank-chrome";
+import { type BankChrome, defaultBankChrome, levelLabel } from "./bank-chrome";
 
 type Phase = "setup" | "quiz" | "done";
 
@@ -41,6 +41,7 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
   const topic = useMemo(() => (lang === "mn" ? localizeTopic(topicEn, topicMn) : topicEn), [lang, topicEn, topicMn]);
   const unit = topic.units.find((u) => u.id === unitEn.id) ?? unitEn;
   const c = chrome ?? defaultBankChrome(topic);
+  const mn = lang === "mn";
   const { user } = useAuth();
   const [phase, setPhase] = useState<Phase>("setup");
   const [level, setLevel] = useState<BankLevel>(0);
@@ -93,18 +94,18 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
           <Link href={`${c.topicBase}/${unit.id}`} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{c.eyebrow} · {topic.title} · Practice set</div>
+          <div className="eyebrow">{mn && c.eyebrowMn ? c.eyebrowMn : c.eyebrow} · {topic.title} · {mn ? "Дасгалын багц" : "Practice set"}</div>
         </div>
 
-        {phase === "setup" && <Setup unit={unit} forms={scopedForms} onStart={start} />}
+        {phase === "setup" && <Setup unit={unit} forms={scopedForms} onStart={start} mn={mn} />}
 
         {phase === "quiz" && session && item && form && variantData && (
           <div>
             <div className="flex items-center justify-between mb-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
               <span className="mono">
-                Problem {session.pos + 1} / {session.queue.length}
+                {mn ? "Бодлого" : "Problem"} {session.pos + 1} / {session.queue.length}
               </span>
-              <span className="mono">{LEVEL_LABELS[form.level]}</span>
+              <span className="mono">{levelLabel(form.level, LEVEL_LABELS, mn)}</span>
             </div>
             <div className="h-1.5 w-full overflow-hidden rounded-full mb-6" style={{ background: "var(--bg-2)" }}>
               <div className="h-full rounded-full" style={{ width: `${(session.pos / session.queue.length) * 100}%`, background: "var(--accent)", transition: "width 0.4s cubic-bezier(0.22,1,0.36,1)" }} />
@@ -114,7 +115,7 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
               <span className="eyebrow">{form.title}</span>
               {item.isRetry && (
                 <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium" style={{ background: "rgba(216,150,32,0.12)", border: "1px solid rgba(216,150,32,0.4)", color: "var(--warn, #d89620)" }}>
-                  <Repeat2 className="h-3 w-3" /> Similar problem — try again
+                  <Repeat2 className="h-3 w-3" /> {mn ? "Ижил төстэй бодлого — дахин оролд" : "Similar problem — try again"}
                 </span>
               )}
             </div>
@@ -145,20 +146,22 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
               <>
                 <div className="mt-4 rounded-xl p-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
                   <p className="font-sans" style={{ fontSize: 14, lineHeight: 1.55, color: "var(--fg-1)" }}>
-                    <b>Answer: <MathText text={variantData.options[variantData.correctIndex]} /></b>{" "}
+                    <b>{mn ? "Хариу: " : "Answer: "}<MathText text={variantData.options[variantData.correctIndex]} /></b>{" "}
                     <MathText text={variantData.explanation} />
                   </p>
                 </div>
                 <div className="mt-5 flex items-center justify-between gap-3">
                   <span className="text-[13px]" style={{ color: "var(--fg-3)" }}>
-                    {!outcome.correct ? "A similar problem is queued next — same form, new numbers." : ""}
+                    {!outcome.correct
+                      ? (mn ? "Дараа нь ижил төстэй бодлого ирнэ — ижил хэлбэр, шинэ тоо." : "A similar problem is queued next — same form, new numbers.")
+                      : ""}
                   </span>
                   <button type="button" onClick={next} className="btn btn-primary inline-flex items-center gap-1.5 flex-shrink-0">
                     {session.pos + 1 >= session.queue.length
-                      ? "See my results"
+                      ? (mn ? "Дүнгээ харах" : "See my results")
                       : !outcome.correct
-                        ? "Try a similar one"
-                        : "Next problem"}
+                        ? (mn ? "Ижил төстэйг бодох" : "Try a similar one")
+                        : (mn ? "Дараагийн бодлого" : "Next problem")}
                     <ArrowRight className="h-4 w-4" />
                   </button>
                 </div>
@@ -168,14 +171,14 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
         )}
 
         {phase === "done" && summary && (
-          <Summary topic={topic} chrome={c} summary={summary} level={level} onRetake={() => start(level)} onDrill={(ids) => start(0, ids)} />
+          <Summary topic={topic} chrome={c} mn={mn} summary={summary} level={level} onRetake={() => start(level)} onDrill={(ids) => start(0, ids)} />
         )}
       </div>
     </div>
   );
 }
 
-function Setup({ unit, forms, onStart }: { unit: BankUnit; forms: ReturnType<typeof unitForms>; onStart: (lv: BankLevel) => void }) {
+function Setup({ unit, forms, onStart, mn }: { unit: BankUnit; forms: ReturnType<typeof unitForms>; onStart: (lv: BankLevel) => void; mn: boolean }) {
   const counts = [1, 2, 3].map((lv) => forms.filter((f) => f.level === lv).length);
   const total = forms.length;
   const problems = forms.reduce((n, f) => n + f.variants.length, 0);
@@ -192,34 +195,54 @@ function Setup({ unit, forms, onStart }: { unit: BankUnit; forms: ReturnType<typ
       <ul className="mt-5 space-y-2" style={{ color: "var(--fg-2)", fontSize: 14 }}>
         <li className="flex items-start gap-2">
           <Layers className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-          <span><b>{total} exam forms</b>, {problems} problems — every shape this unit takes on a test, labeled Level 1–3.</span>
+          {mn ? (
+            <span><b>{total} бодлогын хэлбэр</b>, {problems} бодлого — энэ бүлэг шалгалтад гарах бүх хэлбэр, 1–3 түвшингээр ангилсан.</span>
+          ) : (
+            <span><b>{total} exam forms</b>, {problems} problems — every shape this unit takes on a test, labeled Level 1–3.</span>
+          )}
         </li>
         <li className="flex items-start gap-2">
           <PencilLine className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-          <span>You <b>enter the answer</b> — typed where it's a number, picked from the options where it isn't. The solution opens after you check, never before.</span>
+          {mn ? (
+            <span>Чи <b>хариугаа оруулна</b> — тоо бол бичнэ, тоо биш бол сонголтоос сонгоно. Бодолт нь шалгасны дараа нээгдэнэ, түүнээс өмнө хэзээ ч үгүй.</span>
+          ) : (
+            <span>You <b>enter the answer</b> — typed where it's a number, picked from the options where it isn't. The solution opens after you check, never before.</span>
+          )}
         </li>
         <li className="flex items-start gap-2">
           <Repeat2 className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-          <span>Miss one and a <b>similar problem</b> (same form, new numbers) comes right back — you fix the mistake while it's fresh.</span>
+          {mn ? (
+            <span>Алдвал <b>ижил төстэй бодлого</b> (ижил хэлбэр, шинэ тоо) шууд эргэж ирнэ — алдаагаа мартаагүй байхдаа засна.</span>
+          ) : (
+            <span>Miss one and a <b>similar problem</b> (same form, new numbers) comes right back — you fix the mistake while it's fresh.</span>
+          )}
         </li>
         <li className="flex items-start gap-2">
           <Target className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-          <span>The summary names the forms that still need work, and you can re-drill <b>just those</b>.</span>
+          {mn ? (
+            <span>Дүгнэлт дээр дахин ажиллах шаардлагатай хэлбэрүүд гарах бөгөөд <b>зөвхөн тэдгээрийг</b> дахин дасгалжуулж болно.</span>
+          ) : (
+            <span>The summary names the forms that still need work, and you can re-drill <b>just those</b>.</span>
+          )}
         </li>
       </ul>
 
-      <div className="eyebrow mt-8 mb-3">Choose your level</div>
+      <div className="eyebrow mt-8 mb-3">{mn ? "Түвшнээ сонго" : "Choose your level"}</div>
       <div className="grid gap-2.5 sm:grid-cols-2">
         <button type="button" onClick={() => onStart(0)} className="card-edit gm-press p-4 text-left">
-          <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>All levels</div>
-          <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>The full sweep — {total} forms, easiest first.</div>
+          <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{mn ? "Бүх түвшин" : "All levels"}</div>
+          <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
+            {mn ? `Бүтэн давталт — ${total} хэлбэр, хялбараас нь эхэлнэ.` : `The full sweep — ${total} forms, easiest first.`}
+          </div>
         </button>
         {[1, 2, 3]
           .filter((lv) => counts[lv - 1] > 0)
           .map((lv) => (
             <button key={lv} type="button" onClick={() => onStart(lv as BankLevel)} className="card-edit gm-press p-4 text-left">
-              <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{LEVEL_LABELS[lv]}</div>
-              <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{counts[lv - 1]} form{counts[lv - 1] === 1 ? "" : "s"} at this level.</div>
+              <div className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{levelLabel(lv, LEVEL_LABELS, mn)}</div>
+              <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
+                {mn ? `Энэ түвшинд ${counts[lv - 1]} хэлбэр.` : `${counts[lv - 1]} form${counts[lv - 1] === 1 ? "" : "s"} at this level.`}
+              </div>
             </button>
           ))}
       </div>
@@ -228,9 +251,9 @@ function Setup({ unit, forms, onStart }: { unit: BankUnit; forms: ReturnType<typ
 }
 
 function Summary({
-  topic, chrome, summary, level, onRetake, onDrill,
+  topic, chrome, mn, summary, level, onRetake, onDrill,
 }: {
-  topic: BankTopic; chrome: BankChrome; summary: BankSummary; level: BankLevel; onRetake: () => void; onDrill: (formIds: string[]) => void;
+  topic: BankTopic; chrome: BankChrome; mn: boolean; summary: BankSummary; level: BankLevel; onRetake: () => void; onDrill: (formIds: string[]) => void;
 }) {
   const pct = Math.round(summary.accuracy * 100);
   const recovered = summary.forms.filter((f) => f.recovered);
@@ -238,19 +261,33 @@ function Summary({
   return (
     <div>
       <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(28px, 5vw, 44px)", letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--fg)" }}>
-        <span style={{ color: "var(--accent)" }}>{pct}%</span> across {summary.total} problems
+        {mn ? (
+          <>{summary.total} бодлогоос <span style={{ color: "var(--accent)" }}>{pct}%</span></>
+        ) : (
+          <><span style={{ color: "var(--accent)" }}>{pct}%</span> across {summary.total} problems</>
+        )}
       </h1>
       <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15 }}>
+        {mn ? (
+          <>
+            Эхний оролдлогоор зөв: {clean.length}/{summary.forms.length} хэлбэр
+            {recovered.length > 0 && <> · ижил төстэй бодлогоор засагдсан: <b>{recovered.length}</b></>}
+            {summary.needsWork.length > 0 && <> · дахин ажиллах: {summary.needsWork.length}</>}.
+          </>
+        ) : (
+          <>
         {clean.length} of {summary.forms.length} forms first try
         {recovered.length > 0 && <> · <b>{recovered.length} recovered</b> on the similar problem</>}
         {summary.needsWork.length > 0 && <> · {summary.needsWork.length} still need work</>}.
+          </>
+        )}
       </p>
 
       {summary.perLevel.length > 1 && (
         <div className="mt-6 grid gap-2.5 sm:grid-cols-3">
           {summary.perLevel.map((l) => (
             <div key={l.level} className="rounded-xl p-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-              <div className="text-[12px] mono" style={{ color: "var(--fg-3)" }}>{LEVEL_LABELS[l.level]}</div>
+              <div className="text-[12px] mono" style={{ color: "var(--fg-3)" }}>{levelLabel(l.level, LEVEL_LABELS, mn)}</div>
               <div className="serif tabular mt-1" style={{ fontSize: 20, color: "var(--fg)" }}>
                 {l.correct}/{l.total}
               </div>
@@ -261,14 +298,14 @@ function Summary({
 
       {summary.needsWork.length > 0 ? (
         <div className="mt-8">
-          <div className="eyebrow mb-3">Work on these forms</div>
+          <div className="eyebrow mb-3">{mn ? "Эдгээр хэлбэр дээр ажилла" : "Work on these forms"}</div>
           <div className="space-y-2.5">
             {summary.needsWork.map((f) => (
               <div key={f.formId} className="card-edit p-4">
                 <div className="flex items-center gap-2 flex-wrap">
                   <p className="serif" style={{ fontSize: 16, color: "var(--fg)" }}>{f.title}</p>
                   <span className="mono text-[10px] uppercase rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-3)" }}>
-                    {LEVEL_LABELS[f.level]}
+                    {levelLabel(f.level, LEVEL_LABELS, mn)}
                   </span>
                 </div>
                 <p className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{f.skill}</p>
@@ -280,18 +317,23 @@ function Summary({
             onClick={() => onDrill(summary.needsWork.map((f) => f.formId))}
             className="btn btn-primary mt-4 inline-flex items-center gap-1.5"
           >
-            <Repeat2 className="h-4 w-4" /> Practice these {summary.needsWork.length} forms again
+            <Repeat2 className="h-4 w-4" />{" "}
+            {mn
+              ? `Эдгээр ${summary.needsWork.length} хэлбэрийг дахин дасгалжуулах`
+              : `Practice these ${summary.needsWork.length} forms again`}
           </button>
         </div>
       ) : (
         <div className="mt-8 rounded-xl p-4" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--fg-1)" }}>
-          Every form ended on a correct answer — this set is mastered. Step up a level, or take on another topic.
+          {mn
+            ? "Бүх хэлбэр зөв хариугаар төгссөн — энэ багцыг эзэмшсэн. Дараагийн түвшинд шилж, эсвэл өөр сэдэв сонго."
+            : "Every form ended on a correct answer — this set is mastered. Step up a level, or take on another topic."}
         </div>
       )}
 
       {recovered.length > 0 && (
         <div className="mt-8">
-          <div className="eyebrow mb-3">Recovered with a similar problem</div>
+          <div className="eyebrow mb-3">{mn ? "Ижил төстэй бодлогоор засагдсан" : "Recovered with a similar problem"}</div>
           <div className="flex flex-wrap gap-2">
             {recovered.map((f) => (
               <span key={f.formId} className="rounded-full px-3 py-1.5 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
@@ -304,10 +346,10 @@ function Summary({
 
       <div className="mt-10 flex items-center gap-3 flex-wrap">
         <button type="button" onClick={onRetake} className="btn btn-line inline-flex items-center gap-1.5">
-          <RotateCcw className="h-4 w-4" /> New set{level !== 0 ? ` · ${LEVEL_LABELS[level]}` : ""}
+          <RotateCcw className="h-4 w-4" /> {mn ? "Шинэ багц" : "New set"}{level !== 0 ? ` · ${levelLabel(level, LEVEL_LABELS, mn)}` : ""}
         </button>
         <Link href={chrome.topicBase} className="btn btn-line inline-flex items-center gap-1.5" style={{ textDecoration: "none" }}>
-          All units <ArrowRight className="h-4 w-4" />
+          {mn ? "Бүх бүлэг" : "All units"} <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </div>

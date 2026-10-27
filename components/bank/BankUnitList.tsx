@@ -24,6 +24,7 @@ export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topi
   // Mongolian where the unit's rewrite has shipped; English otherwise.
   const topic = useMemo(() => (lang === "mn" ? localizeTopic(topicEn, topicMn) : topicEn), [lang, topicEn, topicMn]);
   const c = chrome ?? defaultBankChrome(topic);
+  const mn = lang === "mn";
   const { user } = useAuth();
   const [progress, setProgress] = useState<BankProgress | null>(null);
 
@@ -44,13 +45,31 @@ export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topi
           <Link href={c.backHref} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{c.eyebrow} · {topic.title}</div>
+          <div className="eyebrow">{mn && c.eyebrowMn ? c.eyebrowMn : c.eyebrow} · {topic.title}</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
           {topic.title}
         </h1>
         <p className="mt-3 mb-8" style={{ color: "var(--fg-1)", fontSize: 16, maxWidth: "58ch" }}>
+          {mn ? (
+            c.courseHref ? (
+              <>
+                <b className="tabular">{totalProblems}</b> бодлогыг хичээлийн {topic.units.length} бүлгээр эмхэлсэн. Бүлгээ{" "}
+                <Link href={c.courseHref} style={{ color: "var(--accent)" }}>
+                  {topic.title}
+                </Link>{" "}
+                хичээл дээр дуусгаад, энд нээж бодлогуудыг нь ажилла.
+              </>
+            ) : (
+              <>
+                <b className="tabular">{totalProblems}</b> бодлогыг {topic.units.length} бүлэгт хуваасан. Бүлгээ
+                сонгоод бодлогуудыг нь дасгалын жагсаалтаар эсвэл дасгалын багцаар
+                ажилла. Аль ч тохиолдолд хариугаа оруулахад шалгагдана; бодолт нь
+                үүний дараа нээгдэнэ.
+              </>
+            )
+          ) : (<>
           <b className="tabular">{totalProblems}</b> problems organized
           {c.courseHref ? (
             <>
@@ -68,6 +87,7 @@ export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topi
               after that.
             </>
           )}
+          </>)}
         </p>
 
         <div className="space-y-3">
@@ -107,10 +127,10 @@ export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topi
                   )}
                   <div className="mt-2 flex items-center gap-2 flex-wrap text-[11px] mono" style={{ color: "var(--fg-3)" }}>
                     <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-                      {problems} problems
+                      {mn ? `${problems} бодлого` : `${problems} problems`}
                     </span>
                     <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-                      <BookOpen className="h-3 w-3" /> {forms.length} forms
+                      <BookOpen className="h-3 w-3" /> {mn ? `${forms.length} бодлогын хэлбэр` : `${forms.length} forms`}
                     </span>
                   </div>
                   {m && m.mastered > 0 && (
@@ -119,7 +139,7 @@ export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topi
                         <div className="h-full rounded-full" style={{ width: `${pct}%`, background: "#3fb27f" }} />
                       </div>
                       <span className="mono text-[11px] tabular" style={{ color: "var(--fg-3)" }}>
-                        {m.mastered}/{m.total} forms mastered
+                        {mn ? `Эзэмшсэн хэлбэр: ${m.mastered}/${m.total}` : `${m.mastered}/${m.total} forms mastered`}
                       </span>
                     </div>
                   )}
@@ -130,7 +150,7 @@ export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topi
           })}
         </div>
 
-        <FreeUnitNote />
+        <FreeUnitNote mn={mn} />
       </div>
     </div>
   );
@@ -138,12 +158,14 @@ export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topi
 
 // Names the offer under the unit list, so a student reads the wall here
 // rather than discovering it after picking a unit.
-function FreeUnitNote() {
+function FreeUnitNote({ mn }: { mn: boolean }) {
   const { isSubscribed } = useAuth();
   if (isSubscribed) return null;
   return (
     <p className="text-[13px] mt-6" style={{ color: "var(--fg-3)" }}>
-      The first unit is free. Premium opens the rest of the bank.
+      {mn
+        ? "Эхний бүлэг үнэгүй. Премиум эрх сангийн үлдсэн хэсгийг нээнэ."
+        : "The first unit is free. Premium opens the rest of the bank."}
     </p>
   );
 }
