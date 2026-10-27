@@ -234,7 +234,10 @@ def check_inline(topic_slug, where, item):
 
 def main():
     global topics_checked
-    files = sorted(glob.glob(DATA_GLOB, recursive=True))
+    # Optional file arguments narrow the run (e.g. one freshly assembled mirror);
+    # with none, every topic in data/genmath is checked.
+    args = [a for a in sys.argv[1:] if a.endswith(".json")]
+    files = sorted(os.path.abspath(a) for a in args) if args else sorted(glob.glob(DATA_GLOB, recursive=True))
     if not files:
         print("No genmath data files found.", file=sys.stderr)
         sys.exit(1)

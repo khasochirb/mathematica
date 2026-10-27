@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { Check, Tag } from "lucide-react";
-import {
 import { formatMoney } from "@/lib/money";
+import { useLang } from "@/lib/lang-context";
+import {
   type DealCompareConfig,
   unitPrice,
   cheaperDeal,
@@ -11,6 +12,8 @@ import { formatMoney } from "@/lib/money";
 
 export default function DealCompare({ config }: { config: DealCompareConfig }) {
   const { unit, currency, dealA, dealB } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [revealed, setReveal] = useState(false);
 
   const upA = unitPrice(dealA.price, dealA.qty);
@@ -70,7 +73,7 @@ export default function DealCompare({ config }: { config: DealCompareConfig }) {
                     }}
                   >
                     <Check className="h-3 w-3" />
-                    Best deal
+                    {mn ? "Хамгийн ашигтай" : "Best deal"}
                   </span>
                 )}
               </div>
@@ -84,7 +87,7 @@ export default function DealCompare({ config }: { config: DealCompareConfig }) {
                   {formatMoney(deal.price, currency ?? "$")}
                 </span>
                 <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-                  for {deal.qty} {unit}s
+                  {mn ? `${deal.qty} ${unit}` : `for ${deal.qty} ${unit}s`}
                 </span>
               </div>
 
@@ -107,7 +110,7 @@ export default function DealCompare({ config }: { config: DealCompareConfig }) {
                     className="serif tabular text-[14px] font-medium"
                     style={{ color: isBest ? "#2f9e6e" : "var(--fg)" }}
                   >
-                    {formatMoney(Number(unitPrices[i].toFixed(2)), currency ?? "$")} per {unit}
+                    {mn ? `1 ${unit}: ${formatMoney(Number(unitPrices[i].toFixed(2)), currency ?? "$")}` : `${formatMoney(Number(unitPrices[i].toFixed(2)), currency ?? "$")} per ${unit}`}
                   </span>
                 </div>
               )}
@@ -126,7 +129,7 @@ export default function DealCompare({ config }: { config: DealCompareConfig }) {
             color: "var(--fg-2)",
           }}
         >
-          Same price per {unit} — pick either!
+          {mn ? "Нэгж үнэ ижил, аль нь ч болно!" : `Same price per ${unit} — pick either!`}
         </div>
       )}
 
@@ -142,7 +145,7 @@ export default function DealCompare({ config }: { config: DealCompareConfig }) {
           transition: "background .2s ease, color .2s ease",
         }}
       >
-        {revealed ? "Reset" : "Find the better deal"}
+        {mn ? (revealed ? "Дахин эхлэх" : "Аль нь ашигтай вэ?") : revealed ? "Reset" : "Find the better deal"}
       </button>
     </div>
   );
