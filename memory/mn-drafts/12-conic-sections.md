@@ -68,12 +68,12 @@ transliteration.
 | equidistant | **тэнцүү зайтай** | **exam 5** («хоёр параллель талаас тэнцүү зайтай») |
 | reflection property (optics) | **ойлтын чанар** | **coined**, compositional on school physics «гэрлийн ойлт» and `10-quadratic-functions`' «ойж»: Notes 2 |
 | major axis · minor axis | **их тэнхлэг · бага тэнхлэг** | **dictionary p. 133, exactly this** |
-| string (sum) property | **утасны чанар** | **coined**, the English's own image |
+| string (sum) property | **эллипсийн тодорхойлолт** | **Khas's ruling, 27 Oct 2026** (n55; was the coined «утасны чанар») |
 | branch (of a hyperbola) | **салаа** | dictionary p. 128 («параболын салаа») · drafts 46 |
 | opens left–right / up–down | **зүүн, баруун тийш / дээш, доош нээгддэг** | **exam** «парабол дээшээ нээгддэг» ×4, «дээшээ нээгдсэн» ×4, «доошоо нээгдсэн» ×1: Notes 2 |
 | difference property | **ялгаврын чанар** | **coined**, compositional |
 | degree-2 equation | **хоёрдугаар зэргийн тэгшитгэл** | compositional («хоёрдугаар зэргийн олон гишүүнт» in the corpus) |
-| ~~whispering gallery~~ | — | **Khas's ruling, 27 Oct 2026** (n57): example removed; the kidney-stone machine, already in lesson 6, takes its place in lesson 1 |
+| ~~whispering gallery~~ | — | **Khas's ruling, 27 Oct 2026** (n57): example removed; lesson 1 names the kidney-stone machine instead, and lesson 4's worked example is now an elliptical billiard table (same numbers) |
 | astronomical unit | **одон орны нэгж** | **coined** in this corpus (0 hits); the usual Mongolian name |
 | perihelion · aphelion | **перигелий · афелий** | transliteration, each paired with a plain description |
 | lithotripsy | **литотрипси** | transliteration, described as kidney-stone treatment |
@@ -290,7 +290,7 @@ $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1$.
 
 **objective**
 
-Стандарт тэгшитгэлээс a ба b-г унших, c² = a² − b²-аар фокусуудыг олох, эксцентриситетийг бодох, утасны чанарыг (string property), өөрөөр хэлбэл нийлбэрийн чанарыг хэрэглэх.
+Стандарт тэгшитгэлээс a ба b-г унших, c² = a² − b²-аар фокусуудыг олох, эксцентриситетийг бодох, эллипсийн тодорхойлолтыг (string property), өөрөөр хэлбэл фокус хүртэлх зайнуудын нийлбэр тогтмол гэдгийг хэрэглэх.
 
 **concept**
 
@@ -320,7 +320,7 @@ c² = a² − b² томьёогоор олдоно; c/a эксцентриси�
 
 **facts**
 
-- **title** Утасны чанар · **latex** `d_1 + d_2 = 2a` · **explanation** Хоёр
+- **title** Эллипсийн тодорхойлолт · **latex** `d_1 + d_2 = 2a` · **explanation** Хоёр
   зүү, нэг ороосон утас.
 - **title** Зүү олох томьёо · **latex**
   `c^2 = a^2 - b^2, \quad e = \tfrac{c}{a}` · **explanation** Фокусууд их
@@ -331,7 +331,7 @@ c² = a² − b² томьёогоор олдоно; c/a эксцентриси�
 - `co3-we1` — **statement:** $\tfrac{x^2}{25} + \tfrac{y^2}{9} = 1$-ийн
   тэнхлэгүүд, фокусууд, эксцентриситетийг олоорой. **solution:** $a = 5, b = 3$:
   өргөн 10, өндөр 6. $c^2 = 25 - 9 = 16$: фокусууд $(\pm4, 0)$. $e = \tfrac45$.
-- `co3-we2` — **statement:** Энэ эллипсийн $(0, 3)$ цэгт утасны чанарыг
+- `co3-we2` — **statement:** Энэ эллипсийн $(0, 3)$ цэгт тодорхойлолтыг
   шалгаарай. **solution:** $(4,0)$ хүртэл: $\sqrt{16+9} = 5$. $(-4,0)$ хүртэл:
   5. Нийлбэр $= 10 = 2a$ ✓.
 - `co3-we3` — **statement:** Фокусууд нь $(\pm3, 0)$, их тэнхлэг нь 10 байх
@@ -363,7 +363,7 @@ c² = a² − b² томьёогоор олдоно; c/a эксцентриси�
 | 1 | conicGraph | **eyebrow** Сунгаж, сольж үз · **title** a, b ба нуугдсан зүүнүүд<br>**teach** $a$ ба $b$-г сунгаарай: фокусууд (гэрэлт цэгүүд) УРТ тэнхлэгийн дагуу төвөөс $c = \sqrt{|a^2 - b^2|}$ зайд байрлаж, сунгалт ихсэх тусам гадагшаа гулсана; $b$ нь $a$-г гүйцэж түрүүлэхэд тэд босоо тэнхлэг рүү үсэрнэ. $a = b$ гэж тавиарай: фокусууд нийлж, эксцентриситет 0 болно, өөрөөр хэлбэл хувцсаа сольсон тойрог.<br>**config** unchanged (`mode: ellipse`) |
 | 2 | tapQuestion | **eyebrow** Түргэн шалгалт · **title** Зүүг ол<br>**prompt** $\tfrac{x^2}{100} + \tfrac{y^2}{36} = 1$: фокусууд нь…<br>**explanation** $c^2 = 100 - 36 = 64$: эллипст ХАСНА. ($\sqrt{136}$ бол гиперболын дүрмийн урхи; 6 бол зүгээр л $b$.)<br>**options** `$(\pm8, 0)$` · `$(\pm\sqrt{136}, 0)$` · `$(\pm6, 0)$` — **correctIndex 0** |
 | 3 | teach | **eyebrow** Эксцентриситет · **title** Сунгалтыг үнэлэх<br>**beats** $e = \tfrac{c}{a}$: зүүнүүд хэмжээтэйгээ харьцуулахад хэр хол байна. · $e = 0$: зүүнүүд нийлсэн, тойрог. $e \to 1$: навчин тамхи. · Дэлхий: $e = 0.017$ (бараг тойрог). Галлейн сүүлт од: $e = 0.97$. · Ганц тоо тойрог замын бүх зан чанарыг хэлнэ. |
-| 4 | workedSet | **eyebrow** Бодсон жишээ · **title** Зүүний инженерчлэл<br>**intro** a, b, c: дурын хоёрыг нь мэдвэл гурав дахь нь олдоно.<br>**ex1** Шивнээний танхим нь $20$ м өргөн, голдоо $6$ м өндөр хагас эллипс. Хоёр шивнэгч хаана зогсох вэ? · алхам: $a = 10, b = 6$: $c^2 = 100 - 36 = 64$, $c = 8$. · алхам: Фокусууд дээр: $(\pm 8, 0)$, хана бүрээс $2$ м дотогш. · алхам: Нэг фокусаас гарсан дуу нөгөө рүү ойно: чихээр сонсогдох утасны чанар. · **хариу** $(\pm 8, 0)$ цэгүүдэд<br>**ex2** $(3, \tfrac{12}{5})$ цэг $\tfrac{x^2}{25} + \tfrac{y^2}{9} = 1$ дээр орших уу? · алхам: Орлуул: $\tfrac{9}{25} + \tfrac{144/25}{9} = \tfrac{9}{25} + \tfrac{16}{25}$. · алхам: $= 1$ ✓: яг эллипс дээр. · **хариу** тийм: нийлбэр яг 1 |
+| 4 | workedSet | **eyebrow** Бодсон жишээ · **title** Зүүний инженерчлэл<br>**intro** a, b, c: дурын хоёрыг нь мэдвэл гурав дахь нь олдоно.<br>**ex1** Эллипс хэлбэрийн бильярдны ширээ $20$ дм урт, $12$ дм өргөн. Нүхийг хаана гаргах, бөмбөгийг хаагуур өнгөрүүлэх вэ? · алхам: $a = 10, b = 6$: $c^2 = 100 - 36 = 64$, $c = 8$. · алхам: Фокусууд дээр: $(\pm 8, 0)$, ирмэг бүрээс $2$ дм дотогш. · алхам: Нэг фокусаар өнгөрсөн бөмбөг ирмэгээс ойгоод нөгөө фокус руу явна: ойлтын чанар. · **хариу** $(\pm 8, 0)$ цэгүүдэд<br>**ex2** $(3, \tfrac{12}{5})$ цэг $\tfrac{x^2}{25} + \tfrac{y^2}{9} = 1$ дээр орших уу? · алхам: Орлуул: $\tfrac{9}{25} + \tfrac{144/25}{9} = \tfrac{9}{25} + \tfrac{16}{25}$. · алхам: $= 1$ ✓: яг эллипс дээр. · **хариу** тийм: нийлбэр яг 1 |
 | 5 | tryItSet | **eyebrow** Өөрөө туршиж үз · **title** Эллипсийн ажил<br>**intro** Зүүнд хасах; тэнхлэгт хагас.<br>**p1** $\tfrac{x^2}{49} + \tfrac{y^2}{24} = 1$: c = … — **choices** `$5$` · `$\sqrt{73}$` · `$7$` — **answerIndex 0** — $49 - 24 = 25$. (Нэмэх дүрэм $\sqrt{73}$ өгнө: буруу муруй.)<br>**p2** $e = 0.02$ эксцентриситеттэй эллипс ямар харагдах вэ? — **choices** `бараг яг тойрог шиг` · `навчин тамхи шиг` · `парабол шиг` — **answerIndex 0** — Эксцентриситет тэгт ойр бол зүүнүүд бараг нийлсэн байна. Гаригуудын ихэнх тойрог зам ийм: сурах бичгийн эллипсийн зураг бол хэт жүжиглэсэн хэтрүүлэг.<br>**p3** $a = 7$ эллипсийн ДУРЫН цэгээс хоёр фокус хүртэлх зайн нийлбэр… — **choices** `$14$` · `$7$` · `цэгээс хамаарна` — **answerIndex 0** — $d_1 + d_2 = 2a$: ТОДОРХОЙЛОЛТООРОО тогтмол. Утас сунадаггүй. |
 | 6 | funFact | **eyebrow** Одон орон · **title** Кеплерийн гуниг, физикийн ялалт<br>**body** Кеплер Ангараг гаригийн тойрог замыг «төгс» дүрс болох тойргоор тайлбарлах гэж ОЛОН ЖИЛ зүтгэсний эцэст эллипсийг хүлээн зөвшөөрч, 1609 онд нийтэлсэн: Нар нэг фокус дээр. Тойрогтой харьцуулаад тэрээр үүнийгээ «нэг тэрэг бууц» гэж нэрлэжээ. Тэр «бууц» Кеплерийн нэгдүгээр хууль болж, Ньютон түүнийг таталцлын хуулиас гаргаж, түүнээс хойших сансрын хөлөг бүрийн зам конусын огтлолын арифметик болсон. Хоёр дахь зүү юу вэ? Хоосон. Байгаль түүнийг сүнс мэт орхисон. |
 | 7 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу сурснаа эргэн харъя<br>**points** Хоёр зүүний тодорхойлолт: фокус хүртэлх зайн нийлбэр $2a$. · $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1$; фокусууд их тэнхлэг дээр, $c^2 = a^2 - b^2$. · Эксцентриситет $\tfrac{c}{a}$: 0 = тойрог, 1-д ойр = навчин тамхи; тойрог замууд энд амьдардаг. |
@@ -377,7 +377,7 @@ c² = a² − b² томьёогоор олдоно; c/a эксцентриси�
 Ганц тэмдгийг солиход геометр бослого гаргана:
 $\tfrac{x^2}{a^2} - \tfrac{y^2}{b^2} = 1$ эллипсийг бутлан, хоёр шулуун
 **асимптотын** дагуу төгсгөлгүй рүү зугтах, нүүр тулсан хоёр салаа (branches)
-болгоно. Утасны чанар ч эргэнэ: фокусууд хүртэлх зайнууд одоо тогтмол хэмжээгээр
+болгоно. Тодорхойлолт ч эргэнэ: фокусууд хүртэлх зайнууд одоо тогтмол хэмжээгээр
 ЯЛГАГДАНА. Энэ бол эллипсийн догшин дүү бөгөөд GPS-ээс өмнөх үеийн радио
 навигаци үүн дээр тулгуурлаж байв.
 
@@ -881,4 +881,5 @@ tests, and the Mongolian keeps it without tying it to the ЭШ. L6's last
 sentence does mention the ЭШ ("just a chance to show it"); the Mongolian keeps
 that, because it is about the whole course, not about conics.
 - **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×6. Terminology rows updated where the term had one.
-- **27 Oct 2026 ruling applied** (n57): the whispering-gallery example is gone at all three places; lesson 1 now names the kidney-stone machine instead, which lesson 6 already teaches.
+- **27 Oct 2026 ruling applied** (n57): the whispering gallery is gone at all four places. Lesson 1 now names the kidney-stone machine instead, which lesson 6 already teaches. Lesson 4's interactive ex1 is an elliptical billiard table with the same numbers ($a = 10$, $b = 6$, foci $(\pm 8, 0)$); its last step now names the reflection property, which is what it shows (the old step called it the string property). **Build:** the English ex1 still says whispering gallery, so this is a deliberate Mongolian swap like the approved Mongolian images.
+- **27 Oct 2026 ruling applied** (n55): the string property is now simply «эллипсийн тодорхойлолт» (objective, fact title, `co3-we2`, the hyperbola's mirror sentence).

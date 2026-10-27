@@ -195,11 +195,22 @@ keep the old words on purpose.
 | n57 | whispering gallery removed | conics lesson 1 names the kidney-stone machine instead |
 | 47 others | OK as drafted | |
 
-**Still open, on the decision page ("Needs you"):** base rate (n31), house edge
-(n33, «газрын давуу тал» is still in `prob-stats/random-variables`), box-plot
-whisker (n37, «сахал» still in the drafts until he picks), neighbourhood (n39),
-Fermat's adequality (n42), the ellipse's string property (n55), and a
-confirmation of «шалгуур» (n03).
+**Round 5, answered the same day (all applied, all gated):**
+
+| id | Ruling | Applied as |
+|---|---|---|
+| n03 | keep «шалгуур» | no change |
+| n31 | base rate described: «нийт дэх эзлэх хувь» | `prob-stats/conditional-probability`, 7 places; lesson 3's "independence baseline" keeps «суурь түвшин» (a different idea) |
+| n33 | house edge «казиногийн ашгийн хувь» | `prob-stats/random-variables`, 17 places; a house-edged game is «казинод ашигтай» |
+| n37 | whisker «сүүл» | two statistics drafts; «сүүлийн утга» (last value) beside it became «хамгийн туйлын утга» |
+| n39 | neighbourhood «ойролцоо» | `12/limits-and-continuity`; slogan «Ойролцоо, хаяг биш» |
+| n42 | keep «бараг тэнцүүлэх» арга | no change |
+| n55 | the ellipse's string property is just «эллипсийн тодорхойлолт» | `12/conic-sections` |
+
+n57 follow-up: a fourth whispering-gallery use turned up in `12/conic-sections`
+lesson 4's interactive ex1. It is now an elliptical billiard table with the same
+numbers. **Build:** that is a Mongolian-only swap, and the English still says
+whispering gallery.
 
 **For Build (ship mode): live mirrors now disagree with the rulings.**
 `7-mn/geometry-scale-and-circles` «квадратлах» ×10; `7-mn/probability`
