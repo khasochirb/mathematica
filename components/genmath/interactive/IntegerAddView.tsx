@@ -3,6 +3,8 @@
 // A number-line jump for adding integers: start at `a`, hop `b` units (an arc
 // to the right for a positive, to the left for a negative), landing at a + b.
 // Presentational; shared by the interactive IntegerAdd and the integerAdd figure.
+import { useLang } from "@/lib/lang-context";
+
 export default function IntegerAddView({
   a,
   b,
@@ -20,6 +22,8 @@ export default function IntegerAddView({
   showJump: boolean;
   width?: number;
 }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const pad = 22;
   const h = 88;
   const y = 60;
@@ -40,7 +44,7 @@ export default function IntegerAddView({
   const arc = `M ${x1} ${y - 6} Q ${(x1 + x2) / 2} ${ctrlY} ${x2} ${y - 6}`;
 
   return (
-    <svg width={width} height={h} viewBox={`0 0 ${width} ${h}`} role="img" aria-label={`Add ${b} to ${a} on a number line`}>
+    <svg width={width} height={h} viewBox={`0 0 ${width} ${h}`} role="img" aria-label={mn ? `Тоон шулуун дээр нэмэх: ${a} + (${b})` : `Add ${b} to ${a} on a number line`}>
       <defs>
         <marker id="ia-axis" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill="var(--fg-3)" />
@@ -65,7 +69,7 @@ export default function IntegerAddView({
       })}
       {/* start marker */}
       <circle cx={x(a)} cy={y} r="4.5" fill={showJump ? "var(--fg-3)" : color} stroke="var(--bg)" strokeWidth="1.5" />
-      <text x={x(a)} y={y + 34} textAnchor="middle" fontSize="11.5" fill="var(--fg-2)" fontFamily="Georgia, serif">start {a}</text>
+      <text x={x(a)} y={y + 34} textAnchor="middle" fontSize="11.5" fill="var(--fg-2)" fontFamily="Georgia, serif">{mn ? "эхлэл" : "start"} {a}</text>
       {/* the jump */}
       {showJump && (
         <g className="gm-fade">

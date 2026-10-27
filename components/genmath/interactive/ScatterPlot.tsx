@@ -29,11 +29,13 @@ const DATA: Record<string, [number, number][]> = {
   outlier: [[1, 3], [2, 4], [2, 5], [3, 5], [4, 6], [5, 6], [5, 7], [6, 7], [7, 8], [8, 9], [9, 10], [8, 2]],
 };
 
-const CORR_LABEL: Record<string, { name: string; blurb: string; color: string }> = {
-  positive: { name: "positive correlation", blurb: "as x grows, y tends to grow — the cloud climbs ↗", color: GREEN },
-  negative: { name: "negative correlation", blurb: "as x grows, y tends to fall — the cloud sinks ↘", color: RED },
-  none: { name: "no correlation", blurb: "no pattern — knowing x tells you nothing about y", color: "var(--fg-2)" },
+const CORR_LABEL: Record<string, { name: string; blurb: string; nameMn: string; blurbMn: string; color: string }> = {
+  positive: { name: "positive correlation", blurb: "as x grows, y tends to grow — the cloud climbs ↗", nameMn: "эерэг хамаарал", blurbMn: "x өсөхөд y ихэвчлэн өснө — үүл өгсөнө ↗", color: GREEN },
+  negative: { name: "negative correlation", blurb: "as x grows, y tends to fall — the cloud sinks ↘", nameMn: "сөрөг хамаарал", blurbMn: "x өсөхөд y ихэвчлэн буурна — үүл уруудна ↘", color: RED },
+  none: { name: "no correlation", blurb: "no pattern — knowing x tells you nothing about y", nameMn: "хамааралгүй", blurbMn: "хэлбэргүй — x утгаас y утгыг таах аргагүй", color: "var(--fg-2)" },
 };
+
+const DATASET_MN: Record<string, string> = { positive: "эерэг", negative: "сөрөг", none: "хэлбэргүй" };
 
 function fmt(n: number): string {
   return Number.isInteger(n) ? n.toString() : (Math.round(n * 100) / 100).toString();
@@ -68,6 +70,7 @@ function SpringPoint({ tx, ty, px, py, delay, color, r = 4 }: {
 
 export default function ScatterPlot({ config }: { config: ScatterPlotConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const {
     mode,
     dataset: ds0 = "positive",
@@ -108,9 +111,9 @@ export default function ScatterPlot({ config }: { config: ScatterPlotConfig }) {
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-2">
-        <button type="button" onClick={() => set((v) => Math.max(lo, Math.round((v - delta) * 100) / 100))} disabled={val <= lo} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.max(lo, Math.round((v - delta) * 100) / 100))} disabled={val <= lo} aria-label={mn ? `${label}: багасгах` : `Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 40, fontSize: 16, color: GEO_BLUE }}>{fmt(val)}</div>
-        <button type="button" onClick={() => set((v) => Math.min(hi, Math.round((v + delta) * 100) / 100))} disabled={val >= hi} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.min(hi, Math.round((v + delta) * 100) / 100))} disabled={val >= hi} aria-label={mn ? `${label}: нэмэх` : `Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
@@ -179,16 +182,25 @@ export default function ScatterPlot({ config }: { config: ScatterPlotConfig }) {
       {/* readout per mode */}
       {mode === "plot" && (
         <div className="mt-2 rounded-xl p-3 text-center text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
+          {mn ? (
+            <>
+              Цэг бүр <b>нэг ажиглалт</b> — нэг хүн, нэг өдөр, нэг тоглолт — ({xLabel}, {yLabel})
+              хосынхоо байранд буусан. Арван хоёр ажиглалт, арван хоёр цэг.
+            </>
+          ) : (
+            <>
           Each dot is <b>one observation</b> — one person, one day, one game — placed at its
           ({xLabel}, {yLabel}) pair. Twelve observations, twelve dots.
+            </>
+          )}
         </div>
       )}
 
       {mode === "correlation" && (
         <>
           <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", transition: "border-color 0.35s ease" }}>
-            <div className="serif text-[15px]" style={{ color: corr.color, fontWeight: 700 }}>{corr.name}</div>
-            <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>{corr.blurb}</div>
+            <div className="serif text-[15px]" style={{ color: corr.color, fontWeight: 700 }}>{mn ? corr.nameMn : corr.name}</div>
+            <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? corr.blurbMn : corr.blurb}</div>
           </div>
           <div className="mt-3 flex flex-wrap justify-center gap-1.5">
             {(["positive", "negative", "none"] as const).map((k) => (
@@ -201,22 +213,33 @@ export default function ScatterPlot({ config }: { config: ScatterPlotConfig }) {
                   ? { background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }
                   : { background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
               >
-                {k === "none" ? "no pattern" : k}
+                {mn ? DATASET_MN[k] : k === "none" ? "no pattern" : k}
               </button>
             ))}
           </div>
           <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-            swap the dataset — watch every point glide to its new story
+            {mn ? "өгөгдлөө солиод цэг бүр шинэ түүх рүүгээ гулсахыг ажигла" : "swap the dataset — watch every point glide to its new story"}
           </div>
         </>
       )}
 
       {mode === "outlier" && (
         <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "rgba(200,60,60,0.08)", border: "1px solid rgb(200,60,60)" }}>
-          <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>The red point is an <b style={{ color: RED }}>outlier</b></div>
+          <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
+            {mn ? <>Улаан цэг бол <b style={{ color: RED }}>онцгой утга</b></> : <>The red point is an <b style={{ color: RED }}>outlier</b></>}
+          </div>
           <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
+            {mn ? (
+              <>
+                Арван нэгэн цэг нэг түүх өгүүлнэ ↗ — харин нэг цэг бусдаасаа хол тасарчээ. Бодит өгөгдөлд
+                ийм цэг байдаг; хандлагад итгэхээсээ өмнө түүнийг илрүүл.
+              </>
+            ) : (
+              <>
             Eleven points tell one story ↗ — one point sits far from the pack. Real data has stragglers;
             spot them before you trust a trend.
+              </>
+            )}
           </div>
         </div>
       )}
@@ -233,17 +256,21 @@ export default function ScatterPlot({ config }: { config: ScatterPlotConfig }) {
             }}
           >
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              y = {fmt(m)}x {b >= 0 ? "+" : "−"} {fmt(Math.abs(b))} · average miss: <b style={{ color: nearBest ? "var(--accent)" : "var(--fg)" }}>{avgMiss.toFixed(2)}</b>
+              y = {fmt(m)}x {b >= 0 ? "+" : "−"} {fmt(Math.abs(b))} · {mn ? "дундаж зөрөө:" : "average miss:"} <b style={{ color: nearBest ? "var(--accent)" : "var(--fg)" }}>{avgMiss.toFixed(2)}</b>
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {nearBest
-                ? <>🎯 that's the best-fit zone — no line misses these points by less.</>
-                : <>the dashed sticks are the misses — steer the line to shrink them.</>}
+              {mn
+                ? nearBest
+                  ? <>🎯 шилдэг тохирлын бүс — эдгээр цэгээс үүнээс бага зөрөх шулуун байхгүй.</>
+                  : <>тасархай зураасууд бол зөрөөнүүд — шулуунаа хөдөлгөж тэднийг богиносго.</>
+                : nearBest
+                  ? <>🎯 that's the best-fit zone — no line misses these points by less.</>
+                  : <>the dashed sticks are the misses — steer the line to shrink them.</>}
             </div>
           </div>
           <div className="mt-3 flex items-center justify-center gap-5">
-            {stepper("slope m", m, setM, -1, 2, 0.25)}
-            {stepper("intercept b", b, setB, 0, 9, 0.5)}
+            {stepper(mn ? "налалт k" : "slope m", m, setM, -1, 2, 0.25)}
+            {stepper(mn ? "огтлол b" : "intercept b", b, setB, 0, 9, 0.5)}
           </div>
           <div className="mt-3 flex justify-center gap-2">
             <button
@@ -252,7 +279,7 @@ export default function ScatterPlot({ config }: { config: ScatterPlotConfig }) {
               className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]"
               style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
             >
-              <Sparkles className="h-3.5 w-3.5" /> Snap to best fit
+              <Sparkles className="h-3.5 w-3.5" /> {mn ? "Шилдэг шулууныг тавих" : "Snap to best fit"}
             </button>
             <button
               type="button"
@@ -260,7 +287,7 @@ export default function ScatterPlot({ config }: { config: ScatterPlotConfig }) {
               className="gm-press rounded-full px-4 py-2 text-[13px]"
               style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
             >
-              {showResiduals ? "Hide misses" : "Show misses"}
+              {mn ? (showResiduals ? "Зөрөөг нуух" : "Зөрөөг харуулах") : showResiduals ? "Hide misses" : "Show misses"}
             </button>
           </div>
         </>

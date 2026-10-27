@@ -32,6 +32,7 @@ const DELTAS = [1, 0.5, 0.25, 0.1];
 
 export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode } = config;
 
   // δ stepper (approach / hole / jump)
@@ -109,7 +110,7 @@ export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
         type="button"
         onClick={() => setDi(Math.max(0, Math.min(DELTAS.length - 1, next)))}
         disabled={next < 0 || next > DELTAS.length - 1}
-        aria-label={dir === 1 ? "Shrink delta" : "Grow delta"}
+        aria-label={dir === 1 ? (mn ? "δ утгыг багасгах" : "Shrink delta") : (mn ? "δ утгыг нэмэгдүүлэх" : "Grow delta")}
         className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
         style={dir === 1
           ? { background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }
@@ -186,13 +187,13 @@ export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
       {/* readouts */}
       <div className="mt-2 grid grid-cols-2 gap-2">
         <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-          <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>from the left</div>
+          <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "зүүн талаас" : "from the left"}</div>
           <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>
             f({fmt(xL)}) = {mode === "infinite" ? fmt(fAt(xL), 1) : fmt(yL, 3)}
           </div>
         </div>
         <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-          <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>from the right</div>
+          <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>{mn ? "баруун талаас" : "from the right"}</div>
           <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>
             f({fmt(xR)}) = {mode === "infinite" ? fmt(yR, 1) : fmt(yR, 3)}
           </div>
@@ -204,40 +205,40 @@ export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
         {mode === "approach" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Both sides squeeze toward <b style={{ color: GEO_BLUE }}>2</b> — so lim f(x) = 2
+              {mn ? <>Хоёр тал хоёулаа <b style={{ color: GEO_BLUE }}>2</b> утгад ойртоно — иймд lim f(x) = 2</> : <>Both sides squeeze toward <b style={{ color: GEO_BLUE }}>2</b> — so lim f(x) = 2</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              the limit is where the squeeze POINTS, whether or not the point is ever reached
+              {mn ? "хязгаар бол утгууд ЧИГЛЭЖ буй цэг — тэр цэгт хүрэх эсэхээс үл хамаарна" : "the limit is where the squeeze POINTS, whether or not the point is ever reached"}
             </div>
           </>
         )}
         {mode === "hole" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              The squeeze points at <b style={{ color: GEO_BLUE }}>4</b> — but f(2) is <b style={{ color: RED }}>undefined</b>
+              {mn ? <>Утгууд <b style={{ color: GEO_BLUE }}>4</b> утга руу чиглэнэ — харин f(2) <b style={{ color: RED }}>тодорхойлогдоогүй</b></> : <>The squeeze points at <b style={{ color: GEO_BLUE }}>4</b> — but f(2) is <b style={{ color: RED }}>undefined</b></>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              limit = 4 anyway: limits read the approach, not the arrival
+              {mn ? "хязгаар = 4 хэвээр: хязгаар ойртолтыг хардаг, хүрэлтийг биш" : "limit = 4 anyway: limits read the approach, not the arrival"}
             </div>
           </>
         )}
         {mode === "jump" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Left says <b style={{ color: GEO_BLUE }}>2</b>, right says <b style={{ color: GEO_ACCENT }}>3</b> — <b style={{ color: RED }}>no two-sided limit</b>
+              {mn ? <>Зүүн тал <b style={{ color: GEO_BLUE }}>2</b>, баруун тал <b style={{ color: GEO_ACCENT }}>3</b> гэнэ — <b style={{ color: RED }}>хоёр талын хязгаар байхгүй</b></> : <>Left says <b style={{ color: GEO_BLUE }}>2</b>, right says <b style={{ color: GEO_ACCENT }}>3</b> — <b style={{ color: RED }}>no two-sided limit</b></>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              a limit exists only when both one-sided limits agree
+              {mn ? "хоёр нэг талын хязгаар тэнцүү үед л хязгаар оршин байна" : "a limit exists only when both one-sided limits agree"}
             </div>
           </>
         )}
         {mode === "infinite" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Outputs pass every bound — <b style={{ color: RED }}>no finite limit</b> (we write → ∞)
+              {mn ? <>Утгууд ямар ч тооноос давж өснө — <b style={{ color: RED }}>төгсгөлөг хязгаар байхгүй</b> (→ ∞ гэж бичнэ)</> : <>Outputs pass every bound — <b style={{ color: RED }}>no finite limit</b> (we write → ∞)</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              the dashed line is a vertical asymptote: the curve climbs it forever
+              {mn ? "тасархай шугам бол босоо асимптот: муруй түүнийг дагаж хязгааргүй өгсөнө" : "the dashed line is a vertical asymptote: the curve climbs it forever"}
             </div>
           </>
         )}
@@ -247,7 +248,7 @@ export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
       <div className="mt-4 flex items-center justify-center gap-4">
         {mode !== "infinite" ? (
           <div className="text-center">
-            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>distance δ from {a}</div>
+            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? <>{a} хүртэлх зай δ</> : <>distance δ from {a}</>}</div>
             <div className="mt-1 flex items-center gap-2">
               {stepBtn(-1)}
               <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 16, color: GEO_BLUE }}>{DELTAS[di]}</div>
@@ -256,15 +257,15 @@ export default function LimitGraph({ config }: { config: LimitGraphConfig }) {
           </div>
         ) : (
           <button type="button" onClick={replay} aria-label={chrome("Replay the approach", lang)} className="gm-press flex items-center gap-2 rounded-full px-5 py-2 text-[13px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
-            <RotateCcw className="h-3.5 w-3.5" /> replay the approach
+            <RotateCcw className="h-3.5 w-3.5" /> {mn ? "ойртолтыг дахин үзэх" : "replay the approach"}
           </button>
         )}
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        {mode === "approach" && "shrink δ — the two outputs close in on the limit"}
-        {mode === "hole" && "shrink δ — the squeeze works even though the target is missing"}
-        {mode === "jump" && "shrink δ — the two sides refuse to meet"}
-        {mode === "infinite" && "the dots ride the curve into the asymptote — outputs explode"}
+        {mode === "approach" && (mn ? "δ утгыг багасга — хоёр утга хязгаарт ойртоно" : "shrink δ — the two outputs close in on the limit")}
+        {mode === "hole" && (mn ? "δ утгыг багасга — зорилтот цэг байхгүй ч ойртолт ажиллана" : "shrink δ — the squeeze works even though the target is missing")}
+        {mode === "jump" && (mn ? "δ утгыг багасга — хоёр тал хэзээ ч нийлэхгүй" : "shrink δ — the two sides refuse to meet")}
+        {mode === "infinite" && (mn ? "цэгүүд муруйг дагаж асимптот руу гүйнэ — утгууд огцом өснө" : "the dots ride the curve into the asymptote — outputs explode")}
       </div>
     </div>
   );

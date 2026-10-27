@@ -39,6 +39,7 @@ function radLabel(deg: number): string {
 
 export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode, start = 45 } = config;
 
   // ---- geometry ----
@@ -121,10 +122,16 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
 
         <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            <b style={{ color: GEO_ACCENT }}>{nRad}</b> radian{nRad !== 1 ? "s" : ""} = {nRad} radius-length{nRad !== 1 ? "s" : ""} of arc ≈ <b style={{ color: GEO_BLUE }}>{fmt2(degEq)}°</b>
+            {mn
+              ? <><b style={{ color: GEO_ACCENT }}>{nRad}</b> радиан = радиусын урттай {nRad} нум ≈ <b style={{ color: GEO_BLUE }}>{fmt2(degEq)}°</b></>
+              : <><b style={{ color: GEO_ACCENT }}>{nRad}</b> radian{nRad !== 1 ? "s" : ""} = {nRad} radius-length{nRad !== 1 ? "s" : ""} of arc ≈ <b style={{ color: GEO_BLUE }}>{fmt2(degEq)}°</b></>}
           </div>
           <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-            {nRad < 3 ? "each wrap of one radius along the rim = 1 radian ≈ 57.3°"
+            {mn
+              ? (nRad < 3 ? "тойргийн дагуу нэг радиусыг ороох бүр = 1 радиан ≈ 57,3°"
+                : nRad === 3 ? "гурван радиус хагас эргэлтэд бараг хүрнэ — π ≈ 3,14 радиан яг тэнд буна"
+                : "π тэмдгийг давлаа: хагас эргэлт π ≈ 3,14 радиусын урттай нум болсон")
+              : nRad < 3 ? "each wrap of one radius along the rim = 1 radian ≈ 57.3°"
               : nRad === 3 ? "three radii almost reach the half-turn — π ≈ 3.14 radians lands exactly there"
               : "past the π mark: the half-turn took π ≈ 3.14 radii of arc"}
           </div>
@@ -136,7 +143,7 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
           <button type="button" onClick={() => setNRad((v) => Math.min(6, v + 1))} disabled={nRad >= 6} aria-label={chrome("Wrap one radian", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
         </div>
         <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-          wrap radius-lengths around the rim — watch three-and-a-bit reach the π mark
+          {mn ? "радиусын уртыг тойргийн дагуу ороо — гурав ба бага зэрэг нь π тэмдэгт хүрэхийг ажигла" : "wrap radius-lengths around the rim — watch three-and-a-bit reach the π mark"}
         </div>
       </div>
     );
@@ -198,8 +205,8 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
           </div>
           <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
             {sp > 0.97
-              ? <>One full orbit = one full wave: period <b>2π</b>. The circle IS the wave, unrolled.</>
-              : <>the point&apos;s HEIGHT rides across to the scroll — sine is the height of a circling point</>}
+              ? (mn ? <>Нэг бүтэн эргэлт = нэг бүтэн долгион: үе <b>2π</b>. Долгион бол задалсан тойрог ӨӨРӨӨ.</> : <>One full orbit = one full wave: period <b>2π</b>. The circle IS the wave, unrolled.</>)
+              : mn ? <>цэгийн ӨНДӨР туузан дээр шилжинэ — синус бол эргэх цэгийн өндөр</> : <>the point&apos;s HEIGHT rides across to the scroll — sine is the height of a circling point</>}
           </div>
         </div>
 
@@ -257,12 +264,16 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
 
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-          θ = <b style={{ color: GEO_ACCENT }}>{deg}°</b> = {radLabel(deg)} rad · cos θ = <b style={{ color: GEO_ACCENT }}>{fmt2(cosV)}</b> · sin θ = <b style={{ color: GEO_BLUE }}>{fmt2(sinV)}</b>
+          θ = <b style={{ color: GEO_ACCENT }}>{deg}°</b> = {radLabel(deg)} {mn ? "рад" : "rad"} · cos θ = <b style={{ color: GEO_ACCENT }}>{fmt2(cosV)}</b> · sin θ = <b style={{ color: GEO_BLUE }}>{fmt2(sinV)}</b>
         </div>
         <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-          {quadrant === 0
-            ? "on an axis — one coordinate is 0, the other ±1"
-            : `quadrant ${["", "I: both +", "II: cos −, sin +", "III: both −", "IV: cos +, sin −"][quadrant]}`} · the coordinates ARE the trig values
+          {mn
+            ? <>{quadrant === 0
+                ? "тэнхлэг дээр — нэг координат нь 0, нөгөө нь ±1"
+                : ["", "I мөч: хоёулаа +", "II мөч: cos −, sin +", "III мөч: хоёулаа −", "IV мөч: cos +, sin −"][quadrant]} · координатууд НЬ тригонометрийн утгууд</>
+            : <>{quadrant === 0
+                ? "on an axis — one coordinate is 0, the other ±1"
+                : `quadrant ${["", "I: both +", "II: cos −, sin +", "III: both −", "IV: cos +, sin −"][quadrant]}`} · the coordinates ARE the trig values</>}
         </div>
       </div>
 
@@ -272,7 +283,7 @@ export default function UnitCircle({ config }: { config: UnitCircleConfig }) {
         <button type="button" onClick={() => setDeg((v) => Math.min(360, v + 15))} disabled={deg >= 360} aria-label={chrome("Increase angle", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        sweep the angle in 15° steps — watch the legs and signs change quadrant by quadrant
+        {mn ? "өнцгийг 15° алхамаар өөрчил — катетууд ба тэмдгүүд мөч бүрт хэрхэн өөрчлөгдөхийг ажигла" : "sweep the angle in 15° steps — watch the legs and signs change quadrant by quadrant"}
       </div>
     </div>
   );

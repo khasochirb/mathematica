@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 // Slim progress bar + dot row for the interactive lesson player.
 // Done steps fill with accent; the current step pulses; future steps are muted.
 export default function StepProgress({
@@ -11,6 +13,8 @@ export default function StepProgress({
   current: number;
   onJump?: (i: number) => void;
 }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const pct = total > 1 ? (current / (total - 1)) * 100 : 100;
   return (
     <div className="w-full">
@@ -50,7 +54,7 @@ export default function StepProgress({
               key={i}
               type="button"
               onClick={() => onJump(i)}
-              aria-label={`Go to step ${i + 1}`}
+              aria-label={mn ? `Алхам ${i + 1}` : `Go to step ${i + 1}`}
               aria-current={active ? "step" : undefined}
               className="gm-press grid place-items-center"
               style={{ width: 20, height: 20 }}

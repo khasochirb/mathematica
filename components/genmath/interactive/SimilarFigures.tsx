@@ -19,6 +19,7 @@ const KS = [1, 1.5, 2, 2.5, 3];
 
 export default function SimilarFigures({ config }: { config: SimilarFiguresConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { show = "sides", color = GEO_ACCENT } = config;
   const [ki, setKi] = useState(() => {
     const i = KS.indexOf(config.start ?? 1.5);
@@ -57,8 +58,8 @@ export default function SimilarFigures({ config }: { config: SimilarFiguresConfi
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 360, display: "block", margin: "0 auto" }}>
-        <text x={L.A.x} y={22} fontSize="12" fill="var(--fg-3)">original</text>
-        <text x={R.A.x} y={22} fontSize="12" fill="var(--fg-3)">image (×{fmt(k)})</text>
+        <text x={L.A.x} y={22} fontSize="12" fill="var(--fg-3)">{mn ? "эх дүрс" : "original"}</text>
+        <text x={R.A.x} y={22} fontSize="12" fill="var(--fg-3)">{mn ? "дүрс" : "image"} (×{fmt(k)})</text>
         <Tri P={L} sides={[baseLegs.a, baseLegs.b, baseLegs.hyp]} tagK={false} />
         <Tri P={R} sides={[baseLegs.a * k, baseLegs.b * k, baseLegs.hyp * k]} tagK />
       </svg>
@@ -66,19 +67,19 @@ export default function SimilarFigures({ config }: { config: SimilarFiguresConfi
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
         {show === "sides" ? (
           <>
-            <div className="serif tabular">scale factor <b style={{ color }}>k = {fmt(k)}</b></div>
-            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>Every image side is {fmt(k)} × its match: {baseLegs.a}→{fmt(baseLegs.a * k)}, {baseLegs.b}→{fmt(baseLegs.b * k)}, {baseLegs.hyp}→{fmt(baseLegs.hyp * k)}. Angles are unchanged.</div>
+            <div className="serif tabular">{mn ? "масштабын коэффициент" : "scale factor"} <b style={{ color }}>k = {fmt(k)}</b></div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? <>Дүрсийн тал бүр = харгалзах тал × {fmt(k)}:</> : <>Every image side is {fmt(k)} × its match:</>} {baseLegs.a}→{fmt(baseLegs.a * k)}, {baseLegs.b}→{fmt(baseLegs.b * k)}, {baseLegs.hyp}→{fmt(baseLegs.hyp * k)}. {mn ? "Өнцгүүд өөрчлөгдөхгүй." : "Angles are unchanged."}</div>
           </>
         ) : (
           <>
-            <div className="serif tabular">perimeter ×<b style={{ color }}>{fmt(perimeterScale(k))}</b> · area ×<b style={{ color: GEO_BLUE }}>{fmt(areaScale(k))}</b></div>
-            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>Perimeter {perim} → {fmt(perim * k)} (×k). Area {area} → {fmt(area * k * k)} (×k²).</div>
+            <div className="serif tabular">{mn ? "периметр" : "perimeter"} ×<b style={{ color }}>{fmt(perimeterScale(k))}</b> · {mn ? "талбай" : "area"} ×<b style={{ color: GEO_BLUE }}>{fmt(areaScale(k))}</b></div>
+            <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? "Периметр" : "Perimeter"} {perim} → {fmt(perim * k)} (×k). {mn ? "Талбай" : "Area"} {area} → {fmt(area * k * k)} (×k²).</div>
           </>
         )}
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>scale factor</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "масштабын коэффициент" : "scale factor"}</span>
         <button type="button" onClick={() => setKi((v) => Math.max(0, v - 1))} disabled={ki <= 0} aria-label={chrome("Smaller", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 17, color: "var(--fg)" }}>{fmt(k)}</div>
         <button type="button" onClick={() => setKi((v) => Math.min(KS.length - 1, v + 1))} disabled={ki >= KS.length - 1} aria-label={chrome("Larger", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>

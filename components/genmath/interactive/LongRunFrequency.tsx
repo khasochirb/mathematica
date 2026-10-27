@@ -16,6 +16,7 @@ const MAX_TRIALS = 400;
 
 export default function LongRunFrequency({ config }: { config: LongRunFrequencyConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { p, pLabel, eventLabel, actionLabel = "run" } = config;
   // freqs[i] = running relative frequency after trial i+1
   const [freqs, setFreqs] = useState<number[]>([]);
@@ -98,7 +99,7 @@ export default function LongRunFrequency({ config }: { config: LongRunFrequencyC
           {/* the true-p line the frequency settles toward */}
           <line x1={padL} y1={py(p)} x2={W - padR} y2={py(p)} stroke="var(--accent)" strokeWidth={1.6} strokeDasharray="5 4" />
           <text x={W - padR - 2} y={py(p) - 5} fontSize="9.5" fill="var(--accent)" textAnchor="end" className="tabular">
-            true p = {pLabel}
+            {mn ? "онолын" : "true"} p = {pLabel}
           </text>
 
           {/* the running frequency */}
@@ -119,18 +120,26 @@ export default function LongRunFrequency({ config }: { config: LongRunFrequencyC
       >
         {current === null ? (
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            event: <b>{eventLabel}</b>, true probability {pLabel} — run it and watch the frequency
+            {mn
+              ? <>үзэгдэл: <b>{eventLabel}</b>, онолын магадлал {pLabel} — туршаад давтамжийг ажигла</>
+              : <>event: <b>{eventLabel}</b>, true probability {pLabel} — run it and watch the frequency</>}
           </div>
         ) : (
           <>
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
               {hits} / {total} = <b style={{ color: settled ? "var(--accent)" : GEO_BLUE }}>{(current).toFixed(3)}</b>
               <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-                vs true p = {pLabel} ≈ {(Math.round(p * 1000) / 1000).toString()}
+                {mn ? "онолын" : "vs true"} p = {pLabel} ≈ {(Math.round(p * 1000) / 1000).toString()}
               </span>
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {total < 30
+              {mn
+                ? (total < 30
+                  ? "цөөн туршилт их хэлбэлзэнэ — хэдхэн оролдлогын талаар магадлал юу ч хэлэхгүй"
+                  : settled
+                    ? "🎯 тогтворжлоо — урт хугацаанд магадлал биелдэг"
+                    : "тогтворжиж байна — туршилт олшрох тусам хэлбэлзэл багасна")
+                : total < 30
                 ? "short runs swing wildly — probability says nothing about a handful of tries"
                 : settled
                   ? "🎯 settled — the long run keeps its promise"
@@ -152,7 +161,7 @@ export default function LongRunFrequency({ config }: { config: LongRunFrequencyC
           className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <RotateCcw className="h-3.5 w-3.5" /> reset
+          <RotateCcw className="h-3.5 w-3.5" /> {mn ? "дахин эхлэх" : "reset"}
         </button>
       </div>
     </div>

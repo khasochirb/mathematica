@@ -35,6 +35,7 @@ function CountOf({ n, mn, noun, en, color }: { n: number; mn: boolean; noun: str
 
 export default function GcfFinder({ config }: { config: GcfFinderConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { a: a0, b: b0, min = 2, max = 24, color = "#e8913c" } = config;
   const [a, setA] = useState(a0);
   const [b, setB] = useState(b0);
@@ -117,12 +118,16 @@ export default function GcfFinder({ config }: { config: GcfFinderConfig }) {
       </div>
 
       <div className="mt-4 rounded-xl p-3 text-center text-[15px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-        Greatest common factor of {a} and {b}:{" "}
-        <b className="serif tabular" style={{ color: "var(--accent)" }}>GCF = {g}</b>
+        {mn ? <>{a} ба {b} тооны хамгийн их ерөнхий хуваагч:</> : <>Greatest common factor of {a} and {b}:</>}{" "}
+        <b className="serif tabular" style={{ color: "var(--accent)" }}>{mn ? "ХИЕХ" : "GCF"} = {g}</b>
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Highlighted chips are <b style={{ color: "var(--fg-1)" }}>shared</b> factors; the ringed one is the <b style={{ color: "var(--fg-1)" }}>greatest</b>.
+        {mn ? (
+          <>Тодруулсан нүднүүд нь <b style={{ color: "var(--fg-1)" }}>ерөнхий</b> хуваагчид; хүрээлсэн нь <b style={{ color: "var(--fg-1)" }}>хамгийн их</b> нь.</>
+        ) : (
+          <>Highlighted chips are <b style={{ color: "var(--fg-1)" }}>shared</b> factors; the ringed one is the <b style={{ color: "var(--fg-1)" }}>greatest</b>.</>
+        )}
       </div>
     </div>
   );

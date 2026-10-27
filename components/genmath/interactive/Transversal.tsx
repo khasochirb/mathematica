@@ -62,6 +62,7 @@ function regionsAt(lineMath: number, transMath: number) {
 
 export default function Transversal({ config }: { config: TransversalConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const {
     acute: a0 = 62,
     highlight: hl0 = "corresponding",
@@ -125,9 +126,19 @@ export default function Transversal({ config }: { config: TransversalConfig }) {
   const nLine = seg(Q, nDir);
   const tLine = seg(P, transDir);
 
-  const PAIR_LABEL: Record<string, string> = {
-    corresponding: "Corresponding", altInterior: "Alternate interior", altExterior: "Alternate exterior",
-    sameSideInterior: "Same-side interior", vertical: "Vertical", linearPair: "Linear pair",
+  const PAIR_LABEL: Record<string, string> = mn
+    ? {
+        corresponding: "Харгалзах", altInterior: "Дотоод солбисон", altExterior: "Гадаад солбисон",
+        sameSideInterior: "Нэг талын дотоод", vertical: "Босоо", linearPair: "Хамар",
+      }
+    : {
+        corresponding: "Corresponding", altInterior: "Alternate interior", altExterior: "Alternate exterior",
+        sameSideInterior: "Same-side interior", vertical: "Vertical", linearPair: "Linear pair",
+      };
+  // full Mongolian pair names for the verdict line (GEOMETRY-TERMS.md)
+  const PAIR_FULL_MN: Record<string, string> = {
+    corresponding: "Харгалзах өнцгүүд", altInterior: "Дотоод солбисон хоёр өнцөг", altExterior: "Гадаад солбисон хоёр өнцөг",
+    sameSideInterior: "Нэг талын дотоод өнцгүүд", vertical: "Босоо өнцгүүд", linearPair: "Хамар өнцгүүд",
   };
 
   // remount key so the sweep-in animation replays whenever the selection moves
@@ -212,9 +223,13 @@ export default function Transversal({ config }: { config: TransversalConfig }) {
           }}
         >
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            {PAIR_LABEL[hl!]} angles — <b style={{ color: "var(--fg)" }}>∠{activePair[0]} and ∠{activePair[1]}</b>
+            {mn ? (
+              <>{PAIR_FULL_MN[hl!]} — <b style={{ color: "var(--fg)" }}>∠{activePair[0]} ба ∠{activePair[1]}</b></>
+            ) : (
+              <>{PAIR_LABEL[hl!]} angles — <b style={{ color: "var(--fg)" }}>∠{activePair[0]} and ∠{activePair[1]}</b></>
+            )}
             {meta.pairs.length > 1 && (
-              <span style={{ color: "var(--fg-3)" }}> · tap any numbered angle to switch pairs</span>
+              <span style={{ color: "var(--fg-3)" }}>{mn ? " · хос солихын тулд дугаартай өнцөг дээр дар" : " · tap any numbered angle to switch pairs"}</span>
             )}
           </div>
           <div className="mt-0.5 serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
@@ -226,7 +241,7 @@ export default function Transversal({ config }: { config: TransversalConfig }) {
               )
             ) : (
               <span style={{ color: "rgb(200,60,60)" }}>
-                {num[activePair[0]].reg.measure}° ≠ {num[activePair[1]].reg.measure}° — not related, because the lines aren&apos;t parallel
+                {num[activePair[0]].reg.measure}° ≠ {num[activePair[1]].reg.measure}° — {mn ? "шулуунууд параллель биш тул холбоогүй" : <>not related, because the lines aren&apos;t parallel</>}
               </span>
             )}
           </div>
@@ -258,7 +273,7 @@ export default function Transversal({ config }: { config: TransversalConfig }) {
       {interactive && (
         <div className="mt-3 flex items-center justify-center gap-3">
           <button type="button" onClick={() => setATarget((v) => Math.max(35, v - 6))} disabled={aTarget <= 35} aria-label={chrome("Tilt transversal", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
-          <div className="text-center text-[12px]" style={{ color: "var(--fg-3)", minWidth: 90 }}>tilt the transversal</div>
+          <div className="text-center text-[12px]" style={{ color: "var(--fg-3)", minWidth: 90 }}>{mn ? "огтлогч шулууныг хазайлга" : "tilt the transversal"}</div>
           <button type="button" onClick={() => setATarget((v) => Math.min(85, v + 6))} disabled={aTarget >= 85} aria-label={chrome("Tilt transversal", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
         </div>
       )}
@@ -271,13 +286,17 @@ export default function Transversal({ config }: { config: TransversalConfig }) {
             className="gm-press rounded-full px-4 py-2 text-[13px]"
             style={{ background: parallel ? "var(--accent)" : "var(--bg-2)", border: parallel ? "1px solid var(--accent)" : "1px solid var(--line)", color: parallel ? "var(--accent-ink, #fff)" : "var(--fg)" }}
           >
-            {parallel ? "Lines are parallel ✓" : "Lines are NOT parallel"}
+            {mn ? (parallel ? "Шулуунууд параллель ✓" : "Шулуунууд параллель БИШ") : parallel ? "Lines are parallel ✓" : "Lines are NOT parallel"}
           </button>
         </div>
       )}
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        {hl === "sameSideInterior"
+        {mn
+          ? hl === "sameSideInterior"
+            ? <>Нэг талын дотоод өнцгүүд <b style={{ color: "var(--fg-1)" }}>дүүргэгч</b> (нийлбэр 180°) — тэнцүү биш.</>
+            : <>Эдгээр хос <b style={{ color: "var(--fg-1)" }}>тэнцүү</b> — гэхдээ зөвхөн шулуунууд параллель үед.</>
+          : hl === "sameSideInterior"
           ? <>Same-side interior angles are <b style={{ color: "var(--fg-1)" }}>supplementary</b> (sum 180°) — not congruent.</>
           : <>These pairs are <b style={{ color: "var(--fg-1)" }}>congruent</b> — but only when the lines are parallel.</>}
       </div>

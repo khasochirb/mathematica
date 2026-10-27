@@ -14,6 +14,7 @@ import { type SegmentRulerConfig } from "@/lib/genmath-interactive";
 // That's the Ruler Postulate made physical.
 export default function SegmentRuler({ config }: { config: SegmentRulerConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { length, max, start = 0, color = GEO_ACCENT } = config;
   const [r, setR] = useState(Math.min(Math.max(start, 0), max - length));
 
@@ -78,8 +79,8 @@ export default function SegmentRuler({ config }: { config: SegmentRulerConfig })
           <Minus className="h-4 w-4" />
         </button>
         <div className="text-center" style={{ minWidth: 110 }}>
-          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>slide the ruler</div>
-          <div className="serif tabular" style={{ fontSize: 15, color: "var(--fg)" }}>A reads {a}</div>
+          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "шугамыг гулсуул" : "slide the ruler"}</div>
+          <div className="serif tabular" style={{ fontSize: 15, color: "var(--fg)" }}>{mn ? `A: ${a}` : `A reads ${a}`}</div>
         </div>
         <button
           type="button"
@@ -94,7 +95,15 @@ export default function SegmentRuler({ config }: { config: SegmentRulerConfig })
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        The readings change; the <b style={{ color: "var(--fg-1)" }}>difference</b> — the length — never does.
+        {mn ? (
+          <>
+            Заалтууд өөрчлөгдөнө, харин <b style={{ color: "var(--fg-1)" }}>ялгавар</b> — урт — хэзээ ч өөрчлөгдөхгүй.
+          </>
+        ) : (
+          <>
+            The readings change; the <b style={{ color: "var(--fg-1)" }}>difference</b> — the length — never does.
+          </>
+        )}
       </div>
     </div>
   );

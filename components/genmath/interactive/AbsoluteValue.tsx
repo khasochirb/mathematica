@@ -10,6 +10,7 @@ import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
 
 export default function AbsoluteValue({ config }: { config: IntegerLineConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { min, max, start, color = "#e8913c" } = config;
   const [v, setV] = useState(Math.max(min, Math.min(max, Math.round(start))));
   const abs = Math.abs(v);
@@ -26,7 +27,11 @@ export default function AbsoluteValue({ config }: { config: IntegerLineConfig })
         <span className="serif tabular rounded-lg px-3 py-1" style={{ fontSize: 22, background: "var(--accent-wash)", color: "var(--accent)", border: "1px solid var(--accent-line)" }}>{abs}</span>
       </div>
       <div className="mt-1 text-center text-[12.5px]" style={{ color: "var(--fg-2)" }}>
-        the distance from <b className="serif tabular" style={{ color: "var(--fg-1)" }}>{v}</b> to <b className="serif tabular" style={{ color: "var(--fg-1)" }}>0</b>
+        {mn ? (
+          <><b className="serif tabular" style={{ color: "var(--fg-1)" }}>{v}</b> ба <b className="serif tabular" style={{ color: "var(--fg-1)" }}>0</b> хоорондох зай</>
+        ) : (
+          <>the distance from <b className="serif tabular" style={{ color: "var(--fg-1)" }}>{v}</b> to <b className="serif tabular" style={{ color: "var(--fg-1)" }}>0</b></>
+        )}
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
@@ -41,7 +46,7 @@ export default function AbsoluteValue({ config }: { config: IntegerLineConfig })
           <Minus className="h-5 w-5" />
         </button>
         <div className="text-center" style={{ minWidth: 56 }}>
-          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>move</div>
+          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "хөдөлгө" : "move"}</div>
         </div>
         <button
           type="button"
@@ -56,7 +61,11 @@ export default function AbsoluteValue({ config }: { config: IntegerLineConfig })
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Move past zero — a number and its opposite are the <b style={{ color: "var(--fg-1)" }}>same distance</b> from 0.
+        {mn ? (
+          <>Тэгийг давж үз: тоо ба түүний эсрэг тоо тэгээс <b style={{ color: "var(--fg-1)" }}>ижил зайд</b> оршино.</>
+        ) : (
+          <>Move past zero — a number and its opposite are the <b style={{ color: "var(--fg-1)" }}>same distance</b> from 0.</>
+        )}
       </div>
     </div>
   );

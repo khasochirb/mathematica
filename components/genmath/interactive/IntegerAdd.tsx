@@ -1,11 +1,14 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { CornerUpRight, RotateCcw } from "lucide-react";
 import { type IntegerAddConfig } from "@/lib/genmath-interactive";
 import IntegerAddView from "@/components/genmath/interactive/IntegerAddView";
 
 export default function IntegerAdd({ config }: { config: IntegerAddConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { a, b, min, max, color = "#e8913c" } = config;
   const [jumped, setJumped] = useState(false);
   const sum = a + b;
@@ -36,7 +39,7 @@ export default function IntegerAdd({ config }: { config: IntegerAddConfig }) {
             className="gm-press inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px]"
             style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
           >
-            <CornerUpRight className="h-4 w-4" /> Jump {Math.abs(b)} {dir}
+            <CornerUpRight className="h-4 w-4" /> {mn ? <>{dir === "left" ? "Зүүн" : "Баруун"} тийш {Math.abs(b)} үсэр</> : <>Jump {Math.abs(b)} {dir}</>}
           </button>
         ) : (
           <button
@@ -45,13 +48,15 @@ export default function IntegerAdd({ config }: { config: IntegerAddConfig }) {
             className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
-            <RotateCcw className="h-3.5 w-3.5" /> Reset
+            <RotateCcw className="h-3.5 w-3.5" /> {mn ? "Дахин эхлэх" : "Reset"}
           </button>
         )}
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Add a <b style={{ color: "var(--fg-1)" }}>positive</b> → jump right; add a <b style={{ color: "var(--fg-1)" }}>negative</b> → jump left.
+        {mn
+          ? <><b style={{ color: "var(--fg-1)" }}>Эерэг</b> тоо нэмэх → баруун тийш үсэрнэ; <b style={{ color: "var(--fg-1)" }}>сөрөг</b> тоо нэмэх → зүүн тийш үсэрнэ.</>
+          : <>Add a <b style={{ color: "var(--fg-1)" }}>positive</b> → jump right; add a <b style={{ color: "var(--fg-1)" }}>negative</b> → jump left.</>}
       </div>
     </div>
   );

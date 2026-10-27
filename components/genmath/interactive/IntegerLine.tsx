@@ -10,6 +10,7 @@ import IntegerLineView from "@/components/genmath/interactive/IntegerLineView";
 
 export default function IntegerLine({ config }: { config: IntegerLineConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { min, max, start, color = "#e8913c" } = config;
   const [v, setV] = useState(Math.max(min, Math.min(max, Math.round(start))));
   const sign = v > 0 ? "positive" : v < 0 ? "negative" : "zero";
@@ -23,7 +24,9 @@ export default function IntegerLine({ config }: { config: IntegerLineConfig }) {
       <div className="mt-2 flex flex-wrap items-center justify-center gap-2.5">
         <span className="serif tabular rounded-lg px-3 py-1" style={{ fontSize: 24, background: "var(--accent-wash)", color: "var(--accent)", border: "1px solid var(--accent-line)" }}>{v}</span>
         <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-          is {sign === "zero" ? <b style={{ color: "var(--fg-1)" }}>zero</b> : <>a <b style={{ color: "var(--fg-1)" }}>{sign}</b> integer</>}
+          {mn
+            ? <>нь {sign === "zero" ? <b style={{ color: "var(--fg-1)" }}>тэг</b> : <><b style={{ color: "var(--fg-1)" }}>{sign === "positive" ? "эерэг" : "сөрөг"}</b> бүхэл тоо</>}</>
+            : <>is {sign === "zero" ? <b style={{ color: "var(--fg-1)" }}>zero</b> : <>a <b style={{ color: "var(--fg-1)" }}>{sign}</b> integer</>}</>}
         </span>
       </div>
 
@@ -39,7 +42,7 @@ export default function IntegerLine({ config }: { config: IntegerLineConfig }) {
           <Minus className="h-5 w-5" />
         </button>
         <div className="text-center" style={{ minWidth: 64 }}>
-          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>move</div>
+          <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "шилжүүл" : "move"}</div>
         </div>
         <button
           type="button"
@@ -54,7 +57,9 @@ export default function IntegerLine({ config }: { config: IntegerLineConfig }) {
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Left of zero is <b style={{ color: "var(--fg-1)" }}>negative</b>; right of zero is <b style={{ color: "var(--fg-1)" }}>positive</b>.
+        {mn
+          ? <>Тэгээс зүүн тийш <b style={{ color: "var(--fg-1)" }}>сөрөг</b>, баруун тийш <b style={{ color: "var(--fg-1)" }}>эерэг</b> тоонууд.</>
+          : <>Left of zero is <b style={{ color: "var(--fg-1)" }}>negative</b>; right of zero is <b style={{ color: "var(--fg-1)" }}>positive</b>.</>}
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import { type FactorFinderConfig } from "@/lib/genmath-interactive";
 // already found, so you can stop. A factor rainbow arcs each pair together.
 export default function FactorFinder({ config }: { config: FactorFinderConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { n, color = "#e8913c" } = config;
   const M = Math.floor(Math.sqrt(n)); // stop testing once d exceeds √n
   const [checked, setChecked] = useState(0);
@@ -67,7 +68,7 @@ export default function FactorFinder({ config }: { config: FactorFinderConfig })
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       {/* Test track: candidate divisors 1..M */}
-      <div className="text-center text-[13px]" style={{ color: "var(--fg-2)" }}>Test each number: does it divide <b className="serif tabular" style={{ color: "var(--fg-1)" }}>{n}</b> evenly?</div>
+      <div className="text-center text-[13px]" style={{ color: "var(--fg-2)" }}>{mn ? <>Тоо бүрийг шалга: <b className="serif tabular" style={{ color: "var(--fg-1)" }}>{n}</b> тоог үлдэгдэлгүй хуваах уу?</> : <>Test each number: does it divide <b className="serif tabular" style={{ color: "var(--fg-1)" }}>{n}</b> evenly?</>}</div>
       <div className="mt-3 flex flex-wrap justify-center gap-2">
         {Array.from({ length: M }).map((_, idx) => {
           const d = idx + 1;
@@ -90,7 +91,7 @@ export default function FactorFinder({ config }: { config: FactorFinderConfig })
             <div key={p.d} className="flex items-center justify-center gap-1.5 text-[14px]" style={{ color: "var(--fg-1)" }}>
               <Check className="h-4 w-4" style={{ color }} />
               <b className="serif tabular">{p.d} × {p.partner} = {n}</b>
-              <span style={{ color: "var(--fg-3)" }}>→ factors {p.d} and {p.partner}</span>
+              <span style={{ color: "var(--fg-3)" }}>{mn ? <>→ хуваагчид: {p.d} ба {p.partner}</> : <>→ factors {p.d} and {p.partner}</>}</span>
             </div>
           ))}
         </div>
@@ -99,8 +100,8 @@ export default function FactorFinder({ config }: { config: FactorFinderConfig })
       {/* Ordered factor list building up */}
       {factors.length > 0 && (
         <div className="mt-3 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-          Factors in order: <b className="serif tabular" style={{ color }}>{factors.join(", ")}</b>
-          {done && <span style={{ color: "var(--fg-3)" }}> &nbsp;({factors.length} in all)</span>}
+          {mn ? "Хуваагчид дарааллаар:" : "Factors in order:"} <b className="serif tabular" style={{ color }}>{factors.join(", ")}</b>
+          {done && <span style={{ color: "var(--fg-3)" }}> &nbsp;{mn ? <>(нийт {factors.length})</> : <>({factors.length} in all)</>}</span>}
         </div>
       )}
 
@@ -122,7 +123,7 @@ export default function FactorFinder({ config }: { config: FactorFinderConfig })
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >
-          Test the next number
+          {mn ? "Дараагийн тоог шалгах" : "Test the next number"}
         </button>
       </div>
 
@@ -131,14 +132,18 @@ export default function FactorFinder({ config }: { config: FactorFinderConfig })
         <div className="mt-4">
           <div className="flex justify-center">{rainbow()}</div>
           <div className="mt-2 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-            Each arc joins a <b style={{ color: "var(--fg-1)" }}>factor pair</b> that multiplies to {n}. Once the tested number passes <b className="serif tabular" style={{ color: "var(--fg-1)" }}>√{n} ≈ {Math.sqrt(n).toFixed(1)}</b>, every new factor is just the partner of one you already have — so you can stop.
+            {mn ? (
+              <>Нум бүр үржвэр нь {n} болох <b style={{ color: "var(--fg-1)" }}>хуваагчийн хосыг</b> холбоно. Шалгаж буй тоо <b className="serif tabular" style={{ color: "var(--fg-1)" }}>√{n} ≈ {Math.sqrt(n).toFixed(1)}</b> гэсэн хязгаарыг давмагц шинэ хуваагч бүр нь аль хэдийн олсон хуваагчийн хос л байна — тиймээс зогсож болно.</>
+            ) : (
+              <>Each arc joins a <b style={{ color: "var(--fg-1)" }}>factor pair</b> that multiplies to {n}. Once the tested number passes <b className="serif tabular" style={{ color: "var(--fg-1)" }}>√{n} ≈ {Math.sqrt(n).toFixed(1)}</b>, every new factor is just the partner of one you already have — so you can stop.</>
+            )}
           </div>
         </div>
       )}
       {!done && (
         <div className="mt-3 flex items-center justify-center gap-1.5 text-[13px]" style={{ color: "var(--fg-2)" }}>
           <X className="h-3.5 w-3.5" style={{ color: "var(--fg-3)" }} />
-          Numbers that leave a remainder are crossed out — they are not factors.
+          {mn ? "Үлдэгдэл үлдээдэг тоонууд зурагдсан — тэдгээр нь хуваагч биш." : "Numbers that leave a remainder are crossed out — they are not factors."}
         </div>
       )}
     </div>

@@ -17,6 +17,7 @@ const H = 300;
 
 export default function ApothemPolygon({ config }: { config: ApothemPolygonConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { side = 6, color = GEO_ACCENT } = config;
   const [n, setN] = useState(config.start ?? 6);
 
@@ -64,12 +65,12 @@ export default function ApothemPolygon({ config }: { config: ApothemPolygonConfi
       </svg>
 
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-        <div className="serif tabular">Area = ½ · a · P = ½ · <span style={{ color: GEO_BLUE }}>{fmt(apothemUnits)}</span> · <span>{perimeter}</span> = <b style={{ color }}>{fmt(area)}</b></div>
-        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{n} triangles, each base = side {side}, height = apothem {fmt(apothemUnits)}. Perimeter P = {n} × {side} = {perimeter}.</div>
+        <div className="serif tabular">{mn ? "Талбай" : "Area"} = ½ · a · P = ½ · <span style={{ color: GEO_BLUE }}>{fmt(apothemUnits)}</span> · <span>{perimeter}</span> = <b style={{ color }}>{fmt(area)}</b></div>
+        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? <>{n} гурвалжин, тус бүрийн суурь = тал {side}, өндөр = апофем {fmt(apothemUnits)}. Периметр P = {n} × {side} = {perimeter}.</> : <>{n} triangles, each base = side {side}, height = apothem {fmt(apothemUnits)}. Perimeter P = {n} × {side} = {perimeter}.</>}</div>
       </div>
 
       <div className="mt-4 flex items-center justify-center gap-3">
-        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>sides</span>
+        <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "талын тоо" : "sides"}</span>
         <button type="button" onClick={() => setN((v) => Math.max(3, v - 1))} disabled={n <= 3} aria-label={chrome("Fewer", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 28, fontSize: 17, color: "var(--fg)" }}>{n}</div>
         <button type="button" onClick={() => setN((v) => Math.min(10, v + 1))} disabled={n >= 10} aria-label={chrome("More", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>

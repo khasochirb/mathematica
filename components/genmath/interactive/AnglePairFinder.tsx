@@ -44,6 +44,7 @@ function useAngleDrag(cx: number, cy: number, onDeg: (d: number) => void) {
 // ---------------------------------------------------------------------------
 function Crossing({ initial, color }: { initial: number; color: string }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const H = 230;
   const cx = W / 2;
   const cy = 105;
@@ -134,7 +135,7 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
                 : { background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }
             }
           >
-            {v === "vertical" ? "Vertical pairs" : "Linear pairs"}
+            {mn ? (v === "vertical" ? "Босоо өнцгүүд" : "Хамар өнцгүүд") : v === "vertical" ? "Vertical pairs" : "Linear pairs"}
           </button>
         ))}
       </div>
@@ -146,7 +147,11 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
             <span className="mx-2" style={{ color: "var(--fg-3)" }}>·</span>
             <span className="serif tabular" style={{ color: GEO_BLUE }}>∠2 = ∠4 = {measures[2]}°</span>
             <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-              Vertical angles are <b style={{ color: "var(--fg-1)" }}>congruent</b> — always.
+              {mn ? (
+                <>Босоо өнцгүүд үргэлж <b style={{ color: "var(--fg-1)" }}>тэнцүү</b>.</>
+              ) : (
+                <>Vertical angles are <b style={{ color: "var(--fg-1)" }}>congruent</b> — always.</>
+              )}
             </div>
           </>
         ) : (
@@ -155,7 +160,11 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
               ∠1 + ∠2 = {measures[1]}° + {measures[2]}° = <b style={{ color: "var(--accent)" }}>180°</b>
             </span>
             <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-              A linear pair is <b style={{ color: "var(--fg-1)" }}>supplementary</b> — always.
+              {mn ? (
+                <>Хамар өнцгүүд үргэлж <b style={{ color: "var(--fg-1)" }}>дүүргэгч</b>: нийлбэр нь 180°.</>
+              ) : (
+                <>A linear pair is <b style={{ color: "var(--fg-1)" }}>supplementary</b> — always.</>
+              )}
             </div>
           </>
         )}
@@ -173,7 +182,7 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
           <Minus className="h-4 w-4" />
         </button>
         <div className="text-center text-[12px]" style={{ color: "var(--fg-3)", minWidth: 90 }}>
-          rotate the line
+          {mn ? "шулууныг эргүүл" : "rotate the line"}
         </div>
         <button
           type="button"
@@ -193,6 +202,7 @@ function Crossing({ initial, color }: { initial: number; color: string }) {
 // ---------------------------------------------------------------------------
 function Corner({ initial, color }: { initial: number; color: string }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const H = 200;
   const cx = 70;
   const cy = H - 40;
@@ -264,7 +274,11 @@ function Corner({ initial, color }: { initial: number; color: string }) {
           <b style={{ color: "var(--accent)" }}>90°</b>
         </span>
         <div className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-          The two parts of a right angle are <b style={{ color: "var(--fg-1)" }}>complementary</b>.
+          {mn ? (
+            <>Тэгш өнцгийн хоёр хэсэг бол <b style={{ color: "var(--fg-1)" }}>гүйцээлт</b> хоёр өнцөг.</>
+          ) : (
+            <>The two parts of a right angle are <b style={{ color: "var(--fg-1)" }}>complementary</b>.</>
+          )}
         </div>
       </div>
 
@@ -280,7 +294,7 @@ function Corner({ initial, color }: { initial: number; color: string }) {
           <Minus className="h-4 w-4" />
         </button>
         <div className="text-center text-[12px]" style={{ color: "var(--fg-3)", minWidth: 90 }}>
-          move the ray
+          {mn ? "цацрагийг хөдөлгө" : "move the ray"}
         </div>
         <button
           type="button"

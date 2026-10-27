@@ -34,7 +34,7 @@ export default function PercentChange({ config }: { config: PercentChangeConfig 
         <div className="text-center" style={{ minWidth: 96 }}>
           <div className="serif tabular" style={{ fontSize: 20, color: "var(--fg)" }}>{p}%</div>
           <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
-            {mode === "discount" ? "discount" : "tax / tip"}
+            {lang === "mn" ? (mode === "discount" ? "хямдрал" : "татвар / цайны мөнгө") : mode === "discount" ? "discount" : "tax / tip"}
           </div>
         </div>
         <button

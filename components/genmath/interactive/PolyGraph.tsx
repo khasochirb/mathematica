@@ -28,6 +28,7 @@ function fmt(n: number): string {
 
 export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode, n: n0 = 3, negative: neg0 = false, zeros: z0 = [-2, 1, 3], m: m0 = 1 } = config;
 
   const [n, setN] = useState(n0);
@@ -78,9 +79,9 @@ export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-2">
-        <button type="button" onClick={() => set((v) => Math.max(lo, v - 1))} disabled={val <= lo} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.max(lo, v - 1))} disabled={val <= lo} aria-label={mn ? `${label} багасгах` : `Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 36, fontSize: 16, color }}>{fmt(val)}</div>
-        <button type="button" onClick={() => set((v) => Math.min(hi, v + 1))} disabled={val >= hi} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.min(hi, v + 1))} disabled={val >= hi} aria-label={mn ? `${label} нэмэх` : `Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
@@ -90,7 +91,9 @@ export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
   const rightUp = mode === "endBehavior" ? !neg : false;
 
   // multiplicity verdicts
-  const multWord = m === 1 ? "crosses" : m === 2 ? "bounces" : "flattens through";
+  const multWord = mn
+    ? (m === 1 ? "огтолно" : m === 2 ? "шүргээд буцна" : "хавтгайрч огтолно")
+    : m === 1 ? "crosses" : m === 2 ? "bounces" : "flattens through";
 
   const eqnText =
     mode === "endBehavior" ? `y = ${neg ? "−" : ""}x${n === 1 ? "" : `^${n}`}` :
@@ -155,30 +158,40 @@ export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
         {mode === "endBehavior" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Degree {n} ({even ? "even" : "odd"}), leading coefficient {neg ? "negative" : "positive"}: arms {leftUp ? "↖" : "↙"} {rightUp ? "↗" : "↘"}
+              {mn
+                ? <>Зэрэг {n} ({even ? "тэгш" : "сондгой"}), тэргүүлэх коэффициент {neg ? "сөрөг" : "эерэг"}: үзүүрүүд {leftUp ? "↖" : "↙"} {rightUp ? "↗" : "↘"}</>
+                : <>Degree {n} ({even ? "even" : "odd"}), leading coefficient {neg ? "negative" : "positive"}: arms {leftUp ? "↖" : "↙"} {rightUp ? "↗" : "↘"}</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {even ? "even degree: both arms point the SAME way" : "odd degree: the arms point OPPOSITE ways"} · negative flips both
+              {mn
+                ? <>{even ? "тэгш зэрэг: хоёр үзүүр ИЖИЛ чиглэлтэй" : "сондгой зэрэг: үзүүрүүд ЭСРЭГ чиглэлтэй"} · сөрөг тэмдэг хоёуланг нь эргүүлнэ</>
+                : <>{even ? "even degree: both arms point the SAME way" : "odd degree: the arms point OPPOSITE ways"} · negative flips both</>}
             </div>
           </>
         )}
         {mode === "zeros" && (
           <>
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              Crossings at <b style={{ color: GEO_BLUE }}>x = {z0[0]}, {z0[1]}, {fmt(z3)}</b> — each factor&apos;s zero
+              {mn
+                ? <>x тэнхлэгийг огтлох цэгүүд: <b style={{ color: GEO_BLUE }}>x = {z0[0]}, {z0[1]}, {fmt(z3)}</b> — үржигдэхүүн бүрийн язгуур</>
+                : <>Crossings at <b style={{ color: GEO_BLUE }}>x = {z0[0]}, {z0[1]}, {fmt(z3)}</b> — each factor&apos;s zero</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              factored form hands you the x-intercepts; degree 3 → at most 3 of them
+              {mn
+                ? "үржигдэхүүнд задалсан хэлбэр x тэнхлэгийн огтлолцлыг шууд өгнө; зэрэг 3 → хамгийн ихдээ 3 огтлолцол"
+                : "factored form hands you the x-intercepts; degree 3 → at most 3 of them"}
             </div>
           </>
         )}
         {mode === "multiplicity" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              At x = 1 (multiplicity {m}) the curve <b style={{ color: m === 1 ? GEO_BLUE : RED }}>{multWord}</b>
+              {mn ? <>x = 1 дээр (давхрын тоо {m}) муруй</> : <>At x = 1 (multiplicity {m}) the curve</>} <b style={{ color: m === 1 ? GEO_BLUE : RED }}>{multWord}</b>
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {m === 1 ? "multiplicity 1: a clean pass through the axis" : m === 2 ? "even multiplicity: touch and turn back — a bounce" : "odd multiplicity ≥ 3: squeezes flat, then continues through"}
+              {mn
+                ? (m === 1 ? "давхрын тоо 1: тэнхлэгийг шууд огтолж гарна" : m === 2 ? "тэгш давхрын тоо: шүргээд буцна" : "сондгой давхрын тоо ≥ 3: хавтгайраад цааш огтолж гарна")
+                : m === 1 ? "multiplicity 1: a clean pass through the axis" : m === 2 ? "even multiplicity: touch and turn back — a bounce" : "odd multiplicity ≥ 3: squeezes flat, then continues through"}
             </div>
           </>
         )}
@@ -188,22 +201,22 @@ export default function PolyGraph({ config }: { config: PolyGraphConfig }) {
       <div className="mt-4 flex items-center justify-center gap-6 flex-wrap">
         {mode === "endBehavior" && (
           <>
-            {stepper("degree n", n, setN, 2, 5, GEO_ACCENT)}
+            {stepper(mn ? "зэрэг n" : "degree n", n, setN, 2, 5, GEO_ACCENT)}
             <div className="text-center">
-              <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>leading sign</div>
+              <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "тэргүүлэх тэмдэг" : "leading sign"}</div>
               <button type="button" onClick={() => setNeg((v) => !v)} aria-label={chrome("Flip leading sign", lang)} className="gm-press mt-1 rounded-full px-5 py-2 text-[14px] serif" style={{ background: neg ? "rgba(200,60,60,0.1)" : "var(--accent-wash)", border: `1px solid ${neg ? RED : "var(--accent-line)"}`, color: neg ? RED : "var(--accent)" }}>
-                {neg ? "negative" : "positive"}
+                {mn ? (neg ? "сөрөг" : "эерэг") : neg ? "negative" : "positive"}
               </button>
             </div>
           </>
         )}
-        {mode === "zeros" && stepper("third zero", z3, setZ3, 2, 4)}
-        {mode === "multiplicity" && stepper("multiplicity m", m, setM, 1, 3, RED)}
+        {mode === "zeros" && stepper(mn ? "гурав дахь язгуур" : "third zero", z3, setZ3, 2, 4)}
+        {mode === "multiplicity" && stepper(mn ? "давхрын тоо m" : "multiplicity m", m, setM, 1, 3, RED)}
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        {mode === "endBehavior" && "step the degree and flip the sign — watch the four arm-cases"}
-        {mode === "zeros" && "slide the third zero — the crossing (and the curve) follows"}
-        {mode === "multiplicity" && "step m through 1, 2, 3 — cross, bounce, flatten-through"}
+        {mode === "endBehavior" && (mn ? "зэргийг өөрчилж, тэмдгийг эргүүлээд үзүүрийн дөрвөн тохиолдлыг хараарай" : "step the degree and flip the sign — watch the four arm-cases")}
+        {mode === "zeros" && (mn ? "гурав дахь язгуурыг шилжүүл — огтлолцол (ба муруй) дагаж хөдөлнө" : "slide the third zero — the crossing (and the curve) follows")}
+        {mode === "multiplicity" && (mn ? "m = 1, 2, 3 гэж алхуул — огтлох, шүргэх, хавтгайрч огтлох" : "step m through 1, 2, 3 — cross, bounce, flatten-through")}
       </div>
     </div>
   );

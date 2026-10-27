@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 import { Equal } from "lucide-react";
+import { useLang } from "@/lib/lang-context";
 import { type DecimalColumnConfig } from "@/lib/genmath-interactive";
 import DecimalColumnView from "@/components/genmath/interactive/DecimalColumnView";
 
 export default function DecimalColumnSum({ config }: { config: DecimalColumnConfig }) {
   const { a, b, op, color = "#e8913c" } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [shown, setShown] = useState(false);
 
   return (
@@ -23,7 +26,7 @@ export default function DecimalColumnSum({ config }: { config: DecimalColumnConf
             className="gm-press inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px]"
             style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
           >
-            <Equal className="h-4 w-4" /> {op === "add" ? "Add it up" : "Subtract"}
+            <Equal className="h-4 w-4" /> {op === "add" ? (mn ? "Нэмэх" : "Add it up") : mn ? "Хасах" : "Subtract"}
           </button>
         ) : (
           <button
@@ -32,14 +35,23 @@ export default function DecimalColumnSum({ config }: { config: DecimalColumnConf
             className="gm-press rounded-full px-4 py-2 text-[13px]"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
           >
-            Reset
+            {mn ? "Дахин эхлэх" : "Reset"}
           </button>
         )}
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Decimal points in a line, missing places filled with{" "}
-        <span style={{ color: "var(--fg-3)" }}>faded zeros</span> — then work column by column.
+        {mn ? (
+          <>
+            Аравтын цэгүүд нэг шугам дээр, дутуу орныг{" "}
+            <span style={{ color: "var(--fg-3)" }}>бүдэг тэгээр</span> дүүргэнэ — дараа нь багана баганаар бодно.
+          </>
+        ) : (
+          <>
+            Decimal points in a line, missing places filled with{" "}
+            <span style={{ color: "var(--fg-3)" }}>faded zeros</span> — then work column by column.
+          </>
+        )}
       </div>
     </div>
   );

@@ -47,6 +47,7 @@ function TokenCluster({
 
 export default function QuantityScaler({ config }: { config: ScalerConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const [n, setN] = useState(1);
   const [a, b] = scaleRatio(config.a, config.b, n);
   const [sa, sb] = simplifyRatio(config.a, config.b);
@@ -105,7 +106,7 @@ export default function QuantityScaler({ config }: { config: ScalerConfig }) {
             {n}
           </div>
           <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
-            {n === 1 ? "batch" : "batches"}
+            {mn ? "багц" : n === 1 ? "batch" : "batches"}
           </div>
         </div>
         <button
@@ -126,7 +127,7 @@ export default function QuantityScaler({ config }: { config: ScalerConfig }) {
           {formatRatio(a, b)}
         </span>
         <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-          always the same mix
+          {mn ? "холимог үргэлж ижил" : "always the same mix"}
         </span>
         <span
           className="rounded-full px-2.5 py-0.5 text-[12px]"
@@ -140,7 +141,7 @@ export default function QuantityScaler({ config }: { config: ScalerConfig }) {
       <div className="mt-4 rounded-xl p-3" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="flex items-center justify-between">
           <span className="text-[12px]" style={{ color: "var(--fg-2)" }}>
-            Taste
+            {mn ? "Амт" : "Taste"}
           </span>
           <span className="inline-flex items-center gap-1 text-[12px]" style={{ color: "#2f9e6e" }}>
             <Check className="h-3.5 w-3.5" /> {config.goodLabel}

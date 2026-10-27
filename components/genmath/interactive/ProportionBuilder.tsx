@@ -45,6 +45,7 @@ function TokenChips({
 
 export default function ProportionBuilder({ config }: { config: ProportionBuilderConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { aLabel, bLabel, a, b, knownSide, knownValue, tokenA, tokenB } = config;
 
   const base = knownSide === "a" ? a : b;
@@ -78,7 +79,7 @@ export default function ProportionBuilder({ config }: { config: ProportionBuilde
         className="mb-4 rounded-xl px-3 py-2.5 text-center text-[13px]"
         style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
       >
-        Base ratio:{" "}
+        {mn ? "Үндсэн харьцаа:" : "Base ratio:"}{" "}
         <span className="serif tabular" style={{ fontSize: 15, color: "var(--fg)" }}>
           {a} {aLabel} : {b} {bLabel}
         </span>
@@ -177,7 +178,7 @@ export default function ProportionBuilder({ config }: { config: ProportionBuilde
             ×{k}
           </div>
           <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
-            scale
+            {mn ? "масштаб" : "scale"}
           </div>
         </div>
 
@@ -210,20 +211,21 @@ export default function ProportionBuilder({ config }: { config: ProportionBuilde
         {isExact ? (
           <span className="inline-flex items-center justify-center gap-2 font-medium">
             <Check className="h-4 w-4" />
-            {knownLabel} = {knownValue} — so you need{" "}
+            {knownLabel} = {knownValue} — {mn ? "тэгэхээр" : "so you need"}{" "}
             <strong className="serif tabular" style={{ fontSize: 16, color: "#2f9e6e" }}>
               {answer} {missingToken.plural}
             </strong>
+            {mn ? " хэрэгтэй" : ""}
           </span>
         ) : (
           <>
             <span style={{ color: "var(--fg)" }}>
-              {knownLabel} is now{" "}
+              {knownLabel} {mn ? "одоо" : "is now"}{" "}
               <span className="serif tabular" style={{ fontSize: 15, color: "var(--fg)" }}>
                 {knownScaled}
               </span>
             </span>
-            {" — "}aim for{" "}
+            {" — "}{mn ? "зорилго:" : "aim for"}{" "}
             <span className="serif tabular" style={{ fontSize: 15, color: "var(--accent)" }}>
               {knownValue}
             </span>

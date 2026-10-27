@@ -86,6 +86,7 @@ function RatioColumn({
 
 export default function RatioTable({ config }: { config: RatioTableConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const [visibleCols, setVisibleCols] = useState(1);
   const { a, b, tokenA, tokenB, maxCols } = config;
   const [sa, sb] = simplifyRatio(a, b);
@@ -219,7 +220,7 @@ export default function RatioTable({ config }: { config: RatioTableConfig }) {
           }}
         >
           <Plus className="h-4 w-4" />
-          add column
+          {mn ? "багана нэмэх" : "add column"}
         </button>
       </div>
 
@@ -229,7 +230,7 @@ export default function RatioTable({ config }: { config: RatioTableConfig }) {
         style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}
       >
         <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-          Every column shows the same ratio
+          {mn ? "Багана бүр ижил харьцааг харуулна" : "Every column shows the same ratio"}
         </span>
         <span
           className="serif tabular"
@@ -246,7 +247,7 @@ export default function RatioTable({ config }: { config: RatioTableConfig }) {
               border: "1px solid var(--accent-line)",
             }}
           >
-            = {formatRatio(sa, sb)} simplified
+            {mn ? <>= {formatRatio(sa, sb)}, хамгийн энгийн хэлбэр</> : <>= {formatRatio(sa, sb)} simplified</>}
           </span>
         )}
       </div>

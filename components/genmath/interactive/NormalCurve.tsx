@@ -24,7 +24,9 @@ function fmt(n: number): string {
 
 export default function NormalCurve({ config }: { config: NormalCurveConfig }) {
   const { lang } = useLang();
-  const { mode, mu, sigma, x0, step = sigma / 2, xLabel = "value" } = config;
+  const mn = lang === "mn";
+  const { mode, mu, sigma, x0, step = sigma / 2 } = config;
+  const xLabel = config.xLabel ?? (mn ? "утга" : "value");
   const [band, setBand] = useState<number>(mode === "empirical" ? 1 : 0);
   const [x, setX] = useState(x0 ?? mu + sigma);
 
@@ -122,19 +124,30 @@ export default function NormalCurve({ config }: { config: NormalCurveConfig }) {
         {mode === "empirical" ? (
           band > 0 ? (
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
+              {mn ? (
+                <>
+                  дунджаас {band}σ дотор ({fmt(mu - band * sigma)} – {fmt(mu + band * sigma)}): бүх утгын ойролцоогоор{" "}
+                  <b style={{ color: "var(--accent)" }}>{BAND_PCT[band]}</b>
+                </>
+              ) : (
+                <>
               within {band}σ of the mean: {fmt(mu - band * sigma)} to {fmt(mu + band * sigma)} — about{" "}
               <b style={{ color: "var(--accent)" }}>{BAND_PCT[band]}</b> of all values
+                </>
+              )}
             </div>
           ) : (
             <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-              μ = {fmt(mu)}, σ = {fmt(sigma)} — pick a band
+              μ = {fmt(mu)}, σ = {fmt(sigma)} — {mn ? "завсар сонго" : "pick a band"}
             </div>
           )
         ) : (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
             z = ({fmt(x)} − {fmt(mu)}) / {fmt(sigma)} = <b style={{ color: "var(--accent)" }}>{fmt(Math.round(z * 100) / 100)}</b>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {z === 0 ? "dead on the mean" : `${fmt(Math.abs(Math.round(z * 100) / 100))} σ ${z > 0 ? "above" : "below"} the mean`}
+              {mn
+                ? z === 0 ? "яг дундаж дээр" : `дунджаас ${fmt(Math.abs(Math.round(z * 100) / 100))} σ ${z > 0 ? "дээш" : "доош"}`
+                : z === 0 ? "dead on the mean" : `${fmt(Math.abs(Math.round(z * 100) / 100))} σ ${z > 0 ? "above" : "below"} the mean`}
             </div>
           </div>
         )}

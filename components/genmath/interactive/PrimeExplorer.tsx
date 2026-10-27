@@ -39,7 +39,7 @@ export default function PrimeExplorer({ config }: { config: PrimeExplorerConfig 
                 key={n}
                 type="button"
                 onClick={() => setSel(n)}
-                aria-label={`Inspect ${n}`}
+                aria-label={mn ? `${n} тоог харах` : `Inspect ${n}`}
                 className="gm-press grid place-items-center serif tabular"
                 style={{
                   width: 34,
@@ -62,11 +62,11 @@ export default function PrimeExplorer({ config }: { config: PrimeExplorerConfig 
       <div className="mt-3 flex items-center justify-center gap-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
         <span className="inline-flex items-center gap-1.5">
           <span style={{ width: 12, height: 12, borderRadius: 3, background: color, display: "inline-block" }} />
-          prime
+          {mn ? "анхны тоо" : "prime"}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <span style={{ width: 12, height: 12, borderRadius: 3, background: "var(--bg-2)", border: "1px solid var(--line)", display: "inline-block" }} />
-          composite
+          {mn ? "зохиомол тоо" : "composite"}
         </span>
       </div>
 
@@ -79,6 +79,12 @@ export default function PrimeExplorer({ config }: { config: PrimeExplorerConfig 
             <>
               <b className="serif tabular" style={{ color: "var(--fg)" }}>{sel}</b>
               {mnGenitiveEnding(sel) ? `-${mnGenitiveEnding(sel)}` : ""} хуваагчид:
+            </>
+          ) : mn ? (
+            // Unconfirmed ending: «тооны» is a fixed word, so no case ending
+            // hangs off the numeral.
+            <>
+              <b className="serif tabular" style={{ color: "var(--fg)" }}>{sel}</b> тооны хуваагчид:
             </>
           ) : (
             <>Factors of <b className="serif tabular" style={{ color: "var(--fg)" }}>{sel}</b>:</>
@@ -106,20 +112,40 @@ export default function PrimeExplorer({ config }: { config: PrimeExplorerConfig 
         </div>
         <div className="mt-3 text-[14px]" style={{ color: "var(--fg-1)" }}>
           {isPrime && (
-            <span>
-              <b style={{ color: "var(--accent)" }}>Prime</b> — exactly <b className="tabular">2</b> factors: 1 and itself.
-            </span>
+            mn ? (
+              <span>
+                <b style={{ color: "var(--accent)" }}>Анхны тоо</b> — яг <b className="tabular">2</b> хуваагчтай: 1 ба өөрөө.
+              </span>
+            ) : (
+              <span>
+                <b style={{ color: "var(--accent)" }}>Prime</b> — exactly <b className="tabular">2</b> factors: 1 and itself.
+              </span>
+            )
           )}
           {isComposite && (
-            <span>
-              <b style={{ color: "var(--fg)" }}>Composite</b> — <b className="tabular">{factors.length}</b> factors, more than 2.
-            </span>
+            mn ? (
+              <span>
+                <b style={{ color: "var(--fg)" }}>Зохиомол тоо</b> — хуваагчийн тоо <b className="tabular">{factors.length}</b>, хоёроос олон.
+              </span>
+            ) : (
+              <span>
+                <b style={{ color: "var(--fg)" }}>Composite</b> — <b className="tabular">{factors.length}</b> factors, more than 2.
+              </span>
+            )
           )}
         </div>
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Tap any number. <b style={{ color: "var(--fg-1)" }}>Exactly two factors</b> means prime; more than two means composite.
+        {mn ? (
+          <>
+            Дурын тоон дээр дар. <b style={{ color: "var(--fg-1)" }}>Яг хоёр хуваагчтай</b> бол анхны тоо; хоёроос олон бол зохиомол тоо.
+          </>
+        ) : (
+          <>
+            Tap any number. <b style={{ color: "var(--fg-1)" }}>Exactly two factors</b> means prime; more than two means composite.
+          </>
+        )}
       </div>
     </div>
   );

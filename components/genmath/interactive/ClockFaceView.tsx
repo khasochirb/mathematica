@@ -8,6 +8,7 @@
 //
 // The hour hand moves WITH the minutes (at 7:50 it sits nearly on 8, not on
 // 7) because a clock that lies about that teaches the wrong reading habit.
+import { useLang } from "@/lib/lang-context";
 import type { FigureSpec } from "@/lib/genmath-interactive";
 
 const R = 46;
@@ -20,7 +21,7 @@ function pol(angleDeg: number, radius: number) {
   return { x: CX + radius * Math.cos(a), y: CY + radius * Math.sin(a) };
 }
 
-function Face({ hour, minute, label }: { hour: number; minute: number; label?: string }) {
+function Face({ hour, minute, label, mn }: { hour: number; minute: number; label?: string; mn: boolean }) {
   const minuteAngle = minute * 6;
   const hourAngle = ((hour % 12) + minute / 60) * 30;
   const mh = pol(minuteAngle, R * 0.78);
@@ -29,7 +30,7 @@ function Face({ hour, minute, label }: { hour: number; minute: number; label?: s
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <svg width={108} height={108} viewBox="0 0 108 108" role="img" aria-label={`Clock showing ${stamp}`}>
+      <svg width={108} height={108} viewBox="0 0 108 108" role="img" aria-label={mn ? `Цаг: ${stamp}` : `Clock showing ${stamp}`}>
         <circle cx={CX} cy={CY} r={R} fill="var(--bg-1)" stroke="var(--fg-3)" strokeWidth={2} />
         {Array.from({ length: 12 }).map((_, i) => {
           const outer = pol(i * 30, R - 4);
@@ -57,15 +58,17 @@ function Face({ hour, minute, label }: { hour: number; minute: number; label?: s
 }
 
 export default function ClockFaceView({ spec }: { spec: NonNullable<FigureSpec["clockFace"]> }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   return (
     <div className="gm-fade flex items-center justify-center gap-5 rounded-xl p-3" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-      <Face hour={spec.hour} minute={spec.minute} label={spec.label} />
+      <Face hour={spec.hour} minute={spec.minute} label={spec.label} mn={mn} />
       {spec.until && (
         <>
           <span aria-hidden className="serif" style={{ fontSize: 22, color: "var(--fg-3)" }}>
             →
           </span>
-          <Face hour={spec.until.hour} minute={spec.until.minute} label={spec.untilLabel} />
+          <Face hour={spec.until.hour} minute={spec.until.minute} label={spec.untilLabel} mn={mn} />
         </>
       )}
     </div>

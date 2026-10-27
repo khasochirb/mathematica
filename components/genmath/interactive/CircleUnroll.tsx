@@ -18,6 +18,7 @@ const H = 190;
 
 export default function CircleUnroll({ config }: { config: CircleUnrollConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { color = GEO_ACCENT } = config;
 
   const [go, setGo] = useState(false);
@@ -79,10 +80,14 @@ export default function CircleUnroll({ config }: { config: CircleUnrollConfig })
       {/* live counter */}
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="serif tabular text-[16px]" style={{ color: "var(--fg)" }}>
-          unrolled so far: <b style={{ color }}>{piSoFar.toFixed(2)} × d</b>
+          {mn ? "дэлгэсэн урт: " : "unrolled so far: "}<b style={{ color }}>{piSoFar.toFixed(2)} × d</b>
         </div>
         <div className="mt-1 text-[12px]" style={{ color: "var(--fg-2)" }}>
-          {pc > 0.97
+          {mn
+            ? pc > 0.97
+              ? <>Нэг бүтэн эргэлт яг <b style={{ color: "var(--fg-1)" }}>π ≈ 3.14159…</b> диаметртэй тэнцүү уртыг дэлгэнэ. π гэдэг <i>чухам</i> энэ: C = πd.</>
+              : <>Дугуй тойргийн уртаа газар дэлгэнэ — диаметр хэд багтаж байгааг тоол.</>
+            : pc > 0.97
             ? <>One full turn unrolls exactly <b style={{ color: "var(--fg-1)" }}>π ≈ 3.14159…</b> diameters. That's what π <i>is</i>: C = πd.</>
             : <>The wheel lays its circumference on the ground — count the diameters as they fit.</>}
         </div>
@@ -90,7 +95,7 @@ export default function CircleUnroll({ config }: { config: CircleUnrollConfig })
 
       <div className="mt-3 flex justify-center">
         <button type="button" onClick={replay} aria-label={chrome("Roll again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-          <RotateCcw className="h-3.5 w-3.5" /> Roll it again
+          <RotateCcw className="h-3.5 w-3.5" /> {mn ? "Дахин өнхрүүлэх" : "Roll it again"}
         </button>
       </div>
     </div>

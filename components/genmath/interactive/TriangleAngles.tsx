@@ -40,6 +40,7 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export default function TriangleAngles({ config }: { config: TriangleAnglesConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { beta: b0 = 55, gamma: g0 = 65, exterior = false, color = GEO_ACCENT } = config;
   const [beta, setBeta] = useState(b0);
   const [gamma, setGamma] = useState(g0);
@@ -166,7 +167,7 @@ export default function TriangleAngles({ config }: { config: TriangleAnglesConfi
             })}
             {/* the payoff, once the wedges have landed */}
             <text x={bx} y={by + 22} fontSize="13" textAnchor="middle" fill="var(--fg)" fontWeight={700} opacity={Math.max(0, (tc - 0.75) / 0.25)}>
-              a straight line — {alpha}° + {beta}° + {gamma}° = 180°
+              {mn ? "шулуун шугам" : "a straight line"} — {alpha}° + {beta}° + {gamma}° = 180°
             </text>
           </>
         )}
@@ -180,8 +181,8 @@ export default function TriangleAngles({ config }: { config: TriangleAnglesConfi
       <div className="mt-2 rounded-xl p-3 text-center text-[15px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
         {exterior ? (
           <>
-            Exterior angle <span className="serif tabular" style={{ color: GEO_BLUE }}>{exteriorAngle(alpha, beta)}°</span> ={" "}
-            <span className="serif tabular" style={{ color }}>{alpha}° + {beta}°</span> — the two remote interior angles
+            {mn ? "Гадаад өнцөг" : "Exterior angle"} <span className="serif tabular" style={{ color: GEO_BLUE }}>{exteriorAngle(alpha, beta)}°</span> ={" "}
+            <span className="serif tabular" style={{ color }}>{alpha}° + {beta}°</span> — {mn ? "хоёр хамар бус дотоод өнцөг" : "the two remote interior angles"}
           </>
         ) : (
           <span className="serif tabular">
@@ -204,15 +205,19 @@ export default function TriangleAngles({ config }: { config: TriangleAnglesConfi
         ))}
         {!exterior && (
           <button type="button" onClick={replay} aria-label={chrome("Replay the tear", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-3 py-2 text-[12px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-            <RotateCcw className="h-3.5 w-3.5" /> Replay
+            <RotateCcw className="h-3.5 w-3.5" /> {mn ? "Дахин тоглуулах" : "Replay"}
           </button>
         )}
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
         {exterior
-          ? <>An <b style={{ color: "var(--fg-1)" }}>exterior angle</b> equals the sum of the two <b style={{ color: "var(--fg-1)" }}>remote interior</b> angles.</>
-          : <>The corners tear off and tile a straight line — reshape the triangle, they <b style={{ color: "var(--fg-1)" }}>always total 180°</b>.</>}
+          ? mn
+            ? <><b style={{ color: "var(--fg-1)" }}>Гадаад өнцөг</b> нь түүнтэй <b style={{ color: "var(--fg-1)" }}>хамар бус</b> хоёр дотоод өнцгийн нийлбэртэй тэнцүү.</>
+            : <>An <b style={{ color: "var(--fg-1)" }}>exterior angle</b> equals the sum of the two <b style={{ color: "var(--fg-1)" }}>remote interior</b> angles.</>
+          : mn
+            ? <>Булангууд тасарч шулуун шугам дээр зэрэгцэн тогтоно — гурвалжны хэлбэрийг өөрчлөөд үз, тэдгээрийн нийлбэр <b style={{ color: "var(--fg-1)" }}>үргэлж 180°</b>.</>
+            : <>The corners tear off and tile a straight line — reshape the triangle, they <b style={{ color: "var(--fg-1)" }}>always total 180°</b>.</>}
       </div>
     </div>
   );

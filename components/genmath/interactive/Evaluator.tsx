@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { type EvaluatorConfig } from "@/lib/genmath-interactive";
 
@@ -14,6 +15,8 @@ function fmtExpr(a: number, b: number, name: string): string {
 }
 
 export default function Evaluator({ config }: { config: EvaluatorConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { a, b, varName = "x", min = 0, max = 10, start, color = "#e8913c" } = config;
   const [v, setV] = useState(start ?? min);
   const value = a * v + b;
@@ -27,8 +30,17 @@ export default function Evaluator({ config }: { config: EvaluatorConfig }) {
       {/* Substitution line */}
       <div className="mt-4 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-          when <span className="serif" style={{ fontStyle: "italic", color: "var(--accent)" }}>{varName}</span> ={" "}
-          <b className="serif tabular" style={{ color: "var(--accent)" }}>{v}</b>
+          {mn ? (
+            <>
+              <span className="serif" style={{ fontStyle: "italic", color: "var(--accent)" }}>{varName}</span> ={" "}
+              <b className="serif tabular" style={{ color: "var(--accent)" }}>{v}</b> үед
+            </>
+          ) : (
+            <>
+              when <span className="serif" style={{ fontStyle: "italic", color: "var(--accent)" }}>{varName}</span> ={" "}
+              <b className="serif tabular" style={{ color: "var(--accent)" }}>{v}</b>
+            </>
+          )}
         </div>
         <div className="mt-2 serif tabular" style={{ fontSize: 18, color: "var(--fg)" }}>
           {a === 1 ? "" : `${a} × `}
@@ -47,7 +59,7 @@ export default function Evaluator({ config }: { config: EvaluatorConfig }) {
           max={max}
           value={v}
           onChange={(e) => setV(Number(e.target.value))}
-          aria-label={`Value of ${varName}`}
+          aria-label={mn ? `Утга: ${varName}` : `Value of ${varName}`}
           className="w-full"
           style={{ accentColor: color }}
         />
@@ -58,7 +70,9 @@ export default function Evaluator({ config }: { config: EvaluatorConfig }) {
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        <b style={{ color: "var(--fg-1)" }}>Substitute</b> the value for {varName}, then do the arithmetic.
+        {mn
+          ? <>{varName} хувьсагчийн оронд утгыг нь <b style={{ color: "var(--fg-1)" }}>орлуулаад</b>, дараа нь тооцоол.</>
+          : <><b style={{ color: "var(--fg-1)" }}>Substitute</b> the value for {varName}, then do the arithmetic.</>}
       </div>
     </div>
   );

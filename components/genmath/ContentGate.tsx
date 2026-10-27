@@ -24,7 +24,7 @@ import { accessFor, isTopicFree } from "@/lib/course-access";
 export default function ContentGate({
   children,
   backHref,
-  backLabel = "Back",
+  backLabel,
   courseKey,
   topicSlug,
   free,
@@ -54,6 +54,7 @@ export default function ContentGate({
   const { lang } = useLang();
   const pathname = usePathname();
   const mn = lang === "mn";
+  const backText = backLabel ?? (mn ? "Буцах" : "Back");
 
   // While the session is being restored, hold a quiet placeholder so
   // signed-in users never see the lock flash.
@@ -75,7 +76,7 @@ export default function ContentGate({
     return (
       <GateCard
         backHref={backHref}
-        backLabel={backLabel}
+        backLabel={backText}
         title={mn ? "Нэвтэрч ороод үзнэ үү" : "Sign in to open this"}
         body={
           mn
@@ -102,7 +103,7 @@ export default function ContentGate({
     <GateCard
       premium
       backHref={backHref}
-      backLabel={backLabel}
+      backLabel={backText}
       title={mn ? "Энэ хэсэг Премиумд нээлттэй" : "This one is Premium"}
       body={
         premiumBody

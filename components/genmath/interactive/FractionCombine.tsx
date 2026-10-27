@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { useState } from "react";
 import { type FractionCombineConfig, gcd } from "@/lib/genmath-interactive";
 import FractionBar from "@/components/genmath/interactive/FractionBar";
@@ -8,6 +9,8 @@ const A_COLOR = "#e8913c";
 const B_COLOR = "#3f78d7";
 
 export default function FractionCombine({ config }: { config: FractionCombineConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { left, right, op, color } = config;
   const [matched, setMatched] = useState(false);
   const aColor = color ?? A_COLOR;
@@ -69,10 +72,19 @@ export default function FractionCombine({ config }: { config: FractionCombineCon
         }}
       >
         {matched ? (
+          mn ? (
+            <span>
+              Хэсгүүд ижил боллоо (хуваарь {lcd}). Будсан хэсгүүдийг {op === "add" ? "нэм" : "хас"}: {left.num * sL} {opSym} {right.num * sR} = <b>{resultNum}</b> →{" "}
+              <b style={{ color: "var(--accent)" }}>{simplified ? `${simpNum}/${simpDen}` : `${resultNum}/${lcd}`}</b>.
+            </span>
+          ) : (
           <span>
             Pieces match ({lcd}ths). {op === "add" ? "Add" : "Subtract"} the shaded pieces: {left.num * sL} {opSym} {right.num * sR} = <b>{resultNum}</b> →{" "}
             <b style={{ color: "var(--accent)" }}>{simplified ? `${simpNum}/${simpDen}` : `${resultNum}/${lcd}`}</b>.
           </span>
+          )
+        ) : mn ? (
+          <span>Зөвхөн <b>ижил хэмжээтэй</b> хэсгүүдийг {op === "add" ? "нэмж" : "хасаж"} болно. Эхлээд хэсгүүдийг ижил болго.</span>
         ) : (
           <span>You can only {op === "add" ? "add" : "subtract"} pieces of the <b>same size</b>. Match the pieces first.</span>
         )}
@@ -91,7 +103,7 @@ export default function FractionCombine({ config }: { config: FractionCombineCon
             transition: "background .2s, color .2s",
           }}
         >
-          {matched ? "Reset" : "Make the pieces match"}
+          {mn ? (matched ? "Дахин эхлэх" : "Хэсгүүдийг ижил болгох") : matched ? "Reset" : "Make the pieces match"}
         </button>
       </div>
     </div>

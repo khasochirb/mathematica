@@ -28,6 +28,7 @@ function fmt(n: number, dp = 2): string {
 
 export default function VectorGraph({ config }: { config: VectorGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode } = config;
 
   const [vx, setVx] = useState(mode === "components" ? 3 : mode === "add" ? 1 : 3);
@@ -72,9 +73,9 @@ export default function VectorGraph({ config }: { config: VectorGraphConfig }) {
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-2">
-        <button type="button" onClick={() => set((v) => Math.max(-4, v - 1))} disabled={val <= -4} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.max(-4, v - 1))} disabled={val <= -4} aria-label={mn ? `${label}: багасгах` : `Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 34, fontSize: 16, color }}>{val}</div>
-        <button type="button" onClick={() => set((v) => Math.min(4, v + 1))} disabled={val >= 4} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.min(4, v + 1))} disabled={val >= 4} aria-label={mn ? `${label}: ихэсгэх` : `Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
@@ -147,11 +148,11 @@ export default function VectorGraph({ config }: { config: VectorGraphConfig }) {
         {mode === "components" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>the walk</div>
-              <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{vx} east, {vy} north</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "алхалт" : "the walk"}</div>
+              <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{mn ? <>зүүн тийш {vx}, хойд зүг {vy}</> : <>{vx} east, {vy} north</>}</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>magnitude |v|</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>{mn ? "урт |v|" : "magnitude |v|"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>√({vx}² + {vy}²) = {fmt(mag)}</div>
             </div>
           </>
@@ -159,11 +160,11 @@ export default function VectorGraph({ config }: { config: VectorGraphConfig }) {
         {mode === "add" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>resultant u + v</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>{mn ? "нийлбэр u + v" : "resultant u + v"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>⟨{sum.x}, {sum.y}⟩</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>component recipe</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "координатаар" : "component recipe"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>⟨3+{vx}, 1+{vy}⟩</div>
             </div>
           </>
@@ -171,7 +172,7 @@ export default function VectorGraph({ config }: { config: VectorGraphConfig }) {
         {mode === "dot" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>term by term</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "гишүүнээр нь" : "term by term"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>2·{vx} + 3·{vy}</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
@@ -187,33 +188,41 @@ export default function VectorGraph({ config }: { config: VectorGraphConfig }) {
         {mode === "components" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              One arrow, two numbers: <b style={{ color: GEO_ACCENT }}>⟨{vx}, {vy}⟩</b>, length <b style={{ color: GEO_BLUE }}>{fmt(mag)}</b>
+              {mn ? (
+                <>Нэг сум, хоёр тоо: <b style={{ color: GEO_ACCENT }}>⟨{vx}, {vy}⟩</b>, урт нь <b style={{ color: GEO_BLUE }}>{fmt(mag)}</b></>
+              ) : (
+                <>One arrow, two numbers: <b style={{ color: GEO_ACCENT }}>⟨{vx}, {vy}⟩</b>, length <b style={{ color: GEO_BLUE }}>{fmt(mag)}</b></>
+              )}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              the dashed legs are the components — Pythagoras runs the magnitude
+              {mn ? "тасархай катетууд нь координатууд; урт нь Пифагорын теоремоор гарна" : "the dashed legs are the components — Pythagoras runs the magnitude"}
             </div>
           </>
         )}
         {mode === "add" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Walk <b style={{ color: GEO_BLUE }}>u</b>, then <b style={{ color: GEO_ACCENT }}>v</b> — the shortcut home is <b style={{ color: RED }}>u + v = ⟨{sum.x}, {sum.y}⟩</b>
+              {mn ? (
+                <>Эхлээд <b style={{ color: GEO_BLUE }}>u</b>, дараа нь <b style={{ color: GEO_ACCENT }}>v</b>. Шулуун зам: <b style={{ color: RED }}>u + v = ⟨{sum.x}, {sum.y}⟩</b></>
+              ) : (
+                <>Walk <b style={{ color: GEO_BLUE }}>u</b>, then <b style={{ color: GEO_ACCENT }}>v</b> — the shortcut home is <b style={{ color: RED }}>u + v = ⟨{sum.x}, {sum.y}⟩</b></>
+              )}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              tip-to-tail in the picture; add the components in the algebra
+              {mn ? "зураг дээр гурвалжны дүрэм; алгебрт координатуудыг нэмнэ" : "tip-to-tail in the picture; add the components in the algebra"}
             </div>
           </>
         )}
         {mode === "dot" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              u · v = <b style={{ color: dot === 0 ? RED : dot > 0 ? GEO_BLUE : RED }}>{dot}</b> — the angle is{" "}
+              u · v = <b style={{ color: dot === 0 ? RED : dot > 0 ? GEO_BLUE : RED }}>{dot}</b>{mn ? ": өнцөг нь " : " — the angle is "}
               <b style={{ color: dot === 0 ? RED : dot > 0 ? GEO_BLUE : RED }}>
-                {dot > 0 ? "acute" : dot === 0 ? "a right angle" : "obtuse"}
+                {mn ? (dot > 0 ? "хурц" : dot === 0 ? "тэгш" : "мохоо") : dot > 0 ? "acute" : dot === 0 ? "a right angle" : "obtuse"}
               </b>
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              positive agrees, zero is perpendicular, negative opposes — the sign is a protractor
+              {mn ? "эерэг бол хурц, тэг бол перпендикуляр, сөрөг бол мохоо: тэмдэг нь өнцгийг заана" : "positive agrees, zero is perpendicular, negative opposes — the sign is a protractor"}
             </div>
           </>
         )}
@@ -221,13 +230,13 @@ export default function VectorGraph({ config }: { config: VectorGraphConfig }) {
 
       {/* controls */}
       <div className="mt-4 flex items-center justify-center gap-6">
-        {stepper(mode === "components" ? "x-component" : "vₓ", vx, setVx, GEO_ACCENT)}
-        {stepper(mode === "components" ? "y-component" : "vᵧ", vy, setVy, GEO_BLUE)}
+        {stepper(mode === "components" ? (mn ? "x координат" : "x-component") : "vₓ", vx, setVx, GEO_ACCENT)}
+        {stepper(mode === "components" ? (mn ? "y координат" : "y-component") : "vᵧ", vy, setVy, GEO_BLUE)}
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        {mode === "components" && "step the components — the arrow and its length follow"}
-        {mode === "add" && "reshape v — it stays glued tip-to-tail; the red shortcut updates"}
-        {mode === "dot" && "aim v — find the spots where u · v hits exactly zero"}
+        {mode === "components" && (mn ? "координатуудыг өөрчил: сум ба түүний урт дагана" : "step the components — the arrow and its length follow")}
+        {mode === "add" && (mn ? "v векторыг өөрчил: u векторын төгсгөлд залгаатай хэвээр, улаан нийлбэр шинэчлэгдэнэ" : "reshape v — it stays glued tip-to-tail; the red shortcut updates")}
+        {mode === "dot" && (mn ? "v векторыг эргүүл: u · v яг тэг болох байрлалыг ол" : "aim v — find the spots where u · v hits exactly zero")}
       </div>
     </div>
   );

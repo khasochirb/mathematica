@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { type DecimalRounderConfig } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 const STEP = { whole: 1, tenth: 0.1, hundredth: 0.01 } as const;
 const PLACE_LABEL = { whole: "whole number", tenth: "tenth", hundredth: "hundredth" } as const;
+const PLACE_LABEL_MN = { whole: "бүхэл тоо хүртэл", tenth: "аравны нарийвчлалтай", hundredth: "зууны нарийвчлалтай" } as const;
 
 export default function DecimalRounder({ config }: { config: DecimalRounderConfig }) {
   const { value, place, color = "#e8913c" } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const step = STEP[place];
   const lowerUnits = Math.floor(value / step + 1e-9);
   const lower = lowerUnits * step;
@@ -34,11 +38,15 @@ export default function DecimalRounder({ config }: { config: DecimalRounderConfi
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Round <b className="serif tabular" style={{ color: "var(--fg)" }}>{fmtV(value)}</b> to the nearest {PLACE_LABEL[place]}
+        {mn ? (
+          <><b className="serif tabular" style={{ color: "var(--fg)" }}>{fmtV(value)}</b> тоог {PLACE_LABEL_MN[place]} тоймло</>
+        ) : (
+          <>Round <b className="serif tabular" style={{ color: "var(--fg)" }}>{fmtV(value)}</b> to the nearest {PLACE_LABEL[place]}</>
+        )}
       </div>
 
       <div className="mt-1 flex justify-center">
-        <svg width={W} height="74" viewBox={`0 0 ${W} 74`} role="img" aria-label={`Number line from ${fmtP(lower)} to ${fmtP(upper)} with ${fmtV(value)} marked`}>
+        <svg width={W} height="74" viewBox={`0 0 ${W} 74`} role="img" aria-label={mn ? `Тоон шулуун: ${fmtP(lower)} – ${fmtP(upper)}, тэмдэглэсэн тоо ${fmtV(value)}` : `Number line from ${fmtP(lower)} to ${fmtP(upper)} with ${fmtV(value)} marked`}>
           {/* axis */}
           <line x1={pad} y1={yb} x2={W - pad} y2={yb} stroke="var(--fg-3)" strokeWidth="1.5" />
           {/* endpoint ticks */}
@@ -50,7 +58,7 @@ export default function DecimalRounder({ config }: { config: DecimalRounderConfi
           ))}
           {/* midpoint (halfway) */}
           <line x1={px(mid)} y1={yb - 7} x2={px(mid)} y2={yb + 7} stroke="var(--fg-3)" strokeWidth="1" strokeDasharray="3 3" />
-          <text x={px(mid)} y={yb - 12} textAnchor="middle" fontSize="9" fill="var(--fg-3)">halfway</text>
+          <text x={px(mid)} y={yb - 12} textAnchor="middle" fontSize="9" fill="var(--fg-3)">{mn ? "дунд цэг" : "halfway"}</text>
           {/* the value */}
           <line x1={px(value)} y1={yb - 16} x2={px(value)} y2={yb} stroke={color} strokeWidth="2.5" />
           <circle cx={px(value)} cy={yb} r="5" fill={color} stroke="var(--bg)" strokeWidth="1.5" />
@@ -91,12 +99,14 @@ export default function DecimalRounder({ config }: { config: DecimalRounderConfi
           <span>
             <b className="serif tabular">{fmtV(value)} → {fmtP(answer)}</b>
             {" — "}
-            {roundsUp ? `at or past halfway, so round up.` : `before halfway, so round down.`}
+            {mn
+              ? roundsUp ? "дунд цэг буюу түүнээс цааш тул дээш тоймлоно." : "дунд цэгт хүрээгүй тул доош тоймлоно."
+              : roundsUp ? `at or past halfway, so round up.` : `before halfway, so round down.`}
           </span>
         </div>
       ) : (
         <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-          Tap the mark it is closer to.
+          {mn ? "Аль тэмдэгт ойр байгааг дар." : "Tap the mark it is closer to."}
         </div>
       )}
     </div>

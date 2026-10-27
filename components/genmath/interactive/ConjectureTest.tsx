@@ -13,6 +13,7 @@ import { type ConjectureTestConfig } from "@/lib/genmath-interactive";
 // dead on the spot. (And if everything passes? Still not a proof.)
 export default function ConjectureTest({ config }: { config: ConjectureTestConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { conjecture, items } = config;
   const [tested, setTested] = useState<Set<number>>(new Set());
 
@@ -22,7 +23,7 @@ export default function ConjectureTest({ config }: { config: ConjectureTestConfi
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: broken ? "1px solid rgb(200,60,60)" : "1px solid var(--line)" }}>
-        <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>Conjecture on trial</div>
+        <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "Шалгагдаж буй таамаглал" : "Conjecture on trial"}</div>
         <div className="q-math mt-1 text-[15px]" style={{ color: "var(--fg)", textDecoration: broken ? "line-through" : "none" }}>
           <MathText text={conjecture} />
         </div>
@@ -53,7 +54,7 @@ export default function ConjectureTest({ config }: { config: ConjectureTestConfi
                 <span className="q-math text-[14px]" style={{ color: "var(--fg)" }}>
                   <MathText text={it.label} />
                 </span>
-                {!isTested && <span className="ml-auto text-[12px]" style={{ color: "var(--fg-3)" }}>tap to test</span>}
+                {!isTested && <span className="ml-auto text-[12px]" style={{ color: "var(--fg-3)" }}>{mn ? "шалгах бол дар" : "tap to test"}</span>}
               </div>
               {isTested && (
                 <div className="q-math mt-1.5 pl-6 text-[13px]" style={{ color: "var(--fg-1)" }}>
@@ -76,13 +77,13 @@ export default function ConjectureTest({ config }: { config: ConjectureTestConfi
         >
           {broken ? (
             <>
-              <b>Counterexample found — the conjecture is false.</b>
-              <div className="mt-0.5 text-[13px]" style={{ color: "var(--fg-1)" }}>One failing case is all it takes.</div>
+              <b>{mn ? "Эсрэг жишээ олдлоо — таамаглал худал." : "Counterexample found — the conjecture is false."}</b>
+              <div className="mt-0.5 text-[13px]" style={{ color: "var(--fg-1)" }}>{mn ? "Ганц л буруу тохиолдол хангалттай." : "One failing case is all it takes."}</div>
             </>
           ) : (
             <>
-              <b>Every test passed…</b>
-              <div className="mt-0.5 text-[13px]" style={{ color: "var(--fg-1)" }}>but examples alone never PROVE a conjecture — the next case could still fail.</div>
+              <b>{mn ? "Бүх шалгалтыг давлаа…" : "Every test passed…"}</b>
+              <div className="mt-0.5 text-[13px]" style={{ color: "var(--fg-1)" }}>{mn ? "гэхдээ жишээнүүд дангаараа таамаглалыг хэзээ ч БАТЛАХГҮЙ — дараагийн тохиолдол унаж магадгүй." : "but examples alone never PROVE a conjecture — the next case could still fail."}</div>
             </>
           )}
         </div>
@@ -97,7 +98,7 @@ export default function ConjectureTest({ config }: { config: ConjectureTestConfi
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> {mn ? "Дахин эхлэх" : "Reset"}
         </button>
       </div>
     </div>

@@ -15,6 +15,7 @@ import { type CoordinateGridConfig } from "@/lib/genmath-interactive";
 //  - distance:  shows two points sharing a row/column and counts the units.
 export default function CoordinateGrid({ config }: { config: CoordinateGridConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { min = -5, max = 5, mode, points = [], reflectAxis = "x", polygon = false, showQuadrants = false, color = "#e8913c" } = config;
   const [sel, setSel] = useState<{ x: number; y: number } | null>(null);
   const [revealed, setRevealed] = useState(false);
@@ -22,13 +23,13 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
   // Name the quadrant (or axis) a point falls in — used by the identify
   // playground so tapping a point answers "which quadrant?".
   const quadrantOf = (p: { x: number; y: number }): string => {
-    if (p.x === 0 && p.y === 0) return "the origin";
-    if (p.x === 0) return "on the y-axis";
-    if (p.y === 0) return "on the x-axis";
-    if (p.x > 0 && p.y > 0) return "Quadrant I";
-    if (p.x < 0 && p.y > 0) return "Quadrant II";
-    if (p.x < 0 && p.y < 0) return "Quadrant III";
-    return "Quadrant IV";
+    if (p.x === 0 && p.y === 0) return mn ? "координатын эх" : "the origin";
+    if (p.x === 0) return mn ? "y тэнхлэг дээр" : "on the y-axis";
+    if (p.y === 0) return mn ? "x тэнхлэг дээр" : "on the x-axis";
+    if (p.x > 0 && p.y > 0) return mn ? "I мөч" : "Quadrant I";
+    if (p.x < 0 && p.y > 0) return mn ? "II мөч" : "Quadrant II";
+    if (p.x < 0 && p.y < 0) return mn ? "III мөч" : "Quadrant III";
+    return mn ? "IV мөч" : "Quadrant IV";
   };
   const quadShade = mode === "quadrants" || (mode === "identify" && showQuadrants);
 
@@ -176,24 +177,24 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
         <div className="mt-3 text-center text-[15px]" style={{ color: "var(--fg-1)" }}>
           {sel ? (
             <>
-              Point: <b className="serif tabular" style={{ color: "var(--accent)" }}>({sel.x}, {sel.y})</b> — {sel.x} across, {sel.y} up
+              {mn ? "Цэг" : "Point"}: <b className="serif tabular" style={{ color: "var(--accent)" }}>({sel.x}, {sel.y})</b> — {mn ? <>хэвтээ чиглэлд {sel.x}, босоо чиглэлд {sel.y}</> : <>{sel.x} across, {sel.y} up</>}
               {showQuadrants && (
                 <div className="mt-1 text-[14px]" style={{ color: "var(--fg-1)" }}>
-                  in <b style={{ color: BLUE }}>{quadrantOf(sel)}</b>
+                  {mn ? "байршил: " : "in "}<b style={{ color: BLUE }}>{quadrantOf(sel)}</b>
                 </div>
               )}
             </>
           ) : (
-            <span style={{ color: "var(--fg-3)" }}>Tap a grid intersection{showQuadrants ? " to see its coordinates and quadrant." : " to read its coordinates."}</span>
+            <span style={{ color: "var(--fg-3)" }}>{mn ? (showQuadrants ? "Торны зангилаа дээр дарж координат, мөчийг нь хараарай." : "Торны зангилаа дээр дарж координатыг нь уншаарай.") : <>Tap a grid intersection{showQuadrants ? " to see its coordinates and quadrant." : " to read its coordinates."}</>}</span>
           )}
         </div>
       )}
       {mode === "distance" && points.length >= 2 && (
         <div className="mt-3 text-center text-[15px]" style={{ color: "var(--fg-1)" }}>
-          Distance ={" "}
+          {mn ? "Зай" : "Distance"} ={" "}
           <b className="serif tabular" style={{ color: "var(--accent)" }}>
             {points[0].x === points[1].x ? Math.abs(points[0].y - points[1].y) : Math.abs(points[0].x - points[1].x)}
-          </b>{" "}units
+          </b>{" "}{mn ? "нэгж" : "units"}
         </div>
       )}
       {mode === "reflect" && src && reflected && (
@@ -201,17 +202,29 @@ export default function CoordinateGrid({ config }: { config: CoordinateGridConfi
           <button type="button" onClick={() => setRevealed(false)} disabled={!revealed} aria-label={chrome("Reset", lang)} className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
             <RotateCcw className="h-4 w-4" /> {chrome("Reset", lang)}</button>
           <button type="button" onClick={() => setRevealed(true)} disabled={revealed} className="gm-press rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}>
-            Reflect across the {reflectAxis}-axis
+            {mn ? <>{reflectAxis} тэнхлэгийн хувьд тэгш хэмтэй хувиргах</> : <>Reflect across the {reflectAxis}-axis</>}
           </button>
         </div>
       )}
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
+        {mn ? (
+          <>
+            {mode === "plot" && <>Цэг бүрийг <b style={{ color: "var(--fg-1)" }}>(x, y)</b> гэж бичнэ — эхлээд хэвтээ, дараа нь босоо.</>}
+            {mode === "identify" && <><b style={{ color: "var(--fg-1)" }}>Хэвтээ</b> чиглэл: x, <b style={{ color: "var(--fg-1)" }}>босоо</b> чиглэл: y.</>}
+            {mode === "quadrants" && <>Тэнхлэгүүд хавтгайг дөрвөн <b style={{ color: "var(--fg-1)" }}>мөчид</b> хуваана; баруун дээд мөчөөс эхлэн цагийн зүүний эсрэг дугаарлана.</>}
+            {mode === "reflect" && <>Тэнхлэгийн хувьд тэгш хэмтэй хувиргахад нэг координатын <b style={{ color: "var(--fg-1)" }}>тэмдэг солигдоно</b>.</>}
+            {mode === "distance" && <>Шулуун дээрх зай нь өөрчлөгдөж буй координатуудын <b style={{ color: "var(--fg-1)" }}>ялгавар</b> юм.</>}
+          </>
+        ) : (
+        <>
         {mode === "plot" && <>Each point is written as <b style={{ color: "var(--fg-1)" }}>(x, y)</b> — across first, then up.</>}
         {mode === "identify" && <>Read <b style={{ color: "var(--fg-1)" }}>across</b> for x, then <b style={{ color: "var(--fg-1)" }}>up</b> for y.</>}
         {mode === "quadrants" && <>The axes split the plane into four <b style={{ color: "var(--fg-1)" }}>quadrants</b>, numbered counter-clockwise from top-right.</>}
         {mode === "reflect" && <>Reflecting across an axis <b style={{ color: "var(--fg-1)" }}>flips the sign</b> of one coordinate.</>}
         {mode === "distance" && <>On a straight line, distance is the <b style={{ color: "var(--fg-1)" }}>difference</b> of the coordinates that change.</>}
+        </>
+        )}
       </div>
     </div>
   );

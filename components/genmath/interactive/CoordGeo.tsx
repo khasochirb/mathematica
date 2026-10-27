@@ -20,8 +20,8 @@ function fmt(n: number): string {
   return Number.isInteger(n) ? n.toString() : (Math.round(n * 100) / 100).toString();
 }
 // A signed slope as a reduced fraction (or integer) string.
-function frac(num: number, den: number): string {
-  if (den === 0) return "undefined";
+function frac(num: number, den: number, mn = false): string {
+  if (den === 0) return mn ? "тодорхойгүй" : "undefined";
   const sign = num * den < 0 ? "-" : "";
   let n = Math.abs(num), d = Math.abs(den);
   const g = gcd(n, d); n /= g; d /= g;
@@ -30,6 +30,7 @@ function frac(num: number, den: number): string {
 
 export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const color = config.color ?? GEO_ACCENT;
   const [shown, setShown] = useState(false);
   const min = config.min ?? -6;
@@ -71,8 +72,8 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
           <>
             <line x1={px(a.x)} y1={py(a.y)} x2={px(corner.x)} y2={py(corner.y)} stroke={GEO_BLUE} strokeWidth={1.8} strokeDasharray="5 3" />
             <line x1={px(corner.x)} y1={py(corner.y)} x2={px(b.x)} y2={py(b.y)} stroke={GEO_BLUE} strokeWidth={1.8} strokeDasharray="5 3" />
-            <text x={(px(a.x) + px(corner.x)) / 2} y={py(a.y) + (rise >= 0 ? 15 : -7)} fontSize="11" textAnchor="middle" fill={GEO_BLUE}>{config.mode === "slope" ? `run ${run}` : `${Math.abs(run)}`}</text>
-            <text x={px(corner.x) + (run >= 0 ? 8 : -8)} y={(py(corner.y) + py(b.y)) / 2} fontSize="11" textAnchor={run >= 0 ? "start" : "end"} fill={GEO_BLUE}>{config.mode === "slope" ? `rise ${rise}` : `${Math.abs(rise)}`}</text>
+            <text x={(px(a.x) + px(corner.x)) / 2} y={py(a.y) + (rise >= 0 ? 15 : -7)} fontSize="11" textAnchor="middle" fill={GEO_BLUE}>{config.mode === "slope" ? `${mn ? "гүйлт" : "run"} ${run}` : `${Math.abs(run)}`}</text>
+            <text x={px(corner.x) + (run >= 0 ? 8 : -8)} y={(py(corner.y) + py(b.y)) / 2} fontSize="11" textAnchor={run >= 0 ? "start" : "end"} fill={GEO_BLUE}>{config.mode === "slope" ? `${mn ? "өсөлт" : "rise"} ${rise}` : `${Math.abs(rise)}`}</text>
           </>
         )}
         <line x1={px(a.x)} y1={py(a.y)} x2={px(b.x)} y2={py(b.y)} stroke={color} strokeWidth={2.4} />
@@ -81,23 +82,25 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
       </>
     );
     if (config.mode === "distance") {
-      readoutTitle = "Distance AB";
+      readoutTitle = mn ? "A, B хоорондох зай" : "Distance AB";
       readout = (
         <>
-          <div className="serif tabular" style={{ color: "var(--fg-2)" }}>d = √(run² + rise²)</div>
+          <div className="serif tabular" style={{ color: "var(--fg-2)" }}>{mn ? "d = √(гүйлт² + өсөлт²)" : "d = √(run² + rise²)"}</div>
           <div className="serif tabular mt-0.5">{`d = √(${Math.abs(run)}² + ${Math.abs(rise)}²) = √${run * run + rise * rise} = `}<b style={{ color }}>{fmt(d)}</b></div>
         </>
       );
-      buttonLabel = "Show the distance";
+      buttonLabel = mn ? "Зайг харуулах" : "Show the distance";
     } else {
-      readoutTitle = "Slope of AB";
+      readoutTitle = mn ? "AB хэрчмийн налалт" : "Slope of AB";
       readout = (
         <>
-          <div className="serif tabular">{`m = rise / run = ${rise} / ${run} = `}<b style={{ color }}>{frac(rise, run)}</b></div>
-          <div className="mt-1 text-[12px]" style={{ color: "var(--fg-3)" }}>{run === 0 ? "run = 0 → the line is vertical, slope undefined" : rise === 0 ? "rise = 0 → horizontal line, slope 0" : rise * run > 0 ? "rise and run agree in sign → positive slope (uphill)" : "opposite signs → negative slope (downhill)"}</div>
+          <div className="serif tabular">{`m = ${mn ? "өсөлт / гүйлт" : "rise / run"} = ${rise} / ${run} = `}<b style={{ color }}>{frac(rise, run, mn)}</b></div>
+          <div className="mt-1 text-[12px]" style={{ color: "var(--fg-3)" }}>{mn
+            ? (run === 0 ? "гүйлт = 0 → шулуун босоо, налалт тодорхойгүй" : rise === 0 ? "өсөлт = 0 → хэвтээ шулуун, налалт 0" : rise * run > 0 ? "өсөлт, гүйлт ижил тэмдэгтэй → эерэг налалт (өгсөх)" : "эсрэг тэмдэгтэй → сөрөг налалт (уруудах)")
+            : (run === 0 ? "run = 0 → the line is vertical, slope undefined" : rise === 0 ? "rise = 0 → horizontal line, slope 0" : rise * run > 0 ? "rise and run agree in sign → positive slope (uphill)" : "opposite signs → negative slope (downhill)")}</div>
         </>
       );
-      buttonLabel = "Show the slope";
+      buttonLabel = mn ? "Налалтыг харуулах" : "Show the slope";
     }
   } else if (config.mode === "midpoint") {
     const M = midpoint(a, b);
@@ -113,14 +116,14 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
         </>}
       </>
     );
-    readoutTitle = "Midpoint of AB";
+    readoutTitle = mn ? "AB хэрчмийн дундаж цэг" : "Midpoint of AB";
     readout = (
       <>
         <div className="serif tabular" style={{ color: "var(--fg-2)" }}>M = ( (x₁+x₂)/2, (y₁+y₂)/2 )</div>
         <div className="serif tabular mt-0.5">{`M = ((${a.x}+${b.x})/2, (${a.y}+${b.y})/2) = `}<b style={{ color }}>{`(${fmt(M.x)}, ${fmt(M.y)})`}</b></div>
       </>
     );
-    buttonLabel = "Show the midpoint";
+    buttonLabel = mn ? "Дундаж цэгийг харуулах" : "Show the midpoint";
   } else if (config.mode === "line") {
     const m = config.m ?? 1;
     const bInt = config.yint ?? 0;
@@ -134,21 +137,21 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
           {/* slope triangle from the intercept */}
           <line x1={px(0)} y1={py(bInt)} x2={px(1)} y2={py(bInt)} stroke={GEO_BLUE} strokeWidth={1.6} strokeDasharray="4 3" />
           <line x1={px(1)} y1={py(bInt)} x2={px(1)} y2={py(yAt(1))} stroke={GEO_BLUE} strokeWidth={1.6} strokeDasharray="4 3" />
-          <text x={px(0.5)} y={py(bInt) + 13} fontSize="10" textAnchor="middle" fill={GEO_BLUE}>run 1</text>
-          <text x={px(1) + 5} y={(py(bInt) + py(yAt(1))) / 2} fontSize="10" fill={GEO_BLUE}>rise {fmt(m)}</text>
+          <text x={px(0.5)} y={py(bInt) + 13} fontSize="10" textAnchor="middle" fill={GEO_BLUE}>{mn ? "гүйлт" : "run"} 1</text>
+          <text x={px(1) + 5} y={(py(bInt) + py(yAt(1))) / 2} fontSize="10" fill={GEO_BLUE}>{mn ? "өсөлт" : "rise"} {fmt(m)}</text>
         </>}
         <circle cx={px(0)} cy={py(bInt)} r={3.6} fill={color} />
         <text x={px(0) - 6} y={py(bInt) - 7} fontSize="11" textAnchor="end" fill={color}>(0, {fmt(bInt)})</text>
       </>
     );
-    readoutTitle = "Equation of the line";
+    readoutTitle = mn ? "Шулууны тэгшитгэл" : "Equation of the line";
     readout = (
       <>
         <div className="serif tabular text-[15px]">{`y = ${fmt(m)}x ${bInt >= 0 ? "+ " + fmt(bInt) : "− " + fmt(-bInt)}`}</div>
-        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-3)" }}>slope <b style={{ color: GEO_BLUE }}>m = {fmt(m)}</b> (rise over run), y-intercept <b style={{ color }}>b = {fmt(bInt)}</b></div>
+        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-3)" }}>{mn ? "налалт" : "slope"} <b style={{ color: GEO_BLUE }}>m = {fmt(m)}</b> {mn ? "(өсөлт / гүйлт), y огтлолцол" : "(rise over run), y-intercept"} <b style={{ color }}>b = {fmt(bInt)}</b></div>
       </>
     );
-    buttonLabel = "Show the equation";
+    buttonLabel = mn ? "Тэгшитгэлийг харуулах" : "Show the equation";
   } else {
     // circle
     const c = config.center ?? { x: 0, y: 0 };
@@ -164,15 +167,15 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
         </>}
       </>
     );
-    readoutTitle = "Equation of the circle";
+    readoutTitle = mn ? "Тойргийн тэгшитгэл" : "Equation of the circle";
     const h = c.x, k = c.y;
     readout = (
       <>
         <div className="serif tabular text-[15px]">{`(x ${h >= 0 ? "− " + h : "+ " + -h})² + (y ${k >= 0 ? "− " + k : "+ " + -k})² = ${r * r}`}</div>
-        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-3)" }}>center <b style={{ color: GEO_BLUE }}>({h}, {k})</b>, radius <b style={{ color }}>{r}</b> (so r² = {r * r})</div>
+        <div className="mt-1 text-[12px]" style={{ color: "var(--fg-3)" }}>{mn ? "төв" : "center"} <b style={{ color: GEO_BLUE }}>({h}, {k})</b>, {mn ? "радиус" : "radius"} <b style={{ color }}>{r}</b> ({mn ? "тэгэхээр" : "so"} r² = {r * r})</div>
       </>
     );
-    buttonLabel = "Show the equation";
+    buttonLabel = mn ? "Тэгшитгэлийг харуулах" : "Show the equation";
   }
 
   return (
@@ -201,7 +204,7 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
 
       <div className="mt-2 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
         <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{readoutTitle}</div>
-        {shown ? <div className="mt-1">{readout}</div> : <div className="mt-1 text-[13px]" style={{ color: "var(--fg-3)" }}>Predict it, then reveal.</div>}
+        {shown ? <div className="mt-1">{readout}</div> : <div className="mt-1 text-[13px]" style={{ color: "var(--fg-3)" }}>{mn ? "Эхлээд таамаглаад, дараа нь нээ." : "Predict it, then reveal."}</div>}
       </div>
 
       <div className="mt-4 flex justify-center">
@@ -211,7 +214,7 @@ export default function CoordGeo({ config }: { config: CoordGeoConfig }) {
           className="gm-press rounded-full px-5 py-2 text-[14px] font-medium"
           style={{ background: shown ? "var(--bg-2)" : "var(--accent)", border: "1px solid var(--accent)", color: shown ? "var(--fg)" : "var(--accent-ink, #fff)" }}
         >
-          {shown ? "Reset" : buttonLabel}
+          {shown ? (mn ? "Дахин эхлэх" : "Reset") : buttonLabel}
         </button>
       </div>
     </div>

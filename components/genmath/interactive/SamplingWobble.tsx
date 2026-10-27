@@ -21,7 +21,8 @@ function fmt(n: number, dp = 2): string {
 
 export default function SamplingWobble({ config }: { config: SamplingWobbleConfig }) {
   const { lang } = useLang();
-  const { p, pLabel, statLabel = "sample proportion p̂", nChoices = [25, 100, 400], showMoe = false } = config;
+  const mn = lang === "mn";
+  const { p, pLabel, statLabel = mn ? "түүврийн хувь p̂" : "sample proportion p̂", nChoices = [25, 100, 400], showMoe = false } = config;
   const [n, setN] = useState(nChoices[0]);
   const [samples, setSamples] = useState<number[]>([]);
 
@@ -136,7 +137,7 @@ export default function SamplingWobble({ config }: { config: SamplingWobbleConfi
           {/* the truth line */}
           <line x1={px(p)} y1={16} x2={px(p)} y2={axisY} stroke="var(--accent)" strokeWidth={1.6} strokeDasharray="5 4" />
           <text x={px(p)} y={12} fontSize="9.5" fill="var(--accent)" textAnchor="middle" className="tabular">
-            true p = {pLabel ?? fmt(p)}
+            {mn ? "жинхэнэ p = " : "true p = "}{pLabel ?? fmt(p)}
           </text>
 
           {/* the pile of sample results */}
@@ -160,30 +161,30 @@ export default function SamplingWobble({ config }: { config: SamplingWobbleConfi
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         {samples.length === 0 ? (
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            every dot will be one whole survey of {n} people — draw a few
+            {mn ? <>цэг бүр {n} хүнийг хамарсан нэг бүтэн судалгаа — хэдийг авч үз</> : <>every dot will be one whole survey of {n} people — draw a few</>}
           </div>
         ) : (
           <>
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              {samples.length} samples of n = {n} · latest p̂ = <b style={{ color: "var(--accent)" }}>{fmt(last)}</b>
+              {mn ? <>түүвэр: {samples.length} (n = {n}) · сүүлийн p̂ = </> : <>{samples.length} samples of n = {n} · latest p̂ = </>}<b style={{ color: "var(--accent)" }}>{fmt(last)}</b>
               {showMoe && (
                 <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-                  band: p ± 1/√{n} = ±{fmt(moe)}
+                  {mn ? "зурвас" : "band"}: p ± 1/√{n} = ±{fmt(moe)}
                 </span>
               )}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
               {n >= Math.max(...nChoices)
-                ? "big samples wobble least — the pile hugs the truth"
-                : "the pile centres on p, but small samples spread wide — try a bigger n"}
+                ? mn ? "том түүвэр хамгийн бага хэлбэлзэнэ — овоо жинхэнэ утгадаа наалдана" : "big samples wobble least — the pile hugs the truth"
+                : mn ? "овоо p орчим төвлөрөх ч жижиг түүвэр өргөн тархана — илүү том n сонго" : "the pile centres on p, but small samples spread wide — try a bigger n"}
             </div>
           </>
         )}
       </div>
 
       <div className="mt-3 flex flex-wrap justify-center gap-2">
-        {btn("draw 1 sample", () => draw(1), false, samples.length >= MAX_SAMPLES)}
-        {btn("draw 20", () => draw(20), true, samples.length >= MAX_SAMPLES)}
+        {btn(mn ? "1 түүвэр авах" : "draw 1 sample", () => draw(1), false, samples.length >= MAX_SAMPLES)}
+        {btn(mn ? "20 авах" : "draw 20", () => draw(20), true, samples.length >= MAX_SAMPLES)}
         <button
           type="button"
           onClick={() => setSamples([])}
@@ -192,7 +193,7 @@ export default function SamplingWobble({ config }: { config: SamplingWobbleConfi
           className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <RotateCcw className="h-3.5 w-3.5" /> reset
+          <RotateCcw className="h-3.5 w-3.5" /> {mn ? "дахин эхлэх" : "reset"}
         </button>
       </div>
     </div>

@@ -51,6 +51,7 @@ type TEdge = { x1: number; y1: number; x2: number; y2: number; revealAt: number 
 
 export default function FactorTree({ config }: { config: FactorTreeConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { n, color = "#e8913c" } = config;
   const { splits, primes } = buildSplits(n);
   const [shown, setShown] = useState(0);
@@ -103,7 +104,7 @@ export default function FactorTree({ config }: { config: FactorTreeConfig }) {
           ))}
           {/* "start" label on the root before any split */}
           {shown === 0 && !isPrime(n) && (
-            <text x={rootX + r + 8} y={topY} dominantBaseline="central" fontSize="12" fill="var(--fg-3)">start</text>
+            <text x={rootX + r + 8} y={topY} dominantBaseline="central" fontSize="12" fill="var(--fg-3)">{mn ? "эхлэл" : "start"}</text>
           )}
         </svg>
       </div>
@@ -119,7 +120,7 @@ export default function FactorTree({ config }: { config: FactorTreeConfig }) {
             className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
             style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
           >
-            <RotateCcw className="h-4 w-4" /> Reset
+            <RotateCcw className="h-4 w-4" /> {mn ? "Дахин эхлэх" : "Reset"}
           </button>
           <button
             type="button"
@@ -128,7 +129,7 @@ export default function FactorTree({ config }: { config: FactorTreeConfig }) {
             className="gm-press inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35"
             style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
           >
-            Split once
+            {mn ? "Нэг удаа задлах" : "Split once"}
           </button>
         </div>
       )}
@@ -156,11 +157,17 @@ export default function FactorTree({ config }: { config: FactorTreeConfig }) {
       )}
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        {isPrime(n)
-          ? `${n} is already prime — it can't be split.`
-          : done
-            ? "Every leaf at the bottom is a circled prime — that's the prime factorization."
-            : "Each number splits into two branches: its smallest prime (circled) and what's left."}
+        {mn
+          ? isPrime(n)
+            ? `${n} аль хэдийн анхны тоо, түүнийг задлах боломжгүй.`
+            : done
+              ? "Доод навч бүр цагирагласан анхны тоо: энэ бол анхны үржигдэхүүнд задалсан задаргаа."
+              : "Тоо бүр хоёр салаа болж задарна: хамгийн бага анхны хуваагч нь (цагирагласан) ба үлдсэн хэсэг."
+          : isPrime(n)
+            ? `${n} is already prime — it can't be split.`
+            : done
+              ? "Every leaf at the bottom is a circled prime — that's the prime factorization."
+              : "Each number splits into two branches: its smallest prime (circled) and what's left."}
       </div>
     </div>
   );

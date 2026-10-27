@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "@/lib/lang-context";
 import { GEO_ACCENT } from "@/components/genmath/interactive/GeoDiagram";
 import { midpoint, dist, type XY } from "@/lib/geo";
 import { type MidsegmentConfig } from "@/lib/genmath-interactive";
@@ -20,6 +21,8 @@ const DEFAULT_TRIANGLE: [XY, XY, XY] = [
 ];
 
 export default function Midsegment({ config }: { config: MidsegmentConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { show = "one", base = 0, caption, color = GEO_ACCENT } = config;
   const tri: [XY, XY, XY] = config.triangle
     ? [
@@ -153,17 +156,21 @@ export default function Midsegment({ config }: { config: MidsegmentConfig }) {
         className="gm-press mt-3 w-full rounded-xl px-4 py-2.5 text-[14px] font-semibold"
         style={{ background: shown ? "var(--bg-2)" : "var(--accent)", border: "1px solid var(--line)", color: shown ? "var(--fg)" : "var(--accent-ink, #fff)" }}
       >
-        {shown ? "Hide" : show === "all" ? "Join all three midpoints" : "Draw the midsegment"}
+        {shown ? (mn ? "Нуух" : "Hide") : show === "all" ? (mn ? "Гурван дундаж цэгийг холбох" : "Join all three midpoints") : (mn ? "Дундаж шугам татах" : "Draw the midsegment")}
       </button>
 
       {shown && show === "one" && (
         <div className="mt-3 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-          Midsegment <span className="serif tabular" style={{ color }}>{fmt(msegLen)}</span> is half of base {one.baseName} <span className="serif tabular">{fmt(baseLen)}</span> — and the two are <b>parallel</b>.
+          {mn ? (
+            <>Дундаж шугам <span className="serif tabular" style={{ color }}>{fmt(msegLen)}</span> нь {one.baseName} суурийн (<span className="serif tabular">{fmt(baseLen)}</span>) яг хагас бөгөөд хоёулаа <b>параллель</b>.</>
+          ) : (
+            <>Midsegment <span className="serif tabular" style={{ color }}>{fmt(msegLen)}</span> is half of base {one.baseName} <span className="serif tabular">{fmt(baseLen)}</span> — and the two are <b>parallel</b>.</>
+          )}
         </div>
       )}
       {shown && show === "all" && (
         <div className="mt-3 rounded-xl p-3 text-center text-[14px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
-          The three midsegments cut the triangle into <b style={{ color }}>four congruent triangles</b>.
+          {mn ? <>Гурван дундаж шугам гурвалжинг <b style={{ color }}>дөрвөн тэнцүү гурвалжинд</b> хуваана.</> : <>The three midsegments cut the triangle into <b style={{ color }}>four congruent triangles</b>.</>}
         </div>
       )}
 

@@ -5,6 +5,7 @@
 // faded). In "increase" mode the bar shows the original (accent) plus the tax
 // or tip added on (blue), so the final total is original + added. Presentational.
 import { formatMoney as money } from "@/lib/money";
+import { useLang } from "@/lib/lang-context";
 
 const BLUE = "#3b82f6";
 
@@ -21,6 +22,8 @@ export default function PercentChangeView({
   currency?: string;
   color?: string;
 }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const part = Math.round(original * (percent / 100) * 100) / 100; // discount or add
   const final = mode === "discount" ? original - part : original + part;
   const total = mode === "discount" ? original : final; // bar's full length
@@ -55,10 +58,10 @@ export default function PercentChangeView({
       {/* labels under each segment */}
       <div className="mt-1 flex w-full text-[10px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>
         <span style={{ width: `${leftPct}%`, textAlign: "center" }}>
-          {mode === "discount" ? "you pay" : "original"}
+          {mode === "discount" ? (mn ? "төлөх дүн" : "you pay") : (mn ? "анхны үнэ" : "original")}
         </span>
         <span style={{ width: `${rightPct}%`, textAlign: "center" }}>
-          {mode === "discount" ? `${percent}% off` : `+${percent}%`}
+          {mode === "discount" ? (mn ? `${percent}% хямдрал` : `${percent}% off`) : `+${percent}%`}
         </span>
       </div>
 

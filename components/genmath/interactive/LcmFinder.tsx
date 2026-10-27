@@ -22,14 +22,17 @@ function gcd(a: number, b: number): number {
 // an ending that changes with the numeral — see lib/i18n/mn-numerals.
 function CountOf({ n, mn, noun, en, color }: { n: number; mn: boolean; noun: string; en: string; color: string }) {
   const value = <b className="serif tabular" style={{ color }}>{n}</b>;
-  // English until the ending is confirmed — see mnGenitiveApproved.
-  if (!mn || !mnGenitiveApproved(n)) return <>{en} {value}</>;
+  if (!mn) return <>{en} {value}</>;
+  // Ending not yet confirmed (see mnGenitiveApproved): let «тооны» carry the
+  // genitive so nothing is glued onto the numeral.
+  if (!mnGenitiveApproved(n)) return <>{value} тооны {noun}</>;
   const ending = mnGenitiveEnding(n);
   return <>{value}{ending ? `-${ending}` : ""} {noun}</>;
 }
 
 export default function LcmFinder({ config }: { config: LcmFinderConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { a: a0, b: b0, min = 2, max = 12, count = 6, color = "#5b8def" } = config;
   const [a, setA] = useState(a0);
   const [b, setB] = useState(b0);
@@ -98,14 +101,14 @@ export default function LcmFinder({ config }: { config: LcmFinderConfig }) {
       <div className="flex flex-col gap-4">
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={a} mn={lang === "mn"} noun="үржвэрүүд" en="Multiples of" color="var(--fg)" /></span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={a} mn={mn} noun="үржвэрүүд" en="Multiples of" color="var(--fg)" /></span>
             <Stepper label={chrome("first number", lang)} val={a} set={setA} />
           </div>
           <Strip n={a} />
         </div>
         <div style={{ borderTop: "1px solid var(--line)" }} className="pt-4">
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={b} mn={lang === "mn"} noun="үржвэрүүд" en="Multiples of" color="var(--fg)" /></span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={b} mn={mn} noun="үржвэрүүд" en="Multiples of" color="var(--fg)" /></span>
             <Stepper label={chrome("second number", lang)} val={b} set={setB} />
           </div>
           <Strip n={b} />
@@ -114,19 +117,36 @@ export default function LcmFinder({ config }: { config: LcmFinderConfig }) {
 
       <div className="mt-4 rounded-xl p-3 text-center text-[15px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)" }}>
         {lcm <= a * count || lcm <= b * count ? (
+          mn ? (
+            <>
+              {a} ба {b} тооны хамгийн бага ерөнхий хуваагдагч:{" "}
+              <b className="serif tabular" style={{ color: "var(--accent)" }}>ХБЕХ = {lcm}</b>
+            </>
+          ) : (
           <>
             Least common multiple of {a} and {b}:{" "}
             <b className="serif tabular" style={{ color: "var(--accent)" }}>LCM = {lcm}</b>
           </>
+          )
         ) : (
+          mn ? (
+            <>
+              {a} ба {b} тооны ХБЕХ нь <b className="serif tabular" style={{ color: "var(--accent)" }}>{lcm}</b>. Түүнд хүрэхийн тулд алгасаж тоолсоор байгаарай.
+            </>
+          ) : (
           <>
             LCM of {a} and {b} is <b className="serif tabular" style={{ color: "var(--accent)" }}>{lcm}</b> — keep skip-counting to reach it.
           </>
+          )
         )}
       </div>
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Highlighted numbers appear in <b style={{ color: "var(--fg-1)" }}>both</b> lists; the ringed one is the <b style={{ color: "var(--fg-1)" }}>smallest</b>.
+        {mn ? (
+          <>Тодруулсан тоонууд <b style={{ color: "var(--fg-1)" }}>хоёр</b> жагсаалтад хоёуланд нь байна; цагирагласан нь <b style={{ color: "var(--fg-1)" }}>хамгийн бага</b> нь.</>
+        ) : (
+          <>Highlighted numbers appear in <b style={{ color: "var(--fg-1)" }}>both</b> lists; the ringed one is the <b style={{ color: "var(--fg-1)" }}>smallest</b>.</>
+        )}
       </div>
     </div>
   );

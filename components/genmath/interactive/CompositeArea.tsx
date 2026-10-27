@@ -1,5 +1,6 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
 import { GEO_ACCENT, GEO_BLUE } from "@/components/genmath/interactive/GeoDiagram";
 import { type CompositeAreaConfig, type CompositePart } from "@/lib/genmath-interactive";
 
@@ -9,7 +10,17 @@ import { type CompositeAreaConfig, type CompositePart } from "@/lib/genmath-inte
 // renderer draws the figure and lists the breakdown.
 const W = 320;
 
+// Fallback names for a part with no authored label.
+const KIND_MN: Record<string, string> = {
+  rect: "тэгш өнцөгт",
+  triangle: "гурвалжин",
+  circle: "дугуй",
+  semicircle: "хагас дугуй",
+};
+
 export default function CompositeArea({ config }: { config: CompositeAreaConfig }) {
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { width, height, parts, total, caption } = config;
   const pad = 16;
   const scale = (W - 2 * pad) / width;
@@ -52,14 +63,14 @@ export default function CompositeArea({ config }: { config: CompositeAreaConfig 
           {parts.filter((p) => p.area).map((p, i) => (
             <div key={i} className="flex items-center justify-between">
               <span style={{ color: p.op === "subtract" ? GEO_BLUE : "var(--fg-1)" }}>
-                {p.op === "subtract" ? "− " : "+ "}{p.label ?? p.kind}
+                {p.op === "subtract" ? "− " : "+ "}{p.label ?? (mn ? KIND_MN[p.kind] ?? p.kind : p.kind)}
               </span>
               <span className="serif tabular">{p.area}</span>
             </div>
           ))}
           {total && (
             <div className="mt-1 flex items-center justify-between border-t pt-1" style={{ borderColor: "var(--line)" }}>
-              <b>Total area</b>
+              <b>{mn ? "Нийт талбай" : "Total area"}</b>
               <b className="serif tabular" style={{ color: GEO_ACCENT }}>{total}</b>
             </div>
           )}

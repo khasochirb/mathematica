@@ -18,6 +18,7 @@ import { pascalRow, type PascalTriangleConfig } from "@/lib/genmath-interactive"
 
 export default function PascalTriangle({ config }: { config: PascalTriangleConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode, rows = 6 } = config;
   const [visible, setVisible] = useState(mode === "build" ? 2 : mode === "expansion" ? 2 : rows);
   const [pick, setPick] = useState<[number, number] | null>(null);
@@ -55,7 +56,7 @@ export default function PascalTriangle({ config }: { config: PascalTriangleConfi
         type="button"
         onClick={() => set(Math.max(lo, val - 1))}
         disabled={val <= lo}
-        aria-label={`Fewer ${label}`}
+        aria-label={mn ? `${label} багасгах` : `Fewer ${label}`}
         className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
         style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
       >
@@ -68,7 +69,7 @@ export default function PascalTriangle({ config }: { config: PascalTriangleConfi
         type="button"
         onClick={() => set(Math.min(hi, val + 1))}
         disabled={val >= hi}
-        aria-label={`More ${label}`}
+        aria-label={mn ? `${label} нэмэх` : `More ${label}`}
         className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
         style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
       >
@@ -174,30 +175,69 @@ export default function PascalTriangle({ config }: { config: PascalTriangleConfi
           (pick && pick[0] > 0 ? (
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
               <b style={{ color: "var(--accent)" }}>{allRows[pick[0]][pick[1]]}</b> ={" "}
-              {parents.map(([n, k]) => allRows[n][k]).join(" + ") || "1 (an edge — nothing above)"}
+              {parents.map(([n, k]) => allRows[n][k]).join(" + ") || (mn ? "1 (ирмэг — дээр нь юу ч алга)" : "1 (an edge — nothing above)")}
             </div>
           ) : (
             <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-              every inner number is the <b>sum of the two above it</b> — tap one to see its parents
+              {mn ? (
+                <>
+                  дотор талын тоо бүр <b>дээрх хоёрын нийлбэр</b> — аль нэгийг дарж дээрх хоёрыг нь хар
+                </>
+              ) : (
+                <>
+                  every inner number is the <b>sum of the two above it</b> — tap one to see its parents
+                </>
+              )}
             </div>
           ))}
         {mode === "sums" && (
           <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-            row n adds to <b className="tabular" style={{ color: GEO_BLUE }}>2<sup>n</sup></b> — every subset of n
-            things, counted by size
+            {mn ? (
+              <>
+                n дүгээр мөрийн нийлбэр <b className="tabular" style={{ color: GEO_BLUE }}>2<sup>n</sup></b> — n элементтэй
+                олонлогийн бүх дэд олонлог, хэмжээгээр нь тоологдсон
+              </>
+            ) : (
+              <>
+                row n adds to <b className="tabular" style={{ color: GEO_BLUE }}>2<sup>n</sup></b> — every subset of n
+                things, counted by size
+              </>
+            )}
           </div>
         )}
         {mode === "combinations" &&
           (pick ? (
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              C({pick[0]}, {pick[1]}) = <b style={{ color: "var(--accent)" }}>{allRows[pick[0]][pick[1]]}</b>
+              {mn ? (
+                // Khas's ruling 6t (5 Oct 2026): Mongolian writes C with n below, k above.
+                <>
+                  C<sub>{pick[0]}</sub>
+                  <sup>{pick[1]}</sup>
+                </>
+              ) : (
+                <>
+                  C({pick[0]}, {pick[1]})
+                </>
+              )}{" "}
+              = <b style={{ color: "var(--accent)" }}>{allRows[pick[0]][pick[1]]}</b>
               <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-                — ways to choose {pick[1]} from {pick[0]}
+                {mn
+                  ? `— ${pick[0]} элементээс ${pick[1]} элемент сонгох аргын тоо`
+                  : `— ways to choose ${pick[1]} from ${pick[0]}`}
               </span>
             </div>
           ) : (
             <div className="text-[13px]" style={{ color: "var(--fg-2)" }}>
-              row n, position k <b>is</b> C(n, k) — tap any cell to read it
+              {mn ? (
+                <>
+                  n дүгээр мөрийн k дугаар байр <b>нь</b> C<sub>n</sub>
+                  <sup>k</sup> — дурын нүдийг дарж унш
+                </>
+              ) : (
+                <>
+                  row n, position k <b>is</b> C(n, k) — tap any cell to read it
+                </>
+              )}
             </div>
           ))}
         {mode === "expansion" && (
@@ -207,8 +247,8 @@ export default function PascalTriangle({ config }: { config: PascalTriangleConfi
         )}
       </div>
 
-      {mode === "build" && stepper(visible, (v) => { setVisible(v); setPick(null); }, 1, rows, "rows")}
-      {mode === "expansion" && stepper(visible, setVisible, 1, rows, "power n")}
+      {mode === "build" && stepper(visible, (v) => { setVisible(v); setPick(null); }, 1, rows, mn ? "мөр" : "rows")}
+      {mode === "expansion" && stepper(visible, setVisible, 1, rows, mn ? "зэрэг n" : "power n")}
     </div>
   );
 }

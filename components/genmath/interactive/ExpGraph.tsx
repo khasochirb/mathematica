@@ -28,6 +28,7 @@ function fmt(n: number): string {
 
 export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const {
     mode,
     a: a0 = 1,
@@ -104,7 +105,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
           {path && <path d={path} fill="none" stroke={GEO_ACCENT} strokeWidth={2.8} strokeLinecap="round" pathLength={1} className="gm-arc-sweep" />}
 
           {/* asymptote hint: the curve hugs y = 0 on one side */}
-          <text x={px(growth ? X0 : X1) + (growth ? 4 : -4)} y={py(0) - 6} fontSize="9" fill="var(--fg-3)" textAnchor={growth ? "start" : "end"}>hugs y = 0</text>
+          <text x={px(growth ? X0 : X1) + (growth ? 4 : -4)} y={py(0) - 6} fontSize="9" fill="var(--fg-3)" textAnchor={growth ? "start" : "end"}>{mn ? "y = 0 руу ойртоно" : "hugs y = 0"}</text>
 
           {/* integer-step dots + ×b chips */}
           {dots.map((d, i) =>
@@ -129,19 +130,25 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
 
         <div className="mt-2 rounded-xl p-3 text-center" style={{ transition: "background 0.35s ease, border-color 0.35s ease", background: growth ? "var(--bg-2)" : "rgba(200,60,60,0.06)", border: `1px solid ${growth ? "var(--line)" : RED}` }}>
           <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-            {growth
+            {mn
+              ? (growth
+                ? <><b style={{ color: GEO_ACCENT }}>Өсөлт</b> — баруун тийш алхам бүрт үржүүлэгч нь <b style={{ color: GEO_BLUE }}>{fmt(b)}</b></>
+                : <><b style={{ color: RED }}>Бууралт</b> — баруун тийш алхам бүрт үржүүлэгч нь <b style={{ color: GEO_BLUE }}>{fmt(b)}</b> (багасна)</>)
+              : growth
               ? <><b style={{ color: GEO_ACCENT }}>Growth</b> — every step right multiplies by <b style={{ color: GEO_BLUE }}>{fmt(b)}</b></>
               : <><b style={{ color: RED }}>Decay</b> — every step right multiplies by <b style={{ color: GEO_BLUE }}>{fmt(b)}</b> (shrinks)</>}
           </div>
           <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-            starts at (0, {fmt(a)}) — that&apos;s a · same multiplier every step: the exponential signature
+            {mn
+              ? <>(0, {fmt(a)}) цэгээс эхэлнэ — энэ бол a · алхам бүрт ижил үржүүлэгч: илтгэгч функцийн шинж тэмдэг</>
+              : <>starts at (0, {fmt(a)}) — that&apos;s a · same multiplier every step: the exponential signature</>}
           </div>
         </div>
 
         {interactive && (
           <div className="mt-4 flex items-center justify-center gap-6">
             <div className="text-center">
-              <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>start a</div>
+              <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "эхлэл a" : "start a"}</div>
               <div className="mt-1 flex items-center gap-2">
                 <button type="button" onClick={() => setA((v) => Math.max(1, v - 1))} disabled={a <= 1} aria-label={chrome("Decrease start a", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
                 <div className="serif tabular text-center" style={{ minWidth: 36, fontSize: 16, color: GEO_BLUE }}>{fmt(a)}</div>
@@ -149,7 +156,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>base b</div>
+              <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "суурь b" : "base b"}</div>
               <div className="mt-1 flex items-center gap-2">
                 <button type="button" onClick={() => setBi((v) => Math.max(0, v - 1))} disabled={bi <= 0} aria-label={chrome("Decrease base b", lang)} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
                 <div className="serif tabular text-center" style={{ minWidth: 40, fontSize: 16, color: GEO_ACCENT }}>{fmt(b)}</div>
@@ -160,7 +167,9 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
         )}
         {interactive && (
           <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-            step the base through 1 — watch growth flip into decay (b never equals 1: that&apos;s a flat line)
+            {mn
+              ? "суурийг 1-ээс дээш, доош алхуулж, өсөлт бууралт болж хувирахыг хараарай (b нь 1 байж болохгүй: тэгвэл хэвтээ шулуун болно)"
+              : <>step the base through 1 — watch growth flip into decay (b never equals 1: that&apos;s a flat line)</>}
           </div>
         )}
       </div>
@@ -227,7 +236,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
           {cross !== null && passed && (
             <g className="gm-fade">
               <circle cx={px(cross)} cy={py(expAt(cross))} r={9} fill="none" stroke="var(--fg)" strokeWidth={1.2} opacity={0.4} className="gm-beacon" />
-              <text x={px(cross)} y={py(expAt(cross)) - 13} fontSize="10" fontWeight={700} fill="var(--fg)" textAnchor="middle">overtaken</text>
+              <text x={px(cross)} y={py(expAt(cross)) - 13} fontSize="10" fontWeight={700} fill="var(--fg)" textAnchor="middle">{mn ? "гүйцэв" : "overtaken"}</text>
             </g>
           )}
 
@@ -243,10 +252,20 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
 
         <div className="mt-2 rounded-xl p-3 text-center" style={{ transition: "background 0.35s ease", background: passed ? "var(--accent-wash)" : "var(--bg-2)", border: `1px solid ${passed ? "var(--accent-line)" : "var(--line)"}` }}>
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            x = {xNow.toFixed(1)}: line at <b style={{ color: GEO_BLUE }}>{lineAt(xNow).toFixed(0)}</b>, exponential at <b style={{ color: GEO_ACCENT }}>{expAt(xNow).toFixed(1)}</b>
+            {mn
+              ? <>x = {xNow.toFixed(1)}: шулуун <b style={{ color: GEO_BLUE }}>{lineAt(xNow).toFixed(0)}</b>, илтгэгч функц <b style={{ color: GEO_ACCENT }}>{expAt(xNow).toFixed(1)}</b></>
+              : <>x = {xNow.toFixed(1)}: line at <b style={{ color: GEO_BLUE }}>{lineAt(xNow).toFixed(0)}</b>, exponential at <b style={{ color: GEO_ACCENT }}>{expAt(xNow).toFixed(1)}</b></>}
           </div>
           <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-            {sp > 0.97
+            {mn
+              ? (sp > 0.97
+                ? <>Эцэст нь: илтгэгч функц ялна — зөрүү цаашид улам л томорно. Хоёр дахин өсгөх нь нэмэхээс үргэлж давна.</>
+                : passed
+                  ? <>Гүйцэж түрүүллээ! Дахин дахин хоёр дахин өсгөх нь тогтмол нэмэхийг үүрд давлаа.</>
+                  : expLeads
+                    ? <>Эхэндээ илтгэгч функц тэргүүлж байна… шулуун түр гүйцэх болно.</>
+                    : <>Одоохондоо шулуун тэргүүлж байна — алхам бүрт тогтмол +{fmt(m)}. Гэвч нөгөөх нь хоёр дахин өссөөр…</>)
+              : sp > 0.97
               ? <>Final: the exponential wins — and the gap only grows from here. Doubling beats adding, always.</>
               : passed
                 ? <>Overtaken! Repeated doubling just blew past steady adding — permanently.</>
@@ -298,15 +317,19 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
             </g>
           );
         })}
-        <text x={W / 2} y={H - 4} fontSize="9" fill="var(--fg-3)" textAnchor="middle">years</text>
+        <text x={W / 2} y={H - 4} fontSize="9" fill="var(--fg-3)" textAnchor="middle">{mn ? "жил" : "years"}</text>
       </svg>
 
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-          year {yearNow}: A = {fmt(principal)} · {fmt(1 + rate)}<sup>{yearNow}</sup> = <b style={{ color: GEO_ACCENT }}>{balance.toFixed(2)}</b>
+          {mn ? "жил" : "year"} {yearNow}: A = {fmt(principal)} · {fmt(1 + rate)}<sup>{yearNow}</sup> = <b style={{ color: GEO_ACCENT }}>{balance.toFixed(2)}</b>
         </div>
         <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-          {sp > 0.97
+          {mn
+            ? (sp > 0.97
+              ? <>{n} жилийн дараа: <b style={{ color: GEO_ACCENT }}>{vals[n].toFixed(2)}</b> — энгийн (нийлмэл бус) хүүтэй бол {fmt(principal * (1 + rate * n))}. Зөрүү нь хүүгийн хүү.</>
+              : <>Жил бүр БҮХ үлдэгдлийг {fmt(1 + rate)} дахин үржүүлнэ — өмнөх бүх хүүг оролцуулаад. Үүнийг нийлмэл хүү гэнэ.</>)
+            : sp > 0.97
             ? <>After {n} years: <b style={{ color: GEO_ACCENT }}>{vals[n].toFixed(2)}</b> — vs {fmt(principal * (1 + rate * n))} with simple (non-compounding) interest. The gap is interest earning interest.</>
             : <>Each year multiplies the WHOLE balance by {fmt(1 + rate)} — including all past interest. That&apos;s compounding.</>}
         </div>
@@ -314,7 +337,7 @@ export default function ExpGraph({ config }: { config: ExpGraphConfig }) {
 
       <div className="mt-3 flex justify-center">
         <button type="button" onClick={replay} aria-label={chrome("Compound again", lang)} className="gm-press flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}>
-          <RotateCcw className="h-3.5 w-3.5" /> Run it again
+          <RotateCcw className="h-3.5 w-3.5" /> {mn ? "Дахин эхлүүлэх" : "Run it again"}
         </button>
       </div>
     </div>
