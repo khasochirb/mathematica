@@ -245,7 +245,7 @@ private **preview link**, per grade or course. Nothing deploys before that.
    the fraction and grid widgets, coordGeo's "m", the percent figures in 6/percentages L4–L5).
 4. `mn_topic_dump.py` skips `tryThis`, `note` and figure labels; 6/ratios
    drafted them by hand.
-5. **Live bugs to fix in English and the live mirrors:** five questions where
+5. **Live bugs to fix in English and the live mirrors:** four questions where
    two options are both correct (8/exponents L2, 7/rational L6, 6/decimals L5
    practice p4, 6/fractions L3), and the live 6-mn coordinate page sends
    "east" left («зүүн»).
