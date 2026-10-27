@@ -27,8 +27,13 @@ import mnGeometryCoordinateGeometry from "@/data/genmath/geometry-mn/coordinate-
 import mnGeometryFoundations from "@/data/genmath/geometry-mn/foundations.json";
 import mnGeometryParallelAndPerpendicular from "@/data/genmath/geometry-mn/parallel-and-perpendicular.json";
 import mnGeometryQuadrilateralsAndPolygons from "@/data/genmath/geometry-mn/quadrilaterals-and-polygons.json";
+import mnGeometryReasoningAndProof from "@/data/genmath/geometry-mn/reasoning-and-proof.json";
 import mnGeometryRelationshipsInTriangles from "@/data/genmath/geometry-mn/relationships-in-triangles.json";
+import mnGeometryRightTrianglesAndTrig from "@/data/genmath/geometry-mn/right-triangles-and-trig.json";
+import mnGeometrySimilarity from "@/data/genmath/geometry-mn/similarity.json";
 import mnGeometrySurfaceAreaAndVolume from "@/data/genmath/geometry-mn/surface-area-and-volume.json";
+import mnGeometryTransformations from "@/data/genmath/geometry-mn/transformations.json";
+import mnGeometryTrianglesAndCongruence from "@/data/genmath/geometry-mn/triangles-and-congruence.json";
 export const geometryUnitsMn: Record<string, GeometryUnit> = {
   "area-and-perimeter": mnGeometryAreaAndPerimeter as unknown as GeometryUnit,
   "circles": mnGeometryCircles as unknown as GeometryUnit,
@@ -36,8 +41,13 @@ export const geometryUnitsMn: Record<string, GeometryUnit> = {
   "foundations": mnGeometryFoundations as unknown as GeometryUnit,
   "parallel-and-perpendicular": mnGeometryParallelAndPerpendicular as unknown as GeometryUnit,
   "quadrilaterals-and-polygons": mnGeometryQuadrilateralsAndPolygons as unknown as GeometryUnit,
+  "reasoning-and-proof": mnGeometryReasoningAndProof as unknown as GeometryUnit,
   "relationships-in-triangles": mnGeometryRelationshipsInTriangles as unknown as GeometryUnit,
+  "right-triangles-and-trig": mnGeometryRightTrianglesAndTrig as unknown as GeometryUnit,
+  "similarity": mnGeometrySimilarity as unknown as GeometryUnit,
   "surface-area-and-volume": mnGeometrySurfaceAreaAndVolume as unknown as GeometryUnit,
+  "transformations": mnGeometryTransformations as unknown as GeometryUnit,
+  "triangles-and-congruence": mnGeometryTrianglesAndCongruence as unknown as GeometryUnit,
 };
 // MN-MIRRORS:END
 
