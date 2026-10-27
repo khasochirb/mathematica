@@ -16,7 +16,8 @@ sentence that needs no ending on a changing number («4 ба 6 тооны …»)
 use this only where the ending is unavoidable, and never hand-type an ending
 into a template.
 
-Cases: gen (-ын/-ийн), acc (-ыг/-ийг), dat (-д/-т), abl (-аас/-ээс…), com (-тай/-тэй/-той).
+Cases: gen (-ын/-ийн), acc (-ыг/-ийг), dat (-д/-т), abl (-аас/-ээс…), com (-тай/-тэй/-той),
+ins (-аар/-ээр…).
 """
 
 # last spoken word -> {case: ending}. Genitives match lib/i18n/mn-numerals.ts.
@@ -64,12 +65,18 @@ def last_word(n: int) -> str:
 
 
 def suffix(n, case: str) -> str:
-    """The ending alone: suffix(12, 'gen') -> 'ын'."""
+    """The ending alone: suffix(12, 'gen') -> 'ын'.
+
+    "ins" (instrumental, «-аар/-ээр/-оор/-өөр»: «5-аар их», «7-гоор үржүүлэх») is the
+    ablative with its final с turned to р, which holds for every row here.
+    """
+    if case == "ins":
+        return WORD[last_word(n)]["abl"][:-1] + "р"
     return WORD[last_word(n)][case]
 
 
 # An angle is read "<number> градус", so its ending follows градус, never the number.
-DEGREE = {"gen": "ын", "acc": "ыг", "dat": "т", "abl": "аас", "com": "тай"}
+DEGREE = {"gen": "ын", "acc": "ыг", "dat": "т", "abl": "аас", "com": "тай", "ins": "аар"}
 
 
 def with_case(n, case: str, math: bool = True, degree: bool = False) -> str:

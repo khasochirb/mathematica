@@ -406,4 +406,4 @@ Numbers and answers exactly as the English; wording rewritten.
 
 6. **Bare-imperative advisories judged and kept.** They appear only in recaps («чиглүүл», «унш»), titles, eyebrows and fact shorthand, which is the same judgement as the earlier drafts. Student-facing prose uses the polite form throughout.
 
-7. **Verification.** 112 assertions in `scratchpad/agents/precalculus-transformations-of-graphs/verify.py` all pass. They cover every value stated in the worked examples, tryIt, practice and test solutions, every tapQuestion key, and the step-body arithmetic, including the funFact identity $\frac{1}{2}x^2 = (\frac{x}{\sqrt{2}})^2$.
+7. **Verification.** 148 assertions in `/tmp/claude-0/-home-user-mathematica/2c09a9bc-48e8-50bc-b593-f4d20da90822/scratchpad/agents/precalculus-transformations-of-graphs/verify.py` all pass (sympy). They cover every value stated in the worked examples, tryIt, practice and test solutions, every tapQuestion key, and the step-body arithmetic, including the funFact identity $\frac{1}{2}x^2 = (\frac{x}{\sqrt{2}})^2$.
