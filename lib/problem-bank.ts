@@ -413,3 +413,42 @@ export function bankSolved(progress: BankProgress, formIds: readonly string[]): 
   }
   return { solvedForms, solvedProblems };
 }
+
+/**
+ * The topic as a Mongolian reader sees it. `mn` is the generated mirror
+ * (data/problembank-mn/<slug>.json, possibly scoped to one unit): it carries
+ * only the units whose rewrite is finished, so anything it lacks stays
+ * English rather than disappearing. Ids, levels, correctIndex and the form
+ * order all come from `topic`, which keeps progress and remediation keyed
+ * exactly as before.
+ */
+export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined): BankTopic {
+  if (!mn) return topic;
+  const mnUnits = new Map(mn.units.map((u) => [u.id, u]));
+  const mnForms = new Map(mn.forms.map((f) => [f.id, f]));
+  return {
+    ...topic,
+    title: mn.title || topic.title,
+    blurb: mn.blurb || topic.blurb,
+    units: topic.units.map((u) => {
+      const m = mnUnits.get(u.id);
+      return m ? { ...u, title: m.title, blurb: m.blurb ?? u.blurb } : u;
+    }),
+    forms: topic.forms.map((f) => {
+      const m = mnForms.get(f.id);
+      if (!m) return f;
+      const mv = new Map(m.variants.map((v) => [v.id, v]));
+      return {
+        ...f,
+        title: m.title,
+        skill: m.skill,
+        variants: f.variants.map((v) => {
+          const x = mv.get(v.id);
+          return x
+            ? { ...v, statement: x.statement, options: x.options, explanation: x.explanation, geoFigure: x.geoFigure ?? v.geoFigure }
+            : v;
+        }),
+      };
+    }),
+  };
+}

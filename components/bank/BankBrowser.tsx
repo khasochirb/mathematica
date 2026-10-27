@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, BookOpen, PencilLine, RefreshCw, Zap } from "lucide-react";
@@ -14,8 +16,7 @@ import {
   type BankLevel,
   LEVEL_LABELS,
   recordCheckedResult,
-  unitForms,
-} from "@/lib/problem-bank";
+  unitForms, localizeTopic } from "@/lib/problem-bank";
 import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
 import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 
@@ -27,7 +28,11 @@ import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 // miss→similar loop. Rows are compact (number · statement · actions) like a
 // printed problem set; the solution expands inline with self-grading that
 // feeds per-form mastery.
-export default function BankBrowser({ topic, unit, chrome }: { topic: BankTopic; unit: BankUnit; chrome?: BankChrome }) {
+export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chrome }: { topic: BankTopic; topicMn?: BankTopic | null; unit: BankUnit; chrome?: BankChrome }) {
+  const { lang } = useLang();
+  // Mongolian where the unit's rewrite has shipped; English otherwise.
+  const topic = useMemo(() => (lang === "mn" ? localizeTopic(topicEn, topicMn) : topicEn), [lang, topicEn, topicMn]);
+  const unit = topic.units.find((u) => u.id === unitEn.id) ?? unitEn;
   const c = chrome ?? defaultBankChrome(topic);
   const { user } = useAuth();
   const [level, setLevel] = useState<BankLevel>(0);

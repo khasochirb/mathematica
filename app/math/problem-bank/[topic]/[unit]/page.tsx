@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import BankBrowser from "@/components/bank/BankBrowser";
 import BankGate from "@/components/bank/BankGate";
-import { getBankTopic, getBankTopics } from "@/lib/bank-data";
+import { getBankTopic, getBankTopicMn, getBankTopics } from "@/lib/bank-data";
 import { getBankUnit } from "@/lib/problem-bank";
 
 export function generateStaticParams() {
@@ -30,7 +30,7 @@ export default function BankUnitPage({ params }: { params: { topic: string; unit
   if (!unit) notFound();
   return (
     <BankGate topic={topic} unitId={unit.id} backHref={`/math/problem-bank/${params.topic}`}>
-      <BankBrowser topic={topic} unit={unit} />
+      <BankBrowser topic={topic} topicMn={getBankTopicMn(topic.slug, unit.id)} unit={unit} />
     </BankGate>
   );
 }

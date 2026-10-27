@@ -12,6 +12,7 @@
 // verify gate, never rendered, and dropping it keeps ~700 KB of dead
 // weight out of every page's RSC payload.
 
+import { BANK_MN } from "@/lib/bank-data-mn";
 import {
   type BankTopic,
   type BankVariant,
@@ -113,4 +114,26 @@ export type IbBankTier = "sl" | "hl";
 
 export function getIbBankTopic(tier: IbBankTier): BankTopic {
   return tier === "sl" ? IB_SL_BANK : IB_HL_BANK;
+}
+
+/**
+ * The Mongolian mirror of a course-ladder topic, or null if no unit of it is
+ * rewritten yet. With `unitId`, only that unit's forms travel (the page
+ * already sends the English topic; sending a second full topic would double
+ * the payload for nothing). Without it, forms are dropped entirely: the unit
+ * list only needs titles. The client merges with localizeTopic().
+ */
+export function getBankTopicMn(slug: string, unitId?: string): BankTopic | null {
+  const mn = BANK_MN[slug];
+  if (!mn) return null;
+  return {
+    ...mn,
+    forms: unitId ? mn.forms.filter((f) => f.unit === unitId).map((f) => ({
+      ...f,
+      variants: f.variants.map((v) => {
+        const { check: _check, ...rest } = v as Required<BankVariant>;
+        return rest as BankVariant;
+      }),
+    })) : [],
+  };
 }

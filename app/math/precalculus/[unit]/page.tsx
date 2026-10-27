@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getPrecalcUnit, getPrecalcSpine } from "@/lib/genmath-data/precalculus";
+import { getPrecalcUnitLocalized, getPrecalcSpine } from "@/lib/genmath-data/precalculus";
 
 // A Precalculus unit page: what it builds on, then the lessons in order.
 export default function PrecalcUnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getPrecalcUnit(unitSlug);
+  const unit = getPrecalcUnitLocalized(unitSlug, lang);
   const spineEntry = getPrecalcSpine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

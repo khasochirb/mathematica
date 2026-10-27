@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, PencilLine, RotateCcw, Repeat2, Layers, Target } from "lucide-react";
@@ -22,8 +24,7 @@ import {
   getForm,
   getVariant,
   unitForms,
-  saveBankSession,
-} from "@/lib/problem-bank";
+  saveBankSession, localizeTopic } from "@/lib/problem-bank";
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
 import { type BankChrome, defaultBankChrome } from "./bank-chrome";
@@ -34,7 +35,11 @@ type Phase = "setup" | "quiz" | "done";
 // problem per exam form in the unit → any miss immediately queues a SIMILAR
 // problem (sibling variant of the same form) → summary names the forms that
 // still need work and can re-drill just those.
-export default function BankRunner({ topic, unit, chrome }: { topic: BankTopic; unit: BankUnit; chrome?: BankChrome }) {
+export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chrome }: { topic: BankTopic; topicMn?: BankTopic | null; unit: BankUnit; chrome?: BankChrome }) {
+  const { lang } = useLang();
+  // Mongolian where the unit's rewrite has shipped; English otherwise.
+  const topic = useMemo(() => (lang === "mn" ? localizeTopic(topicEn, topicMn) : topicEn), [lang, topicEn, topicMn]);
+  const unit = topic.units.find((u) => u.id === unitEn.id) ?? unitEn;
   const c = chrome ?? defaultBankChrome(topic);
   const { user } = useAuth();
   const [phase, setPhase] = useState<Phase>("setup");

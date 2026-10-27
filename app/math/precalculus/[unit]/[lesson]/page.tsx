@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getPrecalcUnit, getPrecalcLesson } from "@/lib/genmath-data/precalculus";
+import { getPrecalcUnitLocalized, getPrecalcLessonLocalized } from "@/lib/genmath-data/precalculus";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function PrecalcLessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getPrecalcUnit(unitSlug);
-  const lesson = getPrecalcLesson(unitSlug, lessonSlug);
+  const unit = getPrecalcUnitLocalized(unitSlug, lang);
+  const lesson = getPrecalcLessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

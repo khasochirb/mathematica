@@ -14,6 +14,8 @@ export type BankChrome = {
   backHref: string;
   /** Breadcrumb prefix: "Problem Bank" / "SAT Math · Topic practice". */
   eyebrow: string;
+  /** Mongolian breadcrumb prefix, shown on mn pages when set (English otherwise). */
+  eyebrowMn?: string;
   /** The companion course; unit lesson links are `${courseHref}/${unitId}`. null = no course yet, hide those links. */
   courseHref: string | null;
 };
@@ -23,8 +25,22 @@ export function defaultBankChrome(topic: BankTopic): BankChrome {
     topicBase: `/math/problem-bank/${topic.slug}`,
     backHref: "/math/problem-bank",
     eyebrow: "Problem Bank",
+    eyebrowMn: "Бодлогын сан",
     courseHref: `/math/${topic.slug}`,
   };
+}
+
+// LEVEL_LABELS (lib/problem-bank) is English-only; the bank screens read
+// level names through this so mn pages get «түвшин». The number stands
+// alone (no suffix glued to it).
+const LEVEL_LABELS_MN: Record<number, string> = {
+  1: "Түвшин 1 · Суурь",
+  2: "Түвшин 2 · Стандарт",
+  3: "Түвшин 3 · Шалгалт",
+};
+
+export function levelLabel(level: number, en: Record<number, string>, mn: boolean): string {
+  return mn ? LEVEL_LABELS_MN[level] ?? en[level] : en[level];
 }
 
 // The SAT bank's unit ids equal the SAT course's domain slugs

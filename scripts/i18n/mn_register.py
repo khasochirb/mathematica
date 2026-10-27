@@ -40,6 +40,10 @@ MODULES = {
     "solid-geometry": ("lib/genmath-data/solid-geometry.ts", "solidGeoUnitsMn", "CourseUnit"),
     "trigonometry": ("lib/genmath-data/trigonometry.ts", "trigUnitsMn", "CourseUnit"),
     "vectors-matrices": ("lib/genmath-data/vectors-matrices.ts", "vecMatUnitsMn", "CourseUnit"),
+    "precalculus": ("lib/genmath-data/precalculus.ts", "precalcUnitsMn", "CourseUnit"),
+    "integrated-1": ("lib/genmath-data/integrated-1.ts", "im1UnitsMn", "CourseUnit"),
+    "integrated-2": ("lib/genmath-data/integrated-2.ts", "im2UnitsMn", "CourseUnit"),
+    "integrated-3": ("lib/genmath-data/integrated-3.ts", "im3UnitsMn", "CourseUnit"),
     "esh": ("lib/esh-course.ts", "eshAuthoredMn", "CourseUnit"),
 }
 BEGIN = "// MN-MIRRORS:BEGIN"

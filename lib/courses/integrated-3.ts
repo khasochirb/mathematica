@@ -1,5 +1,5 @@
 import type { CourseDef } from "@/components/course/CourseShell";
-import { getIm3Spine, getIm3Unit, getIm3Lesson } from "@/lib/genmath-data/integrated-3";
+import { getIm3Spine, getIm3UnitLocalized, getIm3LessonLocalized } from "@/lib/genmath-data/integrated-3";
 
 // The Integrated Math 3 course definition — everything the shared CourseShell
 // needs to render this course's five pages. Units go live one at a time as
@@ -17,6 +17,6 @@ export const INTEGRATED_3: CourseDef = {
     "trigonometric functions, inference, and choosing the right model for a " +
     "situation. The year that opens Precalculus.",
   spine: getIm3Spine,
-  unit: getIm3Unit,
-  lesson: getIm3Lesson,
+  unit: (unitSlug, lang = "en") => getIm3UnitLocalized(unitSlug, lang),
+  lesson: (unitSlug, lessonSlug, lang = "en") => getIm3LessonLocalized(unitSlug, lessonSlug, lang),
 };

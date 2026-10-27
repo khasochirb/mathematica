@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getPrecalcUnit } from "@/lib/genmath-data/precalculus";
+import { getPrecalcUnitLocalized } from "@/lib/genmath-data/precalculus";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const revealLabels = (lang: string) => ({
@@ -20,7 +20,7 @@ function PrecalcPracticePageInner() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getPrecalcUnit(unitSlug);
+  const unit = getPrecalcUnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

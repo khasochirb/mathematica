@@ -1,5 +1,7 @@
 "use client";
 
+import { useLang } from "@/lib/lang-context";
+
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
@@ -11,14 +13,16 @@ import {
   type BankProgress,
   loadBankProgress,
   unitForms,
-  unitMastery,
-} from "@/lib/problem-bank";
+  unitMastery, localizeTopic } from "@/lib/problem-bank";
 import { type BankChrome, defaultBankChrome } from "./bank-chrome";
 
 // The subject page: the course's units in taught order, each opening its own
 // problem collection. This mirrors /math/<subject> exactly — finish a unit in
 // the course, then come here to solidify it against the full collection.
-export default function BankUnitList({ topic, chrome }: { topic: BankTopic; chrome?: BankChrome }) {
+export default function BankUnitList({ topic: topicEn, topicMn, chrome }: { topic: BankTopic; topicMn?: BankTopic | null; chrome?: BankChrome }) {
+  const { lang } = useLang();
+  // Mongolian where the unit's rewrite has shipped; English otherwise.
+  const topic = useMemo(() => (lang === "mn" ? localizeTopic(topicEn, topicMn) : topicEn), [lang, topicEn, topicMn]);
   const c = chrome ?? defaultBankChrome(topic);
   const { user } = useAuth();
   const [progress, setProgress] = useState<BankProgress | null>(null);

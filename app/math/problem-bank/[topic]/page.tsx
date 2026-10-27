@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import BankUnitList from "@/components/bank/BankUnitList";
-import { getBankTopic, getBankTopics } from "@/lib/bank-data";
+import { getBankTopic, getBankTopicMn, getBankTopics } from "@/lib/bank-data";
 
 export function generateStaticParams() {
   return getBankTopics().map((t) => ({ topic: t.slug }));
@@ -16,5 +16,5 @@ export function generateMetadata({ params }: { params: { topic: string } }) {
 export default function BankTopicPage({ params }: { params: { topic: string } }) {
   const topic = getBankTopic(params.topic);
   if (!topic) notFound();
-  return <BankUnitList topic={topic} />;
+  return <BankUnitList topic={topic} topicMn={getBankTopicMn(topic.slug)} />;
 }
