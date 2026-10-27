@@ -14,6 +14,21 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-10-27 — mode: content
+
+**Did:**
+- **Applied Khas's 27 Oct rulings to all 98 drafts.** These are round 3 (13 word pairs) and round 4 (60 new words, 47 OK as drafted). Highlights: «квадрат зэрэгт дэвшүүлэх», «$x$/$y$ тэнхлэг», «нээгддэг», trig «амплитуд», «дотоод/гадаад солбисон хоёр өнцөг», bin «интервал», «таатай», «бөмбөлөг/зүрх», pyramid «хажуу талсын өндөр», «перпендикулярын суурь», «Коши–Шварц», «Галилей», «үет бутархай». Named tests are now «шалгуур». The whispering gallery is removed. Every draft passes `mn_draft_check.py`.
+- **Decision page republished** (claude.ai/artifact/Y4xkjVZeUheuTWESszomNg). Its "Needs you" tab has 7 explained questions where Khas asked for context.
+- **Review pile 0s:** the full ruling table, what is still open, and the live-mirror conflicts listed below.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `ee53951`). Nothing deployed.
+
+**Blocked on:** Khas, for 7 words (n03, n31, n33, n37, n39, n42, n55); and for 6bj, the HIGH live bug from 6 Oct, which is still unanswered.
+
+**Others should know:** the live mirrors now disagree with the rulings, which is ship work for a later session. They are `7-mn` «квадратлах» ×10, «сахир» ×6, «Галилео», «тохирох үр дүн»; and `8-mn` «квадрат зэрэгт өргөх» ×3, «зэрэгт өргөх» ×6, «зэргийн дүрэм» ×2, «үелсэн бутархай» ×4. Pile 0s has the details.
+
+---
+
 ## 2026-10-06 — mode: content
 
 **Did:**
