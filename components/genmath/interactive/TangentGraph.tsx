@@ -1,7 +1,6 @@
 "use client";
 
 import { useLang } from "@/lib/lang-context";
-import { chrome } from "@/lib/i18n/chrome";
 
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
@@ -31,6 +30,7 @@ const H_STEPS = [2, 1, 0.5, 0.25, 0.1];
 
 export default function TangentGraph({ config }: { config: TangentGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode } = config;
 
   const [hi, setHi] = useState(0); // secant: index into H_STEPS
@@ -79,22 +79,22 @@ export default function TangentGraph({ config }: { config: TangentGraphConfig })
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-2">
-        <button type="button" onClick={dec} disabled={!canDec} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={dec} disabled={!canDec} aria-label={mn ? `${label} багасгах` : `Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 16, color }}>{valText}</div>
-        <button type="button" onClick={inc} disabled={!canInc} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={inc} disabled={!canInc} aria-label={mn ? `${label} нэмэгдүүлэх` : `Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
 
   const eqnText =
-    mode === "secant" ? "f(x) = x²/2 — secant from x = 1 to x = 1 + h" :
-    mode === "tangent" ? "f(x) = x²/2 — tangent at x = a" :
-    "f(x) = x²/2 (orange) and f′(x) = x (blue)";
+    mode === "secant" ? (mn ? "f(x) = x²/2 — x = 1 ба x = 1 + h цэгүүдийг дайрсан огтлогч" : "f(x) = x²/2 — secant from x = 1 to x = 1 + h") :
+    mode === "tangent" ? (mn ? "f(x) = x²/2 — x = a цэг дээрх шүргэгч" : "f(x) = x²/2 — tangent at x = a") :
+    mn ? "f(x) = x²/2 (улбар шар) ба f′(x) = x (цэнхэр)" : "f(x) = x²/2 (orange) and f′(x) = x (blue)";
 
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("A curve with a tangent or secant line", lang)}>
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={mn ? "Шүргэгч эсвэл огтлогч шулуунтай муруй" : "A curve with a tangent or secant line"}>
           {Array.from({ length: 7 }, (_, i) => -3 + i).map((g) => (
             <line key={`v${g}`} x1={px(g)} y1={py(Y0)} x2={px(g)} y2={py(Y1)} stroke="var(--line)" strokeWidth={1} />
           ))}
@@ -154,13 +154,13 @@ export default function TangentGraph({ config }: { config: TangentGraphConfig })
       {mode === "secant" && (
         <div className="mt-2 grid grid-cols-2 gap-2">
           <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-            <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>secant slope</div>
+            <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>{mn ? "огтлогчийн налалт" : "secant slope"}</div>
             <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>
               (f(1+h) − f(1))/h = {fmt(secSlope, 3)}
             </div>
           </div>
           <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-            <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>tangent slope (target)</div>
+            <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "шүргэгчийн налалт (зорилт)" : "tangent slope (target)"}</div>
             <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>f′(1) = 1</div>
           </div>
         </div>
@@ -168,11 +168,11 @@ export default function TangentGraph({ config }: { config: TangentGraphConfig })
       {mode !== "secant" && (
         <div className="mt-2 grid grid-cols-2 gap-2">
           <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-            <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>point on f</div>
+            <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>{mn ? "f дээрх цэг" : "point on f"}</div>
             <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>({fmt(a)}, {fmt(f(a), 2)})</div>
           </div>
           <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-            <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mode === "tangent" ? "tangent slope" : "f′ reports"}</div>
+            <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mode === "tangent" ? (mn ? "шүргэгчийн налалт" : "tangent slope") : (mn ? "уламжлалын утга" : "f′ reports")}</div>
             <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>f′({fmt(a)}) = {fmt(a)}</div>
           </div>
         </div>
@@ -183,32 +183,35 @@ export default function TangentGraph({ config }: { config: TangentGraphConfig })
         {mode === "secant" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Slope {fmt(secSlope, 3)} — shrink h and the <b style={{ color: RED }}>secant</b> collapses onto the <b style={{ color: GEO_BLUE }}>tangent</b>
+              {mn ? <>Налалт {fmt(secSlope, 3)} — h багасах тусам <b style={{ color: RED }}>огтлогч</b> <b style={{ color: GEO_BLUE }}>шүргэгчтэй</b> давхцана</> : <>Slope {fmt(secSlope, 3)} — shrink h and the <b style={{ color: RED }}>secant</b> collapses onto the <b style={{ color: GEO_BLUE }}>tangent</b></>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              1 + h/2 → 1 as h → 0: the derivative is this limit, drawn
+              {mn ? <>h → 0 үед 1 + h/2 → 1: уламжлал бол яг энэ хязгаар</> : <>1 + h/2 → 1 as h → 0: the derivative is this limit, drawn</>}
             </div>
           </>
         )}
         {mode === "tangent" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              {a < 0 ? <>Slope {fmt(a)}: <b style={{ color: RED }}>downhill</b> — the curve is falling here</> :
+              {mn ? (a < 0 ? <>Налалт {fmt(a)}: <b style={{ color: RED }}>уруу</b> — муруй энд буурч байна</> :
+               a === 0 ? <>Налалт 0: <b style={{ color: RED }}>хэвтээ</b> — орой, буурч байснаа өсөж эхлэх цэг</> :
+               <>Налалт {fmt(a)}: <b style={{ color: GEO_BLUE }}>өгсүүр</b> — муруй энд өсөж байна</>) :
+               a < 0 ? <>Slope {fmt(a)}: <b style={{ color: RED }}>downhill</b> — the curve is falling here</> :
                a === 0 ? <>Slope 0: <b style={{ color: RED }}>flat</b> — the vertex, where fall turns to rise</> :
                <>Slope {fmt(a)}: <b style={{ color: GEO_BLUE }}>uphill</b> — the curve is climbing here</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              the tangent's slope IS the derivative: f′(a) = a for this curve
+              {mn ? <>шүргэгчийн налалт НЬ уламжлал юм: энэ муруйн хувьд f′(a) = a</> : <>the tangent's slope IS the derivative: f′(a) = a for this curve</>}
             </div>
           </>
         )}
         {mode === "slopeCurve" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              At x = {fmt(a)}: the <b style={{ color: GEO_BLUE }}>blue height</b> ({fmt(a)}) reports the <b style={{ color: GEO_ACCENT }}>orange slope</b>
+              {mn ? <>x = {fmt(a)} үед: <b style={{ color: GEO_BLUE }}>цэнхэр өндөр</b> ({fmt(a)}) нь <b style={{ color: GEO_ACCENT }}>улбар шар налалтыг</b> заана</> : <>At x = {fmt(a)}: the <b style={{ color: GEO_BLUE }}>blue height</b> ({fmt(a)}) reports the <b style={{ color: GEO_ACCENT }}>orange slope</b></>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              the derivative is a FUNCTION: every x gets its own slope
+              {mn ? <>уламжлал бол ФУНКЦ: x бүр өөрийн налалттай</> : <>the derivative is a FUNCTION: every x gets its own slope</>}
             </div>
           </>
         )}
@@ -217,13 +220,13 @@ export default function TangentGraph({ config }: { config: TangentGraphConfig })
       {/* controls */}
       <div className="mt-4 flex items-center justify-center gap-6">
         {mode === "secant"
-          ? stepper("gap h", fmt(H_STEPS[hi]), () => setHi((i) => Math.min(H_STEPS.length - 1, i + 1)), () => setHi((i) => Math.max(0, i - 1)), hi < H_STEPS.length - 1, hi > 0, RED)
-          : stepper("touch point a", fmt(a), () => setA((v) => Math.max(-2, v - 1)), () => setA((v) => Math.min(3, v + 1)), a > -2, a < 3)}
+          ? stepper(mn ? "алхам h" : "gap h", fmt(H_STEPS[hi]), () => setHi((i) => Math.min(H_STEPS.length - 1, i + 1)), () => setHi((i) => Math.max(0, i - 1)), hi < H_STEPS.length - 1, hi > 0, RED)
+          : stepper(mn ? "шүргэлтийн цэг a" : "touch point a", fmt(a), () => setA((v) => Math.max(-2, v - 1)), () => setA((v) => Math.min(3, v + 1)), a > -2, a < 3)}
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        {mode === "secant" && "step h down — the red secant tips onto the dashed tangent"}
-        {mode === "tangent" && "slide a along the curve — downhill, flat at the vertex, uphill"}
-        {mode === "slopeCurve" && "move x — the blue line always knows the orange curve's slope"}
+        {mode === "secant" && (mn ? "h утгыг багасга — улаан огтлогч тасархай шүргэгч дээр буух болно" : "step h down — the red secant tips onto the dashed tangent")}
+        {mode === "tangent" && (mn ? "a утгыг муруйн дагуу шилжүүл — уруу, оройд хэвтээ, өгсүүр" : "slide a along the curve — downhill, flat at the vertex, uphill")}
+        {mode === "slopeCurve" && (mn ? "x утгыг өөрчил — цэнхэр шулуун улбар шар муруйн налалтыг үргэлж заана" : "move x — the blue line always knows the orange curve's slope")}
       </div>
     </div>
   );

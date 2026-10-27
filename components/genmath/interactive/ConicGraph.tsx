@@ -1,7 +1,6 @@
 "use client";
 
 import { useLang } from "@/lib/lang-context";
-import { chrome } from "@/lib/i18n/chrome";
 
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
@@ -29,6 +28,7 @@ function fmt(n: number, dp = 2): string {
 
 export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode } = config;
 
   const [p1, setP1] = useState(mode === "circle" ? 0 : mode === "ellipse" ? 4 : mode === "parabola" ? 1 : 2); // h | a | p | a
@@ -99,9 +99,9 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-2">
-        <button type="button" onClick={() => set((v) => Math.max(lo, v - 1))} disabled={val <= lo} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.max(lo, v - 1))} disabled={val <= lo} aria-label={mn ? `${label} багасгах` : `Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 34, fontSize: 16, color }}>{val}</div>
-        <button type="button" onClick={() => set((v) => Math.min(hi, v + 1))} disabled={val >= hi} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.min(hi, v + 1))} disabled={val >= hi} aria-label={mn ? `${label} нэмэгдүүлэх` : `Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
@@ -109,7 +109,7 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("A conic section on a grid", lang)}>
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={mn ? "Тор дээрх конусын огтлол" : "A conic section on a grid"}>
           {Array.from({ length: 11 }, (_, i) => i - 5).map((g) => (
             <g key={g}>
               <line x1={px(g)} y1={py(-R)} x2={px(g)} y2={py(R)} stroke="var(--line)" strokeWidth={1} />
@@ -180,11 +180,11 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
         {mode === "circle" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>center</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "төв" : "center"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>({p1}, 0)</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>radius</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>{mn ? "радиус" : "radius"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>√{p2 * p2} = {p2}</div>
             </div>
           </>
@@ -192,11 +192,11 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
         {mode === "ellipse" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>foci at c = √|a² − b²|</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "фокусууд: c = √|a² − b²|" : "foci at c = √|a² − b²|"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>c = {fmt(cEll)}</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>eccentricity c/a</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>{mn ? "эксцентриситет c/a" : "eccentricity c/a"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{fmt(ecc)}</div>
             </div>
           </>
@@ -204,11 +204,11 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
         {mode === "parabola" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>focus</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "фокус" : "focus"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>(0, {p1})</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>directrix</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>{mn ? "директрис" : "directrix"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>y = −{p1}</div>
             </div>
           </>
@@ -216,11 +216,11 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
         {mode === "hyperbola" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>asymptotes</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "асимптотууд" : "asymptotes"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>y = ±({p2}/{p1})x</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>foci at c² = a² + b²</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "фокусууд: c² = a² + b²" : "foci at c² = a² + b²"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>c = {fmt(cHyp)}</div>
             </div>
           </>
@@ -232,42 +232,47 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
         {mode === "circle" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Every point exactly <b style={{ color: GEO_ACCENT }}>{p2}</b> from <b style={{ color: GEO_BLUE }}>({p1}, 0)</b>
+              {mn ? <>Бүх цэг <b style={{ color: GEO_BLUE }}>({p1}, 0)</b> цэгээс яг <b style={{ color: GEO_ACCENT }}>{p2}</b> зайтай</> : <>Every point exactly <b style={{ color: GEO_ACCENT }}>{p2}</b> from <b style={{ color: GEO_BLUE }}>({p1}, 0)</b></>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              the equation IS the distance formula, squared — h shifts, r breathes
+              {mn ? <>тэгшитгэл НЬ квадратлагдсан зайн томьёо — h төвийг шилжүүлж, r хэмжээг өөрчилнө</> : <>the equation IS the distance formula, squared — h shifts, r breathes</>}
             </div>
           </>
         )}
         {mode === "ellipse" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              {p1 === p2
+              {mn ? (p1 === p2
+                ? <>a = b: фокусууд нийлнэ — <b style={{ color: GEO_BLUE }}>тойрог</b>, эксцентриситет 0</>
+                : <>Бүх цэгээс хоёр <b style={{ color: GEO_BLUE }}>фокус</b> хүртэлх зайн нийлбэр <b style={{ color: GEO_ACCENT }}>{2 * Math.max(p1, p2)}</b> байна</>)
+                : p1 === p2
                 ? <>a = b: the foci merge — <b style={{ color: GEO_BLUE }}>a circle</b>, eccentricity 0</>
                 : <>Distances to the two <b style={{ color: GEO_BLUE }}>foci</b> sum to <b style={{ color: GEO_ACCENT }}>{2 * Math.max(p1, p2)}</b> at every point</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {ellHorizontal ? "long axis horizontal (a ≥ b)" : "b beat a: the long axis flipped vertical"} · higher eccentricity = more stretched
+              {mn
+                ? <>{ellHorizontal ? "их тэнхлэг хэвтээ (a ≥ b)" : "b > a: их тэнхлэг босоо болов"} · эксцентриситет их байх тусам илүү сунасан</>
+                : <>{ellHorizontal ? "long axis horizontal (a ≥ b)" : "b beat a: the long axis flipped vertical"} · higher eccentricity = more stretched</>}
             </div>
           </>
         )}
         {mode === "parabola" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Every point equidistant from the <b style={{ color: GEO_BLUE }}>focus</b> and the <b style={{ color: RED }}>directrix</b>
+              {mn ? <>Бүх цэг <b style={{ color: GEO_BLUE }}>фокус</b> болон <b style={{ color: RED }}>директрисээс</b> тэнцүү зайтай</> : <>Every point equidistant from the <b style={{ color: GEO_BLUE }}>focus</b> and the <b style={{ color: RED }}>directrix</b></>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              bigger p: the focus climbs, the dish opens wider — satellite dishes live here
+              {mn ? <>p их байх тусам фокус дээшилж, муруй өргөн нээгдэнэ — хиймэл дагуулын антен яг ийм хэлбэртэй</> : <>bigger p: the focus climbs, the dish opens wider — satellite dishes live here</>}
             </div>
           </>
         )}
         {mode === "hyperbola" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Two branches hugging <b style={{ color: "var(--fg-2)" }}>y = ±({p2}/{p1})x</b> ever tighter, never touching
+              {mn ? <>Хоёр салаа <b style={{ color: "var(--fg-2)" }}>y = ±({p2}/{p1})x</b> шулуунд улам ойртох боловч хэзээ ч хүрэхгүй</> : <>Two branches hugging <b style={{ color: "var(--fg-2)" }}>y = ±({p2}/{p1})x</b> ever tighter, never touching</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              distances to the foci DIFFER by a constant (2a = {2 * p1}) — the minus sign's curve
+              {mn ? <>фокусууд хүртэлх зайн ЯЛГАВАР тогтмол (2a = {2 * p1}) — хасах тэмдэгтэй тэгшитгэлийн муруй</> : <>distances to the foci DIFFER by a constant (2a = {2 * p1}) — the minus sign's curve</>}
             </div>
           </>
         )}
@@ -277,17 +282,17 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
       <div className="mt-4 flex items-center justify-center gap-6">
         {mode === "circle" && (
           <>
-            {stepper("center h", p1, setP1, -2, 2, GEO_BLUE)}
-            {stepper("radius r", p2, setP2, 1, 4, GEO_ACCENT)}
+            {stepper(mn ? "төв h" : "center h", p1, setP1, -2, 2, GEO_BLUE)}
+            {stepper(mn ? "радиус r" : "radius r", p2, setP2, 1, 4, GEO_ACCENT)}
           </>
         )}
         {mode === "ellipse" && (
           <>
-            {stepper("a (x-radius)", p1, setP1, 1, 5, GEO_ACCENT)}
-            {stepper("b (y-radius)", p2, setP2, 1, 5, GEO_BLUE)}
+            {stepper(mn ? "a (x-радиус)" : "a (x-radius)", p1, setP1, 1, 5, GEO_ACCENT)}
+            {stepper(mn ? "b (y-радиус)" : "b (y-radius)", p2, setP2, 1, 5, GEO_BLUE)}
           </>
         )}
-        {mode === "parabola" && stepper("focal distance p", p1, setP1, 1, 4, GEO_BLUE)}
+        {mode === "parabola" && stepper(mn ? "фокусын зай p" : "focal distance p", p1, setP1, 1, 4, GEO_BLUE)}
         {mode === "hyperbola" && (
           <>
             {stepper("a", p1, setP1, 1, 4, GEO_ACCENT)}
@@ -296,10 +301,10 @@ export default function ConicGraph({ config }: { config: ConicGraphConfig }) {
         )}
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        {mode === "circle" && "slide the center, breathe the radius — the equation tracks both"}
-        {mode === "ellipse" && "stretch a and b — watch the foci ride out and the axes swap"}
-        {mode === "parabola" && "step p — focus and directrix retreat in mirrored lockstep"}
-        {mode === "hyperbola" && "reshape a and b — the asymptote slopes are b/a exactly"}
+        {mode === "circle" && (mn ? "төвийг шилжүүлж, радиусыг өөрчил — тэгшитгэл хоёуланг нь дагана" : "slide the center, breathe the radius — the equation tracks both")}
+        {mode === "ellipse" && (mn ? "a, b утгуудыг өөрчил — фокусууд холдож, тэнхлэгүүд солигдохыг хар" : "stretch a and b — watch the foci ride out and the axes swap")}
+        {mode === "parabola" && (mn ? "p утгыг өөрчил — фокус ба директрис тэгш хэмтэйгээр холдоно" : "step p — focus and directrix retreat in mirrored lockstep")}
+        {mode === "hyperbola" && (mn ? "a, b утгуудыг өөрчил — асимптотын налалт яг b/a байна" : "reshape a and b — the asymptote slopes are b/a exactly")}
       </div>
     </div>
   );

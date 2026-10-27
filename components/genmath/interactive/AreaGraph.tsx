@@ -1,7 +1,6 @@
 "use client";
 
 import { useLang } from "@/lib/lang-context";
-import { chrome } from "@/lib/i18n/chrome";
 
 import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
@@ -30,6 +29,7 @@ const NS = [2, 4, 8, 16, 32];
 
 export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const { mode } = config;
 
   const [ni, setNi] = useState(0); // riemann: index into NS
@@ -103,12 +103,12 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
   }, [mode, xEdge, bd]);
 
   const eqnText =
-    mode === "riemann" ? "f(x) = x² on [0, 2] — left-endpoint rectangles" :
-    mode === "accumulate" ? "f(x) = x² — area filling behind the sweep line" :
-    "f(x) = x on [0, b] — a triangle, two ways";
+    mode === "riemann" ? (mn ? "f(x) = x², [0, 2] завсар — зүүн үзүүрийн тэгш өнцөгтүүд" : "f(x) = x² on [0, 2] — left-endpoint rectangles") :
+    mode === "accumulate" ? (mn ? "f(x) = x² — гүйгч шугамын ард дүүрч буй талбай" : "f(x) = x² — area filling behind the sweep line") :
+    mn ? "f(x) = x, [0, b] завсар — гурвалжин, хоёр аргаар" : "f(x) = x on [0, b] — a triangle, two ways";
 
   const stepBtn = (onClick: () => void, disabled: boolean, kind: "minus" | "plus") => (
-    <button type="button" onClick={onClick} disabled={disabled} aria-label={kind === "minus" ? "Fewer" : "More"}
+    <button type="button" onClick={onClick} disabled={disabled} aria-label={kind === "minus" ? (mn ? "Багасгах" : "Fewer") : (mn ? "Нэмэх" : "More")}
       className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35"
       style={kind === "plus"
         ? { background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }
@@ -120,7 +120,7 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Area under a curve", lang)}>
+        <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={mn ? "Муруйн доорх талбай" : "Area under a curve"}>
           {Array.from({ length: Math.floor(X1) + 1 }, (_, i) => i).map((g) => (
             <line key={`v${g}`} x1={px(g)} y1={py(0)} x2={px(g)} y2={py(Y1)} stroke="var(--line)" strokeWidth={1} />
           ))}
@@ -168,11 +168,11 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
         {mode === "riemann" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>rectangle sum ({n} slices)</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? <>тэгш өнцөгтүүдийн нийлбэр ({n} хэсэг)</> : <>rectangle sum ({n} slices)</>}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{fmt(riemannSum)}</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>true area (target)</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>{mn ? "жинхэнэ талбай (зорилт)" : "true area (target)"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>8/3 ≈ 2.667</div>
             </div>
           </>
@@ -180,11 +180,11 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
         {mode === "accumulate" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>sweep edge x</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: RED }}>{mn ? "гүйгч шугам x" : "sweep edge x"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{fmt(xEdge, 2)}</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>area so far = x³/3</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "одоогийн талбай = x³/3" : "area so far = x³/3"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{fmt(xEdge ** 3 / 3)}</div>
             </div>
           </>
@@ -192,11 +192,11 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
         {mode === "ftc" && (
           <>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>geometry: ½ · b · b</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_BLUE }}>{mn ? "геометр: ½ · b · b" : "geometry: ½ · b · b"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{fmt(b * b / 2, 2)}</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>antiderivative: b²/2</div>
+              <div className="text-[10px] uppercase tracking-wide" style={{ color: GEO_ACCENT }}>{mn ? "эх функц: b²/2" : "antiderivative: b²/2"}</div>
               <div className="serif tabular mt-0.5 text-[14px]" style={{ color: "var(--fg)" }}>{fmt(b * b / 2, 2)}</div>
             </div>
           </>
@@ -208,30 +208,30 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
         {mode === "riemann" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              {n} slices: sum <b style={{ color: GEO_BLUE }}>{fmt(riemannSum)}</b> — off by {fmt(8 / 3 - riemannSum)}
+              {mn ? <>{n} хэсэг: нийлбэр <b style={{ color: GEO_BLUE }}>{fmt(riemannSum)}</b> — зөрүү {fmt(8 / 3 - riemannSum)}</> : <>{n} slices: sum <b style={{ color: GEO_BLUE }}>{fmt(riemannSum)}</b> — off by {fmt(8 / 3 - riemannSum)}</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              more slices, thinner error: the staircase melts into the curve
+              {mn ? <>хэсэг олшрох тусам алдаа багасна: шатлал муруйтай нийлнэ</> : <>more slices, thinner error: the staircase melts into the curve</>}
             </div>
           </>
         )}
         {mode === "accumulate" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Area-so-far is a <b style={{ color: GEO_BLUE }}>function</b>: A(x) = x³/3 — and A′(x) = x² = f(x)
+              {mn ? <>Одоогийн талбай бол <b style={{ color: GEO_BLUE }}>функц</b>: A(x) = x³/3 — мөн A′(x) = x² = f(x)</> : <>Area-so-far is a <b style={{ color: GEO_BLUE }}>function</b>: A(x) = x³/3 — and A′(x) = x² = f(x)</>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              the rate the area grows equals the curve&apos;s height — the Fundamental Theorem, live
+              {mn ? <>талбайн өсөх хурд муруйн өндөртэй тэнцүү — Анализын үндсэн теорем нүдэн дээр</> : <>the rate the area grows equals the curve&apos;s height — the Fundamental Theorem, live</>}
             </div>
           </>
         )}
         {mode === "ftc" && (
           <>
             <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>
-              Triangle says <b style={{ color: GEO_BLUE }}>{fmt(b * b / 2, 2)}</b>; the antiderivative x²/2 at {b} says <b style={{ color: GEO_ACCENT }}>{fmt(b * b / 2, 2)}</b>
+              {mn ? <>Гурвалжнаар <b style={{ color: GEO_BLUE }}>{fmt(b * b / 2, 2)}</b>; x²/2 эх функцээр (x = {b}) <b style={{ color: GEO_ACCENT }}>{fmt(b * b / 2, 2)}</b></> : <>Triangle says <b style={{ color: GEO_BLUE }}>{fmt(b * b / 2, 2)}</b>; the antiderivative x²/2 at {b} says <b style={{ color: GEO_ACCENT }}>{fmt(b * b / 2, 2)}</b></>}
             </div>
             <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              geometry and calculus agree — ∫₀ᵇ x dx = b²/2, certified by a triangle
+              {mn ? <>геометр ба интеграл санал нэг — ∫₀ᵇ x dx = b²/2, гурвалжнаар батлагдав</> : <>geometry and calculus agree — ∫₀ᵇ x dx = b²/2, certified by a triangle</>}
             </div>
           </>
         )}
@@ -241,7 +241,7 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
       <div className="mt-4 flex items-center justify-center gap-4">
         {mode === "riemann" && (
           <div className="text-center">
-            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>slices n</div>
+            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "хэсгийн тоо n" : "slices n"}</div>
             <div className="mt-1 flex items-center gap-2">
               {stepBtn(() => setNi((i) => Math.max(0, i - 1)), ni <= 0, "minus")}
               <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 16, color: GEO_BLUE }}>{n}</div>
@@ -251,7 +251,7 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
         )}
         {mode === "ftc" && (
           <div className="text-center">
-            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>right edge b</div>
+            <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "дээд хязгаар b" : "right edge b"}</div>
             <div className="mt-1 flex items-center gap-2">
               {stepBtn(() => setB((v) => Math.max(1, v - 1)), b <= 1, "minus")}
               <div className="serif tabular text-center" style={{ minWidth: 44, fontSize: 16, color: RED }}>{b}</div>
@@ -260,15 +260,15 @@ export default function AreaGraph({ config }: { config: AreaGraphConfig }) {
           </div>
         )}
         {mode === "accumulate" && (
-          <button type="button" onClick={replay} aria-label={chrome("Replay the sweep", lang)} className="gm-press flex items-center gap-2 rounded-full px-5 py-2 text-[13px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
-            <RotateCcw className="h-3.5 w-3.5" /> replay the sweep
+          <button type="button" onClick={replay} aria-label={mn ? "Дахин гүйлгэх" : "Replay the sweep"} className="gm-press flex items-center gap-2 rounded-full px-5 py-2 text-[13px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
+            <RotateCcw className="h-3.5 w-3.5" /> {mn ? "дахин гүйлгэх" : "replay the sweep"}
           </button>
         )}
       </div>
       <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-        {mode === "riemann" && "step n up — watch the staircase chase 8/3"}
-        {mode === "accumulate" && "the sweep fills area; the readout grows like x³/3"}
-        {mode === "ftc" && "step b — geometry and the antiderivative move in lockstep"}
+        {mode === "riemann" && (mn ? "n утгыг нэмэгдүүл — нийлбэр 8/3 утгад ойртохыг хар" : "step n up — watch the staircase chase 8/3")}
+        {mode === "accumulate" && (mn ? "гүйгч шугам талбайг дүүргэнэ; утга нь x³/3 шиг өснө" : "the sweep fills area; the readout grows like x³/3")}
+        {mode === "ftc" && (mn ? "b утгыг өөрчил — геометр ба эх функц зэрэг өөрчлөгдөнө" : "step b — geometry and the antiderivative move in lockstep")}
       </div>
     </div>
   );

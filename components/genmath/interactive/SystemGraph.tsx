@@ -1,7 +1,6 @@
 "use client";
 
 import { useLang } from "@/lib/lang-context";
-import { chrome } from "@/lib/i18n/chrome";
 
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
@@ -26,6 +25,7 @@ function eqn(m: number, b: number): string {
 
 export default function SystemGraph({ config }: { config: SystemGraphConfig }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const {
     m1, b1,
     m2: m20, b2: b20,
@@ -68,9 +68,9 @@ export default function SystemGraph({ config }: { config: SystemGraphConfig }) {
     <div className="text-center">
       <div className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{label}</div>
       <div className="mt-1 flex items-center gap-2">
-        <button type="button" onClick={() => set((v) => Math.max(lo, v - delta))} disabled={val <= lo} aria-label={`Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.max(lo, v - delta))} disabled={val <= lo} aria-label={mn ? `${label} багасгах` : `Decrease ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}><Minus className="h-4 w-4" /></button>
         <div className="serif tabular text-center" style={{ minWidth: 36, fontSize: 16, color: GEO_BLUE }}>{fmt(val)}</div>
-        <button type="button" onClick={() => set((v) => Math.min(hi, v + delta))} disabled={val >= hi} aria-label={`Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
+        <button type="button" onClick={() => set((v) => Math.min(hi, v + delta))} disabled={val >= hi} aria-label={mn ? `${label} нэмэгдүүлэх` : `Increase ${label}`} className="gm-press grid h-9 w-9 place-items-center rounded-full disabled:opacity-35" style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}><Plus className="h-4 w-4" /></button>
       </div>
     </div>
   );
@@ -80,7 +80,7 @@ export default function SystemGraph({ config }: { config: SystemGraphConfig }) {
   return (
     <div className="rounded-2xl p-4 sm:p-5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={chrome("Two lines on a coordinate grid", lang)}>
+        <svg viewBox={`0 0 ${W} ${W}`} width="100%" style={{ maxWidth: 340 }} role="img" aria-label={mn ? "Координатын тор дээрх хоёр шулуун" : "Two lines on a coordinate grid"}>
           {ints.map((g) => (
             <g key={`g${g}`}>
               <line x1={px(g)} y1={py(max)} x2={px(g)} y2={py(min)} stroke="var(--line)" strokeWidth={1} />
@@ -135,21 +135,21 @@ export default function SystemGraph({ config }: { config: SystemGraphConfig }) {
       >
         {sameLine ? (
           <>
-            <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>Same line twice — <b style={{ color: "var(--accent)" }}>infinitely many solutions</b></div>
-            <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>Every point on the line satisfies both equations.</div>
+            <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>{mn ? <>Нэг шулуун давхцсан — <b style={{ color: "var(--accent)" }}>төгсгөлгүй олон шийд</b></> : <>Same line twice — <b style={{ color: "var(--accent)" }}>infinitely many solutions</b></>}</div>
+            <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? <>Шулуун дээрх бүх цэг хоёр тэгшитгэлийг зэрэг хангана.</> : <>Every point on the line satisfies both equations.</>}</div>
           </>
         ) : parallel ? (
           <>
-            <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>Parallel lines — <b style={{ color: "rgb(200,60,60)" }}>no solution</b></div>
-            <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>Equal slopes, different intercepts: they never meet.</div>
+            <div className="serif text-[15px]" style={{ color: "var(--fg)" }}>{mn ? <>Параллель шулуунууд — <b style={{ color: "rgb(200,60,60)" }}>шийдгүй</b></> : <>Parallel lines — <b style={{ color: "rgb(200,60,60)" }}>no solution</b></>}</div>
+            <div className="mt-0.5 text-[12px]" style={{ color: "var(--fg-2)" }}>{mn ? <>Налалт тэнцүү, огтлол өөр: хэзээ ч огтлолцохгүй.</> : <>Equal slopes, different intercepts: they never meet.</>}</div>
           </>
         ) : (
           <>
             <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-              One solution: <b style={{ color: "var(--accent)" }}>({fmt(ix!)}, {fmt(iy!)})</b>{!onGrid && <span className="text-[12px]" style={{ color: "var(--fg-3)" }}> (off this grid)</span>}
+              {mn ? "Нэг шийд" : "One solution"}: <b style={{ color: "var(--accent)" }}>({fmt(ix!)}, {fmt(iy!)})</b>{!onGrid && <span className="text-[12px]" style={{ color: "var(--fg-3)" }}>{mn ? " (энэ торноос гадна)" : " (off this grid)"}</span>}
             </div>
             <div className="mt-0.5 text-[12px] serif tabular" style={{ color: "var(--fg-2)" }}>
-              check: {fmt(m1)}·{fmt(ix!)} {b1 >= 0 ? "+" : "−"} {fmt(Math.abs(b1))} = {fmt(iy!)} ✓ and {fmt(m2)}·{fmt(ix!)} {b2 >= 0 ? "+" : "−"} {fmt(Math.abs(b2))} = {fmt(iy!)} ✓
+              {mn ? "шалгах" : "check"}: {fmt(m1)}·{fmt(ix!)} {b1 >= 0 ? "+" : "−"} {fmt(Math.abs(b1))} = {fmt(iy!)} ✓ {mn ? "ба" : "and"} {fmt(m2)}·{fmt(ix!)} {b2 >= 0 ? "+" : "−"} {fmt(Math.abs(b2))} = {fmt(iy!)} ✓
             </div>
           </>
         )}
@@ -158,13 +158,13 @@ export default function SystemGraph({ config }: { config: SystemGraphConfig }) {
       {/* line-2 steppers */}
       {interactive && (
         <div className="mt-4 flex items-center justify-center gap-6">
-          {stepper("slope m₂", m2, setM2, -3, 3, 1)}
-          {stepper("intercept b₂", b2, setB2, min + 1, max - 1, 1)}
+          {stepper(mn ? "налалт k₂" : "slope m₂", m2, setM2, -3, 3, 1)}
+          {stepper(mn ? "огтлол b₂" : "intercept b₂", b2, setB2, min + 1, max - 1, 1)}
         </div>
       )}
       {interactive && (
         <div className="mt-2 text-center text-[12px]" style={{ color: "var(--fg-3)" }}>
-          adjust the blue line — make the lines cross, parallel, or identical
+          {mn ? "цэнхэр шулууныг өөрчил — шулуунуудыг огтлолцуул, параллель болго эсвэл давхцуул" : "adjust the blue line — make the lines cross, parallel, or identical"}
         </div>
       )}
     </div>
