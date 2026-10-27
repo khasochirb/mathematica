@@ -23,7 +23,7 @@ touching any of those; it is not summarised here.
 
 **Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `ee53951`). Nothing deployed.
 
-**Blocked on:** Khas, for 7 words (n03, n31, n33, n37, n39, n42, n55); and for 6bj, the HIGH live bug from 6 Oct, which is still unanswered.
+**Blocked on:** Khas, for 6bj, the HIGH live bug from 6 Oct, which is still unanswered. (His 7 open words were answered the same day and applied in `b808559`: «нийт дэх эзлэх хувь», «казиногийн ашгийн хувь», «сүүл», «ойролцоо», «эллипсийн тодорхойлолт»; «шалгуур» and «бараг тэнцүүлэх» kept. Pile 0s has the details. The decision page has nothing open.)
 
 **Others should know:** the live mirrors now disagree with the rulings, which is ship work for a later session. They are `7-mn` «квадратлах» ×10, «сахир» ×6, «Галилео», «тохирох үр дүн»; and `8-mn` «квадрат зэрэгт өргөх» ×3, «зэрэгт өргөх» ×6, «зэргийн дүрэм» ×2, «үелсэн бутархай» ×4. Pile 0s has the details.
 
