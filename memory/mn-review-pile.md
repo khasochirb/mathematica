@@ -219,6 +219,63 @@ whispering gallery.
 өргөх» ×6, «зэргийн дүрэм» ×2; `8-mn/the-real-number-system` «үелсэн бутархай»
 ×4. A `mn_terms.py --fix` style rule is the in-pipeline way to change them.
 
+### 0t. Grades 6–8 rewritten, 27 Oct 2026 (24 drafts, all gated)
+
+Khas, 27 Oct: "start from 6th grade", and grades 2–4 are dropped (the small
+kids are leaving the product). That answers `docs/MONGOLIAN.md` Group 4's open
+question, *redo or grandfather the old grade 6–8 translations?*: **redo**. All
+24 topics are drafted as rewrites in `memory/mn-drafts/6-*`, `7-*` and `8-*`.
+Every id, step kind and count is unchanged, and every changed number is verified
+(about 2,900 assertions). All 24 pass `mn_draft_check.py`, and none coins a term.
+Each draft's "Notes for Khas" lists its own word questions; the cross-grade
+clashes are on the decision page (round 6).
+
+**Launch plan, Khas, 27 Oct:** the next session is **ship** mode. It assembles
+all 122 drafts into the mirrors on the working branch, and Khas approves from a
+private **preview link**, per grade or course. Nothing deploys before that.
+
+**Before assembly (ship session), in this order:**
+1. `scripts/i18n/mn_terms.py` maps scatter plot to «цэгэн диаграмм», which is
+   ruling 6ac's word for **dot plot**. Fix it before any `--fix` run, or it
+   corrupts dot plots.
+2. Rewritten worked and tryIt problems in ₮ need new `check[]` lines. Each
+   draft's Notes lists them (7/percent-applications 17, 8/linear-equations 3,
+   7/sampling 2, 7/probability 1, 8/linear-functions 1).
+3. Widgets and figures hard-coded in English or `$` (dealCompare, compositeArea,
+   the fraction and grid widgets, coordGeo's "m", the percent figures in 6/percentages L4–L5).
+4. `mn_topic_dump.py` skips `tryThis`, `note` and figure labels; 6/ratios
+   drafted them by hand.
+5. **Live bugs to fix in English and the live mirrors:** five questions where
+   two options are both correct (8/exponents L2, 7/rational L6, 6/decimals L5
+   practice p4, 6/fractions L3), and the live 6-mn coordinate page sends
+   "east" left («зүүн»).
+
+**Everything the 24 helpers logged:**
+
+- 8/exponents L2 quick check: wrong option 9^3 equals the answer 3^6 (two correct options, live English and MN). L5 funFact '40-plus powers of ten' vs examples spanning 36.
+- 8/linear-equations: 3 rewritten worked items need new check[] lines (draft Notes). Like terms: live «ижил төстэй гишүүд» vs algebra-1 drafts «ижил гишүүд»; break-even «тэнцэх цэг» vs grade 9 «ашиггүй, алдагдалгүй цэг» — reconcile.
+- 8/linear-functions: lf5-we2 English statement garbled; vacuous checks (1 != 9, Rational(150,100) != 0); scooter check -> 1500 != 0; rise/run «өсөлт / гүйлт» (g8) vs «өндөрсөлт / урагшлалт» (algebra-1 draft); coordGeo widget shows English and m.
+- 8/systems: elimination live «устгах арга» vs algebra-1 «зайлуулах арга»; intercept «огтлол» vs grade 9 «y тэнхлэгтэй огтлолцох цэг»; next-topic title per 6ac must match scatter rewrite; widget label 'slope m₂' English.
+- 8/roots English facts wrong: doubling the cube impossibility proved by Wantzel 1837, not the Greeks (live MN repeats it); YBC 7289 accurate to 5 places not 6; 'far fewer than squares' 10 vs 12.
+- 8/scatter English: L5 says snap gives y=0.75x+2.5, widget snaps to 0.76x+2.72; L3 funFact '$8 million outlier' unsupported, 2010 fat-finger rumour told as possible. Widgets show m for slope.
+- 7/percent-applications: 17 rescaled ₮ problems need new check[] (draft Notes for Build). English: L5 funFact title 2% vs body 8%; máš = young goat not calf; L2 20/60 = 33% should be ≈.
+- 7/equations-and-inequalities English: eqi-pr8 at 36 rides costs equal (pass cheaper only from 37); Mariner 1 error was a missing overbar not a minus. Word: «нийтлэг хуваарь» -> «ерөнхий хуваарь» (grade 6 word), needs Khas.
+- 7/rational-number-operations English: L6 tryItSet p2 second option also true (two correct answers, live). Words: «абсолют утга» vs mirror «үнэмлэхүй утга»; rno-pr8 unit $ -> мянган төгрөг needs OK.
+- 7/sampling English: L2 funFact title wheat/chessboard not in body; L6 ex3 'same mean' but 23 vs 25; L5 Shop B '10–55' vs data 10–50; sas6-t2 '0.2 ≈ 0.22 MADs'. Words: «хазайлт» = bias/deviation/skewed in one topic; sample proportion «түүврийн пропорц» vs prob-stats «түүврийн хувь». 2 new check[] lines (L4 table).
+- 7/proportional English: L1 concept 3 'is Grade 6 skill'; live MN L5 fact shows \text{flour}/\text{cookies}; L3 step 5 p3 check[] tests the wrong thing. dealCompare widget shows $. Constant of proportionality: three competing names, kept «пропорционал коэффициент».
+- 7/geometry-scale English: 14×3.14 = 43.96 not 43.98; 'smaller scale ratio → longer drawing' reads backwards; Borges map not Manhattan; pizza claim contradicted by own numbers; 3 m window can't take a radius-1 m semicircle. Words: angle pairs «нэмэлт/зэргэлдээ» (live) vs geometry draft «гүйцээлт/залгаа» (4d open); «тойргийн талбай» vs «дугуйн талбай» split.
+- 7/probability: thumbtack -> шагай 24/60 needs check[] swap; prb-ty1 word PROBABILITY -> КОЭФФИЦИЕНТ (answer 2/11 kept). English: Grand Duke funFact 9 and 10 'three ways' (six each); L2 beat reads '2 × 1 = 24'; \frac{1}{2}^3 ambiguous. Words: «нийцгүй» (mutually exclusive), «хамаарах» (dependent), «гарцаагүй» vs grade 10 «баталгаатай».
+- 6/coordinate-plane LIVE MN bug: L2 renders '3 steps east' as «зүүн тийш» (= left on the grid). English: L4 'across the origin' ×4 should be 'across an axis'; pr-8 asks for area never taught; grid widget captions English. geometry-coordinate-geometry draft lists «квадрант»; live/exam say «мөч» — align.
+- IMPORTANT: scripts/i18n/mn_terms.py maps scatter plot -> «цэгэн диаграмм», against ruling 6ac (scatter «хамаарлын график», dot plot «цэгэн диаграмм»). --fix would corrupt dot plots. Fix the script before running verify:mn-terms --fix on any mirror. 6/data-and-statistics English: L3 10-min bins over 85–182 give 11 bars not 6; L2 5{,}000 renders literally; L4 ex3 mixes Team A/B; Playfair apology unconfirmed. Live 6-mn: 15 of 18 fact formulas show English.
+- 6/factors-and-multiples: 6 English imprecisions (fixed in MN only: forgets 1, own multiple, factorization only >1, share 1, RSA/Euclid overclaims); widget buttons English ('Test the next number', 'Split once').
+- 6/expressions: like terms «ижил гишүүд» (6–7) vs «ижил төстэй гишүүд» (8) — one ruling; live MN tells students to tap Mongolian buttons that don't exist (widgets English); English L4 step 6 'power' title w/o power; rice claim unsourced.
+- 6/geometry-area-volume: words «шоо / тэгш өнцөгт параллелепипед / нүүр» (grade 6 live) vs «куб / тэгш өнцөгт призм / тал» (grade 8, geometry) — one ruling. compositeArea widget labels English (pipeline never reaches). English: L6 'can-tenth' garbled; L3 self-correcting step; honeycomb is 2D wall length per area; Mars orbiter ~$125M not 'million-dollar'.
+- 6/integers: keep-change-change «хадгал–соль–соль» (g6) vs «хэвээр–солих–солих» (g7) — one ruling. English: L4 '(−12)+7 jump left past zero' wrong (right, stops at −5); L6 'digits'; L5 recap 'up' vs 'right'; adjacent signs without brackets (-12 \div -4, pr-6, pr-8). Added fact: Ulaanbaatar ~+1350 m — Khas to confirm.
+- 6/decimals English: L5 practice p4 offers $0.030$ and $0.03$ both correct (two right answers, live); 'All share 0.41' false for 0.409; others minor. Words: «аравтын цэг» vs decimal comma; simplest form «хамгийн энгийн хэлбэр» (g6) vs «үл хураагдах» (g8).
+- 6/percentages: widgets and 12 figures in L4–L5 show $50 beside text saying 50 000₮ — need currency ₮, values ×1000, formatter fix. English: test score in dollars; 'pay' inside maths; '$8\% tax' stray $; fact subtracts a percent from a number; % origin wrong.
+- 6/fractions English: L3 option 3/6 marked wrong though = 1/2 (two right answers, live); L6 wrong option '4/6 (not simplified)' should be 2/6; L3 tells students to tap 'Combine' (no such button); 4 fraction widgets English buttons; duplicate key _lessonDraft_dividing-fractions in source JSON. Words: reduce «хураах» vs mirror «хялбарчлах»; «буруу бутархай» vs dictionary «зөв бус бутархай»; coined «дохио үг».
+- 6/ratios English: L1 concept 2 says 6:2 milk:cocoa differs from 2:6 cocoa:milk (same mix); runner at 60 km/h, plane at 70 km/h. Live MN: 4 tryThis blocks in English; mn_topic_dump skips tryThis/note/figure labels; dealCompare widgets show $. Unit price «нэгж үнэ» (g6) vs «нэгжийн үнэ» (g7).
+
 ### 0a. Rulings, highest leverage first
 
 | # | Item | The decision | My lean | What it moves |
