@@ -54,7 +54,7 @@ export default function ContentGate({
   const { lang } = useLang();
   const pathname = usePathname();
   const mn = lang === "mn";
-  const backText = backLabel ?? (mn ? "Буцах" : "Back");
+  const backText = backLabel ? (mn ? mnBackLabel(backLabel) : backLabel) : mn ? "Буцах" : "Back";
 
   // While the session is being restored, hold a quiet placeholder so
   // signed-in users never see the lock flash.
@@ -191,4 +191,16 @@ function GateCard({
       </div>
     </div>
   );
+}
+
+// Pages pass their back link in English ("Back to topic", "Back to Grade 7").
+// The set is small and fixed, so it is mapped here rather than at 40 call
+// sites; anything unrecognised falls back to a plain «Буцах».
+function mnBackLabel(en: string): string {
+  if (en === "Back to topic") return "Сэдэв рүү буцах";
+  if (en === "Back to Courses") return "Курсууд руу буцах";
+  if (en === "Back to Geometry") return "Геометр рүү буцах";
+  const grade = /^Back to Grade (\d+)$/.exec(en);
+  if (grade) return `${grade[1]}-р анги руу буцах`;
+  return "Буцах";
 }

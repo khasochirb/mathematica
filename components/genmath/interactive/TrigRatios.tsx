@@ -58,7 +58,7 @@ export default function TrigRatios({ config }: { config: TrigRatiosConfig }) {
 
       <div className="mt-2 grid grid-cols-3 gap-2 text-center text-[13px]">
         {(mn
-          ? [["sin θ", "эсрэг/гипотенуз", r.sin], ["cos θ", "налсан/гипотенуз", r.cos], ["tan θ", "эсрэг/налсан", r.tan]]
+          ? [["sin θ", "эсрэг/гипотенуз", r.sin], ["cos θ", "налсан/гипотенуз", r.cos], ["tg θ", "эсрэг/налсан", r.tan]]
           : [["sin θ", "opp/hyp", r.sin], ["cos θ", "adj/hyp", r.cos], ["tan θ", "opp/adj", r.tan]]).map(([name, form, val]: any) => (
           <div key={name} className="rounded-xl p-2" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
             <div className="serif" style={{ color, fontWeight: 700 }}>{name}</div>
