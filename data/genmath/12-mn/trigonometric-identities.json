@@ -1,0 +1,1564 @@
+{
+  "slug": "trigonometric-identities",
+  "title": "Тригонометрийн адилтгал",
+  "grade": 12,
+  "blurb": "Пифагорын адилтгал, нийлбэрийн ба давхар өнцгийн томьёо, адилтгал батлах, тригонометрийн тэгшитгэл бодох.",
+  "status": "published",
+  "lessons": [
+    {
+      "slug": "the-pythagorean-identity",
+      "title": "Пифагорын адилтгал",
+      "concreteComparison": "Нэгж тойргийн цэг бүр төвөөсөө яг 1 зайд оршдог: 11-р ангийн бүх зохион байгуулалт үүн дээр тогтсон. Энэ ганц өгүүлбэрийг хоёр цэгийн хоорондох зайн томьёогоор бичвэл $\\sin^2\\theta + \\cos^2\\theta = 1$ гарч ирнэ: БҮХ өнцөгт нэг дор хэрэглэсэн Пифагорын теорем. Энэ бол үндсэн адилтгал (master identity): өнцгийн нэг тригонометрийн утгыг мэдвэл энэ тэгшитгэл үлдсэнийг нь танд өгнө.",
+      "objective": "Нэгж тойргоос sin²θ + cos²θ = 1-ийг гаргаж, tg/sec ба ctg/cosec хэлбэрүүдийг үүсгэн, дутуу тригонометрийн утгуудыг (мөчид тохирох тэмдэгтэй нь) сэргээх.",
+      "concept": [
+        "Нэгж тойрог дээр $\\theta$ өнцгийн цэг бол $(\\cos\\theta, \\sin\\theta)$ бөгөөд координатын эхээс 1 зайтай. Зайн томьёогоор: $\\cos^2\\theta + \\sin^2\\theta = 1$. Энэ бол **Пифагорын адилтгал** (Pythagorean identity): бүх $\\theta$-д, нэг ч тохиолдол алгасалгүй үнэн.",
+        "**Адилтгал** гэдэг нь бодох тэгшитгэл биш, БҮХ оролтод биелдэг тэгшитгэл. $\\sin^2\\theta + \\cos^2\\theta = 1$ бол хаана ч орлуулж болох байнгын баримт, яг $x + x = 2x$ шиг.",
+        "Адилтгалыг $\\cos^2\\theta$-д хуваавал $\\operatorname{tg}^2\\theta + 1 = \\sec^2\\theta$; оронд нь $\\sin^2\\theta$-д хуваавал $1 + \\operatorname{ctg}^2\\theta = \\operatorname{cosec}^2\\theta$ гарна. (Энд $\\operatorname{tg}\\theta = \\frac{\\sin\\theta}{\\cos\\theta}$, секанс (secant) $\\sec\\theta = \\frac{1}{\\cos\\theta}$, косеканс (cosecant) $\\operatorname{cosec}\\theta = \\frac{1}{\\sin\\theta}$, котангенс (cotangent) $\\operatorname{ctg}\\theta = \\frac{\\cos\\theta}{\\sin\\theta}$.) Нэг адилтгал, гурван хувцас.",
+        "**Утга сэргээх**: $\\sin\\theta = \\tfrac{3}{5}$ бол $\\cos^2\\theta = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}$, тиймээс $\\cos\\theta = \\pm\\tfrac{4}{5}$. Тэгшитгэл ХЭМЖЭЭГ өгнө; тэмдгийг мөч (11-р ангийн тэмдгийн зураг) сонгоно."
+      ],
+      "keyIdea": "sin²θ + cos²θ = 1 бүх өнцөгт үнэн: нэгж тойргийн радиусыг тэгшитгэлээр бичсэн хэлбэр. Нэг мэдэгдэх тригонометрийн утгыг бусад бүх утга болгон хөрвүүлнэ, зөвхөн мөчийн тэмдэг л үлдэнэ.",
+      "facts": [
+        {
+          "title": "Үндсэн адилтгал",
+          "latex": "\\sin^2\\theta + \\cos^2\\theta = 1",
+          "explanation": "Нэгж тойргийн «радиус нь 1» гэсэн амлалтыг алгебраар бичсэн нь."
+        },
+        {
+          "title": "Хоёр хувцас",
+          "latex": "\\operatorname{tg}^2\\theta + 1 = \\sec^2\\theta \\qquad 1 + \\operatorname{ctg}^2\\theta = \\operatorname{cosec}^2\\theta",
+          "explanation": "Үндсэн адилтгалыг cos²-д эсвэл sin²-д хуваа."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ti1-we1",
+          "statement": "$\\theta$ нь I мөчид, $\\sin\\theta = \\tfrac{3}{5}$ бол $\\cos\\theta$ ба $\\operatorname{tg}\\theta$-г олоорой.",
+          "solution": "$\\cos^2\\theta = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}$, тиймээс $\\cos\\theta = \\tfrac{4}{5}$ (I мөч: эерэг). Тэгвэл $\\operatorname{tg}\\theta = \\tfrac{3/5}{4/5} = \\tfrac{3}{4}$.",
+          "check": [
+            "Rational(3,5)**2 + Rational(4,5)**2 == 1",
+            "Rational(3,5)/Rational(4,5) == Rational(3,4)"
+          ]
+        },
+        {
+          "id": "ti1-we2",
+          "statement": "$\\theta$ нь II мөчид, $\\cos\\theta = -\\tfrac{5}{13}$ бол $\\sin\\theta$-г олоорой.",
+          "solution": "$\\sin^2\\theta = 1 - \\tfrac{25}{169} = \\tfrac{144}{169}$, тиймээс $\\sin\\theta = \\pm\\tfrac{12}{13}$. II мөчид синус эерэг: $\\sin\\theta = \\tfrac{12}{13}$.",
+          "check": [
+            "1 - Rational(5,13)**2 == Rational(144,169)",
+            "Rational(12,13)**2 + Rational(5,13)**2 == 1"
+          ]
+        },
+        {
+          "id": "ti1-we3",
+          "statement": "$\\theta = \\tfrac{\\pi}{6}$ дээр адилтгалыг тоогоор шалгаарай.",
+          "solution": "$\\sin\\tfrac{\\pi}{6} = \\tfrac12$, $\\cos\\tfrac{\\pi}{6} = \\tfrac{\\sqrt3}{2}$: $\\tfrac14 + \\tfrac34 = 1$. ✓",
+          "check": [
+            "sin(pi/6)**2 + cos(pi/6)**2 == 1",
+            "sin(pi/6) == Rational(1,2)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "$\\cos\\theta = \\tfrac{3}{5}$-аас мөчийг шалгалгүйгээр $\\sin\\theta = \\tfrac{4}{5}$ гэж бичих.",
+          "correction": "Адилтгал зөвхөн $\\sin^2\\theta = \\tfrac{16}{25}$ гэдгийг, өөрөөр хэлбэл ХЭМЖЭЭГ өгнө. IV мөчид энэ синус $-\\tfrac{4}{5}$. Мөчийн тэмдгээр үргэлж дуусгаарай.",
+          "authored": true
+        },
+        {
+          "text": "$\\sin^2\\theta$-г $\\sin(\\theta^2)$ гэж ойлгох.",
+          "correction": "$\\sin^2\\theta$ гэдэг нь $(\\sin\\theta)^2$: өнцгийг биш, ГАРАЛТЫГ квадрат зэрэгт дэвшүүлнэ. Тэмдэглэгээ хуучин боловч хаа сайгүй хэрэглэгддэг.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ti1-t1",
+          "statement": "$\\theta$ нь I мөчид, $\\sin\\theta = \\tfrac{8}{17}$ бол $\\cos\\theta$-г олоорой.",
+          "solution": "$\\cos^2\\theta = 1 - \\tfrac{64}{289} = \\tfrac{225}{289}$: $\\cos\\theta = \\tfrac{15}{17}$.",
+          "check": [
+            "1 - Rational(8,17)**2 == Rational(225,289)",
+            "Rational(15,17)**2 + Rational(8,17)**2 == 1"
+          ]
+        },
+        {
+          "id": "ti1-t2",
+          "statement": "$1 - \\cos^2\\theta$ илэрхийллийг хялбарчлаарай.",
+          "solution": "$\\sin^2\\theta$: адилтгалыг хувиргаж бичсэн хэлбэр.",
+          "check": [
+            "simplify(1 - cos(x)**2 - sin(x)**2) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Нэг тойрог, нэг хууль",
+            "title": "Бүх өнцгийн Пифагор",
+            "beats": [
+              "11-р анги өнцөг бүрийг төвөөс нэг нэгжийн зайд, $(\\cos\\theta, \\sin\\theta)$ цэгт байрлуулсан.",
+              "Эхээс 1 зай, квадрат зэрэгт дэвшүүлбэл: $\\cos^2\\theta + \\sin^2\\theta = 1$.",
+              "Бодох тэгшитгэл биш: ҮРГЭЛЖ үнэн баримт.",
+              "«Адилтгал» гэдэг үг яг үүнийг хэлнэ. Энэ адилтгал бүлгийг бүхэлд нь удирдана."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Түргэн шалгалт",
+            "title": "Туршиж үз",
+            "prompt": "$\\theta = \\tfrac{\\pi}{3}$ үед $\\sin^2 + \\cos^2$ = …",
+            "options": [
+              "$1$, бусад бүх өнцгийнх шиг",
+              "$\\tfrac{3}{4}$",
+              "тооны машинаас хамаарна"
+            ],
+            "correctIndex": 0,
+            "explanation": "$(\\tfrac{\\sqrt3}{2})^2 + (\\tfrac12)^2 = \\tfrac34 + \\tfrac14 = 1$. Таны сонгосон ямар ч өнцөг 1 дээр буух болно: адилтгал гэдэг нь энэ.",
+            "check": [
+              "sin(pi/3)**2 + cos(pi/3)**2 == 1"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Хувцаснууд",
+            "title": "Хуваа, ял",
+            "beats": [
+              "$\\sin^2 + \\cos^2 = 1$ адилтгалыг $\\cos^2\\theta$-д хуваавал:",
+              "$\\operatorname{tg}^2\\theta + 1 = \\sec^2\\theta$.",
+              "Оронд нь $\\sin^2\\theta$-д хуваавал: $1 + \\operatorname{ctg}^2\\theta = \\operatorname{cosec}^2\\theta$.",
+              "Нэгийг цээжлэх үнээр гурван адилтгал."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Сэргээх нүүдэл",
+            "title": "Нэг утга үлдсэнийг нь худалдаж авна",
+            "beats": [
+              "$\\sin\\theta = \\tfrac{3}{5}$ гэдгийг мэдэх үү? Тэгвэл $\\cos^2\\theta = \\tfrac{16}{25}$.",
+              "Тиймээс $\\cos\\theta = \\pm\\tfrac{4}{5}$: адилтгал ХЭМЖЭЭГ өгнө.",
+              "Мөч ТЭМДГИЙГ өгнө: II мөч бол косинус сөрөг.",
+              "Хэмжээг адилтгалаас, тэмдгийг мөчөөс. Үргэлж."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Тэмдгийн үүрэг",
+            "title": "III мөч",
+            "prompt": "$\\sin\\theta = -\\tfrac{3}{5}$, $\\theta$ нь III мөчид. Тэгвэл $\\cos\\theta$ = …",
+            "options": [
+              "$-\\tfrac{4}{5}$",
+              "$\\tfrac{4}{5}$",
+              "$\\pm\\tfrac{4}{5}$: хэлэх боломжгүй"
+            ],
+            "correctIndex": 0,
+            "explanation": "Хэмжээ: $\\sqrt{1 - \\tfrac{9}{25}} = \\tfrac45$. III мөчид координат ХОЁУЛАА сөрөг, тиймээс $\\cos\\theta = -\\tfrac45$.",
+            "check": [
+              "Rational(3,5)**2 + Rational(4,5)**2 == 1"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Бодсон жишээ",
+            "title": "Адилтгалын ур",
+            "intro": "Хэмжээг адилтгалаас, тэмдгийг мөчөөс аваарай.",
+            "examples": [
+              {
+                "prompt": "$\\cos\\theta = \\tfrac{7}{25}$, $\\theta$ нь IV мөчид. $\\sin\\theta$ ба $\\operatorname{tg}\\theta$-г олоорой.",
+                "steps": [
+                  "$\\sin^2\\theta = 1 - \\tfrac{49}{625} = \\tfrac{576}{625}$.",
+                  "IV мөч: синус сөрөг, $\\sin\\theta = -\\tfrac{24}{25}$.",
+                  "$\\operatorname{tg}\\theta = \\tfrac{-24/25}{7/25} = -\\tfrac{24}{7}$."
+                ],
+                "answer": "$\\sin\\theta = -\\tfrac{24}{25}$, $\\operatorname{tg}\\theta = -\\tfrac{24}{7}$",
+                "check": [
+                  "1 - Rational(7,25)**2 == Rational(576,625)",
+                  "Rational(24,25)/Rational(7,25) == Rational(24,7)"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{\\sin^2\\theta}{1 - \\sin^2\\theta}$ илэрхийллийг хялбарчлаарай.",
+                "steps": [
+                  "Хуваарь бол далдлагдсан адилтгал: $1 - \\sin^2\\theta = \\cos^2\\theta$.",
+                  "$\\tfrac{\\sin^2\\theta}{\\cos^2\\theta} = \\operatorname{tg}^2\\theta$."
+                ],
+                "answer": "$\\operatorname{tg}^2\\theta$",
+                "check": [
+                  "simplify(sin(x)**2/(1 - sin(x)**2) - tan(x)**2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Өөрөө туршиж үз",
+            "title": "Сэргээж, хялбарчлах",
+            "intro": "Мөчийн тэмдгийг анхааралтай ажиглаарай.",
+            "problems": [
+              {
+                "prompt": "$\\sin\\theta = \\tfrac{5}{13}$, II мөч. $\\cos\\theta$ = …",
+                "options": [
+                  "$-\\tfrac{12}{13}$",
+                  "$\\tfrac{12}{13}$",
+                  "$-\\tfrac{8}{13}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Хэмжээ $\\tfrac{12}{13}$ адилтгалаас гарна; II мөч косинусыг сөрөг болгоно.",
+                "check": [
+                  "Rational(5,13)**2 + Rational(12,13)**2 == 1"
+                ]
+              },
+              {
+                "prompt": "$\\sec^2\\theta - \\operatorname{tg}^2\\theta$ илэрхийллийг хялбарчлаарай.",
+                "options": [
+                  "$1$",
+                  "$\\sin^2\\theta$",
+                  "$\\cos^2\\theta$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\operatorname{tg}^2 + 1 = \\sec^2$ адилтгалыг хувиргавал ялгавар нь яг 1.",
+                "check": [
+                  "simplify(sec(x)**2 - tan(x)**2 - 1) == 0"
+                ]
+              },
+              {
+                "prompt": "$(\\sin\\theta + \\cos\\theta)^2$ илэрхийллийг задлахад…",
+                "options": [
+                  "$1 + 2\\sin\\theta\\cos\\theta$",
+                  "$1$",
+                  "$\\sin^2\\theta + \\cos^2\\theta$"
+                ],
+                "correctIndex": 0,
+                "explanation": "FOIL (эхний, гадна, дотор, сүүлийн гишүүдийн үржвэр) $\\sin^2 + 2\\sin\\cos + \\cos^2$ нийлбэрийг өгнө; квадратууд адилтгалаар 1 болж нурна.",
+                "check": [
+                  "simplify((sin(x) + cos(x))**2 - 1 - 2*sin(x)*cos(x)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Сонирхолтой баримт",
+            "title": "Нэг адилтгал, бараг дөрвөн мянган жил",
+            "body": "Пифагорын теорем бол Хүрэл зэвсгийн үеийн математик: Пифагороос мянга гаруй жилийн өмнөх Вавилоны шавар хавтан дээр (МЭӨ 1800 оны орчмын «Плимптон 322») бүхэл тоон талтай тэгш өнцөгт гурвалжнуудын жагсаалт гэж ихэвчлэн тайлбарладаг тоонууд бий. Теоремыг 1 радиустай тойрогт ороовол $\\sin^2 + \\cos^2 = 1$ болно: GPS-ийн байршил тогтоолт, дууны шүүлтүүр, видео тоглоомын эргүүлэлт зэрэг олон тооцооны дотор ажилладаг адилтгал. Хамгийн эртний теорем, хамгийн завгүй хувцас."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Эргэн дүгнэлт",
+            "title": "Юу сурснаа эргэн харъя",
+            "points": [
+              "$\\sin^2\\theta + \\cos^2\\theta = 1$: нэгж тойргийн радиусыг алгебраар бичсэн нь.",
+              "Үүнийг $\\cos^2\\theta$ эсвэл $\\sin^2\\theta$-д хувааж tg/sec ба ctg/cosec хэлбэрүүдийг гарга.",
+              "Адилтгал дутуу утгын хэмжээг, мөч тэмдгийг нь өгнө."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sum-and-difference-formulas",
+      "title": "Нийлбэр ба ялгаврын томьёо",
+      "concreteComparison": "Нэгж тойрог 30-45-60 гэр бүлийн утгуудыг яг бичдэг. Харин $75°$? Хүснэгтэд алга. Гэтэл $75 = 45 + 30$ бөгөөд **нийлбэрийн томьёо** (sum formulas) хуучин яг утгуудаас шинийг бүтээнэ, яг л та мэдэгдэх хэсгүүдээс $\\sqrt{50} = 5\\sqrt2$-ыг бүтээсэн шиг. Олон тооны машин sin товчийг дарах бүрт дотроо энэ бүжгийг хийдэг.",
+      "objective": "sin(A±B) ба cos(A±B) томьёогоор онцгой биш өнцгүүдийн яг утгыг бодож, илэрхийллийг хувиргаж бичих.",
+      "concept": [
+        "**Нийлбэрийн синус**: $\\sin(A+B) = \\sin A\\cos B + \\cos A\\sin B$. Синус холино: sin·cos + cos·sin, дундах тэмдэг нь зүүн талын тэмдэгтэй ТААРНА.",
+        "**Нийлбэрийн косинус**: $\\cos(A+B) = \\cos A\\cos B - \\sin A\\sin B$. Косинус төрлөө хадгална: cos·cos ба sin·sin, харин дундах тэмдэг ЭРГЭНЭ: зүүн талын нэмэх баруун талд хасах болно.",
+        "Ялгаврын томьёо (difference formulas): дундах тэмдэг бүрийг эргүүлээрэй. $\\sin(A-B) = \\sin A\\cos B - \\cos A\\sin B$ ба $\\cos(A-B) = \\cos A\\cos B + \\sin A\\sin B$.",
+        "**Анхааруулга**: $\\sin(A+B) \\neq \\sin A + \\sin B$. Туршаад үзээрэй: $\\sin 90° = 1$, харин $\\sin 45° + \\sin 45° = \\sqrt2 \\approx 1.41$. Синус бол хаалт задалж болох үржвэр биш: эдгээр томьёо ЯГ ТИЙМЭЭС бий."
+      ],
+      "keyIdea": "sin(A±B) = sinAcosB ± cosAsinB; cos(A±B) = cosAcosB ∓ sinAsinB. Синус холиод тэмдгээ хадгална; косинус төрлөө тааруулаад тэмдгээ эргүүлнэ.",
+      "facts": [
+        {
+          "title": "Нийлбэрийн синус",
+          "latex": "\\sin(A \\pm B) = \\sin A\\cos B \\pm \\cos A\\sin B",
+          "explanation": "Холимог үржвэрүүд; дундах тэмдэг таарна."
+        },
+        {
+          "title": "Нийлбэрийн косинус",
+          "latex": "\\cos(A \\pm B) = \\cos A\\cos B \\mp \\sin A\\sin B",
+          "explanation": "Ижил төрлийн үржвэрүүд; дундах тэмдэг эргэнэ."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ti2-we1",
+          "statement": "$\\sin 75°$-ыг яг бодоорой.",
+          "solution": "$75 = 45 + 30$: $\\sin 75° = \\sin 45°\\cos 30° + \\cos 45°\\sin 30° = \\tfrac{\\sqrt2}{2}\\cdot\\tfrac{\\sqrt3}{2} + \\tfrac{\\sqrt2}{2}\\cdot\\tfrac12 = \\tfrac{\\sqrt6 + \\sqrt2}{4}$.",
+          "check": [
+            "simplify(sin(5*pi/12) - (sqrt(6) + sqrt(2))/4) == 0"
+          ]
+        },
+        {
+          "id": "ti2-we2",
+          "statement": "$\\cos 15°$-ыг яг бодоорой.",
+          "solution": "$15 = 45 - 30$: $\\cos 15° = \\cos 45°\\cos 30° + \\sin 45°\\sin 30° = \\tfrac{\\sqrt6 + \\sqrt2}{4}$. ($\\sin 75°$-тай ижил утга: гүйцээлт хоёр өнцгийн нэгнийх нь синус нөгөөгийнх нь косинустай тэнцүү.)",
+          "check": [
+            "simplify(cos(pi/12) - (sqrt(6) + sqrt(2))/4) == 0"
+          ]
+        },
+        {
+          "id": "ti2-we3",
+          "statement": "$\\sin\\theta\\cos\\tfrac{\\pi}{3} + \\cos\\theta\\sin\\tfrac{\\pi}{3}$ илэрхийллийг хялбарчлаарай.",
+          "solution": "Энэ бол урвуугаар уншсан нийлбэрийн синусын хэв: $\\sin(\\theta + \\tfrac{\\pi}{3})$.",
+          "check": [
+            "simplify(sin(x)*cos(pi/3) + cos(x)*sin(pi/3) - sin(x + pi/3)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Хаалт задлах мэт тараах: $\\sin(A+B) = \\sin A + \\sin B$.",
+          "correction": "Синус бол үржүүлэх үйлдэл биш, функц. $\\sin 90° = 1 \\neq \\sin 45° + \\sin 45° \\approx 1.41$. Томьёог хэрэглээрэй.",
+          "authored": true
+        },
+        {
+          "text": "Косинус дундах тэмдгийг эргүүлдгийг мартах.",
+          "correction": "$\\cos(A+B)$ ХАСАХ тэмдэгтэй: $\\cos A\\cos B - \\sin A\\sin B$. Санах арга: косинус бол үргэлж эсрэгээр хийдэг зөрүүд.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ti2-t1",
+          "statement": "$\\sin 15°$-ыг яг бодоорой.",
+          "solution": "$15 = 45 - 30$: $\\tfrac{\\sqrt2}{2}\\cdot\\tfrac{\\sqrt3}{2} - \\tfrac{\\sqrt2}{2}\\cdot\\tfrac12 = \\tfrac{\\sqrt6 - \\sqrt2}{4}$.",
+          "check": [
+            "simplify(sin(pi/12) - (sqrt(6) - sqrt(2))/4) == 0"
+          ]
+        },
+        {
+          "id": "ti2-t2",
+          "statement": "$\\cos 80°\\cos 20° + \\sin 80°\\sin 20°$ илэрхийллийг хялбарчлаарай.",
+          "solution": "Урвуугаар уншсан ялгаврын косинус: $\\cos(80° - 20°) = \\cos 60° = \\tfrac12$.",
+          "check": [
+            "simplify(cos(4*pi/9)*cos(pi/9) + sin(4*pi/9)*sin(pi/9) - Rational(1,2)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Хүснэгтээс гадна",
+            "title": "75°-ыг бүтээх",
+            "beats": [
+              "Нэгж тойрог 30, 45, 60-ыг бичдэг, харин 75-ыг биш.",
+              "Гэтэл $75 = 45 + 30$. Мэдэгдэх утгуудыг хослуулж болох уу?",
+              "Синусуудыг нэмээд болохгүй: $\\sin 90° = 1 \\neq \\sin 45° + \\sin 45°$.",
+              "Жинхэнэ хэрэгсэл хэрэгтэй. Нийлбэрийн томьёо тайзнаа гарна."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Түргэн шалгалт",
+            "title": "Хаалт задлахгүй",
+            "prompt": "$\\sin(A + B)$ нь $\\sin A + \\sin B$-тэй тэнцүү…",
+            "options": [
+              "хэзээ ч итгэж болохгүй: $45° + 45°$ дээр туршаад үз",
+              "үргэлж",
+              "зөвхөн хурц өнцгүүдэд"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sin 90° = 1$, харин $\\sin 45° + \\sin 45° = \\sqrt2$. Ганц эсрэг жишээ (counterexample) адилтгал болох гэж буй тэгшитгэлийг унагана.",
+            "check": [
+              "simplify(sin(pi/2) - 1) == 0",
+              "simplify(sin(pi/4) + sin(pi/4) - sqrt(2)) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Томьёонууд",
+            "title": "Холих ба тааруулах",
+            "beats": [
+              "$\\sin(A+B) = \\sin A\\cos B + \\cos A\\sin B$: холимог хос, тэмдэг таарна.",
+              "$\\cos(A+B) = \\cos A\\cos B - \\sin A\\sin B$: ижил төрлийн хос, тэмдэг ЭРГЭНЭ.",
+              "Ялгаврууд: дундах тэмдэг бүрийг эргүүл.",
+              "Синус холино; косинус зөрүүд. Цээжлэх ачаа ердөө л энэ."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Бодсон жишээ",
+            "title": "Хуучнаас шинэ утга",
+            "intro": "Өнцгийг хүснэгтийн өнцгүүдэд хуваагаарай.",
+            "examples": [
+              {
+                "prompt": "$\\sin 75°$-ыг яг утгаар олоорой.",
+                "steps": [
+                  "$75 = 45 + 30$.",
+                  "$\\sin 45°\\cos 30° + \\cos 45°\\sin 30°$",
+                  "$= \\tfrac{\\sqrt2}{2}\\cdot\\tfrac{\\sqrt3}{2} + \\tfrac{\\sqrt2}{2}\\cdot\\tfrac{1}{2} = \\tfrac{\\sqrt6 + \\sqrt2}{4}$."
+                ],
+                "answer": "$\\tfrac{\\sqrt6 + \\sqrt2}{4}$",
+                "check": [
+                  "simplify(sin(5*pi/12) - (sqrt(6) + sqrt(2))/4) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\cos\\tfrac{7\\pi}{12}$-ийн яг утгыг олоорой. ($\\tfrac{7\\pi}{12} = \\tfrac{\\pi}{3} + \\tfrac{\\pi}{4}$)",
+                "steps": [
+                  "$\\cos\\tfrac{\\pi}{3}\\cos\\tfrac{\\pi}{4} - \\sin\\tfrac{\\pi}{3}\\sin\\tfrac{\\pi}{4}$",
+                  "$= \\tfrac12\\cdot\\tfrac{\\sqrt2}{2} - \\tfrac{\\sqrt3}{2}\\cdot\\tfrac{\\sqrt2}{2}$",
+                  "$= \\tfrac{\\sqrt2 - \\sqrt6}{4}$: II мөчийн косинусын ёсоор сөрөг."
+                ],
+                "answer": "$\\tfrac{\\sqrt2 - \\sqrt6}{4}$",
+                "check": [
+                  "simplify(cos(7*pi/12) - (sqrt(2) - sqrt(6))/4) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Урвуугаар унш",
+            "title": "Хэв таних",
+            "prompt": "$\\sin 40°\\cos 20° + \\cos 40°\\sin 20°$ нурвал…",
+            "options": [
+              "$\\sin 60° = \\tfrac{\\sqrt3}{2}$",
+              "$\\sin 20°$",
+              "$\\cos 60°$"
+            ],
+            "correctIndex": 0,
+            "explanation": "Энэ бол $A = 40°, B = 20°$ үеийн нийлбэрийн синусын хэв: $\\sin(40° + 20°)$. Томьёог УРВУУГААР таних нь тэдний хүчний тал.",
+            "check": [
+              "simplify(sin(2*pi/9)*cos(pi/9) + cos(2*pi/9)*sin(pi/9) - sin(pi/3)) == 0"
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Өөрөө туршиж үз",
+            "title": "Нийлбэрийн ур",
+            "intro": "30/45/60-ийн хэсгүүдэд хувааж, косинусын эргүүлэлтийг анхаараарай.",
+            "problems": [
+              {
+                "prompt": "$\\cos 75°$ = …",
+                "options": [
+                  "$\\tfrac{\\sqrt6 - \\sqrt2}{4}$",
+                  "$\\tfrac{\\sqrt6 + \\sqrt2}{4}$",
+                  "$\\tfrac{\\sqrt2 + \\sqrt3}{4}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\cos 45°\\cos 30° - \\sin 45°\\sin 30° = \\tfrac{\\sqrt6}{4} - \\tfrac{\\sqrt2}{4}$.",
+                "check": [
+                  "simplify(cos(5*pi/12) - (sqrt(6) - sqrt(2))/4) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\cos 50°\\cos 10° - \\sin 50°\\sin 10°$ = …",
+                "options": [
+                  "$\\cos 60° = \\tfrac12$",
+                  "$\\cos 40°$",
+                  "$\\sin 60°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Урвуугаар уншсан нийлбэрийн косинусын хэв: $\\cos(50° + 10°)$.",
+                "check": [
+                  "simplify(cos(x)*cos(y) - sin(x)*sin(y) - cos(x + y)) == 0",
+                  "cos(pi/3) == Rational(1,2)"
+                ]
+              },
+              {
+                "prompt": "$\\sin(\\theta + \\pi)$-г хялбарчилбал…",
+                "options": [
+                  "$-\\sin\\theta$",
+                  "$\\sin\\theta$",
+                  "$\\cos\\theta$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sin\\theta\\cos\\pi + \\cos\\theta\\sin\\pi = \\sin\\theta(-1) + 0$. Хагас эргэлт синусын тэмдгийг эргүүлнэ: томьёо тойргийн зурагтай яг таарч байна.",
+                "check": [
+                  "simplify(sin(x + pi) + sin(x)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Сонирхолтой баримт",
+            "title": "Тооны машин sin 75°-ыг яаж «мэддэг» вэ",
+            "body": "Хүснэгтээс хардаггүй: тооцоолдог. 1950-аад оны сүүлээр зохиогдсон, олон тооны машинд ажилладаг CORDIC алгоритм цөөн хэдэн хадгалсан өнцгөөс эхэлж, тэдгээрийн нийлбэр, ялгавраар, яг энэ хуудасны томьёогоор эргэсээр таны өнцгөөс тэрбумны нэг орчим зөрүүтэй болтлоо ойртоно. Нийлбэрийн томьёо шалгалтын чимэглэл биш: жинхэнэ хөдөлгүүр."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Эргэн дүгнэлт",
+            "title": "Юу сурснаа эргэн харъя",
+            "points": [
+              "$\\sin(A\\pm B) = \\sin A\\cos B \\pm \\cos A\\sin B$: холимог, тэмдэг таарна.",
+              "$\\cos(A\\pm B) = \\cos A\\cos B \\mp \\sin A\\sin B$: ижил төрөл, тэмдэг эргэнэ.",
+              "Яг утгыг бүтээ ($75° = 45° + 30°$), урвуугаар уншсан хэвийг нураа."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "double-angle-formulas",
+      "title": "Давхар өнцгийн томьёо",
+      "concreteComparison": "Нийлбэрийн томьёонд $B = A$ гэж тавибал тэд илүү богино, илүү хурц зүйл болж нурна: $\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$. Давхар өнцгийн томьёо (double-angle formulas) бол өөрийгөө залгисан нийлбэрийн томьёо бөгөөд хаа сайгүй гарч ирнэ. Шидсэн биеийн нислэгийн алслалт (projectile range) $R \\sim \\sin 2\\theta$ байдаг тул $45°$-аар шидсэн нь хамгийн хол очдог; цаашдын анализын бүлэг бүрт ч мөн адил.",
+      "objective": "sin 2θ = 2 sin θ cos θ ба cos 2θ-гийн гурван хэлбэрийг гаргаж хэрэглэн, тохиромжтой хэлбэрийг сонгох.",
+      "concept": [
+        "**Синусын давхар**: $\\sin(A+B)$-д $A = B = \\theta$ гэж тавиарай: $\\sin 2\\theta = \\sin\\theta\\cos\\theta + \\cos\\theta\\sin\\theta = 2\\sin\\theta\\cos\\theta$.",
+        "**Косинусын давхар**: мөн тэр нүүдэл $\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$-г өгнө. Дараа нь Пифагорын адилтгал үүнийг өөр хоёр янзаар бичнэ: $2\\cos^2\\theta - 1$ ба $1 - 2\\sin^2\\theta$.",
+        "**Хэлбэр сонгох**: зөвхөн $\\cos\\theta$-г мэдэх үү? $2\\cos^2\\theta - 1$-ийг хэрэглээрэй. Зөвхөн $\\sin\\theta$-г мэдэх үү? $1 - 2\\sin^2\\theta$-г. Хоёуланг нь мэдэх үү? Анхныхыг. Гурван хаалга, нэг өрөө.",
+        "Давхарлах нь үнэгүй БИШ: $\\sin 2\\theta \\neq 2\\sin\\theta$ ($\\theta = 90°$ дээр туршаарай: $\\sin 180° = 0$, харин $2\\sin 90° = 2$). $\\cos\\theta$ үржигдэхүүн бол давхарлахын үнэ."
+      ],
+      "keyIdea": "sin 2θ = 2sinθcosθ; cos 2θ = cos²θ − sin²θ = 2cos²θ − 1 = 1 − 2sin²θ. Мэдэж буй зүйлдээ тохирох хэлбэрийг сонгоорой.",
+      "facts": [
+        {
+          "title": "Синусын давхар",
+          "latex": "\\sin 2\\theta = 2\\sin\\theta\\cos\\theta",
+          "explanation": "Хоёр өнцөг нь тэнцүү үеийн нийлбэрийн томьёо."
+        },
+        {
+          "title": "Косинусын давхар, гурван хэлбэр",
+          "latex": "\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta = 2\\cos^2\\theta - 1 = 1 - 2\\sin^2\\theta",
+          "explanation": "Пифагорын адилтгал хувилбаруудыг үүсгэнэ."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ti3-we1",
+          "statement": "$\\theta$ нь I мөчид, $\\sin\\theta = \\tfrac{3}{5}$ бол $\\sin 2\\theta$-г олоорой.",
+          "solution": "$\\cos\\theta = \\tfrac45$ (I мөч). $\\sin 2\\theta = 2\\cdot\\tfrac35\\cdot\\tfrac45 = \\tfrac{24}{25}$.",
+          "check": [
+            "2*Rational(3,5)*Rational(4,5) == Rational(24,25)"
+          ]
+        },
+        {
+          "id": "ti3-we2",
+          "statement": "Мөн тэр $\\theta$-гийн хувьд $\\cos 2\\theta$-г зөвхөн синустай хэлбэрээр олоорой.",
+          "solution": "$\\cos 2\\theta = 1 - 2\\sin^2\\theta = 1 - 2\\cdot\\tfrac{9}{25} = \\tfrac{7}{25}$.",
+          "check": [
+            "1 - 2*Rational(3,5)**2 == Rational(7,25)",
+            "Rational(24,25)**2 + Rational(7,25)**2 == 1"
+          ]
+        },
+        {
+          "id": "ti3-we3",
+          "statement": "$\\sin 60° = 2\\sin 30°\\cos 30°$ гэдгийг шалгаарай.",
+          "solution": "Баруун тал: $2\\cdot\\tfrac12\\cdot\\tfrac{\\sqrt3}{2} = \\tfrac{\\sqrt3}{2} = \\sin 60°$. ✓",
+          "check": [
+            "simplify(2*sin(pi/6)*cos(pi/6) - sin(pi/3)) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "Функцээр дамжуулан давхарлах: $\\sin 2\\theta = 2\\sin\\theta$.",
+          "correction": "$\\theta = 90°$: $\\sin 180° = 0 \\neq 2$. Давхарлахын зөв үнэ бол $\\cos\\theta$ үржигдэхүүн: $2\\sin\\theta\\cos\\theta$.",
+          "authored": true
+        },
+        {
+          "text": "Зөвхөн синусыг мэдэж байхдаа $\\cos^2 - \\sin^2$-аар зүтгэх.",
+          "correction": "Өгөгдөлдөө зориулсан хэлбэрийг хэрэглээрэй: $1 - 2\\sin^2\\theta$-д косинус огт хэрэггүй. Хэлбэр сонгох нь ӨӨРӨӨ ур чадвар.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ti3-t1",
+          "statement": "$\\cos\\theta = \\tfrac{5}{13}$, IV мөч. $\\cos 2\\theta$-г олоорой.",
+          "solution": "$2\\cos^2\\theta - 1 = 2\\cdot\\tfrac{25}{169} - 1 = -\\tfrac{119}{169}$. (Синус хэрэггүй тул тэмдгийн санаа зовнил ч алга.)",
+          "check": [
+            "2*Rational(5,13)**2 - 1 == Rational(-119,169)"
+          ]
+        },
+        {
+          "id": "ti3-t2",
+          "statement": "$\\dfrac{\\sin 2\\theta}{\\sin\\theta}$-г ($\\sin\\theta \\neq 0$ үед) хялбарчлаарай.",
+          "solution": "$\\tfrac{2\\sin\\theta\\cos\\theta}{\\sin\\theta} = 2\\cos\\theta$.",
+          "check": [
+            "simplify(sin(2*x)/sin(x) - 2*cos(x)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Нуралт",
+            "title": "B нь A болно",
+            "beats": [
+              "Нийлбэрийн томьёо ДУРЫН хоёр өнцөгт ажиллана: ихрүүдэд ч.",
+              "$B = A$ гэж тавь: $\\sin(A + A) = \\sin A\\cos A + \\cos A\\sin A$.",
+              "Хоёр төсөөтэй гишүүн: $\\sin 2A = 2\\sin A\\cos A$.",
+              "Шинэ томьёо үнэгүй. Косинус ч мөн адил нурна."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Түргэн шалгалт",
+            "title": "Давхарлахын үнэ",
+            "prompt": "$\\sin 2\\theta = 2\\sin\\theta$: үнэн үү, урхи юу?",
+            "options": [
+              "Урхи: $\\theta = 90°$ үед $0 = 2$ гэж гарна",
+              "Бүх өнцөгт үнэн",
+              "$45°$-аас бага өнцөгт үнэн"
+            ],
+            "correctIndex": 0,
+            "explanation": "$\\sin 180° = 0$, харин $2\\sin 90° = 2$. Давхарлах нь $\\cos\\theta$ үржигдэхүүнээр үнэтэй.",
+            "check": [
+              "simplify(sin(pi) - 0) == 0",
+              "2*sin(pi/2) == 2"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Косинусын гурван хаалга",
+            "title": "Нэг өрөө",
+            "beats": [
+              "$\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$: түүхий нуралт.",
+              "$\\sin^2 = 1 - \\cos^2$ гэж солибол $2\\cos^2\\theta - 1$ гарна.",
+              "$\\cos^2 = 1 - \\sin^2$ гэж солибол $1 - 2\\sin^2\\theta$ гарна.",
+              "Зөвхөн синус мэдэх үү? Зөвхөн косинус уу? Тус бүрд хаалга бий."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Бодсон жишээ",
+            "title": "Давхарлах ур",
+            "intro": "Өгөгдөлдөө тохирох хэлбэрийг сонгоорой.",
+            "examples": [
+              {
+                "prompt": "$\\sin\\theta = \\tfrac{8}{17}$, II мөч. $\\sin 2\\theta$ ба $\\cos 2\\theta$-г олоорой.",
+                "steps": [
+                  "II мөч: $\\cos\\theta = -\\tfrac{15}{17}$.",
+                  "$\\sin 2\\theta = 2\\cdot\\tfrac{8}{17}\\cdot(-\\tfrac{15}{17}) = -\\tfrac{240}{289}$.",
+                  "$\\cos 2\\theta = 1 - 2\\cdot\\tfrac{64}{289} = \\tfrac{161}{289}$."
+                ],
+                "answer": "$\\sin 2\\theta = -\\tfrac{240}{289}$, $\\cos 2\\theta = \\tfrac{161}{289}$",
+                "check": [
+                  "2*Rational(8,17)*Rational(-15,17) == Rational(-240,289)",
+                  "1 - 2*Rational(8,17)**2 == Rational(161,289)",
+                  "Rational(240,289)**2 + Rational(161,289)**2 == 1"
+                ]
+              },
+              {
+                "prompt": "$1 - 2\\sin^2 15°$-ыг нэг яг утга болгон бичээрэй.",
+                "steps": [
+                  "Энэ бол $\\theta = 15°$ үеийн $\\cos 2\\theta$.",
+                  "$\\cos 30° = \\tfrac{\\sqrt3}{2}$."
+                ],
+                "answer": "$\\tfrac{\\sqrt3}{2}$",
+                "check": [
+                  "simplify(1 - 2*sin(pi/12)**2 - sqrt(3)/2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Өөрөө туршиж үз",
+            "title": "Давхар үүрэг",
+            "intro": "Урвуугаар таних нь давхар оноо авна.",
+            "problems": [
+              {
+                "prompt": "$2\\sin 75°\\cos 75°$ = …",
+                "options": [
+                  "$\\sin 150° = \\tfrac12$",
+                  "$\\sin 75°$-ын квадрат",
+                  "$\\cos 150°$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Урвуугаар уншсан давхар өнцгийн хэв: $\\sin(2 \\cdot 75°)$.",
+                "check": [
+                  "simplify(2*sin(5*pi/12)*cos(5*pi/12) - Rational(1,2)) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\cos\\theta = \\tfrac{3}{5}$ (дурын мөч). $\\cos 2\\theta$ = …",
+                "options": [
+                  "$-\\tfrac{7}{25}$",
+                  "$\\tfrac{7}{25}$",
+                  "мөч хэрэгтэй"
+                ],
+                "correctIndex": 0,
+                "explanation": "$2\\cdot\\tfrac{9}{25} - 1 = -\\tfrac{7}{25}$. Зөвхөн косинустай хэлбэр мөчийг хэзээ ч асуудаггүй: квадрат тэмдгийг арилгана.",
+                "check": [
+                  "2*Rational(3,5)**2 - 1 == Rational(-7,25)"
+                ]
+              },
+              {
+                "prompt": "$\\cos^2 22.5° - \\sin^2 22.5°$ = …",
+                "options": [
+                  "$\\tfrac{\\sqrt2}{2}$",
+                  "$\\tfrac12$",
+                  "$1$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\cos(2 \\cdot 22.5°) = \\cos 45°$.",
+                "check": [
+                  "simplify(cos(pi/8)**2 - sin(pi/8)**2 - sqrt(2)/2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Физик",
+            "title": "Яагаад 45° хамгийн хол шиддэг вэ",
+            "body": "Агаарын эсэргүүцлийг тооцохгүй, тэгш газар шидсэн биеийн нислэгийн алслалт $\\sin 2\\theta$ буюу хоёр дахин авсан шидэлтийн өнцгийн синустай пропорционал. $\\sin 2\\theta$ нь $2\\theta = 90°$, өөрөөр хэлбэл $\\theta = 45°$ үед хамгийн их утгаа авна: тоглоомын талбайн тэр баримтын АРД байгаа томьёо. 10-р ангийн парабол нислэгийн замыг өгсөн бол давхар өнцөг онилгыг тайлбарлана."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Эргэн дүгнэлт",
+            "title": "Юу сурснаа эргэн харъя",
+            "points": [
+              "$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$: давхарлах нь косинус үржигдэхүүнээр үнэтэй.",
+              "$\\cos 2\\theta$ гурван хэлбэртэй; мэдэгдэх утгадаа тохирохыг нь сонго.",
+              "Хэвийг урвуугаар тань: $2\\sin\\alpha\\cos\\alpha$ нь $\\sin 2\\alpha$ болж нурна."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "proving-identities",
+      "title": "Адилтгал батлах",
+      "concreteComparison": "Тригонометрийн адилтгалын мэдэгдэл бол шүүх хурлын хэрэг: ЗҮҮН ТАЛ $=$ БАРУУН ТАЛ, бүх өнцөгт гэж мэдэгдсэн. Таны ажил бол баталгаа (proof): НЭГ талыг хууль ёсны алхам алхмаар дахин бичсээр нөгөөг нь болгох. Хуулийн ном жижиг (Пифагорын адилтгал, tg ба sec функцийн тодорхойлолт, нийлбэрийн ба давхар өнцгийн томьёо), харин аль хуулийг хэзээ хэрэглэхийг сонгох нь ур чадвар.",
+      "objective": "Нэг талыг хувиргаж адилтгал батлах: синус, косинус руу шилжүүлэх, бутархай нэгтгэх, үржигдэхүүнд задлах, мэдэгдэх адилтгалыг орлуулах.",
+      "concept": [
+        "**Алтан дүрэм**: НЭГ талыг нөгөөтэйгөө тэнцүү болтол хувиргаарай. Гишүүдийг тэнцүүгийн тэмдгээр бүү шилжүүлээрэй: тэгэх нь батлах гэж буй зүйлээ үнэн гэж үзсэн хэрэг. Илүү төвөгтэй талаас эхлээрэй: хялбарчлах нь төвөгтэй болгохоос амархан.",
+        "**1-р нүүдэл: бүгдийг sin ба cos руу шилжүүлэх**: $\\operatorname{tg}\\theta = \\tfrac{\\sin\\theta}{\\cos\\theta}$, $\\sec\\theta = \\tfrac{1}{\\cos\\theta}$, $\\operatorname{cosec}\\theta = \\tfrac{1}{\\sin\\theta}$, $\\operatorname{ctg}\\theta = \\tfrac{\\cos\\theta}{\\sin\\theta}$. Төөрсөн үед энэ нүүдэл хэзээ ч хор хийхгүй.",
+        "**2-р нүүдэл: алгебр ажилласаар л байна**: ерөнхий хуваарь, үржигдэхүүнд задлах, FOIL. Тригонометрийн илэрхийлэл $\\sin\\theta$-г хувьсагч гэж үзсэн 10-р ангийн алгебрыг дагана. $1 - \\sin^2\\theta$ нь $(1-\\sin\\theta)(1+\\sin\\theta)$ болж задарна.",
+        "**3-р нүүдэл: Пифагорын адилтгалаар солих**: $\\sin^2 + \\cos^2$, $1 - \\sin^2$ эсвэл $1 - \\cos^2$ хаана гарна, тэнд нь солиорой. Энэ бол квадратуудын хоорондох хөрвүүлэлт."
+      ],
+      "keyIdea": "Зөвхөн нэг талыг дахин бичиж батлаарай: sin/cos руу шилжүүлж, ердийн алгебр хийж, квадратуудыг Пифагорын адилтгалаар солиорой.",
+      "facts": [
+        {
+          "title": "Багаж хэрэгсэл",
+          "latex": "\\operatorname{tg} = \\tfrac{\\sin}{\\cos},\\ \\sec = \\tfrac{1}{\\cos},\\ \\sin^2 + \\cos^2 = 1",
+          "explanation": "Тодорхойлолтууд ба нэг адилтгал бүлгийн ихэнхийг батална."
+        },
+        {
+          "title": "Алтан дүрэм",
+          "latex": "\\text{НЭГ талыг хувирга; } = \\text{ тэмдгийг хэзээ ч бүү дав}",
+          "explanation": "Гишүүдийг нөгөө тал руу шилжүүлэх нь дүгнэлтийг урьдчилан үнэн гэж үзнэ."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ti4-we1",
+          "statement": "Батлаарай: $\\operatorname{tg}\\theta\\cos\\theta = \\sin\\theta$.",
+          "solution": "Зүүн тал $= \\tfrac{\\sin\\theta}{\\cos\\theta}\\cdot\\cos\\theta = \\sin\\theta$ = баруун тал. ∎",
+          "check": [
+            "simplify(tan(x)*cos(x) - sin(x)) == 0"
+          ]
+        },
+        {
+          "id": "ti4-we2",
+          "statement": "Батлаарай: $\\operatorname{tg}\\theta + \\operatorname{ctg}\\theta = \\dfrac{1}{\\sin\\theta\\cos\\theta}$.",
+          "solution": "Зүүн тал $= \\tfrac{\\sin\\theta}{\\cos\\theta} + \\tfrac{\\cos\\theta}{\\sin\\theta} = \\tfrac{\\sin^2\\theta + \\cos^2\\theta}{\\sin\\theta\\cos\\theta} = \\tfrac{1}{\\sin\\theta\\cos\\theta}$. Пифагорын адилтгал баталгааг дуусгалаа. ∎",
+          "check": [
+            "simplify(tan(x) + cot(x) - 1/(sin(x)*cos(x))) == 0"
+          ]
+        },
+        {
+          "id": "ti4-we3",
+          "statement": "Батлаарай: $\\dfrac{1 - \\cos^2\\theta}{\\cos^2\\theta} = \\operatorname{tg}^2\\theta$.",
+          "solution": "Хүртвэр: $1 - \\cos^2\\theta = \\sin^2\\theta$. Зүүн тал $= \\tfrac{\\sin^2\\theta}{\\cos^2\\theta} = \\operatorname{tg}^2\\theta$. ∎",
+          "check": [
+            "simplify((1 - cos(x)**2)/cos(x)**2 - tan(x)**2) == 0"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "«Батлах» явцдаа гишүүдийг тэнцүүгийн тэмдгээр шилжүүлэх.",
+          "correction": "Ингэх нь зүүн тал = баруун тал гэдгийг, яг шүүгдэж буй мэдэгдлийг, урьдчилан үнэн гэж үзнэ. Нэг талыг дангаар нь нөгөөтэйгөө тэнцүү болтол хувиргаарай.",
+          "authored": true
+        },
+        {
+          "text": "sin ба cos руу огт шилжүүлэлгүй гацах.",
+          "correction": "Хоёр алхмын дараа гацсан уу? tg, sec, ctg, cosec бүрийг синус, косинусаар дахин бичээрэй. Энэ нүүдэл ямар ч ухаалаг заль мэхээс олон баталгааг тайлдаг.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ti4-t1",
+          "statement": "Батлаарай: $\\sec\\theta - \\cos\\theta = \\sin\\theta\\operatorname{tg}\\theta$.",
+          "solution": "Зүүн тал $= \\tfrac{1}{\\cos\\theta} - \\cos\\theta = \\tfrac{1 - \\cos^2\\theta}{\\cos\\theta} = \\tfrac{\\sin^2\\theta}{\\cos\\theta} = \\sin\\theta\\cdot\\tfrac{\\sin\\theta}{\\cos\\theta}$ = баруун тал. ∎",
+          "check": [
+            "simplify(sec(x) - cos(x) - sin(x)*tan(x)) == 0"
+          ]
+        },
+        {
+          "id": "ti4-t2",
+          "statement": "Батлаарай: $(1 - \\sin\\theta)(1 + \\sin\\theta) = \\cos^2\\theta$.",
+          "solution": "Пифагорын адилтгалаар зүүн тал $= 1 - \\sin^2\\theta = \\cos^2\\theta$. ∎",
+          "check": [
+            "simplify((1 - sin(x))*(1 + sin(x)) - cos(x)**2) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Шүүх хурал",
+            "title": "Нэг тал шүүгдэнэ",
+            "beats": [
+              "Адилтгал зүүн тал $=$ баруун тал гэж БҮХ өнцөгт мэдэгдэнэ.",
+              "Баталгаа: нэг талыг нөгөө нь БОЛТОЛ дахин бич.",
+              "Тэнцүүгийн тэмдгийг давах нь хууль бус: шийдвэрийг урьдчилан үнэн гэж үзнэ.",
+              "Төвөгтэй талаас эхэл; хялбарчлах нь төвөгтэй болгохоос дээр."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Гурван нүүдэл",
+            "title": "Жижиг хуулийн ном",
+            "beats": [
+              "1-р нүүдэл: бүгдийг $\\sin$ ба $\\cos$ руу.",
+              "2-р нүүдэл: ердийн алгебр: бутархай, үржигдэхүүнд задлах, FOIL.",
+              "3-р нүүдэл: Пифагорын солилт: $1 - \\sin^2 \\leftrightarrow \\cos^2$.",
+              "Ихэнх баталгаа эдгээр гурван нүүдлийг ямар нэг дарааллаар хийдэг."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Түргэн шалгалт",
+            "title": "Хууль бус алхмыг ол",
+            "prompt": "Адилтгал батлах явцад та…",
+            "options": [
+              "зүүн талыг мэдэгдэх адилтгалуудаар дахин бичиж болно",
+              "хоёр талд $\\sin\\theta$ нэмж болно",
+              "хоёр талыг квадрат зэрэгт дэвшүүлж болно"
+            ],
+            "correctIndex": 0,
+            "explanation": "Хоёр талд зэрэг хийх үйлдэл мэдэгдлийг аль хэдийн үнэн гэж үздэг. Нэг талыг БАТЛАГДСАН адилтгалуудаар дахин бичих нь цорын ганц хууль ёсны зам.",
+            "check": [
+              "simplify(sin(x)**2 + cos(x)**2 - 1) == 0"
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Бодсон жишээ",
+            "title": "Баталгааны ур",
+            "intro": "Гурван нүүдэл дарааллаараа хэрхэн ажиллахыг ажиглаарай.",
+            "examples": [
+              {
+                "prompt": "Батлаарай: $\\dfrac{\\sin\\theta}{1 + \\cos\\theta} + \\dfrac{1 + \\cos\\theta}{\\sin\\theta} = 2\\operatorname{cosec}\\theta$.",
+                "steps": [
+                  "Ерөнхий хуваарь: $\\tfrac{\\sin^2\\theta + (1+\\cos\\theta)^2}{\\sin\\theta(1+\\cos\\theta)}$.",
+                  "Хүртвэр: $\\sin^2 + 1 + 2\\cos + \\cos^2 = 2 + 2\\cos\\theta$ (Пифагорын солилт).",
+                  "$\\tfrac{2(1+\\cos\\theta)}{\\sin\\theta(1+\\cos\\theta)} = \\tfrac{2}{\\sin\\theta} = 2\\operatorname{cosec}\\theta$. ∎"
+                ],
+                "answer": "батлагдлаа: бутархай, дараа нь адилтгал, дараа нь хураах",
+                "check": [
+                  "simplify(sin(x)/(1 + cos(x)) + (1 + cos(x))/sin(x) - 2/sin(x)) == 0"
+                ]
+              },
+              {
+                "prompt": "Батлаарай: $\\dfrac{\\cos 2\\theta}{\\cos\\theta - \\sin\\theta} = \\cos\\theta + \\sin\\theta$.",
+                "steps": [
+                  "$\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$: квадратын ялгавар.",
+                  "Үржигдэхүүнд задал: $(\\cos\\theta - \\sin\\theta)(\\cos\\theta + \\sin\\theta)$.",
+                  "Ижил үржигдэхүүнийг хураа. ∎"
+                ],
+                "answer": "батлагдлаа: тригонометрийн хувцастай 10-р ангийн задаргаа",
+                "check": [
+                  "simplify(cos(2*x)/(cos(x) - sin(x)) - cos(x) - sin(x)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Өөрөө туршиж үз",
+            "title": "Шүүгчийн суудалд та",
+            "intro": "Эргэлзвэл эхлээд sin/cos руу шилжүүлээрэй.",
+            "problems": [
+              {
+                "prompt": "$\\operatorname{cosec}\\theta\\operatorname{tg}\\theta$-г хялбарчилбал…",
+                "options": [
+                  "$\\sec\\theta$",
+                  "$\\sin\\theta$",
+                  "$\\operatorname{ctg}\\theta$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\tfrac{1}{\\sin\\theta}\\cdot\\tfrac{\\sin\\theta}{\\cos\\theta} = \\tfrac{1}{\\cos\\theta}$.",
+                "check": [
+                  "simplify(csc(x)*tan(x) - sec(x)) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\dfrac{\\sin^2\\theta - 1}{\\cos\\theta}$ = …",
+                "options": [
+                  "$-\\cos\\theta$",
+                  "$\\cos\\theta$",
+                  "$\\sin\\theta - \\sec\\theta$"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sin^2 - 1 = -\\cos^2$: бутархай нь $\\tfrac{-\\cos^2\\theta}{\\cos\\theta}$.",
+                "check": [
+                  "simplify((sin(x)**2 - 1)/cos(x) + cos(x)) == 0"
+                ]
+              },
+              {
+                "prompt": "$\\sec^2\\theta(1 - \\sin^2\\theta) = 1$ адилтгалыг батлахад хамгийн хурдан эхний нүүдэл нь…",
+                "options": [
+                  "$1 - \\sin^2\\theta$-г $\\cos^2\\theta$ болгон солих",
+                  "$\\sec^2$ функцийг цуваа болгон задлах",
+                  "хоёр талыг $\\sec^2\\theta$-д хуваах"
+                ],
+                "correctIndex": 0,
+                "explanation": "Дараа нь $\\sec^2\\theta\\cos^2\\theta = \\tfrac{\\cos^2\\theta}{\\cos^2\\theta} = 1$. (Хоёр талыг хуваах нь хууль бус нүүдэл.)",
+                "check": [
+                  "simplify(sec(x)**2*(1 - sin(x)**2) - 1) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tip",
+            "eyebrow": "Дадлага",
+            "title": "Гацаанаас гаргагч",
+            "body": "Гацсан баталгаа бүрт нэг л жор бий: БҮГДИЙГ синус, косинусаар дахин бичиж, нэг хуваарьт оруулаад, хүртвэрт нуугдсан $\\sin^2 + \\cos^2$-ыг хайгаарай. Энэ гайхмаар олон удаа гарч ирдэг: Пифагорын адилтгал бол энэ бүлгийн бүх цоожийг тайлах түлхүүр."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Эргэн дүгнэлт",
+            "title": "Юу сурснаа эргэн харъя",
+            "points": [
+              "Зөвхөн нэг талыг хувирга: тэнцүүгийн тэмдгийг давах нь шийдвэрийг урьдчилан үнэн гэж үзнэ.",
+              "Гурван нүүдэл: sin/cos руу, ердийн алгебр, Пифагорын солилт.",
+              "Төвөгтэй талаас эхэлж, цэвэрхэн тал руу хялбарчил."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solving-trig-equations",
+      "title": "Тригонометрийн тэгшитгэл бодох",
+      "concreteComparison": "$x^2 = 25$-ыг бодвол хоёр хариу гарна. $\\sin x = \\tfrac12$-ийг бодвол ТӨГСГӨЛГҮЙ олон хариу гарна: синусын долгион $\\tfrac12$ өндрийг эргэлт бүрт хоёр удаа, үүрд огтолно. Тригонометрийн тэгшитгэлийг (trig equation) «тэр ганц» хариуг олж биш, хэвийг олж боддог: нэгж тойргийн аль цэгүүд тохирох вэ, дараа нь түүнээс хойших эргэлт бүр.",
+      "objective": "Тригонометрийн энгийн тэгшитгэлийг нэгж тойрог ашиглан [0, 2π) дээр бодож, + 2πk нэмэгдэхүүнтэй ерөнхий шийдийг (full solution set) бичих.",
+      "concept": [
+        "**Нэгж тойрог бол хариуны түлхүүр**: $\\sin x = \\tfrac12$ гэдэг нь «$\\tfrac12$ ӨНДӨР хаана байна вэ?» гэж асууна. Эргэлт бүрт хоёр цэг: $x = \\tfrac{\\pi}{6}$ ба $x = \\pi - \\tfrac{\\pi}{6} = \\tfrac{5\\pi}{6}$.",
+        "**Синусын хос шийд босоо тэнхлэгийн хувьд тэгш хэмтэй** ($x$ ба $\\pi - x$ ижил өндөртэй); **косинусын хос хэвтээ тэнхлэгийн хувьд тэгш хэмтэй** ($x$ ба $2\\pi - x = -x$ ижил хэвтээ байрлалтай); **тангенс хагас эргэлт тутамд давтагдана** ($x$ ба $x + \\pi$).",
+        "**Бүх шийд**: тойрог $2\\pi$ тутамд давтагддаг тул суурь шийд бүр бүлэг шийд үүсгэнэ: $x = \\tfrac{\\pi}{6} + 2\\pi k$. Ихэнх бодлого зөвхөн $[0, 2\\pi)$, өөрөөр хэлбэл нэг эргэлтийг асууна.",
+        "**Эхлээд тусгаарлах**: тойрог орж ирэхээс өмнө $2\\cos x + \\sqrt3 = 0$ нь $\\cos x = -\\tfrac{\\sqrt3}{2}$ болно. Тригонометрийн тэгшитгэл бол төгсгөлд нь тойрогтой 8-р ангийн шугаман тэгшитгэл бодолт."
+      ],
+      "keyIdea": "Тригонометрийн функцийг тусгаарлаж, нэгж тойрог дээрх жишиг цэгүүдийг олоорой (синус: хоёр өндөр; косинус: хоёр хэвтээ байрлал; тангенс: хагас эргэлтээр давтагдана), дараа нь төгсгөлгүй бүлэг шийдэд + 2πk нэмээрэй.",
+      "facts": [
+        {
+          "title": "Синусын хос",
+          "latex": "\\sin x = c \\Rightarrow x = \\alpha \\text{ эсвэл } \\pi - \\alpha",
+          "explanation": "Ижил өндөр, босоо тэнхлэгийн хувьд тэгш хэмтэй."
+        },
+        {
+          "title": "Мөнхийн бүлэг",
+          "latex": "x = \\alpha + 2\\pi k, \\quad k \\in \\mathbb{Z}",
+          "explanation": "Тойргийн эргэлт бүр шийд бүрийг давтана."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ti5-we1",
+          "statement": "$[0, 2\\pi)$ дээр $\\sin x = \\tfrac{1}{2}$-ийг бодоорой.",
+          "solution": "$\\tfrac12$ өндөр: жишиг өнцөг $\\tfrac{\\pi}{6}$, I ба II мөч. $x = \\tfrac{\\pi}{6}, \\tfrac{5\\pi}{6}$.",
+          "check": [
+            "sin(pi/6) == Rational(1,2)",
+            "sin(5*pi/6) == Rational(1,2)"
+          ]
+        },
+        {
+          "id": "ti5-we2",
+          "statement": "$[0, 2\\pi)$ дээр $2\\cos x + \\sqrt{3} = 0$-ийг бодоорой.",
+          "solution": "Тусгаарлавал: $\\cos x = -\\tfrac{\\sqrt3}{2}$. Хэвтээ байрлал $-\\tfrac{\\sqrt3}{2}$: II ба III мөч, жишиг $\\tfrac{\\pi}{6}$. $x = \\tfrac{5\\pi}{6}, \\tfrac{7\\pi}{6}$.",
+          "check": [
+            "simplify(2*cos(5*pi/6) + sqrt(3)) == 0",
+            "simplify(2*cos(7*pi/6) + sqrt(3)) == 0"
+          ]
+        },
+        {
+          "id": "ti5-we3",
+          "statement": "$[0, 2\\pi)$ дээр $\\operatorname{tg} x = 1$-ийг бодоорой.",
+          "solution": "Синус, косинус тэнцүү газар $\\operatorname{tg} = 1$: $x = \\tfrac{\\pi}{4}$, хагас эргэлтийн дараа $x = \\tfrac{5\\pi}{4}$.",
+          "check": [
+            "tan(pi/4) == 1",
+            "tan(5*pi/4) == 1"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "$\\sin x = \\tfrac12$-д тооны машины ганц хариуг л бичих.",
+          "correction": "Долгион өндөр бүрийг эргэлт бүрт хоёр удаа огтолно: $\\tfrac{\\pi}{6}$ БА $\\tfrac{5\\pi}{6}$. Тооны машины нуудаг хосыг тойрог харуулна.",
+          "authored": true
+        },
+        {
+          "text": "Тангенсын шийдэд $\\pi k$ биш, $2\\pi k$ нэмэх.",
+          "correction": "Тангенс $2\\pi$ биш, $\\pi$ тутамд давтагдана: бүлэг шийд нь $\\tfrac{\\pi}{4} + \\pi k$. Хагас эргэлтийн тэгш хэм шийдийг хоёр дахин олон давтамжтай болгоно.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ti5-t1",
+          "statement": "$[0, 2\\pi)$ дээр $\\cos x = \\tfrac{\\sqrt2}{2}$-ыг бодоорой.",
+          "solution": "Хэвтээ байрлал $\\tfrac{\\sqrt2}{2}$: I ба IV мөч. $x = \\tfrac{\\pi}{4}, \\tfrac{7\\pi}{4}$.",
+          "check": [
+            "simplify(cos(pi/4) - sqrt(2)/2) == 0",
+            "simplify(cos(7*pi/4) - sqrt(2)/2) == 0"
+          ]
+        },
+        {
+          "id": "ti5-t2",
+          "statement": "$[0, 2\\pi)$ дээр $2\\sin x - \\sqrt{3} = 0$-ийг бодоорой.",
+          "solution": "$\\sin x = \\tfrac{\\sqrt3}{2}$: $x = \\tfrac{\\pi}{3}, \\tfrac{2\\pi}{3}$.",
+          "check": [
+            "simplify(2*sin(pi/3) - sqrt(3)) == 0",
+            "simplify(2*sin(2*pi/3) - sqrt(3)) == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Төгсгөлгүй олон хариу",
+            "title": "Шинэ төрлийн тэгшитгэл",
+            "beats": [
+              "$x^2 = 25$: хоёр хариу, болоо.",
+              "$\\sin x = \\tfrac12$: долгион $\\tfrac12$ өндөрт эргэлт БҮРТ хоёр удаа хүрнэ.",
+              "Төгсгөлгүй олон шийд, гэхдээ төгс хэвтэй.",
+              "Нэг эргэлтийнхийг ол; үлдсэн нь $+2\\pi k$."
+            ]
+          },
+          {
+            "kind": "unitCircle",
+            "eyebrow": "Хариуны түлхүүр",
+            "title": "Тойрог дээрх ½ өндөр",
+            "teach": "Өнцгийг тойргоор алхуулаарай: $\\sin$ бол цэгийн ӨНДӨР. $\\tfrac12$ өндөр $30°$-т ($\\tfrac{\\pi}{6}$) гарна, дахиад $150°$-т ($\\tfrac{5\\pi}{6}$): босоо тэнхлэгийн хувьд тэгш хэмтэй цэг. Синусын тэгшитгэл бүр эргэлт бүрт хоёр цэгтэй ийм хэлбэртэй.",
+            "config": {
+              "mode": "explore",
+              "start": 30
+            }
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Түргэн шалгалт",
+            "title": "Хос шийд",
+            "prompt": "$\\sin x = \\tfrac{\\sqrt2}{2}$-ын нэг шийд нь $\\tfrac{\\pi}{4}$. $[0, 2\\pi)$ дэх нөгөө шийд нь…",
+            "options": [
+              "$\\tfrac{3\\pi}{4}$: босоо тэнхлэгийн хувьд тэгш хэм",
+              "$\\tfrac{7\\pi}{4}$: хэвтээ тэнхлэгийн хувьд тэгш хэм",
+              "$\\tfrac{5\\pi}{4}$: эсрэг цэг"
+            ],
+            "correctIndex": 0,
+            "explanation": "Синус бол өндөр: ижил өндөр $\\pi - \\tfrac{\\pi}{4} = \\tfrac{3\\pi}{4}$ цэгт оршино. (Хэвтээ тэнхлэгийн хувьд тэгш хэмтэй $\\tfrac{7\\pi}{4}$ бол КОСИНУСЫН хосын дүрэм.)",
+            "check": [
+              "simplify(sin(3*pi/4) - sqrt(2)/2) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Жор",
+            "title": "Тусгаарла, байрлуул, давт",
+            "beats": [
+              "1. Тусгаарла: $2\\cos x + \\sqrt3 = 0 \\to \\cos x = -\\tfrac{\\sqrt3}{2}$.",
+              "2. Байрлуул: аль мөчид хэвтээ байрлал сөрөг вэ? II ба III.",
+              "3. Утгаас жишиг өнцгийг ол: $\\tfrac{\\pi}{6}$.",
+              "4. Шаардвал давт: мөнхийн бүлэгт $+2\\pi k$."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Бодсон жишээ",
+            "title": "Тэгшитгэлийн ур",
+            "intro": "Тусгаарлаж, байрлуулаад, шаардвал давтаарай.",
+            "examples": [
+              {
+                "prompt": "$[0, 2\\pi)$ дээр $2\\sin x + 1 = 0$-ийг бодоорой.",
+                "steps": [
+                  "$\\sin x = -\\tfrac12$: өндөр сөрөг → III, IV мөч.",
+                  "Жишиг $\\tfrac{\\pi}{6}$: $x = \\pi + \\tfrac{\\pi}{6} = \\tfrac{7\\pi}{6}$ ба $x = 2\\pi - \\tfrac{\\pi}{6} = \\tfrac{11\\pi}{6}$."
+                ],
+                "answer": "$x = \\tfrac{7\\pi}{6}, \\tfrac{11\\pi}{6}$",
+                "check": [
+                  "sin(7*pi/6) == Rational(-1,2)",
+                  "sin(11*pi/6) == Rational(-1,2)"
+                ]
+              },
+              {
+                "prompt": "$[0, 2\\pi)$ дээр $\\operatorname{tg} x = -\\sqrt3$-ыг бодоорой.",
+                "steps": [
+                  "Жишиг: $\\operatorname{tg}\\tfrac{\\pi}{3} = \\sqrt3$. Сөрөг тангенс → II, IV мөч.",
+                  "$x = \\pi - \\tfrac{\\pi}{3} = \\tfrac{2\\pi}{3}$, дараа нь хагас эргэлтийн дараа $\\tfrac{2\\pi}{3} + \\pi = \\tfrac{5\\pi}{3}$."
+                ],
+                "answer": "$x = \\tfrac{2\\pi}{3}, \\tfrac{5\\pi}{3}$",
+                "check": [
+                  "simplify(tan(2*pi/3) + sqrt(3)) == 0",
+                  "simplify(tan(5*pi/3) + sqrt(3)) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Өөрөө туршиж үз",
+            "title": "Эргэлт бүрт хоёр цэг",
+            "intro": "Эхлээд мөч, дараа нь жишиг өнцөг.",
+            "problems": [
+              {
+                "prompt": "$[0, 2\\pi)$ дээр $\\cos x = -1$ нь…",
+                "options": [
+                  "яг нэг шийдтэй: $x = \\pi$",
+                  "хоёр шийдтэй",
+                  "шийдгүй"
+                ],
+                "correctIndex": 0,
+                "explanation": "$-1$ хэвтээ байрлал зөвхөн тойргийн хамгийн зүүн цэгт л бий. $\\pm1$ хязгаарын утгууд эргэлтэд ганц шийдтэй үл хамаарах тохиолдлууд.",
+                "check": [
+                  "cos(pi) == -1"
+                ]
+              },
+              {
+                "prompt": "$\\sin x = 2$ нь…",
+                "options": [
+                  "шийдгүй: өндөр $[-1, 1]$-д л байдаг",
+                  "$x = \\arcsin 2$",
+                  "эргэлт бүрт хоёр шийдтэй"
+                ],
+                "correctIndex": 0,
+                "explanation": "Тойргийн цэгүүд $[-1,1]$ өндрийн мужаас хэзээ ч гардаггүй. Бодохоосоо ӨМНӨ утгын мужийг шалгаарай.",
+                "check": [
+                  "1 < 2"
+                ]
+              },
+              {
+                "prompt": "$\\cos x = \\tfrac12$-ийн бүх шийд нь…",
+                "options": [
+                  "$\\pm\\tfrac{\\pi}{3} + 2\\pi k$",
+                  "$\\tfrac{\\pi}{3} + \\pi k$",
+                  "зөвхөн $\\tfrac{\\pi}{3}$"
+                ],
+                "correctIndex": 0,
+                "explanation": "Косинусын хоёр цэг бол хэвтээ тэнхлэгийн хувьд тэгш хэмтэй $\\pm\\tfrac{\\pi}{3}$; тус бүр бүтэн эргэлт тутамд давтагдана.",
+                "check": [
+                  "cos(pi/3) == Rational(1,2)",
+                  "cos(-pi/3) == Rational(1,2)"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Одон орон",
+            "title": "Нар мандах тэгшитгэл",
+            "body": "Нар мандах цагийг таамагладаг өдрийн уртын томьёо бол тригонометрийн тэгшитгэл: $\\cos H = -\\operatorname{tg}(\\text{өргөрөг})\\operatorname{tg}(\\text{нарны хазайлт})$ тэгшитгэлээс цагийн өнцөг (hour angle) гэж нэрлэгдэх $H$-ийг олно. Эргэлт бүрт хоёр шийд: нэг нь нар мандах, тэгш хэмтэй нөгөө нь нар жаргах. Одон орон судлаачид Птолемейн үеэс хойш эргэлт бүрт хоёр цэгтэй энэ төрлийн бодлогыг бодсоор ирсэн."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Эргэн дүгнэлт",
+            "title": "Юу сурснаа эргэн харъя",
+            "points": [
+              "Тригонометрийн тэгшитгэл $+2\\pi k$ бүлгүүдээр төгсгөлгүй олон шийдтэй.",
+              "Функцийг тусгаарлаад нэгж тойргийг унш: синус = өндөр, косинус = хэвтээ байрлал.",
+              "Эргэлт бүрт хоёр цэг (тэгш хэмтэй); тангенс хагас эргэлт тутамд давтагдана; эхлээд утгын мужийг шалга."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "quadratic-trig-equations",
+      "title": "Квадрат төрлийн тригонометрийн тэгшитгэл",
+      "concreteComparison": "10-р анги танд $2u^2 - u - 1 = 0$-ийг нойрондоо ч задалж сургасан. Одоо түүнд хувцас өмсгөе: $2\\sin^2 x - \\sin x - 1 = 0$ бол тригонометрийн хувцас өмссөн ЯГ ТЭР тэгшитгэл. $u = \\sin x$ орлуулга хийж, үржигдэхүүнд задлаад, язгуур бүрийг нэгж тойрогт өгөөрэй. Хуучин алгебр, шинэ сүүлийн алхам.",
+      "objective": "Квадрат төрлийн тригонометрийн тэгшитгэлийг (quadratic trig equation) бодох: орлуулга хийж, үржигдэхүүнд задлаад, утга бүрийг нэгж тойргоор бодож, холимог функцүүдийг адилтгалаар нэг функц болгох.",
+      "concept": [
+        "**Квадратыг харах**: $u = \\sin x$ үед $2\\sin^2 x - \\sin x - 1 = 0$ нь $2u^2 - u - 1 = (2u + 1)(u - 1) = 0$: цэвэр 10-р ангийн бодлого.",
+        "**Дараа нь тойрог**: $u = -\\tfrac12$ эсвэл $u = 1$ гэдэг нь $\\sin x = -\\tfrac12$ (хоёр цэг: $\\tfrac{7\\pi}{6}, \\tfrac{11\\pi}{6}$) эсвэл $\\sin x = 1$ (нэг цэг: $\\tfrac{\\pi}{2}$). $[0, 2\\pi)$ дээр нийт гурван шийд.",
+        "**Холимог функц уу? Эхлээд нэгтгээрэй**: $2\\cos^2 x + \\sin x - 1 = 0$ тэгшитгэлд хоёулаа бий. $\\cos^2 x = 1 - \\sin^2 x$ гэж соливол цэвэр $\\sin x$-ийн квадрат тэгшитгэл болно. Пифагорын адилтгал бол орчуулагч.",
+        "**Боломжгүйг хаях**: задлахад $\\sin x = 3$ гарвал түүнийг хаяарай: өндөр 1-ээс хэтрэхгүй. Алгебрын язгуур бүр автоматаар тойрог дээрх өнцөг болдоггүй."
+      ],
+      "keyIdea": "Тригонометрийн функцийн оронд u орлуулж, 10-р ангийн квадрат тэгшитгэлийг задлаад, язгуур бүрийг нэгж тойрог дээр бодоорой; холимог функцүүдийг эхлээд Пифагорын адилтгалаар нэгтгээрэй.",
+      "facts": [
+        {
+          "title": "Далдлалт",
+          "latex": "2\\sin^2 x - \\sin x - 1 = 0 \\;\\xrightarrow{u = \\sin x}\\; 2u^2 - u - 1 = 0",
+          "explanation": "10-р ангийнх шиг задлаад, тойрог дээр дуусга."
+        },
+        {
+          "title": "Орчуулагч",
+          "latex": "\\cos^2 x = 1 - \\sin^2 x",
+          "explanation": "Холимог функцтэй тэгшитгэлийг нэг функцийн квадрат тэгшитгэл болгоно."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "ti6-we1",
+          "statement": "$[0, 2\\pi)$ дээр $2\\sin^2 x - \\sin x - 1 = 0$-ийг бодоорой.",
+          "solution": "Задлавал: $(2\\sin x + 1)(\\sin x - 1) = 0$. $\\sin x = -\\tfrac12$: $x = \\tfrac{7\\pi}{6}, \\tfrac{11\\pi}{6}$. $\\sin x = 1$: $x = \\tfrac{\\pi}{2}$.",
+          "check": [
+            "2*sin(7*pi/6)**2 - sin(7*pi/6) - 1 == 0",
+            "2*sin(11*pi/6)**2 - sin(11*pi/6) - 1 == 0",
+            "2*sin(pi/2)**2 - sin(pi/2) - 1 == 0"
+          ]
+        },
+        {
+          "id": "ti6-we2",
+          "statement": "$[0, 2\\pi)$ дээр $2\\cos^2 x + \\sin x - 1 = 0$-ийг бодоорой (холимог функц).",
+          "solution": "Нэгтгэвэл: $2(1 - \\sin^2 x) + \\sin x - 1 = 0$, өөрөөр хэлбэл $-2\\sin^2 x + \\sin x + 1 = 0$. $-1$-ээр үржүүлбэл: $2\\sin^2 x - \\sin x - 1 = 0$: өмнөх жишээний квадрат тэгшитгэл. $x = \\tfrac{\\pi}{2}, \\tfrac{7\\pi}{6}, \\tfrac{11\\pi}{6}$.",
+          "check": [
+            "2*cos(pi/2)**2 + sin(pi/2) - 1 == 0",
+            "2*cos(7*pi/6)**2 + sin(7*pi/6) - 1 == 0",
+            "2*cos(11*pi/6)**2 + sin(11*pi/6) - 1 == 0"
+          ]
+        },
+        {
+          "id": "ti6-we3",
+          "statement": "$[0, 2\\pi)$ дээр $\\cos^2 x = \\tfrac{1}{4}$-ийг бодоорой.",
+          "solution": "$\\cos x = \\pm\\tfrac12$: квадрат язгуурын ХОЁУЛАНГ нь. Дөрвөн цэг: $\\tfrac{\\pi}{3}, \\tfrac{2\\pi}{3}, \\tfrac{4\\pi}{3}, \\tfrac{5\\pi}{3}$.",
+          "check": [
+            "cos(pi/3)**2 == Rational(1,4)",
+            "cos(2*pi/3)**2 == Rational(1,4)",
+            "cos(4*pi/3)**2 == Rational(1,4)",
+            "cos(5*pi/3)**2 == Rational(1,4)"
+          ]
+        }
+      ],
+      "commonMistakes": [
+        {
+          "text": "$\\sin x\\cos x = \\cos x$-ийн хоёр талыг $\\cos x$-т хуваах.",
+          "correction": "Ингэвэл $\\cos x = 0$ байх бүх шийд арилна, гэтэл $x = \\tfrac{\\pi}{2}$ шийд МӨН. Бүгдийг зүүн тийш шилжүүлээд ЗАДЛААРАЙ: $\\cos x(\\sin x - 1) = 0$. 10-р ангийнхтай ижил дүрэм: хувьсагчид хэзээ ч бүү хуваагаарай.",
+          "authored": true
+        },
+        {
+          "text": "$\\sin x = 3$-ыг шийдийн салаа болгон үлдээх.",
+          "correction": "Задлах бол алгебр; тойрог бол геометр. $[-1, 1]$-ээс гадуурх өндөр өнцөггүй: тэр салааг хаяж, бусдыг нь үлдээгээрэй.",
+          "authored": true
+        }
+      ],
+      "tryIt": [
+        {
+          "id": "ti6-t1",
+          "statement": "$[0, 2\\pi)$ дээр $\\sin^2 x - \\sin x = 0$-ийг бодоорой.",
+          "solution": "$\\sin x(\\sin x - 1) = 0$ болгон задлавал: $\\sin x = 0$ нь $0, \\pi$-г; $\\sin x = 1$ нь $\\tfrac{\\pi}{2}$-г өгнө.",
+          "check": [
+            "sin(0)**2 - sin(0) == 0",
+            "sin(pi)**2 - sin(pi) == 0",
+            "sin(pi/2)**2 - sin(pi/2) == 0"
+          ]
+        },
+        {
+          "id": "ti6-t2",
+          "statement": "$[0, 2\\pi)$ дээр $2\\cos^2 x - \\cos x - 1 = 0$-ийг бодоорой.",
+          "solution": "$(2\\cos x + 1)(\\cos x - 1) = 0$: $\\cos x = -\\tfrac12 \\to \\tfrac{2\\pi}{3}, \\tfrac{4\\pi}{3}$; $\\cos x = 1 \\to 0$.",
+          "check": [
+            "2*cos(2*pi/3)**2 - cos(2*pi/3) - 1 == 0",
+            "2*cos(4*pi/3)**2 - cos(4*pi/3) - 1 == 0",
+            "2*cos(0)**2 - cos(0) - 1 == 0"
+          ]
+        }
+      ],
+      "interactive": {
+        "steps": [
+          {
+            "kind": "teach",
+            "eyebrow": "Хувцас",
+            "title": "10-р анги эргэн ирлээ",
+            "beats": [
+              "$2\\sin^2 x - \\sin x - 1 = 0$ харь гаригийнх мэт харагдана.",
+              "$u = \\sin x$ орлуул: $2u^2 - u - 1 = 0$.",
+              "Та үүн шиг зуугаад тэгшитгэл задалсан: $(2u+1)(u-1) = 0$.",
+              "Шинэ сэдэв, хуучин булчин. Тойрог зөвхөн төгсгөлд орж ирнэ."
+            ]
+          },
+          {
+            "kind": "tapQuestion",
+            "eyebrow": "Түргэн шалгалт",
+            "title": "Эхлээд задал",
+            "prompt": "$u = \\sin x$ орлуулга $\\sin^2 x - \\sin x = 0$ тэгшитгэлийг юу болгох вэ?",
+            "options": [
+              "$u(u - 1) = 0$",
+              "$u^2 = u^2$",
+              "$u - 1 = 0$"
+            ],
+            "correctIndex": 0,
+            "explanation": "$u^2 - u = u(u-1)$. Задлаарай: $u$-д хэзээ ч бүү хуваагаарай; $u = 0$ салаа бодит өнцгүүдийг ($0$ ба $\\pi$) агуулна.",
+            "check": [
+              "sin(0)**2 - sin(0) == 0"
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Язгуур бүр тойрогт тусдаа аялна",
+            "title": "Хуваагаад дуусга",
+            "beats": [
+              "$(2\\sin x + 1)(\\sin x - 1) = 0$ хоёр хуваагдана:",
+              "$\\sin x = -\\tfrac12$: III + IV мөч → $\\tfrac{7\\pi}{6}, \\tfrac{11\\pi}{6}$.",
+              "$\\sin x = 1$: тойргийн орой → ганцхан $\\tfrac{\\pi}{2}$.",
+              "Нэгдэл: энэ эргэлтэд гурван шийд. Үржигдэхүүнийг биш, цэгийг тоол."
+            ]
+          },
+          {
+            "kind": "teach",
+            "eyebrow": "Холимог функц",
+            "title": "Орчуулагч",
+            "beats": [
+              "$2\\cos^2 x + \\sin x - 1 = 0$: хоёр өөр функц. Гацав уу?",
+              "Пифагорын солилт: $\\cos^2 x = 1 - \\sin^2 x$.",
+              "Одоо БҮГД синус: $2 - 2\\sin^2 x + \\sin x - 1 = 0$.",
+              "Цэгцэлбэл $2\\sin^2 x - \\sin x - 1 = 0$: нэг алхмын өмнө бодсон."
+            ]
+          },
+          {
+            "kind": "workedSet",
+            "eyebrow": "Бодсон жишээ",
+            "title": "Хувцас тайлах",
+            "intro": "Орлуулж, задлаад, тойрог дээр бодож, боломжгүйг нь хаяарай.",
+            "examples": [
+              {
+                "prompt": "$[0, 2\\pi)$ дээр $2\\sin^2 x = 1$-ийг бодоорой.",
+                "steps": [
+                  "$\\sin^2 x = \\tfrac12$: $\\sin x = \\pm\\tfrac{\\sqrt2}{2}$: хоёр язгуур хоёулаа.",
+                  "Эерэг: $\\tfrac{\\pi}{4}, \\tfrac{3\\pi}{4}$. Сөрөг: $\\tfrac{5\\pi}{4}, \\tfrac{7\\pi}{4}$.",
+                  "Дөрвөн шийд: квадрат цэгийн тоог хоёр дахин олшруулна."
+                ],
+                "answer": "$x = \\tfrac{\\pi}{4}, \\tfrac{3\\pi}{4}, \\tfrac{5\\pi}{4}, \\tfrac{7\\pi}{4}$",
+                "check": [
+                  "2*sin(pi/4)**2 == 1",
+                  "2*sin(3*pi/4)**2 == 1",
+                  "2*sin(5*pi/4)**2 == 1",
+                  "2*sin(7*pi/4)**2 == 1"
+                ]
+              },
+              {
+                "prompt": "$[0, 2\\pi)$ дээр $\\sin x\\cos x = \\cos x$-ийг ХУВААЛГҮЙГЭЭР бодоорой.",
+                "steps": [
+                  "Бүгдийг зүүн тийш: $\\cos x(\\sin x - 1) = 0$.",
+                  "$\\cos x = 0$: $x = \\tfrac{\\pi}{2}, \\tfrac{3\\pi}{2}$. $\\sin x = 1$: $x = \\tfrac{\\pi}{2}$ (аль хэдийн тоолсон).",
+                  "$\\cos x$-т хуваасан бол косинусын хоёр цэгийг хоёуланг нь чимээгүй устгах байсан."
+                ],
+                "answer": "$x = \\tfrac{\\pi}{2}, \\tfrac{3\\pi}{2}$",
+                "check": [
+                  "sin(pi/2)*cos(pi/2) - cos(pi/2) == 0",
+                  "sin(3*pi/2)*cos(3*pi/2) - cos(3*pi/2) == 0"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "tryItSet",
+            "eyebrow": "Өөрөө туршиж үз",
+            "title": "Хувцасгүй",
+            "intro": "u орлуулгыг толгойдоо хийгээрэй; тойрог дуусгана.",
+            "problems": [
+              {
+                "prompt": "$[0, 2\\pi)$ дээр $(\\sin x - 1)(\\sin x + 3) = 0$ нь…",
+                "options": [
+                  "нэг шийдтэй: $+3$ салаа боломжгүй",
+                  "гурван шийдтэй",
+                  "хоёр шийдтэй"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\sin x = -3$ өнцөггүй (өндөр 1-ээс хэтрэхгүй); $\\sin x = 1$ зөвхөн $\\tfrac{\\pi}{2}$-г өгнө.",
+                "check": [
+                  "sin(pi/2) == 1"
+                ]
+              },
+              {
+                "prompt": "$2\\sin^2 x - 3\\cos x = 3$-ыг бодохын тулд эхлээд…",
+                "options": [
+                  "$\\sin^2 x = 1 - \\cos^2 x$ гэж солих",
+                  "$\\sin x$-т хуваах",
+                  "квадрат язгуур гаргах"
+                ],
+                "correctIndex": 0,
+                "explanation": "Нэг функц болгож нэгтгээрэй: $2 - 2\\cos^2 x - 3\\cos x = 3$ бол зөвхөн $\\cos x$-ийн квадрат тэгшитгэл.",
+                "check": [
+                  "simplify(sin(x)**2 - 1 + cos(x)**2) == 0"
+                ]
+              },
+              {
+                "prompt": "$[0, 2\\pi)$ дээр $\\operatorname{tg}^2 x = 3$ хэдэн шийдтэй вэ?",
+                "options": [
+                  "дөрөв",
+                  "хоёр",
+                  "нэг"
+                ],
+                "correctIndex": 0,
+                "explanation": "$\\operatorname{tg} x = \\pm\\sqrt3$: тэмдэг бүр эргэлт бүрт хоёр удаа таарна (тангенс хагас эргэлтээр давтагдана): $\\tfrac{\\pi}{3}, \\tfrac{2\\pi}{3}, \\tfrac{4\\pi}{3}, \\tfrac{5\\pi}{3}$.",
+                "check": [
+                  "tan(pi/3)**2 == 3",
+                  "tan(2*pi/3)**2 == 3",
+                  "tan(4*pi/3)**2 == 3",
+                  "tan(5*pi/3)**2 == 3"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "funFact",
+            "eyebrow": "Том зураг",
+            "title": "Бүлэг нэг өгүүлбэрт",
+            "body": "Энд байсан бүхэн дахин ашиглалт байлаа: өмнөх ангиудын Пифагорын теорем үндсэн адилтгал болж, FOIL ба үржигдэхүүнд задлах (10-р анги) батлах, бодоход тусалж, нэгж тойрог (11-р анги) хариуны түлхүүр болсон. 12-р анги шинийг ховор зохиодог: харин НИЙЛҮҮЛДЭГ. Шалгалтын хэмждэг жинхэнэ ур чадвар энэ."
+          },
+          {
+            "kind": "recap",
+            "eyebrow": "Эргэн дүгнэлт",
+            "title": "Юу сурснаа эргэн харъя",
+            "points": [
+              "Квадрат хэлбэртэй тригонометрийн тэгшитгэл: $u$ орлуул, задал, язгуур бүрийг тойрог дээр бод.",
+              "Холимог функц: эхлээд $\\cos^2 = 1 - \\sin^2$-аар нэгтгэ.",
+              "Тригонометрийн үржигдэхүүнд хэзээ ч бүү хуваа: зүүн тийш шилжүүлж задал; $[-1,1]$-ээс гадуурх язгуурыг хая."
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "practice": [
+    {
+      "id": "ti-pr1",
+      "statement": "$\\theta$ нь IV мөчид, $\\cos\\theta = \\tfrac{8}{17}$ бол $\\sin\\theta$ ба $\\operatorname{tg}\\theta$-г олоорой.",
+      "solution": "$\\sin\\theta = -\\tfrac{15}{17}$ (IV мөчид сөрөг); $\\operatorname{tg}\\theta = -\\tfrac{15}{8}$.",
+      "check": [
+        "Rational(8,17)**2 + Rational(15,17)**2 == 1",
+        "Rational(15,17)/Rational(8,17) == Rational(15,8)"
+      ]
+    },
+    {
+      "id": "ti-pr2",
+      "statement": "$\\cos\\theta + \\sin\\theta\\operatorname{tg}\\theta$ илэрхийллийг хялбарчлаарай.",
+      "solution": "$\\cos\\theta + \\tfrac{\\sin^2\\theta}{\\cos\\theta} = \\tfrac{\\cos^2 + \\sin^2}{\\cos\\theta} = \\sec\\theta$.",
+      "check": [
+        "simplify(cos(x) + sin(x)*tan(x) - sec(x)) == 0"
+      ]
+    },
+    {
+      "id": "ti-pr3",
+      "statement": "$\\cos 105°$-ыг яг бодоорой.",
+      "solution": "$105 = 60 + 45$: $\\cos 60°\\cos 45° - \\sin 60°\\sin 45° = \\tfrac{\\sqrt2 - \\sqrt6}{4}$.",
+      "check": [
+        "simplify(cos(7*pi/12) - (sqrt(2) - sqrt(6))/4) == 0"
+      ]
+    },
+    {
+      "id": "ti-pr4",
+      "statement": "$\\sin 3\\theta\\cos\\theta - \\cos 3\\theta\\sin\\theta$ илэрхийллийг хялбарчлаарай.",
+      "solution": "Урвуугаар уншсан ялгаврын синус: $\\sin(3\\theta - \\theta) = \\sin 2\\theta$.",
+      "check": [
+        "simplify(sin(3*x)*cos(x) - cos(3*x)*sin(x) - sin(2*x)) == 0"
+      ]
+    },
+    {
+      "id": "ti-pr5",
+      "statement": "$\\sin\\theta = \\tfrac{12}{13}$, II мөч: $\\sin 2\\theta$-г олоорой.",
+      "solution": "$\\cos\\theta = -\\tfrac{5}{13}$; $\\sin 2\\theta = 2\\cdot\\tfrac{12}{13}\\cdot(-\\tfrac{5}{13}) = -\\tfrac{120}{169}$.",
+      "check": [
+        "2*Rational(12,13)*Rational(-5,13) == Rational(-120,169)"
+      ]
+    },
+    {
+      "id": "ti-pr6",
+      "statement": "Батлаарай: $\\dfrac{\\sin 2\\theta}{2\\sin^2\\theta} = \\operatorname{ctg}\\theta$.",
+      "solution": "$\\tfrac{2\\sin\\theta\\cos\\theta}{2\\sin^2\\theta} = \\tfrac{\\cos\\theta}{\\sin\\theta} = \\operatorname{ctg}\\theta$. ∎",
+      "check": [
+        "simplify(sin(2*x)/(2*sin(x)**2) - cot(x)) == 0"
+      ]
+    },
+    {
+      "id": "ti-pr7",
+      "statement": "Батлаарай: $\\operatorname{cosec}^2\\theta(1 - \\cos^2\\theta) = 1$.",
+      "solution": "$1 - \\cos^2 = \\sin^2$: зүүн тал $= \\tfrac{\\sin^2\\theta}{\\sin^2\\theta} = 1$. ∎",
+      "check": [
+        "simplify(csc(x)**2*(1 - cos(x)**2) - 1) == 0"
+      ]
+    },
+    {
+      "id": "ti-pr8",
+      "statement": "$[0, 2\\pi)$ дээр $2\\cos x - 1 = 0$-ийг бодоорой.",
+      "solution": "$\\cos x = \\tfrac12$: $x = \\tfrac{\\pi}{3}, \\tfrac{5\\pi}{3}$.",
+      "check": [
+        "2*cos(pi/3) - 1 == 0",
+        "2*cos(5*pi/3) - 1 == 0"
+      ]
+    },
+    {
+      "id": "ti-pr9",
+      "statement": "$[0, 2\\pi)$ дээр $\\operatorname{tg} x + \\sqrt3 = 0$-ийг бодоорой.",
+      "solution": "$\\operatorname{tg} x = -\\sqrt3$: II ба IV мөч, жишиг $\\tfrac{\\pi}{3}$: $x = \\tfrac{2\\pi}{3}, \\tfrac{5\\pi}{3}$.",
+      "check": [
+        "simplify(tan(2*pi/3) + sqrt(3)) == 0",
+        "simplify(tan(5*pi/3) + sqrt(3)) == 0"
+      ]
+    },
+    {
+      "id": "ti-pr10",
+      "statement": "$[0, 2\\pi)$ дээр $2\\sin^2 x + 3\\sin x + 1 = 0$-ийг бодоорой.",
+      "solution": "$(2\\sin x + 1)(\\sin x + 1) = 0$: $\\sin x = -\\tfrac12 \\to \\tfrac{7\\pi}{6}, \\tfrac{11\\pi}{6}$; $\\sin x = -1 \\to \\tfrac{3\\pi}{2}$.",
+      "check": [
+        "2*sin(7*pi/6)**2 + 3*sin(7*pi/6) + 1 == 0",
+        "2*sin(11*pi/6)**2 + 3*sin(11*pi/6) + 1 == 0",
+        "2*sin(3*pi/2)**2 + 3*sin(3*pi/2) + 1 == 0"
+      ]
+    }
+  ],
+  "testYourself": [
+    {
+      "id": "ti-ty1",
+      "statement": "$\\sin\\theta = -\\tfrac{7}{25}$, III мөч: $\\cos\\theta$ ба $\\operatorname{tg}\\theta$-г олоорой.",
+      "solution": "$\\cos\\theta = -\\tfrac{24}{25}$ (III мөч); $\\operatorname{tg}\\theta = \\tfrac{7}{24}$ (III мөчид эерэг).",
+      "check": [
+        "Rational(7,25)**2 + Rational(24,25)**2 == 1",
+        "Rational(7,25)/Rational(24,25) == Rational(7,24)"
+      ]
+    },
+    {
+      "id": "ti-ty2",
+      "statement": "$\\sin 105°$-ыг яг бодоорой.",
+      "solution": "$105 = 60 + 45$: $\\sin 60°\\cos 45° + \\cos 60°\\sin 45° = \\tfrac{\\sqrt6 + \\sqrt2}{4}$.",
+      "check": [
+        "simplify(sin(7*pi/12) - (sqrt(6) + sqrt(2))/4) == 0"
+      ]
+    },
+    {
+      "id": "ti-ty3",
+      "statement": "$\\cos\\theta = -\\tfrac{4}{5}$, II мөч: $\\cos 2\\theta$ ба $\\sin 2\\theta$-г олоорой.",
+      "solution": "$\\cos 2\\theta = 2\\cdot\\tfrac{16}{25} - 1 = \\tfrac{7}{25}$; $\\sin\\theta = \\tfrac35$ тул $\\sin 2\\theta = 2\\cdot\\tfrac35\\cdot(-\\tfrac45) = -\\tfrac{24}{25}$.",
+      "check": [
+        "2*Rational(4,5)**2 - 1 == Rational(7,25)",
+        "2*Rational(3,5)*Rational(-4,5) == Rational(-24,25)"
+      ]
+    },
+    {
+      "id": "ti-ty4",
+      "statement": "Батлаарай: $\\dfrac{1 + \\cos 2\\theta}{2} = \\cos^2\\theta$.",
+      "solution": "$\\cos 2\\theta = 2\\cos^2\\theta - 1$: зүүн тал $= \\tfrac{1 + 2\\cos^2\\theta - 1}{2} = \\cos^2\\theta$. ∎ (Энэ зэрэг бууруулах (power reduction) хэлбэр анализд дахин гарч ирнэ.)",
+      "check": [
+        "simplify((1 + cos(2*x))/2 - cos(x)**2) == 0"
+      ]
+    },
+    {
+      "id": "ti-ty5",
+      "statement": "$[0, 2\\pi)$ дээр $\\sqrt{2}\\sin x - 1 = 0$-ийг бодоорой.",
+      "solution": "$\\sin x = \\tfrac{1}{\\sqrt2} = \\tfrac{\\sqrt2}{2}$: $x = \\tfrac{\\pi}{4}, \\tfrac{3\\pi}{4}$.",
+      "check": [
+        "simplify(sqrt(2)*sin(pi/4) - 1) == 0",
+        "simplify(sqrt(2)*sin(3*pi/4) - 1) == 0"
+      ]
+    },
+    {
+      "id": "ti-ty6",
+      "statement": "$[0, 2\\pi)$ дээр $2\\cos^2 x - \\sin x - 1 = 0$-ийг бодоорой.",
+      "solution": "Нэгтгэвэл: $2(1 - \\sin^2 x) - \\sin x - 1 = 0 \\to 2\\sin^2 x + \\sin x - 1 = 0 \\to (2\\sin x - 1)(\\sin x + 1) = 0$. $\\sin x = \\tfrac12 \\to \\tfrac{\\pi}{6}, \\tfrac{5\\pi}{6}$; $\\sin x = -1 \\to \\tfrac{3\\pi}{2}$.",
+      "check": [
+        "2*cos(pi/6)**2 - sin(pi/6) - 1 == 0",
+        "2*cos(5*pi/6)**2 - sin(5*pi/6) - 1 == 0",
+        "2*cos(3*pi/2)**2 - sin(3*pi/2) - 1 == 0"
+      ]
+    },
+    {
+      "id": "ti-ty7",
+      "statement": "Ангийн нэг сурагч адилтгалыг $\\sin\\theta$-г тэнцүүгийн тэмдгийн нөгөө тал руу шилжүүлж, дараа нь хоёр талыг ижил зүйл болтол хялбарчилж «баталжээ». Юу буруу вэ, хэрхэн засах вэ?",
+      "solution": "Тэнцүүгийн тэмдгийн хоёр талаар үйлдэл хийх нь шүүгдэж буй мэдэгдлийг, зүүн тал = баруун тал гэдгийг, урьдчилан үнэн гэж үзнэ. Засвар: дахин эхэлж, НЭГ талыг дангаар нь (sin/cos руу шилжүүлэх, алгебр, Пифагорын солилт) нөгөө нь болтол хувиргаарай.",
+      "check": [
+        "simplify(sin(x)**2 + cos(x)**2 - 1) == 0"
+      ]
+    }
+  ]
+}

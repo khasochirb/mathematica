@@ -18,12 +18,18 @@ import statisticsAndData from "@/data/genmath/11/statistics-and-data.json";
 import mn11ComplexNumbers from "@/data/genmath/11-mn/complex-numbers.json";
 import mn11FunctionsAndTransformations from "@/data/genmath/11-mn/functions-and-transformations.json";
 import mn11Logarithms from "@/data/genmath/11-mn/logarithms.json";
+import mn11PolynomialFunctions from "@/data/genmath/11-mn/polynomial-functions.json";
 import mn11SequencesAndSeries from "@/data/genmath/11-mn/sequences-and-series.json";
+import mn11StatisticsAndData from "@/data/genmath/11-mn/statistics-and-data.json";
+import mn11TrigonometryAndTheUnitCircle from "@/data/genmath/11-mn/trigonometry-and-the-unit-circle.json";
 export const grade11TopicsMn: Record<string, GenMathTopic> = {
   "complex-numbers": mn11ComplexNumbers as unknown as GenMathTopic,
   "functions-and-transformations": mn11FunctionsAndTransformations as unknown as GenMathTopic,
   "logarithms": mn11Logarithms as unknown as GenMathTopic,
+  "polynomial-functions": mn11PolynomialFunctions as unknown as GenMathTopic,
   "sequences-and-series": mn11SequencesAndSeries as unknown as GenMathTopic,
+  "statistics-and-data": mn11StatisticsAndData as unknown as GenMathTopic,
+  "trigonometry-and-the-unit-circle": mn11TrigonometryAndTheUnitCircle as unknown as GenMathTopic,
 };
 // MN-MIRRORS:END
 
