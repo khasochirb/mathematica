@@ -35,7 +35,7 @@ words; graph-shift questions appear as parabola-vertex items.
 | function notation | **функцийн тэмдэглэгээ** | **ministry 11.3а** verbatim |
 | parent function | **эх функц** | compositional |
 | shift · reflect · stretch · compress | **шилжүүлэх · тэгш хэмтэй хувиргах · сунгах · шахах** | **ministry 10.3б** «шилжүүлэх» · reflect: Khas's ruling, 5 Oct 2026 (R4, 4g) · drafts «сунгах» |
-| vertical line test | **босоо шулууны шалгалт** | ministry 11.3в «босоо шулуун ашиглаж шалгах» · drafts |
+| vertical line test | **босоо шулууны шалгуур** | Khas's ruling, 27 Oct 2026 (n03: a test here is a criterion, not an exam; was «шалгалт») · ministry 11.3в «босоо шулуун ашиглаж шалгах» |
 | absolute value · bars | **абсолют утга · модул** | Khas's ruling (draft 52) |
 | piecewise function | **хэсэгчилсэн функц** | draft 52 |
 | closed · open dot | **битүү · онгорхой цэг** | draft 52, 6af · Khas's ruling, 5 Oct 2026 (6be) |
@@ -404,7 +404,7 @@ g(x) = a·f(x − h) + k дахь h, k, a-г графикийн алхам бо�
 - **text** Хилийн цэгийг хоёр хэсэгт өгөх (давхарласан хоёр битүү цэг). ·
   **correction** Тэнцэтгэл бишүүдийг шалгаарай: яг нэг нь хилийг агуулна
   ($\le$ эсвэл $\ge$), хатуу нь онгорхой цэг авна. Нэг $x$ дээрх хоёр битүү цэг
-  босоо шулууны шалгалтыг (vertical line test) давахгүй.
+  босоо шулууны шалгуурыг (vertical line test) хангахгүй.
 
 **tryIt**
 
@@ -552,3 +552,4 @@ English, all points, none converted (2d is not applied). 2d stands at
 ### 6. Round 2 (5 Oct 2026)
 
 5a: English shown once at first use for 13 terms (domain, range, stretch, shift, compression, reflect, absolute value, bars, piecewise function, filled dot, open circle, vertical line test, phantom solution), in the English source's own wording. Skipped: function notation (only in BLURB, buildsOn and a heading), parent function (the body says «эх хэлбэр», never «эх функц»). 6be: the open marker is now «онгорхой цэг» (7 replacements, including the objective's «онгорхой төгсгөл»).
+- **27 Oct 2026 rulings applied** (n03): named tests «шалгуур», pass/fail «хангана/хангахгүй» ×2. Terminology rows updated where the term had one.

@@ -458,3 +458,4 @@ and two quoted rules: the add-a-constant law «алхам бүрд ижил хэ
 (lesson 1 step 0) and the Σ chant «индексийг гүйлгэ, томьёонд оруул, нэм»
 (lesson 4 keyIdea), both of which mirror quoted laws in the English. Every
 sentence addressed to the student is polite.
+- **27 Oct 2026 rulings applied** (r3-repeat): «үет бутархай» ×1. Terminology rows updated where the term had one.

@@ -56,7 +56,7 @@ the bank, but it is the ministry's word (12.2б).
 | quadratic form (in x²) | **биквадрат** | **ministry 10.5в** «биквадрат … тэгшитгэл» |
 | multiplicity | **давхрын тоо**, «$m$ давхар язгуур» | exam «давхар шийд» 1 · Notes 4 |
 | crosses · bounces | **огтолно · шүргэнэ** | «шүргэ-» exam 87 |
-| x-intercept | **абсцисс тэнхлэгтэй огтлолцох цэг** | corpus 10, settled in `10/quadratic-functions` |
+| x-intercept | **$x$ тэнхлэгтэй огтлолцох цэг** | Khas's ruling, 27 Oct 2026 (r3-axis; was «абсцисс тэнхлэг…», corpus 10) |
 | Fundamental Theorem of Algebra | **алгебрын үндсэн теорем** | compositional, 0 anywhere: Notes 4 |
 
 English shown once at first use (5a, Khas's ruling 5 Oct 2026): 21 terms.
@@ -293,7 +293,7 @@ $f(x) = (x - c)\,q(x) + f(c)$: үлдэгдэл БОЛ утга, тиймээс 
 
 Куб ба дөрөвдүгээр зэргийн олон гишүүнтийг бүхэл язгуур хайх, бүлэглэх,
 биквадрат (quadratic form) орлуулга, кубийн томьёогоор (sum/difference of cubes) задалж, язгуурыг давхрын тоотой (multiplicity) нь
-$x$ тэнхлэгтэй огтлолцох цэгтэй (x-intercept) холбох.
+x тэнхлэгтэй огтлолцох цэгтэй (x-intercept) холбох.
 
 **concept**
 
@@ -348,7 +348,7 @@ $x$ тэнхлэгтэй огтлолцох цэгтэй (x-intercept) холб�
 
 **tryIt**
 
-- `a243-t1` — **statement:** $x^3 + 2x^2 - 5x - 6$-г гүйцэд үржигдэхүүн болгон
+- `a243-t1` — **statement:** $x^3 + 2x^2 - 5x - 6$-г гүйцэд үржигдэхүүнд
   задлаарай.
   **solution:** $x = -1$-ийг туршвал: $-1 + 2 + 5 - 6 = 0$ ✓. Салгавал
   ногдвор $x^2 + x - 6 = (x+3)(x-2)$. Хариу: $(x+1)(x+3)(x-2)$.
@@ -625,3 +625,4 @@ with a comma (§7). 2d stands at **1,393** across fifty-four drafts.
 ### 7. Round 2 (5 Oct 2026)
 
 5a: English shown once at first use for 21 terms (polynomial, leading term, degree, leading coefficient, end behavior, turning point, cross, constant term, quotient, remainder, long division, synthetic division, Remainder Theorem, Factor Theorem, quadratic form, sum/difference of cubes, multiplicity, x-intercept, bounce, Fundamental Theorem of Algebra, divides exactly). Skipped: unknown coefficient (not in the body). No 6be or 6y hits («үл хамаарах зүйлгүй» and «задгай хайрцаг» are other senses).
+- **27 Oct 2026 rulings applied** (r3-axis, r3-factor): «$x$/$y$ тэнхлэг» for «абсцисс/ординат тэнхлэг» ×7; «үржигдэхүүнд задлах» ×4. Terminology rows updated where the term had one.

@@ -45,7 +45,7 @@ ministry writes «tg», «arctg» (11.7д). This draft writes «tg», «arctg»
 | trigonometric ratio | **тригонометр харьцаа** | **ministry 10.10а, verbatim** |
 | inverse trigonometric function | **тригонометрийн урвуу функц** | **ministry 11.7д, verbatim** |
 | complementary (acute angles) | **гүйцээлт өнцгүүд** | dictionary «гүйцээлт хоёр өнцөг», as in `geometry/foundations` |
-| alternate interior angles | **эсрэг талын дотоод өнцөг** | as in `geometry/parallel-and-perpendicular` |
+| alternate interior angles | **дотоод солбисон өнцөг** | Khas's ruling, 27 Oct 2026 (n11), as in `geometry/parallel-and-perpendicular` |
 | horizontal (line of sight) | **хэвтээ шугам** | «хэвтээ» exam 8 in «хэвтээ асимптот» |
 | tan · arctan, tan⁻¹ (notation) | **tg · arctg** (`\operatorname{tg}`, `\operatorname{arctg}`) | **Khas's ruling, 5 Oct 2026** (6ak); ministry 11.7д |
 | protractor | **транспортир шугам** | **Khas's ruling, 5 Oct 2026** (t09) |
@@ -609,3 +609,4 @@ at **1,416** across fifty-six drafts.
 ### 6. Round 2 (5 Oct 2026)
 
 - Round 2 (5 Oct 2026), 5a: English shown once at first use, 6 terms (trig ratio, complementary angle, protractor, inverse trigonometric function, horizontal, alternate interior angles). Not glossed: tg · arctg (notation); the terms carried in from `geometry/right-triangles-and-trig` are not this topic's new terms.
+- **27 Oct 2026 rulings applied** (n11/n12): «дотоод/гадаад солбисон өнцөг» ×10. Terminology rows updated where the term had one.

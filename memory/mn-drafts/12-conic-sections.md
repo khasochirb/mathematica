@@ -880,3 +880,4 @@ L5 tip's "worth more points than any other fact" is about the course's own
 tests, and the Mongolian keeps it without tying it to the ЭШ. L6's last
 sentence does mention the ЭШ ("just a chance to show it"); the Mongolian keeps
 that, because it is about the whole course, not about conics.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×6. Terminology rows updated where the term had one.

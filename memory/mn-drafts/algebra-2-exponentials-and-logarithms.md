@@ -572,3 +572,4 @@ That is the **fourth** of fourteen ЭШ topics done, after Тоо ба үсэг�
 `10/rational-expressions`, `algebra-2/radicals-and-rational-exponents`,
 `algebra-2/systems-and-nonlinear-models`. That closes a fifth. Note item 3
 above lands in the middle one.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×1. Terminology rows updated where the term had one.

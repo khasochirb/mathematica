@@ -513,3 +513,4 @@ $D = b^2 - 4ac$ нь шийдийг олохоос өмнө тоолж өгнө;
 5. `absolute value` (review queue §5a) does not touch this topic.
 
 6. Round 2 (5 Oct 2026, 5a): English shown once at first use, 5 terms, the «Added by this topic» table only: zero-product property, square root, repeated root, completing the square, quadratic formula. The inherited table (парабол, орой, тэгш хэмийн тэнхлэг, …) is not glossed here: the ruling's scope is the terms a topic adds. Say if you want the inherited rows glossed too.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×3. Terminology rows updated where the term had one.

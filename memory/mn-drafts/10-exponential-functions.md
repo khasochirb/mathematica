@@ -774,3 +774,4 @@ $150, 450, 1350$ → $b = 3$, загвар $y = 150 \cdot 3^x$. Харьцааг
    if the ЭШ course is meant to be exam-efficient, this unit is carrying a lot
    of weight for three objectives, two of which are one sentence each.
 5. **Round 2 (5 Oct 2026), 5a:** English shown once at first use, 9 terms: exponential and exponent (one Mongolian word, so one gloss names both: «илтгэгч функц (exponential function; илтгэгч = exponent)»), growth factor, linear, base, growth, decay, percent, simple interest. «геометр прогресс» skipped as a transliteration.
+- **27 Oct 2026 rulings applied** (r3-rules): raising to a power «зэрэгт дэвшүүлэх» ×4. Terminology rows updated where the term had one.

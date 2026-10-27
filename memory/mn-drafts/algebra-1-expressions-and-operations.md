@@ -498,3 +498,4 @@ $14$ биш.
    the decimal point, and the draft now writes \$0.15.
 
 5. Round 2 (5 Oct 2026, 5a): English shown once at first use, 18 terms: variable, expression, evaluate, substitute, terms, parentheses (the «bracket» row; the English says «parentheses»), constant term, exponent, order of operations, simplify, like terms, expand, power, base, cancel, difference, consecutive integers (one gloss, covering the «integer» row too). Skipped: коэффициент, периметр (transliterations); «тэнцүү илэрхийлэл» (the body never uses it).
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×3. Terminology rows updated where the term had one.

@@ -633,3 +633,4 @@ inputs. No prose decimals. 2d stands at **1,538** across sixty-two drafts.
 
 - Round 2 (5 Oct 2026), 5a: English shown once at first use, 19 terms (limit, left-hand · right-hand · one-sided limit, jump, cancel, direct substitution, conjugate, limit laws, indeterminate form, Factor Theorem, horizontal · vertical asymptote, continuous, continuity, discontinuity, removable · infinite discontinuity, Intermediate Value Theorem).
 - Round 2 (5 Oct 2026), 6be: graph marker «задгай цэг» → «онгорхой цэг» (4 places, lesson 1 interactive [4] and [8]); «битүү цэг» already matched.
+- **27 Oct 2026 rulings applied** (r3-axis): «$x$/$y$ тэнхлэг» for «абсцисс/ординат тэнхлэг» ×1. Terminology rows updated where the term had one.

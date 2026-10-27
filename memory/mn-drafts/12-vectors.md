@@ -71,7 +71,7 @@ recipe as lesson 5). The bank: «скаляр үржвэр» 4, «вектору
 | perpendicular | **перпендикуляр** | ministry 10.9е · draft 70; transliteration, no gloss |
 | parallel (vectors) | **параллель** | Khas's ruling, 5 Oct 2026 (t56); transliteration, no gloss |
 | law of cosines | **косинусын теорем** | bank 8 · draft 70 |
-| Cauchy–Schwarz inequality | **Коши–Буняковскийн тэнцэтгэл биш** | coined from the Russian-school name: Notes 2 |
+| Cauchy–Schwarz inequality | **Коши–Шварцын тэнцэтгэл биш** | Khas's ruling, 27 Oct 2026 (n10: was the Russian-school «Коши–Буняковскийн»): Notes 2 |
 | resolve (a force) | **задлах** | ministry 10.9б «векторуудын нийлбэрт задлах» |
 | quaternion | **кватернион** | draft 68; transliteration, no gloss |
 
@@ -586,3 +586,4 @@ Math-mode decimals stay points (2d): $0.75$, $1.25$, $0.6$, $1.4$, $1.5$,
 $6.4$, $5.4$, $3.6$, $302.7$. Prose decimals take the comma: «34,6 Н» (lesson 6
 step 3), «1,5 м» (lesson 6 step 4 ex1). No money, no thousands separators in
 prose (the tugboat forces write «6000 Н», as the English writes "6000 N").
+- **27 Oct 2026 rulings applied** (n10): «Коши–Шварцын тэнцэтгэл биш» ×4. Terminology rows updated where the term had one.

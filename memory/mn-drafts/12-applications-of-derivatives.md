@@ -880,3 +880,4 @@ $7.0710\ldots$, $-0.5$. No decimal reaches prose, and no thousands separator
 appears anywhere.
 
 - **2a (Khas approved, 5 Oct 2026):** the slope is $k$, as in А/492's «y=kx+b»: $y = kx + b$, $k = \frac{y_2 - y_1}{x_2 - x_1}$. No English `check[]` uses a bare $m$ (verified across grades 9–12). $m$ is kept where it means something else (minutes, months, mass).
+- **27 Oct 2026 rulings applied** (r3-open): parabola «нээгддэг» ×4. Terminology rows updated where the term had one.

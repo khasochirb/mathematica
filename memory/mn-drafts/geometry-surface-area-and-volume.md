@@ -774,3 +774,4 @@ the English. Kept, and listed with that one so both move together if the
 register ruling (item 1a) lands on strict politeness.
 
 Round 2 (5 Oct 2026): English shown once at first use (5a), 8 terms. Not glossed: prism, cylinder, pyramid, cone, cube (transliterations), lateral area (never in the body).
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×9. Terminology rows updated where the term had one.

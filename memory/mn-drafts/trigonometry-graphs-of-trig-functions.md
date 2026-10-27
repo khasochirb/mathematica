@@ -36,7 +36,7 @@ Notes 2.
 
 | English | Mongolian | grounding |
 |---|---|---|
-| amplitude | **далайц** | the physics word; **collides with statistical range**: Notes 3 |
+| amplitude | **амплитуд** | Khas's ruling, 27 Oct 2026 (r3-amp: was «далайц», which collided with the statistical range): Notes 3 |
 | period | **үе** | exam «$T = 3$ үетэй» |
 | midline | **дундаж шугам** | **Khas's ruling, 5 Oct 2026** (t48); was coined «тэнцвэрийн шугам»: Notes 3 |
 | phase shift | **фазын шилжилт** | **coined**, 0 in corpus: Notes 3 |
@@ -607,3 +607,4 @@ fifty-nine drafts.
 ### 6. Round 2 (5 Oct 2026)
 
 - Round 2 (5 Oct 2026), 5a: English shown once at first use, 10 terms (period, amplitude, sine wave, midline, knob, range, frequency, phase shift, vertical asymptote, branch). Not glossed: hertz (transliteration), tg (notation).
+- **27 Oct 2026 rulings applied** (r3-amp, r3-axis): «$x$/$y$ тэнхлэг» for «абсцисс/ординат тэнхлэг» ×1; trig amplitude «амплитуд» ×58. Terminology rows updated where the term had one.

@@ -800,3 +800,4 @@ no fixes needed, the first topic where that has happened.
 ### 7. Round 2 (5 Oct 2026)
 
 - Round 2 (5 Oct 2026): English shown once at first use (5a, Khas's ruling): 16 terms (polygon, protractor, convex, regular polygon, $n$-gon, quadrilateral, square, linear pair, opposite sides, opposite angles, consecutive angles, bisect each other, rectangle, kite, isosceles trapezoid, midsegment). Skipped: «диагональ», «параллелограмм», «ромб», «трапец» (transliterations); «хотгор» (not in the body); CPCTC (already shown with English); «тэнцэтгэлийн рефлекс чанар» (only in stepProof reason rows, never in prose).
+- **27 Oct 2026 rulings applied** (n11/n12): «дотоод/гадаад солбисон өнцөг» ×7. Terminology rows updated where the term had one.

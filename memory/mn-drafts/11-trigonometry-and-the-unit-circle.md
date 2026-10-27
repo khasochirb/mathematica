@@ -61,7 +61,7 @@ cosine). The bank's «$T = 3$ үетэй» grounds «үе».
 | exact value | **яг утга** | draft 57 |
 | reference angle | **жишиг өнцөг** | draft 58 (its coinage, 6am, not yet ruled) |
 | period · periodicity | **үе · үелэх чанар** | exam «$T = 3$ үетэй» · draft 58 |
-| amplitude | **далайц** | draft 59; **grades 6–8 use it for the statistical range**: Notes 2 |
+| amplitude | **амплитуд** | Khas's ruling, 27 Oct 2026 (r3-amp: was «далайц», which grades 6–8 keep for the statistical range): Notes 2 |
 | midline | **дундаж шугам** | **Khas's ruling, 5 Oct 2026** (t48, t48-2) |
 | sine wave | **синусын долгион** | draft 59 |
 | frequency | **давтамж** | draft 59 · ministry 4 |
@@ -555,3 +555,4 @@ $\sin\theta = 0.3$. Prose decimals take the comma: «57,3°», «3,14», «0,3
 өндрийг». No money in the topic. Inside step tables, $|a|$ is written
 `$\|a\|$` so the pipe does not end the markdown cell (the convention in
 `algebra-1-quadratic-equations` and the ЭШ drafts); Build unescapes it.
+- **27 Oct 2026 rulings applied** (r3-amp): trig amplitude «амплитуд» ×40. Terminology rows updated where the term had one.

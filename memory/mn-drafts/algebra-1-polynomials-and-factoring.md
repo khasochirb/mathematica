@@ -36,8 +36,8 @@ call needed from Khas, listed in the Notes.
 | sum | **нийлбэр** | ministry 15 · corpus 381 |
 | difference | **ялгавар** | ministry 2 · corpus 65 |
 | factor (noun) | **үржигдэхүүн** | ministry 5 · corpus 93 · dictionary |
-| to factor | **үржигдэхүүн болгон задлах** | ministry 2 · dictionary p. 159 |
-| factor completely | **гүйцэд үржигдэхүүн болгон задлах** | dictionary p. 158, printed in full |
+| to factor | **үржигдэхүүнд задлах** | Khas's ruling, 27 Oct 2026 (r3-factor: the exam, grade 6 and ministry 12.2в form; was «үржигдэхүүн болгон задлах», ministry 10.2б · dictionary p. 159) |
+| factor completely | **гүйцэд үржигдэхүүнд задлах** | Khas's ruling, 27 Oct 2026 (r3-factor) · dictionary p. 158 has «гүйцэд үржигдэхүүн болгон задлах» |
 | common factor | **ерөнхий үржигдэхүүн** | dictionary |
 | greatest common factor | **хамгийн их ерөнхий хуваагч (ХИЕХ)** | corpus 14 · dictionary p. 159, 183 |
 | grouping | **бүлэглэх** | dictionary p. 25 · corpus 1 |
@@ -513,3 +513,4 @@ $a \ne 1$ үед: үржвэр нь $ac$, нийлбэр нь $b$ болох х�
    this topic.
 
 5. Round 2 (5 Oct 2026, 5a): English shown once at first use, 24 terms: polynomial, term, product, exponent, sum, degree, trinomial, standard form, like terms, binomial, expansion (the «expand» row), perfect square, conjugate pair, square of a sum, square of a difference (covers the «difference» row), difference of squares, special product, greatest common factor, factor completely (the body's «гүйцэд задлах»), factors, common factor, group (the «grouping» row), does not factor, expression. Skipped: коэффициент (transliteration); «нэг гишүүнт» (not in the body); «гишүүнчлэн үржүүлэх чанар» (buildsOn only); FOIL (already English in the body); «үржигдэхүүн болгон задлах» (the body only ever writes bare «задлах», which is also the «expand» word, so a «(factor)» gloss on it would collide with the expansion gloss; your call whether it wants one at lesson 3's «Задлах гэдэг нь үржүүлэлтийг ухраах»).
+- **27 Oct 2026 rulings applied** (r3-factor): «үржигдэхүүнд задлах» ×2. Terminology rows updated where the term had one.

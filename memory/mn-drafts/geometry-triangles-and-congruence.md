@@ -801,3 +801,4 @@ there; flagging it only so you know the two are deliberately different words
 in the Mongolian.
 
 Round 2 (5 Oct 2026): English shown once at first use (5a), 31 terms (the five congruence and two failing acronyms each glossed with its English letters at first prose use). Not glossed: hypotenuse (transliteration), CPCTC (already English). «оройн өнцөг» is glossed at `ci-we1`, not at its first appearance in lesson 1 step 2, where it means the angle at the top vertex (the English's *top angle*), not the isosceles vertex angle.
+- **27 Oct 2026 rulings applied** (n11/n12): «дотоод/гадаад солбисон өнцөг» ×4. Terminology rows updated where the term had one.

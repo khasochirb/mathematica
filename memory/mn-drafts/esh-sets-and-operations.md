@@ -750,3 +750,4 @@ Ordered by how much rides on your answer.
    name list) rather than a party guest list — closer to a Mongolian
    classroom. Still an invented image; yours to replace.
 9. **Round 2 (5 Oct 2026).** 5a: this draft has no «Terminology added» table, so the terms it names in its header and in item 3 above stand in for one. English shown once at first use for 12 terms (set, subset, empty set, cardinality, union, intersection, difference, complement, disjoint, proper subset, De Morgan's laws, distributive laws). Skipped: элемент (transliteration). No 6be or 6y hits.
+- **27 Oct 2026 rulings applied** (r3-rules): raising to a power «зэрэгт дэвшүүлэх» ×1. Terminology rows updated where the term had one.

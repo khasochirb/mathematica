@@ -762,3 +762,4 @@ property of *which topics* a ruling would touch.
 ### 6. Round 2 (5 Oct 2026)
 
 Round 2 (5 Oct 2026, 5a): English shown once at first use, 7 terms: complex number, real part, imaginary part, purely imaginary, conjugate, quarter-turn, conjugate pairs (on «хосмог тоонууд», lesson 5; lesson 3's earlier «хосмог хос» is a different phrase and already carries «хосмог»). «хуурмаг нэгж» and «геометр дүрслэл» not glossed: the body never uses them. «модул», «дискриминант» skipped as transliterations.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×6. Terminology rows updated where the term had one.

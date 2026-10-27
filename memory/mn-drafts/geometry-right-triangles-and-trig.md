@@ -893,3 +893,4 @@ you want it changed it is an English-side content task, and it would be worth
 doing across the strand at once rather than topic by topic.
 
 Round 2 (5 Oct 2026): English shown once at first use (5a), 17 terms. Not glossed: hypotenuse, trigonometry, sine/cosine/tangent (transliterations), SOH-CAH-TOA (already English), special right triangles (the full term appears only in BLURB and headings; the body says «онцгой гурвалжин»).
+- **27 Oct 2026 rulings applied** (n11/n12, r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×2; «дотоод/гадаад солбисон өнцөг» ×6. Terminology rows updated where the term had one.

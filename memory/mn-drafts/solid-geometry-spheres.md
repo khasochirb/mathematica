@@ -679,3 +679,4 @@ fails retroactively.
 | Вектор ба матриц | 8 |
 
 Round 2 (5 Oct 2026): English shown once at first use (5a), 11 terms. «бөмбөрцөг» carries both *sphere* and *ball* in one gloss, since the two rows share the word. Not glossed: none skipped; «огторгуйн диагональ» is glossed though «диагональ» is a transliteration, because «огторгуйн» is not.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×2. Terminology rows updated where the term had one.

@@ -57,7 +57,7 @@ does not exist. Draft it.
 | master identity | **үндсэн адилтгал** | **ministry 11.7в** «Тригонометрийн үндсэн адилтгал» |
 | Pythagorean identity | **Пифагорын адилтгал** | draft 60 · drafts 57–58 |
 | secant · cosecant · cotangent | **секанс · косеканс · котангенс** | **ministry 12.6а, verbatim** |
-| tan · cot · sec · csc (notation) | `\operatorname{tg}` · `\operatorname{ctg}` · `\sec` · `\operatorname{cosec}` | **Khas's ruling, 5 Oct 2026** (6ak) for tg, ctg; `\sec` ministry 12.8а; cosec: Notes 2 |
+| tan · cot · sec · csc (notation) | `\operatorname{tg}` · `\operatorname{ctg}` · `\sec` · `\operatorname{cosec}` | **Khas's ruling, 5 Oct 2026** (6ak) for tg, ctg; `\sec` ministry 12.8а; cosec: **Khas's ruling, 27 Oct 2026** (r3-cosec), Notes 2 |
 | sum formula | **нийлбэрийн томьёо** | **ministry 12.6б** · draft 60 |
 | difference formula | **ялгаврын томьёо** | **ministry 12.6б** · draft 60 |
 | counterexample | **эсрэг жишээ** | `geometry/reasoning-and-proof` · draft 60 |
@@ -561,3 +561,4 @@ counterexample, double-angle formulas, projectile range, proof, trig equation,
 full solution set, hour angle, quadratic trig equation, power reduction). Not
 glossed: tg, ctg, cosec (notation). FOIL carries its Mongolian gloss once
 (5b), at lesson 1 tryItSet p3.
+- **27 Oct 2026 rulings applied** (r3-cosec): cosec confirmed ×1. Terminology rows updated where the term had one.

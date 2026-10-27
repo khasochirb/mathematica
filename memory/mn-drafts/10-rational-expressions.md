@@ -782,3 +782,4 @@ topic is exact-fraction throughout, which is a pleasant change after
 **ЭШ status:** **Тэгшитгэл, тэнцэтгэл биш** (Algebra) goes to six of eight.
 Two remain: `algebra-2/radicals-and-rational-exponents` and
 `algebra-2/systems-and-nonlinear-models`. Item 3 above lands in the first.
+- **27 Oct 2026 rulings applied** (r3-factor): «үржигдэхүүнд задлах» ×1. Terminology rows updated where the term had one.

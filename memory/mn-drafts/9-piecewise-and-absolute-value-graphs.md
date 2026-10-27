@@ -83,7 +83,7 @@ y = |x|-ийн графикийг хоёр гарт бүтцээр нь байг
 4. Коэффициент гарыг эгцлэх эсвэл эргүүлнэ: $y = 2|x|$-ийн гарууд $\pm 2$
    налалттай (нарийн V), $y = -|x|$ доошоо нээгдэнэ (хөндий биш, оргил).
 
-5. Булан дээр ч босоо шулууны шалгалтыг давна: оролт бүрт нэг гаралт. V бол
+5. Булан дээр ч босоо шулууны шалгуурыг хангана: оролт бүрт нэг гаралт. V бол
    функц, хажуу тийш хэвтсэн V бол функц биш.
 
 **keyIdea**
@@ -389,7 +389,7 @@ $a|x - h| + k$-ээс орой $(h, k)$ шууд уншигдана. Гаруу�
   будах: заадас хүртэл арчаарай.
 - **text** Нэг заадас дээр хоёр битүү цэг. · **correction** Хил бүр нэг
   эзэнтэй: $\le / \ge$-тэй хэсэг битүү цэгийг авна, хөрш нь онгорхой. Өөр өөр
-  өндөрт хоёр битүү цэг босоо шулууны шалгалтыг эвднэ.
+  өндөрт хоёр битүү цэг босоо шулууны шалгуурыг зөрчинө.
 
 **tryIt**
 
@@ -735,3 +735,4 @@ prices after \$ now carry the decimal point again.**
 
 - Round 2 (5 Oct 2026, 5a): English shown once at first use, 14 terms: absolute value, vertex, piecewise function, absolute-value graph, shift, continuous, filled dot, open dot (the English says «filled», not «closed»), jump, step function, floor, ceiling, marginal, average rate. «модул» (the bars) not glossed: the body never uses it.
 - Round 2 (5 Oct 2026, 6be): the open marker is now «онгорхой цэг» throughout lessons 4 and 5 (17 places, elliptical «(задгай)» included; the closed marker was already «битүү цэг»); Terminology row updated, Notes 3 left as history. Lesson 4's objective «битүү ба задгай төгсгөлтэй» stays: it names the endpoint (interval sense), not the drawn dot.
+- **27 Oct 2026 rulings applied** (n03): named tests «шалгуур», pass/fail «хангана/хангахгүй» ×2. Terminology rows updated where the term had one.

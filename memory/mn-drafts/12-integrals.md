@@ -877,3 +877,4 @@ separate files with separate examples, so both are drafted. The terms are now
 aligned across the two, apart from the deliberate departures in Notes 2 and 3.
 Whether a grade 12 General Math student and an ЭШ student should meet one page
 rather than two is the 6g/6p question, not a translation one.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×1. Terminology rows updated where the term had one.

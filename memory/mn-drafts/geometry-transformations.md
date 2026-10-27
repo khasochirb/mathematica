@@ -926,3 +926,4 @@ moves with the register ruling (item 1a) rather than being buried.
 **That closes the geometry strand: thirteen topics, all drafted, none applied.**
 
 Round 2 (5 Oct 2026): English shown once at first use (5a), 13 terms. Not glossed: vector, matrix / transformation matrix (transliterations). «тэгш хэмийн тэнхлэг» is glossed *line of symmetry*, the English's own wording.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×1. Terminology rows updated where the term had one.

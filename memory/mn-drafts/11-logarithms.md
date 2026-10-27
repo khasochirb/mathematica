@@ -731,3 +731,4 @@ pile 2d.
 `algebra-2/exponentials-and-logarithms` — closes the topic, and it is the next
 thing I will draft. It teaches $\ln$ and $e$, so item 2 above should ideally be
 ruled on before or shortly after it.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×1. Terminology rows updated where the term had one.

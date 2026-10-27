@@ -557,3 +557,4 @@ All judged: every hit is in a beat, a recap point, a title, a fact cell or a
 workedSet step, where the bare form is the convention. Prose that addresses
 the student (concepts, statements, corrections, intros, explanations) is
 polite throughout.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×2. Terminology rows updated where the term had one.

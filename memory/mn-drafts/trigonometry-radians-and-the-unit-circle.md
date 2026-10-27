@@ -48,7 +48,7 @@ writes «$T = 3$ үетэй» (period) and «тэгш функц»; the shipped 
 | reference angle | **жишиг өнцөг** | **ungrounded**: Notes 2 |
 | terminal arm | **эргэсэн цацраг** | compositional |
 | tan (notation) | **tg** (`\operatorname{tg}`) | **Khas's ruling, 5 Oct 2026** (6ak); ministry 11.7д |
-| reflection (in the x-axis) | **абсцисс тэнхлэгийн хувьд тэгш хэм** | **Khas's ruling, 5 Oct 2026** (4g) |
+| reflection (in the x-axis) | **$x$ тэнхлэгийн хувьд тэгш хэм** | **Khas's ruling, 5 Oct 2026** (4g) |
 | ASTC ("All Students Take Calculus") | **Б · С · Т · К** (Бүгд · Синус · Тангенс · Косинус) | rebuilt like Э/Г · Н/Г · Э/Н: Notes 2 |
 
 English shown once at first use (5a, Khas's ruling 5 Oct 2026): 13 terms.
@@ -598,3 +598,4 @@ fifty-eight drafts.
 ### 6. Round 2 (5 Oct 2026)
 
 - Round 2 (5 Oct 2026), 5a: English shown once at first use, 13 terms (arc length, third quadrant, unit circle, counterclockwise, Pythagorean identity, periodic, ASTC, reference angle, terminal arm, clockwise, reflection in the x-axis, even/odd). Not glossed: radian · radian measure, sector (transliterations), tg (notation). «үе» (period) shares the «үетэй» gloss.
+- **27 Oct 2026 rulings applied** (r3-axis): «$x$/$y$ тэнхлэг» for «абсцисс/ординат тэнхлэг» ×12. Terminology rows updated where the term had one.

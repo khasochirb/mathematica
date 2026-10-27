@@ -760,3 +760,4 @@ is now **complete** — the third of fourteen, after *Тоо ба үсэгт и�
 (shipped) and *Олонлог* (drafted). Next in the queue: **Илтгэгч ба логарифм
 функц**, two topics (`11/logarithms`, `algebra-2/exponentials-and-logarithms`),
 which closes a fourth.
+- **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×1. Terminology rows updated where the term had one.

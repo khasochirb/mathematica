@@ -38,12 +38,12 @@ Shared vocabulary lives in `memory/mn-drafts/GEOMETRY-TERMS.md`.
 | transversal | **огтлогч шулуун** | «огтлогч» ministry 1, **as a circle's secant** — Notes 1 |
 | corresponding angles | **харгалзах өнцөг** | «харгалзах» corpus 5 in exactly this sense |
 | interior / exterior | **дотоод / гадаад** | «гадаад өнцөг» is **dictionary, exactly this** |
-| alternate interior angles | **эсрэг талын дотоод өнцөг** | **coined** — Notes 2 |
-| alternate exterior angles | **эсрэг талын гадаад өнцөг** | **coined** — Notes 2 |
+| alternate interior angles | **дотоод солбисон хоёр өнцөг** | **Khas's ruling, 27 Oct 2026** (n11, his wording; was the coined «эсрэг талын дотоод өнцөг») — Notes 2 |
+| alternate exterior angles | **гадаад солбисон хоёр өнцөг** | **Khas's ruling, 27 Oct 2026** (n12, his wording; was «эсрэг талын гадаад өнцөг») — Notes 2 |
 | same-side interior angles | **нэг талын дотоод өнцөг** | **coined** — Notes 2 |
 | same-side exterior angles | **нэг талын гадаад өнцөг** | **coined**, and **taught nowhere** — Notes 3 |
 | Corresponding Angles Postulate | **харгалзах өнцгийн постулат** | compound of two decided terms |
-| Alternate Interior Angles Theorem | **эсрэг талын дотоод өнцгийн теорем** | same |
+| Alternate Interior Angles Theorem | **дотоод солбисон өнцгийн теорем** | same |
 | congruent (angles) | **тэнцүү** | see GEOMETRY-TERMS §3 on why not «конгруэнт» |
 | vertical angles (unit 1) | **босоо өнцөг** | **Khas's ruling, 5 Oct 2026** (replaces «эсрэг өнцөг») |
 | linear pair (unit 1) | **хамар өнцөг / хамар өнцгүүд** | **Khas's ruling, 5 Oct 2026** (replaces «шугаман хос») |
@@ -794,3 +794,4 @@ in full in the Mongolian rather than leaning on a name the student has not
 met.
 
 5. **Round 2 (5 Oct 2026): English shown once at first use (5a, Khas's ruling): 14 terms** (transversal, corresponding, alternate interior, alternate exterior, same-side interior, interior, exterior, congruent, Corresponding Angles Postulate, vertical angles, linear pair, without a protractor, Alternate Interior Angles Theorem, same-side exterior angles). «тэнцүү (congruent)» sits in lesson 2's objective, the first place the English says *congruent*; the earlier uses translate *equal*. «дотоод / гадаад» are glossed where concept 3 defines them on their own, after the objective's compound pair names. Skipped: «параллель», «перпендикуляр» (transliterations); «гишүүнчлэн үржүүлэх чанар» (not in the body).
+- **27 Oct 2026 rulings applied** (n11/n12): «дотоод/гадаад солбисон өнцөг» ×109. Terminology rows updated where the term had one.
