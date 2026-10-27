@@ -4,7 +4,9 @@
 
 import type { BankTopic } from "@/lib/problem-bank";
 import mn6 from "@/data/problembank-mn/6.json";
+import mn7 from "@/data/problembank-mn/7.json";
 
 export const BANK_MN: Record<string, BankTopic> = {
   "6": mn6 as unknown as BankTopic,
+  "7": mn7 as unknown as BankTopic,
 };
