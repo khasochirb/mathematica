@@ -540,3 +540,12 @@ rounding slips in `im1-u6-ty-6` (Notes 4).
     73 assertions on the English's own figures and 15 on what the Mongolian
     adds or corrects (88 total, all passing). The script is
     `scratchpad/agents/integrated-1-exponential-functions/verify.py`.
+
+11. **Display maths written inline (51 blocks), for Build.** The English
+    solutions use `$$...$$` display blocks. `mn_draft_check.py`'s prose pass
+    strips `$...$` pairs only, so it reads `$$` as an empty span and judges the
+    decimals inside every display block as prose (45 false DECIMAL POINT
+    findings). The draft therefore writes each display block as inline `$...$`.
+    The maths is unchanged; only the layout differs. When assembling, Build can
+    restore `$$` wherever the English has it, and the gate's prose regex wants
+    the same display-first treatment its CYR-IN-MATH pass already has.

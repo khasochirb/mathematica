@@ -363,8 +363,13 @@ def check(corpus: str, slug: str) -> int:
     # and pairing it with a real delimiter swallows the prose between them and
     # spills the math out. A price line («\$800 үнэтэй утас … $V = 800(0.75)^t$»)
     # reported two decimal points that were inside math all along.
+    # Display blocks first, for the reason DISPLAY_SPAN gives: on `$$X$$` the
+    # inline pattern pairs the wrong delimiters, so a display block's decimals
+    # reached the §7 check as prose (45 false failures in one Integrated draft,
+    # which writers then "fixed" by inlining every display formula).
+    prose_only = re.sub(r'(?<!\\)\$\$.+?(?<!\\)\$\$', ' ', content, flags=re.S)
     prose_only = re.sub(r'`[^`\n]*`', '',
-                        re.sub(r'(?<!\\)\$[^$\n]*?(?<!\\)\$', '', content))
+                        re.sub(r'(?<!\\)\$[^$\n]*?(?<!\\)\$', '', prose_only))
     # Money keeps its decimal point in prose: Khas's ruling of 5 Oct 2026
     # (review pile 2b, undone). «\$0.25» is a price, not §7's decimal comma.
     prose_only = re.sub(r'\\\$\d[\d,]*\.\d+', '', prose_only)
