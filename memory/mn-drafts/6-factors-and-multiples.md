@@ -598,7 +598,7 @@ term's English gloss (5a) sits in the lesson that teaches it.
 «$96$-гаас» (ерэн зургаа), «$3\times4$-т», «$2^2\times3$-т» (read to the last
 factor), «$\sqrt{18}\approx 4.2$-ыг» (…хоёр).
 
-**9. Verification.** 260 assertions in
+**9. Verification.** 291 assertions in
 `/tmp/claude-0/-home-user-mathematica/2c09a9bc-48e8-50bc-b593-f4d20da90822/scratchpad/agents/6-factors-and-multiples/verify.py`,
 all passing: every factor list, GCF, LCM, primality claim and factorization in
 the draft; every tryItSet and tapQuestion's keyed option is right and every
