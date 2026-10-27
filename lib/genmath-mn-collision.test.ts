@@ -154,6 +154,8 @@ describe("Mongolian mirror registration", () => {
       .readdirSync(path.join(ROOT, "lib", "genmath-data"))
       .filter((f) => f.endsWith(".ts"))
       .map((f) => fs.readFileSync(path.join(ROOT, "lib", "genmath-data", f), "utf8"))
+      // the ЭШ-authored units register their mirrors in the ЭШ course module
+      .concat(fs.readFileSync(path.join(ROOT, "lib", "esh-course.ts"), "utf8"))
       .join("\n");
 
     const unreferenced = onDisk.filter((rel) => !libSrc.includes(`@/data/genmath/${rel}`));

@@ -14,6 +14,7 @@ import { type StepProofConfig } from "@/lib/genmath-interactive";
 export default function StepProof({ config }: { config: StepProofConfig }) {
   const { lang } = useLang();
   const { given, prove, rows } = config;
+  const mn = lang === "mn";
   const [shown, setShown] = useState(0);
   const done = shown >= rows.length;
 
@@ -22,13 +23,13 @@ export default function StepProof({ config }: { config: StepProofConfig }) {
       {/* Given / Prove header */}
       <div className="flex flex-col gap-2">
         <div className="rounded-xl px-4 py-2.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-          <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>Given&nbsp;&nbsp;</span>
+          <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--fg-3)" }}>{mn ? "Өгсөн" : "Given"}&nbsp;&nbsp;</span>
           <span className="q-math text-[14px]" style={{ color: "var(--fg)" }}>
             <MathText text={given} />
           </span>
         </div>
         <div className="rounded-xl px-4 py-2.5" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)" }}>
-          <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--accent)" }}>Prove&nbsp;&nbsp;</span>
+          <span className="text-[11px] uppercase tracking-wide" style={{ color: "var(--accent)" }}>{mn ? "Батал" : "Prove"}&nbsp;&nbsp;</span>
           <span className="q-math text-[14px]" style={{ color: "var(--fg)" }}>
             <MathText text={prove} />
           </span>
@@ -69,7 +70,11 @@ export default function StepProof({ config }: { config: StepProofConfig }) {
         })}
         {shown === 0 && (
           <div className="rounded-xl px-4 py-5 text-center text-[13px]" style={{ border: "1px dashed var(--line)", color: "var(--fg-3)" }}>
-            Each step states a fact — and names the <i>reason</i> we know it.
+            {mn ? (
+              <>Алхам бүр нэг баримтыг хэлж, түүнийг юуны <i>үндсэн дээр</i> мэдэж байгаагаа нэрлэнэ.</>
+            ) : (
+              <>Each step states a fact — and names the <i>reason</i> we know it.</>
+            )}
           </div>
         )}
       </div>
@@ -84,7 +89,7 @@ export default function StepProof({ config }: { config: StepProofConfig }) {
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" }}
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> {mn ? "Дахин эхлэх" : "Reset"}
         </button>
         <button
           type="button"
@@ -93,13 +98,13 @@ export default function StepProof({ config }: { config: StepProofConfig }) {
           className="gm-press inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] disabled:opacity-35"
           style={{ background: "var(--accent)", border: "1px solid var(--accent)", color: "var(--accent-ink, #fff)" }}
         >
-          Next step
+          {mn ? "Дараагийн алхам" : "Next step"}
         </button>
       </div>
 
       {done && (
         <div className="mt-3 flex items-center justify-center gap-1.5 text-[14px]" style={{ color: "var(--accent)" }}>
-          <Check className="h-4 w-4" /> Proof complete <span className="serif">∎</span>
+          <Check className="h-4 w-4" /> {mn ? "Баталгаа дууслаа" : "Proof complete"} <span className="serif">∎</span>
         </div>
       )}
     </div>

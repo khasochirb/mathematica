@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { Ticks, arcPath, GEO_ACCENT } from "@/components/genmath/interactive/GeoDiagram";
 import { type CongruentTrianglesConfig } from "@/lib/genmath-interactive";
+import { useLang } from "@/lib/lang-context";
 
 // Two congruent triangles side by side, with the GIVEN parts marked: tick marks
 // for congruent sides, arc marks for congruent angles, and a small square for a
@@ -23,9 +24,17 @@ function template(offsetX: number) {
 }
 
 const SHORTCUTS = ["SSS", "SAS", "ASA", "AAS", "HL", "AAA", "SSA"] as const;
+// Mongolian lessons name the shortcuts by Т (тал) / Ө (өнцөг) / ГК (гипотенуз–катет);
+// the config's `answer` stays the English key.
+const SHORTCUTS_MN: Record<string, string> = {
+  SSS: "ТТТ", SAS: "ТӨТ", ASA: "ӨТӨ", AAS: "ӨӨТ", HL: "ГК", AAA: "ӨӨӨ", SSA: "ТТӨ",
+};
 
 export default function CongruentTriangles({ config }: { config: CongruentTrianglesConfig }) {
   const { sides = [0, 0, 0], angles = [0, 0, 0], rightAngleAt = -1, answer, caption } = config;
+  const { lang } = useLang();
+  const mn = lang === "mn";
+  const label = (k: string) => (mn ? SHORTCUTS_MN[k] ?? k : k);
   const [pick, setPick] = useState<string | null>(null);
 
   const left = template(0);
@@ -89,7 +98,7 @@ export default function CongruentTriangles({ config }: { config: CongruentTriang
       )}
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Which shortcut do the marks give?
+        {mn ? "Тэмдэглэгээ аль товчлолыг өгч байна вэ?" : "Which shortcut do the marks give?"}
       </div>
       <div className="mt-2 flex flex-wrap justify-center gap-1.5">
         {SHORTCUTS.map((s) => {
@@ -101,7 +110,7 @@ export default function CongruentTriangles({ config }: { config: CongruentTriang
             : { background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg)" };
           return (
             <button key={s} type="button" onClick={() => setPick(s)} className="gm-press rounded-full px-3.5 py-1.5 text-[13px]" style={style}>
-              {s}
+              {label(s)}
             </button>
           );
         })}
@@ -111,13 +120,23 @@ export default function CongruentTriangles({ config }: { config: CongruentTriang
         <div className="mt-3 rounded-xl p-3 text-center text-[14px]" style={correct ? { background: "rgba(80,160,90,0.1)", border: "1px solid rgba(80,160,90,0.5)" } : { background: "rgba(200,60,60,0.08)", border: "1px solid rgb(200,60,60)" }}>
           <span className="inline-flex items-center gap-1.5" style={{ color: "var(--fg)" }}>
             {correct ? <Check className="h-4 w-4" style={{ color: "rgb(70,150,80)" }} /> : <X className="h-4 w-4" style={{ color: "rgb(200,60,60)" }} />}
-            {correct ? <b>{answer} — the triangles are congruent.</b> : <span>Not {pick}. Look again at which parts are marked.</span>}
+            {mn
+              ? correct
+                ? <b>{label(answer)} — гурвалжнууд тэнцүү.</b>
+                : <span>{label(pick)} биш. Аль хэсгүүд тэмдэглэгдсэнийг дахин хар.</span>
+              : correct
+                ? <b>{answer} — the triangles are congruent.</b>
+                : <span>Not {pick}. Look again at which parts are marked.</span>}
           </span>
         </div>
       )}
 
       <div className="mt-3 text-center text-[13px]" style={{ color: "var(--fg-2)" }}>
-        Matching <b style={{ color: GEO_ACCENT }}>tick marks</b> = congruent sides; matching <b style={{ color: "#5b8def" }}>arcs</b> = congruent angles.
+        {mn ? (
+          <>Ижил <b style={{ color: GEO_ACCENT }}>зураас</b> = тэнцүү талууд; ижил <b style={{ color: "#5b8def" }}>нум</b> = тэнцүү өнцгүүд.</>
+        ) : (
+          <>Matching <b style={{ color: GEO_ACCENT }}>tick marks</b> = congruent sides; matching <b style={{ color: "#5b8def" }}>arcs</b> = congruent angles.</>
+        )}
       </div>
     </div>
   );
