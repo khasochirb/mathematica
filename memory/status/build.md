@@ -23,7 +23,7 @@ touching any of those; it is not summarised here.
 
 **Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `f99f503`). Nothing deployed.
 
-**Blocked on:** Khas, for the 10 round-6 picks (they do not block assembly; they are one-word swaps), and for 6bj.
+**Blocked on:** Khas, for 6bj only. He answered round 6 the same day, and it is applied in `f0900cb` (pile 0t). The decision page has nothing open.
 
 **Others should know — NEXT SESSION IS SHIP MODE (Khas, 27 Oct):** assemble all 122 drafts into the `*-mn` mirrors on the working branch, and send Khas a **private preview link** to approve per grade or course. Deploy only on his word. Read pile 0t first. Do these before running `--fix` on anything: `mn_terms.py` maps scatter plot to dot plot's word; the ₮ `check[]` lines; the English widgets; the four live questions with two correct answers; and the live grade 6 east/left bug.
 
