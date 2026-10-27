@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getProbStatUnit } from "@/lib/genmath-data/prob-stats";
+import { getProbStatUnitLocalized } from "@/lib/genmath-data/prob-stats";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const revealLabels = (lang: string) => ({
@@ -20,7 +20,7 @@ function ProbStatPracticePageInner() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getProbStatUnit(unitSlug);
+  const unit = getProbStatUnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

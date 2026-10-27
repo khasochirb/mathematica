@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getSolidGeoUnit, getSolidGeoLesson } from "@/lib/genmath-data/solid-geometry";
+import { getSolidGeoUnitLocalized, getSolidGeoLessonLocalized } from "@/lib/genmath-data/solid-geometry";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function SolidGeoLessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getSolidGeoUnit(unitSlug);
-  const lesson = getSolidGeoLesson(unitSlug, lessonSlug);
+  const unit = getSolidGeoUnitLocalized(unitSlug, lang);
+  const lesson = getSolidGeoLessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

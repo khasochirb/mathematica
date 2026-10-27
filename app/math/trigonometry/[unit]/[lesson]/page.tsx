@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getTrigUnit, getTrigLesson } from "@/lib/genmath-data/trigonometry";
+import { getTrigUnitLocalized, getTrigLessonLocalized } from "@/lib/genmath-data/trigonometry";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function TrigLessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getTrigUnit(unitSlug);
-  const lesson = getTrigLesson(unitSlug, lessonSlug);
+  const unit = getTrigUnitLocalized(unitSlug, lang);
+  const lesson = getTrigLessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

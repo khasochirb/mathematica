@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getProbStatUnit, getProbStatLesson } from "@/lib/genmath-data/prob-stats";
+import { getProbStatUnitLocalized, getProbStatLessonLocalized } from "@/lib/genmath-data/prob-stats";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function ProbStatLessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getProbStatUnit(unitSlug);
-  const lesson = getProbStatLesson(unitSlug, lessonSlug);
+  const unit = getProbStatUnitLocalized(unitSlug, lang);
+  const lesson = getProbStatLessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

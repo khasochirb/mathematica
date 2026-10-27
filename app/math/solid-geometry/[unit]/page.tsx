@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getSolidGeoUnit, getSolidGeoSpine } from "@/lib/genmath-data/solid-geometry";
+import { getSolidGeoUnitLocalized, getSolidGeoSpine } from "@/lib/genmath-data/solid-geometry";
 
 // A Calculus unit page: what it builds on, then the lessons in order.
 export default function SolidGeoUnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getSolidGeoUnit(unitSlug);
+  const unit = getSolidGeoUnitLocalized(unitSlug, lang);
   const spineEntry = getSolidGeoSpine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getGeometryUnit } from "@/lib/genmath-data/geometry";
+import { getGeometryUnitLocalized } from "@/lib/genmath-data/geometry";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const revealLabels = (lang: string) => ({
@@ -20,7 +20,7 @@ function GeometryPracticePageInner() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getGeometryUnit(unitSlug);
+  const unit = getGeometryUnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

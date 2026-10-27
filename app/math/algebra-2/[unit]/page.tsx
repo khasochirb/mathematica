@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getAlg2Unit, getAlg2Spine } from "@/lib/genmath-data/algebra-2";
+import { getAlg2UnitLocalized, getAlg2Spine } from "@/lib/genmath-data/algebra-2";
 
 // An Algebra 2 unit page: what it builds on, then the lessons in order.
 export default function Alg2UnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getAlg2Unit(unitSlug);
+  const unit = getAlg2UnitLocalized(unitSlug, lang);
   const spineEntry = getAlg2Spine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

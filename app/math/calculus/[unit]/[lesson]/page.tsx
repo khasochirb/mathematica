@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getCalcUnit, getCalcLesson } from "@/lib/genmath-data/calculus";
+import { getCalcUnitLocalized, getCalcLessonLocalized } from "@/lib/genmath-data/calculus";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function CalcLessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getCalcUnit(unitSlug);
-  const lesson = getCalcLesson(unitSlug, lessonSlug);
+  const unit = getCalcUnitLocalized(unitSlug, lang);
+  const lesson = getCalcLessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

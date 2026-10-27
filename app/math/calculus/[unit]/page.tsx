@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getCalcUnit, getCalcSpine } from "@/lib/genmath-data/calculus";
+import { getCalcUnitLocalized, getCalcSpine } from "@/lib/genmath-data/calculus";
 
 // A Calculus unit page: what it builds on, then the lessons in order.
 export default function CalcUnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getCalcUnit(unitSlug);
+  const unit = getCalcUnitLocalized(unitSlug, lang);
   const spineEntry = getCalcSpine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

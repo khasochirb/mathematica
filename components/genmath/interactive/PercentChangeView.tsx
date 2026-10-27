@@ -4,8 +4,7 @@
 // bar splits into what you pay (accent) and the discount taken off (struck,
 // faded). In "increase" mode the bar shows the original (accent) plus the tax
 // or tip added on (blue), so the final total is original + added. Presentational.
-const money = (x: number, c: string) =>
-  `${c}${(Math.round(x * 100) / 100).toFixed(2).replace(/\.00$/, "")}`;
+import { formatMoney as money } from "@/lib/money";
 
 const BLUE = "#3b82f6";
 

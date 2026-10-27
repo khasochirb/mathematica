@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getCalcUnit } from "@/lib/genmath-data/calculus";
+import { getCalcUnitLocalized } from "@/lib/genmath-data/calculus";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const revealLabels = (lang: string) => ({
@@ -20,7 +20,7 @@ function CalcPracticePageInner() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getCalcUnit(unitSlug);
+  const unit = getCalcUnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

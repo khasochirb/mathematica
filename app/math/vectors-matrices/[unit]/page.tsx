@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getVecMatUnit, getVecMatSpine } from "@/lib/genmath-data/vectors-matrices";
+import { getVecMatUnitLocalized, getVecMatSpine } from "@/lib/genmath-data/vectors-matrices";
 
 // A Vectors & Matrices unit page: what it builds on, then the lessons in order.
 export default function VecMatUnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getVecMatUnit(unitSlug);
+  const unit = getVecMatUnitLocalized(unitSlug, lang);
   const spineEntry = getVecMatSpine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getAlg1Unit } from "@/lib/genmath-data/algebra-1";
+import { getAlg1UnitLocalized } from "@/lib/genmath-data/algebra-1";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const revealLabels = (lang: string) => ({
@@ -20,7 +20,7 @@ function Alg1TestPageInner() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getAlg1Unit(unitSlug);
+  const unit = getAlg1UnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

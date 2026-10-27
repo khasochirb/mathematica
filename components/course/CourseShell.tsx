@@ -170,8 +170,9 @@ export interface CourseDef {
   /** Hub intro paragraph. */
   intro: string;
   spine: () => GeometrySpineEntry[];
-  unit: (unitSlug: string) => CourseUnit | null;
-  lesson: (unitSlug: string, lessonSlug: string) => GenMathLesson | null;
+  /** `lang` is the site language; a course with Mongolian mirrors serves them for "mn". */
+  unit: (unitSlug: string, lang?: string) => CourseUnit | null;
+  lesson: (unitSlug: string, lessonSlug: string, lang?: string) => GenMathLesson | null;
   /** Placement namespace + route, when the course has a placement test. */
   placement?: string;
   /** URL root for this course. Defaults to `/math/<slug>`. */
@@ -423,7 +424,7 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
   const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
-  const unit = course.unit(unitSlug);
+  const unit = course.unit(unitSlug, lang);
   const spineEntry = course.spine().find((u) => u.slug === unitSlug);
   const L = labelsOf(course, lang);
   const root = base(course);
@@ -524,8 +525,8 @@ function LessonInner({ course }: { course: CourseDef }) {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = course.unit(unitSlug);
-  const lesson = course.lesson(unitSlug, lessonSlug);
+  const unit = course.unit(unitSlug, lang);
+  const lesson = course.lesson(unitSlug, lessonSlug, lang);
   const L = labelsOf(course, lang);
   const root = base(course);
 
@@ -569,7 +570,7 @@ function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" |
   const { lang } = useLang();
   const params = useParams();
   const unitSlug = params.unit as string;
-  const unit = course.unit(unitSlug);
+  const unit = course.unit(unitSlug, lang);
   const L = labelsOf(course, lang);
   const root = base(course);
 

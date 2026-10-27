@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getProbStatUnit, getProbStatSpine } from "@/lib/genmath-data/prob-stats";
+import { getProbStatUnitLocalized, getProbStatSpine } from "@/lib/genmath-data/prob-stats";
 
 // A Prob & Stats unit page: what it builds on, then the lessons in order.
 export default function ProbStatUnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getProbStatUnit(unitSlug);
+  const unit = getProbStatUnitLocalized(unitSlug, lang);
   const spineEntry = getProbStatSpine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

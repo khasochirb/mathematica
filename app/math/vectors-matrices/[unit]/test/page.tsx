@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getVecMatUnit } from "@/lib/genmath-data/vectors-matrices";
+import { getVecMatUnitLocalized } from "@/lib/genmath-data/vectors-matrices";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const revealLabels = (lang: string) => ({
@@ -20,7 +20,7 @@ function VecMatTestPageInner() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getVecMatUnit(unitSlug);
+  const unit = getVecMatUnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

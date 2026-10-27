@@ -167,6 +167,9 @@ GLOSSARY = {
     # Probability & statistics — МАГАДЛАЛ, СТАТИСТИК
     "grouped data": "бүлэглэсэн өгөгдөл",
     "histogram": "гистограмм",
+    # Ministry wording, kept as evidence. Khas ruled otherwise for the courses
+    # (6ac, 23 Sep 2026): scatter plot «хамаарлын график», dot plot «цэгэн
+    # диаграмм». Do not copy this entry into lesson text.
     "scatter plot": "цэгэн диаграмм",
     "correlation": "корреляц",
     "cumulative frequency": "хуримтлагдсан давтамж",
@@ -180,6 +183,7 @@ GLOSSARY = {
     "combination": "хэсэглэл",
     "factorial": "факториал",
     "mutually exclusive / not": "нийцгүй / нийцтэй үзэгдэл",
+    # Courses use «хараат бус» for independent (Khas, 6y-2).
     "independent / dependent": "үл хамаарах / хамаарах",
     "conditional probability": "нөхцөлт магадлал",
     "tree diagram": "модны схем",

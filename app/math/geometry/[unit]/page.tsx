@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getGeometryUnit, getGeometrySpine } from "@/lib/genmath-data/geometry";
+import { getGeometryUnitLocalized, getGeometrySpine } from "@/lib/genmath-data/geometry";
 
 // A Geometry unit page: what it builds on, then the lessons in order.
 export default function GeometryUnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getGeometryUnit(unitSlug);
+  const unit = getGeometryUnitLocalized(unitSlug, lang);
   const spineEntry = getGeometrySpine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

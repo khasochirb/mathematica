@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getAlg2Unit, getAlg2Lesson } from "@/lib/genmath-data/algebra-2";
+import { getAlg2UnitLocalized, getAlg2LessonLocalized } from "@/lib/genmath-data/algebra-2";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function Alg2LessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getAlg2Unit(unitSlug);
-  const lesson = getAlg2Lesson(unitSlug, lessonSlug);
+  const unit = getAlg2UnitLocalized(unitSlug, lang);
+  const lesson = getAlg2LessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

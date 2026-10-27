@@ -6,8 +6,7 @@ import { ArrowUp, ArrowDown } from "lucide-react";
 // (the larger amount = full width). The change is highlighted — extended in
 // blue for an increase, struck/faded for a decrease — and the percent (always
 // out of the ORIGINAL) shows when revealed. Presentational.
-const money = (x: number, c: string) =>
-  `${c}${(Math.round(x * 100) / 100).toFixed(2).replace(/\.00$/, "")}`;
+import { formatMoney as money } from "@/lib/money";
 
 const BLUE = "#3b82f6";
 

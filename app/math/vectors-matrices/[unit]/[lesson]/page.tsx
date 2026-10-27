@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getVecMatUnit, getVecMatLesson } from "@/lib/genmath-data/vectors-matrices";
+import { getVecMatUnitLocalized, getVecMatLessonLocalized } from "@/lib/genmath-data/vectors-matrices";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function VecMatLessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getVecMatUnit(unitSlug);
-  const lesson = getVecMatLesson(unitSlug, lessonSlug);
+  const unit = getVecMatUnitLocalized(unitSlug, lang);
+  const lesson = getVecMatLessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

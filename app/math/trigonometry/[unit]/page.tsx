@@ -5,14 +5,14 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getTrigUnit, getTrigSpine } from "@/lib/genmath-data/trigonometry";
+import { getTrigUnitLocalized, getTrigSpine } from "@/lib/genmath-data/trigonometry";
 
 // A Calculus unit page: what it builds on, then the lessons in order.
 export default function TrigUnitPage() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getTrigUnit(unitSlug);
+  const unit = getTrigUnitLocalized(unitSlug, lang);
   const spineEntry = getTrigSpine().find((u) => u.slug === unitSlug);
 
   if (!unit) {

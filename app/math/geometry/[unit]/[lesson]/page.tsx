@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
-import { getGeometryUnit, getGeometryLesson } from "@/lib/genmath-data/geometry";
+import { getGeometryUnitLocalized, getGeometryLessonLocalized } from "@/lib/genmath-data/geometry";
 import LessonPlayer from "@/components/genmath/interactive/LessonPlayer";
 import ContentGate from "@/components/genmath/ContentGate";
 
@@ -17,8 +17,8 @@ function GeometryLessonPageInner() {
   const unitSlug = params.unit as string;
   const lessonSlug = params.lesson as string;
 
-  const unit = getGeometryUnit(unitSlug);
-  const lesson = getGeometryLesson(unitSlug, lessonSlug);
+  const unit = getGeometryUnitLocalized(unitSlug, lang);
+  const lesson = getGeometryLessonLocalized(unitSlug, lessonSlug, lang);
 
   if (!lesson || !unit || !lesson.interactive) {
     return (

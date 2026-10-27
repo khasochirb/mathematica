@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, Tag } from "lucide-react";
 import {
+import { formatMoney } from "@/lib/money";
   type DealCompareConfig,
   unitPrice,
   cheaperDeal,
@@ -80,7 +81,7 @@ export default function DealCompare({ config }: { config: DealCompareConfig }) {
                   className="serif tabular"
                   style={{ fontSize: 32, lineHeight: 1, color: "var(--fg)" }}
                 >
-                  {currency}{deal.price}
+                  {formatMoney(deal.price, currency ?? "$")}
                 </span>
                 <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>
                   for {deal.qty} {unit}s
@@ -106,7 +107,7 @@ export default function DealCompare({ config }: { config: DealCompareConfig }) {
                     className="serif tabular text-[14px] font-medium"
                     style={{ color: isBest ? "#2f9e6e" : "var(--fg)" }}
                   >
-                    {currency}{unitPrices[i].toFixed(2)} per {unit}
+                    {formatMoney(Number(unitPrices[i].toFixed(2)), currency ?? "$")} per {unit}
                   </span>
                 </div>
               )}

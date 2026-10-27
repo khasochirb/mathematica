@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { chrome } from "@/lib/i18n/chrome";
 import { useLang } from "@/lib/lang-context";
 import GradedProblemList from "@/components/lesson/GradedProblemList";
-import { getSolidGeoUnit } from "@/lib/genmath-data/solid-geometry";
+import { getSolidGeoUnitLocalized } from "@/lib/genmath-data/solid-geometry";
 import ContentGate from "@/components/genmath/ContentGate";
 
 const revealLabels = (lang: string) => ({
@@ -20,7 +20,7 @@ function SolidGeoPracticePageInner() {
   const params = useParams();
   const { lang } = useLang();
   const unitSlug = params.unit as string;
-  const unit = getSolidGeoUnit(unitSlug);
+  const unit = getSolidGeoUnitLocalized(unitSlug, lang);
 
   if (!unit) {
     return (

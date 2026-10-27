@@ -110,21 +110,22 @@ describe("per-course data modules keep the corpus split", () => {
     "grade-10": ["10/", "10-mn/"],
     "grade-11": ["11/", "11-mn/"],
     "grade-12": ["12/", "12-mn/"],
-    geometry: ["geometry/"],
-    "prob-stats": ["prob-stats/"],
-    "vectors-matrices": ["vectors-matrices/"],
-    // Named courses get their "-mn/" sibling the same way the grades do, but
-    // only once a mirror actually exists — an unearned prefix here is a hole
-    // the next generator bug walks through. Algebra 1 is the first.
+    geometry: ["geometry/", "geometry-mn/"],
+    "prob-stats": ["prob-stats/", "prob-stats-mn/"],
+    "vectors-matrices": ["vectors-matrices/", "vectors-matrices-mn/"],
+    // Named courses get their "-mn/" sibling the same way the grades do. The
+    // imports themselves are generated from the mirrors on disk
+    // (scripts/i18n/mn_register.py), so a prefix here only ever admits files
+    // that exist.
     "algebra-1": ["algebra-1/", "algebra-1-mn/"],
-    "algebra-2": ["algebra-2/"],
+    "algebra-2": ["algebra-2/", "algebra-2-mn/"],
     "integrated-1": ["integrated-1/"],
     "integrated-2": ["integrated-2/"],
     "integrated-3": ["integrated-3/"],
     precalculus: ["precalculus/"],
-    calculus: ["calculus/"],
-    trigonometry: ["trigonometry/"],
-    "solid-geometry": ["solid-geometry/"],
+    calculus: ["calculus/", "calculus-mn/"],
+    trigonometry: ["trigonometry/", "trigonometry-mn/"],
+    "solid-geometry": ["solid-geometry/", "solid-geometry-mn/"],
     "ib-sl": ["ib-sl/"],
     "ib-hl": ["ib-hl/"],
   };
