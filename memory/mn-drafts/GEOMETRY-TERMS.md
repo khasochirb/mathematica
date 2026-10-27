@@ -59,6 +59,7 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | distance | **зай** | dictionary sense 1 · ministry «хоёр цэгийн хоорондох зай» |
 | parallel | **параллель** | ministry 2 · corpus 64 — the ministry is split, see the note below |
 | perpendicular | **перпендикуляр** | ministry 4 · corpus 26 |
+| foot (of a perpendicular) | **перпендикулярын суурь** | **Khas's ruling, 27 Oct 2026 (n20)**; replaces the coined «буух цэг» (`solid-geometry-pyramids`). Always in full: bare «суурь» is a base |
 | triangle | **гурвалжин** | ministry 1 · corpus 184 |
 | polygon | **олон өнцөгт** | ministry 3 · corpus 14 (the book sets it solid; see note) |
 | quadrilateral | **дөрвөн өнцөгт** | ministry 1 · corpus 42 |
@@ -86,7 +87,8 @@ angle-pair names. That is a property of the sources, not of the drafting.
 | point of tangency | **шүргэх цэг** | corpus 4 |
 | area | **талбай** | ministry 9 · corpus 506 · dictionary |
 | perimeter | **периметр** | **shipped 40** · corpus 59 |
-| apothem | **апофем** | **dictionary p. 31, a headword with its own definition** · corpus 4 |
+| apothem | **апофем** | **dictionary p. 31, a headword with its own definition** · corpus 4 · a regular polygon's apothem only (a pyramid's base: «суурийн апофем»); not the pyramid's slant height, next row |
+| slant height (of a pyramid) | **хажуу талсын өндөр** | **Khas's ruling, 27 Oct 2026 (n21)**; replaces «апофем» / exam «апофема» in this sense |
 | regular polygon | **зөв олон өнцөгт** | **ministry 1** |
 | ring, annulus | **цагираг** | corpus 11 |
 | shaded region | **будсан муж** | «будсан» **shipped 31** + «муж» dictionary — the strand's only coinage in unit 11 |
@@ -276,7 +278,7 @@ and a collision is worse, because the count looks like permission.
 
 | Word | А/492 uses it for | So this strand |
 |---|---|---|
-| **солбисон** | **skew lines** — «Огторгуй дахь хоёр шулууны харилцан байршлыг тодорхойлох (параллель, огтлолцох, солбисон)» | must not use it for *alternate* angles |
+| **солбисон** | **skew lines** — «Огторгуй дахь хоёр шулууны харилцан байршлыг тодорхойлох (параллель, огтлолцох, солбисон)» | must not use it for *alternate* angles · **overruled 27 Oct 2026 (n11, n12): Khas uses it for both, see below the next table** |
 | **огтлогч** | a circle's **secant** — «Тойргийн хөвч, шүргэгч, огтлогчийн чанаруудыг хэрэглэх» | writes the full **«огтлогч шулуун»** for *transversal*, never the bare word, so `circles` keeps «огтлогч» |
 
 **The four transversal pair names, decided once here.** Built to state their
@@ -285,14 +287,16 @@ own positions, which is what the lessons have to explain in English anyway:
 | English | Mongolian | literally |
 |---|---|---|
 | corresponding angles | **харгалзах өнцөг** | corresponding (corpus 5, this sense) |
-| alternate interior | **эсрэг талын дотоод өнцөг** | opposite-side interior |
-| alternate exterior | **эсрэг талын гадаад өнцөг** | opposite-side exterior |
+| alternate interior | **дотоод солбисон хоёр өнцөг** | interior crossed pair · **Khas's ruling, 27 Oct 2026 (n11)**; replaces «эсрэг талын дотоод өнцөг» |
+| alternate exterior | **гадаад солбисон хоёр өнцөг** | exterior crossed pair · **Khas's ruling, 27 Oct 2026 (n12)**; replaces «эсрэг талын гадаад өнцөг» |
 | same-side interior | **нэг талын дотоод өнцөг** | same-side interior |
 | same-side exterior | **нэг талын гадаад өнцөг** | same-side exterior (asked in practice, taught nowhere) |
 
 **«эсрэг талын …» always keeps «талын»**, because «эсрэг өнцөг» alone is
 *vertical angles* from unit 1. Flagged in the review pile; every geometry
 draft that uses these names should keep the full form.
+
+**27 Oct 2026: «солбисон» now names both skew lines (solid geometry) and alternate angles («дотоод / гадаад солбисон хоёр өнцөг»); both uses are Khas's choice, so the collision rule below does not apply to it.**
 
 ### A fourth collision, and this one is ours
 

@@ -163,6 +163,51 @@ exam outranks А/492.*
    «скаляр үржвэр», which is the *dot product*, in drafts 68 and 71. It is now
    «тоон үржвэр» (8 places).
 
+### 0s. Ruled 27 Oct 2026 (rounds 3 and 4), applied to all ninety-eight drafts
+
+Khas answered round 3 (word pairs) and round 4 (60 new words) on the decision
+page. His card-by-card picks override the "always the grade 6–8 word" shortcut
+he also ticked; that shortcut decides only what no card covered. All 98 drafts
+pass `mn_draft_check.py`. Terminology rows cite "Khas's ruling, 27 Oct 2026";
+each touched draft ends with one Notes line saying what changed. Older Notes
+keep the old words on purpose.
+
+| id | Ruling | Applied as |
+|---|---|---|
+| r3-bin | histogram bin «интервал» (grade 6) | «завсар» kept for every other interval sense |
+| r3-factor | «үржигдэхүүнд задлах» | incl. «гүйцэд үржигдэхүүнд задлах» |
+| r3-square | «квадрат зэрэгт дэвшүүлэх» | replaces «квадратлах», «квадратдах», «квадрат зэрэгт өргөх» (~140) |
+| r3-rules | «үржвэрийн дүрэм», «зэргийн хууль», «зэрэгт дэвшүүлэх» | exponents and radicals only; log rules keep the ministry's «зэргийн чанар» |
+| r3-axis | «$x$ тэнхлэг», «$y$ тэнхлэг» | «абсцисс/ординат» kept for the coordinates themselves; plain «x тэнхлэг» in objectives and titles |
+| r3-fav | «таатай» | 10/probability-and-counting |
+| r3-props | «бөмбөлөг», «зүрх», «эргэгч» | card hand «хөзрийн гар» untouched |
+| r3-corr | C: «корреляц» for r, «хамаарал» in plain talk | third factor «гуравдагч хүчин зүйл» (shortcut rule) |
+| r3-amp | trig amplitude «амплитуд» | statistics keeps «далайц» for range |
+| r3-open | «нээгддэг» | |
+| r3-cosec | cosec | already so; notes updated |
+| r3-repeat | «үет бутархай» | |
+| r3-galileo | «Галилей» | |
+| n03 | named tests «шалгуур» | vertical/horizontal line, same-side, swap, table/equation tests; pass/fail «хангана / хангахгүй»; quiz labels keep «Түргэн шалгалт» |
+| n10 | «Коши–Шварцын тэнцэтгэл биш» | |
+| n11, n12 | «дотоод / гадаад солбисон хоёр өнцөг» | Khas's own words; «солбисон» also means skew lines, noted in GEOMETRY-TERMS |
+| n20 | «перпендикулярын суурь» | pyramids: 7 lateral-edge "lands at" uses reworded with the verb (the edge is not a perpendicular) |
+| n21 | pyramid slant height «хажуу талсын өндөр» | a polygon's apothem stays «апофем» (plane geometry, «суурийн апофем») |
+| n57 | whispering gallery removed | conics lesson 1 names the kidney-stone machine instead |
+| 47 others | OK as drafted | |
+
+**Still open, on the decision page ("Needs you"):** base rate (n31), house edge
+(n33, «газрын давуу тал» is still in `prob-stats/random-variables`), box-plot
+whisker (n37, «сахал» still in the drafts until he picks), neighbourhood (n39),
+Fermat's adequality (n42), the ellipse's string property (n55), and a
+confirmation of «шалгуур» (n03).
+
+**For Build (ship mode): live mirrors now disagree with the rulings.**
+`7-mn/geometry-scale-and-circles` «квадратлах» ×10; `7-mn/probability`
+«сахир» ×6, «Галилео» ×1, «тохирох үр дүн» ×1; `8-mn/roots` and
+`8-mn/exponents-and-scientific-notation` «квадрат зэрэгт өргөх» ×3, «зэрэгт
+өргөх» ×6, «зэргийн дүрэм» ×2; `8-mn/the-real-number-system` «үелсэн бутархай»
+×4. A `mn_terms.py --fix` style rule is the in-pipeline way to change them.
+
 ### 0a. Rulings, highest leverage first
 
 | # | Item | The decision | My lean | What it moves |

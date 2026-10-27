@@ -925,3 +925,4 @@ English, all points, none converted (2d is not applied). 2d stands at
 
 - **5a:** English shown once at first use for 12 terms (bins, bar, bin width, bar chart, percentile rank, z-score, normal distribution, empirical rule, Central Limit Theorem, normal table, scatterplot, line of best fit). Skipped: гистограмм, перцентиль, корреляц, стандартчлах (transliterations), the $N(\mu, \sigma^2)$ notation, and «хонх хэлбэрийн муруй» (never in the body). «Trend line» and «scatter plot» glossed in the English JSON's wording, «line of best fit» and «scatterplot».
 - **6y:** lesson 4 concept 4's «үл хамаарах нөлөөний» is now «хараат бус нөлөөний» (1 replacement).
+- **27 Oct 2026 rulings applied** (r3-bin; r3-corr checked): histogram bin «завсар» → «интервал» 46 times (lesson 1 throughout, `dp-p-1`, `dp-ty-1`), plus the bin · bin width Terminology row. The header's exam-vocabulary citation stays. Lesson 6's «корреляц» (naming the next unit's measure) stays.

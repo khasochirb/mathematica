@@ -73,14 +73,14 @@ transliteration.
 | opens left–right / up–down | **зүүн, баруун тийш / дээш, доош нээгддэг** | **exam** «парабол дээшээ нээгддэг» ×4, «дээшээ нээгдсэн» ×4, «доошоо нээгдсэн» ×1: Notes 2 |
 | difference property | **ялгаврын чанар** | **coined**, compositional |
 | degree-2 equation | **хоёрдугаар зэргийн тэгшитгэл** | compositional («хоёрдугаар зэргийн олон гишүүнт» in the corpus) |
-| whispering gallery | **шивнээний танхим** | **coined**, descriptive |
+| ~~whispering gallery~~ | — | **Khas's ruling, 27 Oct 2026** (n57): example removed; the kidney-stone machine, already in lesson 6, takes its place in lesson 1 |
 | astronomical unit | **одон орны нэгж** | **coined** in this corpus (0 hits); the usual Mongolian name |
 | perihelion · aphelion | **перигелий · афелий** | transliteration, each paired with a plain description |
 | lithotripsy | **литотрипси** | transliteration, described as kidney-stone treatment |
 | sonic boom | **дууны цохилт** | **coined** |
 | cooling tower | **хөргөх цамхаг** | compositional |
 
-English shown once at first use (5a, Khas's ruling 5 Oct 2026): 15 terms.
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 14 terms (whispering gallery removed 27 Oct, n57).
 (Transliterations skipped: эллипс, фокус, директрис, эксцентриситет,
 перигелий, афелий, литотрипси.)
 
@@ -284,7 +284,7 @@ English shown once at first use (5a, Khas's ruling 5 Oct 2026): 15 terms.
 Самбарт хоёр зүү хатгаад, тэдгээрийг утсаар ороож, харандаагаар утсыг чангалан
 зурвал **эллипс** гарна: хоёр зүү хүртэлх зайн НИЙЛБЭР нь утасны урттай тэнцүү
 байх бүх цэг. Гаригууд ийм муруйгаар тойрог замдаа эргэдэг (Нар нэг зүүний
-оронд), шивнээний танхимууд (whispering galleries) үүнийг ашигладаг, тэгшитгэл
+оронд), бөөрний чулуу бутлах эмнэлгийн аппарат үүнийг ашигладаг, тэгшитгэл
 нь хоёр өөр хуваарьтай тойргийн тэгшитгэл:
 $\tfrac{x^2}{a^2} + \tfrac{y^2}{b^2} = 1$.
 
@@ -581,7 +581,7 @@ x²/a² − y²/b² = 1: y = ±(b/a)x асимптотууд дээр хоёр �
 
 1. **Ажилд гарсан дүрүүд**: тойрог → дугуй, дохио, GPS-ийн зай хэмжилт.
    Парабол → таваг, машины гэрэл, шидсэн биеийн зам (10-р ангийн нислэгийн
-   замууд конусын огтлол БАЙСАН). Эллипс → тойрог зам, шивнээний танхим,
+   замууд конусын огтлол БАЙСАН). Эллипс → тойрог зам,
    литотрипси эмчилгээ (нэг фокусаас төвлөрүүлсэн цохилтын долгион нөгөө фокус
    дээрх бөөрний чулууг бутлана). Гипербол → навигаци, дууны цохилт (sonic
    boom; түүний газар дээрх мөр гипербол хэлбэртэй), хөргөх цамхаг (cooling
@@ -657,7 +657,7 @@ x²/a² − y²/b² = 1: y = ±(b/a)x асимптотууд дээр хоёр �
 
 | # | kind | content |
 |---|---|---|
-| 0 | teach | **eyebrow** Сүүлчийн хичээл · **title** Ажилд гарсан дөрвөн муруй<br>**beats** Тойрог: дугуй, зай хэмжилт. Парабол: таваг, машины гэрэл, шидэлт. · Эллипс: тойрог зам, шивнээний танхим, бөөрний чулууны эмчилгээ. · Гипербол: навигаци, дууны цохилт, хөргөх цамхаг. · Аполлонийн «хэрэггүй» муруйнууд орчин үеийн ертөнцийг ажиллуулж байна. Ажилдаа оръё. |
+| 0 | teach | **eyebrow** Сүүлчийн хичээл · **title** Ажилд гарсан дөрвөн муруй<br>**beats** Тойрог: дугуй, зай хэмжилт. Парабол: таваг, машины гэрэл, шидэлт. · Эллипс: тойрог зам, бөөрний чулууны эмчилгээ. · Гипербол: навигаци, дууны цохилт, хөргөх цамхаг. · Аполлонийн «хэрэггүй» муруйнууд орчин үеийн ертөнцийг ажиллуулж байна. Ажилдаа оръё. |
 | 1 | conicGraph | **eyebrow** Сүүлчийн зүсэлт · **title** Ажил дээрх гипербол<br>**teach** Догшин дүү, сүүлчийн удаа: хөтөч зам дээрх салаанууд, гадна талын фокусууд, ялгаврын дүрмийн геометр. LORAN-ий байршил тогтоолт бүр, хөргөх цамхгийн дүрс бүр, дууны цохилтын мөр бүр бол нэгж залгасан энэ л зураг.<br>**config** unchanged (`mode: hyperbola`) |
 | 2 | tapQuestion | **eyebrow** Түргэн шалгалт · **title** Тодорхойлолт → муруй<br>**prompt** Цэг бүрээс хоёр тогтмол цэг хүртэлх зайнуудын НИЙЛБЭР 30 байх муруй:<br>**explanation** Нийлбэр тогтмол бол хоёр зүүтэй утас: эллипс, $a = 15$. (Ялгавар тогтмол бол гипербол байх байсан.)<br>**options** `$2a = 30$ байх эллипс` · `гипербол` · `радиус нь 30 тойрог` — **correctIndex 0** |
 | 3 | teach | **eyebrow** Урт утас · **title** Долоон жил, нэг түүх<br>**beats** 6-р ангийн координатын хавтгай → 8-р ангийн квадрат язгуур → зайн томьёо → тойрог (өнөөдөр). · 10-р ангийн квадрат функц → фокустай парабол. Илтгэгч функцийн асимптот, хязгаар → гипербол. · 11-р ангийн нэгж тойрог → бүгдийг нь параметрээр зурж чадах тригонометр. · 12-р ангийн анализ → тэдний налалт ба талбай. Юу ч дэмий үрэгдээгүй. |
@@ -881,3 +881,4 @@ tests, and the Mongolian keeps it without tying it to the ЭШ. L6's last
 sentence does mention the ЭШ ("just a chance to show it"); the Mongolian keeps
 that, because it is about the whole course, not about conics.
 - **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×6. Terminology rows updated where the term had one.
+- **27 Oct 2026 ruling applied** (n57): the whispering-gallery example is gone at all three places; lesson 1 now names the kidney-stone machine instead, which lesson 6 already teaches.

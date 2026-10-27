@@ -545,7 +545,7 @@ English shown once at first use (5a, Khas's ruling 5 Oct 2026): 8 terms.
 
 - **title** Харьцуулах дараалал · **latex** `төв, тархалт, хэлбэр, онцгой утга` ·
   **explanation** Дөрвөн шалгалт, нэг дүгнэлт.
-- **title** Давхцлын шалгалт · **latex** `тусдаа хайрцгууд = итгэлтэй зөрүү` ·
+- **title** Давхцлын шалгуур · **latex** `тусдаа хайрцгууд = итгэлтэй зөрүү` ·
   **explanation** Дунд хэсгүүд их давхцвал медианы зөрүү найдваргүй.
 
 **workedExamples**
@@ -712,3 +712,4 @@ Math-mode decimals stay points (2d). Prose decimals take the comma: «1,5·КХ�
 (lesson 5 title, objective, keyIdea), «1,5» (lesson 5 concept 5), «13,5»,
 «6,5–8 цаг», «(1,5)», «8,6 орчим». Money keeps its point. "\$200k" and "\$2M"
 are «\$200 мянга» and «\$2 сая»; "6,000 times" is «6000 удаа».
+- **27 Oct 2026 rulings applied** (test → «шалгуур»; r3-bin, r3-corr checked): lesson 6 fact title «Давхцлын шалгалт» → «Давхцлын шалгуур» (1). r3-bin needed nothing, since bins were already «интервал»; «Дөрвөн шалгалт» (the four checks) is ordinary checking and stays.

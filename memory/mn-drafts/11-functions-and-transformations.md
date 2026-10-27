@@ -356,7 +356,7 @@ a·f(x) ба f(−x)-ээр графикийг сунгаж (stretch), шаха�
 
 2. **Доош эргүүлэх**: $-f(x)$ гаралтуудыг эсрэг тэмдэгтэй болгоно: $x$
    тэнхлэгийн хувьд тэгш хэм. Оргилууд хөндий болно. (10-р ангийн доошоо
-   нээлттэй парабол: $-x^2$ эхнээсээ энэ байжээ.)
+   нээгддэг парабол: $-x^2$ эхнээсээ энэ байжээ.)
 
 3. **Хажуу тийш толидох**: $f(-x)$ ОРОЛТУУДЫГ эсрэг тэмдэгтэй болгоно: $y$
    тэнхлэгийн хувьд тэгш хэм. $f$ дээрх $(2, 4)$ нь $f(-x)$ дээр $(-2, 4)$
@@ -749,3 +749,4 @@ function (lesson 4 concept 4), master form (lesson 5
 concreteComparison), combining transformations (lesson 5 objective), inverse
 function (lesson 6 concreteComparison), one-way function (lesson 6 funFact).
 Terms carried from grades 9 and 10 (header) are not glossed.
+- **27 Oct 2026 ruling applied** (r3-open): «доошоо нээгддэг парабол» ×1.
