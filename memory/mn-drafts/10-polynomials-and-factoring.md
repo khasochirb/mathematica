@@ -570,3 +570,4 @@ only on `origin/claude/grade-6-math-verify-xe1tak`. I ran a copy from my
 scratch directory with `ROOT` pointed at this checkout, and changed no repo
 file. If later drafts are briefed to run it, it needs merging, or the brief
 needs the branch path.
+- **27 Oct 2026 rulings applied** (r6-like): like terms «төсөөтэй гишүүд» ×2.

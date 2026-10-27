@@ -823,3 +823,4 @@ the beats of lesson 5 step 3. No prose decimals. Intervals stay `(1, 2)`: a
 general-math topic, not the ЭШ hub. Lesson 5 funFact's $v_{terminal}$ becomes
 $v_{\text{эцсийн}}$, as in the sibling.
 - **27 Oct 2026 ruling applied** (n39): neighbourhood is «ойролцоо»; the slogan reads «Ойролцоо, хаяг биш» (7 places).
+- **27 Oct 2026 rulings applied** (r6-rise): rise/run «өсөлт / гүйлт» ×2.

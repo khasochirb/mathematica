@@ -501,3 +501,4 @@ own objectives («графикийн аргаар», «орлуулах арга
    (review queue §5a) and does not affect this topic.
 
 5. Round 2 (5 Oct 2026, 5a): English shown once at first use, 8 terms: intersection point, system of equations, pair, line, slope, no solution, substitution method, add (the «addition» row). Skipped: систем, параллель, коэффициент (transliterations); «графикийн арга» and «орлуулга» (the body never uses them).
+- **27 Oct 2026 rulings applied** (r6-elim): elimination «устгах арга» ×12.

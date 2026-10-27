@@ -516,3 +516,4 @@ The English's fact cells are raw LaTeX with no `$`, so the Mongolian's are too. 
 - **4g:** «тэгш хэмийн чанар».
 - **Cancel a factor:** «хураах» (lesson 2 concept 3 and step 1).
 - **27 Oct 2026 rulings applied** (r3-props B, r3-fav B, test → «шалгуур»): marble «сахир» → «бөмбөлөг» 7. Hearts «гар» → «зүрх» 7 (lesson 3's «хөзрийн гар», a card hand, and «гар барих» stay). Favourable «тохирох» → «таатай» at 41 sites (odds: «таатайг таатай бус үр дүнд»). «солих шалгалт» / «Шийдвэрийн шалгалт» → «шалгуур» 8, plus the row («шалгуураа хэрэглэ(эрэй)», since «шалгуур» is not «хийх»-ed). The header's grade-boundary list and Notes 2 still describe grade 7's words, as history.
+- **27 Oct 2026 rulings applied** (r6-certain): certain «гарцаагүй» ×8.

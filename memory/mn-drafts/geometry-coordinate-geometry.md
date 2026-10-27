@@ -821,3 +821,4 @@ looks until that topic has exercised the checks.**
 
 - Round 2 (5 Oct 2026): English shown once at first use (5a, Khas's ruling): 11 terms (distance between two points, distance formula, midpoint, midpoint formula, slope, equation of a line, slope-intercept form, point-slope form, equation of a circle, coordinate proof, origin). «дундаж цэг» and «эх» are glossed at their first prose use, where the body uses the short form of the row's term. Skipped: «координат», «квадрант» (transliterations); «координатын хавтгай» (buildsOn only), «абсцисс / ордината», «тойргийн төв, радиустай тэгшитгэл», «тойргийн ерөнхий тэгшитгэл» (not in the body).
 - **27 Oct 2026 rulings applied** (r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×15. Terminology rows updated where the term had one.
+- **27 Oct 2026 rulings applied** (r6-rise): rise/run «өсөлт / гүйлт» ×59.

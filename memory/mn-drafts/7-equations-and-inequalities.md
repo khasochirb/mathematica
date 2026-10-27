@@ -593,3 +593,4 @@ distributive property, factoring, expand, two-step equation, reciprocal,
 common denominator, least common denominator, unknown, inequality, flip, ray,
 open circle, closed circle, strict inequality, at least, at most, solution
 set, linear programming.
+- **27 Oct 2026 rulings applied** (r6-like, r6-unit): like terms «төсөөтэй гишүүд» ×4; unit price «нэгж үнэ» ×4.

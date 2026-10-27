@@ -542,3 +542,4 @@ $y = kx + b$: $(0, b)$-аас эхэлж налалтаар жагсаарай; 
    pair, this is where it pays.
 
 5. Round 2 (5 Oct 2026, 5a): English shown once at first use, 14 terms: slope, steepness (the «steep» row), undefined, rate, horizontal, vertical, line, $y$-intercept (the «intercept with an axis» row), rate of change, point-slope form, standard form, equation of a line, reciprocal, opposite. Skipped: параллель, перпендикуляр, координат (transliterations).
+- **27 Oct 2026 rulings applied** (r6-rise): rise/run «өсөлт / гүйлт» ×43.

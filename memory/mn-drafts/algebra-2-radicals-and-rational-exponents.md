@@ -714,3 +714,4 @@ pile's stored command is the one to use.
 
 5a: English shown once at first use for 20 terms (power, cube root, simplify, exponent, rationalize the denominator, perfect square, perfect cube, like radicals, conjugate, radicand, radical equation, extraneous solution, range, inverse function, composition, domain, y = x reflection, one-to-one, horizontal line test, rational exponent), in the English source's wording where it has one. «рационал илтгэгч» is glossed at its first exact use (`a25-pr-2`); the earlier «рационал зэрэг» is the power row's word. Skipped: index («индекс», transliteration). No 6be or 6y hits.
 - **27 Oct 2026 rulings applied** (r3-factor, r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×16; «үржигдэхүүнд задлах» ×1. Terminology rows updated where the term had one.
+- **27 Oct 2026 rulings applied** (r6-like): like terms «төсөөтэй гишүүд» ×1.

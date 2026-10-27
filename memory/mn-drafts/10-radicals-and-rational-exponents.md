@@ -602,3 +602,4 @@ lesson title carries the name but its prose never says it before the
 objective; the sentence gives the 5a gloss a home in prose and ties the
 lesson to the exam's own wording.
 - **27 Oct 2026 rulings applied** (r3-rules, r3-square): squaring «квадрат зэрэгт дэвшүүлэх» ×47; raising to a power «зэрэгт дэвшүүлэх» ×4; exponent-rule names «үржвэрийн дүрэм», «зэргийн хууль» ×3. Terminology rows updated where the term had one.
+- **27 Oct 2026 rulings applied** (r6-like): like terms «төсөөтэй гишүүд» ×5.

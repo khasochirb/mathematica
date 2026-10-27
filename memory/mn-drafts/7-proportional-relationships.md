@@ -54,7 +54,7 @@ English shown once at first use (5a, Khas's ruling 5 Oct 2026): 10 terms.
 
 **objective**
 
-Бутархай хуваах хадгал–соль–эргүүл (keep–change–flip) аргаар бутархайн харьцаанаас нэгж хурдацыг олох.
+Бутархай хуваах хэвээр–солих–урвуулах (keep–change–flip) аргаар бутархайн харьцаанаас нэгж хурдацыг олох.
 
 **concept**
 
@@ -524,3 +524,4 @@ $12$ жигнэмэгийн жорт $3$ аяга гурил ордог. Тан�
 **9. Bare-imperative advisories** appear only in beats, recaps, titles, eyebrows and workedSet prompts («хуваа», «бод», «шалга», «сонго», «ол»), which this programme leaves bare. Student-facing prose uses the polite forms.
 
 Verified: 107 arithmetic assertions (sympy, all pass), in `/tmp/claude-0/-home-user-mathematica/2c09a9bc-48e8-50bc-b593-f4d20da90822/scratchpad/agents/7-proportional-relationships/verify.py`. They cover every number the draft states, including the plain-₮ conversions.
+- **27 Oct 2026 rulings applied** (r6-unit): unit price «нэгж үнэ» ×4.

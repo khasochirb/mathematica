@@ -230,6 +230,20 @@ Every id, step kind and count is unchanged, and every changed number is verified
 Each draft's "Notes for Khas" lists its own word questions; the cross-grade
 clashes are on the decision page (round 6).
 
+**Round 6 ruled and applied, same day:**
+- Like terms are «төсөөтэй гишүүд / гишүүн», Khas's own word, replacing «ижил гишүүд» and «ижил төстэй гишүүд» everywhere.
+- Reducing a fraction is «хураах».
+- Cube · rectangular prism · face are «куб · тэгш өнцөгт призм · тал» in grade 6 geometry; a die stays «шоо».
+- Keep–change–change is «хэвээр–солих–солих», and keep–change–flip is «хэвээр–солих–урвуулах» in grades 6 and 7.
+- Elimination is «устгах арга».
+- Rise / run is «өсөлт / гүйлт».
+- Break-even is «ашиг алдагдалгүй цэг».
+- A certain event is «гарцаагүй».
+- Unit price is «нэгж үнэ».
+- The Ulaanbaatar fact is kept.
+
+All touched drafts pass the gate.
+
 **Launch plan, Khas, 27 Oct:** the next session is **ship** mode. It assembles
 all 122 drafts into the mirrors on the working branch, and Khas approves from a
 private **preview link**, per grade or course. Nothing deploys before that.

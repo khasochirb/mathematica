@@ -562,3 +562,4 @@ full solution set, hour angle, quadratic trig equation, power reduction). Not
 glossed: tg, ctg, cosec (notation). FOIL carries its Mongolian gloss once
 (5b), at lesson 1 tryItSet p3.
 - **27 Oct 2026 rulings applied** (r3-cosec): cosec confirmed ×1. Terminology rows updated where the term had one.
+- **27 Oct 2026 rulings applied** (r6-like): like terms «төсөөтэй гишүүд» ×1.

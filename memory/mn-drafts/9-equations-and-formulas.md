@@ -772,3 +772,4 @@ months ago by a mirror that shipped.
 `data-distributions`.
 
 - **2a (Khas approved, 5 Oct 2026):** the slope is $k$, as in А/492's «y=kx+b»: $y = kx + b$, $k = \frac{y_2 - y_1}{x_2 - x_1}$. No English `check[]` uses a bare $m$ (verified across grades 9–12). $m$ is kept where it means something else (minutes, months, mass).
+- **27 Oct 2026 rulings applied** (r6-like): like terms «төсөөтэй гишүүд» ×1.

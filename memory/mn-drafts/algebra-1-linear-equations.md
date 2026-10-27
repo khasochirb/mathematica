@@ -473,3 +473,4 @@ $C = \dfrac{5}{9}(F - 32)$ томьёо (formula) Фаренгейтийг Це�
    well here — but it is a joke, so kill it if it does not land.
 
 5. Round 2 (5 Oct 2026, 5a): English shown once at first use, 10 terms: equation, balanced (the «balance» row, as the English words it there), linear equation, solution, substitute, variable, variable terms (one gloss, covering the «term» row too), like terms, formula. Skipped: коэффициент (transliteration); «гишүүнчлэн үржүүлэх чанар» (only in buildsOn, never in the body).
+- **27 Oct 2026 rulings applied** (r6-like, r6-break): like terms «төсөөтэй гишүүд» ×2; break-even «ашиг алдагдалгүй цэг» ×1.

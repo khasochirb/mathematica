@@ -553,3 +553,4 @@ English, all points, none converted (2d is not applied). 2d stands at
 
 5a: English shown once at first use for 13 terms (domain, range, stretch, shift, compression, reflect, absolute value, bars, piecewise function, filled dot, open circle, vertical line test, phantom solution), in the English source's own wording. Skipped: function notation (only in BLURB, buildsOn and a heading), parent function (the body says «эх хэлбэр», never «эх функц»). 6be: the open marker is now «онгорхой цэг» (7 replacements, including the objective's «онгорхой төгсгөл»).
 - **27 Oct 2026 rulings applied** (n03): named tests «шалгуур», pass/fail «хангана/хангахгүй» ×2. Terminology rows updated where the term had one.
+- **27 Oct 2026 rulings applied** (r6-unit): unit price «нэгж үнэ» ×1.
