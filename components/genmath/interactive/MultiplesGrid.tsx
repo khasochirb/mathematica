@@ -54,6 +54,11 @@ export default function MultiplesGrid({ config }: { config: MultiplesGridConfig 
             <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>
             {mnGenitiveEnding(k) ? `-${mnGenitiveEnding(k)}` : ""} хуваагдагчид:{" "}
           </>
+        ) : mn ? (
+          // Unconfirmed ending: «тооны» is a fixed word, so the numeral takes none.
+          <>
+            <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b> тооны хуваагдагчид:{" "}
+          </>
         ) : (
           <>Multiples of <b className="serif tabular" style={{ color: "var(--accent)" }}>{k}</b>:{" "}</>
         )}

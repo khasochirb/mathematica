@@ -19,7 +19,7 @@ export default function BalanceScale({ config }: { config: BalanceScaleConfig })
 
   const answer = mode === "add" ? rhs - b : Math.round(rhs / coef);
   const actionLabel = mn
-    ? mode === "add" ? `Хоёр талаас ${b} хасах` : `Хоёр талыг ${coef} хэсэгт хуваах`
+    ? mode === "add" ? `Хоёр талаас ${b} хасах` : `Хоёр талыг хуваах: ÷${coef}`
     : mode === "add" ? `Subtract ${b} from both sides` : `Divide both sides by ${coef}`;
   const equation = mode === "add"
     ? `x + ${b} = ${rhs}`

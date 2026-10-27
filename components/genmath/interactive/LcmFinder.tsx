@@ -101,14 +101,14 @@ export default function LcmFinder({ config }: { config: LcmFinderConfig }) {
       <div className="flex flex-col gap-4">
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={a} mn={mn} noun="үржвэрүүд" en="Multiples of" color="var(--fg)" /></span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={a} mn={mn} noun="хуваагдагчид" en="Multiples of" color="var(--fg)" /></span>
             <Stepper label={chrome("first number", lang)} val={a} set={setA} />
           </div>
           <Strip n={a} />
         </div>
         <div style={{ borderTop: "1px solid var(--line)" }} className="pt-4">
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={b} mn={mn} noun="үржвэрүүд" en="Multiples of" color="var(--fg)" /></span>
+            <span className="text-[13px]" style={{ color: "var(--fg-2)" }}><CountOf n={b} mn={mn} noun="хуваагдагчид" en="Multiples of" color="var(--fg)" /></span>
             <Stepper label={chrome("second number", lang)} val={b} set={setB} />
           </div>
           <Strip n={b} />

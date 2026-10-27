@@ -141,7 +141,7 @@ export default function DistributionBars({ config }: { config: DistributionBarsC
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
             μ = {fmt(mu)}, σ = <b style={{ color: "var(--accent)" }}>{fmt(sd)}</b>
             <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>
-              {mn ? "— зураас хоёр тийш тус бүр нэг σ үргэлжилнэ" : "— the whiskers reach one σ each way"}
+              {mn ? "— сүүлүүд хоёр тийш тус бүр нэг σ үргэлжилнэ" : "— the whiskers reach one σ each way"}
             </span>
           </div>
         ) : showMean ? (

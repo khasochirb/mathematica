@@ -109,7 +109,7 @@ export default function BinomialBars({ config }: { config: BinomialBarsConfig })
       <div className="mt-2 rounded-xl p-3 text-center" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>
         {pick !== null && pick <= n ? (
           <div className="serif tabular text-[15px]" style={{ color: "var(--fg)" }}>
-            P(X = {pick}) = C({n},{pick}) · {fmt(p, 2)}
+            P(X = {pick}) = {mn ? <>C<sub>{n}</sub><sup>{pick}</sup></> : <>C({n},{pick})</>} · {fmt(p, 2)}
             <sup>{pick}</sup> · {fmt(1 - p, 2)}
             <sup>{n - pick}</sup> = <b style={{ color: "var(--accent)" }}>{pmf[pick].toFixed(4)}</b>
             <span className="ml-2 text-[12px]" style={{ color: "var(--fg-2)" }}>

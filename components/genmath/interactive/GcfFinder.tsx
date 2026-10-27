@@ -27,8 +27,10 @@ function gcd(a: number, b: number): number {
 // an ending that changes with the numeral — see lib/i18n/mn-numerals.
 function CountOf({ n, mn, noun, en, color }: { n: number; mn: boolean; noun: string; en: string; color: string }) {
   const value = <b className="serif tabular" style={{ color }}>{n}</b>;
-  // English until the ending is confirmed — see mnGenitiveApproved.
-  if (!mn || !mnGenitiveApproved(n)) return <>{en} {value}</>;
+  if (!mn) return <>{en} {value}</>;
+  // Ending not yet confirmed (see mnGenitiveApproved): let «тооны» carry the
+  // case so the numeral itself takes no ending.
+  if (!mnGenitiveApproved(n)) return <>{value} тооны {noun}</>;
   const ending = mnGenitiveEnding(n);
   return <>{value}{ending ? `-${ending}` : ""} {noun}</>;
 }
