@@ -44,7 +44,7 @@ for this one the exam supplies «геометр магадлал» (3), «ади
 | equally likely | **адил боломжтой** | mirrors 24 |
 | favorable (outcome) | **таатай (үр дүн)** | draft 43 |
 | complement | **гүйцээлт** (exam also: **эсрэг үзэгдэл**) | 2g, mirror 15 · exam 2 — Notes 3 |
-| impossible · certain event | **боломжгүй үзэгдэл · баталгаатай үзэгдэл** | **descriptive, ungrounded** — Notes 6 |
+| impossible · certain event | **боломжгүй үзэгдэл · гарцаагүй үзэгдэл** | Khas's ruling, 27 Oct 2026 (r6-certain: the live grade 7 word; was «баталгаатай») · **descriptive, ungrounded** — Notes 6 |
 | mutually exclusive · not mutually exclusive | **нийцгүй · нийцтэй** | **ministry 10.15а (core)** — Notes 2 |
 | the addition rule | **магадлалын нийлбэрийн дүрэм** | **ministry 10.15а (core)** |
 | independent · dependent (named in passing) | **хараат бус · хамаарах** | Khas's ruling, 5 Oct 2026 (6y) — ministry 10.15б, 11.13б write «үл хамаарах»; Notes 2 is the pre-ruling record |
@@ -98,7 +98,7 @@ $7$. Боломж: $\frac{7}{28} = \frac{1}{4}$. Энэ сэдвийн мага�
 
 **concept**
 
-1. **Магадлал** $0$, боломжгүй, -ээс $1$, баталгаатай, хүртэлх хуваарь дээр
+1. **Магадлал** $0$, боломжгүй, -ээс $1$, гарцаагүй, хүртэлх хуваарь дээр
    оршино. АДИЛ БОЛОМЖТОЙ үр дүнтэй боломжит үр дүнгийн оронд (sample space):
    $$P(\text{үзэгдэл}) = \frac{\text{таатай үр дүн}}{\text{нийт үр дүн}}$$
 
@@ -121,7 +121,7 @@ $7$. Боломж: $\frac{7}{28} = \frac{1}{4}$. Энэ сэдвийн мага�
 **facts**
 
 - **title** Тодорхойлолт · **latex** `P(E) = \frac{|E|}{|S|}` · **explanation** Таатай үр дүнг бүх үр дүнд хуваана, хоёулаа нэг $S$ боломжит үр дүнгийн оронд тоологдсон.
-- **title** Хуваарь · **latex** `0 \le P(E) \le 1` · **explanation** Боломжгүйгээс баталгаатай хүртэл, энэ хүрээнээс гарвал тоолол эвдэрсэн.
+- **title** Хуваарь · **latex** `0 \le P(E) \le 1` · **explanation** Боломжгүйгээс гарцаагүй хүртэл, энэ хүрээнээс гарвал тоолол эвдэрсэн.
 
 **workedExamples**
 
@@ -210,7 +210,7 @@ $7$. Боломж: $\frac{7}{28} = \frac{1}{4}$. Энэ сэдвийн мага�
    цэвэр тоолол. $P(\text{хоёр шоонд дор хаяж нэг зургаа}) = 1 - \frac{25}{36} = \frac{11}{36}$.
 
 4. Онцгой клубууд: **боломжгүй үзэгдэл** (impossible event), хоосон олонлог, $P = 0$, мөн
-   **баталгаатай үзэгдэл** (certain event), бүх орон, $P = 1$. Бусад бүх үзэгдэл хоорондоо
+   **гарцаагүй үзэгдэл** (certain event), бүх орон, $P = 1$. Бусад бүх үзэгдэл хоорондоо
    оршино, мөн үзэгдэл гүйцээлтийн хамт үргэлж бүтэн $1$-ийг бүрдүүлнэ.
 
 **keyIdea**

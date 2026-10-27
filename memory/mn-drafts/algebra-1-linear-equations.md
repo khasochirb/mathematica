@@ -19,7 +19,7 @@ where an interval appears (none does in this topic).
 | linear equation | **шугаман тэгшитгэл** | ministry 4 · corpus 21 |
 | solution (root) | **шийд** | ministry 25 · corpus 450 |
 | term | **гишүүн** | ministry 25 · corpus 226 |
-| like terms | **ижил гишүүд** | corpus 28 («төстэй гишүүд» also appears, 9 — «ижил» wins on count) |
+| like terms | **төсөөтэй гишүүд** (төсөөтэй гишүүн) | Khas's ruling, 27 Oct 2026 (r6-like, his word); was «ижил гишүүд» / «ижил төстэй гишүүд» · corpus 28 («төстэй гишүүд» also appears, 9 — «ижил» wins on count) |
 | variable term | **хувьсагчтай гишүүн** | corpus 3, the bank's own phrasing |
 | variable | **хувьсагч** | ministry 12 · corpus 105 |
 | coefficient | **коэффициент** | ministry 7 · corpus 143 |
@@ -222,7 +222,7 @@ English shown once at first use (5a, Khas's ruling 5 Oct 2026): 10 terms.
 | 6 | tapQuestion | **eyebrow** Дарааллыг шалга · **title** Бүтэн ажиллуулалт<br>**prompt** $4(x + 2) = 2x + 18$-ийг бодоорой.<br>**options** `$x = 5$` · `$x = 8$` · `$x = 2$` · `$x = 13$` — **correctIndex 0**<br>**explanation** $4x + 8 = 2x + 18 \to 2x = 10 \to x = 5$. Шалгалт: $4(7) = 28 = 10 + 18$. ✓ |
 | 7 | tip | **eyebrow** Зуршил · **title** Том овоолго руу нь зөөгөөрэй<br>**body** $x$-үүдээ аль хэдийн ИЛҮҮ ОЛОН нь байгаа тал руу цуглуулаарай: $2g + 30 = 5g + 18$-д $5g$ биш $2g$-г хасвал коэффициент эерэг хэвээр үлдэнэ. Сөрөг тэмдэг цөөрч, алдах боломж ч цөөрнө. |
 | 8 | tryIt | **eyebrow** Туршиж үз · **title** Сөрөг хариу, ижил хөдөлгөөн<br>**problemId** `al22-t1` |
-| 9 | tryIt | **eyebrow** Туршиж үз · **title** Утасны багцын тэнцэх цэг<br>**problemId** `al22-t2` |
+| 9 | tryIt | **eyebrow** Туршиж үз · **title** Утасны багцын ашиг алдагдалгүй цэг<br>**problemId** `al22-t2` |
 | 10 | recap | **eyebrow** Эргэн дүгнэлт · **title** Юу үлдэх вэ<br>**points** Хоёр талдаа хувьсагчтай: хоёр талаас нь бага $x$-гишүүнийг хасаарай. · Хаалт түрүүлнэ, тиймээс гишүүд тэнцүүгийн тэмдгийг гатлахаас өмнө тал бүрээ цэгцэл. · Дараалал: хаалт нээх → нэгтгэх → $x$ цуглуулах → тоо цуглуулах → хуваах. |
 
 ---
