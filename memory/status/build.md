@@ -14,6 +14,41 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-10-27 11:20 UTC — mode: ship
+
+(This session ran content first. Khas's "continue" on 27 Oct switched it to ship; it did no further authoring after the switch.)
+
+**Did:**
+- **All 122 Mongolian drafts assembled** into generated mirrors. Each draft becomes a table at `i18n/mn-tables/<corpus>/<slug>.mn.json`, and `scripts/i18n/mn_slots.py` turns it into `data/genmath/<corpus>-mn/<slug>.json`. Tables are keyed by JSON path and carry `overrides` for any rescaled `check[]` and currency.
+- **Registration is generated:** `scripts/i18n/mn_register.py` writes a `MN-MIRRORS` block in each course module. The named courses and the ЭШ course now pass `lang` through to localized unit and lesson getters.
+- **Widgets localized:**
+  - money in ₮ through `lib/money.ts`
+  - DealCompare
+  - StepProof (Given/Prove)
+  - ConditionalFlip
+  - CongruentTriangles (the buttons show ТТТ/ТӨТ/ӨТӨ/ӨӨТ/ГК; the config keys stay SSS etc.)
+  - four graph widgets
+- **Gates:**
+  - mn_skeleton: 122 sound
+  - verify-genmath: clean
+  - tsc: passes
+  - vitest: 925/925
+  - next build: passes
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` at `c27e30a`, with a Vercel preview building from it. **Nothing deployed.**
+
+**Blocked on:** Khas, who approves the preview per grade or course. 6bj (the ЭШ solid-geometry crash) still waits for his word.
+
+**Others should know:**
+- **Mongolian written at assembly that Khas has not reviewed:**
+  - solid-geometry `lines-and-planes-in-space`: 21 practice and test strings. The draft's practice items no longer matched the English, so the agent wrote them.
+  - solid-geometry: the recap bullets of cylinders-and-cones, spheres and lines-and-planes, because the drafts gave titles only.
+  - a few widget axis and figure labels in other topics.
+- **One answer check changed:** in prob-stats permutations, practice/3 and testYourself/1 had their words replaced, so their checks now assert the Mongolian answers.
+- **English bugs still open:** pile 0t lists them. Assembly added two more: solid-geometry cross-sections lesson 4 step 2 has two correct options, and `sg62-t2` asks for the "surface" but the answer is the lateral surface.
+
+---
+
 ## 2026-10-27 (later) — mode: content
 
 **Did:**
