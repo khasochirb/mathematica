@@ -58,7 +58,7 @@ export default function AnswerPrompt({
   return mode === "numeric" ? (
     <NumericPrompt variant={variant} outcome={outcome} onCommit={onCommit} autoFocus={autoFocus} />
   ) : (
-    <ChoicePrompt variant={variant} outcome={outcome} onCommit={onCommit} salt={salt} />
+    <ChoicePrompt variant={variant} outcome={outcome} onCommit={onCommit} salt={salt} mn={lang === "mn"} />
   );
 }
 
@@ -78,6 +78,7 @@ function NumericPrompt({
   autoFocus?: boolean;
 }) {
   const { lang } = useLang();
+  const mn = lang === "mn";
   const [text, setText] = useState("");
   const [unreadable, setUnreadable] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -151,22 +152,31 @@ function NumericPrompt({
             className="btn btn-primary inline-flex items-center gap-1.5 text-[13px]"
             style={{ opacity: text.trim() === "" ? 0.45 : 1 }}
           >
-            Check
+            {mn ? "Шалгах" : "Check"}
             <CornerDownLeft className="h-3.5 w-3.5" />
           </button>
         ) : (
-          <Verdict outcome={outcome} />
+          <Verdict outcome={outcome} mn={mn} />
         )}
 
         {!answered && (
-          <GiveUpButton onGiveUp={() => onCommit({ correct: false, revealed: true })} />
+          <GiveUpButton mn={mn} onGiveUp={() => onCommit({ correct: false, revealed: true })} />
         )}
       </div>
 
       {unreadable && !answered && (
         <p className="mt-1.5 text-[11.5px]" style={{ color: "#c05a49" }}>
+          {mn ? (
+            <>
+              Энэ тоо шиг уншигдахгүй байна — 12, -2.5 эсвэл 3/4 гэх мэтээр бич.
+              Энэ оролдлогод тооцогдоогүй.
+            </>
+          ) : (
+            <>
           That doesn&apos;t read as a number — try something like 12, -2.5 or 3/4.
           This didn&apos;t count as an attempt.
+            </>
+          )}
         </p>
       )}
     </div>
@@ -182,11 +192,13 @@ function ChoicePrompt({
   outcome,
   onCommit,
   salt,
+  mn,
 }: {
   variant: { id: string; options: string[]; correctIndex: number };
   outcome: AnswerOutcome | null;
   onCommit: (outcome: AnswerOutcome) => void;
   salt: string;
+  mn: boolean;
 }) {
   const [picked, setPicked] = useState<number | null>(null);
   const answered = outcome !== null;
@@ -268,12 +280,12 @@ function ChoicePrompt({
               className="btn btn-primary text-[13px]"
               style={{ opacity: picked === null ? 0.45 : 1 }}
             >
-              Check
+              {mn ? "Шалгах" : "Check"}
             </button>
-            <GiveUpButton onGiveUp={() => onCommit({ correct: false, revealed: true })} />
+            <GiveUpButton mn={mn} onGiveUp={() => onCommit({ correct: false, revealed: true })} />
           </>
         ) : (
-          <Verdict outcome={outcome} />
+          <Verdict outcome={outcome} mn={mn} />
         )}
       </div>
     </div>
@@ -284,14 +296,14 @@ function ChoicePrompt({
 // Shared bits
 // ---------------------------------------------------------------------------
 
-function Verdict({ outcome }: { outcome: AnswerOutcome }) {
+function Verdict({ outcome, mn }: { outcome: AnswerOutcome; mn: boolean }) {
   if (outcome.revealed) {
     return (
       <span
         className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12.5px]"
         style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}
       >
-        <Eye className="h-3.5 w-3.5" /> Revealed — counted as a miss
+        <Eye className="h-3.5 w-3.5" /> {mn ? "Харсан — алдаанд тооцогдсон" : "Revealed — counted as a miss"}
       </span>
     );
   }
@@ -300,14 +312,14 @@ function Verdict({ outcome }: { outcome: AnswerOutcome }) {
       className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12.5px] font-medium"
       style={{ background: "rgba(63,178,127,0.12)", border: "1px solid rgba(63,178,127,0.45)", color: "#2f9868" }}
     >
-      <Check className="h-3.5 w-3.5" /> Correct
+      <Check className="h-3.5 w-3.5" /> {mn ? "Зөв" : "Correct"}
     </span>
   ) : (
     <span
       className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12.5px] font-medium"
       style={{ background: "rgba(215,80,63,0.08)", border: "1px solid rgba(215,80,63,0.4)", color: "#c05a49" }}
     >
-      <X className="h-3.5 w-3.5" /> Not quite
+      <X className="h-3.5 w-3.5" /> {mn ? "Яг биш" : "Not quite"}
     </span>
   );
 }
@@ -319,7 +331,7 @@ function Verdict({ outcome }: { outcome: AnswerOutcome }) {
 // price only deters if the eye lands on Check first. Naming the cost in the
 // label is the point — it is the difference between this and the "Show
 // solution" button it replaces.
-function GiveUpButton({ onGiveUp }: { onGiveUp: () => void }) {
+function GiveUpButton({ onGiveUp, mn }: { onGiveUp: () => void; mn: boolean }) {
   return (
     <button
       type="button"
@@ -327,7 +339,7 @@ function GiveUpButton({ onGiveUp }: { onGiveUp: () => void }) {
       className="ml-auto text-[11.5px]"
       style={{ color: "var(--fg-3)", textDecoration: "underline", textUnderlineOffset: 3 }}
     >
-      Stuck? Show me — counts as a miss
+      {mn ? "Гацсан уу? Харуул — алдаанд тооцогдоно" : "Stuck? Show me — counts as a miss"}
     </button>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Layers, Lock, PencilLine, Repeat2 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { useLang } from "@/lib/lang-context";
 import { loadBankProgress } from "@/lib/problem-bank";
 import {
   courseLadderManifest,
@@ -17,6 +18,8 @@ import {
 // problem, so it must not ship 9 MB of them (see lib/bank-data.ts).
 export default function ProblemBankHub() {
   const { user } = useAuth();
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const topics = courseLadderManifest();
   const [mastery, setMastery] = useState<Record<string, { mastered: number; total: number }>>({});
 
@@ -38,32 +41,42 @@ export default function ProblemBankHub() {
           <Link href="/math" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Courses · Practice</div>
+          <div className="eyebrow">{mn ? "Курсууд · Дасгал" : "Courses · Practice"}</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 5vw, 54px)", letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--fg)" }}>
-          Problem Bank
+          {mn ? "Бодлогын сан" : "Problem Bank"}
         </h1>
         <p className="mt-4 mb-2" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "58ch" }}>
+          {mn ? (
+            <>
+              {totalProblems} бодлогыг яг курсуудын бүтцээр эмхэлсэн: хичээлээ
+              сонгоод, саяхан дуусгасан бүлгээ сонгож, бодлогуудыг нь дасгалын
+              жагсаалтаар эсвэл дасгалын багцаар ажилла — багцад алдсан бодлогын
+              оронд ижил төстэй бодлого гарч, чи эзэмштэл давтагдана. Энд хариугаа
+              оруулахаас өмнө ямар ч бодлогын хариу харагдахгүй.
+            </>
+          ) : (<>
           {totalProblems} problems organized exactly like the courses: pick a
           subject, pick the unit you just finished, and work its collection —
           as an exercise set or as a practice run where missing a problem
           brings back a similar one until you&apos;ve got it. Nothing here
           reveals its answer until you&apos;ve entered one.
+          </>)}
         </p>
         <div className="mb-8 flex flex-wrap gap-3 text-[13px]" style={{ color: "var(--fg-2)" }}>
-          <span className="inline-flex items-center gap-1.5"><Layers className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Level 1 basics · Level 2 standard · Level 3 exam</span>
-          <span className="inline-flex items-center gap-1.5"><PencilLine className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Answer first, solution after</span>
-          <span className="inline-flex items-center gap-1.5"><Repeat2 className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> Miss → practice a similar one</span>
+          <span className="inline-flex items-center gap-1.5"><Layers className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> {mn ? "Түвшин 1 суурь · Түвшин 2 стандарт · Түвшин 3 шалгалт" : "Level 1 basics · Level 2 standard · Level 3 exam"}</span>
+          <span className="inline-flex items-center gap-1.5"><PencilLine className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> {mn ? "Эхлээд хариу, дараа нь бодолт" : "Answer first, solution after"}</span>
+          <span className="inline-flex items-center gap-1.5"><Repeat2 className="h-3.5 w-3.5" style={{ color: "var(--accent)" }} /> {mn ? "Алдвал → ижил төстэйг дасгалжуул" : "Miss → practice a similar one"}</span>
         </div>
 
         <div className="space-y-3">
           {topics.map((t) => (
-            <TopicCard key={t.slug} topic={t} mastery={mastery[t.slug]} />
+            <TopicCard key={t.slug} topic={t} mastery={mastery[t.slug]} mn={mn} />
           ))}
         </div>
 
-        <BankAccessNote />
+        <BankAccessNote mn={mn} />
       </div>
     </div>
   );
@@ -71,7 +84,7 @@ export default function ProblemBankHub() {
 
 // The bank is Premium material. Say so here, at the top of the funnel, so
 // nobody works down to a unit before meeting the wall.
-function BankAccessNote() {
+function BankAccessNote({ mn }: { mn: boolean }) {
   const { isSubscribed } = useAuth();
   if (isSubscribed) return null;
   return (
@@ -84,15 +97,22 @@ function BankAccessNote() {
       }}
     >
       <Lock className="mt-[3px] h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--warn, #d89620)" }} />
+      {mn ? (
+        <span>
+          Бодлогын сан бол Премиум боломж. Хичээл бүрийн <b>эхний бүлэг үнэгүй</b>{" "}
+          тул туршиж үзэж болно — Премиум үлдсэнийг нь нээнэ.
+        </span>
+      ) : (
       <span>
         The Problem Bank is a Premium feature. Every subject opens its{" "}
         <b>first unit free</b> so you can try it — Premium unlocks the rest.
       </span>
+      )}
     </div>
   );
 }
 
-function TopicCard({ topic, mastery }: { topic: BankTopicMeta; mastery?: { mastered: number; total: number } }) {
+function TopicCard({ topic, mastery, mn }: { topic: BankTopicMeta; mastery?: { mastered: number; total: number }; mn: boolean }) {
   const byLevel = [1, 2, 3].map((lv) => topic.forms.filter((f) => f.level === lv).length);
   const pct = mastery && mastery.total > 0 ? Math.round((mastery.mastered / mastery.total) * 100) : 0;
   return (
@@ -112,15 +132,15 @@ function TopicCard({ topic, mastery }: { topic: BankTopicMeta; mastery?: { maste
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="serif" style={{ fontWeight: 400, fontSize: 19, letterSpacing: "-0.01em", color: "var(--fg)" }}>
-            {topic.title}
+            {mn ? topic.titleMn : topic.title}
           </span>
-          <span className="mono text-[11px]" style={{ color: "var(--fg-3)" }}>{topic.titleMn}</span>
+          <span className="mono text-[11px]" style={{ color: "var(--fg-3)" }}>{mn ? topic.title : topic.titleMn}</span>
         </div>
         <p className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>{topic.blurb}</p>
         <div className="mt-2 flex items-center gap-2 flex-wrap text-[11px] mono" style={{ color: "var(--fg-3)" }}>
-          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{topic.unitCount} units</span>
-          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{topic.problemCount} problems</span>
-          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>L1 ×{byLevel[0]} · L2 ×{byLevel[1]} · L3 ×{byLevel[2]}</span>
+          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{mn ? `${topic.unitCount} бүлэг` : `${topic.unitCount} units`}</span>
+          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{mn ? `${topic.problemCount} бодлого` : `${topic.problemCount} problems`}</span>
+          <span className="rounded-full px-2 py-0.5" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>{mn ? "Т" : "L"}1 ×{byLevel[0]} · {mn ? "Т" : "L"}2 ×{byLevel[1]} · {mn ? "Т" : "L"}3 ×{byLevel[2]}</span>
         </div>
         {mastery && mastery.mastered > 0 && (
           <div className="mt-2.5 flex items-center gap-2">
@@ -128,7 +148,7 @@ function TopicCard({ topic, mastery }: { topic: BankTopicMeta; mastery?: { maste
               <div className="h-full rounded-full" style={{ width: `${pct}%`, background: "#3fb27f" }} />
             </div>
             <span className="mono text-[11px] tabular" style={{ color: "var(--fg-3)" }}>
-              {mastery.mastered}/{mastery.total} forms mastered
+              {mn ? `Эзэмшсэн хэлбэр: ${mastery.mastered}/${mastery.total}` : `${mastery.mastered}/${mastery.total} forms mastered`}
             </span>
           </div>
         )}
