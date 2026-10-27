@@ -3645,6 +3645,8 @@ them in every draft, so the live mirror needs an `mn_terms.py` pass (ship mode).
 
 ### 6bj. LIVE: every solid-geometry recap step should crash the lesson player
 
+**FIXED 27 Oct 2026 on Khas's word** (branch, not yet deployed): `bullets` renamed to `points` in the six English files, mirrors regenerated, all 48 recaps (EN + MN) render; `lib/genmath-recap.test.ts` now fails on any recap without `points`.
+
 **Found 6 Oct 2026 by the drafting agent for draft 96; verified in code, not
 in a browser.** `components/genmath/interactive/LessonPlayer.tsx:1405` renders
 a recap with `step.points.map(...)`, and the type in `lib/genmath-interactive.ts:1300`
