@@ -104,7 +104,8 @@ def cyr_in_math(s):
 
 def english_left(s):
     words = re.findall(r"[A-Za-z][A-Za-z'’-]{2,}", strip_math(s))
-    return [w for w in words if w not in LATIN_OK and w.lower() not in LATIN_OK]
+    roman = re.compile(r"^(?:I{1,3}|IV|VI{0,3}|IX|XI{0,3})$")  # quadrants «III мөч», centuries
+    return [w for w in words if w not in LATIN_OK and w.lower() not in LATIN_OK and not roman.match(w)]
 
 
 def load_src(corpus):

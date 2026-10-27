@@ -3,6 +3,8 @@
 // lib/bank-data.ts alone (same boundary, same reason: lib/bank-split.test.ts).
 
 import type { BankTopic } from "@/lib/problem-bank";
+import mn6 from "@/data/problembank-mn/6.json";
 
 export const BANK_MN: Record<string, BankTopic> = {
+  "6": mn6 as unknown as BankTopic,
 };

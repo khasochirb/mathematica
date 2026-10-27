@@ -390,9 +390,12 @@ sin x = ½ тэгшитгэлийг бодох нь «эргэх дугуй хэ
 
 1. **Verified.** Every number this draft states was re-computed by script
    (`scratchpad/agents/precalculus-trigonometric-graphs-and-equations/verify.py`,
-   sympy): ASSERTIONS_PLACEHOLDER assertions over all 30 items, every tapQuestion
-   (distractors included), the coordinateGrid labels and the step prose. All
-   pass. No worked example or tryIt changed its numbers, so no `check[]` moves.
+   sympy): 148 assertions over all 30 items, every tapQuestion, the
+   coordinateGrid labels and the step prose. All pass. Every solution list on
+   $[0, 2\pi)$ is checked against the solver, and `pc7-ty-6` also by exact
+   substitution plus a numeric root scan, because sympy's `solveset` drops its
+   root at $\pi$. No worked example or tryIt changed its numbers, so no
+   `check[]` moves.
 
 2. **The teacher brief's locked terms are wrong for this topic in three
    places.** Its table was generated per English key, and three keys land on
