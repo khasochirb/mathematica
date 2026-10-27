@@ -68,8 +68,18 @@ def suffix(n, case: str) -> str:
     return WORD[last_word(n)][case]
 
 
-def with_case(n, case: str, math: bool = True) -> str:
-    """The number with its hyphenated ending: with_case(12, 'gen') -> '$12$-ын'."""
+# An angle is read "<number> градус", so its ending follows градус, never the number.
+DEGREE = {"gen": "ын", "acc": "ыг", "dat": "т", "abl": "аас", "com": "тай"}
+
+
+def with_case(n, case: str, math: bool = True, degree: bool = False) -> str:
+    """The number with its hyphenated ending: with_case(12, 'gen') -> '$12$-ын'.
+
+    degree=True for an angle: with_case(25, 'gen', degree=True) -> '$25°$-ын'.
+    """
+    if degree:
+        body = f"${n}°$" if math else f"{n}°"
+        return f"{body}-{DEGREE[case]}"
     body = f"${n}$" if math else str(n)
     return f"{body}-{suffix(n, case)}"
 

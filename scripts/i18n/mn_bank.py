@@ -5,6 +5,7 @@
     python3 scripts/i18n/mn_bank.py extract  <corpus> <unit>   # English of one unit, for the writer
     python3 scripts/i18n/mn_bank.py check    <corpus> <unit>   # gate one unit's table, write nothing
     python3 scripts/i18n/mn_bank.py assemble <corpus>          # every finished unit -> the mirror
+    python3 scripts/i18n/mn_bank.py show     <corpus> <unit> [n] # English beside Mongolian, n per form
     python3 scripts/i18n/mn_bank.py register                   # regenerate lib/bank-data-mn.ts
     python3 scripts/i18n/mn_bank.py status                     # coverage per subject
 
@@ -205,6 +206,8 @@ def check_unit(corpus, unit, t=None, quiet=False):
                     errs.append(f"{where}: Cyrillic inside maths: {s[:70]!r}")
                 if "*" in s.replace("**", ""):
                     warns.append(f"{where}: single asterisk")
+                if "—" in s:
+                    warns.append(f"{where}: em-dash (rephrase; no em-dash asides in Mongolian)")
                 left = english_left(s)
                 if left:
                     warns.append(f"{where}: English left {left[:4]}")
@@ -313,6 +316,22 @@ def cmd_register():
         print(f"registered {len(names)} mirror(s) in lib/bank-data-mn.ts")
 
 
+def cmd_show(corpus, unit, n=3):
+    """English beside Mongolian for the first n variants of every form (brief step 6)."""
+    t = load_src(corpus)
+    tab = json.load(open(table_path(corpus, unit), encoding="utf-8"))
+    for f in unit_forms(t, unit):
+        mf = tab["forms"].get(f["id"], {})
+        print(f"\n=== {f['id']}  {f['title']}  ->  {mf.get('title')}\n    skill: {f['skill']}  ->  {mf.get('skill')}")
+        for v in f["variants"][:n]:
+            m = mf.get("variants", {}).get(v["id"], {})
+            print(f"  [{v['id']}]")
+            print(f"    EN {v['statement']}\n    MN {m.get('statement')}")
+            if any(strip_math(o).strip() for o in v["options"]):
+                print(f"    EN opts {v['options']}\n    MN opts {m.get('options')}")
+            print(f"    EN expl {v['explanation']}\n    MN expl {m.get('explanation')}")
+
+
 def cmd_status():
     for fn in sorted(os.listdir(SRC)):
         corpus = fn[:-5]
@@ -332,6 +351,8 @@ def main():
         return 1 if errs else 0
     if a[:1] == ["assemble"] and len(a) == 2:
         return cmd_assemble(a[1])
+    if a[:1] == ["show"] and len(a) in (3, 4):
+        return cmd_show(a[1], a[2], int(a[3]) if len(a) == 4 else 3) or 0
     if a[:1] == ["register"]:
         return cmd_register() or 0
     if a[:1] == ["status"]:
