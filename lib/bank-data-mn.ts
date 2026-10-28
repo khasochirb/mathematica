@@ -15,6 +15,7 @@ import mnAlgebra2 from "@/data/problembank-mn/algebra-2.json";
 import mnCalculus from "@/data/problembank-mn/calculus.json";
 import mnGeometry from "@/data/problembank-mn/geometry.json";
 import mnProbStats from "@/data/problembank-mn/prob-stats.json";
+import mnSolidGeometry from "@/data/problembank-mn/solid-geometry.json";
 
 export const BANK_MN: Record<string, BankTopic> = {
   "10": mn10 as unknown as BankTopic,
@@ -29,4 +30,5 @@ export const BANK_MN: Record<string, BankTopic> = {
   "calculus": mnCalculus as unknown as BankTopic,
   "geometry": mnGeometry as unknown as BankTopic,
   "prob-stats": mnProbStats as unknown as BankTopic,
+  "solid-geometry": mnSolidGeometry as unknown as BankTopic,
 };
