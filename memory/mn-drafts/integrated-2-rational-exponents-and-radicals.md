@@ -270,7 +270,7 @@ $3\sqrt{2} + 5\sqrt{2} = 8\sqrt{2}$ байх шалтгаан нь $3x + 5x = 8x
 
 1. **Ижил язгуурт гишүүд нийлнэ, ижил бус нь нийлэхгүй.** Хэрэв хоёр язгуурт гишүүний язгуурын доорх тоо ба индекс давхцаж байвал тэднийг ИЖИЛ язгуурт гишүүд гэнэ. $3\sqrt{2}$ ба $5\sqrt{2}$ ижил тул $3x + 5x = 8x$-тэй яг адил $8\sqrt{2}$ болно. $3\sqrt{2}$ ба $5\sqrt{3}$ ижил биш бөгөөд ямар ч хувиргалт тэднийг нэгтгэхгүй.
 
-2. **ЭХЛЭЭД хялбарчил: гишүүд ихэвчлэн ижил болдог.** $\sqrt{8} + \sqrt{18}$ хялбарчлах хүртлээ найдваргүй харагдана: $2\sqrt{2} + 3\sqrt{2} = 5\sqrt{2}$. Хялбарчлах алхмыг алгасах нь нийлж болох хоёр гишүүнийг нийлэхгүй гэж зарлах хамгийн түгээмэл шалтгаан юм.
+2. **ЭХЛЭЭД хялбарчлаарай: гишүүд ихэвчлэн ижил болдог.** $\sqrt{8} + \sqrt{18}$ хялбарчлах хүртлээ найдваргүй харагдана: $2\sqrt{2} + 3\sqrt{2} = 5\sqrt{2}$. Хялбарчлах алхмыг алгасах нь нийлж болох хоёр гишүүнийг нийлэхгүй гэж зарлах хамгийн түгээмэл шалтгаан юм.
 
 3. **Үржүүлэхдээ үржвэрийн дүрмийг шууд чиглэлд нь хэрэглэнэ.** $\sqrt{6} \cdot \sqrt{10} = \sqrt{60} = 2\sqrt{15}$: язгуурын доорх тоонуудыг үржүүлээд, дараа нь хялбарчилна. Коэффициентүүд тусдаа үржигдэнэ: $2\sqrt{3} \cdot 5\sqrt{6} = 10\sqrt{18} = 30\sqrt{2}$.
 
@@ -282,7 +282,7 @@ $3\sqrt{2} + 5\sqrt{2} = 8\sqrt{2}$ байх шалтгаан нь $3x + 5x = 8x
 
 **keyIdea**
 
-Ижил язгуурт гишүүд төсөөтэй гишүүд шиг нэмэгдэнэ: илүү олон нь таарахын тулд эхлээд хялбарчил. Язгуурын доорх тоонуудыг шууд үржүүл. Хуваарийг язгуураар нь, хоёр гишүүнтэй бол хосмогоор нь үржүүлж чөлөөл.
+Ижил язгуурт гишүүд төсөөтэй гишүүд шиг нэмэгдэнэ: илүү олон нь таарахын тулд эхлээд хялбарчлаарай. Язгуурын доорх тоонуудыг шууд үржүүлээрэй. Хуваарийг язгуураар нь, хоёр гишүүнтэй бол хосмогоор нь үржүүлж чөлөөлөөрэй.
 
 **facts**
 
@@ -491,6 +491,6 @@ $3\sqrt{2} + 5\sqrt{2} = 8\sqrt{2}$ байх шалтгаан нь $3x + 5x = 8x
 4. **«ижил язгуурт гишүүд» (like radicals) is kept from the live `algebra-2-mn` mirror, although round 6 made *like terms* «төсөөтэй гишүүд».** The two now sit side by side (lesson 3 keyIdea: «Ижил язгуурт гишүүд төсөөтэй гишүүд шиг нэмэгдэнэ»). If you want «төсөөтэй язгуурууд» instead, it is one decision for this draft, `algebra-2`, `10-radicals`, `11-complex-numbers` and `trigonometry-special-triangles`.
 5. **«таамаглал» is kept for *conjecture* only.** Where the English says *suppose / assumption* inside a proof, the Mongolian says «гэж үзье» and «бидний үзсэн зүйл», so the conjecture word is not overloaded in the lesson that teaches both.
 6. **Part labels (a)–(e) are written (а)–(д)**, Mongolian order, in `we4` and `ty-6`. Build: the English keeps its Latin labels; nothing is graded on them.
-7. **Bare-imperative advisories are all in beats, recaps, titles or rule chants** («Хамгийн том гүйцэд квадратыг салгаж гарга», «Эсрэгийг нь үз», «эхлээд хялбарчил»). Student-facing prose is polite throughout.
+7. **Five bare-imperative advisories remain, all in beats, recaps, titles or rule chants** («Хамгийн том гүйцэд квадратыг салгаж гарга», «Эсрэгийг нь үз», «эхлээд хялбарчил»). Student-facing prose is polite throughout.
 8. **No English errors found in the maths.** One source observation for Build, not a translation issue: in `data/genmath/integrated-2/`, both `geometric-measurement-and-modelling` and `probability` use the id prefix `im2-u8-`. The ids differ after the prefix, but a unit number is shared by two units.
 9. **The conjectureTest config carries prose.** Its `conjecture` sentence and the four item `note`s are given in the lesson 4 table, step 8; the labels are formulas and stay unchanged, `holds` unchanged.
