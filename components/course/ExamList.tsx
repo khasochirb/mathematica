@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Clock, Layers, FileText, Check, Lock } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { useLang } from "@/lib/lang-context";
 import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 import { isExamFree } from "@/lib/course-access";
 import { loadExamResult, type CourseExam, type ExamResult } from "@/lib/course-exam";
@@ -13,8 +14,19 @@ import { loadExamResult, type CourseExam, type ExamResult } from "@/lib/course-e
 // the same place the placement results do — a score written and never read
 // back is the feature only half-built.
 
-export default function ExamList({ course, exams }: { course: string; exams: CourseExam[] }) {
+export default function ExamList({
+  course,
+  exams,
+  labelsMn = {},
+}: {
+  course: string;
+  exams: CourseExam[];
+  /** examId -> Mongolian paper label, for the papers that have a Mongolian mirror. */
+  labelsMn?: Record<string, string>;
+}) {
   const { user, isSubscribed } = useAuth();
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const { open: openUpgrade } = useUpgradeModal();
   const [results, setResults] = useState<Record<string, ExamResult | null>>({});
 
@@ -48,17 +60,17 @@ export default function ExamList({ course, exams }: { course: string; exams: Cou
                   className="serif block"
                   style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}
                 >
-                  {e.meta.label}
+                  {(mn && labelsMn[e.meta.examId]) || e.meta.label}
                 </span>
                 <span className="flex gap-4 mt-2 text-[12px] flex-wrap" style={{ color: "var(--fg-2)" }}>
                   <span className="flex items-center gap-1.5">
-                    <FileText className="w-3.5 h-3.5" /> {e.meta.totalQuestions} questions
+                    <FileText className="w-3.5 h-3.5" /> {e.meta.totalQuestions} {mn ? "бодлого" : "questions"}
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5" /> {e.meta.unitsCovered} units
+                    <Layers className="w-3.5 h-3.5" /> {e.meta.unitsCovered} {mn ? "бүлэг" : "units"}
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5" /> ~{e.meta.minutes} min
+                    <Clock className="w-3.5 h-3.5" /> ~{e.meta.minutes} {mn ? "мин" : "min"}
                   </span>
                 </span>
               </span>
@@ -71,7 +83,7 @@ export default function ExamList({ course, exams }: { course: string; exams: Cou
                     {pct}%
                   </span>
                   <span className="flex items-center gap-1 mono text-[9px] uppercase mt-1" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                    <Check className="w-2.5 h-2.5" /> Sat
+                    <Check className="w-2.5 h-2.5" /> {mn ? "Өгсөн" : "Sat"}
                   </span>
                 </span>
               ) : (
@@ -79,7 +91,7 @@ export default function ExamList({ course, exams }: { course: string; exams: Cou
                   className="mono text-[10px] uppercase mt-1 flex-shrink-0"
                   style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
                 >
-                  Start
+                  {mn ? "Эхлэх" : "Start"}
                 </span>
               )}
           </>

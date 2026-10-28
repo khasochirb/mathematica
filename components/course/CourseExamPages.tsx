@@ -5,6 +5,8 @@ import ExamRunner from "@/components/course/ExamRunner";
 import ExamList from "@/components/course/ExamList";
 import { getCourseExam, getCourseExams } from "@/lib/course-exam";
 import ContentGate from "@/components/genmath/ContentGate";
+import { T } from "@/components/T";
+import { EXAMS_MN } from "@/lib/course-exam-mn";
 import { isExamFree } from "@/lib/course-access";
 
 // Server components for the two exam routes. The runner itself is a client
@@ -19,6 +21,14 @@ export function CourseExamListPage({ course }: { course: string }) {
   const exams = getCourseExams(course);
   if (exams.length === 0) notFound();
   const title = exams[0].meta.courseTitle;
+  // Mongolian meta exists only for papers with a full Mongolian mirror
+  // (scripts/i18n/mn_exams.py); the rest stay English in both languages.
+  const first = EXAMS_MN[exams[0].meta.examId];
+  const labelsMn: Record<string, string> = {};
+  for (const e of exams) {
+    const m = EXAMS_MN[e.meta.examId];
+    if (m) labelsMn[e.meta.examId] = m.meta.label;
+  }
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -31,20 +41,27 @@ export function CourseExamListPage({ course }: { course: string }) {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{title}</div>
+          <div className="eyebrow">{first ? <T en={title} mn={first.meta.courseTitle} /> : title}</div>
         </div>
 
         <h1
           className="serif"
           style={{ fontWeight: 400, fontSize: "clamp(30px,5vw,50px)", letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--fg)" }}
         >
-          Practice Exams
+          <T en="Practice Exams" mn="Жишиг шалгалт" />
         </h1>
         <p className="mt-4 mb-8" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
-          {exams[0].meta.intro} The three papers share no questions, so you can sit all of them.
+          {first ? (
+            <T
+              en={`${exams[0].meta.intro} The three papers share no questions, so you can sit all of them.`}
+              mn={`${first.meta.intro} Гурван хувилбарт давхардсан бодлого байхгүй тул бүгдийг нь өгч болно.`}
+            />
+          ) : (
+            `${exams[0].meta.intro} The three papers share no questions, so you can sit all of them.`
+          )}
         </p>
 
-        <ExamList course={course} exams={exams} />
+        <ExamList course={course} exams={exams} labelsMn={labelsMn} />
       </div>
     </div>
   );
@@ -62,7 +79,7 @@ export function CourseExamPage({ examId }: { examId: string }) {
       backLabel="Back to exams"
     >
       <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
-        <ExamRunner exam={exam} />
+        <ExamRunner exam={exam} examMn={EXAMS_MN[examId] ?? null} />
       </div>
     </ContentGate>
   );
