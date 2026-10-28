@@ -25,6 +25,7 @@ import mnIntegrated2QuadraticFunctions from "@/data/genmath/integrated-2-mn/quad
 import mnIntegrated2RationalExponentsAndRadicals from "@/data/genmath/integrated-2-mn/rational-exponents-and-radicals.json";
 import mnIntegrated2RightTriangleTrigonometry from "@/data/genmath/integrated-2-mn/right-triangle-trigonometry.json";
 import mnIntegrated2SimilarityAndDilations from "@/data/genmath/integrated-2-mn/similarity-and-dilations.json";
+import mnIntegrated2SolvingQuadraticEquations from "@/data/genmath/integrated-2-mn/solving-quadratic-equations.json";
 export const im2UnitsMn: Record<string, CourseUnit> = {
   "circles": mnIntegrated2Circles as unknown as CourseUnit,
   "geometric-measurement-and-modelling": mnIntegrated2GeometricMeasurementAndModelling as unknown as CourseUnit,
@@ -34,6 +35,7 @@ export const im2UnitsMn: Record<string, CourseUnit> = {
   "rational-exponents-and-radicals": mnIntegrated2RationalExponentsAndRadicals as unknown as CourseUnit,
   "right-triangle-trigonometry": mnIntegrated2RightTriangleTrigonometry as unknown as CourseUnit,
   "similarity-and-dilations": mnIntegrated2SimilarityAndDilations as unknown as CourseUnit,
+  "solving-quadratic-equations": mnIntegrated2SolvingQuadraticEquations as unknown as CourseUnit,
 };
 // MN-MIRRORS:END
 
