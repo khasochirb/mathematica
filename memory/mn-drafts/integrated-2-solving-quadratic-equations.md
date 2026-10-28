@@ -27,7 +27,7 @@ where the English's does.
 > **Numbers.** No worked or try-it number was changed: the English has no money
 > and no US-specific setting (a kicked ball, a drone, a garden), so no new
 > `check[]` line is needed. Every number and identity the Mongolian states was
-> re-verified with sympy: 241 assertions in
+> re-verified with sympy: 157 assertions in
 > `scratchpad/agents/integrated-2-solving-quadratic-equations/verify.py`, all
 > passing.
 
@@ -573,7 +573,7 @@ Wording only; every number and answer is the English's.
 
 2. **No number changed, so no new `check[]` line.** The English has no money and
    no American setting (a kicked ball in metres, a drone, a garden fence), so I
-   rewrote only the words. 241 sympy assertions re-check every number, root,
+   rewrote only the words. 157 sympy assertions re-check every number, root,
    expansion and identity the Mongolian states, including all tapQuestion
    options and the we4 projectile decimals.
 

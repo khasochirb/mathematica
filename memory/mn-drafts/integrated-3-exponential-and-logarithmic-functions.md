@@ -493,7 +493,7 @@ keeps the English numbers; only settings changed (town → сум in L4 we1, a
 population → a deer herd «бугын сүрэг» in L4 t3, same numbers). All numbers
 stated in the draft were re-verified in the scratch script
 (`agents/integrated-3-exponential-and-logarithmic-functions/verify.py`):
-**104 assertions, all pass.**
+**113 assertions, all pass.**
 
 **4. English errors found (not fixed in the English):**
 - a. **L1 concept 1** says "The equation $2^y = 32$ asks for an output; the
