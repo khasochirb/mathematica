@@ -81,7 +81,10 @@ def words_free(m):
     """A maths segment with its \\text{…} words blanked: the words are prose
     (\\text{ or }, \\text{height}) and get rewritten; everything else is maths
     and must not change."""
-    return TEXT_WORDS.sub(r"\\text{…}", m)
+    m = TEXT_WORDS.sub(r"\\text{…}", m)
+    # English ordinal suffixes inside maths ($12th$) are words too: the
+    # Mongolian writes «$12$ дахь», so compare the number alone.
+    return re.sub(r"(\d)(?:st|nd|rd|th)\b", r"\1", m)
 
 
 def maths(s):
@@ -219,6 +222,8 @@ def check_unit(corpus, unit, t=None, quiet=False):
                     warns.append(f"{where}: single asterisk")
                 if "—" in s:
                     warns.append(f"{where}: em-dash (rephrase; no em-dash asides in Mongolian)")
+                if re.search(r"\d(?:st|nd|rd|th)\b", " ".join(MATH.findall(s))):
+                    warns.append(f"{where}: English ordinal inside maths (write «$12$ дахь»)")
                 for tw in TEXT_WORDS.findall(" ".join(MATH.findall(s))):
                     if re.search(r"[A-Za-z]{2,}", tw[6:-1]) and tw not in ("\\text{IQR}",):
                         warns.append(f"{where}: English inside maths {tw}")
