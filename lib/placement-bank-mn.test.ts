@@ -23,7 +23,7 @@ import {
 //     docs/mn-voice-reference.md §7), no em-dash asides (§9).
 
 /** Banks whose table must cover every question. Add yours when it is done. */
-const COMPLETE: PlacementBankId[] = ["6", "geometry"];
+const COMPLETE: PlacementBankId[] = ["6", "geometry", "7", "8", "9", "10", "11", "12"];
 
 /** `$…$` segments, honouring `\$` (a literal dollar sign inside maths). */
 function mathSegments(s: string): string[] {
@@ -63,9 +63,14 @@ const count = (xs: string[]) => {
 };
 
 /** Problems with `mn`'s maths against `en`'s: missing segments, or extras that are not a bare letter. */
+// Words inside \text{…} are prose, not maths: «\text{even}» must become
+// «\text{тэгш}» on a Mongolian page. So maths is compared with them blanked
+// (as scripts/i18n/mn_bank.py does), and englishInMath() makes sure they moved.
+const blankText = (seg: string) => seg.replace(/\\text\{[^{}]*\}/g, "\\text{…}");
+
 function mathDrift(en: string, mn: string): string[] {
-  const e = count(mathSegments(en));
-  const m = count(mathSegments(mn));
+  const e = count(mathSegments(en).map(blankText));
+  const m = count(mathSegments(mn).map(blankText));
   const bad: string[] = [];
   for (const [seg, n] of Array.from(e)) {
     if ((m.get(seg) ?? 0) < n) bad.push(`missing $${seg}$`);
@@ -79,6 +84,12 @@ function mathDrift(en: string, mn: string): string[] {
 const digitsOutsideMath = (s: string) => (prose(s).match(/\d/g) ?? []).sort().join("");
 const isMathOnly = (s: string) => /^\$[^$]*\$$/.test(s.trim()) && mathSegments(s.trim()).length === 1;
 const CYRILLIC = /[Ѐ-ӿ]/;
+
+function englishInMath(s: string): string[] {
+  return mathSegments(s).flatMap((seg) =>
+    (seg.match(/\\text\{[^{}]*\}/g) ?? []).filter((t) => /[A-Za-z]{3,}/.test(t.slice(6, -1))),
+  );
+}
 
 function cyrillicInMath(s: string): string[] {
   return mathSegments(s)
@@ -146,12 +157,13 @@ describe("placement tables: maths and answer key held fixed", () => {
         expect(t.options.length, `${where} option count`).toBe(q.options.length);
         t.options.forEach((o, i) => {
           const eo = q.options[i];
-          if (isMathOnly(eo)) expect(o, `${where} option ${i} is maths-only`).toBe(eo);
+          if (isMathOnly(eo) && englishInMath(eo).length === 0) expect(o, `${where} option ${i} is maths-only`).toBe(eo);
           else expect(mathDrift(eo, o), `${where} option ${i} maths`).toEqual([]);
         });
 
         for (const s of [t.prompt, t.explanation, ...t.options]) {
           expect(cyrillicInMath(s), `${where} Cyrillic in maths: ${s}`).toEqual([]);
+          expect(englishInMath(s), `${where} English inside maths: ${s}`).toEqual([]);
           expect(englishWords(s), `${where} English left: ${s}`).toEqual([]);
           expect(proseStyle(s), `${where} style: ${s}`).toEqual([]);
         }
