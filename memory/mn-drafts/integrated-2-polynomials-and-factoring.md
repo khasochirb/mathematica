@@ -23,7 +23,7 @@ where the English's does.
 >
 > **Numbers.** No worked or try-it number was changed: the English has no
 > money and no US setting to replace, so no new `check[]` line is needed. Every
-> number and identity the Mongolian states was re-verified with sympy: 214
+> number and identity the Mongolian states was re-verified with sympy: 213
 > assertions in `scratchpad/agents/integrated-2-polynomials-and-factoring/verify.py`,
 > all passing.
 

@@ -74,8 +74,18 @@ def strip_math(s):
     return MATH.sub(" ", s.replace("\\$", ""))
 
 
+TEXT_WORDS = re.compile(r"\\text\{[^{}]*\}")
+
+
+def words_free(m):
+    """A maths segment with its \\text{…} words blanked: the words are prose
+    (\\text{ or }, \\text{height}) and get rewritten; everything else is maths
+    and must not change."""
+    return TEXT_WORDS.sub(r"\\text{…}", m)
+
+
 def maths(s):
-    return [m for m in MATH.findall(s.replace("\\$", "\x00")) ]
+    return [words_free(m) for m in MATH.findall(s.replace("\\$", "\x00"))]
 
 
 def digits(s):
@@ -195,7 +205,7 @@ def check_unit(corpus, unit, t=None, quiet=False):
             if missing:
                 errs.append(f"{where}: explanation drops maths {missing[:3]}")
             for i, (eo, mo) in enumerate(zip(v["options"], op)):
-                if not strip_math(eo).strip() and eo != mo:
+                if not strip_math(eo).strip() and words_free(eo) != words_free(mo):
                     errs.append(f"{where}: option {i} is maths only and must stay identical ({eo!r} -> {mo!r})")
                 elif strip_math(eo).strip():
                     if collections.Counter(maths(eo)) != collections.Counter(maths(mo)):
@@ -209,6 +219,9 @@ def check_unit(corpus, unit, t=None, quiet=False):
                     warns.append(f"{where}: single asterisk")
                 if "—" in s:
                     warns.append(f"{where}: em-dash (rephrase; no em-dash asides in Mongolian)")
+                for tw in TEXT_WORDS.findall(" ".join(MATH.findall(s))):
+                    if re.search(r"[A-Za-z]{2,}", tw[6:-1]) and tw not in ("\\text{IQR}",):
+                        warns.append(f"{where}: English inside maths {tw}")
                 left = english_left(s)
                 if left:
                     warns.append(f"{where}: English left {left[:4]}")
