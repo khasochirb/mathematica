@@ -369,7 +369,13 @@ function Quiz({
   );
 }
 
-function Results({ result, onRetake, config }: { result: StoredPlacement; onRetake: () => void; config: PlacementConfig }) {
+function Results({
+  result, onRetake, config, mn, titleOf,
+}: {
+  result: StoredPlacement; onRetake: () => void; config: PlacementConfig; mn: boolean;
+  /** Topic title for display: Mongolian when the page has it, else `fallback`. */
+  titleOf: (slug: string, fallback: string) => string;
+}) {
   const d = result.diagnosis;
   const seen = result.topicScores.filter((t) => t.seen > 0);
   const priority = result.priorityTopics
@@ -377,30 +383,40 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
     .filter((t): t is NonNullable<typeof t> => !!t);
   const strong = seen.filter((t) => t.accuracy >= 0.75).sort((a, b) => b.accuracy - a.accuracy);
   const pct = Math.round(result.overallAccuracy * 100);
-  const verdict = config.verdict?.(result) ?? null;
-  const findingTitle = (slug: string) => result.topicScores.find((t) => t.slug === slug)?.title ?? slug;
+  const verdict = (mn && config.verdictMn ? config.verdictMn(result) : config.verdict?.(result)) ?? null;
+  const findingTitle = (slug: string) => titleOf(slug, result.topicScores.find((t) => t.slug === slug)?.title ?? slug);
 
   return (
     <div>
       <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] mb-4" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
-        <Sparkles className="h-3.5 w-3.5" /> Your plan is ready
+        <Sparkles className="h-3.5 w-3.5" /> {mn ? "Таны төлөвлөгөө бэлэн боллоо" : "Your plan is ready"}
       </div>
       <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(28px, 5vw, 44px)", letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--fg)" }}>
         {d?.startTitle ? (
-          <>Start with <span style={{ color: "var(--accent)" }}>{d.startTitle}</span></>
+          mn ? (
+            <>Эндээс эхлээрэй: <span style={{ color: "var(--accent)" }}>{d.startSlug ? titleOf(d.startSlug, d.startTitle) : d.startTitle}</span></>
+          ) : (
+            <>Start with <span style={{ color: "var(--accent)" }}>{d.startTitle}</span></>
+          )
+        ) : mn ? (
+          <>Таны түвшин: <span style={{ color: "var(--accent)" }}>{LEVEL_MN[result.level] ?? result.level}</span></>
         ) : (
           <>You&apos;re at the <span style={{ color: "var(--accent)" }}>{result.level}</span> level</>
         )}
       </h1>
       <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15 }}>
-        {d
+        {mn
+          ? d
+            ? <>Үүнийг тогтооход <b className="tabular">{d.questionsAsked}</b> бодлого хангалттай байлаа. Зөв хариултын хувь: <b className="tabular">{pct}%</b>.</>
+            : <>Зөв хариултын хувь: <b className="tabular">{pct}%</b>.</>
+          : d
           ? <>We got there in <b className="tabular">{d.questionsAsked}</b> question{d.questionsAsked === 1 ? "" : "s"} — you answered <b className="tabular">{pct}%</b> of them correctly.</>
           : <>You answered <b className="tabular">{pct}%</b> correct across the {config.homeLabel} we tested.</>}
       </p>
 
       {d?.narrative && (
         <div className="mt-5 card-edit p-4" style={{ borderColor: "var(--accent-line)" }}>
-          <div className="eyebrow mb-1.5" style={{ color: "var(--accent)" }}>What I noticed</div>
+          <div className="eyebrow mb-1.5" style={{ color: "var(--accent)" }}>{mn ? "Миний анзаарсан зүйл" : "What I noticed"}</div>
           <p className="font-sans" style={{ fontSize: 15, lineHeight: 1.6, color: "var(--fg-1)" }}>
             <MathText text={d.narrative} />
           </p>
@@ -409,7 +425,7 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
 
       {d && d.findings.length > 0 && (
         <div className="mt-6">
-          <div className="eyebrow mb-3">The specific thing to fix</div>
+          <div className="eyebrow mb-3">{mn ? "Түрүүлж засах зүйл" : "The specific thing to fix"}</div>
           <div className="space-y-2">
             {d.findings.map((f) => (
               <div key={f.topicSlug} className="card-edit p-3.5">
@@ -424,14 +440,14 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
       )}
 
       <p className="mt-4 text-[13px]" style={{ color: "var(--fg-3)" }}>
-        On your dashboard this placement rates a skill up to 90 — real mocks
-        (ЭШ, IB, SAT) and unit tests are what push it beyond. Retakes draw a
-        fresh mix of questions.
+        {mn
+          ? "Хяналтын самбар дээр энэ шалгалт чадварыг дээд тал нь 90 хүртэл үнэлнэ. Түүнээс дээш гаргадаг нь жинхэнэ жишиг тестүүд (ЭШ, IB, SAT) болон бүлгийн шалгалтууд юм. Дахин өгөхөд өөр бодлогууд холилдож ирнэ."
+          : "On your dashboard this placement rates a skill up to 90 — real mocks (ЭШ, IB, SAT) and unit tests are what push it beyond. Retakes draw a fresh mix of questions."}
       </p>
 
       {verdict && (
         <div className="mt-8 card-edit p-5" style={{ borderColor: "var(--accent-line)", background: "var(--accent-wash)" }}>
-          <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>Your starting point</div>
+          <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>{mn ? "Таны эхлэх цэг" : "Your starting point"}</div>
           <p className="serif" style={{ fontSize: 22, color: "var(--fg)" }}>{verdict.title}</p>
           <p className="mt-1.5 text-[14px]" style={{ color: "var(--fg-1)" }}>{verdict.body}</p>
           <Link href={verdict.href} className="btn btn-primary mt-4 inline-flex items-center gap-1.5">
@@ -442,16 +458,16 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
 
       {priority.length > 0 ? (
         <div className="mt-8">
-          <div className="eyebrow mb-3">Start here — important for you</div>
+          <div className="eyebrow mb-3">{mn ? "Эндээс эхлээрэй" : "Start here — important for you"}</div>
           <div className="space-y-2.5">
             {priority.map((t, i) => (
               <Link key={t.slug} href={config.topicHref(t.slug)} className="card-edit p-4 flex items-center gap-4" style={{ textDecoration: "none" }}>
                 <span className="mono text-[12px] tabular flex-shrink-0" style={{ color: "var(--accent)", minWidth: 20 }}>{i + 1}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <p className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{t.title}</p>
+                    <p className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>{titleOf(t.slug, t.title)}</p>
                     <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
-                      Important for you
+                      {mn ? "Танд чухал зүйл" : "Important for you"}
                     </span>
                   </div>
                   <TopicBar accuracy={t.accuracy} />
@@ -463,17 +479,19 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
         </div>
       ) : (
         <div className="mt-8 rounded-xl p-4" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--fg-1)" }}>
-          Strong across the board — no single area stands out as a weak spot. Keep going and push into the harder material.
+          {mn
+            ? "Бүх хэсэгт сайн байна. Онцгой сул тал илэрсэнгүй. Цааш үргэлжлүүлж, илүү хүнд хэсгүүд рүү ахиж ороорой."
+            : "Strong across the board — no single area stands out as a weak spot. Keep going and push into the harder material."}
         </div>
       )}
 
       {strong.length > 0 && (
         <div className="mt-8">
-          <div className="eyebrow mb-3">You&apos;re already solid on</div>
+          <div className="eyebrow mb-3">{mn ? "Та эдгээрийг сайн эзэмшсэн байна" : <>You&apos;re already solid on</>}</div>
           <div className="flex flex-wrap gap-2">
             {strong.map((t) => (
               <Link key={t.slug} href={config.topicHref(t.slug)} className="rounded-full px-3 py-1.5 text-[13px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-1)", textDecoration: "none" }}>
-                {t.title}
+                {titleOf(t.slug, t.title)}
               </Link>
             ))}
           </div>
@@ -482,10 +500,12 @@ function Results({ result, onRetake, config }: { result: StoredPlacement; onReta
 
       <div className="mt-10 flex items-center gap-3">
         <Link href={d?.startSlug ? config.topicHref(d.startSlug) : config.homeHref} className="btn btn-primary inline-flex items-center gap-1.5">
-          {d?.startSlug ? "Start here" : `Go to my ${config.homeLabel}`} <ArrowRight className="h-4 w-4" />
+          {d?.startSlug
+            ? (mn ? "Эндээс эхлээрэй" : "Start here")
+            : mn ? (config.homeLabelMn ?? "Буцах") : `Go to my ${config.homeLabel}`} <ArrowRight className="h-4 w-4" />
         </Link>
         <button type="button" onClick={onRetake} className="btn btn-line inline-flex items-center gap-1.5">
-          <RotateCcw className="h-4 w-4" /> Retake
+          <RotateCcw className="h-4 w-4" /> {mn ? "Дахин өгөх" : "Retake"}
         </button>
       </div>
     </div>

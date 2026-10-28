@@ -1,5 +1,5 @@
 import CoursePlacement from "@/components/placement/CoursePlacement";
-import { getCoursePlacementBank } from "@/lib/placement-course-bank";
+import { getCoursePlacementBank, getCoursePlacementBankMn, getCourseTitleMn } from "@/lib/placement-course-bank";
 
 // SERVER page: harvests the placement bank from the corpus here, so only
 // the ~40 questions cross to the client (see lib/placement-course-bank.ts).
@@ -9,8 +9,10 @@ export default function CoursePlacementPage() {
   return (
     <CoursePlacement
       bank={getCoursePlacementBank("algebra-1")}
+      bankMn={getCoursePlacementBankMn("algebra-1")}
       courseSlug="algebra-1"
       courseTitle="Algebra 1"
+      courseTitleMn={getCourseTitleMn("algebra-1")}
     />
   );
 }

@@ -9,6 +9,9 @@ import x12_exam_3 from "@/data/course-exams-mn/12-exam-3.json";
 import x9_exam_1 from "@/data/course-exams-mn/9-exam-1.json";
 import x9_exam_2 from "@/data/course-exams-mn/9-exam-2.json";
 import x9_exam_3 from "@/data/course-exams-mn/9-exam-3.json";
+import xintegrated_1_exam_1 from "@/data/course-exams-mn/integrated-1-exam-1.json";
+import xintegrated_1_exam_2 from "@/data/course-exams-mn/integrated-1-exam-2.json";
+import xintegrated_1_exam_3 from "@/data/course-exams-mn/integrated-1-exam-3.json";
 
 export const EXAMS_MN: Record<string, CourseExam> = {
   "12-exam-1": x12_exam_1 as unknown as CourseExam,
@@ -17,4 +20,7 @@ export const EXAMS_MN: Record<string, CourseExam> = {
   "9-exam-1": x9_exam_1 as unknown as CourseExam,
   "9-exam-2": x9_exam_2 as unknown as CourseExam,
   "9-exam-3": x9_exam_3 as unknown as CourseExam,
+  "integrated-1-exam-1": xintegrated_1_exam_1 as unknown as CourseExam,
+  "integrated-1-exam-2": xintegrated_1_exam_2 as unknown as CourseExam,
+  "integrated-1-exam-3": xintegrated_1_exam_3 as unknown as CourseExam,
 };

@@ -16,6 +16,7 @@
 import { notFound } from "next/navigation";
 import PlacementRunner from "@/components/placement/PlacementRunner";
 import { getGrade11PlacementBank } from "@/lib/placement-bank";
+import { getPlacementBankMn } from "@/lib/placement-bank-mn";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -25,13 +26,18 @@ export default function PlacementPreviewPage() {
     <PlacementRunner
       config={{
         bank: getGrade11PlacementBank(),
+        bankMn: getPlacementBankMn("11"),
         namespace: "dev-preview",
         crumb: "Dev · Grade 11 · Placement preview",
+        crumbMn: "Dev · 11-р анги · Түвшин тогтоох шалгалт",
         homeHref: "/math/11",
         homeLabel: "topics",
+        homeLabelMn: "Сэдвүүд рүүгээ очих",
         subjectNoun: "Grade-11 topic",
+        subjectNounMn: "11-р ангийн сэдэв",
         topicHref: (slug) => `/math/11/${slug}`,
         title: "Find your Grade 11 starting point",
+        titleMn: "11-р ангид хаанаас эхлэхээ олоорой",
       }}
     />
   );
