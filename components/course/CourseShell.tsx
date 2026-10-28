@@ -169,6 +169,9 @@ export interface CourseDef {
   context: string;
   /** Hub intro paragraph. */
   intro: string;
+  /** Mongolian title and intro, for courses with Mongolian mirrors. English when absent. */
+  titleMn?: string;
+  introMn?: string;
   spine: () => GeometrySpineEntry[];
   /** `lang` is the site language; a course with Mongolian mirrors serves them for "mn". */
   unit: (unitSlug: string, lang?: string) => CourseUnit | null;
@@ -183,6 +186,26 @@ export interface CourseDef {
   labels?: CourseLabels;
   /** Set false to hide the ratings-driven plan (needs perf-context wiring). */
   personalize?: boolean;
+}
+
+function titleOf(course: CourseDef, lang: string): string {
+  return lang === "mn" && course.titleMn ? course.titleMn : course.title;
+}
+
+/**
+ * The spine in the reader's language. A spine entry carries only English, but
+ * a live unit with a Mongolian mirror knows its own Mongolian title and blurb,
+ * so they are read from there; anything without a mirror stays English.
+ */
+function spineOf(course: CourseDef, lang: string): GeometrySpineEntry[] {
+  const spine = course.spine();
+  if (lang !== "mn") return spine;
+  return spine.map((e) => {
+    if (!e.live) return e;
+    const mn = course.unit(e.slug, "mn");
+    if (!mn || mn === course.unit(e.slug, "en")) return e;
+    return { ...e, title: mn.title, blurb: mn.blurb || e.blurb };
+  });
 }
 
 function base(course: CourseDef): string {
@@ -268,7 +291,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 // that also carries the topic's formula sheet, rather than on a bare hub page.
 export function CourseSpineList({ course }: { course: CourseDef }) {
   const { lang } = useLang();
-  const spine = course.spine();
+  const spine = spineOf(course, lang);
   const L = labelsOf(course, lang);
   const root = base(course);
 
@@ -375,7 +398,7 @@ function CourseExamsCard({ course }: { course: CourseDef }) {
 // --- Hub: the course spine, in order --------------------------------------
 export function CourseHubPage({ course }: { course: CourseDef }) {
   const { lang } = useLang();
-  const spine = course.spine();
+  const spine = spineOf(course, lang);
   const liveCount = spine.filter((u) => u.live).length;
   const L = labelsOf(course, lang);
 
@@ -393,10 +416,10 @@ export function CourseHubPage({ course }: { course: CourseDef }) {
           color: "var(--fg)",
         }}
       >
-        {course.title}
+        {titleOf(course, lang)}
       </h1>
       <p className="mt-4 mb-8" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
-        {course.intro}
+        {lang === "mn" && course.introMn ? course.introMn : course.intro}
       </p>
 
       {course.placement && (
@@ -425,7 +448,7 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
   const params = useParams();
   const unitSlug = params.unit as string;
   const unit = course.unit(unitSlug, lang);
-  const spineEntry = course.spine().find((u) => u.slug === unitSlug);
+  const spineEntry = spineOf(course, lang).find((u) => u.slug === unitSlug);
   const L = labelsOf(course, lang);
   const root = base(course);
 
@@ -437,7 +460,7 @@ export function CourseUnitPage({ course }: { course: CourseDef }) {
 
   return (
     <Shell>
-      <Crumb href={root} label={`${course.title} · ${L.unitWord} ${unit.unit}`} />
+      <Crumb href={root} label={`${titleOf(course, lang)} · ${L.unitWord} ${unit.unit}`} />
 
       <h1
         className="serif"
@@ -547,7 +570,7 @@ function LessonInner({ course }: { course: CourseDef }) {
       topicSlug={unitSlug}
       topicTitle={unit.title}
       baseHref={`${root}/${unitSlug}`}
-      crumb={`${course.title} · ${L.unitWord} ${unit.unit} · ${unit.title}`}
+      crumb={`${titleOf(course, lang)} · ${L.unitWord} ${unit.unit} · ${unit.title}`}
     />
   );
 }
@@ -584,7 +607,7 @@ function ProblemsInner({ course, kind }: { course: CourseDef; kind: "practice" |
     <Shell>
       <Crumb
         href={`${root}/${unitSlug}`}
-        label={`${course.title} · ${L.unitWord} ${unit.unit} · ${unit.title}`}
+        label={`${titleOf(course, lang)} · ${L.unitWord} ${unit.unit} · ${unit.title}`}
       />
 
       <h1
