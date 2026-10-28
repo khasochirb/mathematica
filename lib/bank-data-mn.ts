@@ -3,6 +3,7 @@
 // lib/bank-data.ts alone (same boundary, same reason: lib/bank-split.test.ts).
 
 import type { BankTopic } from "@/lib/problem-bank";
+import mn10 from "@/data/problembank-mn/10.json";
 import mn11 from "@/data/problembank-mn/11.json";
 import mn6 from "@/data/problembank-mn/6.json";
 import mn7 from "@/data/problembank-mn/7.json";
@@ -10,6 +11,7 @@ import mn8 from "@/data/problembank-mn/8.json";
 import mn9 from "@/data/problembank-mn/9.json";
 
 export const BANK_MN: Record<string, BankTopic> = {
+  "10": mn10 as unknown as BankTopic,
   "11": mn11 as unknown as BankTopic,
   "6": mn6 as unknown as BankTopic,
   "7": mn7 as unknown as BankTopic,
