@@ -25,9 +25,10 @@ Objectives carry no `$...$`, as the English's carry none.
 >
 > **Numbers.** No worked or try-it number was changed, so every `check[]`
 > stands. Settings were made Mongolian with the numbers untouched (Notes 7).
-> Every number stated in the Mongolian was re-verified: 112 assertions in the
-> scratch script, all passing. Beat, recap, concept, fact and mistake counts
-> were checked against the English too.
+> Every number stated in the Mongolian was re-verified: 71 numeric assertions
+> in the scratch script, all passing, plus 28 structural ones (concept, fact,
+> mistake, step, beat and recap counts against the English) and a check that
+> each glossed English term appears exactly once.
 
 ---
 
