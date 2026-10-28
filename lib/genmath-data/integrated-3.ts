@@ -22,6 +22,7 @@ import mnIntegrated3ModellingWithFunctions from "@/data/genmath/integrated-3-mn/
 import mnIntegrated3PolynomialFunctions from "@/data/genmath/integrated-3-mn/polynomial-functions.json";
 import mnIntegrated3RationalAndRadicalFunctions from "@/data/genmath/integrated-3-mn/rational-and-radical-functions.json";
 import mnIntegrated3SequencesSeriesAndTheBinomialTheorem from "@/data/genmath/integrated-3-mn/sequences-series-and-the-binomial-theorem.json";
+import mnIntegrated3StatisticalInference from "@/data/genmath/integrated-3-mn/statistical-inference.json";
 export const im3UnitsMn: Record<string, CourseUnit> = {
   "exponential-and-logarithmic-functions": mnIntegrated3ExponentialAndLogarithmicFunctions as unknown as CourseUnit,
   "function-families-and-inverses": mnIntegrated3FunctionFamiliesAndInverses as unknown as CourseUnit,
@@ -29,6 +30,7 @@ export const im3UnitsMn: Record<string, CourseUnit> = {
   "polynomial-functions": mnIntegrated3PolynomialFunctions as unknown as CourseUnit,
   "rational-and-radical-functions": mnIntegrated3RationalAndRadicalFunctions as unknown as CourseUnit,
   "sequences-series-and-the-binomial-theorem": mnIntegrated3SequencesSeriesAndTheBinomialTheorem as unknown as CourseUnit,
+  "statistical-inference": mnIntegrated3StatisticalInference as unknown as CourseUnit,
 };
 // MN-MIRRORS:END
 
