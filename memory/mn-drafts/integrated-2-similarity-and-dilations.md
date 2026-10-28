@@ -498,4 +498,4 @@ Numbers and answers exactly as the English.
 
 7. **Absolute value inside tables** is written `\lvert k \rvert` (L1 we4 and recap), because a bare `|` would end a markdown table cell.
 
-8. **Verification.** No number was changed from the English. Every number the draft states, including the ones the Mongolian adds, was re-verified with sympy in `scratchpad/agents/integrated-2-similarity-and-dilations/verify.py` (not committed).
+8. **Verification.** No number was changed from the English. Every number the draft states, including the ones the Mongolian adds, was re-verified with sympy (88 assertions, all pass) in `scratchpad/agents/integrated-2-similarity-and-dilations/verify.py` (not committed).

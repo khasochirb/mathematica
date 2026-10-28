@@ -23,6 +23,7 @@ import mnIntegrated2PolynomialsAndFactoring from "@/data/genmath/integrated-2-mn
 import mnIntegrated2Probability from "@/data/genmath/integrated-2-mn/probability.json";
 import mnIntegrated2QuadraticFunctions from "@/data/genmath/integrated-2-mn/quadratic-functions.json";
 import mnIntegrated2RationalExponentsAndRadicals from "@/data/genmath/integrated-2-mn/rational-exponents-and-radicals.json";
+import mnIntegrated2RightTriangleTrigonometry from "@/data/genmath/integrated-2-mn/right-triangle-trigonometry.json";
 export const im2UnitsMn: Record<string, CourseUnit> = {
   "circles": mnIntegrated2Circles as unknown as CourseUnit,
   "geometric-measurement-and-modelling": mnIntegrated2GeometricMeasurementAndModelling as unknown as CourseUnit,
@@ -30,6 +31,7 @@ export const im2UnitsMn: Record<string, CourseUnit> = {
   "probability": mnIntegrated2Probability as unknown as CourseUnit,
   "quadratic-functions": mnIntegrated2QuadraticFunctions as unknown as CourseUnit,
   "rational-exponents-and-radicals": mnIntegrated2RationalExponentsAndRadicals as unknown as CourseUnit,
+  "right-triangle-trigonometry": mnIntegrated2RightTriangleTrigonometry as unknown as CourseUnit,
 };
 // MN-MIRRORS:END
 
