@@ -13,6 +13,7 @@ import mn9 from "@/data/problembank-mn/9.json";
 import mnAlgebra1 from "@/data/problembank-mn/algebra-1.json";
 import mnAlgebra2 from "@/data/problembank-mn/algebra-2.json";
 import mnCalculus from "@/data/problembank-mn/calculus.json";
+import mnProbStats from "@/data/problembank-mn/prob-stats.json";
 
 export const BANK_MN: Record<string, BankTopic> = {
   "10": mn10 as unknown as BankTopic,
@@ -25,4 +26,5 @@ export const BANK_MN: Record<string, BankTopic> = {
   "algebra-1": mnAlgebra1 as unknown as BankTopic,
   "algebra-2": mnAlgebra2 as unknown as BankTopic,
   "calculus": mnCalculus as unknown as BankTopic,
+  "prob-stats": mnProbStats as unknown as BankTopic,
 };
