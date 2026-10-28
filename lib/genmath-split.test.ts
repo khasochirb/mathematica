@@ -76,6 +76,7 @@ describe("the corpus stays out of the light modules", () => {
       "lib/ratings.ts",
       "lib/use-ratings.ts",
       "lib/placement-bank.ts",
+      "lib/placement-bank-mn.ts",
       "lib/placement-engine.ts",
       "lib/band-placement.ts",
       "app/math/page.tsx",
