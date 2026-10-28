@@ -26,7 +26,7 @@ Objectives carry `$...$` only where the English's does.
 > writes tugriks where it uses money (`im2-u3-l4-we4`, `im2-u3-ty-7`), and the
 > rest is pure algebra. Three settings were made Mongolian with the numbers
 > untouched (Notes 6). Every number stated in the Mongolian was re-verified:
-> 241 assertions in the scratch script, all passing.
+> 166 assertions in the scratch script, all passing.
 
 ---
 
