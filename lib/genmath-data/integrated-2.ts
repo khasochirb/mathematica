@@ -21,11 +21,15 @@ import mnIntegrated2Circles from "@/data/genmath/integrated-2-mn/circles.json";
 import mnIntegrated2GeometricMeasurementAndModelling from "@/data/genmath/integrated-2-mn/geometric-measurement-and-modelling.json";
 import mnIntegrated2PolynomialsAndFactoring from "@/data/genmath/integrated-2-mn/polynomials-and-factoring.json";
 import mnIntegrated2Probability from "@/data/genmath/integrated-2-mn/probability.json";
+import mnIntegrated2QuadraticFunctions from "@/data/genmath/integrated-2-mn/quadratic-functions.json";
+import mnIntegrated2RationalExponentsAndRadicals from "@/data/genmath/integrated-2-mn/rational-exponents-and-radicals.json";
 export const im2UnitsMn: Record<string, CourseUnit> = {
   "circles": mnIntegrated2Circles as unknown as CourseUnit,
   "geometric-measurement-and-modelling": mnIntegrated2GeometricMeasurementAndModelling as unknown as CourseUnit,
   "polynomials-and-factoring": mnIntegrated2PolynomialsAndFactoring as unknown as CourseUnit,
   "probability": mnIntegrated2Probability as unknown as CourseUnit,
+  "quadratic-functions": mnIntegrated2QuadraticFunctions as unknown as CourseUnit,
+  "rational-exponents-and-radicals": mnIntegrated2RationalExponentsAndRadicals as unknown as CourseUnit,
 };
 // MN-MIRRORS:END
 
