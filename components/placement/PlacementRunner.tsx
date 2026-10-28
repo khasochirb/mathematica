@@ -43,16 +43,40 @@ export type PlacementVerdictCard = {
 
 export type PlacementConfig = {
   bank: PlacementQuestion[];
+  /** The same bank in Mongolian: same ids, options in the same order, same
+   *  correctIndex. The sitting itself always RUNS on `bank` (engine, tutor,
+   *  storage and scoring never see this); on an mn page each question and
+   *  topic title is merely DISPLAYED from here, looked up by id / slug, and
+   *  anything missing stays English. */
+  bankMn?: PlacementQuestion[] | null;
   namespace: string; // "grade6" | "geometry"
   crumb: string; // breadcrumb line
+  crumbMn?: string;
   homeHref: string; // where "back" and "go to my …" land
   homeLabel: string; // e.g. "topics" | "units"
+  /** The WHOLE Mongolian "go to my …" button («Сэдвүүд рүүгээ очих»):
+   *  a case ending cannot be glued onto a noun chosen at runtime. */
+  homeLabelMn?: string;
   subjectNoun: string; // e.g. "Grade-6 topic" | "Geometry unit"
+  /** Bare Mongolian noun («6-р ангийн сэдэв», «бүлэг»); the sentence it
+   *  sits in never puts an ending on it. */
+  subjectNounMn?: string;
   topicHref: (slug: string) => string; // link into a topic/unit
   title: string; // intro heading
+  titleMn?: string;
   /** Band placements turn the result into a "start in Grade N" verdict,
    *  rendered as the first card of the results screen. */
   verdict?: (result: StoredPlacement) => PlacementVerdictCard | null;
+  verdictMn?: (result: StoredPlacement) => PlacementVerdictCard | null;
+};
+
+// PLACEMENT_LEVELS (lib/placement-engine) is the stored vocabulary and stays
+// English; this only names the level on screen.
+const LEVEL_MN: Record<string, string> = {
+  Foundational: "Суурь",
+  Developing: "Хөгжиж буй",
+  Proficient: "Чадварлаг",
+  Advanced: "Ахисан",
 };
 
 /** Course label for the tutor's grounding — never a student identifier. */
@@ -66,6 +90,17 @@ export default function PlacementRunner({ config }: { config: PlacementConfig })
   const { bank } = config;
   const { user } = useAuth();
   const { lang } = useLang();
+  const mn = lang === "mn";
+  // Display-only Mongolian: question by id, topic title by slug.
+  const mnById = useMemo(
+    () => new Map((mn && config.bankMn ? config.bankMn : []).map((q) => [q.id, q])),
+    [mn, config.bankMn],
+  );
+  const mnTitle = useMemo(
+    () => new Map((mn && config.bankMn ? config.bankMn : []).map((q) => [q.topicSlug, q.topicTitle])),
+    [mn, config.bankMn],
+  );
+  const titleOf = useCallback((slug: string, fallback: string) => mnTitle.get(slug) ?? fallback, [mnTitle]);
 
   const [phase, setPhase] = useState<Phase>("intro");
   const [state, setState] = useState<DiagnosticState>(() => initDiagnostic(bank));
@@ -157,14 +192,16 @@ export default function PlacementRunner({ config }: { config: PlacementConfig })
           <Link href={config.homeHref} className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">{config.crumb}</div>
+          <div className="eyebrow">{mn && config.crumbMn ? config.crumbMn : config.crumb}</div>
         </div>
 
-        {phase === "intro" && <Intro onStart={start} isAuthed={!!user} config={config} />}
-        {phase === "thinking" && <Thinking />}
+        {phase === "intro" && <Intro onStart={start} isAuthed={!!user} config={config} mn={mn} />}
+        {phase === "thinking" && <Thinking mn={mn} />}
         {phase === "quiz" && current && disp && (
           <Quiz
             q={current}
+            shown={mnById.get(current.id) ?? null}
+            mn={mn}
             options={disp.options}
             correctIndex={disp.correctIndex}
             picked={picked}
@@ -173,33 +210,51 @@ export default function PlacementRunner({ config }: { config: PlacementConfig })
             index={answered}
           />
         )}
-        {phase === "done" && result && <Results result={result} onRetake={start} config={config} />}
+        {phase === "done" && result && <Results result={result} onRetake={start} config={config} mn={mn} titleOf={titleOf} />}
       </div>
     </div>
   );
 }
 
-function Intro({ onStart, isAuthed, config }: { onStart: () => void; isAuthed: boolean; config: PlacementConfig }) {
+function Intro({ onStart, isAuthed, config, mn }: { onStart: () => void; isAuthed: boolean; config: PlacementConfig; mn: boolean }) {
+  const bullets = mn
+    ? [
+        "Өмнөх бодлогод хэрхэн хариулснаас тань хамаарч дараагийн бодлогыг сонгоно.",
+        `Таны хараахан бат эзэмшээгүй хамгийн эхний ${config.subjectNounMn ?? "сэдэв"} аль болохыг олно. Та тэндээс эхэлнэ.`,
+        "Төгсгөлд нь зөвхөн оноо биш, юуг түрүүлж засахыг тодорхой хэлнэ.",
+      ]
+    : [
+        "Chooses your next problem from how you answered the last one.",
+        `Finds the earliest ${config.subjectNoun} that isn't solid yet — that's where you begin.`,
+        "Ends by naming the specific thing to fix first, not just a score.",
+      ];
   return (
     <div>
       <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] mb-4" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
-        <Sparkles className="h-3.5 w-3.5" /> Personalized placement
+        <Sparkles className="h-3.5 w-3.5" /> {mn ? "Танд тохирсон түвшин тогтоох шалгалт" : "Personalized placement"}
       </div>
       <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
-        {config.title}
+        {mn && config.titleMn ? config.titleMn : config.title}
       </h1>
       <p className="mt-4" style={{ color: "var(--fg-1)", fontSize: 16, lineHeight: 1.6 }}>
-        Not a fixed test — a tutor working through problems with you. It reads
-        the answer you picked, not just whether it was right, and it stops as
-        soon as it knows where you should start. Usually well under{" "}
-        <b className="tabular">{MAX_QUESTIONS}</b> questions.
+        {mn ? (
+          <>
+            Энэ бол тогтсон тест биш. Багш тантай хамт бодлого бодож байгаа мэт
+            ажиллана: хариу зөв эсэхийг төдийгүй та аль хариуг сонгосныг харж,
+            хаанаас эхлэх нь тодорхой болмогц зогсоно. Бодлогын тоо ихэвчлэн{" "}
+            <b className="tabular">{MAX_QUESTIONS}</b> хүрэхгүй.
+          </>
+        ) : (
+          <>
+            Not a fixed test — a tutor working through problems with you. It reads
+            the answer you picked, not just whether it was right, and it stops as
+            soon as it knows where you should start. Usually well under{" "}
+            <b className="tabular">{MAX_QUESTIONS}</b> questions.
+          </>
+        )}
       </p>
       <ul className="mt-5 space-y-2" style={{ color: "var(--fg-2)", fontSize: 14 }}>
-        {[
-          "Chooses your next problem from how you answered the last one.",
-          `Finds the earliest ${config.subjectNoun} that isn't solid yet — that's where you begin.`,
-          "Ends by naming the specific thing to fix first, not just a score.",
-        ].map((t) => (
+        {bullets.map((t) => (
           <li key={t} className="flex items-start gap-2">
             <Check className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
             <span><MathText text={t} /></span>
@@ -207,14 +262,20 @@ function Intro({ onStart, isAuthed, config }: { onStart: () => void; isAuthed: b
         ))}
       </ul>
       <div className="mt-6 rounded-xl p-3 text-[13px]" style={{ background: "var(--bg-1)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
-        {isAuthed ? (
+        {mn ? (
+          isAuthed ? (
+            <>Таны дүн, төлөвлөгөө энэ төхөөрөмж дээр <b>таны бүртгэлд</b> хадгалагдана.</>
+          ) : (
+            <>Одоо шууд өгч болно. Төлөвлөгөөгөө хадгалж, хариултуудын тань талаар багшийн дүгнэлтийг авахыг хүсвэл <Link href="/sign-in" style={{ color: "var(--accent)" }}>нэвтэрнэ үү</Link>.</>
+          )
+        ) : isAuthed ? (
           <>Your result and plan will be saved to <b>your account</b> on this device.</>
         ) : (
           <>You can take it now — <Link href="/sign-in" style={{ color: "var(--accent)" }}>sign in</Link> to save the plan and get the tutor&apos;s read on your answers.</>
         )}
       </div>
       <button type="button" onClick={onStart} className="btn btn-primary mt-6 inline-flex items-center gap-1.5">
-        Start the test <ArrowRight className="h-4 w-4" />
+        {mn ? "Эхлэх" : "Start the test"} <ArrowRight className="h-4 w-4" />
       </button>
     </div>
   );
@@ -222,38 +283,49 @@ function Intro({ onStart, isAuthed, config }: { onStart: () => void; isAuthed: b
 
 // Shown while the tutor decides. Honest about what is happening: the pause is
 // someone looking at your answer, which is the point of the whole feature.
-function Thinking() {
+function Thinking({ mn }: { mn: boolean }) {
   return (
     <div className="flex items-center gap-3 py-16" style={{ color: "var(--fg-2)" }}>
       <Search className="h-4 w-4 animate-pulse" style={{ color: "var(--accent)" }} />
-      <span style={{ fontSize: 15 }}>Looking at your answer…</span>
+      <span style={{ fontSize: 15 }}>{mn ? "Таны хариуг харж байна…" : "Looking at your answer…"}</span>
     </div>
   );
 }
 
 function Quiz({
-  q, options, correctIndex, picked, onChoose, onNext, index,
+  q, shown, mn, options, correctIndex, picked, onChoose, onNext, index,
 }: {
-  q: PlacementQuestion; options: string[]; correctIndex: number; picked: number | null; onChoose: (i: number) => void; onNext: () => void; index: number;
+  q: PlacementQuestion;
+  /** The Mongolian twin of `q` (same id, same option order), or null. */
+  shown: PlacementQuestion | null;
+  mn: boolean;
+  options: string[]; correctIndex: number; picked: number | null; onChoose: (i: number) => void; onNext: () => void; index: number;
 }) {
   const answered = picked !== null;
-  const diffLabel = ["", "Easier", "Medium", "Harder"][q.difficulty] ?? "";
+  const diffLabel = (mn ? ["", "Хөнгөн", "Дунд", "Хүнд"] : ["", "Easier", "Medium", "Harder"])[q.difficulty] ?? "";
+  // `options` arrive shuffled by displayQuestion(q), which is keyed on the id;
+  // the twin shares the id and the option order, so the same shuffle applies.
+  const twin = shown && shown.options.length === q.options.length ? shown : null;
+  const shownOptions = twin ? displayQuestion(twin).options : options;
+  const prompt = twin?.prompt ?? q.prompt;
+  const explanation = twin?.explanation ?? q.explanation;
+  const topicTitle = twin?.topicTitle ?? q.topicTitle;
   return (
     <div>
       <div className="flex items-center justify-between mb-6 text-[12px]" style={{ color: "var(--fg-3)" }}>
         {/* No "x of N": the length is an OUTCOME here, and a fake denominator
             would be the one dishonest number on the screen. */}
-        <span className="mono">Question {index + 1}</span>
+        <span className="mono">{mn ? "Бодлого" : "Question"} {index + 1}</span>
         <span className="mono">{diffLabel}</span>
       </div>
 
-      <div className="eyebrow mb-1">{q.topicTitle}</div>
+      <div className="eyebrow mb-1">{topicTitle}</div>
       <p className="font-sans" style={{ fontSize: 18, lineHeight: 1.5, color: "var(--fg)" }}>
-        <MathText text={q.prompt} />
+        <MathText text={prompt} />
       </p>
 
       <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
-        {options.map((opt, i) => {
+        {shownOptions.map((opt, i) => {
           const isCorrect = answered && i === correctIndex;
           const isYours = answered && i === picked;
           const isWrong = isYours && i !== correctIndex;
@@ -279,16 +351,16 @@ function Quiz({
 
       {answered && (
         <>
-          {q.explanation && (
+          {explanation && (
             <div className="mt-4 rounded-xl p-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
               <p className="font-sans" style={{ fontSize: 14, lineHeight: 1.5, color: "var(--fg-1)" }}>
-                <MathText text={q.explanation} />
+                <MathText text={explanation} />
               </p>
             </div>
           )}
           <div className="mt-5 flex justify-end">
             <button type="button" onClick={onNext} className="btn btn-primary inline-flex items-center gap-1.5">
-              Continue <ArrowRight className="h-4 w-4" />
+              {mn ? "Үргэлжлүүлэх" : "Continue"} <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </>
