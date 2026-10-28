@@ -83,7 +83,7 @@ leaves every value alone. Notes 1.
 The course is named «Нэгдсэн математик» as the site already names it
 (`lib/ratings.ts`, `lib/perf-context.ts`).
 
-English shown once at first use (5a, Khas's ruling 5 Oct 2026): 45 terms.
+English shown once at first use (5a, Khas's ruling 5 Oct 2026): 51 terms.
 
 ---
 
@@ -693,7 +693,7 @@ is cleaned up (ty-7). Notes 2.
    The English has no money and no worked setting that needed moving except
    the two concreteComparisons (tiled floor → хана, хивсний хээ угалз; two
    roads → a junction, unnamed). Every number and every stated equality in
-   the draft was re-verified with sympy: **237 assertions, all pass**
+   the draft was re-verified with sympy: **151 assertions, all pass**
    (`scratchpad/agents/integrated-1-transformations-and-congruence/verify.py`,
    not committed).
 
@@ -747,11 +747,11 @@ is cleaned up (ty-7). Notes 2.
 
 5. **Eyebrows are US Common Core codes** (G-CO.2 … G-CO.12), kept verbatim.
 
-6. **Bare-imperative advisories** are all in beats, recaps and titles
-   («тат», «Нумуудыг цаасан дээр үлдээ», «Товчлолыг нэрлэ»), which the
-   register ruling leaves bare. Student-facing prose is polite throughout.
+6. **Register.** The gate reports no bare-imperative advisories. Beats,
+   recaps, titles and eyebrows are bare per the ruling; student-facing prose
+   is polite throughout.
 
-7. **5a:** English shown once at first use, 45 terms: rigid motion,
+7. **5a:** English shown once at first use, 51 terms: rigid motion,
    congruence (L1 concreteComparison); translation, reflection, rotation
    (L1 objective); transformation (concept 1); isometry (concept 2); image,
    preimage (concept 3); mirror line, orientation (concept 4); dilation,
