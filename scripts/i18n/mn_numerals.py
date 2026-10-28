@@ -68,9 +68,14 @@ def suffix(n, case: str) -> str:
     """The ending alone: suffix(12, 'gen') -> 'ын'.
 
     "ins" (instrumental, «-аар/-ээр/-оор/-өөр»: «5-аар их», «7-гоор үржүүлэх») is the
-    ablative with its final с turned to р, which holds for every row here.
+    ablative with its final с turned to р, which holds for every row but зуу
+    («зуугаар», not «зуунаар»).
     """
     if case == "ins":
+        # зуу is the one row where the instrumental is not the ablative with
+        # с -> р: «зуунаас» but «зуугаар» (the hidden н shows in gen/dat/abl only).
+        if last_word(n) == "зуу":
+            return "гаар"
         return WORD[last_word(n)]["abl"][:-1] + "р"
     return WORD[last_word(n)][case]
 

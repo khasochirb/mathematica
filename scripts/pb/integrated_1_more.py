@@ -141,10 +141,10 @@ def g_area_units():
             "correct": cm2,
             # used the length factor once; used it cubed; forgot to convert
             "dvals": [m2 * 100, m2 * 1000000, m2],
-            "explanation": "The area is $%d \times %d = %d$ m². One metre is $100$ cm, so "
+            "explanation": "The area is $%d \\times %d = %d$ m². One metre is $100$ cm, so "
                            "one SQUARE metre is $100^2 = 10\,000$ cm² — the factor gets "
                            "squared because two lengths were multiplied. "
-                           "$%d \times 10\,000 = %d$ cm². Multiplying by $100$ once is "
+                           "$%d \\times 10\,000 = %d$ cm². Multiplying by $100$ once is "
                            "the standard error." % (a, b, m2, m2, cm2),
             "check": ["Eq(%d*%d, %d)" % (a, b, m2),
                       "Eq(100**2, 10000)",

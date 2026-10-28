@@ -117,6 +117,16 @@ export function getIbBankTopic(tier: IbBankTier): BankTopic {
 }
 
 /**
+ * The whole Mongolian mirror of a topic (every form, every variant), or null
+ * when the topic has none. For server-side harvesters that pick a handful of
+ * variants (lib/placement-course-bank.ts); pages that ship a topic to the
+ * client use getBankTopicMn below, which trims the payload.
+ */
+export function getBankMirrorMn(slug: string): BankTopic | null {
+  return BANK_MN[slug] ?? null;
+}
+
+/**
  * The Mongolian mirror of a course-ladder topic, or null if no unit of it is
  * rewritten yet. With `unitId`, only that unit's forms travel (the page
  * already sends the English topic; sending a second full topic would double
