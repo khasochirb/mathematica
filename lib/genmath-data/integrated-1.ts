@@ -25,6 +25,7 @@ import mnIntegrated1LinearEquationsAndInequalities from "@/data/genmath/integrat
 import mnIntegrated1LinearFunctions from "@/data/genmath/integrated-1-mn/linear-functions.json";
 import mnIntegrated1QuantitiesAndExpressions from "@/data/genmath/integrated-1-mn/quantities-and-expressions.json";
 import mnIntegrated1SystemsOfEquationsAndInequalities from "@/data/genmath/integrated-1-mn/systems-of-equations-and-inequalities.json";
+import mnIntegrated1TransformationsAndCongruence from "@/data/genmath/integrated-1-mn/transformations-and-congruence.json";
 export const im1UnitsMn: Record<string, CourseUnit> = {
   "coordinate-geometry": mnIntegrated1CoordinateGeometry as unknown as CourseUnit,
   "data-and-statistics": mnIntegrated1DataAndStatistics as unknown as CourseUnit,
@@ -34,6 +35,7 @@ export const im1UnitsMn: Record<string, CourseUnit> = {
   "linear-functions": mnIntegrated1LinearFunctions as unknown as CourseUnit,
   "quantities-and-expressions": mnIntegrated1QuantitiesAndExpressions as unknown as CourseUnit,
   "systems-of-equations-and-inequalities": mnIntegrated1SystemsOfEquationsAndInequalities as unknown as CourseUnit,
+  "transformations-and-congruence": mnIntegrated1TransformationsAndCongruence as unknown as CourseUnit,
 };
 // MN-MIRRORS:END
 
