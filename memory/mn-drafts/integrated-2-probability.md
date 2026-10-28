@@ -30,7 +30,7 @@ no `$...$`, as the English's do not.
 > touching the arithmetic (French/German → English/Russian; cycling → walking
 > to school; car/bicycle → car/motorcycle in a sum; bus/train → bus/private
 > car; streaming → an online film service). The topic has no money. Every
-> number stated in the Mongolian was re-verified: 214 assertions in the
+> number stated in the Mongolian was re-verified: 259 assertions in the
 > scratch script, all passing.
 
 ---
@@ -476,7 +476,7 @@ were moved to Mongolia only where the arithmetic did not care: French/German
 → English/Russian (L1 we4), cycling → walking to school (L2 we1–we2 and the
 L2 cards), car/bicycle → car/motorcycle in a sum (L2 t1), smartphone/streaming
 → smartphone/online film service (L3 we2), bus/train → bus/private car (ty-2),
-tea/coffee → milk tea/coffee (p4). 214 assertions in the scratch script, all
+tea/coffee → milk tea/coffee (p4). 259 assertions in the scratch script, all
 passing.
 
 **2. Complement is «гүйцээлт», not «нэмэлт», and is written $\overline{A}$.**
