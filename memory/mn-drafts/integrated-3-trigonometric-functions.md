@@ -691,7 +691,8 @@ one-cyclist-rides-both-roads reading. `\tan` is written `\operatorname{tg}`
 throughout (6ak), including in practice and test-yourself statements; that is
 notation, not a number. Every number stated in the draft was re-verified in
 `/tmp/claude-0/-home-user-mathematica/2c09a9bc-48e8-50bc-b593-f4d20da90822/scratchpad/agents/integrated-3-trigonometric-functions/verify.py`
-(count in the report line below).
+: **153 assertions, all pass**, including the two English errors in Notes 3b
+and 3c and the exact values missing from `x9` (3d).
 
 **3. English errors found (not fixed in the English):**
 - a. **Practice ids are duplicated.** `im3-u4-p13`, `p14` and `p15` each occur
