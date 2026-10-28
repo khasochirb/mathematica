@@ -2,7 +2,7 @@
 
 **STATUS: DRAFT. Written by Claude. Not applied, not gated, not shipped.**
 
-Integrated Math 3, unit 1. Four lessons, 35 items (16 worked, 8 tryIt,
+Integrated Math 3, unit 1. Four lessons, 43 items (16 worked, 8 tryIt,
 12 practice, 7 test-yourself), 51 interactive steps (13 · 13 · 12 · 13), **no
 nested tryItSet problems**: this topic's `worked`/`tryIt` steps carry only a
 title and a `problemId`, so no eyebrow is added where the English has none.
@@ -505,7 +505,7 @@ Numbers and answers unchanged; wording only.
    - **«загварын тодорхойлогдох муж»** (model domain) and «физик муж», «физик хязгаарлалт» beside it. The live `integrated-3-mn/modelling-with-functions` mirror already says «физик хязгаар».
    - «тэмдгийн шалгуур» (sign test) follows ruling n03 directly.
 
-3. **Verified**: `scratchpad/agents/integrated-3-polynomial-functions/verify.py`, **186 assertions**, all pass. It covers every value in every worked example, tryIt, practice and test item, every tapQuestion's correct option, every synthetic-division row, every factorisation (expanded with sympy), every sign-test value, and the three values the Mongolian adds to L3 we2. **No number was changed**, so no new `check[]` line is needed and no ₮ was introduced (the topic has no money).
+3. **Verified**: `scratchpad/agents/integrated-3-polynomial-functions/verify.py`, **246 assertions**, all pass. It covers every value in every worked example, tryIt, practice and test item, every tapQuestion's correct option, every synthetic-division row, every factorisation (expanded with sympy), every sign-test value, and the three values the Mongolian adds to L3 we2. **No number was changed**, so no new `check[]` line is needed and no ₮ was introduced (the topic has no money).
 
 4. **English issues found (not fixed in the English):**
    a. **L1 concept 4** says every odd-degree polynomial has a real zero. That needs real coefficients. The Mongolian adds «бодит коэффициенттэй».
@@ -518,7 +518,7 @@ Numbers and answers unchanged; wording only.
    h. **p11 solution** has a garbled clause ("up on the right, up from below on the left means it came from −∞"). The Mongolian says it plainly: the left end comes from below and the right end rises.
    i. **L3 we4, L4 we2, L4 we4** check a factorisation with "the product of the negated zeros equals the constant". That holds only when the leading coefficient is $1$, which is true in all three. The Mongolian says so once (L3 we4).
 
-5. **Widget strings outside the dump.** L3 step 3 `stepProof` has student-visible English in its config: `given`, `prove` and the five `reason`s, plus one statement in words ("r is a constant"). The dump prints that config as "unchanged", so the walker may not reach it. The draft gives Mongolian for all of them, and the other four statements stay as maths. Build should carry them by hand at assembly. The four `polyGraph` widgets (L1 [1], L2 [1], L4 [7]) may also render their own English labels. That is the same class of problem as 0t item 3.
+5. **Widget strings outside the dump.** L3 step 3 `stepProof` has student-visible English in its config: `given`, `prove` and the five `reason`s, plus one statement in words ("r is a constant"). The dump prints that config as "unchanged", so the walker may not reach it. The draft gives Mongolian for all of them, and the other four statements stay as maths. Build should carry them by hand at assembly. The three `polyGraph` widgets (L1 [1], L2 [1], L4 [7]) may also render their own English labels. That is the same class of problem as 0t item 3.
 
 6. **Setting.** L4 we3 (the box) is now a Цагаан сарын боов box. Only the wording changed: same 20 cm × 16 cm sheet, same answer. Nothing else in the topic was US-specific.
 
