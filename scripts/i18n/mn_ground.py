@@ -246,8 +246,12 @@ def selftest() -> int:
         ("inequality", "тэнцэтгэл биш"),
         ("logarithm", "логарифм"),
     ]
-    # Not Mongolian at all — must never ground anywhere.
-    fabricated = [("nonsense", "зөгнөлт хуурмаг үг")]
+    # Not Mongolian at all — must never ground anywhere. The control used to be
+    # «зөгнөлт хуурмаг үг», but those are three REAL words («хуурмаг» is the
+    # "imaginary" of complex numbers): once enough mirrors shipped, they turned
+    # up inside one window and the control "grounded". A control must be words
+    # no corpus can contain, so it is letter salad.
+    fabricated = [("nonsense", "пырзгэлэн шорвомж")]
 
     # PHRASE ADJACENCY. The standard has "модны схем" for a tree diagram and
     # separately has "диаграмм" (10.13в, 11.11а). A checker that only asks

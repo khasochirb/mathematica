@@ -81,10 +81,12 @@ export function getCoursePlacementBankMn(courseSlug: string): PlacementQuestion[
   let out: PlacementQuestion[] | null = null;
   if (mn && picks.length > 0) {
     const unitTitle = new Map(mn.units.map((u) => [u.id, u.title]));
-    const forms = new Map(mn.forms.map((f) => [f.id, f]));
+    // Keyed by unit AND id: form ids are not unique across units (integrated-1
+    // ships "im1-slope-two-points" in two units).
+    const forms = new Map(mn.forms.map((f) => [`${f.unit}|${f.id}`, f]));
     out = [];
     for (const p of picks) {
-      const v = forms.get(p.formId)?.variants.find((x) => x.id === p.variantId);
+      const v = forms.get(`${p.q.topicSlug}|${p.formId}`)?.variants.find((x) => x.id === p.variantId);
       if (!v || v.options.length !== p.q.options.length || v.correctIndex !== p.q.correctIndex) {
         out = null;
         break;

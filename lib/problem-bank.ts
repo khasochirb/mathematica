@@ -425,7 +425,11 @@ export function bankSolved(progress: BankProgress, formIds: readonly string[]): 
 export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined): BankTopic {
   if (!mn) return topic;
   const mnUnits = new Map(mn.units.map((u) => [u.id, u]));
-  const mnForms = new Map(mn.forms.map((f) => [f.id, f]));
+  // Keyed by unit AND id: a form id is not unique across units (integrated-1
+  // uses im1-slope-two-points in two units), and keying by id alone gave one
+  // unit the other's Mongolian title and left its variants in English.
+  const formKey = (f: { unit: string; id: string }) => `${f.unit}\u0000${f.id}`;
+  const mnForms = new Map(mn.forms.map((f) => [formKey(f), f]));
   return {
     ...topic,
     title: mn.title || topic.title,
@@ -435,7 +439,7 @@ export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined
       return m ? { ...u, title: m.title, blurb: m.blurb ?? u.blurb } : u;
     }),
     forms: topic.forms.map((f) => {
-      const m = mnForms.get(f.id);
+      const m = mnForms.get(formKey(f));
       if (!m) return f;
       const mv = new Map(m.variants.map((v) => [v.id, v]));
       return {
