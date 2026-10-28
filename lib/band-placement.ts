@@ -22,6 +22,7 @@ import {
   type PlacementQuestion,
 } from "@/lib/placement-bank";
 import type { PlacementResult } from "@/lib/placement-engine";
+import { getPlacementBankMn, type PlacementBankId } from "@/lib/placement-bank-mn";
 
 export type BandId = "mid" | "high";
 
@@ -87,6 +88,34 @@ export function getBandPlacementBank(band: BandId): PlacementQuestion[] {
   }
   gradeOfCache.set(band, gradeOf);
   bankCache.set(band, out);
+  return out;
+}
+
+const bankMnCache = new Map<BandId, PlacementQuestion[]>();
+
+/**
+ * The band bank in Mongolian, for display only (PlacementConfig.bankMn): the
+ * same questions, ids and answer key as getBandPlacementBank, each swapped
+ * for its grade's Mongolian twin (lib/placement-bank-mn.ts) and titled
+ * «N-р анги · …». Untranslated questions stay English.
+ */
+export function getBandPlacementBankMn(band: BandId): PlacementQuestion[] {
+  const cached = bankMnCache.get(band);
+  if (cached) return cached;
+  const out = getBandPlacementBank(band).map((q) => {
+    const m = /^g(\d+):(.*)$/.exec(q.id);
+    if (!m) return q;
+    const twin = getPlacementBankMn(m[1] as PlacementBankId).find((x) => x.id === m[2]);
+    if (!twin) return q;
+    return {
+      ...q,
+      topicTitle: `${m[1]}-р анги · ${twin.topicTitle}`,
+      prompt: twin.prompt,
+      options: twin.options,
+      explanation: twin.explanation,
+    };
+  });
+  bankMnCache.set(band, out);
   return out;
 }
 
