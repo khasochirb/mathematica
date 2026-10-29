@@ -166,6 +166,13 @@ export interface FigureSpec {
     step?: number;
     unit?: string;
     color?: string;
+    /** Name of the first line, shown in the legend when `series` adds more. */
+    seriesLabel?: string;
+    /** More lines over the same x labels (e.g. two phone plans whose costs
+     *  meet): each gives one value per `points` entry. Drawn with a legend. */
+    series?: { label: string; values: number[]; color?: string }[];
+    /** Index of an x position to mark with a vertical guide (where lines meet). */
+    markAt?: number;
   };
   // "clockFace" — an analogue clock at a given time, for reading the clock
   // and for elapsed-time problems (two faces when `until` is given).

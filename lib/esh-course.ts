@@ -619,6 +619,8 @@ export function eshCourseDef(topic: string): CourseDef | null {
   return {
     slug: topic,
     title: course.title,
+    // The ЭШ hub is Mongolian-first; the ministry heading is its Mongolian name.
+    titleMn: course.titleMn,
     context: ESH_COURSE_CONTEXT,
     intro: course.intro,
     basePath: `/practice/esh/learn/${topic}`,
