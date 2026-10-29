@@ -62,8 +62,10 @@ describe("course shell labels", () => {
     // carry no `ok`. On production chrome() holds those back, so shipping them
     // from this object would have walked straight around that gate. Withdrawn
     // until Khas reads the four strings.
-    expect(missing.sort()).toEqual(
-      ["examsBody", "examsHeading", "examsTitle", "reveal", "selfGradedBody"].sort(),
-    );
+    //
+    // The exams card left the list in Oct 2026 by request: examsTitle reuses
+    // the shipped «Жишиг шалгалт»; examsHeading and examsBody are new prose
+    // flagged for Khas's approval in components/course/CourseShell.tsx.
+    expect(missing.sort()).toEqual(["reveal", "selfGradedBody"].sort());
   });
 });

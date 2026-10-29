@@ -3,7 +3,8 @@
 import Link from "next/link";
 import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft } from "lucide-react";
-import { getTrigSpine } from "@/lib/genmath-data/trigonometry";
+import { getTrigSpine, getTrigUnitLocalized } from "@/lib/genmath-data/trigonometry";
+import { useLang } from "@/lib/lang-context";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
@@ -13,6 +14,8 @@ import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 // trigonometry scope; SAT right-triangle trig and IB core ride along.
 export default function TrigCoursePage() {
   const spine = getTrigSpine();
+  const { lang } = useLang();
+  const mn = lang === "mn";
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -22,32 +25,33 @@ export default function TrigCoursePage() {
           <Link href="/math" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Courses</div>
+          <div className="eyebrow">{mn ? "Курсууд" : "Courses"}</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 5vw, 54px)", letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--fg)" }}>
-          Trigonometry
+          {mn ? "Тригонометр" : "Trigonometry"}
         </h1>
         <p className="mt-4 mb-8" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
-          The mathematics of angles, from zero: three ratios that unlock every
-          right triangle, the two special triangles behind all exact values,
-          the unit circle and its wave, the identities that connect them —
-          and the laws of sines and cosines that solve ANY triangle. Nearly
-          every step comes with a diagram you can read the answer from.
+          {mn
+            ? "Энэ курсын бүлгүүд: тэгш өнцөгт гурвалжны тригонометр, онцгой гурвалжин ба яг утгууд, радиан ба нэгж тойрог, тригонометр функцийн график, адилтгал ба тэгшитгэл, синусын ба косинусын теорем. Бүлэг бүрийг интерактив, өөрийгөө шалгадаг хичээлүүдээр сууриас нь зааж өгнө."
+            : "The mathematics of angles, from zero: three ratios that unlock every right triangle, the two special triangles behind all exact values, the unit circle and its wave, the identities that connect them — and the laws of sines and cosines that solve ANY triangle. Nearly every step comes with a diagram you can read the answer from."}
         </p>
 
         <CoursePlacementCta
           namespace="trigonometry"
           href="/math/trigonometry/placement"
-          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+          unitTitle={(s) => getTrigUnitLocalized(s, lang)?.title ?? spine.find((u) => u.slug === s)?.title}
         />
 
         <CoursePersonalization context="course:trigonometry" />
 
         {/* The spine */}
-        <div className="eyebrow mb-4">The course — 6 units, in order</div>
+        <div className="eyebrow mb-4">{mn ? `Хөтөлбөр — ${spine.length} бүлэг, дарааллаар` : "The course — 6 units, in order"}</div>
         <ol className="space-y-3">
           {spine.map((u) => {
+            const unit = u.live ? getTrigUnitLocalized(u.slug, lang) : null;
+            const cardTitle = unit?.title ?? u.title;
+            const cardBlurb = unit?.blurb ?? u.blurb;
             return u.live ? (
               <li key={u.slug}>
                 <TopicLink courseKey="trigonometry" topicSlug={u.slug}                   href={`/math/trigonometry/${u.slug}`}
@@ -67,14 +71,14 @@ export default function TrigCoursePage() {
                   </span>
                   <span className="flex-1 min-w-0">
                     <span className="serif block" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
-                      {u.title}
+                      {cardTitle}
                     </span>
                     <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-                      {u.blurb}
+                      {cardBlurb}
                     </span>
                   </span>
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
-                    Start
+                    {mn ? "Эхлэх" : "Start"}
                   </span>
                 </TopicLink>
               </li>
@@ -93,7 +97,7 @@ export default function TrigCoursePage() {
                     </span>
                   </span>
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                    Soon
+                    {mn ? "Удахгүй" : "Soon"}
                   </span>
                 </div>
               </li>

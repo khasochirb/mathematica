@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { getGrade10Spine, getGrade10Topic } from "@/lib/genmath-data/grade-10";
+import { getGrade10Spine, getGrade10TopicLocalized } from "@/lib/genmath-data/grade-10";
 import { useLang } from "@/lib/lang-context";
 import { useAuth } from "@/lib/auth-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
@@ -26,7 +26,7 @@ export default function Grade10TopicsPage() {
 
   const prioritySet = new Set(placement?.priorityTopics ?? []);
   const priorityTitles = (placement?.priorityTopics ?? [])
-    .map((slug) => spine.find((t) => t.slug === slug)?.title)
+    .map((slug) => getGrade10TopicLocalized(slug, lang)?.title ?? spine.find((t) => t.slug === slug)?.title)
     .filter(Boolean) as string[];
 
   return (
@@ -44,9 +44,9 @@ export default function Grade10TopicsPage() {
           {mn ? "10-р ангийн сэдвүүд" : "Grade 10 Topics"}
         </h1>
         <p className="mt-3 mb-8" style={{ color: "var(--fg-1)", fontSize: 16, maxWidth: "56ch" }}>
-          Algebra grows teeth — polynomials, quadratics in every form, rational and
-          radical expressions, exponential growth, and probability. Each topic is
-          taught from the ground up with interactive, self-checking lessons.
+          {mn
+            ? "Энэ жилийн сэдвүүд: олон гишүүнт ба үржигдэхүүнд задлах, квадрат тэгшитгэл, квадрат функц ба парабол, рационал илэрхийлэл ба тэгшитгэл, язгуур ба рационал илтгэгч, илтгэгч функц ба өсөлт, магадлал ба тоолол. Сэдэв бүрийг интерактив, өөрийгөө шалгадаг хичээлүүдээр сууриас нь зааж өгнө."
+            : "Algebra grows teeth — polynomials, quadratics in every form, rational and radical expressions, exponential growth, and probability. Each topic is taught from the ground up with interactive, self-checking lessons."}
         </p>
 
         {/* Placement CTA / summary */}
@@ -86,7 +86,9 @@ export default function Grade10TopicsPage() {
         <div className="eyebrow mb-4">{mn ? "Хөтөлбөр — 7 сэдэв, дарааллаар" : "The course — 7 topics, in order"}</div>
         <ol className="space-y-3">
           {spine.map((t, i) => {
-            const topic = t.live ? getGrade10Topic(t.slug) : null;
+            const topic = t.live ? getGrade10TopicLocalized(t.slug, lang) : null;
+            const cardTitle = topic?.title ?? t.title;
+            const cardBlurb = topic?.blurb ?? t.blurb;
             const lessonCount = topic?.lessons.length ?? 0;
             const important = prioritySet.has(t.slug);
             return t.live ? (
@@ -109,7 +111,7 @@ export default function Grade10TopicsPage() {
                   <span className="flex-1 min-w-0">
                     <span className="flex items-center gap-2 flex-wrap">
                       <span className="serif" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
-                        {t.title}
+                        {cardTitle}
                       </span>
                       {important && (
                         <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--accent)" }}>
@@ -118,11 +120,11 @@ export default function Grade10TopicsPage() {
                       )}
                     </span>
                     <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-                      {t.blurb}
+                      {cardBlurb}
                     </span>
                   </span>
                   <span className="mono text-[11px] flex-shrink-0 mt-1" style={{ color: "var(--fg-3)" }}>
-                    {lessonCount} lesson{lessonCount !== 1 ? "s" : ""}
+                    {mn ? `${lessonCount} хичээл` : `${lessonCount} lesson${lessonCount !== 1 ? "s" : ""}`}
                   </span>
                 </TopicLink>
               </li>
@@ -141,7 +143,7 @@ export default function Grade10TopicsPage() {
                     </span>
                   </span>
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                    Soon
+                    {mn ? "Удахгүй" : "Soon"}
                   </span>
                 </div>
               </li>

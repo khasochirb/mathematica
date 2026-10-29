@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { useLang } from "@/lib/lang-context";
 import { loadPlacement, type StoredPlacement } from "@/lib/placement-result";
 
 export default function CoursePlacementCta({
@@ -20,6 +21,8 @@ export default function CoursePlacementCta({
   unitTitle: (slug: string) => string | undefined; // priority slug -> title
 }) {
   const { user } = useAuth();
+  const { lang } = useLang();
+  const mn = lang === "mn";
   const [placement, setPlacement] = useState<StoredPlacement | null>(null);
 
   useEffect(() => {
@@ -46,31 +49,44 @@ export default function CoursePlacementCta({
         <>
           <div className="flex-1 min-w-0">
             <p className="serif" style={{ fontSize: 16, color: "var(--fg)" }}>
-              You&apos;re at the <b style={{ color: "var(--accent)" }}>{placement.level}</b> level
+              {mn ? (
+                <>Таны түвшин: <b style={{ color: "var(--accent)" }}>{placement.level}</b></>
+              ) : (
+                <>You&apos;re at the <b style={{ color: "var(--accent)" }}>{placement.level}</b> level</>
+              )}
             </p>
             <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
               {priorityTitles.length > 0 ? (
-                <>
-                  Focus first on <b>{priorityTitles.slice(0, 3).join(", ")}</b>.
-                </>
+                mn ? (
+                  <>
+                    Түрүүнд анхаарах зүйлс: <b>{priorityTitles.slice(0, 3).join(", ")}</b>.
+                  </>
+                ) : (
+                  <>
+                    Focus first on <b>{priorityTitles.slice(0, 3).join(", ")}</b>.
+                  </>
+                )
+              ) : mn ? (
+                <>Та бүх сэдэвт хүчтэй байна. Хүссэн үедээ дахин өгөөрэй.</>
               ) : (
                 <>You&apos;re strong across the board. Retake anytime.</>
               )}
             </p>
           </div>
           <span className="mono text-[11px] flex-shrink-0" style={{ color: "var(--accent)" }}>
-            Retake →
+            {mn ? "Дахин өгөх →" : "Retake →"}
           </span>
         </>
       ) : (
         <>
           <div className="flex-1 min-w-0">
             <p className="serif" style={{ fontSize: 16, color: "var(--fg)" }}>
-              Take the placement test
+              {mn ? "Түвшин тогтоох тест өгөх" : "Take the placement test"}
             </p>
             <p className="text-[13px] mt-0.5" style={{ color: "var(--fg-2)" }}>
-              A quick adaptive test finds your level, seeds your rating, and shows
-              where to start in this course.
+              {mn
+                ? "Богино дасан зохицдог тест таны түвшинг тогтоож, энэ курсын хаанаас эхлэхийг харуулна."
+                : "A quick adaptive test finds your level, seeds your rating, and shows where to start in this course."}
             </p>
           </div>
           <ArrowRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />

@@ -3,7 +3,8 @@
 import Link from "next/link";
 import TopicLink from "@/components/genmath/TopicLink";
 import { ArrowLeft } from "lucide-react";
-import { getAlg1Spine } from "@/lib/genmath-data/algebra-1";
+import { getAlg1Spine, getAlg1UnitLocalized } from "@/lib/genmath-data/algebra-1";
+import { useLang } from "@/lib/lang-context";
 import CoursePersonalization from "@/components/course/CoursePersonalization";
 import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 
@@ -11,6 +12,8 @@ import CoursePlacementCta from "@/components/course/CoursePlacementCta";
 // expressions and equations through functions, lines, systems, and quadratics.
 export default function Alg1CoursePage() {
   const spine = getAlg1Spine();
+  const { lang } = useLang();
+  const mn = lang === "mn";
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -20,31 +23,33 @@ export default function Alg1CoursePage() {
           <Link href="/math" className="p-2 rounded-md transition-colors" style={{ background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--fg-2)" }}>
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Courses</div>
+          <div className="eyebrow">{mn ? "Курсууд" : "Courses"}</div>
         </div>
 
         <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(32px, 5vw, 54px)", letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--fg)" }}>
-          Algebra 1
+          {mn ? "Алгебр 1" : "Algebra 1"}
         </h1>
         <p className="mt-4 mb-8" style={{ color: "var(--fg-1)", fontSize: 17, maxWidth: "56ch" }}>
-          The language the rest of mathematics is written in: expressions and
-          equations, inequalities, functions and their graphs, lines, systems,
-          polynomials and factoring — ending at quadratic equations. Taught from
-          zero, one interactive idea at a time.
+          {mn
+            ? "Энэ курсын бүлгүүд: илэрхийлэл ба үйлдлүүд, шугаман тэгшитгэл, шугаман тэнцэтгэл биш, функц, шугаман функц ба налалт, тэгшитгэлийн систем, олон гишүүнт ба үржигдэхүүнд задлах, квадрат тэгшитгэл ба функц. Бүлэг бүрийг интерактив, өөрийгөө шалгадаг хичээлүүдээр сууриас нь зааж өгнө."
+            : "The language the rest of mathematics is written in: expressions and equations, inequalities, functions and their graphs, lines, systems, polynomials and factoring — ending at quadratic equations. Taught from zero, one interactive idea at a time."}
         </p>
 
         <CoursePlacementCta
           namespace="algebra-1"
           href="/math/algebra-1/placement"
-          unitTitle={(s) => spine.find((u) => u.slug === s)?.title}
+          unitTitle={(s) => getAlg1UnitLocalized(s, lang)?.title ?? spine.find((u) => u.slug === s)?.title}
         />
 
         <CoursePersonalization context="course:algebra-1" />
 
         {/* The spine */}
-        <div className="eyebrow mb-4">The course — 8 units, in order</div>
+        <div className="eyebrow mb-4">{mn ? `Хөтөлбөр — ${spine.length} бүлэг, дарааллаар` : "The course — 8 units, in order"}</div>
         <ol className="space-y-3">
           {spine.map((u) => {
+            const unit = u.live ? getAlg1UnitLocalized(u.slug, lang) : null;
+            const cardTitle = unit?.title ?? u.title;
+            const cardBlurb = unit?.blurb ?? u.blurb;
             return u.live ? (
               <li key={u.slug}>
                 <TopicLink courseKey="algebra-1" topicSlug={u.slug}                   href={`/math/algebra-1/${u.slug}`}
@@ -64,14 +69,14 @@ export default function Alg1CoursePage() {
                   </span>
                   <span className="flex-1 min-w-0">
                     <span className="serif block" style={{ fontWeight: 400, fontSize: 18, letterSpacing: "-0.01em", color: "var(--fg)" }}>
-                      {u.title}
+                      {cardTitle}
                     </span>
                     <span className="block mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
-                      {u.blurb}
+                      {cardBlurb}
                     </span>
                   </span>
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--accent)", letterSpacing: "0.08em" }}>
-                    Start
+                    {mn ? "Эхлэх" : "Start"}
                   </span>
                 </TopicLink>
               </li>
@@ -90,7 +95,7 @@ export default function Alg1CoursePage() {
                     </span>
                   </span>
                   <span className="mono text-[10px] uppercase mt-1 flex-shrink-0" style={{ color: "var(--fg-3)", letterSpacing: "0.08em" }}>
-                    Soon
+                    {mn ? "Удахгүй" : "Soon"}
                   </span>
                 </div>
               </li>

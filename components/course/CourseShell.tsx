@@ -105,7 +105,7 @@ export const EN_COURSE_LABELS: CourseLabels = {
 // few are Khas's own voice strings, and the rest are drawn from
 // lib/i18n/chrome.ts. Nothing here is invented on the spot.
 //
-// FOUR ARE DELIBERATELY EMPTY. `courseLabels()` falls back to the English for
+// ONE IS DELIBERATELY EMPTY (was four; the exams card was filled Oct 2026). `courseLabels()` falls back to the English for
 // any blank, so an untranslated label renders in English rather than
 // disappearing. They are blank because no source has them and they are long
 // enough to be prose rather than labels — inventing them would be exactly the
@@ -140,8 +140,11 @@ export const MN_COURSE_LABELS: Partial<CourseLabels> = {
   // dictionary does with an unapproved string. Four words from Khas restores
   // them.
   //
-  // selfGradedBody, examsHeading, examsTitle, examsBody: no source has these
-  // and they are prose. Left to Khas.
+  examsHeading: "Курсаа дуусгасны дараа",       // NEW (Oct 2026) — awaiting Khas
+  examsTitle: "Жишиг шалгалт",                  // shipped (CourseExamPages list title)
+  examsBody: (n) =>                             // NEW (Oct 2026) — awaiting Khas
+    `Курсын бүх бүлгийг хамарсан ${n} хувилбар. Дүнг бүлэг бүрээр задалж харуулах тул аль бүлэг рүүгээ буцахаа мэдэх болно.`,
+  // selfGradedBody: no source has it and it is prose. Left to Khas.
 };
 
 /**

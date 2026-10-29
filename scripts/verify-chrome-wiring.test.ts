@@ -130,7 +130,7 @@ describe("chrome dictionary", () => {
       if (!src.includes(label)) wrong.push(path.relative(ROOT, file));
     }
     expect(wrong, "these render the focus line but not the approved label").toEqual([]);
-    expect(found, "the seven grade hubs render this line").toBe(7);
+    expect(found, "the seven grade hubs and the Geometry hub render this line").toBe(8);
   });
 
   it("counts as approved only what somebody other than Claude decided", () => {
