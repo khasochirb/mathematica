@@ -24,7 +24,11 @@ touching any of those; it is not summarised here.
 - **Fixed live bugs:** 12 Integrated 1 explanations rendered "imes" (`\times` lost its backslash in `scripts/pb/integrated_1_more.py`); mn_numerals «100-наар» → «100-гаар»; mn_ground selftest control was real words.
 - **Gates at 793418e:** verify-genmath clean, mn_skeleton 155 sound, verify-problembank clean, vitest 1210/1210, tsc clean, next build passes. Vercel preview READY.
 
-**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (preview imathhub-9oh1da5af). **Nothing deployed.**
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `1fff418`). **Nothing deployed.**
+
+**Follow-up 29 Oct:** a Mongolian-mode scan found English left on the /math landing, the problem-bank index, the grade 10–12 and named-course hubs, the Integrated exams card and named-course unit pages; all localized, and the scan of 38 hub/unit pages plus 76 deep routes now finds no English runs (gated lesson/practice pages checked through their shared chrome, not in a logged-in browser). vitest 1210/1210, build passes.
+
+**Voice-string waiver (Khas, 29 Oct 2026):** this session drafted Mongolian VOICE text that `docs/MONGOLIAN.md` reserves for Khas (hub/course intros, landing blurbs, exam and placement intros and feedback, bank intro, Premium lock text). Asked whether to strip it, Khas chose **keep them, rule waived** for this batch. The rule itself is unchanged for future work.
 
 **Blocked on:** Khas: preview approval and deploy word; voice/chrome strings (exam + ~30 placement labels); term calls in `memory/mn-review/rewrite-findings-2026-10-28.md` (on the branch).
 
