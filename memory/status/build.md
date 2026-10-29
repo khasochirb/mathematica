@@ -14,6 +14,275 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-10-29 — mode: content
+
+**Did:**
+- **Problem bank in Mongolian, every subject from grade 6 up** (19 subjects): per-unit tables `i18n/bank-tables/<corpus>/<unit>.mn.json` → `scripts/i18n/mn_bank.py assemble` → `data/problembank-mn/` + generated `lib/bank-data-mn.ts`. The gate holds maths, digits, maths-only options and option order fixed. Bank pages merge by id via `localizeTopic` (now keyed unit+id; `lib/bank-mn-localize.test.ts`).
+- **Lessons:** Precalculus and Integrated 1–3 mirrors complete. Integrated course hub title/intro/spine localize (`CourseDef.titleMn/introMn`).
+- **Course exams:** all 15 papers in Mongolian, generated from the bank by variant id (`scripts/i18n/mn_exams.py`, `i18n/exam-meta.mn.json`, `lib/course-exam-mn.ts`); runner and list chrome localized.
+- **Placement:** runner bilingual; course placement from the bank mirror; grade placement (6–12, geometry) in `i18n/placement-tables/` with a vitest gate.
+- **Fixed live bugs:** 12 Integrated 1 explanations rendered "imes" (`\times` lost its backslash in `scripts/pb/integrated_1_more.py`); mn_numerals «100-наар» → «100-гаар»; mn_ground selftest control was real words.
+- **Gates at 793418e:** verify-genmath clean, mn_skeleton 155 sound, verify-problembank clean, vitest 1210/1210, tsc clean, next build passes. Vercel preview READY.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `1fff418`). **Nothing deployed.**
+
+**Follow-up 29 Oct:** a Mongolian-mode scan found English left on the /math landing, the problem-bank index, the grade 10–12 and named-course hubs, the Integrated exams card and named-course unit pages; all localized, and the scan of 38 hub/unit pages plus 76 deep routes now finds no English runs (gated lesson/practice pages checked through their shared chrome, not in a logged-in browser). vitest 1210/1210, build passes.
+
+**Voice-string waiver (Khas, 29 Oct 2026):** this session drafted Mongolian VOICE text that `docs/MONGOLIAN.md` reserves for Khas (hub/course intros, landing blurbs, exam and placement intros and feedback, bank intro, Premium lock text). Asked whether to strip it, Khas chose **keep them, rule waived** for this batch. The rule itself is unchanged for future work.
+
+**Blocked on:** Khas: preview approval and deploy word; voice/chrome strings (exam + ~30 placement labels); term calls in `memory/mn-review/rewrite-findings-2026-10-28.md` (on the branch).
+
+**Others should know:** that findings file lists English source errors found during the rewrite (not fixed in English) and duplicate LESSON ids (im2-u8-*, im3-u4-p13..15, im3 trig p13..15). Ship work for a later session: fix those English errors, renumber duplicate ids (detaches history, Khas's call), notation pass (tg, intervals), negative-bracket pass.
+
+---
+
+## 2026-10-27 11:20 UTC — mode: ship
+
+(This session ran content first. Khas's "continue" on 27 Oct switched it to ship; it did no further authoring after the switch.)
+
+**Did:**
+- **All 122 Mongolian drafts assembled** into generated mirrors. Each draft becomes a table at `i18n/mn-tables/<corpus>/<slug>.mn.json`, and `scripts/i18n/mn_slots.py` turns it into `data/genmath/<corpus>-mn/<slug>.json`. Tables are keyed by JSON path and carry `overrides` for any rescaled `check[]` and currency.
+- **Registration is generated:** `scripts/i18n/mn_register.py` writes a `MN-MIRRORS` block in each course module. The named courses and the ЭШ course now pass `lang` through to localized unit and lesson getters.
+- **Widgets localized:**
+  - money in ₮ through `lib/money.ts`
+  - DealCompare
+  - StepProof (Given/Prove)
+  - ConditionalFlip
+  - CongruentTriangles (the buttons show ТТТ/ТӨТ/ӨТӨ/ӨӨТ/ГК; the config keys stay SSS etc.)
+  - four graph widgets
+- **Gates:**
+  - mn_skeleton: 122 sound
+  - verify-genmath: clean
+  - tsc: passes
+  - vitest: 925/925
+  - next build: passes
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` at `c27e30a`, with a Vercel preview building from it. **Nothing deployed.**
+
+**Blocked on:** Khas, who approves the preview per grade or course. 6bj (the ЭШ solid-geometry crash) still waits for his word.
+
+**Others should know:**
+- **Mongolian written at assembly that Khas has not reviewed:**
+  - solid-geometry `lines-and-planes-in-space`: 21 practice and test strings. The draft's practice items no longer matched the English, so the agent wrote them.
+  - solid-geometry: the recap bullets of cylinders-and-cones, spheres and lines-and-planes, because the drafts gave titles only.
+  - a few widget axis and figure labels in other topics.
+- **One answer check changed:** in prob-stats permutations, practice/3 and testYourself/1 had their words replaced, so their checks now assert the Mongolian answers.
+- **English bugs still open:** pile 0t lists them. Assembly added two more: solid-geometry cross-sections lesson 4 step 2 has two correct options, and `sg62-t2` asks for the "surface" but the answer is the lateral surface.
+
+---
+
+## 2026-10-27 (later) — mode: content
+
+**Did:**
+- **Grades 6–8 rewritten:** 24 drafts in `memory/mn-drafts/{6,7,8}-*.md`. Khas said "start from 6th grade; grades 2–4 are dropped". That settles MONGOLIAN.md Group 4 as **redo**. All 24 pass `mn_draft_check.py`, about 2,900 numeric assertions are verified, and none coins a term. **The rewrite now covers everything from grade 6 up: 122 drafts.**
+- **Round 5 applied** (`b808559`), and the decision page republished with round 6: 10 cross-grade word picks.
+- **Review pile 0t:** the launch plan, the five items Build must fix before assembly, and every finding from the 24 helpers.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `f99f503`). Nothing deployed.
+
+**Blocked on:** Khas, for 6bj only. He answered round 6 the same day, and it is applied in `f0900cb` (pile 0t). The decision page has nothing open.
+
+**Others should know — NEXT SESSION IS SHIP MODE (Khas, 27 Oct):** assemble all 122 drafts into the `*-mn` mirrors on the working branch, and send Khas a **private preview link** to approve per grade or course. Deploy only on his word. Read pile 0t first. Do these before running `--fix` on anything: `mn_terms.py` maps scatter plot to dot plot's word; the ₮ `check[]` lines; the English widgets; the four live questions with two correct answers; and the live grade 6 east/left bug.
+
+---
+
+## 2026-10-27 — mode: content
+
+**Did:**
+- **Applied Khas's 27 Oct rulings to all 98 drafts.** These are round 3 (13 word pairs) and round 4 (60 new words, 47 OK as drafted). Highlights: «квадрат зэрэгт дэвшүүлэх», «$x$/$y$ тэнхлэг», «нээгддэг», trig «амплитуд», «дотоод/гадаад солбисон хоёр өнцөг», bin «интервал», «таатай», «бөмбөлөг/зүрх», pyramid «хажуу талсын өндөр», «перпендикулярын суурь», «Коши–Шварц», «Галилей», «үет бутархай». Named tests are now «шалгуур». The whispering gallery is removed. Every draft passes `mn_draft_check.py`.
+- **Decision page republished** (claude.ai/artifact/Y4xkjVZeUheuTWESszomNg). Its "Needs you" tab has 7 explained questions where Khas asked for context.
+- **Review pile 0s:** the full ruling table, what is still open, and the live-mirror conflicts listed below.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `ee53951`). Nothing deployed.
+
+**Blocked on:** Khas, for 6bj, the HIGH live bug from 6 Oct, which is still unanswered. (His 7 open words were answered the same day and applied in `b808559`: «нийт дэх эзлэх хувь», «казиногийн ашгийн хувь», «сүүл», «ойролцоо», «эллипсийн тодорхойлолт»; «шалгуур» and «бараг тэнцүүлэх» kept. Pile 0s has the details. The decision page has nothing open.)
+
+**Others should know:** the live mirrors now disagree with the rulings, which is ship work for a later session. They are `7-mn` «квадратлах» ×10, «сахир» ×6, «Галилео», «тохирох үр дүн»; and `8-mn` «квадрат зэрэгт өргөх» ×3, «зэрэгт өргөх» ×6, «зэргийн дүрэм» ×2, «үелсэн бутархай» ×4. Pile 0s has the details.
+
+---
+
+## 2026-10-06 — mode: content
+
+**Did:**
+- **Drafted 78 and 79:** `9/linear-models-and-variation` and `9/data-distributions`. **Grade 9 is now fully drafted (7/7).** Every number was re-computed by script, and both drafts pass `mn_draft_check.py`.
+- **Grade 10 is complete:** drafts 80–83 (`polynomials-and-factoring`, `quadratic-equations`, `probability-and-counting`, `radicals-and-rational-exponents`). They were written by parallel agents to a fixed brief, and I gated and spot-checked each one. Between them, 768 numeric assertions were verified.
+- **Grade 11 is complete:** drafts 84–87 (`functions-and-transformations`, `statistics-and-data`, `trigonometry-and-the-unit-circle`, `polynomial-functions`), with 581 verified assertions. Their English errors are in 6bh.
+- **Grade 12 and the last four topics:** drafts 88–98 are done (grade 12 ×7, `algebra-2/sequences-and-series`, `solid-geometry` ×3). **The non-ЭШ queue is fully drafted: 98 drafts in all.**
+- **Slope is now $k$:** approved ruling 2a was applied to four grade 9/12 drafts that still used $m$. No English `check[]` uses a bare $m$.
+- **Decision page, round 3:** the 6bg word splits are on the same page as clickable cards (claude.ai/artifact/Y4xkjVZeUheuTWESszomNg), waiting on Khas.
+- **Review pile 6bg:** seven word splits between the shipped grade 6–8 mirrors and the ЭШ drafts, each needing one line from Khas.
+- **Review pile 6bh:** the English errors found in drafts 78–83.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `152aef8`). Nothing deployed.
+
+**Blocked on:** nothing.
+
+**Others should know (Build, ship mode):**
+- **HIGH, LIVE, review pile 6bj:** all 24 solid-geometry recap steps store their lines under `bullets`, but `LessonPlayer.tsx:1405` reads `step.points.map`. The last step of every solid-geometry lesson should therefore throw, including three live ЭШ units. Confirmed by code reading, not yet in a browser. The fix is to rename the field in the six JSON files.
+- **6bi:** the i18n walker skips a teach step's `body` and a recap's `bullets`. All 12 teach bodies in the live `algebra-1-mn/quadratic-equations` are English.
+- **6bc family:** `TangentGraph`, `AreaGraph` and `ConicGraph` hard-code English labels.
+- **New review pile item 6bf.** The English writes the KaTeX thousands brace `{,}` outside maths in **37 strings across 13 files**, including the live `7-mn/sampling-and-statistics`, so students see "$1{,}400". The fix is one scripted replacement outside `$…$`, then regenerating that mirror.
+- **One stray escaped dollar** in `9/data-distributions` lesson 5: "\$302-minute".
+- **One wrong English claim** in `dd4-we2`: it says the median is "center-right", but it is exactly centred.
+- **6bc again:** the `9/linear-models` `rateMeter` carries English labels in its config.
+- **Bin-word split for Khas:** grade 6's shipped histogram word is «интервал», and the ЭШ drafts use the ministry's «завсар». This is draft 79's Notes 2.
+
+---
+
+## 2026-10-05 — mode: content
+
+**Did:**
+- **Built the decision page.** Khas asked for a clickable page instead of a document, so I published one with a database, which only Khas can see: claude.ai/artifact/Y4xkjVZeUheuTWESszomNg. Round 1 is answered: 107 choices, read back from the page.
+- **Applied every round-1 ruling to all 76 drafts:**
+  - tg/ctg/arctg;
+  - $C_n^r$ / $A_n^r$;
+  - identity matrix $E$;
+  - «тэгш хэм» for reflection;
+  - «дараалсан хувиргалт»;
+  - «босоо өнцөг»;
+  - «онцгой утга»;
+  - «эзэлхүүн»;
+  - grade-6 plot names;
+  - extraneous solutions described in words, with no coined name;
+  - «гишүүнчлэн үржүүлэх чанар»;
+  - «нумд тулсан»;
+  - the «гарцаагүй бөгөөд хүрэлцээтэй нөхцөл» construction for *if and only if*;
+  - «пропорционал»;
+  - FOIL, PEMDAS and CPCTC kept with a gloss;
+  - money keeps its decimal point;
+  - 22 of Khas's own replacement words.
+- **Gate.** All 76 drafts pass `mn_draft_check.py`.
+- **Checker change.** `mn_draft_check.py` now exempts `\$` prices from the decimal-comma check, because Khas undid 2b.
+- **Drafted** 72–75 (vector/matrix unit 1) and 76 (`9/inequalities-and-absolute-value`), the first draft in the non-ЭШ queue.
+- **Fixed** «скаляр үржвэр» to «тоон үржвэр» where it meant scalar multiple (8 places).
+- **Recorded everything** in `memory/mn-review-pile.md` §0r.
+- **Round 2 answered and applied to all 76 drafts:**
+  - English term once, at its first use in each topic (5a);
+  - «битүү цэг / онгорхой цэг» for markers;
+  - the БАГ/ИХэр and ХАТҮ memory aids dropped;
+  - «хараат бус» for probability independence;
+  - perm p4 «НАРАН»;
+  - «дундаж шугам» and «огтлол» keep both meanings.
+- **Round-1 leftovers fixed:** a case-insensitive sweep found capitalised forms the first pass had missed (midline ×11, tolerance ×5, «УГСРАА», `kI`, one fact title, one iff), plus four typos.
+- **Drafted 77**, `9/inequalities-in-two-variables`, with the rulings applied from the start.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `b0f3c5b`). Nothing deployed, and nothing touches production.
+
+**Blocked on:** nothing. Next in the queue: grade 9 `data-distributions`, `linear-models-and-variation`, then grades 10–12.
+
+- **6ab, for Build (ship mode):** Khas chose to teach SD dividing by $n$ first, with $n - 1$ mentioned once. That changes the English `prob-stats/describing-data` lesson 4 answers and `check[]`. The plan is in review pile §0r, and draft 48 follows once the English changes.
+
+**Others should know (Build, ship mode, later):**
+- **6bd (new).** FactCard renders key-fact formulas as raw LaTeX: 417 English cards in grades 2–4, 6 and 9–12, plus 4 in the live `6-mn`.
+- **6bc (new).** Widget prose is never walked by the i18n pipeline, so English shows inside the live `6-mn` and `7-mn` `compositeArea`.
+- **6ba (new).** Cayley–Hamilton appears in 8 exam-bank questions and is taught nowhere.
+- **Production mirrors still carry spellings that are now ruled against:** «пропорциональ» ×97, both volume spellings, «хэт утга» and «цэгэн график». Fix these with an `mn_terms.py` sweep, not by hand.
+- **The 6q merge and the 6h English clean-up** are ship work, both approved by Khas.
+
+---
+
+## 2026-09-23 — mode: content
+
+**Did:** Mongolian rewrite, ЭШ-first queue, as Markdown drafts in
+`memory/mn-drafts/` (rewrite, not translation, per `docs/MONGOLIAN.md`).
+76 drafts now, 68 of them feeding the ЭШ course. **ЭШ coverage, re-measured
+against `lib/esh-course.ts`: 72 of 72 units, 14 of 14 topics. The ЭШ course
+is fully covered** (counting shipped mirrors). Комбинаторик, Магадлал,
+Өгөгдлийн шинжилгээ, Функц ба график and Тригонометр closed this week;
+Анализын эхлэл (6/6) and Вектор ба матриц (8/8) today. Also backfilled the
+`buildsOn` string into 42 drafts and topic title/blurb into 4 (the dump never
+printed `buildsOn`, though the apply walker requires it). Every draft passes
+`scripts/i18n/mn_draft_check.py` and every numeric claim was re-computed.
+Open questions for Khas are in `memory/mn-review-pile.md`, the only place
+they live. **Its new section 0 ranks the whole pile**: rulings by how much
+text each moves, applied calls that need only a yes, and a ship-mode list for
+Build ordered by how many students see each problem. Start there. The non-ЭШ
+queue has begun (`9/inequalities-and-absolute-value`, draft 76).
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (last commit
+`23556f3`). Drafts only: nothing applied to `data/genmath/*-mn`, nothing
+merged, nothing deployed, no migrations.
+
+**Blocked on:** Khas's review of the pile. The rulings that gate the most
+text: 6aa (coin and dice vocabulary, «орхих» / «тоотой тал» vs the drafts'
+«шидэх» / «зураас»), 6ab (the ЭШ divides by $n$, our SD lesson teaches
+$n - 1$), 6ac (dot plot vs scatter plot naming), 6ae (*bias* = «хазайлт»
+beside «стандарт хазайлт»), 6af (open/closed dots), 6aj («пропорционал» vs
+«пропорциональ»), and **6ak (`\tan` vs «tg»), which must be settled before
+any trigonometry ships** because it changes LaTeX inside answer options. New
+from the vectors-and-matrices unit: **6az** (the bank writes the identity
+matrix as $E$, never $I$; my lean is $E$ throughout the Mongolian) and **6bb**
+(composition: the ministry's «дараалсан хувиргалт» or the dictionary's
+«угсраа хувиргалт»).
+
+**Others should know:** ship-mode findings, written down and not done:
+
+- **6ai** — five ЭШ spine entries in `lib/esh-course.ts` (`live()`'s fourth
+  argument) render **English** `buildsOn` text under the Mongolian label
+  «Тулгуур сэдэв нь:». Also: make `mn_topic_dump.py` print `buildsOn` and make
+  `mn_draft_check.py` require the three topic-level strings.
+- **6ah** — `algebra-2/polynomial-functions` teaches ministry 12.2б/12.2в/10.2д,
+  which are mapped to `algebra-1/polynomials-and-factoring` (teaches none of
+  them); and three wrong facts in its live English (the "97%" claim, a box
+  with "one physical answer" that has two, a bracket that "almost never"
+  factors and in fact never does).
+- **6z** — six live ЭШ practice solutions in `data/questions/` defer to "the
+  corpus" instead of solving; three teach a wrong method or wrong data.
+- **6ad** — `prob-stats/distributions-and-position` lesson 6 concept 3 says
+  «памятlets» in live English: the only mixed-script word in 212 files.
+- **6j, 6af, 6ag** — ЭШ units claiming ministry codes they do not teach.
+- **6h, 6aj–6ap** — 27–28 leaked authoring notes in live English, most in
+  question *statements*; one (`dp-l2-t1`) with a wrong solution too. Every
+  one inside a drafted topic is written clean in its draft.
+- **6am, 6an, 6ao** — three ministry items the trigonometry units claim and
+  never teach: sector area (11.6б), sec/csc/cot (12.6а), the auxiliary-angle
+  formula (12.6б/г).
+- **6ap** — `mn_draft_check.py` should also fail on mixed-script words (a
+  sweep found one Latin «a» inside a Mongolian word in an older draft).
+- **6aq–6av** — calculus mapping audit, all six units: **nine ministry codes
+  are claimed by a calculus unit and taught nowhere** (12.7г, 11.9и, 11.9м,
+  12.8б/д/е, 11.10и/к, 12.8ж), so the untaught-codes list asserted by
+  `lib/esh-course.test.ts` does not report them; taught codes sit one unit
+  behind where they are taught. Re-map units 1–6 in one pass. Two of the
+  gaps are examined: implicit differentiation (4 bank questions) and
+  partial fractions (2); and 16 of the bank's 36 integral questions use a
+  linear inner function the course never shows. Also one false fact in live English: `the-derivative` lesson 2
+  states "f ↗ ⟺ f′ > 0" (fails for x³, which the same lesson teaches).
+- **6bd — the largest live bug in the pile.** `components/lesson/FactCard.tsx`
+  sends `fact.latex` through `MathText`, which typesets only `$...$`. The grade
+  routes 2–12 store most facts as bare LaTeX, so **417 English key-fact cards**
+  (grades 2–4, 6, 9–12) and 4 in the live `6-mn` mirror show raw source like
+  `y = a \cdot b^x`. One line fixes most of it: typeset the whole string when
+  it has no `$`. Grade 9's seven cards also carry literal `\u2192` escapes
+  that need the real characters. Found by reading the code; one page load
+  confirms it.
+- **6bc — live English inside two shipped Mongolian pages.** `mn_walk.py`
+  translates widget config only through `WIDGET_PROSE`, which omits six kinds
+  whose config holds visible prose (`stepProof` 23, `congruentTriangles` 6,
+  `treeDiagram` 5, `conjectureTest` 4, `compositeArea` 3, `conditionalFlip`
+  1). Two are already live: `6-mn/geometry-area-volume` and
+  `7-mn/geometry-scale-and-circles` render `compositeArea` labels and captions
+  in English («rectangle 6×4», «L-shaped room: 24 + 6 = 30 m²»). Add the
+  paths, translate, regenerate.
+- **6ba — the exam's Cayley–Hamilton questions are taught nowhere.** Eight
+  bank questions (every 2023 and 2024 variant) are solved with
+  A² − (tr A)A + (det A)E = O; the skill graph has `cayley-hamilton`; no unit
+  teaches the trace or the theorem. Natural home: `determinants-and-inverses`
+  lesson 2, in English first.
+- **6aw — the ЭШ spine lists `vector-arithmetic` as unit 1 and
+  `vectors-and-coordinates` as unit 2**, but arithmetic depends on
+  coordinates (and the home spine has them the other way round). Swap
+  `live(1)` and `live(2)`.
+- **6ax, 6ay, 6az, 6ba, 6bc** — false or stale claims in live English: a
+  section-formula tip that is backwards (6ax); "the capstone" on a unit that
+  two more units follow (6ba); "the trillionth Fibonacci number in
+  microseconds" (6az); three mixed-script typos in `data/questions/` (6ay);
+  an overclaim about elimination (6bc). Also 12.5г is half-taught and
+  examined (6ay).
+- Nothing here touches auth, RLS or student data.
+
+---
+
 ## 2026-09-04 04:20 UTC — mode: ship
 
 **Did:** Visual polish pass across the whole site on the owner's request
