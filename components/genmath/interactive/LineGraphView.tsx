@@ -61,6 +61,11 @@ export default function LineGraphView({ spec }: { spec: NonNullable<FigureSpec["
             {unit}
           </text>
         )}
+        {spec.xLabel && (
+          <text x={W - 8} y={bottom + 26} textAnchor="end" fontSize="10" fill="var(--fg-3)">
+            {spec.xLabel}
+          </text>
+        )}
         {spec.markAt !== undefined && spec.markAt >= 0 && spec.markAt < points.length && (
           <line x1={x(spec.markAt)} y1={top} x2={x(spec.markAt)} y2={bottom} stroke="var(--fg-3)" strokeWidth={1} strokeDasharray="4 3" />
         )}

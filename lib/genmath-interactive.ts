@@ -171,6 +171,8 @@ export interface FigureSpec {
     /** More lines over the same x labels (e.g. two phone plans whose costs
      *  meet): each gives one value per `points` entry. Drawn with a legend. */
     series?: { label: string; values: number[]; color?: string }[];
+    /** Name of the horizontal axis (e.g. «гигабайт»), drawn at its right end. */
+    xLabel?: string;
     /** Index of an x position to mark with a vertical guide (where lines meet). */
     markAt?: number;
   };
