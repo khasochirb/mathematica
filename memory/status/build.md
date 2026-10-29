@@ -24,7 +24,7 @@ touching any of those; it is not summarised here.
 - **Fixed live bugs:** 12 Integrated 1 explanations rendered "imes" (`\times` lost its backslash in `scripts/pb/integrated_1_more.py`); mn_numerals «100-наар» → «100-гаар»; mn_ground selftest control was real words.
 - **Gates at 793418e:** verify-genmath clean, mn_skeleton 155 sound, verify-problembank clean, vitest 1210/1210, tsc clean, next build passes. Vercel preview READY.
 
-**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (latest `1fff418`). **Nothing deployed.**
+**Landed where:** **deployed to production 29 Oct 2026 on Khas's word** ("approved", confirmed "Deploy now"): `f2c7fd8` → `dpl_DC4EQ2VCTxR7F9V49NS1ZfZoQvWL` READY, aliased to www.mongolpotential.com. Pre-flight: verify-genmath, verify-problembank, verify-ptest --all-esh (0 errors), tsc, vitest 1210/1210, build. Prod checked: Integrated 3 bank page serves the Mongolian mirror (200); no runtime errors in the first hour. Outgoing diff touched no API, migration, auth or contact-form file (FLAG-011 unaffected). Branch and main identical after the deploy.
 
 **Follow-up 29 Oct:** a Mongolian-mode scan found English left on the /math landing, the problem-bank index, the grade 10–12 and named-course hubs, the Integrated exams card and named-course unit pages; all localized, and the scan of 38 hub/unit pages plus 76 deep routes now finds no English runs (gated lesson/practice pages checked through their shared chrome, not in a logged-in browser). vitest 1210/1210, build passes.
 
