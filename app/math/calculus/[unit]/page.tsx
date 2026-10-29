@@ -44,7 +44,7 @@ export default function CalcUnitPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Calculus · Unit {unit.unit}</div>
+          <div className="eyebrow">{lang === "mn" ? "Калькулюс · Бүлэг" : "Calculus · Unit"} {unit.unit}</div>
         </div>
 
         {/* Unit heading */}
@@ -121,12 +121,12 @@ export default function CalcUnitPage() {
             <div className="flex flex-wrap gap-3">
               {unit.practice.length > 0 && (
                 <Link href={`/math/calculus/${unitSlug}/practice`} className="btn btn-primary">
-                  Practice
+                  {chrome("Practice", lang)}
                 </Link>
               )}
               {unit.testYourself.length > 0 && (
                 <Link href={`/math/calculus/${unitSlug}/test`} className="btn btn-line">
-                  Test yourself
+                  {chrome("Test yourself", lang)}
                 </Link>
               )}
             </div>

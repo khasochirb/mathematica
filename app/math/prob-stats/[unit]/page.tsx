@@ -44,7 +44,7 @@ export default function ProbStatUnitPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Prob & Stats · Unit {unit.unit}</div>
+          <div className="eyebrow">{lang === "mn" ? "Магадлал ба статистик · Бүлэг" : "Prob & Stats · Unit"} {unit.unit}</div>
         </div>
 
         {/* Unit heading */}
@@ -121,12 +121,12 @@ export default function ProbStatUnitPage() {
             <div className="flex flex-wrap gap-3">
               {unit.practice.length > 0 && (
                 <Link href={`/math/prob-stats/${unitSlug}/practice`} className="btn btn-primary">
-                  Practice
+                  {chrome("Practice", lang)}
                 </Link>
               )}
               {unit.testYourself.length > 0 && (
                 <Link href={`/math/prob-stats/${unitSlug}/test`} className="btn btn-line">
-                  Test yourself
+                  {chrome("Test yourself", lang)}
                 </Link>
               )}
             </div>

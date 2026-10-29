@@ -44,7 +44,7 @@ export default function GeometryUnitPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Geometry · Unit {unit.unit}</div>
+          <div className="eyebrow">{lang === "mn" ? "Геометр · Бүлэг" : "Geometry · Unit"} {unit.unit}</div>
         </div>
 
         {/* Unit heading */}
@@ -121,12 +121,12 @@ export default function GeometryUnitPage() {
             <div className="flex flex-wrap gap-3">
               {unit.practice.length > 0 && (
                 <Link href={`/math/geometry/${unitSlug}/practice`} className="btn btn-primary">
-                  Practice
+                  {chrome("Practice", lang)}
                 </Link>
               )}
               {unit.testYourself.length > 0 && (
                 <Link href={`/math/geometry/${unitSlug}/test`} className="btn btn-line">
-                  Test yourself
+                  {chrome("Test yourself", lang)}
                 </Link>
               )}
             </div>

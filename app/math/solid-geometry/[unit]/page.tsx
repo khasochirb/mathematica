@@ -44,7 +44,7 @@ export default function SolidGeoUnitPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Solid Geometry · Unit {unit.unit}</div>
+          <div className="eyebrow">{lang === "mn" ? "Огторгуйн геометр · Бүлэг" : "Solid Geometry · Unit"} {unit.unit}</div>
         </div>
 
         {/* Unit heading */}
@@ -121,12 +121,12 @@ export default function SolidGeoUnitPage() {
             <div className="flex flex-wrap gap-3">
               {unit.practice.length > 0 && (
                 <Link href={`/math/solid-geometry/${unitSlug}/practice`} className="btn btn-primary">
-                  Practice
+                  {chrome("Practice", lang)}
                 </Link>
               )}
               {unit.testYourself.length > 0 && (
                 <Link href={`/math/solid-geometry/${unitSlug}/test`} className="btn btn-line">
-                  Test yourself
+                  {chrome("Test yourself", lang)}
                 </Link>
               )}
             </div>

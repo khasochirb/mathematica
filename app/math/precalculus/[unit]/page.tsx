@@ -44,7 +44,7 @@ export default function PrecalcUnitPage() {
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="eyebrow">Precalculus · Unit {unit.unit}</div>
+          <div className="eyebrow">{lang === "mn" ? "Прекалькулюс · Бүлэг" : "Precalculus · Unit"} {unit.unit}</div>
         </div>
 
         {/* Unit heading */}
@@ -121,12 +121,12 @@ export default function PrecalcUnitPage() {
             <div className="flex flex-wrap gap-3">
               {unit.practice.length > 0 && (
                 <Link href={`/math/precalculus/${unitSlug}/practice`} className="btn btn-primary">
-                  Practice
+                  {chrome("Practice", lang)}
                 </Link>
               )}
               {unit.testYourself.length > 0 && (
                 <Link href={`/math/precalculus/${unitSlug}/test`} className="btn btn-line">
-                  Test yourself
+                  {chrome("Test yourself", lang)}
                 </Link>
               )}
             </div>
