@@ -14,6 +14,24 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-10-29 — mode: content
+
+**Did:**
+- **Problem bank in Mongolian, every subject from grade 6 up** (19 subjects): per-unit tables `i18n/bank-tables/<corpus>/<unit>.mn.json` → `scripts/i18n/mn_bank.py assemble` → `data/problembank-mn/` + generated `lib/bank-data-mn.ts`. The gate holds maths, digits, maths-only options and option order fixed. Bank pages merge by id via `localizeTopic` (now keyed unit+id; `lib/bank-mn-localize.test.ts`).
+- **Lessons:** Precalculus and Integrated 1–3 mirrors complete. Integrated course hub title/intro/spine localize (`CourseDef.titleMn/introMn`).
+- **Course exams:** all 15 papers in Mongolian, generated from the bank by variant id (`scripts/i18n/mn_exams.py`, `i18n/exam-meta.mn.json`, `lib/course-exam-mn.ts`); runner and list chrome localized.
+- **Placement:** runner bilingual; course placement from the bank mirror; grade placement (6–12, geometry) in `i18n/placement-tables/` with a vitest gate.
+- **Fixed live bugs:** 12 Integrated 1 explanations rendered "imes" (`\times` lost its backslash in `scripts/pb/integrated_1_more.py`); mn_numerals «100-наар» → «100-гаар»; mn_ground selftest control was real words.
+- **Gates at 793418e:** verify-genmath clean, mn_skeleton 155 sound, verify-problembank clean, vitest 1210/1210, tsc clean, next build passes. Vercel preview READY.
+
+**Landed where:** branch `claude/grade-6-math-verify-xe1tak` (preview imathhub-9oh1da5af). **Nothing deployed.**
+
+**Blocked on:** Khas: preview approval and deploy word; voice/chrome strings (exam + ~30 placement labels); term calls in `memory/mn-review/rewrite-findings-2026-10-28.md` (on the branch).
+
+**Others should know:** that findings file lists English source errors found during the rewrite (not fixed in English) and duplicate LESSON ids (im2-u8-*, im3-u4-p13..15, im3 trig p13..15). Ship work for a later session: fix those English errors, renumber duplicate ids (detaches history, Khas's call), notation pass (tg, intervals), negative-bracket pass.
+
+---
+
 ## 2026-10-27 11:20 UTC — mode: ship
 
 (This session ran content first. Khas's "continue" on 27 Oct switched it to ship; it did no further authoring after the switch.)
