@@ -50,6 +50,7 @@ export default function AnswerPrompt({
   onCommit,
   salt = "",
   autoFocus = false,
+  hideAnswer = false,
 }: {
   variant: { id: string; options: string[]; correctIndex: number };
   mode: AnswerMode;
@@ -59,12 +60,15 @@ export default function AnswerPrompt({
   /** Reshuffles the option order when it changes (e.g. after a reroll). */
   salt?: string;
   autoFocus?: boolean;
+  /** Lock and mark the wrong pick but do not light up the right option yet
+   *  (a tutored problem's second try is still to come). */
+  hideAnswer?: boolean;
 }) {
   const { lang } = useLang();
   return mode === "numeric" ? (
     <NumericPrompt variant={variant} outcome={outcome} onCommit={onCommit} autoFocus={autoFocus} />
   ) : (
-    <ChoicePrompt variant={variant} outcome={outcome} onCommit={onCommit} salt={salt} mn={lang === "mn"} />
+    <ChoicePrompt variant={variant} outcome={outcome} onCommit={onCommit} salt={salt} mn={lang === "mn"} hideAnswer={hideAnswer} />
   );
 }
 
@@ -199,12 +203,14 @@ function ChoicePrompt({
   onCommit,
   salt,
   mn,
+  hideAnswer = false,
 }: {
   variant: { id: string; options: string[]; correctIndex: number };
   outcome: AnswerOutcome | null;
   onCommit: (outcome: AnswerOutcome) => void;
   salt: string;
   mn: boolean;
+  hideAnswer?: boolean;
 }) {
   const [picked, setPicked] = useState<number | null>(null);
   const answered = outcome !== null;
@@ -216,7 +222,7 @@ function ChoicePrompt({
     <div className="mt-3">
       <div className="grid gap-2 sm:grid-cols-2">
         {disp.options.map((opt, i) => {
-          const isCorrect = answered && i === disp.correctIndex;
+          const isCorrect = answered && i === disp.correctIndex && (!hideAnswer || outcome?.correct);
           const isWrongPick = answered && i === picked && i !== disp.correctIndex;
           const isSelected = !answered && i === picked;
 
@@ -247,7 +253,7 @@ function ChoicePrompt({
                 background: bg,
                 border: `1.5px solid ${border}`,
                 color,
-                opacity: answered && !isCorrect && i !== picked ? 0.45 : 1,
+                opacity: answered && !isCorrect && i !== picked && !hideAnswer ? 0.45 : 1,
               }}
             >
               <span className="q-math" style={{ fontSize: 14.5 }}>

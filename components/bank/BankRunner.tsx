@@ -151,13 +151,14 @@ function ProblemView({
   const [showSolution, setShowSolution] = useState(false);
 
   const answer = variant.options[variant.correctIndex];
+  const tutored = Boolean(variant.steps?.length);
   const diagnosis =
     latest && !latest.correct && !latest.revealed && latest.picked != null
       ? variant.whyWrong?.[latest.picked] ?? null
       : null;
-  const tutored = Boolean(variant.steps?.length);
-  // A second try is offered once, after a diagnosed wrong answer.
-  const canRetry = Boolean(diagnosis) && attempt === 1;
+  // A tutored problem offers one second try after any wrong answer (with its
+  // diagnosis when the answer matches a known mistake). Others behave as before.
+  const canRetry = tutored && attempt === 1 && latest !== null && !latest.correct && !latest.revealed;
   const finished = latest !== null && (latest.correct || latest.revealed || !canRetry || showSolution);
 
   function commit(o: AnswerOutcome) {
@@ -198,12 +199,20 @@ function ProblemView({
           onCommit={commit}
           salt={`${salt}:${attempt}`}
           autoFocus
+          hideAnswer={canRetry && !showSolution}
         />
       </div>
 
       <HintPanel hints={variant.hints} mn={mn} disabled={finished} />
 
       {diagnosis && <Diagnosis text={diagnosis} mn={mn} />}
+      {!diagnosis && canRetry && !showSolution && (
+        <p className="mt-4 text-[14px]" style={{ color: "var(--fg-2)" }}>
+          {mn
+            ? "Хариу таарсангүй. Сануулгыг уншаад алхам бүрээ дахин шалгаарай."
+            : "That isn't it. Read a hint and check each step again."}
+        </p>
+      )}
 
       {latest && !latest.correct && canRetry && !showSolution && (
         <div className="mt-4 flex items-center gap-3 flex-wrap">

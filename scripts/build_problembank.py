@@ -85,6 +85,10 @@ def load_build(modname):
 # card) can iterate the ladder without importing any topic data.
 HUB_BANKS = {"sat", "ib-sl", "ib-hl"}
 
+# Units rebuilt with tutoring (hints, step-by-step solutions, per-option
+# diagnoses); see components/bank/Tutor.tsx.
+TUTOR_BUILDERS = ["g8_linear_equations_tutor.py"]
+
 
 def main():
     grand_forms = grand_vars = 0
@@ -132,6 +136,14 @@ def main():
         fh.write("\n")
     print(f"wrote data/bank-manifest.json: {len(manifest)} topics")
     print(f"TOTAL: {len(SUBJECTS)} subjects, {grand_forms} forms, {grand_vars} variants")
+
+    # Tutor-quality units are built by their own scripts, which REPLACE a
+    # unit's forms in the topic file just written (and fix its manifest row).
+    # Run them last, or a rebuild silently restores the old, untutored forms.
+    import runpy
+    for script in TUTOR_BUILDERS:
+        print(f"tutor unit: {script}")
+        runpy.run_path(os.path.join(ROOT, "scripts", "pb", script), run_name="__main__")
 
 
 if __name__ == "__main__":
