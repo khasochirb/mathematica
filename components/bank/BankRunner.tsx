@@ -4,12 +4,14 @@ import { useLang } from "@/lib/lang-context";
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, PencilLine, RotateCcw, Repeat2, Layers, Target } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lightbulb, PencilLine, RotateCcw, Repeat2, Layers, Target } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 import { useAuth } from "@/lib/auth-context";
 import { formAnswerMode } from "@/lib/bank-answer";
 import {
+  type BankForm,
+  type BankVariant,
   type BankTopic,
   type BankUnit,
   type BankSession,
@@ -28,6 +30,7 @@ import {
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
 import { type BankChrome, defaultBankChrome, levelLabel } from "./bank-chrome";
+import { Diagnosis, HintPanel, MethodCard, StepSolution } from "./Tutor";
 
 type Phase = "setup" | "quiz" | "done";
 
@@ -46,7 +49,6 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
   const [phase, setPhase] = useState<Phase>("setup");
   const [level, setLevel] = useState<BankLevel>(0);
   const [session, setSession] = useState<BankSession | null>(null);
-  const [outcome, setOutcome] = useState<AnswerOutcome | null>(null);
   const [summary, setSummary] = useState<BankSummary | null>(null);
 
   const scopedForms = unitForms(topic, unit.id);
@@ -67,15 +69,13 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
     const s = initSession(topic, lv, Math.random, formIds ?? scopedIds);
     setLevel(lv);
     setSession(s);
-    setOutcome(null);
     setSummary(null);
     setPhase("quiz");
   }
 
-  function next() {
-    if (!session || !outcome) return;
-    const advanced = answerCurrent(topic, session, outcome.correct);
-    setOutcome(null);
+  function next(o: AnswerOutcome) {
+    if (!session) return;
+    const advanced = answerCurrent(topic, session, o.correct);
     if (isDone(advanced)) {
       const sum = summarize(topic, advanced);
       saveBankSession(topic, sum, user?.id);
@@ -111,62 +111,17 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
               <div className="h-full rounded-full" style={{ width: `${(session.pos / session.queue.length) * 100}%`, background: "var(--accent)", transition: "width 0.4s cubic-bezier(0.22,1,0.36,1)" }} />
             </div>
 
-            <div className="flex items-center gap-2 flex-wrap mb-2">
-              <span className="eyebrow">{form.title}</span>
-              {item.isRetry && (
-                <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium" style={{ background: "rgba(216,150,32,0.12)", border: "1px solid rgba(216,150,32,0.4)", color: "var(--warn, #d89620)" }}>
-                  <Repeat2 className="h-3 w-3" /> {mn ? "Ижил төстэй бодлого — дахин оролд" : "Similar problem — try again"}
-                </span>
-              )}
-            </div>
-
-            <p className="font-sans" style={{ fontSize: 18, lineHeight: 1.5, color: "var(--fg)" }}>
-              <MathText text={variantData.statement} />
-            </p>
-
-            {variantData.geoFigure && (
-              <div className="mt-4">
-                <GeoDiagram spec={variantData.geoFigure} />
-              </div>
-            )}
-
-            <div className="mt-5">
-              <AnswerPrompt
-                key={`${item.formId}:${item.variantId}:${session.pos}`}
-                variant={variantData}
-                mode={mode}
-                outcome={outcome}
-                onCommit={setOutcome}
-                salt={String(session.pos)}
-                autoFocus
-              />
-            </div>
-
-            {outcome && (
-              <>
-                <div className="mt-4 rounded-xl p-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
-                  <p className="font-sans" style={{ fontSize: 14, lineHeight: 1.55, color: "var(--fg-1)" }}>
-                    <b>{mn ? "Хариу: " : "Answer: "}<MathText text={variantData.options[variantData.correctIndex]} /></b>{" "}
-                    <MathText text={variantData.explanation} />
-                  </p>
-                </div>
-                <div className="mt-5 flex items-center justify-between gap-3">
-                  <span className="text-[13px]" style={{ color: "var(--fg-3)" }}>
-                    {!outcome.correct
-                      ? (mn ? "Дараа нь ижил төстэй бодлого ирнэ — ижил хэлбэр, шинэ тоо." : "A similar problem is queued next — same form, new numbers.")
-                      : ""}
-                  </span>
-                  <button type="button" onClick={next} className="btn btn-primary inline-flex items-center gap-1.5 flex-shrink-0">
-                    {session.pos + 1 >= session.queue.length
-                      ? (mn ? "Дүнгээ харах" : "See my results")
-                      : !outcome.correct
-                        ? (mn ? "Ижил төстэйг бодох" : "Try a similar one")
-                        : (mn ? "Дараагийн бодлого" : "Next problem")}
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </>
-            )}
+            <ProblemView
+              key={`${item.formId}:${item.variantId}:${session.pos}`}
+              form={form}
+              variant={variantData}
+              mode={mode}
+              isRetry={item.isRetry}
+              salt={String(session.pos)}
+              isLast={session.pos + 1 >= session.queue.length}
+              mn={mn}
+              onNext={(o) => next(o)}
+            />
           </div>
         )}
 
@@ -178,10 +133,155 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
   );
 }
 
+// One problem, with its own tutoring state (hints opened, second try, steps
+// shown), so moving to the next problem always starts clean.
+//
+// Scoring is the FIRST committed answer: a second try after the diagnosis is
+// for learning and never turns a miss into a hit (lib/problem-bank queues the
+// similar problem off that first answer, exactly as before).
+function ProblemView({
+  form, variant, mode, isRetry, salt, isLast, mn, onNext,
+}: {
+  form: BankForm; variant: BankVariant; mode: ReturnType<typeof formAnswerMode>; isRetry: boolean;
+  salt: string; isLast: boolean; mn: boolean; onNext: (first: AnswerOutcome) => void;
+}) {
+  const [first, setFirst] = useState<AnswerOutcome | null>(null);
+  const [latest, setLatest] = useState<AnswerOutcome | null>(null);
+  const [attempt, setAttempt] = useState(1);
+  const [showSolution, setShowSolution] = useState(false);
+
+  const answer = variant.options[variant.correctIndex];
+  const diagnosis =
+    latest && !latest.correct && !latest.revealed && latest.picked != null
+      ? variant.whyWrong?.[latest.picked] ?? null
+      : null;
+  const tutored = Boolean(variant.steps?.length);
+  // A second try is offered once, after a diagnosed wrong answer.
+  const canRetry = Boolean(diagnosis) && attempt === 1;
+  const finished = latest !== null && (latest.correct || latest.revealed || !canRetry || showSolution);
+
+  function commit(o: AnswerOutcome) {
+    if (!first) setFirst(o);
+    setLatest(o);
+    if (o.revealed) setShowSolution(true);
+  }
+
+  return (
+    <div>
+      <div className="flex items-center gap-2 flex-wrap mb-2">
+        <span className="eyebrow">{form.title}</span>
+        {isRetry && (
+          <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium" style={{ background: "rgba(216,150,32,0.12)", border: "1px solid rgba(216,150,32,0.4)", color: "var(--warn, #d89620)" }}>
+            <Repeat2 className="h-3 w-3" /> {mn ? "Ижил төстэй бодлого. Дахин оролдоорой" : "Similar problem — try again"}
+          </span>
+        )}
+      </div>
+
+      <p className="font-sans" style={{ fontSize: 18, lineHeight: 1.5, color: "var(--fg)" }}>
+        <MathText text={variant.statement} />
+      </p>
+
+      {variant.geoFigure && (
+        <div className="mt-4">
+          <GeoDiagram spec={variant.geoFigure} />
+        </div>
+      )}
+
+      <MethodCard method={form.method} mn={mn} />
+
+      <div className="mt-5">
+        <AnswerPrompt
+          key={`try${attempt}`}
+          variant={variant}
+          mode={mode}
+          outcome={latest}
+          onCommit={commit}
+          salt={`${salt}:${attempt}`}
+          autoFocus
+        />
+      </div>
+
+      <HintPanel hints={variant.hints} mn={mn} disabled={finished} />
+
+      {diagnosis && <Diagnosis text={diagnosis} mn={mn} />}
+
+      {latest && !latest.correct && canRetry && !showSolution && (
+        <div className="mt-4 flex items-center gap-3 flex-wrap">
+          <button
+            type="button"
+            onClick={() => {
+              setAttempt(2);
+              setLatest(null);
+            }}
+            className="btn btn-primary text-[13px]"
+          >
+            {mn ? "Алдаагаа засаад дахин оролдох" : "Fix it and try again"}
+          </button>
+          {tutored && (
+            <button type="button" onClick={() => setShowSolution(true)} className="btn btn-line text-[13px]">
+              {mn ? "Бодолтыг алхам алхмаар харах" : "See the solution step by step"}
+            </button>
+          )}
+        </div>
+      )}
+
+      {finished && (
+        <>
+          {tutored ? (
+            latest!.correct && !showSolution ? (
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowSolution(true)}
+                  className="text-[13px]"
+                  style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: 3 }}
+                >
+                  {mn ? "Бодолтыг алхам алхмаар харах" : "See the solution step by step"}
+                </button>
+              </div>
+            ) : (
+              <StepSolution steps={variant.steps!} answer={answer} mn={mn} />
+            )
+          ) : (
+            <div className="mt-4 rounded-xl p-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
+              <p className="font-sans" style={{ fontSize: 14, lineHeight: 1.55, color: "var(--fg-1)" }}>
+                <b>{mn ? "Хариу: " : "Answer: "}<MathText text={answer} /></b>{" "}
+                <MathText text={variant.explanation} />
+              </p>
+            </div>
+          )}
+          {latest!.correct && tutored && form.skill && (
+            <p className="mt-3 text-[13px]" style={{ color: "var(--fg-2)" }}>
+              <b>{mn ? "Гол санаа: " : "Key idea: "}</b>
+              <MathText text={form.skill} />
+            </p>
+          )}
+          <div className="mt-5 flex items-center justify-between gap-3">
+            <span className="text-[13px]" style={{ color: "var(--fg-3)" }}>
+              {first && !first.correct
+                ? (mn ? "Дараа нь ижил төстэй бодлого ирнэ: ижил хэлбэр, шинэ тоо." : "A similar problem is queued next — same form, new numbers.")
+                : ""}
+            </span>
+            <button type="button" onClick={() => first && onNext(first)} className="btn btn-primary inline-flex items-center gap-1.5 flex-shrink-0">
+              {isLast
+                ? (mn ? "Дүнгээ харах" : "See my results")
+                : first && !first.correct
+                  ? (mn ? "Ижил төстэйг бодох" : "Try a similar one")
+                  : (mn ? "Дараагийн бодлого" : "Next problem")}
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function Setup({ unit, forms, onStart, mn }: { unit: BankUnit; forms: ReturnType<typeof unitForms>; onStart: (lv: BankLevel) => void; mn: boolean }) {
   const counts = [1, 2, 3].map((lv) => forms.filter((f) => f.level === lv).length);
   const total = forms.length;
   const problems = forms.reduce((n, f) => n + f.variants.length, 0);
+  const tutored = forms.some((f) => f.variants.some((v) => v.steps && v.steps.length > 0));
   return (
     <div>
       <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
@@ -196,7 +296,7 @@ function Setup({ unit, forms, onStart, mn }: { unit: BankUnit; forms: ReturnType
         <li className="flex items-start gap-2">
           <Layers className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
           {mn ? (
-            <span><b>{total} бодлогын хэлбэр</b>, {problems} бодлого — энэ бүлэг шалгалтад гарах бүх хэлбэр, 1–3 түвшингээр ангилсан.</span>
+            <span><b>{total} төрлийн</b>, нийт {problems} бодлого. Энэ бүлгээс шалгалтад гардаг бүх төрлийн бодлого 1–3 түвшингээр ангилагдсан.</span>
           ) : (
             <span><b>{total} exam forms</b>, {problems} problems — every shape this unit takes on a test, labeled Level 1–3.</span>
           )}
@@ -204,15 +304,25 @@ function Setup({ unit, forms, onStart, mn }: { unit: BankUnit; forms: ReturnType
         <li className="flex items-start gap-2">
           <PencilLine className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
           {mn ? (
-            <span>Чи <b>хариугаа оруулна</b> — тоо бол бичнэ, тоо биш бол сонголтоос сонгоно. Бодолт нь шалгасны дараа нээгдэнэ, түүнээс өмнө хэзээ ч үгүй.</span>
+            <span><b>Хариугаа өөрөө оруулна</b>: тоо бол бичнэ, тоо биш бол сонголтоос сонгоно. Бодолт нь хариугаа шалгуулсны дараа л нээгдэнэ.</span>
           ) : (
             <span>You <b>enter the answer</b> — typed where it's a number, picked from the options where it isn't. The solution opens after you check, never before.</span>
           )}
         </li>
+        {tutored && (
+          <li className="flex items-start gap-2">
+            <Lightbulb className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
+            {mn ? (
+              <span>Гацвал <b>сануулга</b> авч болно. Буруу хариулбал алдаа хаана байгааг тайлбарлаад, <b>дахин оролдох</b> боломж өгнө. Бодолт нь алхам алхмаар, алхам бүр яагаад ингэдгийг тайлбарласан байна.</span>
+            ) : (
+              <span>Stuck? Take a <b>hint</b>. Answer wrong and you are told what most likely went wrong, then get <b>a second try</b>. Solutions open step by step, each step saying why.</span>
+            )}
+          </li>
+        )}
         <li className="flex items-start gap-2">
           <Repeat2 className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
           {mn ? (
-            <span>Алдвал <b>ижил төстэй бодлого</b> (ижил хэлбэр, шинэ тоо) шууд эргэж ирнэ — алдаагаа мартаагүй байхдаа засна.</span>
+            <span>Алдвал <b>ижил төстэй бодлого</b> шууд гарч ирнэ: төрөл нь ижил, тоо нь өөр. Ингэснээр алдаагаа мартаагүй байхдаа засна.</span>
           ) : (
             <span>Miss one and a <b>similar problem</b> (same form, new numbers) comes right back — you fix the mistake while it's fresh.</span>
           )}
@@ -220,7 +330,7 @@ function Setup({ unit, forms, onStart, mn }: { unit: BankUnit; forms: ReturnType
         <li className="flex items-start gap-2">
           <Target className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
           {mn ? (
-            <span>Дүгнэлт дээр дахин ажиллах шаардлагатай хэлбэрүүд гарах бөгөөд <b>зөвхөн тэдгээрийг</b> дахин дасгалжуулж болно.</span>
+            <span>Дүгнэлтэд дахин ажиллах шаардлагатай төрлүүд гарах бөгөөд <b>зөвхөн тэдгээрийг</b> дахин бодож болно.</span>
           ) : (
             <span>The summary names the forms that still need work, and you can re-drill <b>just those</b>.</span>
           )}

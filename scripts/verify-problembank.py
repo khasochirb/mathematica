@@ -140,6 +140,23 @@ for path in FILES:
                 failures.append(f"{vid}: bad correctIndex {ci!r}")
             if not v.get("explanation"):
                 failures.append(f"{vid}: missing explanation")
+            # Tutoring fields (optional). When present they must be usable: the
+            # runner trusts whyWrong to line up with the options and to be
+            # empty exactly at the answer.
+            if "hints" in v and (not isinstance(v["hints"], list) or not v["hints"] or not all(isinstance(h, str) and h.strip() for h in v["hints"])):
+                failures.append(f"{vid}: hints must be a non-empty list of strings")
+            if "steps" in v:
+                st = v["steps"]
+                if not isinstance(st, list) or len(st) < 2 or not all(isinstance(x, dict) and str(x.get("do", "")).strip() for x in st):
+                    failures.append(f"{vid}: steps must be 2+ objects with a 'do'")
+            if "whyWrong" in v:
+                ww = v["whyWrong"]
+                if not isinstance(ww, list) or not isinstance(opts, list) or len(ww) != len(opts):
+                    failures.append(f"{vid}: whyWrong must align with the options")
+                elif isinstance(ci, int):
+                    for i, w in enumerate(ww):
+                        if (i == ci) != (w is None):
+                            failures.append(f"{vid}: whyWrong[{i}] must be null only at correctIndex")
             chks = v.get("check")
             if not isinstance(chks, list) or len(chks) == 0:
                 failures.append(f"{vid}: empty check[] — every answer must be sympy-verified")

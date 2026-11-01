@@ -262,7 +262,7 @@ function hashString(s: string): number {
 export function seededOptionOrder(
   v: { id: string; options: string[]; correctIndex: number },
   salt = "",
-): { options: string[]; correctIndex: number } {
+): { options: string[]; correctIndex: number; toOriginal: number[] } {
   const rng = mulberry32(hashString(`${v.id}:${salt}`));
   const idx = v.options.map((_, i) => i);
   for (let i = idx.length - 1; i > 0; i--) {
@@ -272,5 +272,17 @@ export function seededOptionOrder(
   return {
     options: idx.map((i) => v.options[i]),
     correctIndex: idx.indexOf(v.correctIndex),
+    toOriginal: idx,
   };
+}
+
+/**
+ * Which authored option a typed answer equals, if any: lets a typed wrong
+ * answer get the same diagnosis (whyWrong) as picking that option would.
+ */
+export function matchTypedOption(input: string, options: string[]): number | null {
+  for (let i = 0; i < options.length; i++) {
+    if (checkNumericAnswer(input, options[i]) === "correct") return i;
+  }
+  return null;
 }

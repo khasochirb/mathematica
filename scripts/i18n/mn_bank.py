@@ -180,6 +180,8 @@ def check_unit(corpus, unit, t=None, quiet=False):
         if not mf:
             errs.append(f"form {f['id']} missing")
             continue
+        if f.get("method") and len(mf.get("method") or []) != len(f["method"]):
+            errs.append(f"{f['id']}.method needs {len(f['method'])} lines like the English")
         for k in ("title", "skill"):
             if not mf.get(k):
                 errs.append(f"{f['id']}.{k} missing")
@@ -230,6 +232,41 @@ def check_unit(corpus, unit, t=None, quiet=False):
                 left = english_left(s)
                 if left:
                     warns.append(f"{where}: English left {left[:4]}")
+            # Tutoring fields (hints, step-by-step solution, a diagnosis per wrong
+            # option). Optional in the English; when the English has them, the
+            # Mongolian must too, with the same counts, so the runner never
+            # shows a hint in one language and nothing in the other.
+            for k in ("hints", "steps", "whyWrong"):
+                ev, mvv = v.get(k), m.get(k)
+                if ev is None:
+                    continue
+                if not isinstance(mvv, list) or len(mvv) != len(ev):
+                    errs.append(f"{where}: {k} needs {len(ev)} entries like the English")
+                    continue
+                if k == "whyWrong":
+                    for i, (a1, b1) in enumerate(zip(ev, mvv)):
+                        if (a1 is None) != (b1 is None):
+                            errs.append(f"{where}: whyWrong[{i}] must be null exactly where the English is")
+                texts = []
+                for x in mvv:
+                    if isinstance(x, dict):
+                        texts += [x.get("do", ""), x.get("why", "") or ""]
+                    elif isinstance(x, str):
+                        texts.append(x)
+                for s2 in texts:
+                    if cyr_in_math(s2):
+                        errs.append(f"{where}: {k}: Cyrillic inside maths: {s2[:70]!r}")
+                    if "—" in s2:
+                        warns.append(f"{where}: {k}: em-dash")
+                    left = english_left(s2)
+                    if left:
+                        warns.append(f"{where}: {k}: English left {left[:4]}")
+            if v.get("steps"):
+                emath = set(x for st_ in v["steps"] for x in maths(st_.get("do", "")))
+                mmath = set(x for st_ in m.get("steps", []) if isinstance(st_, dict) for x in maths(st_.get("do", "")))
+                lost = [x for x in emath if x not in mmath]
+                if lost:
+                    errs.append(f"{where}: steps drop maths {lost[:3]}")
             labels = m.get("labels", {})
             for lab in geo_labels(v):
                 if re.search(r"[A-Za-z]{3,}", lab) and lab not in labels:
@@ -283,9 +320,14 @@ def cmd_assemble(corpus):
             mf = tab["forms"][f["id"]]
             nf = copy.deepcopy(f)
             nf["title"], nf["skill"] = mf["title"], mf["skill"]
+            if f.get("method"):
+                nf["method"] = mf["method"]
             for v in nf["variants"]:
                 m = mf["variants"][v["id"]]
                 v["statement"], v["explanation"], v["options"] = m["statement"], m["explanation"], m["options"]
+                for k in ("hints", "steps", "whyWrong"):
+                    if v.get(k) is not None:
+                        v[k] = m[k]
                 if v.get("geoFigure") and m.get("labels"):
                     v["geoFigure"] = apply_labels(v["geoFigure"], m["labels"])
             mn["forms"].append(nf)

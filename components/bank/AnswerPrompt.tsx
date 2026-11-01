@@ -9,6 +9,7 @@ import MathText from "@/components/esh/MathText";
 import {
   type AnswerMode,
   checkNumericAnswer,
+  matchTypedOption,
   seededOptionOrder,
 } from "@/lib/bank-answer";
 
@@ -35,7 +36,12 @@ import {
 // instead of being free. That is the whole behavioural change: the tempting
 // button now has a price tag on it.
 
-export type AnswerOutcome = { correct: boolean; revealed: boolean };
+export type AnswerOutcome = {
+  correct: boolean;
+  revealed: boolean;
+  /** The authored option the student chose or typed (original index), when known. */
+  picked?: number | null;
+};
 
 export default function AnswerPrompt({
   variant,
@@ -95,7 +101,7 @@ function NumericPrompt({
       return;
     }
     setUnreadable(false);
-    onCommit({ correct: verdict === "correct", revealed: false });
+    onCommit({ correct: verdict === "correct", revealed: false, picked: matchTypedOption(text, variant.options) });
   }
 
   const ring = !answered
@@ -274,7 +280,8 @@ function ChoicePrompt({
             <button
               type="button"
               onClick={() =>
-                picked !== null && onCommit({ correct: picked === disp.correctIndex, revealed: false })
+                picked !== null &&
+                onCommit({ correct: picked === disp.correctIndex, revealed: false, picked: disp.toOriginal[picked] })
               }
               disabled={picked === null}
               className="btn btn-primary text-[13px]"

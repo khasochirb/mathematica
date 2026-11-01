@@ -33,6 +33,23 @@ export type BankVariant = {
   // absent at runtime — typed optional for exactly that reason.
   check?: string[];
   geoFigure?: GeoDiagramSpec;
+  // TUTORING (optional, authored per variant). Together they let a student
+  // learn the form without a teacher: hints before answering, a diagnosis of
+  // the exact mistake behind a wrong option, and a solution revealed one step
+  // at a time, each step saying what to do and why.
+  /** Progressive nudges, mildest first. Free to open; never give the answer. */
+  hints?: string[];
+  /** The worked solution as a teacher would say it, one move per step. */
+  steps?: BankStep[];
+  /** Aligned with options: why that option is wrong (null at correctIndex). */
+  whyWrong?: (string | null)[];
+};
+
+export type BankStep = {
+  /** The move, with its maths («Хоёр талаас $5$-ыг хасъя: $3x = 15$»). */
+  do: string;
+  /** Why that move is allowed or chosen; omitted when it is obvious. */
+  why?: string;
 };
 
 export type BankForm = {
@@ -41,6 +58,8 @@ export type BankForm = {
   level: 1 | 2 | 3;
   skill: string;
   unit: string; // unit id in the subject's units[]
+  /** How to solve this type, as a short checklist (shown on demand). */
+  method?: string[];
   variants: BankVariant[];
 };
 
@@ -446,10 +465,20 @@ export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined
         ...f,
         title: m.title,
         skill: m.skill,
+        method: m.method ?? f.method,
         variants: f.variants.map((v) => {
           const x = mv.get(v.id);
           return x
-            ? { ...v, statement: x.statement, options: x.options, explanation: x.explanation, geoFigure: x.geoFigure ?? v.geoFigure }
+            ? {
+                ...v,
+                statement: x.statement,
+                options: x.options,
+                explanation: x.explanation,
+                geoFigure: x.geoFigure ?? v.geoFigure,
+                hints: x.hints ?? v.hints,
+                steps: x.steps ?? v.steps,
+                whyWrong: x.whyWrong ?? v.whyWrong,
+              }
             : v;
         }),
       };
