@@ -414,11 +414,17 @@ def expand(eq, mode=None, only_dec=False):
     if mode == "neg_sign":
         target = next((p for p in eq.lhs + eq.rhs if p.kind == "br" and len(p.inner) > 1 and p.c < 0), None)
 
+    if mode == "first_all":
+        target = next((p for p in eq.lhs + eq.rhs if p.kind == "br" and len(p.inner) > 1 and p.c != 1), None)
+
     def side(ps):
         out = []
         for p in ps:
             if p.kind == "br" and (not only_dec or p.dec or p.c.denominator != 1):
-                m = mode if p is target else None
+                if mode == "first_all":
+                    m = "first_only" if len(p.inner) > 1 and p.c != 1 else None
+                else:
+                    m = mode if p is target else None
                 e = expand_piece(p, m)
                 if p.c != 1:
                     shows.append(f"{etex([p], eq.var)} = {etex(e, eq.var)}")
@@ -467,6 +473,23 @@ def coeffs(ps):
     b = sum((p.c for p in ps if p.kind == "k"), Fr(0))
     assert all(p.kind in "vk" for p in ps)
     return a, b
+
+
+MODE_TAG = {
+    "move_const_sign": "sign-not-changed-moving-term",
+    "move_var_sign": "sign-not-changed-moving-term",
+    "no_divide": "stopped-before-dividing",
+    "mul_instead": "multiplied-instead-of-divided",
+    "neg": "lost-sign-dividing-by-negative",
+    "first_only": "distribute-first-term-only",
+    "neg_sign": "distribute-sign-second-term",
+    "partial": "multiplied-some-terms-only",
+    "add_dens": "added-denominators",
+    "abs": "ignored-minus-on-term",
+    "drop": "dropped-like-term",
+    "divide_instead": "divided-instead-of-multiplied",
+    "no_multiply": "stopped-before-multiplying",
+}
 
 
 class Walk:
@@ -937,7 +960,7 @@ class Walk:
             chk = [f"Ne({epy(self.eq0.lhs, at(x))}, {epy(self.eq0.rhs, at(x))})"]
             if wrong_eq is not None:
                 chk.append(wrong_eq.check_at(x))
-            out.append(dict(x=x, mn=mn, en=en, mode=mode, checks=chk))
+            out.append(dict(x=x, mn=mn, en=en, mode=mode, checks=chk, tag=MODE_TAG[mode]))
         return out
 
 
@@ -974,18 +997,19 @@ def assemble(vid, i, st_mn, st_en, correct, wrongs, steps, hints, expl, checks, 
         opts.insert(ci, None)
     else:
         ci, opts = fixed_ci, wrongs
-    om, oe, wm, we = [], [], [], []
+    om, oe, wm, we, mc = [], [], [], [], []
     for o in opts:
         if o is None:
-            om.append(correct[0]); oe.append(correct[1]); wm.append(None); we.append(None)
+            om.append(correct[0]); oe.append(correct[1]); wm.append(None); we.append(None); mc.append(None)
         else:
-            om.append(o[0]); oe.append(o[1]); wm.append(o[2]); we.append(o[3])
+            assert len(o) == 5 and re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", o[4]), (vid, o)
+            om.append(o[0]); oe.append(o[1]); wm.append(o[2]); we.append(o[3]); mc.append(o[4])
     assert len(om) == 4 and len(set(om)) == 4 and len(set(oe)) == 4, om
     assert 3 <= len(steps) <= 6, (vid, len(steps))
     assert len(hints) == 2
     en = dict(id=vid, statement=st_en, options=oe, correctIndex=ci, explanation=expl[1],
               check=sorted(set(checks), key=checks.index),
-              hints=[h[1] for h in hints], steps=[s["en"] for s in steps], whyWrong=we)
+              hints=[h[1] for h in hints], steps=[s["en"] for s in steps], whyWrong=we, misconceptions=mc)
     mn = dict(statement=st_mn, options=om, explanation=expl[0],
               hints=[h[0] for h in hints], steps=[s["mn"] for s in steps], whyWrong=wm)
     return en, mn
@@ -1016,7 +1040,7 @@ def numeric_variant(vid, i, eq, st_mn, st_en, order, hint1, extra_first=None, ma
     steps = ([extra_first] if extra_first else []) + w.steps
     first = w.steps[0]
     hints = [hint1, hint2_from(first, eq.var)]
-    wrongs = [(M(ntexd(m["x"], w.dec)),) * 2 + (m["mn"], m["en"]) for m in ms]
+    wrongs = [(M(ntexd(m["x"], w.dec)),) * 2 + (m["mn"], m["en"], m["tag"]) for m in ms]
     checks = list(w.checks)
     for m in ms:
         checks += m["checks"]
@@ -1026,70 +1050,6 @@ def numeric_variant(vid, i, eq, st_mn, st_en, order, hint1, extra_first=None, ma
 
 def solve_stmt(eq):
     return (f"{M(eq.tex())} тэгшитгэлийг бодоорой.", f"Solve ${eq.tex()}$.")
-
-
-# ---------------------------------------------------------------------------
-# Form 1 · two-step equations
-# ---------------------------------------------------------------------------
-
-def form_two_step():
-    cases = [
-        Eqn([V(3), K(7)], [K(19)], "x"),
-        Eqn([V(2), K(-11)], [K(-25)], "x"),
-        Eqn([V(-4), K(5)], [K(29)], "y"),
-        Eqn([K(5), V(2)], [K(17)], "n"),
-        Eqn([K(26)], [V(3), K(-4)], "m"),
-        Eqn([FR(3, V(1)), K(4)], [K(9)], "x"),
-        Eqn([FR(4, V(1)), K(-6)], [K(-2)], "a"),
-        Eqn([K(7), V(-2)], [K(15)], "x"),
-        Eqn([V(6), K(9)], [K(6)], "y"),
-        Eqn([K(-15)], [V(4), K(1)], "n"),
-        Eqn([K(8), V(-5)], [K(-12)], "m"),
-        Eqn([V(4), K(-3)], [K(7)], "x"),
-    ]
-    order = ["move_const_sign", "neg", "no_divide", "mul_instead"]
-    en_vs, mn_vs = [], []
-    for i, eq in enumerate(cases):
-        vid = "g8-ts-v%02d" % (i + 1)
-        v = eq.var
-        st_mn, st_en = solve_stmt(eq)
-        if any(p.kind == "fr" for p in eq.lhs):
-            e, m = two_step_division(vid, i, eq)
-        else:
-            side = eq.lhs if any(p.kind == "v" for p in eq.lhs) else eq.rhs
-            t = etex([p for p in side if p.kind == "v"], v)
-            hint1 = (f"{M(t)} гишүүнтэй хамт байгаа тоог эхлээд арилгах хэрэгтэй. Хоёр талд ямар үйлдэл хийвэл тэр тоо алга болох вэ?",
-                     f"First get rid of the number that sits with ${t}$. What can you do to both sides to make it disappear?")
-            e, m = numeric_variant(vid, i, eq, st_mn, st_en, order, hint1)
-            # the first move of a two-step equation deserves the reverse-order reason
-            k = next(p for p in side if p.kind == "k")
-            a = next(p for p in side if p.kind == "v").c
-            op_mn = "нэмсэн" if k.c > 0 else "хассан"
-            op_en = "added" if k.c > 0 else "subtracted"
-            st_t = etex(side, v)
-            e["steps"][0]["why"] = (f"${st_t}$ is built by multiplying ${v}$ by ${ntex(a)}$ first and then {op_en} "
-                                    f"${ntex(abs(k.c))}$. Undo in the reverse order: the number first, the coefficient second.")
-            m["steps"][0]["why"] = (f"{M(st_t)} илэрхийлэлд {VW(v, v, 'acc')} эхлээд {W(a, 'ins')} үржүүлж, дараа нь "
-                                    f"{W(abs(k.c), 'acc')} {op_mn}. Буцаахдаа эсрэг дарааллаар явна: эхлээд тоог, дараа нь коэффициентыг арилгана.")
-            if side is eq.rhs:
-                m["steps"][0]["why"] = "Үл мэдэгдэх баруун талд байгаа ч бодох арга өөрчлөгдөхгүй. " + m["steps"][0]["why"]
-                e["steps"][0]["why"] = "The unknown is on the right this time, but the method is the same. " + e["steps"][0]["why"]
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-two-step-g8", level=1,
-        title=("Two-step equations", "Хоёр алхамт тэгшитгэл"),
-        skill=("Undo the number first, then the coefficient.",
-               "Эхлээд үл мэдэгдэхтэй хамт байгаа тоог, дараа нь коэффициентыг арилгана."),
-        method=(["Find the number added to or subtracted from the term with the unknown.",
-                 "Remove it from both sides: subtract what was added, add what was subtracted.",
-                 "Divide both sides by the coefficient (or multiply, if the unknown was divided).",
-                 "Put the answer back into the original equation and check."],
-                ["Үл мэдэгдэхтэй гишүүн дээр ямар тоо нэмэгдсэн, хасагдсаныг ол.",
-                 "Тэр тоог хоёр талаас арилга: нэмэгдсэн бол хас, хасагдсан бол нэм.",
-                 "Хоёр талыг коэффициентэд хуваа (үл мэдэгдэх хуваагдсан бол үржүүл).",
-                 "Хариугаа анхны тэгшитгэлд орлуулж шалга."]),
-        variants=(en_vs, mn_vs))
 
 
 def two_step_division(vid, i, eq):
@@ -1136,18 +1096,18 @@ def two_step_division(vid, i, eq):
     wrong = etex([K(c), K(b)], v)
     fix_mn = f"Хоёр талаас {W(b, 'acc')} хасах ёстой" if b > 0 else f"Хоёр талд {W(-b, 'acc')} нэмэх ёстой"
     fix_en = f"Subtract ${ntex(b)}$ from both sides" if b > 0 else f"Add ${ntex(-b)}$ to both sides"
-    cands.append(dict(x=x1, mode="move_const_sign",
+    cands.append(dict(x=x1, mode="move_const_sign", tag="sign-not-changed-moving-term",
                       mn=(f"{W(b, 'acc')} нөгөө тал руу шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй бололтой: "
                           f"{M(f'{xd} = {wrong}')} гэж бичвэл ийм хариу гарна. {fix_mn}: {M(f'{xd} = {arith}')}."),
                       en=(f"It looks as if ${ntex(b)}$ crossed the equals sign without changing sign, giving "
                           f"${xd} = {wrong}$. {fix_en}: ${xd} = {arith}$.")))
     x2 = Fr(r, d)
-    cands.append(dict(x=x2, mode="divide_instead",
+    cands.append(dict(x=x2, mode="divide_instead", tag="divided-instead-of-multiplied",
                       mn=(f"{M(e1.tex())} гарсны дараа хоёр талыг {W(d, 'dat')} хуваасан байна. {M(v)} нь "
                           f"{W(d, 'dat')} хуваагдсан тул буцаахдаа {W(d, 'ins')} үржүүлнэ."),
                       en=(f"After ${e1.tex()}$ both sides were divided by ${d}$. Since ${v}$ is divided by ${d}$, "
                           f"undo it by multiplying by ${d}$.")))
-    cands.append(dict(x=r, mode="no_multiply",
+    cands.append(dict(x=r, mode="no_multiply", tag="stopped-before-multiplying",
                       mn=(f"{M(e1.tex())} хүртэл зөв бодсон байна. Гэхдээ {M(ntex(r))} бол {M(v)} биш, {M(xd)}-ийн утга. "
                           f"Сүүлд нь хоёр талыг {W(d, 'ins')} үржүүлэх ёстой."),
                       en=(f"Everything up to ${e1.tex()}$ is right. But ${ntex(r)}$ is the value of ${xd}$, not of ${v}$: "
@@ -1161,59 +1121,10 @@ def two_step_division(vid, i, eq):
             f"Орлуулж шалгахад зүүн тал {M(ntex(c))} болж баруун талтай тэнцүү.",
             f"Removing the number from both sides gives ${e1.tex()}$, and multiplying by ${d}$ gives ${e2.tex()}$. "
             f"Substituting back, the left side equals ${ntex(c)}$, as it should.")
-    wrongs = [(M(ntex(m["x"])),) * 2 + (m["mn"], m["en"]) for m in ms]
+    wrongs = [(M(ntex(m["x"])),) * 2 + (m["mn"], m["en"], m["tag"]) for m in ms]
     st_mn, st_en = solve_stmt(eq)
     return assemble(vid, i, st_mn, st_en, (M(ntex(sol)),) * 2, wrongs, steps, hints, expl, checks)
 
-
-# ---------------------------------------------------------------------------
-# Form 2 · simplify before solving
-# ---------------------------------------------------------------------------
-
-def form_simplify():
-    cases = [
-        Eqn([V(2), V(5), K(-4)], [K(24)], "x"),
-        Eqn([V(3), K(8), V(-1)], [K(2)], "x"),
-        Eqn([K(7), V(4), K(-2), V(-1)], [K(20)], "y"),
-        Eqn([V(-3), V(5), K(6)], [K(-4)], "n"),
-        Eqn([V(6), V(-2), V(-1)], [K(21)], "m"),
-        Eqn([V(1), V(1), V(1), K(4)], [K(19)], "x"),
-        Eqn([V(5), K(-9), K(3), V(-2)], [K(3)], "a"),
-        Eqn([K(30)], [V(4), V(2), K(-6)], "x"),
-        Eqn([V(4), V(2), K(1)], [K(10)], "y"),
-        Eqn([K(9), V(-4), K(-3), V(-2)], [K(18)], "n"),
-        Eqn([V(2), V(-7), K(4)], [K(29)], "m"),
-        Eqn([V(8), K(-3), V(-5), K(10)], [K(-14)], "x"),
-    ]
-    order = ["abs", "drop", "move_const_sign", "neg", "no_divide", "mul_instead"]
-    en_vs, mn_vs = [], []
-    for i, eq in enumerate(cases):
-        v = eq.var
-        hint1 = (f"Тэгшитгэлийн нэг талд {VW(v, v, 'com')} гишүүн хэд хэд байна. Тэдгээрийг эхлээд нэгтгэвэл ямар болох вэ?",
-                 f"One side has several ${v}$-terms. What do they become when you combine them first?")
-        st_mn, st_en = solve_stmt(eq)
-        e, m = numeric_variant("g8-sy-v%02d" % (i + 1), i, eq, st_mn, st_en, order, hint1)
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-simplify-solve", level=1,
-        title=("Simplify before solving", "Эхлээд хялбарчлаад бодох"),
-        skill=("Combine like terms on each side before you solve.",
-               "Бодохоосоо өмнө тал бүрийн төсөөтэй гишүүдийг нэгтгэнэ."),
-        method=(["On each side, add the terms with the unknown together, each with its own sign.",
-                 "Add the plain numbers together.",
-                 "Solve the two-step equation that is left.",
-                 "Check the answer in the original equation."],
-                ["Тал бүрт үл мэдэгдэхтэй гишүүдийг өөрсдийнх нь тэмдэгтэй нь хамт нэгтгэ.",
-                 "Тоонуудыг хооронд нь нэгтгэ.",
-                 "Үлдсэн хоёр алхамт тэгшитгэлийг бод.",
-                 "Хариугаа анхны тэгшитгэлд орлуулж шалга."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# Form 3 · is it a solution?  (substitution as a skill)
-# ---------------------------------------------------------------------------
 
 VERDICT = {
     "yes": ("Тийм, шийд мөн", "Yes, it is a solution"),
@@ -1326,7 +1237,8 @@ def subst_variant_a(vid, i, var, case):
     rot = i % 4
     order = order[rot:] + order[:rot]
     ci = order.index(target)
-    wrongs = [(VERDICT[o][0], VERDICT[o][1], diag[o][0], diag[o][1]) for o in order if o != target]
+    vtag = {vo: "order-of-operations", vf: "distribute-first-term-only", "solve": "thinks-must-solve-to-check"}
+    wrongs = [(VERDICT[o][0], VERDICT[o][1], diag[o][0], diag[o][1], vtag[o]) for o in order if o != target]
     opts = []
     wi = iter(wrongs)
     for o in order:
@@ -1380,7 +1292,8 @@ def subst_variant_a(vid, i, var, case):
 def subst_variant_b(vid, i, eq):
     v = eq.var
     w = Walk(eq)
-    ms = pick3(w.sol, w.mistakes(["first_only", "neg_sign", "move_var_sign", "move_const_sign", "no_divide", "neg"]))
+    ms = pick3(w.sol, w.mistakes(["first_only", "neg_sign", "partial", "add_dens", "abs", "drop", "move_var_sign", "move_const_sign", "no_divide",
+                                  "neg", "mul_instead"]))
     ci = i % 4
     vals = [m["x"] for m in ms]
     vals.insert(ci, w.sol)
@@ -1407,7 +1320,7 @@ def subst_variant_b(vid, i, eq):
         Lv, Rv = ntex(eval_side(eq.lhs, x)), ntex(eval_side(eq.rhs, x))
         wrongs.append((M(f"{v} = {ntex(x)}"), M(f"{v} = {ntex(x)}"),
                        m["mn"] + f" Орлуулж шалгавал зүүн тал {M(Lv)}, баруун тал {M(Rv)} гарч тэнцэхгүй.",
-                       m["en"] + f" Substituting it gives ${Lv}$ on the left and ${Rv}$ on the right, which are not equal."))
+                       m["en"] + f" Substituting it gives ${Lv}$ on the left and ${Rv}$ on the right, which are not equal.", m["tag"]))
         checks += m["checks"]
     first_wrong = vals[order_idx[0]]
     hints = [(f"Тэгшитгэлийг бодохгүйгээр ч болно: сонголт бүрийг {VW(v, v, 'gen')} оронд тавиад хоёр тал тэнцүү эсэхийг шалгаарай.",
@@ -1428,186 +1341,6 @@ def subst_variant_b(vid, i, eq):
     return assemble(vid, i, st_mn, st_en, (M(f"{v} = {ntex(w.sol)}"),) * 2, wrongs, steps, hints, expl, checks)
 
 
-def form_is_solution():
-    a_cases = find_substitution_cases()
-    a_vars = ["x", "y", "n", "x", "m", "a"]
-    b_cases = [
-        Eqn([V(4), K(-9)], [V(2), K(5)], "x"),
-        Eqn([BR(3, V(1), K(-2))], [V(1), K(4)], "y"),
-        Eqn([K(5), V(-2)], [V(1), K(17)], "n"),
-        Eqn([V(6), K(1)], [V(2), K(-7)], "m"),
-        Eqn([BR(2, V(1), K(3))], [V(5), K(-9)], "a"),
-        Eqn([K(9), V(-3)], [V(1), K(21)], "x"),
-    ]
-    en_vs, mn_vs = [], []
-    for j in range(12):
-        vid = "g8-is-v%02d" % (j + 1)
-        if j % 2 == 0:
-            e, m = subst_variant_a(vid, j, a_vars[j // 2], a_cases[j // 2])
-        else:
-            e, m = subst_variant_b(vid, j, b_cases[j // 2])
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-is-solution", level=1,
-        title=("Is it a solution?", "Шийд мөн эсэхийг шалгах"),
-        skill=("Substitute the value: if both sides come out equal, it is a solution.",
-               "Утгыг орлуулаад хоёр тал тэнцүү гарвал тэр нь шийд."),
-        method=(["Put the value in place of the unknown, in brackets if it is negative.",
-                 "Work out the left side in the right order: brackets, multiplication, addition.",
-                 "Work out the right side separately.",
-                 "Equal sides mean a solution; different sides mean it is not."],
-                ["Үл мэдэгдэхийн оронд өгсөн утгыг тавь, сөрөг бол хаалтанд хий.",
-                 "Зүүн талыг дарааллаар нь бод: хаалт, үржих, нэмэх.",
-                 "Баруун талыг тусад нь бод.",
-                 "Хоёр тал тэнцүү бол шийд, тэнцүү биш бол шийд биш."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# Form 4 · variables on both sides
-# ---------------------------------------------------------------------------
-
-def form_both_sides():
-    cases = [
-        Eqn([V(5), K(-3)], [V(2), K(9)], "x"),
-        Eqn([V(3), K(7)], [V(5), K(-9)], "y"),
-        Eqn([V(1), K(-6)], [V(4), K(9)], "x"),
-        Eqn([V(2), K(11)], [V(-3), K(1)], "n"),
-        Eqn([K(7), V(-2)], [V(1), K(1)], "m"),
-        Eqn([V(4), K(5)], [V(1), K(6)], "x"),
-        Eqn([K(10), V(-1)], [V(3), K(-6)], "a"),
-        Eqn([V(-2), K(8)], [V(-5), K(-7)], "y"),
-        Eqn([V(6), K(-4)], [V(2), K(-14)], "x"),
-        Eqn([K(9), V(4)], [V(6), K(4)], "n"),
-        Eqn([V(8), K(-3)], [V(5), K(12)], "m"),
-        Eqn([V(-1), K(4)], [V(2), K(13)], "x"),
-    ]
-    order = ["move_var_sign", "move_const_sign", "no_divide", "neg", "mul_instead"]
-    en_vs, mn_vs = [], []
-    for i, eq in enumerate(cases):
-        v = eq.var
-        hint1 = (f"{VW(v, v, 'com')} гишүүд хоёр талд байна. Аль талынхыг нь хасвал {VW(v, v, 'gen')} коэффициент эерэг үлдэх вэ?",
-                 f"There are ${v}$-terms on both sides. Removing which one keeps the coefficient of ${v}$ positive?")
-        st_mn, st_en = solve_stmt(eq)
-        e, m = numeric_variant("g8-bs-v%02d" % (i + 1), i, eq, st_mn, st_en, order, hint1)
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-both-sides", level=2,
-        title=("Variables on both sides", "Хоёр талдаа хувьсагчтай тэгшитгэл"),
-        skill=("Gather the unknowns on one side and the numbers on the other.",
-               "Үл мэдэгдэхтэй гишүүдийг нэг талд, тоонуудыг нөгөө талд цуглуулна."),
-        method=(["Compare the coefficients of the unknown on the two sides.",
-                 "Remove the smaller one from both sides, so a positive coefficient is left.",
-                 "Move the number to the other side: its sign changes.",
-                 "Divide by the coefficient and check in the original equation."],
-                ["Хоёр талын үл мэдэгдэхийн коэффициентыг харьцуул.",
-                 "Бага коэффициенттэй гишүүнийг хоёр талаас хас, тэгвэл эерэг коэффициент үлдэнэ.",
-                 "Тоог нөгөө тал руу шилжүүл: тэмдэг нь эсрэгээрээ солигдоно.",
-                 "Коэффициентэд хувааж, анхны тэгшитгэлд орлуулж шалга."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# Form 5 · brackets
-# ---------------------------------------------------------------------------
-
-def form_brackets():
-    cases = [
-        Eqn([BR(3, V(1), K(-4))], [K(15)], "x"),
-        Eqn([BR(-2, V(1), K(5))], [K(8)], "y"),
-        Eqn([BR(4, V(2), K(1))], [K(28)], "x"),
-        Eqn([BR(5, V(1), K(-2)), K(3)], [K(18)], "n"),
-        Eqn([BR(2, V(1), K(3)), V(-1)], [K(10)], "x"),
-        Eqn([K(7), BR(-3, V(1), K(-1))], [K(4)], "m"),
-        Eqn([BR(6, V(1), K(-1))], [K(9)], "x"),
-        Eqn([K(10), BR(-1, V(1), K(-8))], [K(3)], "a"),
-        Eqn([BR(3, V(2), K(-5)), V(4)], [K(25)], "y"),
-        Eqn([K(20)], [BR(4, K(3), V(-1))], "x"),
-        Eqn([BR(2, V(3), K(-1)), K(-5)], [K(-19)], "n"),
-        Eqn([K(8), BR(-2, V(1), K(4))], [K(-14)], "m"),
-    ]
-    order = ["first_only", "neg_sign", "abs", "drop", "move_const_sign", "no_divide", "neg", "mul_instead"]
-    en_vs, mn_vs = [], []
-    for i, eq in enumerate(cases):
-        neg = any(p.kind == "br" and p.c < 0 for p in eq.lhs + eq.rhs)
-        hint1 = ("Эхлээд хаалтыг нээгээрэй. Хаалтын өмнөх тоо хаалтан доторх гишүүн бүрийг үржүүлнэ."
-                 + (" Хаалтын өмнөх тэмдэгт анхаараарай." if neg else ""),
-                 "Open the bracket first. The number in front multiplies every term inside."
-                 + (" Watch the sign in front of the bracket." if neg else ""))
-        st_mn, st_en = solve_stmt(eq)
-        e, m = numeric_variant("g8-bk-v%02d" % (i + 1), i, eq, st_mn, st_en, order, hint1)
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-brackets", level=2,
-        title=("Equations with brackets", "Хаалттай тэгшитгэл"),
-        skill=("The number in front of a bracket multiplies every term inside it.",
-               "Хаалтын өмнөх тоо хаалтан доторх гишүүн бүрийг үржүүлнэ."),
-        method=(["Open the bracket: multiply every term inside by the number in front.",
-                 "If that number is negative, every sign inside changes.",
-                 "Combine like terms on each side.",
-                 "Solve what is left and check in the original equation."],
-                ["Хаалтыг нээ: хаалтын өмнөх тоогоор доторх гишүүн бүрийг үржүүл.",
-                 "Тэр тоо сөрөг бол доторх гишүүн бүрийн тэмдэг өөрчлөгдөнө.",
-                 "Тал бүрт төсөөтэй гишүүдийг нэгтгэ.",
-                 "Үлдсэн тэгшитгэлийг бодоод анхны тэгшитгэлд орлуулж шалга."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# Form 6 · fractions and decimals
-# ---------------------------------------------------------------------------
-
-def form_fractions():
-    cases = [
-        Eqn([FR(2, V(1)), FR(3, V(1))], [K(10)], "x"),
-        Eqn([FR(4, V(1), K(1))], [FR(3, V(1), K(-2))], "x"),
-        Eqn([FR(5, V(1)), K(-2)], [FR(10, V(1))], "y"),
-        Eqn([FR(3, V(2)), K(-1)], [K(-5)], "x"),
-        Eqn([V("0.4"), K("1.2")], [K("-0.4")], "x"),
-        Eqn([V("0.25"), K(-3)], [K("0.5")], "n"),
-        Eqn([FR(2, V(1), K(-3))], [FR(5, V(1))], "m"),
-        Eqn([V("1.5"), K("-0.5")], [V(1), K(3)], "m"),
-        Eqn([FR(4, V(1)), FR(6, V(1), c=-1)], [K(2)], "x"),
-        Eqn([FR(3, V(2), K(1))], [V(1), K(-2)], "a"),
-        Eqn([V("0.3"), K("-0.12")], [V("0.06")], "x"),
-        Eqn([FR(3, V(1)), K(4)], [FR(2, V(1)), K(-1)], "y"),
-    ]
-    order = ["partial", "add_dens", "first_only", "neg_sign", "abs", "move_var_sign", "move_const_sign",
-             "no_divide", "drop", "mul_instead"]
-    en_vs, mn_vs = [], []
-    for i, eq in enumerate(cases):
-        if eq.is_dec():
-            hint1 = ("Хоёр талыг ямар тоогоор үржүүлбэл бүх тоо бүхэл болох вэ? Гишүүн бүрийг үржүүлэхээ мартаж болохгүй.",
-                     "What number can you multiply both sides by so that every number becomes whole? Remember to multiply every term.")
-        else:
-            hint1 = ("Бүх хуваарьт хуваагддаг хамгийн бага тоо аль вэ? Хоёр талыг тэр тоогоор үржүүлбэл бутархай алга болно.",
-                     "What is the smallest number every denominator divides into? Multiplying both sides by it removes the fractions.")
-        st_mn, st_en = solve_stmt(eq)
-        e, m = numeric_variant("g8-fx-v%02d" % (i + 1), i, eq, st_mn, st_en, order, hint1)
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-fractions-decimals", level=2,
-        title=("Fractions and decimals", "Бутархай ба аравтын бутархайтай тэгшитгэл"),
-        skill=("Multiply every term by one number to clear the fractions, then solve as usual.",
-               "Гишүүн бүрийг нэг тоогоор үржүүлж бутархайгаас салаад, ердийнхөөрөө бодно."),
-        method=(["Find the least common denominator (for decimals take $10$ or $100$).",
-                 "Multiply every term on both sides by it, whole numbers included.",
-                 "Open any brackets that appear.",
-                 "Solve the equation without fractions and check in the original."],
-                ["Хуваариудын хамгийн бага ерөнхий хуваарийг ол (аравтын бутархай бол $10$ эсвэл $100$-г ав).",
-                 "Хоёр талын гишүүн бүрийг, бүхэл тоог ч мөн, тэр тоогоор үржүүл.",
-                 "Хаалт гарвал нээ.",
-                 "Бутархайгүй болсон тэгшитгэлийг бодоод анхны тэгшитгэлд орлуулж шалга."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# Form 7 · word problems: write AND solve
-# ---------------------------------------------------------------------------
 
 def tg(n):
     return M(ntex(n)) + "₮"
@@ -1630,22 +1363,26 @@ def story_variant(vid, i, s):
         chk["en"]["do"] = f"Check: left side ${Lc}$, right side ${Rc}$. Both sides are equal. {s['answer'][1]}"
     cands = []
     checks = list(w.checks)
-    for wr, mn, en in s["wrongs"]:
+    for k_, item in enumerate(s["wrongs"]):
+        wr, mn, en = item[:3]
+        tag = item[3] if len(item) > 3 else s["tags"][k_]
         if isinstance(wr, Eqn):
+            wr.var = v
             k, x = wr.solve()
             assert k == "one"
             checks.append(wr.check_at(x))
         else:
             x = Fr(wr)
         checks.append(f"Ne({epy(eq.lhs, at(x))}, {epy(eq.rhs, at(x))})")
-        cands.append(dict(x=x, mn=mn, en=en, mode="story"))
-    ms = pick3(w.sol, cands)
-    wrongs = [(M(ntex(m["x"])),) * 2 + (m["mn"], m["en"]) for m in ms]
+        cands.append(dict(x=x, mn=mn, en=en, mode="story", tag=tag))
+    dec = eq.is_dec()
+    ms = pick3(w.sol, cands, dec)
+    wrongs = [(M(ntexd(m["x"], dec)),) * 2 + (m["mn"], m["en"], m["tag"]) for m in ms]
     hints = [s["hint1"], (f"{s['write'][4]} Одоо тэгшитгэлээ бодоорой.", f"{s['write'][5]} Now solve it.")]
     Lv = ntex(eval_side(eq.lhs, w.sol))
     expl = (f"Тэгшитгэл нь {M(eq.tex())}. Бодвол {M(f'{v} = {ntex(w.sol)}')}, шалгахад хоёр тал {M(Lv)} болно.",
             f"The equation is ${eq.tex()}$. Solving it gives ${v} = {ntex(w.sol)}$, and both sides then equal ${Lv}$.")
-    e, m = assemble(vid, i, s["st"][0], s["st"][1], (M(ntex(w.sol)),) * 2, wrongs, steps, hints, expl, checks)
+    e, m = assemble(vid, i, s["st"][0], s["st"][1], (M(ntexd(w.sol, dec)),) * 2, wrongs, steps, hints, expl, checks)
     return thin_all(e), thin_all(m)
 
 
@@ -1674,7 +1411,7 @@ def thin_all(node):
     return node
 
 
-def stories():
+def stories_v1():
     S = []
     # 1 · notebooks and a pen
     e = Eqn([V(4), K(1500)], [K(11500)], "x")
@@ -1973,32 +1710,6 @@ def stories():
     return S
 
 
-def form_words():
-    en_vs, mn_vs = [], []
-    for i, s in enumerate(stories()):
-        e, m = story_variant("g8-we-v%02d" % (i + 1), i, s)
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-words-equation", level=2,
-        title=("From words to equations", "Үгэн бодлогоос тэгшитгэл зохиох"),
-        skill=("Name the unknown, turn each sentence into part of the equation, then solve.",
-               "Үл мэдэгдэхийг нэрлээд өгүүлбэр бүрийг тэгшитгэлийн хэсэг болгож, дараа нь бодно."),
-        method=(["Decide what you are asked for and call it $x$.",
-                 "Write every other quantity using $x$.",
-                 "Use words like «total» or «sum» to write the equation.",
-                 "Solve it and check that the answer fits the story."],
-                ["Юуг олох гэж байгааг тодорхойлж $x$ гэж тэмдэглэ.",
-                 "Бусад хэмжигдэхүүнийг $x$-ээр илэрхийл.",
-                 "«Нийт», «нийлбэр» гэх мэт үгийг ашиглан тэгшитгэл зохио.",
-                 "Тэгшитгэлээ бодоод хариу нь бодлогын нөхцөлд тохирох эсэхийг шалга."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# Form 8 · find the mistake in a worked solution
-# ---------------------------------------------------------------------------
-
 NAMES = [("Бат", "Bat"), ("Сарнай", "Sarnai"), ("Тэмүүлэн", "Temuulen"), ("Номин", "Nomin"),
          ("Энхжин", "Enkhjin"), ("Дорж", "Dorj")]
 
@@ -2183,7 +1894,7 @@ def find_error_variant(vid, i, c):
         else:
             wm = f"{j + 1}-р алхам өмнөх мөрөөсөө зөв гарсан: {mmn}. Гэвч өмнөх мөр нь буруу байсан."
             we = f"Step {j + 1} follows correctly from the line before: {men}. But that line was already wrong."
-        wrongs.append((opts_mn[j], opts_en[j], wm, we))
+        wrongs.append((opts_mn[j], opts_en[j], wm, we, "misplaced-error"))
     Lb, Rb = ntexd(eval_side(eq.lhs, bat), eq.is_dec()), ntexd(eval_side(eq.rhs, bat), eq.is_dec())
     bt = f"{v} = {ntex(bat)}"
     wrongs.append((opts_mn[3], opts_en[3],
@@ -2191,7 +1902,7 @@ def find_error_variant(vid, i, c):
                    .replace(f"{name_mn}-ын", {"Бат": "Батын", "Сарнай": "Сарнайн", "Тэмүүлэн": "Тэмүүлэнгийн", "Номин": "Номины",
                                               "Энхжин": "Энхжингийн", "Дорж": "Доржийн"}[name_mn]),
                    f"Putting {name_en}'s answer ${bt}$ into the original equation gives ${Lb}$ on the left and ${Rb}$ on the right. "
-                   f"They are not equal, so there is a mistake somewhere."))
+                   f"They are not equal, so there is a mistake somewhere.", "skipped-check"))
     opts = wrongs
     steps = []
     if err > 0:
@@ -2236,32 +1947,6 @@ def find_error_variant(vid, i, c):
                f"Eq({epy(eq.rhs, at(bat))}, {npy(eval_side(eq.rhs, bat))})"]
     return assemble(vid, i, st_mn, st_en, (opts_mn[err], opts_en[err]), opts, steps, hints, expl, checks, fixed_ci=err)
 
-
-def form_find_error():
-    en_vs, mn_vs = [], []
-    for i, c in enumerate(find_error_cases()):
-        e, m = find_error_variant("g8-fe-v%02d" % (i + 1), i, c)
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-find-error", level=2,
-        title=("Find the mistake", "Алдааг олох"),
-        skill=("Compare every line with the one before: was the same correct move made on both sides?",
-               "Мөр бүрийг өмнөх мөртэй нь харьцуулж, хоёр талд ижил зөв үйлдэл хийсэн эсэхийг шалгана."),
-        method=(["Say what was done to get each line.",
-                 "Check that the move was made correctly on both sides.",
-                 "Look hardest at opening brackets, moving terms and dividing.",
-                 "Put the final answer into the original equation to confirm."],
-                ["Мөр бүрийг гаргахад юу хийснийг тодорхойл.",
-                 "Тэр үйлдлийг хоёр талд зөв хийсэн эсэхийг шалга.",
-                 "Хаалт нээх, гишүүн шилжүүлэх, хуваах алхамд онцгой анхаар.",
-                 "Эцсийн хариуг анхны тэгшитгэлд орлуулж батал."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# Form 9 · one, none or infinitely many
-# ---------------------------------------------------------------------------
 
 def how_many_variant(vid, i, eq):
     v = eq.var
@@ -2375,7 +2060,12 @@ def how_many_variant(vid, i, eq):
                 f"${v}$ disappearing was read as «no solution». But what is left, ${rest}$, is always true, so every value is a solution.")
         D[3] = (f"{M(zero)} үнэхээр тохирно, гэхдээ ганцаараа биш. Хоёр тал адилхан {M(etex(cur.lhs, v))} тул {VW(v, v, 'gen')} дурын утга шийд болно.",
                 f"${zero}$ does work, but it is not the only one. Both sides are the same ${etex(cur.lhs, v)}$, so every value is a solution.")
-    opts = [None if j == ci else (opts_mn[j], opts_en[j], D[j][0], D[j][1]) for j in range(4)]
+    HM_TAG = {("one", 1): "decided-before-simplifying", ("one", 2): "decided-before-simplifying",
+              ("one", 3): "one-solution-assumed-zero", ("none", 0): "decided-before-simplifying",
+              ("none", 2): "cancelled-means-infinite", ("none", 3): "cancelled-means-x-zero",
+              ("inf", 0): "decided-before-simplifying", ("inf", 1): "cancelled-means-no-solution",
+              ("inf", 3): "cancelled-means-x-zero"}
+    opts = [None if j == ci else (opts_mn[j], opts_en[j], D[j][0], D[j][1], HM_TAG[(cat, j)]) for j in range(4)]
     hints = [(f"Эхлээд хаалтыг нээж, тал бүрийг хялбарчлаарай. Дараа нь хоёр талын {VW(v, v, 'gen')} коэффициентыг харьцуулаарай.",
               f"First open any brackets and simplify each side. Then compare the coefficients of ${v}$ on the two sides."),
              (f"Хялбарчилбал {M(simp)} болно. Хоёр талын {VW(v, v, 'gen')} коэффициент ижил үү, ялгаатай юу?",
@@ -2395,155 +2085,2419 @@ def how_many_variant(vid, i, eq):
     return assemble(vid, i, st_mn, st_en, (opts_mn[ci], opts_en[ci]), opts, steps, hints, expl, checks, fixed_ci=ci)
 
 
-def form_how_many():
-    cases = [
-        Eqn([BR(4, V(1), K(-1))], [V(4), V(-1), K(2)], "x"),
-        Eqn([BR(2, V(1), K(-1)), K(4)], [V(2), K(5)], "x"),
-        Eqn([BR(3, V(1), K(2))], [V(3), K(6)], "x"),
-        Eqn([BR(2, V(1), K(5))], [V(3), K(4), V(-2)], "n"),
-        Eqn([BR(3, V(1), K(2))], [V(3), K(2)], "a"),
-        Eqn([V(4), BR(-1, V(1), K(-5))], [V(3), K(5)], "m"),
-        Eqn([V(5), K(-3)], [BR(2, V(1), K(3))], "m"),
-        Eqn([V(5), BR(-2, V(1), K(-1))], [V(3), K(-7)], "y"),
-        Eqn([BR(2, V(1), K(-3)), V(1)], [BR(3, V(1), K(-2))], "y"),
-        Eqn([K(6), BR(-1, V(1), K(-4))], [V(2), K(1)], "y"),
-        Eqn([BR(-1, V(1), K(4))], [K(6), V(-1)], "n"),
-        Eqn([BR(5, V(1), K(-1)), V(-2)], [V(3), K(-5)], "a"),
-    ]
-    cats = [c.solve()[0] for c in cases]
-    assert cats.count("one") == 4 and cats.count("none") == 4 and cats.count("all") == 4, cats
-    en_vs, mn_vs = [], []
-    for i, eq in enumerate(cases):
-        e, m = how_many_variant("g8-hm-v%02d" % (i + 1), i, eq)
+# ---------------------------------------------------------------------------
+# WORKSHEET TEMPLATES
+#
+# Owner feedback (Khas, 9 Nov 2026): "the practice problems are too monotonic
+# … the problem bank should have variety of problems, just like how you
+# generate it for my students". So a form is a worksheet: twelve problems in
+# at least six different SHAPES (a bare equation, a box to fill, a table, a
+# picture to read, a story, "which equation", "who is right", "what is the
+# next step"…), each shape at most three times and never twice in a row.
+# Every template below still carries the full tutoring: two hints, a solution
+# step by step, and a diagnosis for each wrong option produced by one named
+# mistake.
+# ---------------------------------------------------------------------------
+
+VSUF["k"] = {"gen": "гийн", "acc": "г", "com": "тай", "abl": "гаас"}
+VSUF["t"] = {"gen": "гийн", "acc": "г", "com": "тэй", "abl": "гээс"}
+VSUF["w"] = {"gen": "ийн", "acc": "ийг", "com": "тэй", "abl": "ээс"}
+VSUF["g"] = {"gen": "гийн", "acc": "г", "com": "тэй", "abl": "гээс"}
+VSUF["d"] = {"gen": "гийн", "acc": "г", "com": "тэй", "abl": "гээс"}
+VSUF["h"] = {"gen": "ийн", "acc": "ийг", "com": "тэй", "abl": "ээс"}
+VSUF["v"] = {"gen": "гийн", "acc": "г", "com": "тэй", "abl": "гээс"}
+
+GEN = {"Бат": "Батын", "Сарнай": "Сарнайн", "Тэмүүлэн": "Тэмүүлэнгийн", "Номин": "Номины",
+       "Энхжин": "Энхжингийн", "Дорж": "Доржийн"}
+
+
+def with_fig(pair, fig_en, fig_mn):
+    e, m = pair
+    assert fig_en["mode"] == fig_mn["mode"]
+    e["figure"], m["figure"] = fig_en, fig_mn
+    return e, m
+
+
+def walk_wrongs(w, order, extra=()):
+    cands = w.mistakes(order) + list(extra)
+    ms = pick3(w.sol, cands, w.dec)
+    checks = []
+    for m in ms:
+        checks += m.get("checks", [])
+    return ms, checks
+
+
+# ----- bare equation -------------------------------------------------------
+
+def t_bare(vid, i, eq, order, hint1):
+    st_mn, st_en = solve_stmt(eq)
+    return numeric_variant(vid, i, eq, st_mn, st_en, order, hint1)
+
+
+# ----- what goes in the box -----------------------------------------------
+
+def box_tex(eq):
+    assert eq.var == "x"
+    t = re.sub(r"(\d)x", lambda mo: mo.group(1) + " \\cdot \\square", eq.tex())
+    return t.replace("x", "\\square")
+
+
+def t_box(vid, i, eq, order):
+    w = Walk(eq, extra_steps=1)
+    ms, mchecks = walk_wrongs(w, order)
+    bt = box_tex(eq)
+    ans = ntexd(w.sol, w.dec)
+    first = dict(mn=dict(do=f"Нүдэнд орох тоог $x$ гэж тэмдэглэе. Тэгвэл {M(eq.tex())} тэгшитгэл гарна.",
+                         why="Мэдэгдэхгүй тоог үсгээр тэмдэглэвэл түүнийг тэгшитгэл бодож олно."),
+                 en=dict(do=f"Call the number in the box $x$. Then the equation is ${eq.tex()}$.",
+                         why="Naming the unknown number with a letter turns the puzzle into an equation to solve."))
+    steps = [first] + w.steps
+    steps[-1] = dict(mn=dict(do=steps[-1]["mn"]["do"] + f" Нүдэнд {M(ans)} бичнэ."),
+                     en=dict(do=steps[-1]["en"]["do"] + f" The box holds ${ans}$."))
+    hints = [("Нүдийг үл мэдэгдэх тоо гэж үзээд $x$ гэж тэмдэглээрэй. Тэгвэл энгийн тэгшитгэл болно.",
+              "Treat the box as an unknown number and call it $x$: it becomes an ordinary equation."),
+             hint2_from(w.steps[0], "x")]
+    wrongs = [(M(ntexd(m["x"], w.dec)),) * 2 + (m["mn"], m["en"], m["tag"]) for m in ms]
+    expl = (f"Нүдийг $x$ гэвэл {M(eq.tex())}. Бодоход {M('x = ' + ans)} тул нүдэнд {M(ans)} бичнэ.",
+            f"With the box as $x$ the equation is ${eq.tex()}$. It gives $x = {ans}$, so the box holds ${ans}$.")
+    return assemble(vid, i, f"Нүдэнд ямар тоо бичвэл тэнцэтгэл үнэн болох вэ? $${bt}$$",
+                    f"Which number in the box makes this true? $${bt}$$",
+                    (M(ans),) * 2, wrongs, steps, hints, expl, w.checks + mchecks)
+
+
+# ----- which equation has this solution (optionally read off a number line) -
+
+def trap(kind, a, b, s, var):
+    """An equation that a NAMED mistake would wrongly 'solve' to s."""
+    s = Fr(s)
+    if kind == "const":       # a·x + b = c, solved by moving b without its sign change
+        eq = Eqn([V(a), K(b)], [K(a * s - b)], var)
+        ph = (f"{W(b, 'acc')} нөгөө тал руу тэмдгийг нь өөрчлөхгүй шилжүүлбэл",
+              f"moving ${ntex(b)}$ across without changing its sign", "sign-not-changed-moving-term")
+    elif kind == "nodiv":     # a·x + b = c with c − b = s: forgetting to divide by a
+        eq = Eqn([V(a), K(b)], [K(s + b)], var)
+        ph = (f"сүүлд нь {W(a, 'dat')} хуваахаа мартвал", f"forgetting the final division by ${a}$", "stopped-before-dividing")
+    else:                     # k(x + p) = c with k·x + p = c
+        eq = Eqn([BR(a, V(1), K(b))], [K(a * s + b)], var)
+        ph = (f"хаалтыг нээхдээ зөвхөн {VW(var, var, 'acc')} {W(a, 'ins')} үржүүлбэл",
+              f"multiplying only the ${var}$ in the bracket by ${a}$", "distribute-first-term-only")
+    kind_, t = eq.solve()
+    assert kind_ == "one" and t != s, (kind, a, b, s)
+    return eq, ph, t
+
+
+def t_which_eq(vid, i, s, var, correct, traps, line=None):
+    """Options are equations; exactly one has solution s. `line` = (min, max) draws s on a number line."""
+    s = Fr(s)
+    assert correct.solve() == ("one", s)
+    st = f"{var} = {ntex(s)}"
+    eqs = [(correct, None, None)] + [trap(k, a, b, s, var) for k, a, b in traps]
+    ci = i % 4
+    order = [1, 2, 3]
+    order.insert(ci, 0)
+    checks, wrongs, opt_steps = [], [], []
+    for j in order:
+        eq, ph, t = eqs[j]
+        L, R = eval_side(eq.lhs, s), eval_side(eq.rhs, s)
+        Lc, Rc = sub_chain(eq.lhs, var, s), sub_chain(eq.rhs, var, s)
+        checks += piece_checks(eq.lhs, s) + piece_checks(eq.rhs, s)
+        if j == 0:
+            checks.append(eq.check_at(s))
+            last = dict(mn=dict(do=f"{M(eq.tex())}: зүүн тал {M(Lc)}, баруун тал {M(Rc)}. Тэнцүү тул энэ тэгшитгэлийн шийд нь {M(st)}."),
+                        en=dict(do=f"${eq.tex()}$: left side ${Lc}$, right side ${Rc}$. Equal, so this equation has solution ${st}$."))
+            wrongs.append(None)
+        else:
+            checks += [f"Ne({epy(eq.lhs, at(s))}, {epy(eq.rhs, at(s))})", eq.check_at(t)]
+            opt_steps.append(dict(mn=dict(do=f"{M(eq.tex())}: зүүн тал {M(Lc)}, баруун тал {M(Rc)}. Тэнцэхгүй."),
+                                  en=dict(do=f"${eq.tex()}$: left side ${Lc}$, right side ${Rc}$. Not equal.")))
+            wrongs.append((M(eq.tex()), M(eq.tex()),
+                           f"{M(st)} утгыг орлуулбал зүүн тал {M(ntex(L))}, баруун тал {M(ntex(R))} гарч тэнцэхгүй. "
+                           f"Энэ тэгшитгэлийг {ph[0]} {M(st)} гэж андуурч гардаг. Жинхэнэ шийд нь {M(f'{var} = {ntex(t)}')}.",
+                           f"Substituting ${st}$ gives ${ntex(L)}$ on the left and ${ntex(R)}$ on the right. This equation "
+                           f"only seems to give ${st}$ by {ph[1]}; its real solution is ${var} = {ntex(t)}$.", ph[2]))
+    intro_mn = (f"Тоон шулуун дээр {M(ntex(s))} тоо тэмдэглэгдсэн байна. " if line else "") + \
+        f"Тэгшитгэл бүрийг бодох шаардлагагүй: {M(st)} утгыг орлуулж, хоёр тал тэнцүү эсэхийг шалгая."
+    intro_en = (f"The number line marks ${ntex(s)}$. " if line else "") + \
+        f"No need to solve each equation: substitute ${st}$ and see which one balances."
+    steps = [dict(mn=dict(do=intro_mn, why="Шийд гэдэг нь тэгшитгэлийг үнэн тэнцэтгэл болгодог утга."),
+                  en=dict(do=intro_en, why="A solution is the value that makes the equation true."))] + opt_steps + [last]
+    first_wrong = eqs[order[0] if order[0] != 0 else order[1]][0]
+    hints = [(f"Тэгшитгэл бүрийг бодохын оронд {M(st)} утгыг орлуулаад хоёр тал тэнцэх эсэхийг шалгаарай.",
+              f"Instead of solving each one, substitute ${st}$ and check whether the two sides match."),
+             (f"Жишээ нь {M(first_wrong.tex())} тэгшитгэлд зүүн тал {M(ntex(eval_side(first_wrong.lhs, s)))}, баруун тал "
+              f"{M(ntex(eval_side(first_wrong.rhs, s)))} гарна. Бусдыг ингэж шалгаарай.",
+              f"For example ${first_wrong.tex()}$ gives ${ntex(eval_side(first_wrong.lhs, s))}$ and "
+              f"${ntex(eval_side(first_wrong.rhs, s))}$. Check the others the same way.")]
+    expl = (f"{M(st)} утгыг орлуулахад зөвхөн {M(correct.tex())} тэгшитгэлийн хоёр тал тэнцүү гарна. Бусад тэгшитгэлийн хоёр тал тэнцэхгүй.",
+            f"Substituting ${st}$ balances only ${correct.tex()}$. The other equations do not balance.")
+    opts = [None if w is None else w for w in wrongs]
+    if line:
+        st_mn = "Тоон шулуун дээр тэмдэглэсэн тоо аль тэгшитгэлийн шийд вэ?"
+        st_en = "The number marked on the number line is the solution of which equation?"
+    else:
+        st_mn = f"Аль тэгшитгэлийн шийд нь {M(st)} вэ?"
+        st_en = f"Which equation has the solution ${st}$?"
+    pair = assemble(vid, i, st_mn, st_en, (M(correct.tex()),) * 2, opts, steps, hints, expl, checks, fixed_ci=ci)
+    if line:
+        lo, hi = line
+        assert lo <= s <= hi and s.denominator == 1
+        fig = {"mode": "integerLine", "integerLine": {"min": lo, "max": hi, "points": [{"value": int(s), "label": "?"}]}}
+        pair = with_fig(pair, fig, json.loads(json.dumps(fig)))
+    return pair
+
+
+# ----- for which k does the equation have solution s ----------------------
+
+def t_param(vid, i, shown, s, keq, order, extra=(), var="x"):
+    """shown: (tex, py-template with {x} and {k}) of an equation in x with a parameter k; keq: the k-equation."""
+    tex, tpl = shown
+    w = Walk(keq, extra_steps=1)
+    kv = w.sol
+    lhs_t, rhs_t = tpl.split("=")
+    for xv, kk in ((s, kv),):
+        L = sp.sympify(lhs_t.format(x=f"({npy(xv)})", k=f"({npy(kk)})"))
+        R = sp.sympify(rhs_t.format(x=f"({npy(xv)})", k=f"({npy(kk)})"))
+        assert L == R, (tex, L, R)
+    K_ = sp.Symbol("k")
+    d = sp.expand(sp.sympify(lhs_t.format(x=f"({npy(s)})", k="k")) - sp.sympify(rhs_t.format(x=f"({npy(s)})", k="k")))
+    A_, B_ = keq.diff()
+    assert sp.simplify(d * A_ - sp.expand(sp.Rational(A_) * K_ + B_) * d.coeff(K_, 1)) == 0
+    ex = []
+    for xv, mn, en, tag_ in extra:
+        ex.append(dict(x=Fr(xv), mn=mn, en=en, mode="extra", tag=tag_,
+                       checks=[f"Ne({lhs_t.format(x=at(s), k=at(Fr(xv)))}, {rhs_t.format(x=at(s), k=at(Fr(xv)))})"]))
+    ms, mchecks = walk_wrongs(w, order, ex)
+    xs = f"{var} = {ntex(s)}"
+    first = dict(mn=dict(do=f"Шийд нь {M(xs)} гэдэг нь {VW(var, var, 'gen')} оронд {M(ntex(s))} тавихад тэнцэтгэл үнэн болно гэсэн үг. "
+                            f"Орлуулбал {M(keq.tex())}.",
+                         why=f"Одоо {M(var)} мэдэгдэж байгаа тул үл мэдэгдэх нь ганцхан {M('k')} үлдэнэ."),
+                 en=dict(do=f"Having solution ${xs}$ means the equation is true when ${ntex(s)}$ replaces ${var}$. "
+                            f"Substituting gives ${keq.tex()}$.",
+                         why=f"Now ${var}$ is known, so the only unknown left is $k$."))
+    steps = [first] + w.steps
+    kt = f"k = {ntex(kv)}"
+    steps[-1] = dict(mn=dict(do=steps[-1]["mn"]["do"] + f" Иймд {M(kt)} үед тэгшитгэлийн шийд {M(xs)} болно."),
+                     en=dict(do=steps[-1]["en"]["do"] + f" So with ${kt}$ the equation has solution ${xs}$."))
+    checks = w.checks + mchecks + [f"Eq({lhs_t.format(x=at(s), k=at(kv))}, {rhs_t.format(x=at(s), k=at(kv))})"]
+    hints = [(f"{VW(var, var, 'gen')} оронд {M(ntex(s))} тавиарай. Тэгвэл {M('k')}-тай энгийн тэгшитгэл үлдэнэ.",
+              f"Put ${ntex(s)}$ in place of ${var}$. What is left is a simple equation in $k$."),
+             (f"Орлуулбал {M(keq.tex())} болно. Одоо {M('k')}-г олоорой.", f"Substituting gives ${keq.tex()}$. Now find $k$.")]
+    wrongs = [(M(ntex(m["x"])),) * 2 + (m["mn"], m["en"], m["tag"]) for m in ms]
+    expl = (f"{M(xs)} утгыг орлуулбал {M(keq.tex())}, эндээс {M(kt)}.",
+            f"Substituting ${xs}$ gives ${keq.tex()}$, so ${kt}$.")
+    return assemble(vid, i, f"{VW('k', 'k', 'gen')} ямар утгад {M(tex)} тэгшитгэлийн шийд {M(xs)} болох вэ?",
+                    f"For which value of $k$ does ${tex}$ have the solution ${xs}$?",
+                    (M(ntex(kv)),) * 2, wrongs, steps, hints, expl, checks)
+
+
+# ----- what is the next step ----------------------------------------------
+
+def t_next(vid, i, eq0, line, name=None, drill=False):
+    """Options are moves. The right one is the move the solving walk makes next on `line`."""
+    v = eq0.var
+    assert line.solve() == eq0.solve()
+    w = Walk(line, extra_steps=1)
+    nxt = w.stage_eqs[0]
+    sides = line.lhs + line.rhs
+    if any(p.kind == "fr" for p in sides) or any(p.dec for p in sides if p.kind in "vk"):
+        Mx, _, _, _ = clear(line)
+        if line.is_dec():
+            alt = 10 if Mx == 100 else 100
+            alt_d = (f"{W(alt, 'ins')} үржүүлбэл {'бүх тоо бүхэл болохгүй' if alt < Mx else 'тоо шаардлагагүй томорно'}: "
+                     f"таслалаас хойш хамгийн олон оронтой тоог харж {W(Mx, 'ins')} үржүүлнэ.",
+                     f"Multiplying by ${alt}$ {'leaves some decimals' if alt < Mx else 'makes the numbers needlessly big'}: "
+                     f"the number with the most decimal places decides, so multiply by ${Mx}$.")
+        else:
+            dens = sorted({p.den for p in sides if p.kind == "fr"})
+            alt = sum(dens)
+            assert alt % Mx != 0 or alt == Mx
+            alt = alt if alt != Mx else Mx * 2
+            alt_d = (f"{W(alt, 'ins')} үржүүлбэл хуваарь бүр түүнд хуваагдахгүй тул бутархай үлдэнэ. Хуваариудын хамгийн бага "
+                     f"ерөнхий хуваарь {M(Mx)}.",
+                     f"Not every denominator divides ${alt}$, so fractions would remain. The least common denominator is ${Mx}$.")
+        _, part, _, left = clear(line, partial=True)
+        if left:
+            part_o = (f"Зөвхөн бутархайтай гишүүдийг {W(Mx, 'ins')} үржүүлэх", f"Multiply only the fraction terms by ${Mx}$")
+            part_d = (f"Ингэвэл {M(part.tex())} болж тэнцэтгэл алдагдана: хоёр талын гишүүн бүрийг ижил тоогоор үржүүлэх ёстой.",
+                      f"That gives ${part.tex()}$, which is no longer balanced: every term on both sides must be multiplied.")
+        else:
+            part_o = (f"Зөвхөн зүүн талыг {W(Mx, 'ins')} үржүүлэх", f"Multiply only the left side by ${Mx}$")
+            part_d = ("Нэг талыг л үржүүлбэл тэнцэтгэл алдагдана. Хоёр талыг ижил тоогоор үржүүлэх ёстой.",
+                      "Multiplying one side only breaks the balance. Both sides must be multiplied by the same number.")
+        # dropping the denominators / decimal points: each term scaled by its own number
+        def own(p):
+            if p.kind == "fr":
+                inner = [q.copy() for q in p.inner]
+                return [q.copy(c=q.c * (1 if p.c > 0 else -1)) for q in inner] if len(inner) > 1 else \
+                    [inner[0].copy(c=inner[0].c * p.c)]
+            if p.kind in "vk" and p.dec:
+                k = 0
+                while (p.c * 10 ** k).denominator != 1:
+                    k += 1
+                return [p.copy(c=p.c * 10 ** k, dec=False)]
+            return [p.copy()]
+        drop = Eqn([q for p in line.lhs for q in own(p)], [q for p in line.rhs for q in own(p)], v)
+        assert drop.solve() != line.solve()
+        if line.is_dec():
+            drop_o = (f"Таслалыг зүгээр арилгах: {M(drop.tex())}", f"Just delete the decimal points: ${drop.tex()}$")
+            drop_d = ("Таслалыг арилгахад гишүүн бүр өөр өөр тоогоор үржигдэнэ, тэгэхээр тэнцэтгэл алдагдана.",
+                      "Deleting the points multiplies different terms by different numbers, so the balance is lost.")
+        else:
+            drop_o = (f"Хуваарийг зүгээр хаях: {M(drop.tex())}", f"Just drop the denominators: ${drop.tex()}$")
+            drop_d = ("Хуваарийг хаяхад гишүүн бүр өөр өөр тоогоор үржигдэнэ, тэгэхээр тэнцэтгэл алдагдана.",
+                      "Dropping the denominators multiplies different terms by different numbers, so the balance is lost.")
+        right = (f"Хоёр талын гишүүн бүрийг {W(Mx, 'ins')} үржүүлэх", f"Multiply every term on both sides by ${Mx}$")
+        wrongs = [(f"Хоёр талыг {W(alt, 'ins')} үржүүлэх", f"Multiply both sides by ${alt}$") + alt_d + ("wrong-common-denominator",),
+                  part_o + part_d + ("multiplied-some-terms-only",), drop_o + drop_d + ("dropped-denominators",)]
+        reason = ("Тэгшитгэлд бутархай байгаа тул эхлээд бутархайгаас салвал бусад алхам хялбар болно."
+                  if not line.is_dec() else "Аравтын бутархайгаас эхлээд салвал бүхэл тоотой бодно.",
+                  "There are fractions, so getting rid of them first makes every later step easier."
+                  if not line.is_dec() else "Clearing the decimals first lets you work with whole numbers.")
+        checks = [f"Ne(({epy(part.lhs, at(w.sol))}) - ({epy(part.rhs, at(w.sol))}), 0)" if part.solve() != line.solve() else "True"]
+    elif any(p.kind == "br" for p in sides):
+        br = next(p for p in sides if p.kind == "br" and p.c != 1 and len(p.inner) > 1)
+        good = etex(expand_piece(br), v)
+        fo = etex(expand_piece(br, "first_only"), v)
+        bt = etex([br], v)
+        right = (f"Хаалтыг нээх: {M(bt + ' = ' + good)}", f"Open the bracket: ${bt} = {good}$")
+        wrongs = [(f"Хаалтыг нээх: {M(bt + ' = ' + fo)}", f"Open the bracket: ${bt} = {fo}$",
+                   f"Энд хаалтын өмнөх {M(ntex(br.c))} зөвхөн эхний гишүүнийг үржүүлжээ. Хаалтан доторх гишүүн бүрийг үржүүлнэ: {M(bt + ' = ' + good)}.",
+                   f"Here ${ntex(br.c)}$ multiplies only the first term. It multiplies every term inside: ${bt} = {good}$.",
+                   "distribute-first-term-only")]
+        if br.c < 0:
+            ns = etex(expand_piece(br, "neg_sign"), v)
+            wrongs.append((f"Хаалтыг нээх: {M(bt + ' = ' + ns)}", f"Open the bracket: ${bt} = {ns}$",
+                           f"Хасах тэмдэгтэй {W(br.c, 'ins')} үржүүлэхэд хоёр дахь гишүүний тэмдэг ч өөрчлөгдөнө: {M(bt + ' = ' + good)}.",
+                           f"Multiplying by the negative ${ntex(br.c)}$ changes the second term's sign too: ${bt} = {good}$.",
+                           "distribute-sign-second-term"))
+        q = br.inner[-1]
+        qt = ntex(abs(q.c))
+        if q.c > 0:
+            q_mn, q_en = f"Хаалтан доторх {W(abs(q.c), 'acc')} хоёр талаас хасах", f"Subtract the ${qt}$ inside the bracket from both sides"
+        else:
+            q_mn, q_en = f"Хаалтан доторх {W(abs(q.c), 'acc')} хоёр талд нэмэх", f"Add the ${qt}$ inside the bracket to both sides"
+        wrongs.append((q_mn, q_en,
+                       f"{M(qt)} нь хаалтан дотор байгаа тул {W(br.c, 'ins')} үржигдсэн байна. Түүнийг дангаар нь шилжүүлж болохгүй: эхлээд хаалтыг нээнэ.",
+                       f"The ${qt}$ is inside the bracket, so it is multiplied by ${ntex(br.c)}$. It cannot be moved on its own: open the bracket first.",
+                       "moved-term-out-of-bracket"))
+        if len(wrongs) < 3:
+            wrongs.append((f"Хоёр талыг {W(abs(br.c), 'ins')} үржүүлэх", f"Multiply both sides by ${ntex(abs(br.c))}$",
+                           "Үржүүлбэл хаалт арилахгүй, харин тоонууд томорно. Хаалтын өмнөх тоог хаалтыг нээж эсвэл хуваалтаар арилгана.",
+                           "Multiplying keeps the bracket and makes the numbers bigger. The number in front goes by opening the bracket or by dividing.",
+                           "multiplied-instead-of-divided"))
+        reason = ("Хаалт байгаа үед доторх тоонуудтай шууд ажиллах боломжгүй. Эхлээд хаалтыг нээнэ.",
+                  "With a bracket in the way you cannot work with the numbers inside directly. Open it first.")
+        checks = [equiv_check([br], expand_piece(br), v)]
+    else:
+        a1, b1 = coeffs(line.lhs)
+        a2, b2 = coeffs(line.rhs)
+        if a1 != 0 and a2 != 0:
+            side = w.orientation(a1, a2)
+            mv = a2 if side == "L" else a1
+            t = etex([V(abs(mv))], v)
+            if mv > 0:
+                right = (f"Хоёр талаас {VW(t, v, 'acc')} хасах", f"Subtract ${t}$ from both sides")
+                opp = (f"Хоёр талд {VW(t, v, 'acc')} нэмэх", f"Add ${t}$ to both sides")
+            else:
+                right = (f"Хоёр талд {VW(t, v, 'acc')} нэмэх", f"Add ${t}$ to both sides")
+                opp = (f"Хоёр талаас {VW(t, v, 'acc')} хасах", f"Subtract ${t}$ from both sides")
+            twice = etex([V(a1 + mv) if side == "R" else V(a2 + mv)], v)
+            wrongs = [opp + (f"Ингэвэл нөгөө талд {M(twice)} гарч {M(v)} арилахгүй, харин нэмэгдэнэ. {M(etex([V(mv)], v))}-ийг арилгахын тулд эсрэг үйлдэл хийнэ.",
+                             f"That leaves ${twice}$ on the other side: the ${v}$-term grows instead of going away. Do the opposite operation to remove ${etex([V(mv)], v)}$.",
+                             "opposite-operation"),
+                      (f"Зөвхөн {'баруун' if side == 'L' else 'зүүн'} талаас {VW(t, v, 'acc')} {'хасах' if mv > 0 else 'нэмэх'}",
+                       f"{'Subtract' if mv > 0 else 'Add'} ${t}$ on the {'right' if side == 'L' else 'left'} side only",
+                       "Нэг талд л үйлдэл хийвэл тэнцэтгэл алдагдана. Ижил үйлдлийг хоёр талд хийнэ.",
+                       "Doing it on one side only breaks the balance. The same move goes on both sides.", "one-side-only")]
+            ks = (line.lhs if b1 != 0 else line.rhs)
+            vv = next(p for p in ks if p.kind == "v")
+            kk = next(p for p in ks if p.kind == "k")
+            comb = etex([V(vv.c + kk.c)], v)
+            wrongs.append((f"{M(etex([vv, kk], v))} гэдгийг {M(comb)} болгож нэгтгэх", f"Combine ${etex([vv, kk], v)}$ into ${comb}$",
+                           f"{M(etex([vv], v))} нь {VW(v, v, 'com')} гишүүн, {M(ntex(kk.c))} нь тоо: тэд төсөөтэй гишүүд биш тул нэгтгэж болохгүй.",
+                           f"${etex([vv], v)}$ is a ${v}$-term and ${ntex(kk.c)}$ is a number: they are not like terms and cannot be combined.",
+                           "combined-unlike-terms"))
+            reason = (f"{M(v)} хоёр талд байна. Эхлээд {VW(v, v, 'com')} гишүүдийг нэг талд цуглуулна.",
+                      f"${v}$ is on both sides. First gather the ${v}$-terms on one side.")
+            checks = ["True"]
+        else:
+            vs = line.lhs if a1 != 0 else line.rhs
+            A, B = coeffs(vs)
+            assert B != 0 and A != 1
+            other = b2 if a1 != 0 else b1
+            if B > 0:
+                right = (f"Хоёр талаас {W(B, 'acc')} хасах", f"Subtract ${ntex(B)}$ from both sides")
+                opp = (f"Хоёр талд {W(B, 'acc')} нэмэх", f"Add ${ntex(B)}$ to both sides")
+            else:
+                right = (f"Хоёр талд {W(-B, 'acc')} нэмэх", f"Add ${ntex(-B)}$ to both sides")
+                opp = (f"Хоёр талаас {W(-B, 'acc')} хасах", f"Subtract ${ntex(-B)}$ from both sides")
+            dbl = etex([V(A), K(2 * B)], v)
+            dv = etex([V(1), K(B)], v) + " = " + ntex(Fr(other) / A)
+            wrongs = [opp + (f"Ингэвэл {M(dbl)} болж тоо арилахгүй, харин хоёр дахин ихэснэ.",
+                             f"That gives ${dbl}$: the number does not go away, it doubles.", "opposite-operation"),
+                      (f"Зөвхөн {VW(etex([V(A)], v), v, 'acc')} {W(A, 'dat')} хуваах: {M(dv)}",
+                       f"Divide only ${etex([V(A)], v)}$ by ${ntex(A)}$: ${dv}$",
+                       f"Хоёр талыг хуваахдаа гишүүн бүрийг хуваана: {M(ntex(B))} ч бас {W(A, 'dat')} хуваагдах ёстой. "
+                       f"Эхлээд тоог арилгавал бутархай гарахгүй.",
+                       f"Dividing a side means dividing every term: ${ntex(B)}$ must be divided by ${ntex(A)}$ too. "
+                       f"Removing the number first avoids fractions.", "divided-one-term-only"),
+                      (f"Зөвхөн {'зүүн' if a1 != 0 else 'баруун'} талд {'хасах' if B > 0 else 'нэмэх'}",
+                       f"{'Subtract' if B > 0 else 'Add'} on the {'left' if a1 != 0 else 'right'} side only",
+                       "Нэг талд л үйлдэл хийвэл тэнцэтгэл алдагдана. Ижил үйлдлийг хоёр талд хийнэ.",
+                       "Doing it on one side only breaks the balance. The same move goes on both sides.", "one-side-only")]
+            reason = (f"{VW(etex([V(A)], v), v, 'com')} хамт {M(ntex(B))} байна. Урвуу дарааллаар эхлээд тоог арилгана.",
+                      f"${ntex(B)}$ sits with ${etex([V(A)], v)}$. In reverse order, the number goes first.")
+            checks = ["True"]
+    wrongs = wrongs[:3]
+    assert len(wrongs) == 3
+    if line.tex() == eq0.tex():
+        st_mn = f"{M(eq0.tex())} тэгшитгэлийг бодох эхний зөв алхам аль вэ?"
+        st_en = f"What is the right first step for solving ${eq0.tex()}$?"
+        pre_mn = pre_en = ""
+    else:
+        nm = name or ("Номин", "Nomin")
+        st_mn = (f"{nm[0]} {M(eq0.tex())} тэгшитгэлийг бодож байгаад {M(line.tex())} гэж бичсэн. "
+                 f"Дараагийн зөв алхам аль вэ?")
+        st_en = f"{nm[1]} is solving ${eq0.tex()}$ and has reached ${line.tex()}$. What is the right next step?"
+    steps = [dict(mn=dict(do=reason[0]), en=dict(do=reason[1]))] + w.steps
+    if drill:
+        steps = steps[:3]
+    if len(steps) > 6:
+        steps = steps[1:]
+    hints = [(f"{VW(v, v, 'acc')} ганцааруулахад одоо юу саад болж байна вэ? Түүнийг хоёр талд адилхан үйлдлээр арилгах алхмыг сонгоорой.",
+              f"What is in the way of getting ${v}$ alone right now? Pick the move that removes it, done to both sides."),
+             (w.steps[0]["h2"][0], w.steps[0]["h2"][1])]
+    expl = (f"Дараагийн зөв алхам: {right[0][0].lower() + right[0][1:]}. Ингэвэл {M(nxt.tex())} болно.",
+            f"The right next step: {right[1][0].lower() + right[1][1:]}. It gives ${nxt.tex()}$.")
+    return assemble(vid, i, st_mn, st_en, right, wrongs, steps, hints, expl, w.checks + checks)
+
+
+# ----- two friends solved it differently: who is right? --------------------
+
+def verdict_tag(j, truth):
+    """Option j of (only A, only B, both, neither) against the truth: did it accept a wrong working?"""
+    sets = [{0}, {1}, {0, 1}, set()]
+    return "accepted-wrong-working" if sets[j] - sets[truth] else "rejected-valid-method"
+
+
+def aligned(lines, var):
+    return "\\begin{aligned} " + " \\\\ ".join(f"{etex(l.lhs, var)} &= {etex(l.rhs, var)}" for l in lines) + " \\end{aligned}"
+
+
+def t_friends(vid, i, eq, A, B):
+    """A, B: dict(name=(mn, en), lines=[Eqn], how=(mn, en), err=(mn, en) or None)."""
+    v = eq.var
+    kind, sol = eq.solve()
+    assert kind == "one"
+    res = {}
+    for P_ in (A, B):
+        for l in P_["lines"]:
+            l.var = v
+        bad = next((j for j, l in enumerate(P_["lines"]) if l.solve() != ("one", sol)), None)
+        assert (bad is None) == (P_["err"] is None), (vid, P_["name"])
+        P_["bad"] = bad
+        P_["ans"] = P_["lines"][-1].solve()[1]
+    rA, rB = A["bad"] is None, B["bad"] is None
+    gen = {n: GEN[n] for n in GEN}
+    nA, nB = A["name"], B["name"]
+
+    def fault(P_):
+        j = P_["bad"]
+        return (f"{gen[P_['name'][0]]} {j + 1}-р мөр буруу: {P_['err'][0]}",
+                f"{P_['name'][1]}'s line {j + 1} is wrong: {P_['err'][1]}")
+
+    def fine(P_):
+        return (f"{gen[P_['name'][0]]} бодолт ч зөв: {P_['how'][0]}", f"{P_['name'][1]}'s working is right too: {P_['how'][1]}")
+    opts = [(f"Зөвхөн {nA[0]} зөв", f"Only {nA[1]} is right"), (f"Зөвхөн {nB[0]} зөв", f"Only {nB[1]} is right"),
+            ("Хоёулаа зөв", "Both are right"), ("Хоёулаа буруу", "Both are wrong")]
+    truth = 0 if (rA and not rB) else 1 if (rB and not rA) else 2 if (rA and rB) else 3
+    diags = {}
+    if truth != 0:
+        d = fault(A) if not rA else fine(B)
+        diags[0] = d
+    if truth != 1:
+        d = fault(B) if not rB else fine(A)
+        diags[1] = d
+    if truth != 2:
+        d = fault(A) if not rA else fault(B)
+        diags[2] = d
+    if truth != 3:
+        P_ = A if rA else B
+        diags[3] = (f"{gen[P_['name'][0]]} бодолт зөв: {P_['how'][0]} Хариу {M(f'{v} = {ntex(sol)}')} шалгалтад тэнцэнэ.",
+                    f"{P_['name'][1]}'s working is right: {P_['how'][1]} The answer ${v} = {ntex(sol)}$ checks out.")
+    wrongs = [None if j == truth else (opts[j][0], opts[j][1], diags[j][0], diags[j][1], verdict_tag(j, truth)) for j in range(4)]
+    steps = []
+    checks = [eq.check_at(sol)]
+    for P_ in (A, B):
+        g = gen[P_["name"][0]]
+        if P_["bad"] is None:
+            steps.append(dict(mn=dict(do=f"{g} бодолтыг шалгая: {P_['how'][0]} Мөр бүр өмнөх мөрөөсөө зөв гарсан.",
+                                      why="Нэг тэгшитгэлийг хэд хэдэн зөв аргаар бодож болно."),
+                              en=dict(do=f"Check {P_['name'][1]}'s working: {P_['how'][1]} Every line follows from the one before.",
+                                      why="One equation can be solved correctly in more than one way.")))
+            checks += [l.check_at(sol) for l in P_["lines"]]
+        else:
+            steps.append(dict(mn=dict(do=f"{g} бодолтыг шалгая: {P_['how'][0]} {P_['bad'] + 1}-р мөрөнд алдаа бий: {P_['err'][0]}"),
+                              en=dict(do=f"Check {P_['name'][1]}'s working: {P_['how'][1]} Line {P_['bad'] + 1} is wrong: {P_['err'][1]}")))
+            bl = P_["lines"][P_["bad"]]
+            checks.append(f"Ne({epy(bl.lhs, at(sol))}, {epy(bl.rhs, at(sol))})")
+    Lc, Rc = sub_chain(eq.lhs, v, sol, eq.is_dec()), sub_chain(eq.rhs, v, sol, eq.is_dec())
+    checks += piece_checks(eq.lhs, sol) + piece_checks(eq.rhs, sol)
+    steps.append(dict(mn=dict(do=f"Шалгая: {M(f'{v} = {ntex(sol)}')} үед зүүн тал {M(Lc)}, баруун тал {M(Rc)}. Хоёр тал тэнцүү."),
+                      en=dict(do=f"Check: at ${v} = {ntex(sol)}$ the left side is ${Lc}$ and the right side is ${Rc}$. Equal.")))
+    concl = {0: (f"Иймд зөвхөн {nA[0]} зөв.", f"So only {nA[1]} is right."), 1: (f"Иймд зөвхөн {nB[0]} зөв.", f"So only {nB[1]} is right."),
+             2: ("Иймд хоёулаа зөв: арга нь өөр ч хариу нь нэг.", "So both are right: different methods, the same answer."),
+             3: ("Иймд хоёулаа буруу.", "So both are wrong.")}[truth]
+    steps[-1]["mn"]["do"] += " " + concl[0]
+    steps[-1]["en"]["do"] += " " + concl[1]
+    ans = "; ".join(gen[P_["name"][0]] + " хариу " + M(v + " = " + ntex(P_["ans"])) for P_ in (A, B))
+    ans_en = "; ".join(f"{P_['name'][1]} got ${v} = {ntex(P_['ans'])}$" for P_ in (A, B))
+    hints = [("Хоёр бодолтын мөр бүрийг өмнөх мөртэй нь харьцуулаарай. Хоёр өөр арга хоёулаа зөв байж болно.",
+              "Compare every line of each working with the line before. Two different methods can both be right."),
+             (f"{ans}. Хариу бүрийг анхны тэгшитгэлд орлуулж шалгаарай.", f"{ans_en}. Put each answer into the original equation.")]
+    expl = (concl[0] + f" Зөв хариу нь {M(f'{v} = {ntex(sol)}')}.", concl[1] + f" The correct answer is ${v} = {ntex(sol)}$.")
+    st_mn = (f"{nA[0]}, {nB[0]} хоёр {M(eq.tex())} тэгшитгэлийг ингэж бодсон. {nA[0]}: $${aligned(A['lines'], v)}$$ "
+             f"{nB[0]}: $${aligned(B['lines'], v)}$$ Хэн нь зөв бэ?")
+    st_en = (f"{nA[1]} and {nB[1]} solved ${eq.tex()}$ like this. {nA[1]}: $${aligned(A['lines'], v)}$$ "
+             f"{nB[1]}: $${aligned(B['lines'], v)}$$ Who is right?")
+    return assemble(vid, i, st_mn, st_en, opts[truth], wrongs, steps, hints, expl, checks, fixed_ci=truth)
+
+
+# ----- a table of values ---------------------------------------------------
+
+def t_table(vid, i, a, b, target, order, xs=range(5), head=None, text=None, answer=None):
+    """y = a·x + b tabulated at xs (starting at 0); find x with y = target.
+    head = ((mn x, mn y), (en x, en y)) words for the header; text = (mn, en) story lead-in."""
+    xs = list(xs)
+    assert xs[0] == 0 and all(xs[j + 1] - xs[j] == 1 for j in range(len(xs) - 1))
+    eq = Eqn([V(a), K(b)], [K(target)], "x")
+    w = Walk(eq, extra_steps=1)
+    ys = [a * x + b for x in xs]
+    if head:
+        hx_mn, hy_mn = (f"\\text{{{head[0][0]}}}", f"\\text{{{head[0][1]}}}")
+        hx_en, hy_en = (f"\\text{{{head[1][0]}}}", f"\\text{{{head[1][1]}}}")
+    else:
+        hx_mn = hx_en = "x"
+        hy_mn = hy_en = "y"
+    cols = "c|" + "c" * len(xs)
+
+    def tab(hx, hy):
+        return (f"\\begin{{array}}{{{cols}}} {hx} & " + " & ".join(ntex(x) for x in xs) + f" \\\\ \\hline {hy} & " +
+                " & ".join(ntex(y) for y in ys) + " \\end{array}")
+    grow = (f"{W(abs(a), 'ins')} {'нэмэгддэг' if a > 0 else 'хорогддог'}", f"{'goes up' if a > 0 else 'goes down'} by ${ntex(abs(a))}$")
+    rule = Eqn([V(1)], [V(a), K(b)], "x")
+    rt = f"y = {etex([V(a), K(b)], 'x')}"
+    read = dict(mn=dict(do=f"Хүснэгтээс дүрмийг олъё: {M('x')} нэгээр нэмэгдэх бүрт доод мөрийн утга {grow[0]}, "
+                           f"{M('x = 0')} үед {M(ntex(b))}. Иймд {M(rt)}. {M('y = ' + ntex(target))} гэж тавибал {M(eq.tex())} тэгшитгэл гарна.",
+                        why="Эхний утга нь тогтмол гишүүн, нэг алхам бүрийн өөрчлөлт нь коэффициент болно."),
+                en=dict(do=f"Read the rule from the table: each time $x$ goes up by one the bottom row {grow[1]}, and at $x = 0$ it is "
+                           f"${ntex(b)}$. So ${rt}$. Setting $y = {ntex(target)}$ gives the equation ${eq.tex()}$.",
+                        why="The starting value is the constant term and the change per step is the coefficient."))
+    steps = [read] + w.steps
+    if answer:
+        steps[-1] = dict(mn=dict(do=steps[-1]["mn"]["do"] + " " + answer[0]), en=dict(do=steps[-1]["en"]["do"] + " " + answer[1]))
+    ms, mchecks = walk_wrongs(w, ["move_const_sign", "neg", "no_divide", "mul_instead"],
+                              [dict(x=Fr(target - ys[-1], a) + xs[-1] + 1, mode="count", tag="skipped-table-step",
+                                    mn=f"Хүснэгтийг цааш нь үргэлжлүүлж тоолохдоо нэг алхам алгассан бололтой. {M(eq.tex())} тэгшитгэлийг бодоход хариу шууд гарна.",
+                                    en=f"It looks as if one step was skipped when extending the table. Solving ${eq.tex()}$ gives the answer directly.",
+                                    checks=[])])
+    checks = w.checks + mchecks + [f"Eq({a}*({x}) + ({b}), {y})" for x, y in zip(xs, ys)]
+    wrongs = [(M(ntex(m["x"])),) * 2 + (m["mn"], m["en"], m["tag"]) for m in ms]
+    hints = [("Хүснэгтийн доод мөр нэг алхам бүрт хэдээр өөрчлөгдөж байна вэ? Эхний утга нь юу вэ? Үүнээс дүрмийг бичээрэй.",
+              "By how much does the bottom row change at each step, and what is its first value? Write the rule from that."),
+             (f"Дүрэм нь {M(rt)}. Иймд {M(eq.tex())} тэгшитгэлийг бодоорой.", f"The rule is ${rt}$, so solve ${eq.tex()}$.")]
+    expl = (f"Хүснэгтийн дүрэм {M(rt)} тул {M(eq.tex())}, эндээс {M('x = ' + ntex(w.sol))}.",
+            f"The table's rule is ${rt}$, so ${eq.tex()}$ and $x = {ntex(w.sol)}$.")
+    checks.append(f"Eq({a}*({npy(w.sol)}) + ({b}), {target})")
+    if text:
+        st_mn = f"{text[0]} $${tab(hx_mn, hy_mn)}$$"
+        st_en = f"{text[1]} $${tab(hx_en, hy_en)}$$"
+    else:
+        st_mn = (f"Хүснэгтийн доод мөрийн утга дээд мөрөөс нэг дүрмээр хамаарна. $${tab(hx_mn, hy_mn)}$$ "
+                 f"Доод мөрөнд {M(ntex(target))} гарах {M('x')}-ийн утга хэд вэ?")
+        st_en = (f"The bottom row follows one rule from the top row. $${tab(hx_en, hy_en)}$$ "
+                 f"For which $x$ does the bottom row reach ${ntex(target)}$?")
+    return assemble(vid, i, st_mn, st_en, (M(ntex(w.sol)),) * 2, wrongs, steps, hints, expl, checks)
+
+
+# ----- which point on the number line is the solution ----------------------
+
+def t_point(vid, i, eq, lo, hi, order):
+    v = eq.var
+    w = Walk(eq)
+    cands = [c for c in w.mistakes(order) if Fr(c["x"]).denominator == 1 and lo <= c["x"] <= hi]
+    ms = pick3(w.sol, cands)
+    vals = [m["x"] for m in ms]
+    ci = i % 4
+    vals.insert(ci, w.sol)
+    labels = ["A", "B", "C", "D"]
+    pts = sorted(zip(vals, range(4)))
+    lab_of = {}
+    for (val_, j), L_ in zip(pts, labels):
+        lab_of[j] = L_
+    checks = list(w.checks)
+    steps = [dict(mn=dict(do=f"Тоон шулуунаас цэг бүрийн утгыг уншъя: " +
+                          ", ".join(f"{lab_of[j]} = {M(ntex(vals[j]))}" for j in sorted(lab_of, key=lambda j: lab_of[j])) +
+                          f". Утга бүрийг {VW(v, v, 'gen')} оронд тавьж шалгая.",
+                          why="Шийд гэдэг нь тэгшитгэлийг үнэн тэнцэтгэл болгодог утга."),
+                  en=dict(do="Read each point off the number line: " +
+                          ", ".join(f"{lab_of[j]} = ${ntex(vals[j])}$" for j in sorted(lab_of, key=lambda j: lab_of[j])) +
+                          f". Put each value in place of ${v}$.",
+                          why="A solution is the value that makes the equation true."))]
+    for j in [j for j in range(4) if j != ci] + [ci]:
+        x = vals[j]
+        Lc, Rc = sub_chain(eq.lhs, v, x), sub_chain(eq.rhs, v, x)
+        checks += piece_checks(eq.lhs, x) + piece_checks(eq.rhs, x)
+        tail = ("Хоёр тал тэнцүү тул энэ нь шийд." if j == ci else "Тэнцүү биш.", "Equal: this is the solution." if j == ci else "Not equal.")
+        steps.append(dict(mn=dict(do=f"{lab_of[j]} цэг, {M(f'{v} = {ntex(x)}')}: зүүн тал {M(Lc)}, баруун тал {M(Rc)}. {tail[0]}"),
+                          en=dict(do=f"Point {lab_of[j]}, ${v} = {ntex(x)}$: left side ${Lc}$, right side ${Rc}$. {tail[1]}")))
+    steps = steps[:6]
+    wrongs = []
+    for j in range(4):
+        if j == ci:
+            wrongs.append(None)
+            continue
+        m = ms[[k for k in range(4) if k != ci].index(j)]
+        x = vals[j]
+        wrongs.append((f"{lab_of[j]} цэг", f"Point {lab_of[j]}",
+                       m["mn"] + f" {lab_of[j]} цэгийн утгыг орлуулбал зүүн тал {M(ntex(eval_side(eq.lhs, x)))}, баруун тал {M(ntex(eval_side(eq.rhs, x)))} гарч тэнцэхгүй.",
+                       m["en"] + f" Point {lab_of[j]} gives ${ntex(eval_side(eq.lhs, x))}$ on the left and ${ntex(eval_side(eq.rhs, x))}$ on the right.",
+                       m["tag"]))
+        checks += m["checks"]
+    hints = [("Цэг бүрийн утгыг тэгшитгэлд орлуулаад хоёр тал тэнцэх эсэхийг шалгаарай.",
+              "Put each point's value into the equation and see whether the two sides match."),
+             (f"Эсвэл тэгшитгэлийг бодоод гарсан тоог тоон шулуун дээрээс хайгаарай: {w.steps[0]['h2'][0]}",
+              f"Or solve the equation and look for the answer on the line: {w.steps[0]['h2'][1]}")]
+    expl = (f"{lab_of[ci]} цэг буюу {M(f'{v} = {ntex(w.sol)}')} үед хоёр тал тэнцүү. Бусад цэгт тэнцэхгүй.",
+            f"At point {lab_of[ci]}, ${v} = {ntex(w.sol)}$, the two sides are equal; at the others they are not.")
+    pair = assemble(vid, i, f"Тоон шулуун дээрх аль цэг {M(eq.tex())} тэгшитгэлийн шийдийг заах вэ?",
+                    f"Which point on the number line shows the solution of ${eq.tex()}$?",
+                    (f"{lab_of[ci]} цэг", f"Point {lab_of[ci]}"), wrongs, steps, hints, expl, checks, fixed_ci=ci)
+    fig = {"mode": "integerLine", "integerLine": {"min": lo, "max": hi,
+                                                  "points": [{"value": int(vals[j]), "label": lab_of[j]} for j in range(4)]}}
+    return with_fig(pair, fig, json.loads(json.dumps(fig)))
+
+
+# ----- whose answer is right (two claimed answers, substitution only) -------
+
+def t_whose(vid, i, eq, A, B, order):
+    """A, B: (name pair, mode or None for the correct answer)."""
+    v = eq.var
+    w = Walk(eq)
+    ms = {m["mode"]: m for m in w.mistakes(order)}
+    people = []
+    for nm, mode in (A, B):
+        if mode is None:
+            people.append((nm, w.sol, None))
+        else:
+            people.append((nm, ms[mode]["x"], ms[mode]))
+    checks = list(w.checks)
+    rA, rB = people[0][2] is None, people[1][2] is None
+    truth = 0 if (rA and not rB) else 1 if (rB and not rA) else 2 if (rA and rB) else 3
+    nA, nB = people[0][0], people[1][0]
+    opts = [(f"Зөвхөн {nA[0]} зөв", f"Only {nA[1]} is right"), (f"Зөвхөн {nB[0]} зөв", f"Only {nB[1]} is right"),
+            ("Хоёулаа зөв", "Both are right"), ("Хоёулаа буруу", "Both are wrong")]
+    steps = [dict(mn=dict(do=f"Хэн зөвийг мэдэхийн тулд тэгшитгэлийг дахин бодох шаардлагагүй. Хариу бүрийг {VW(v, v, 'gen')} оронд тавьж шалгая.",
+                          why="Шийд гэдэг нь тэгшитгэлийг үнэн тэнцэтгэл болгодог утга."),
+                  en=dict(do=f"No need to solve again: put each answer in place of ${v}$ and check.",
+                          why="A solution is the value that makes the equation true."))]
+    sub = {}
+    for nm, x, m in people:
+        Lc, Rc = sub_chain(eq.lhs, v, x), sub_chain(eq.rhs, v, x)
+        checks += piece_checks(eq.lhs, x) + piece_checks(eq.rhs, x)
+        ok = m is None
+        sub[nm[0]] = (ntex(eval_side(eq.lhs, x)), ntex(eval_side(eq.rhs, x)))
+        steps.append(dict(mn=dict(do=f"{GEN[nm[0]]} хариу {M(f'{v} = {ntex(x)}')}: зүүн тал {M(Lc)}, баруун тал {M(Rc)}. "
+                                     + ("Тэнцүү тул зөв." if ok else "Тэнцүү биш тул буруу.")),
+                          en=dict(do=f"{nm[1]}'s answer ${v} = {ntex(x)}$: left side ${Lc}$, right side ${Rc}$. "
+                                     + ("Equal, so it is right." if ok else "Not equal, so it is wrong."))))
+        if m:
+            checks += m["checks"]
+    concl = {0: (f"Иймд зөвхөн {nA[0]} зөв.", f"So only {nA[1]} is right."), 1: (f"Иймд зөвхөн {nB[0]} зөв.", f"So only {nB[1]} is right."),
+             2: ("Иймд хоёулаа зөв.", "So both are right."), 3: ("Иймд хоёулаа буруу.", "So both are wrong.")}[truth]
+    steps.append(dict(mn=dict(do=concl[0] + f" Тэгшитгэлийн шийд нь {M(f'{v} = {ntex(w.sol)}')}."),
+                      en=dict(do=concl[1] + f" The solution is ${v} = {ntex(w.sol)}$.")))
+
+    def bad(p):
+        nm, x, m = p
+        return (f"{GEN[nm[0]]} хариу буруу: орлуулбал {M(sub[nm[0]][0])} ба {M(sub[nm[0]][1])} гарч тэнцэхгүй. {m['mn']}",
+                f"{nm[1]}'s answer is wrong: substituting gives ${sub[nm[0]][0]}$ and ${sub[nm[0]][1]}$. {m['en']}")
+
+    def good(p):
+        nm, x, m = p
+        return (f"{GEN[nm[0]]} хариу ч зөв: орлуулбал хоёр тал {M(sub[nm[0]][0])} болно.",
+                f"{nm[1]}'s answer is right too: both sides come to ${sub[nm[0]][0]}$.")
+    pA, pB = people
+    diags = {0: bad(pA) if not rA else good(pB), 1: bad(pB) if not rB else good(pA),
+             2: bad(pA) if not rA else bad(pB), 3: good(pA) if rA else good(pB)}
+    wrongs = [None if j == truth else (opts[j][0], opts[j][1], diags[j][0], diags[j][1], verdict_tag(j, truth)) for j in range(4)]
+    hints = ["Хоёр хариуг тус бүр тэгшитгэлд орлуулаад хоёр тал тэнцэх эсэхийг шалгаарай.",
+             f"{GEN[nA[0]]} хариуг орлуулбал зүүн тал {M(sub[nA[0]][0])}, баруун тал {M(sub[nA[0]][1])} гарна. Одоо {GEN[nB[0]]} хариуг шалгаарай."]
+    hints_en = ["Put each answer into the equation and check whether the sides match.",
+                f"{nA[1]}'s answer gives ${sub[nA[0]][0]}$ on the left and ${sub[nA[0]][1]}$ on the right. Now check {nB[1]}'s."]
+    xa, xb = ntex(pA[1]), ntex(pB[1])
+    st_mn = (f"{nA[0]}, {nB[0]} хоёр {M(eq.tex())} тэгшитгэлийг бодсон. {nA[0]} {M(f'{v} = {xa}')}, "
+             f"{nB[0]} {M(f'{v} = {xb}')} гэсэн хариу гаргажээ. Хэн нь зөв бэ?")
+    st_en = (f"{nA[1]} and {nB[1]} solved ${eq.tex()}$. {nA[1]} got ${v} = {xa}$ and {nB[1]} got ${v} = {xb}$. Who is right?")
+    expl = (concl[0] + f" Шийд нь {M(f'{v} = {ntex(w.sol)}')}.", concl[1] + f" The solution is ${v} = {ntex(w.sol)}$.")
+    return assemble(vid, i, st_mn, st_en, opts[truth], wrongs, steps, list(zip(hints, hints_en)), expl, checks, fixed_ci=truth)
+
+
+# ----- which line opens the brackets correctly ----------------------------
+
+def t_correct_line(vid, i, eq, order, drill=False):
+    v = eq.var
+    good, _, _ = expand(eq)
+    bad = []
+    for mode, mn, en in (("first_only", "хаалтын өмнөх тоогоор зөвхөн эхний гишүүнийг үржүүлжээ",
+                          "the number in front multiplied only the first term"),
+                         ("neg_sign", "хасах тэмдэгтэй тоогоор үржүүлэхэд хоёр дахь гишүүний тэмдгийг өөрчлөөгүй",
+                          "multiplying by a negative number, the second term's sign was not changed"),
+                         ("first_all", "хаалт бүрт зөвхөн эхний гишүүнийг үржүүлжээ",
+                          "in every bracket only the first term was multiplied")):
+        e2, _, tg_ = expand(eq, mode)
+        if tg_ is None and mode != "first_all":
+            continue
+        if e2.tex() == good.tex() or any(e2.tex() == b[0].tex() for b in bad):
+            continue
+        bad.append((e2, mn, en, MODE_TAG.get(mode, "distribute-first-term-only")))
+    assert len(bad) >= 3, vid
+    bad = bad[:3]
+    w = Walk(eq)
+    checks = list(w.checks)
+    wrongs = []
+    for e2, mn, en, tag in bad:
+        k, x = e2.solve()
+        assert eval_side(e2.lhs, w.sol) != eval_side(e2.rhs, w.sol), (vid, e2.tex())
+        checks.append(f"Ne({epy(e2.lhs, at(w.sol))}, {epy(e2.rhs, at(w.sol))})")
+        wrongs.append((M(e2.tex()), M(e2.tex()),
+                       f"Энэ мөрөнд {mn}. Хаалтын өмнөх тоо хаалтан доторх гишүүн бүрийг тэмдэгтэй нь хамт үржүүлнэ.",
+                       f"In this line {en}. The number in front multiplies every term inside, sign included.", tag))
+    steps = w.steps[:3] if drill else w.steps
+    hints = [("Хаалт бүрийг тусад нь нээгээд, гарсан гишүүдийг сонголтуудтай харьцуулаарай. Хаалтын өмнөх тэмдэгт анхаараарай.",
+              "Open each bracket on its own and compare the terms with the options. Watch the sign in front of each bracket."),
+             (w.steps[0]["h2"][0], w.steps[0]["h2"][1])]
+    expl = (f"Хаалтуудыг зөв нээвэл {M(good.tex())} болно. Цааш бодвол {M(f'{v} = {ntex(w.sol)}')}.",
+            f"Opening the brackets correctly gives ${good.tex()}$; solving on gives ${v} = {ntex(w.sol)}$.")
+    return assemble(vid, i, f"{M(eq.tex())} тэгшитгэлийн хаалтыг зөв нээсэн мөр аль нь вэ?",
+                    f"Which line opens the brackets of ${eq.tex()}$ correctly?",
+                    (M(good.tex()),) * 2, wrongs, steps, hints, expl, checks)
+
+
+# ----- stories: solve, or choose the equation -------------------------------
+
+def t_write(vid, i, s):
+    """Options are equations: the story's own equation and three mis-translations of it."""
+    eq, v = s["eq"], s["var"]
+    eq.var = v
+    w = Walk(eq)
+    wrongs, checks = [], list(w.checks)
+    for k_, item in enumerate(s["wrongs"]):
+        wr, mn, en = item[:3]
+        tag = item[3] if len(item) > 3 else s["tags"][k_]
+        if not isinstance(wr, Eqn):
+            continue
+        wr.var = v
+        assert eval_side(wr.lhs, w.sol) != eval_side(wr.rhs, w.sol), (vid, wr.tex())
+        checks.append(f"Ne({epy(wr.lhs, at(w.sol))}, {epy(wr.rhs, at(w.sol))})")
+        wrongs.append((M(wr.tex()), M(wr.tex()), mn, en, tag))
+    assert len(wrongs) >= 3, vid
+    wrongs = wrongs[:3]
+    write = dict(mn=dict(do=s["write"][0], why=s["write"][1]), en=dict(do=s["write"][2], why=s["write"][3]))
+    sol = ntex(w.sol)
+    Lc = sub_chain(eq.lhs, v, w.sol)
+    Rc = sub_chain(eq.rhs, v, w.sol)
+    steps = [write,
+             dict(mn=dict(do="Бусад сонголт яагаад буруу вэ: " + " ".join(f"{w_[0]}: {w_[2]}" for w_ in wrongs)),
+                  en=dict(do="Why the other options are wrong: " + " ".join(f"{w_[1]}: {w_[3]}" for w_ in wrongs))),
+             dict(mn=dict(do=f"Шалгая: {M(eq.tex())} тэгшитгэлийг бодвол {M(f'{v} = {sol}')}. Зүүн тал {M(Lc)}, баруун тал {M(Rc)}. "
+                             f"{s['answer'][0]} Бодлогын нөхцөлд тохирно."),
+                  en=dict(do=f"Check: solving ${eq.tex()}$ gives ${v} = {sol}$. Left side ${Lc}$, right side ${Rc}$. "
+                             f"{s['answer'][1]} It fits the story."))]
+    checks += piece_checks(eq.lhs, w.sol) + piece_checks(eq.rhs, w.sol)
+    hints = [s["hint1"], (s["write"][4], s["write"][5])]
+    expl = (f"Зөв тэгшитгэл нь {M(eq.tex())}. Түүнийг бодвол {M(f'{v} = {sol}')} гарч бодлогод тохирно.",
+            f"The right equation is ${eq.tex()}$. It gives ${v} = {sol}$, which fits the story.")
+    e, m = assemble(vid, i, s["st_write"][0], s["st_write"][1], (M(eq.tex()),) * 2, wrongs, steps, hints, expl, checks)
+    pair = (thin_all(e), thin_all(m))
+    if s.get("fig"):
+        pair = with_fig(pair, s["fig"][0], s["fig"][1])
+    return pair
+
+
+def t_story(vid, i, s):
+    pair = story_variant(vid, i, s)
+    if s.get("fig"):
+        pair = with_fig(pair, s["fig"][0], s["fig"][1])
+    return pair
+
+
+# ----- how many solutions: make it so, pick it, story -----------------------
+
+def t_make(vid, i, var, build_eq, shown, kv, target, wrongs_spec):
+    """Find the k (or the box) that gives `target` ('none' or 'all'). build_eq(k) -> Eqn."""
+    eq = build_eq(Fr(kv))
+    assert eq.solve()[0] == target, (vid, eq.tex())
+    checks = [f"Eq(expand(({epy(eq.lhs, var)}) - ({epy(eq.rhs, var)})), {npy(Fr(eq.diff()[1]))})"]
+    wrongs = []
+    for val_, mn, en, tag in wrongs_spec:
+        e2 = build_eq(Fr(val_))
+        assert e2.solve()[0] != target, (vid, val_)
+        k2, x2 = e2.solve()
+        if k2 == "one":
+            checks.append(e2.check_at(x2))
+        wrongs.append((M(ntex(val_)), M(ntex(val_)), mn, en, tag))
+    a1, b1 = coeffs(combine(expand(eq)[0])[0].lhs)
+    a2, b2 = coeffs(combine(expand(eq)[0])[0].rhs)
+    simp = combine(expand(eq)[0])[0].tex()
+    if target == "none":
+        st_mn = f"{shown[0]} тэгшитгэл шийдгүй байх {VW('k', 'k', 'gen')} утгыг ол." if "k" in shown[0] else \
+            f"Нүдэнд ямар тоо бичвэл {shown[0]} тэгшитгэл шийдгүй болох вэ?"
+        st_en = f"Find the value of $k$ for which {shown[1]} has no solution." if "k" in shown[1] else \
+            f"Which number in the box makes {shown[1]} have no solution?"
+        need = ("Шийдгүй байхын тулд хялбарчилсны дараа хоёр талын коэффициент тэнцүү, тогтмол нь ялгаатай байх ёстой.",
+                "For no solution, after simplifying the coefficients must be equal and the constants different.")
+        ne_t = ntex(b1) + " \\ne " + ntex(b2)
+        res = (f"{M(ne_t)} тул {M(var)} хорогдоход худал тэнцэтгэл үлдэж, шийдгүй болно.",
+               f"${ntex(b1)} \\ne {ntex(b2)}$, so when ${var}$ cancels a false statement is left: no solution.")
+    else:
+        if "k" in shown[0]:
+            st_mn = f"{VW('k', 'k', 'gen')} ямар утгад {shown[0]} тэгшитгэл төгсгөлгүй олон шийдтэй болох вэ?"
+            st_en = f"For which value of $k$ does {shown[1]} have infinitely many solutions?"
+        else:
+            st_mn = f"Нүдэнд ямар тоо бичвэл {shown[0]} тэгшитгэл төгсгөлгүй олон шийдтэй болох вэ?"
+            st_en = f"Which number in the box makes {shown[1]} have infinitely many solutions?"
+        need = ("Төгсгөлгүй олон шийдтэй байхын тулд хялбарчилсны дараа хоёр тал яг ижил болох ёстой.",
+                "For infinitely many solutions both sides must be identical after simplifying.")
+        res = (f"Хоёр тал яг ижил {M(etex(combine(expand(eq)[0])[0].lhs, var))} болж, {M(var)}-ийн дурын утга тохирно. Энэ нь адилтгал.",
+               f"Both sides become ${etex(combine(expand(eq)[0])[0].lhs, var)}$, so every value of ${var}$ works: an identity.")
+    steps = [dict(mn=dict(do=need[0], why="Хоёр талаас ижил гишүүн хасахад юу үлдэхээс шийдийн тоо хамаарна."),
+                  en=dict(do=need[1], why="How many solutions there are depends on what is left after cancelling.")),
+             dict(mn=dict(do=f"{M(ntex(kv))} тоог тавиад хялбарчилбал {M(simp)} болно."),
+                  en=dict(do=f"With ${ntex(kv)}$ in place and simplified, the equation reads ${simp}$.")),
+             dict(mn=dict(do=res[0]), en=dict(do=res[1]))]
+    tests = [Fr(0), Fr(1)]
+    parts_mn, parts_en = [], []
+    for x in tests:
+        L, R = ntex(eval_side(eq.lhs, x)), ntex(eval_side(eq.rhs, x))
+        checks += piece_checks(eq.lhs, x) + piece_checks(eq.rhs, x)
+        parts_mn.append(f"{M(f'{var} = {ntex(x)}')} үед {M(L)} ба {M(R)}")
+        parts_en.append(f"at ${var} = {ntex(x)}$: ${L}$ and ${R}$")
+    steps.append(dict(mn=dict(do="Шалгая: " + "; ".join(parts_mn) + "."), en=dict(do="Check: " + "; ".join(parts_en) + ".")))
+    hints = [(need[0], need[1]),
+             (f"Хялбарчилбал {VW(var, var, 'gen')} коэффициентууд ямар болох вэ? Тэдгээрийг тэнцүүлбэл аль тоо гарах вэ?",
+              f"After simplifying, what are the coefficients of ${var}$? Which number makes them equal?")]
+    expl = (f"{M(ntex(kv))} үед тэгшитгэл {M(simp)} болно. " + res[0], f"With ${ntex(kv)}$ it reads ${simp}$. " + res[1])
+    return assemble(vid, i, st_mn, st_en, (M(ntex(kv)),) * 2, wrongs, steps, hints, expl, checks)
+
+
+def t_which_none(vid, i, correct, others):
+    """Options are equations; exactly one has no solution. others: [(Eqn, mn, en)]."""
+    assert correct.solve()[0] == "none"
+    v = correct.var
+    checks = []
+    steps = [dict(mn=dict(do="Тэгшитгэл бүрийг хялбарчлаад хоёр талын коэффициент, тогтмолыг харьцуулъя.",
+                          why="Коэффициент тэнцүү, тогтмол ялгаатай бол шийдгүй; хоёр тал ижил бол төгсгөлгүй олон шийдтэй."),
+                  en=dict(do="Simplify each equation and compare the coefficients and the constants on the two sides.",
+                          why="Equal coefficients with different constants: no solution. Identical sides: infinitely many."))]
+    wrongs = []
+    for e2, mn, en, tag in others:
+        e2.var = v
+        simp = combine(expand(e2)[0])[0]
+        k2 = e2.solve()[0]
+        assert k2 != "none"
+        word = ("яг нэг шийдтэй", "exactly one solution") if k2 == "one" else ("төгсгөлгүй олон шийдтэй", "infinitely many solutions")
+        steps.append(dict(mn=dict(do=f"{M(e2.tex())}: хялбарчилбал {M(simp.tex())}, {word[0]}."),
+                          en=dict(do=f"${e2.tex()}$: simplified ${simp.tex()}$, {word[1]}.")))
+        checks.append(equiv_check(e2.lhs, simp.lhs, v))
+        wrongs.append((M(e2.tex()), M(e2.tex()), mn, en, tag))
+    simp = combine(expand(correct)[0])[0]
+    a1, b1 = coeffs(simp.lhs)
+    a2, b2 = coeffs(simp.rhs)
+    checks += [equiv_check(correct.lhs, simp.lhs, v), equiv_check(correct.rhs, simp.rhs, v), f"Ne({npy(b1)}, {npy(b2)})"]
+    rest = f"{ntex(b1)} = {ntex(b2)}"
+    steps.append(dict(mn=dict(do=f"{M(correct.tex())}: хялбарчилбал {M(simp.tex())}. {M(v)} хорогдоход {M(rest)} гэсэн худал тэнцэтгэл үлдэх тул шийдгүй."),
+                      en=dict(do=f"${correct.tex()}$: simplified ${simp.tex()}$. With ${v}$ cancelled, the false ${rest}$ is left: no solution.")))
+    hints = [("Тэгшитгэл бүрийн хаалтыг нээж, тал бүрийг хялбарчлаарай. Дараа нь коэффициентуудыг харьцуулаарай.",
+              "Open the brackets of each equation and simplify each side. Then compare the coefficients."),
+             ("Шийдгүй тэгшитгэлд хялбарчилсны дараа хоёр талын коэффициент тэнцүү, тогтмол нь ялгаатай байна. Ийм нь аль вэ?",
+              "In an equation with no solution the coefficients end up equal and the constants different. Which one is that?")]
+    expl = (f"{M(correct.tex())} хялбарчилбал {M(simp.tex())}: коэффициент тэнцүү, тогтмол ялгаатай тул шийдгүй.",
+            f"${correct.tex()}$ simplifies to ${simp.tex()}$: equal coefficients, different constants, so no solution.")
+    return assemble(vid, i, "Аль тэгшитгэл шийдгүй вэ?", "Which equation has no solution?",
+                    (M(correct.tex()),) * 2, wrongs, steps, hints, expl, checks)
+
+
+def t_story_count(vid, i, eq, st, read, cats, concl, fig=None):
+    """A story whose question is 'when (if ever) are they equal?'.
+    cats: {'one','none','inf','zero'} -> (mn, en) option texts; concl: (mn, en) after the maths."""
+    v = eq.var
+    kind = eq.solve()[0]
+    truth = {"one": "one", "none": "none", "all": "inf"}[kind]
+    simp = combine(expand(eq)[0])[0] if any(p.kind == "br" for p in eq.lhs + eq.rhs) else \
+        (combine(eq)[0] if (needs_combine(eq.lhs) or needs_combine(eq.rhs)) else eq)
+    a1, b1 = coeffs(simp.lhs)
+    a2, b2 = coeffs(simp.rhs)
+    assert a1 == a2
+    rest = f"{ntex(b1)} = {ntex(b2)}"
+    order = ["one", "none", "inf", "zero"]
+    ci = order.index(truth)
+    checks = [equiv_check(eq.lhs, simp.lhs, v), equiv_check(eq.rhs, simp.rhs, v),
+              (f"Eq({npy(b1)}, {npy(b2)})" if truth == "inf" else f"Ne({npy(b1)}, {npy(b2)})")]
+    t = etex([V(abs(a1))], v)
+    mv_mn = f"Хоёр талаас {VW(t, v, 'acc')} хасвал" if a1 > 0 else f"Хоёр талд {VW(t, v, 'acc')} нэмбэл"
+    mv_en = f"Subtracting ${t}$ from both sides" if a1 > 0 else f"Adding ${t}$ to both sides"
+    steps = [dict(mn=dict(do=read[0], why="Өгөгдлийг тэгшитгэл болгосны дараа шийд хэд байгааг тоолж болно."),
+                  en=dict(do=read[1], why="Once the story is an equation, its solutions can be counted.")),
+             dict(mn=dict(do=f"Хялбарчилбал {M(simp.tex())}. {mv_mn} {M(rest)} үлдэнэ."),
+                  en=dict(do=f"Simplified: ${simp.tex()}$. {mv_en} leaves ${rest}$.")),
+             dict(mn=dict(do=concl[0]), en=dict(do=concl[1]))]
+    parts_mn, parts_en = [], []
+    for x in (Fr(0), Fr(2)):
+        L, R = ntex(eval_side(eq.lhs, x)), ntex(eval_side(eq.rhs, x))
+        checks += piece_checks(eq.lhs, x) + piece_checks(eq.rhs, x)
+        parts_mn.append(f"{M(f'{v} = {ntex(x)}')} үед {M(L)} ба {M(R)}")
+        parts_en.append(f"at ${v} = {ntex(x)}$: ${L}$ and ${R}$")
+    steps.append(dict(mn=dict(do="Шалгая: " + "; ".join(parts_mn) + "."), en=dict(do="Check: " + "; ".join(parts_en) + ".")))
+    D = {
+        ("none", "one"): ("Тодорхой нэг утгад тэнцэхийн тулд хоёр талын коэффициент ялгаатай байх ёстой. Энд хоёулаа ижил хурдаар өөрчлөгдөж байгаа тул зөрүү нь хэвээр үлдэнэ.",
+                          "To meet at one value the coefficients would have to differ. Here both change at the same rate, so the gap never closes."),
+        ("none", "inf"): (f"{M(v)} алга болсныг хараад «үргэлж тэнцүү» гэж дүгнэсэн байх. Гэвч үлдсэн {M(rest)} худал: зөрүү хэзээ ч арилахгүй.",
+                          f"${v}$ disappearing was read as «always equal», but what is left, ${rest}$, is false: the gap never closes."),
+        ("none", "zero"): (f"{M(v)} хорогдохыг {M(f'{v} = 0')} гэж ойлгох нь түгээмэл алдаа. {M(f'{v} = 0')} үед ч хоёр тал {M(ntex(b1))} ба {M(ntex(b2))} байна.",
+                           f"Reading «${v}$ cancels» as «${v} = 0$» is a common mistake. Even at ${v} = 0$ the sides are ${ntex(b1)}$ and ${ntex(b2)}$."),
+        ("inf", "one"): ("Хоёр илэрхийлэл хялбарчилсны дараа яг ижил болно. Тиймээс ганц утгад биш, бүх утгад тэнцүү.",
+                         "After simplifying the two expressions are identical, so they agree for every value, not just one."),
+        ("inf", "none"): (f"{M(v)} алга болсныг «хэзээ ч тэнцэхгүй» гэж ойлгосон байх. Үлдсэн {M(rest)} үргэлж үнэн.",
+                          f"${v}$ disappearing was read as «never equal», but what is left, ${rest}$, is always true."),
+        ("inf", "zero"): (f"{M(f'{v} = 0')} үед үнэхээр тэнцүү, гэхдээ ганцаараа биш: хоёр тал ямагт ижил.",
+                          f"They are equal at ${v} = 0$, but not only there: the two sides are always the same."),
+    }
+    SC_TAG = {"one": "decided-before-simplifying", "inf": "cancelled-means-infinite", "zero": "cancelled-means-x-zero",
+              "none": "cancelled-means-no-solution"}
+    wrongs = [None if j == ci else (cats[o][0], cats[o][1]) + D[(truth, o)] + (SC_TAG[o],) for j, o in enumerate(order)]
+    hints = [("Өгүүлбэр бүрийг илэрхийлэл болгож, хоёуланг тэнцүүлээрэй. Дараа нь хялбарчлаад коэффициентуудыг харьцуулаарай.",
+              "Write each part of the story as an expression and set them equal. Then simplify and compare the coefficients."),
+             (f"Тэгшитгэл нь {M(eq.tex())}. {mv_mn} юу үлдэх вэ?",
+              f"The equation is ${eq.tex()}$. {mv_en}: what is left?")]
+    expl = (f"Тэгшитгэл {M(eq.tex())} хялбарчилбал {M(rest)} үлдэнэ. {concl[0]}", f"The equation ${eq.tex()}$ reduces to ${rest}$. {concl[1]}")
+    pair = assemble(vid, i, st[0], st[1], cats[truth], wrongs, steps, hints, expl, checks, fixed_ci=ci)
+    if fig:
+        pair = with_fig(pair, fig[0], fig[1])
+    return pair
+
+
+# ----- figures ----------------------------------------------------------------
+
+def line_fig(xs, a, b, c, d, labels, unit, xlab):
+    """Two lines y = a + b·x and y = c + d·x over xs (both languages share the numbers)."""
+    ya = [a + b * x for x in xs]
+    yb = [c + d * x for x in xs]
+    out = []
+    for (la, lb), un, xl in zip(labels, unit, xlab):
+        out.append({"mode": "lineGraph", "lineGraph": {
+            "points": [{"label": str(x), "value": float(y) if Fr(y).denominator != 1 else int(y)} for x, y in zip(xs, ya)],
+            "seriesLabel": la, "series": [{"label": lb, "values": [int(y) for y in yb]}],
+            "unit": un, "xLabel": xl, "step": max(1, int((max(ya + yb)) // 8 // 1000 * 1000) or 1)}})
+    return out[1], out[0]          # (en, mn)
+
+
+def one_line_fig(xs, a, b, units, xlabs):
+    ys = [a + b * x for x in xs]
+    out = []
+    for un, xl in zip(units, xlabs):
+        out.append({"mode": "lineGraph", "lineGraph": {"points": [{"label": str(x), "value": int(y)} for x, y in zip(xs, ys)],
+                                                       "unit": un, "xLabel": xl}})
+    return out[1], out[0]
+
+
+def bars_fig(labels_mn, labels_en, values, unit_mn, unit_en):
+    mk = lambda labels, unit: {"mode": "barChart", "barChart": {
+        "categories": [{"label": l, "value": int(v)} for l, v in zip(labels, values)], "unit": unit}}
+    return mk(labels_en, unit_en), mk(labels_mn, unit_mn)
+
+
+def geo_poly(coords, side_labels):
+    ids = [chr(65 + j) for j in range(len(coords))]
+    pts = [{"id": p, "x": float(x), "y": float(y), "label": ""} for p, (x, y) in zip(ids, coords)]
+    objs = []
+    for j in range(len(ids)):
+        o = {"kind": "segment", "from": ids[j], "to": ids[(j + 1) % len(ids)]}
+        if side_labels[j]:
+            o["label"] = side_labels[j]
+        objs.append(o)
+    fig = {"mode": "geo", "geo": {"points": pts, "objects": objs, "hidePoints": ids, "height": 170}}
+    return fig, json.loads(json.dumps(fig))
+
+
+def frac_fig(num, den, lab_en, lab_mn):
+    return ({"mode": "fractionBar", "fraction": {"num": num, "den": den, "label": lab_en}},
+            {"mode": "fractionBar", "fraction": {"num": num, "den": den, "label": lab_mn}})
+
+
+# ---------------------------------------------------------------------------
+# THE TEN WORKSHEETS
+# Each form lists its twelve problems as (template, builder). The template
+# names are checked by self_check: >= 6 kinds, each <= 3 times, never twice
+# in a row, and every story used once in the whole unit.
+# ---------------------------------------------------------------------------
+
+STORY_KEYS = []
+
+
+def S(key, **kw):
+    STORY_KEYS.append(key)
+    kw["key"] = key
+    return kw
+
+
+def hint_two(eq):
+    v = eq.var
+    side = eq.lhs if any(p.kind == "v" for p in eq.lhs) else eq.rhs
+    t = etex([p for p in side if p.kind == "v"], v)
+    return (f"{M(t)} гишүүнтэй хамт байгаа тоог эхлээд арилгах хэрэгтэй. Хоёр талд ямар үйлдэл хийвэл тэр тоо алга болох вэ?",
+            f"First get rid of the number that sits with ${t}$. What can you do to both sides to make it disappear?")
+
+
+def hint_like(v):
+    return (f"Тэгшитгэлийн нэг талд {VW(v, v, 'com')} гишүүн хэд хэд байна. Тэдгээрийг эхлээд нэгтгэвэл ямар болох вэ?",
+            f"One side has several ${v}$-terms. What do they become when you combine them first?")
+
+
+def hint_both(v):
+    return (f"{VW(v, v, 'com')} гишүүд хоёр талд байна. Аль талынхыг нь хасвал {VW(v, v, 'gen')} коэффициент эерэг үлдэх вэ?",
+            f"There are ${v}$-terms on both sides. Removing which one keeps the coefficient of ${v}$ positive?")
+
+
+HINT_BR = ("Эхлээд хаалтыг нээгээрэй. Хаалтын өмнөх тоо хаалтан доторх гишүүн бүрийг тэмдэгтэй нь хамт үржүүлнэ.",
+           "Open the bracket first. The number in front multiplies every term inside, sign included.")
+HINT_FR = ("Бүх хуваарьт хуваагддаг хамгийн бага тоо аль вэ? Хоёр талыг тэр тоогоор үржүүлбэл бутархай алга болно.",
+           "What is the smallest number every denominator divides into? Multiplying both sides by it removes the fractions.")
+HINT_DEC = ("Хоёр талыг ямар тоогоор үржүүлбэл бүх тоо бүхэл болох вэ? Гишүүн бүрийг үржүүлэхээ мартаж болохгүй.",
+            "What number makes every number whole when both sides are multiplied by it? Multiply every term.")
+HINT_MS = ("Эхлээд бутархайгаас эсвэл хаалтаас салаарай. Дараа нь тал бүрийг хялбарчлаарай.",
+           "First get rid of the fractions or the brackets. Then simplify each side.")
+
+O_TS = ["move_const_sign", "neg", "no_divide", "mul_instead"]
+O_SY = ["abs", "drop", "move_const_sign", "neg", "no_divide", "mul_instead"]
+O_BS = ["move_var_sign", "move_const_sign", "no_divide", "neg", "mul_instead"]
+O_BK = ["first_only", "neg_sign", "abs", "drop", "move_const_sign", "no_divide", "neg", "mul_instead"]
+O_FX = ["partial", "add_dens", "first_only", "neg_sign", "abs", "move_var_sign", "move_const_sign", "no_divide", "drop", "mul_instead"]
+O_MS = ["neg_sign", "first_only", "partial", "add_dens", "abs", "move_var_sign", "move_const_sign", "no_divide", "neg", "mul_instead"]
+O_ALL = O_FX + ["neg"]
+
+
+def nice_step(mx):
+    for s_ in (1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000):
+        if mx / s_ <= 10:
+            return s_
+    return 10000
+
+
+def fix_steps(fig):
+    for key in ("lineGraph", "barChart"):
+        if key in fig:
+            vals = [p["value"] for p in fig[key].get("points", [])] + [c["value"] for c in fig[key].get("categories", [])]
+            for s_ in fig[key].get("series", []):
+                vals += s_["values"]
+            fig[key]["step"] = nice_step(max(vals))
+    return fig
+
+
+def lines2(eq, xs, labels_mn, labels_en, unit, xlab):
+    """Two-line graph of the two sides of eq (each side = start + rate·x); asserts the numbers agree."""
+    v = eq.var
+    ya = [eval_side(eq.lhs, Fr(x)) for x in xs]
+    yb = [eval_side(eq.rhs, Fr(x)) for x in xs]
+    assert all(y.denominator == 1 for y in ya + yb)
+
+    def mk(la, lb, un, xl):
+        return fix_steps({"mode": "lineGraph", "lineGraph": {
+            "points": [{"label": str(x), "value": int(y)} for x, y in zip(xs, ya)], "seriesLabel": la,
+            "series": [{"label": lb, "values": [int(y) for y in yb]}], "unit": un, "xLabel": xl}})
+    return mk(labels_en[0], labels_en[1], unit[1], xlab[1]), mk(labels_mn[0], labels_mn[1], unit[0], xlab[0])
+
+
+def line1(start, rate, xs, unit, xlab):
+    ys = [start + rate * x for x in xs]
+    mk = lambda un, xl: fix_steps({"mode": "lineGraph", "lineGraph": {
+        "points": [{"label": str(x), "value": int(y)} for x, y in zip(xs, ys)], "unit": un, "xLabel": xl}})
+    return mk(unit[1], xlab[1]), mk(unit[0], xlab[0])
+
+
+def bars(start, rate, weeks, lab_mn, lab_en, unit):
+    vals = [start + rate * w_ for w_ in weeks]
+    mk = lambda lab, un: fix_steps({"mode": "barChart", "barChart": {
+        "categories": [{"label": lab(w_), "value": int(v_)} for w_, v_ in zip(weeks, vals)], "unit": un}})
+    return mk(lab_en, unit[1]), mk(lab_mn, unit[0])
+
+
+def wr(eq_or_val, mn, en, tag):
+    return (eq_or_val, mn, en, tag)
+
+
+SUBST = None
+
+
+def subst_cases():
+    global SUBST
+    if SUBST is None:
+        SUBST = find_substitution_cases()
+    return SUBST
+
+
+def plan_story(key, eq, var, st, write, answer, hint1, wrongs, fig):
+    return S(key, var=var, eq=eq, st=st, write=write, answer=answer, hint1=hint1, wrongs=wrongs, fig=fig)
+
+
+def old_story(n):
+    """The original twelve stories, by position."""
+    return stories_v1()[n]
+
+
+DIAG_KINDS = {
+    "first_only": ("Хаалтын өмнөх тоогоор зөвхөн эхний гишүүнийг үржүүлсэн", "Multiplied only the first term in the bracket"),
+    "sign": ("Гишүүнийг нөгөө тал руу шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй", "Moved a term across without changing its sign"),
+    "combine": ("Төсөөтэй биш гишүүдийг нэгтгэсэн", "Combined terms that are not like terms"),
+    "partial": ("Хоёр талыг үржүүлэхдээ зарим гишүүнийг үржүүлээгүй", "Did not multiply every term"),
+    "div_sign": ("Сөрөг тоонд хуваахдаа хасах тэмдгийг орхисон", "Lost the minus sign when dividing"),
+}
+
+
+def t_diagnose(vid, i, case, kind):
+    e, m = find_error_variant(vid, i, case)
+    err = case["err"]
+    name_mn, name_en = NAMES[i % len(NAMES)]
+    others = [k for k in DIAG_KINDS if k != kind][:3]
+    ci = i % 4
+    keys = list(others)
+    keys.insert(ci, kind)
+    m["options"] = [DIAG_KINDS[k][0] for k in keys]
+    e["options"] = [DIAG_KINDS[k][1] for k in keys]
+    e["correctIndex"] = ci
+    m["whyWrong"] = [None if k == kind else f"Энэ алдаа энд гараагүй. {err + 1}-р алхамд: {case['why'][0]}" for k in keys]
+    e["whyWrong"] = [None if k == kind else f"That is not the mistake here. In step {err + 1}: {case['why'][1]}" for k in keys]
+    e["misconceptions"] = [None if k == kind else "misnamed-error" for k in keys]
+    disp = re.search(r"\$\$.*\$\$", m["statement"]).group(0)
+    m["statement"] = f"{name_mn} {M(case['eq'].tex())} тэгшитгэлийг ингэж бодсон: {disp} {err + 1}-р алхамд ямар алдаа гаргасан бэ?"
+    e["statement"] = f"{name_en} solved ${case['eq'].tex()}$ like this: {disp} What mistake was made in step {err + 1}?"
+    m["explanation"] = f"{err + 1}-р алхамд: {case['why'][0]}"
+    e["explanation"] = f"In step {err + 1}: {case['why'][1]}"
+    m["hints"][1] = f"{err + 1}-р мөрийг өмнөх мөртэй нь харьцуулаарай. Тэнд юуг өөрчилсөн бэ, тэр нь хоёр талд зөв хийгдсэн үү?"
+    e["hints"][1] = f"Compare line {err + 1} with the line before. What changed, and was it done correctly on both sides?"
+    return e, m
+
+
+def t_claim(vid, i, var, case, who):
+    e, m = subst_variant_a(vid, i, var, case)
+    xt = re.search(r"\$[a-z] = -?\d+\$", e["statement"]).group(0)
+    eqt = re.findall(r"\$[^$]+\$", e["statement"])[1]
+    m["statement"] = f"{who[0]} {eqt} тэгшитгэлийг бодоод {xt} гэж хариулсан. Энэ хариу зөв үү?"
+    e["statement"] = f"{who[1]} solved {eqt} and answered {xt}. Is that answer right?"
+    return e, m
+
+
+CATS_TIME = {"one": ("Тодорхой нэг цагт тэнцэнэ", "At one particular hour"), "none": ("Хэзээ ч тэнцэхгүй", "Never"),
+             "inf": ("Үргэлж тэнцүү", "Always"), "zero": ("Зөвхөн эхлэх үед тэнцүү", "Only at the very start")}
+
+
+
+
+# ----- stripped drill: the least common denominator only -------------------
+
+def t_lcd(vid, i, eq):
+    v = eq.var
+    dens = sorted({p.den for p in eq.lhs + eq.rhs if p.kind == "fr"})
+    Mx = 1
+    for d in dens:
+        Mx = lcm(Mx, d)
+    prod = 1
+    for d in dens:
+        prod *= d
+    big = dens[-1]
+    cands = [(sum(dens), "sum-of-denominators",
+              lambda x: (f"Хуваариудыг нэмсэн байна. {M(ntex(x))}-д {M(ntex(next(d for d in dens if x % d)))} хуваагдахгүй тул бутархай үлдэнэ.",
+                         f"That adds the denominators. ${x}$ is not a multiple of ${next(d for d in dens if x % d)}$, so a fraction is left.")),
+             (prod, "not-smallest-multiplier",
+              lambda x: (f"{W(x, 'ins')} үржүүлбэл бутархай алга болно, гэхдээ энэ нь хамгийн бага тоо биш: {M(ntex(Mx))} хангалттай, тоонууд жижиг үлдэнэ.",
+                         f"Multiplying by ${x}$ does clear the fractions, but it is not the smallest: ${Mx}$ is enough and keeps the numbers small.")),
+             (big, "largest-denominator",
+              lambda x: (f"Хамгийн их хуваарийг авсан байна. {M(ntex(x))}-д {M(ntex(next(d for d in dens if x % d)))} хуваагдахгүй тул бутархай үлдэнэ.",
+                         f"That takes the largest denominator. ${x}$ is not a multiple of ${next(d for d in dens if x % d)}$, so a fraction is left.")),
+             (2 * Mx, "not-smallest-multiplier",
+              lambda x: (f"{W(x, 'ins')} үржүүлж болно, гэхдээ хамгийн бага нь {M(ntex(Mx))}.",
+                         f"${x}$ works, but the smallest is ${Mx}$."))]
+    seen, wrongs, checks = {Mx}, [], [f"Eq(ilcm({', '.join(map(str, dens))}), {Mx})"] + [f"Eq(Mod({Mx}, {d}), 0)" for d in dens]
+    for x, tag, f in cands:
+        if x in seen:
+            continue
+        seen.add(x)
+        mn, en = f(x)
+        wrongs.append((M(ntex(x)), M(ntex(x)), mn, en, tag))
+        if tag != "not-smallest-multiplier":
+            checks.append(f"Ne(Mod({x}, {next(d for d in dens if x % d)}), 0)")
+        if len(wrongs) == 3:
+            break
+    _, nxt, _, _ = clear(eq)
+    mult = [big * k for k in range(1, Mx // big + 1)]
+    ds = ", ".join(M(ntex(d)) for d in dens)
+    steps = [dict(mn=dict(do=f"Хуваариуд нь {ds}. Хамгийн их хуваарь {W(big, 'gen')} үржвэрүүдийг дараалуулъя: "
+                             + ", ".join(M(ntex(m_)) for m_ in mult) + ".",
+                          why="Хуваарь бүрт хуваагддаг хамгийн бага тоо нь эдгээрийн дотор заавал байна."),
+                  en=dict(do=f"The denominators are {ds}. List the multiples of the largest, ${big}$: " + ", ".join(f"${m_}$" for m_ in mult) + ".",
+                          why="The smallest number every denominator divides into is somewhere in that list.")),
+             dict(mn=dict(do=f"{M(ntex(Mx))} бол хуваарь бүрт хуваагддаг анхны тоо: " +
+                             ", ".join(M(f"{Mx} : {d} = {Mx // d}") for d in dens) + ". Иймд хамгийн бага ерөнхий хуваарь нь " + M(ntex(Mx)) + "."),
+                  en=dict(do=f"${Mx}$ is the first that every denominator divides: " + ", ".join(f"${Mx} : {d} = {Mx // d}$" for d in dens) +
+                             f". So the least common denominator is ${Mx}$.")),
+             dict(mn=dict(do=f"Хоёр талыг {W(Mx, 'ins')} үржүүлбэл {M(nxt.tex())} болж бутархай алга болно. Энэ асуултад үүгээр зогсоно."),
+                  en=dict(do=f"Multiplying both sides by ${Mx}$ gives ${nxt.tex()}$: no fractions left. For this question, stop here."))]
+    checks.append(f"Eq(Mod({Mx}, {big}), 0)")
+    hints = [("Хамгийн их хуваарийн үржвэрүүдийг дараалуулаад, бусад хуваарь бүгд хуваагддаг анхных нь аль болохыг хараарай.",
+              "List multiples of the largest denominator and find the first one the others all divide."),
+             (f"Хамгийн их хуваарь {M(ntex(big))}. Түүний үржвэрүүд: " + ", ".join(M(ntex(big * k)) for k in range(1, 4)) + "…",
+              f"The largest denominator is ${big}$. Its multiples: " + ", ".join(f"${big * k}$" for k in range(1, 4)) + "…")]
+    expl = (f"Хуваариуд {ds}-ийн хамгийн бага ерөнхий хуваарь нь {M(ntex(Mx))}.", f"The least common denominator of {ds} is ${Mx}$.")
+    return assemble(vid, i, f"{M(eq.tex())} тэгшитгэлийн хоёр талыг ямар хамгийн бага натурал тоогоор үржүүлбэл бүх бутархай алга болох вэ? "
+                            f"Тэгшитгэлийг бодохгүй.",
+                    f"What is the smallest whole number that clears every fraction in ${eq.tex()}$ when both sides are multiplied by it? "
+                    f"Do not solve.", (M(ntex(Mx)),) * 2, wrongs, steps, hints, expl, checks)
+
+
+# ----- explain, as a choice ---------------------------------------------------
+
+def t_explain(vid, i, q, correct, wrongs, steps, hints, expl, checks):
+    return assemble(vid, i, q[0], q[1], correct, wrongs, steps, hints, expl, checks)
+
+
+def t_self(vid, i, q, model, samples, steps, hints, expl, checks):
+    """An open or explain item the student marks against a model answer (answerFormat self).
+    options = the model answer and three sample answers, each from a named misconception."""
+    e, m = assemble(vid, i, q[0], q[1], model, [None] + list(samples), steps, hints, expl, checks, fixed_ci=0)
+    e["answerFormat"] = "self"
+    e["modelAnswer"], m["modelAnswer"] = model[1], model[0]
+    return e, m
+
+
+# ---------------------------------------------------------------------------
+# THE BANK: parts A–H and a Challenge (problem-bank-authoring manual §3)
+# ---------------------------------------------------------------------------
+
+UNIT_MASTERY_EN = {
+    "skill": "Solve a linear equation in one unknown (two-step; with negatives, fractions and decimals; with brackets and like "
+             "terms; with the unknown on both sides), check a solution by substitution, recognise no solution or infinitely "
+             "many, and model a situation with an equation.",
+    "mistakes": [
+        "Moving a term across the equals sign without changing its sign.",
+        "Multiplying only the first term of a bracket, or keeping the sign of the second term after a negative number.",
+        "Dividing before the constant is removed, or dividing only one term.",
+        "Clearing fractions by multiplying only the fractions, not every term; adding the denominators.",
+        "Losing the minus sign when dividing by a negative coefficient.",
+        "Combining unlike terms, e.g. 3x + 2 = 5x.",
+        "Reading «x cancels» as x = 0, or as «no solution», without looking at what is left.",
+        "In a story, multiplying a one-off charge by the count, or answering for the wrong quantity.",
+    ],
+    "canDo": "Solve 3(x − 2)/4 − (x + 1)/6 = x/3 + 1 by hand, say whether an equation has one, no or infinitely many solutions, "
+             "and turn a story into an equation, solve it and answer in a sentence with units.",
+}
+UNIT_MASTERY_MN = {
+    "skill": "Нэг үл мэдэгдэхтэй шугаман тэгшитгэл бодох (хоёр алхамт; сөрөг тоо, бутархай, аравтын бутархайтай; хаалт, төсөөтэй "
+             "гишүүдтэй; хоёр талдаа үл мэдэгдэхтэй), шийдээ орлуулж шалгах, шийдгүй эсвэл төгсгөлгүй олон шийдтэйг таних, "
+             "нөхцөл байдлыг тэгшитгэлээр илэрхийлэх.",
+    "mistakes": [
+        "Гишүүнийг нөгөө тал руу шилжүүлэхдээ тэмдгийг нь өөрчлөхгүй байх.",
+        "Хаалтын өмнөх тоогоор зөвхөн эхний гишүүнийг үржүүлэх, эсвэл сөрөг тоогоор үржүүлэхэд хоёр дахь гишүүний тэмдгийг өөрчлөхгүй байх.",
+        "Тогтмол гишүүнийг арилгахаас өмнө хуваах, эсвэл зөвхөн нэг гишүүнийг хуваах.",
+        "Бутархайгаас салахдаа зөвхөн бутархайтай гишүүдийг үржүүлэх; хуваариудыг нэмэх.",
+        "Сөрөг коэффициентэд хуваахдаа хасах тэмдгийг алдах.",
+        "Төсөөтэй биш гишүүдийг нэгтгэх, жишээ нь 3x + 2-ыг 5x гэх.",
+        "Үл мэдэгдэх хорогдохыг x = 0 гэж, эсвэл үлдсэнийг харалгүй «шийдгүй» гэж ойлгох.",
+        "Үгэн бодлогод нэг удаагийн төлбөрийг тоогоор үржүүлэх, эсвэл өөр хэмжигдэхүүний хариу өгөх.",
+    ],
+    "canDo": "3(x − 2)/4 − (x + 1)/6 = x/3 + 1 тэгшитгэлийг гараар бодох, тэгшитгэл нэг шийдтэй, шийдгүй, төгсгөлгүй олон шийдтэйг "
+             "тогтоох, үгэн бодлогыг тэгшитгэл болгож бодоод хариуг нэгжтэй нь өгүүлбэрээр бичих.",
+}
+
+PREREQ = {
+    "A": ["integer-operations", "order-of-operations", "inverse-operations"],
+    "B": ["integer-operations", "fraction-arithmetic", "decimal-arithmetic", "lcm"],
+    "C": ["inverse-operations", "lcm", "distributive-property"],
+    "D": ["distributive-property", "like-terms", "integer-operations"],
+    "E": ["like-terms", "integer-operations"],
+    "F": ["expressions-from-words", "integer-operations", "percent-of-quantity"],
+    "G": ["inverse-operations", "distributive-property", "like-terms"],
+    "H": ["distributive-property", "like-terms", "fraction-arithmetic"],
+    "Challenge": ["distributive-property", "fraction-arithmetic", "lcm"],
+}
+SKILL = {
+    "A": "g8-le-two-step", "B": "g8-le-fractions-decimals", "C": "g8-le-first-move", "D": "g8-le-brackets-like-terms",
+    "E": "g8-le-both-sides", "F": "g8-le-modelling", "G": "g8-le-error-analysis", "H": "g8-le-multi-step",
+    "Challenge": "g8-le-multi-step",
+}
+EXTRA_SKILL = {
+    "which_value": "g8-le-substitution-check", "which_eq": "g8-le-substitution-check", "point": "g8-le-substitution-check",
+    "whose": "g8-le-substitution-check", "claim": "g8-le-substitution-check", "is_sol": "g8-le-substitution-check",
+    "classify": "g8-le-solution-count", "make": "g8-le-solution-count", "which_none": "g8-le-solution-count",
+    "count": "g8-le-solution-count", "explain_self": "g8-le-solution-count",
+    "graph": "g8-le-read-graph", "bars": "g8-le-read-graph", "table": "g8-le-read-table", "geo": "g8-le-modelling",
+    "story": "g8-le-modelling", "write": "g8-le-modelling", "percent": "g8-le-modelling", "frbar": "g8-le-modelling",
+    "puzzle": "g8-le-modelling", "recipe": "g8-le-modelling",
+}
+
+STORY0_TAGS = ["fee-multiplied-by-count", "added-subtracted-confused", "stopped-before-dividing", "forgot-quantity"]
+STORY4_TAGS = ["miscounted-people", "fee-multiplied-by-count", "stopped-before-dividing"]
+
+
+def part_A():
+    I = []
+    e1 = Eqn([V(1), K(9)], [K(14)])
+    I.append(("box", "direct", 1, lambda vid, i: t_box_extra(vid, i, e1, O_TS, [
+        (23, "$9$-ийг хасахын оронд нэмсэн бололтой: $14 + 9$. Нүдэн дээр $9$ нэмэгдсэн тул буцаахдаа хасна.",
+         "It looks as if $9$ was added instead of subtracted: $14 + 9$. Nine was added to the box, so take it away.",
+         "sign-not-changed-moving-term"),
+        (14, "Баруун талын тоог шууд бичсэн байна. Нүдэн дээр $9$ нэмэхэд $14$ гарах ёстой: $14 - 9 = 5$.",
+         "That copies the right side. The box plus $9$ must make $14$: $14 - 9 = 5$.", "ignored-constant"),
+        (-5, "$9 - 14$ гэж хассан бололтой. Хасах дараалал чухал: $14 - 9 = 5$.",
+         "That is $9 - 14$. Order matters in subtraction: $14 - 9 = 5$.", "subtraction-order")])))
+    e2 = Eqn([V(4)], [K(28)], "y")
+    I.append(("bare", "direct", 1, lambda vid, i: t_bare_extra(vid, i, e2, O_TS, hint_two_one(e2), [
+        (24, "$4$-ийг хассан бололтой. $4y$ гэдэг нь $4$ дахин $y$: үржүүлснийг хуваалтаар буцаана.",
+         "It looks as if $4$ was subtracted. $4y$ means four times $y$: undo multiplication by dividing.",
+         "subtracted-instead-of-divided")])))
+    e3 = Eqn([V(3), K(7)], [K(19)])
+    I.append(("bare", "direct", 2, lambda vid, i: t_bare(vid, i, e3, O_TS, hint_two(e3))))
+    I.append(("explain", "explain", 2, lambda vid, i: t_explain(
+        vid, i, ("$3x + 7 = 19$ тэгшитгэлийн хоёр талаас $7$-г хасаж болох нь яагаад вэ?",
+                 "Why may we subtract $7$ from both sides of $3x + 7 = 19$?"),
+        ("Хоёр талд ижил үйлдэл хийхэд тэнцэтгэл алдагдахгүй", "Doing the same thing to both sides keeps the equation balanced"),
+        [("Зөвхөн зүүн талаас хасахад хангалттай, баруун тал өөрчлөгдөхгүй", "Only the left side needs it; the right side stays as it is",
+          "Нэг талаас л хасвал тэнцүү байсан хоёр тал тэнцүү байхаа болино: $3x = 19$ гэвэл буруу.",
+          "Subtracting on one side only breaks the balance: $3x = 19$ would be wrong.", "one-side-only"),
+         ("Нөгөө тал руу шилжсэн тоо тэмдгээ хадгалдаг тул", "Because a number keeps its sign when it moves across",
+          "Шилжсэн тоо эсрэг тэмдэгтэй болдог: зүүн талын $+7$ баруун талд $-7$ болно. Энэ нь хоёр талаас $7$-г хассантай адил.",
+          "A number that moves across changes sign: $+7$ on the left becomes $-7$ on the right, the same as subtracting $7$ from both sides.",
+          "sign-not-changed-moving-term"),
+         ("$7$-г хасах нь хоёр талыг $7$-д хуваахтай адил", "Subtracting $7$ is the same as dividing both sides by $7$",
+          "Нэмсэн тоог хасалтаар, үржүүлснийг хуваалтаар буцаана. $7$ нэмэгдсэн тул хасна.",
+          "Addition is undone by subtraction and multiplication by division. Here $7$ was added, so it is subtracted.",
+          "confused-inverse-operations")],
+        [dict(mn=dict(do="Тэгшитгэлийг тэнцүү байгаа жинлүүр гэж төсөөлье: хоёр тавган дээр ижил жин байна.",
+                      why="Тэнцүүгийн тэмдэг нь хоёр тал ижил хэмжээтэй гэсэн үг."),
+              en=dict(do="Picture the equation as a balanced scale: the two pans hold the same weight.",
+                      why="The equals sign says the two sides are the same size.")),
+         dict(mn=dict(do="Хоёр тавгаас ижил $7$-г авахад жинлүүр тэнцүү хэвээр: $3x + 7 - 7 = 19 - 7$, өөрөөр хэлбэл $3x = 12$."),
+              en=dict(do="Taking $7$ off both pans keeps it level: $3x + 7 - 7 = 19 - 7$, that is $3x = 12$.")),
+         dict(mn=dict(do="Цааш бодвол $x = 4$. Шалгая: $3 \\cdot 4 + 7 = 19$. Хоёр тал тэнцүү."),
+              en=dict(do="Solving on gives $x = 4$. Check: $3 \\cdot 4 + 7 = 19$. Equal."))],
+        [("Тэгшитгэлийн хоёр талыг тэнцүү жинтэй хоёр таваг гэж бодоорой.", "Think of the two sides as two pans of equal weight."),
+         ("Нэг тавгаас л жин авбал юу болох вэ?", "What happens if you take weight off one pan only?")],
+        ("Хоёр талд ижил үйлдэл хийхэд тэнцэтгэл алдагдахгүй, иймд хоёр талаас $7$-г хасаж $3x = 12$ гэж бичнэ.",
+         "Doing the same thing to both sides keeps the balance, so subtract $7$ from both: $3x = 12$."),
+        ["Eq(19 - 7, 12)", "Eq(3*4 + 7, 19)", "Eq(12/3, 4)"])))
+    I.append(("box", "direct", 2, lambda vid, i: t_box(vid, i, Eqn([V(4), K(-9)], [K(15)]), O_TS)))
+    I.append(("which_value", "compare", 2, lambda vid, i: subst_variant_b(vid, i, Eqn([V(2), K(-5)], [K(9)], "a"))))
+    e7 = Eqn([K(26)], [V(3), K(-4)], "m")
+    I.append(("bare", "direct", 3, lambda vid, i: t_bare(vid, i, e7, O_TS, hint_two(e7))))
+    I.append(("table", "figure", 3, lambda vid, i: t_table(vid, i, 3, 5, 38, O_TS)))
+    I.append(("which_eq", "reverse", 3, lambda vid, i: t_which_eq(vid, i, 5, "x", Eqn([V(4), K(-3)], [K(17)]),
+                                                                 [("first", 3, -2), ("const", 2, -6), ("nodiv", 3, 1)], line=(-2, 8))))
+    I.append(("point", "figure", 3, lambda vid, i: t_point(vid, i, Eqn([V(2), K(7)], [K(1)], "m"), -13, 5,
+                                                          ["move_const_sign", "no_divide", "mul_instead"])))
+    I.append(("param", "reverse", 4, lambda vid, i: t_param(vid, i, ("kx - 4 = 10", "{k}*{x} - 4 = 10"), 2,
+                                                           Eqn([V(2), K(-4)], [K(10)], "k"), O_TS)))
+    I.append(("open", "open", 4, lambda vid, i: t_self(
+        vid, i, ("Шийд нь $x = 3$ байх $ax + b = c$ хэлбэрийн нэг тэгшитгэл зохиогоорой ($a \\ne 1$, $b \\ne 0$). "
+                 "Зохиосон тэгшитгэлдээ $x = 3$ утгыг орлуулж шалгаарай.",
+                 "Write an equation of the form $ax + b = c$ whose solution is $x = 3$ ($a \\ne 1$, $b \\ne 0$). "
+                 "Check it by substituting $x = 3$."),
+        ("Жишээ нь $2x + 1 = 7$, учир нь $2 \\cdot 3 + 1 = 7$", "For example $2x + 1 = 7$, because $2 \\cdot 3 + 1 = 7$"),
+        [("$2x + 1 = 6$", "$2x + 1 = 6$",
+          "$x = 3$ үед зүүн тал $7$ болно, $6$ биш. Зохиосон тэгшитгэлээ заавал орлуулж шалгаарай.",
+          "At $x = 3$ the left side is $7$, not $6$. Always substitute to check an equation you write.", "did-not-check-solution"),
+         ("$x + 3 = 0$", "$x + 3 = 0$",
+          "Энэ тэгшитгэлийн шийд нь $x = -3$. Мөн $a = 1$ байна. Шийд $3$ байхын тулд $x - 3 = 0$ гэх мэтээр бичнэ.",
+          "This one is solved by $x = -3$, and $a = 1$. For the solution $3$ you would need something like $x - 3 = 0$.",
+          "sign-of-solution"),
+         ("$3x = 1$", "$3x = 1$",
+          "Энд $3$ нь коэффициент болсон тул шийд нь $\\frac{1}{3}$. Мөн $b = 0$ байна. $x$-ийн оронд $3$ тавиад $c$-г тооцоолно.",
+          "Here $3$ became the coefficient, so the solution is $\\frac{1}{3}$, and $b = 0$. Put $3$ in for $x$ and work out $c$.",
+          "confused-coefficient-solution")],
+        [dict(mn=dict(do="Шийдээс эхэлье. Дурын $a$, $b$ сонгоод $c$-г тооцоолно: $a = 2$, $b = 1$ бол $c = 2 \\cdot 3 + 1 = 7$.",
+                      why="Шийд нь тэгшитгэлийг үнэн болгодог тул $x = 3$ үед зүүн тал $c$-тэй тэнцүү байх ёстой."),
+              en=dict(do="Start from the solution. Choose any $a$ and $b$ and work out $c$: with $a = 2$, $b = 1$, $c = 2 \\cdot 3 + 1 = 7$.",
+                      why="The solution makes the equation true, so at $x = 3$ the left side must equal $c$.")),
+         dict(mn=dict(do="Тэгшитгэл нь $2x + 1 = 7$. Өөр $a$, $b$ сонговол өөр тэгшитгэл гарна: олон зөв хариу бий."),
+              en=dict(do="The equation is $2x + 1 = 7$. Other choices of $a$ and $b$ give other equations: many answers are right.")),
+         dict(mn=dict(do="Шалгая: $2x + 1 = 7$ тэгшитгэлийг бодвол $2x = 6$, $x = 3$. Зөв."),
+              en=dict(do="Check: solving $2x + 1 = 7$ gives $2x = 6$, $x = 3$. Right."))],
+        [("Шийдээс эхлээрэй: $a$, $b$-д дуртай тоогоо өгөөд $x = 3$ үед зүүн тал хэд болохыг бодоорой.",
+          "Start from the solution: pick $a$ and $b$, then work out the left side at $x = 3$."),
+         ("Жишээ нь $a = 2$, $b = 1$ бол $2 \\cdot 3 + 1 = 7$ тул $c = 7$.", "For example $a = 2$, $b = 1$ gives $2 \\cdot 3 + 1 = 7$, so $c = 7$.")],
+        ("Жишээ хариу: $2x + 1 = 7$. Ямар ч тэгшитгэл $x = 3$ үед үнэн бол зөв.", "A sample answer: $2x + 1 = 7$. Any equation true at $x = 3$ is right."),
+        ["Eq(2*3 + 1, 7)", "Ne(2*3 + 1, 6)", "Eq(-3 + 3, 0)", "Eq(3*Rational(1,3), 1)", "Ne(3 + 3, 0)"])))
+    return I
+
+
+def hint_two_one(eq):
+    v = eq.var
+    return (f"{M(etex(eq.lhs, v))} гэдэг нь {M(v)}-ийг хэдээр үржүүлсэн бэ? Үржүүлснийг юугаар буцаах вэ?",
+            f"In ${etex(eq.lhs, v)}$, what is ${v}$ multiplied by? What undoes multiplication?")
+
+
+def extra_cands(eq, extra):
+    out = []
+    for xv, mn, en, tag in extra:
+        out.append(dict(x=Fr(xv), mn=mn, en=en, mode="extra", tag=tag,
+                        checks=[f"Ne({epy(eq.lhs, at(Fr(xv)))}, {epy(eq.rhs, at(Fr(xv)))})"]))
+    return out
+
+
+def t_bare_extra(vid, i, eq, order, hint1, extra):
+    w = Walk(eq)
+    ms = pick3(w.sol, w.mistakes(order) + extra_cands(eq, extra), w.dec)
+    wrongs = [(M(ntexd(m["x"], w.dec)),) * 2 + (m["mn"], m["en"], m["tag"]) for m in ms]
+    checks = list(w.checks)
+    for m in ms:
+        checks += m["checks"]
+    st_mn, st_en = solve_stmt(eq)
+    if len(w.steps) < 3:
+        w.steps.insert(0, dict(mn=dict(do=f"{M(eq.tex())} тэгшитгэлд {M(eq.var)}-д нэг л үйлдэл хийгдсэн байна. Түүнийг буцаахад хангалттай."),
+                               en=dict(do=f"In ${eq.tex()}$ only one operation was done to ${eq.var}$. Undoing it is enough.")))
+    return assemble(vid, i, st_mn, st_en, (M(ntexd(w.sol, w.dec)),) * 2, wrongs, w.steps,
+                    [hint1, hint2_from(next(st for st in w.steps if st.get("h2")), eq.var)],
+                    walk_explanation(w), checks)
+
+
+def t_box_extra(vid, i, eq, order, extra):
+    w = Walk(eq, extra_steps=1)
+    ms = pick3(w.sol, w.mistakes(order) + extra_cands(eq, extra), w.dec)
+    bt = box_tex(eq)
+    ans = ntexd(w.sol, w.dec)
+    first = dict(mn=dict(do=f"Нүдэнд орох тоог $x$ гэж тэмдэглэе. Тэгвэл {M(eq.tex())} тэгшитгэл гарна.",
+                         why="Мэдэгдэхгүй тоог үсгээр тэмдэглэвэл түүнийг тэгшитгэл бодож олно."),
+                 en=dict(do=f"Call the number in the box $x$. Then the equation is ${eq.tex()}$.",
+                         why="Naming the unknown number with a letter turns the puzzle into an equation to solve."))
+    steps = [first] + w.steps
+    steps[-1] = dict(mn=dict(do=steps[-1]["mn"]["do"] + f" Нүдэнд {M(ans)} бичнэ."),
+                     en=dict(do=steps[-1]["en"]["do"] + f" The box holds ${ans}$."))
+    hints = [("Нүдийг үл мэдэгдэх тоо гэж үзээд $x$ гэж тэмдэглээрэй. Тэгвэл энгийн тэгшитгэл болно.",
+              "Treat the box as an unknown number and call it $x$: it becomes an ordinary equation."),
+             hint2_from(w.steps[0], "x")]
+    wrongs = [(M(ntexd(m_["x"], w.dec)),) * 2 + (m_["mn"], m_["en"], m_["tag"]) for m_ in ms]
+    checks = list(w.checks)
+    for m_ in ms:
+        checks += m_["checks"]
+    expl = (f"Нүдийг $x$ гэвэл {M(eq.tex())}. Бодоход {M('x = ' + ans)} тул нүдэнд {M(ans)} бичнэ.",
+            f"With the box as $x$ the equation is ${eq.tex()}$. It gives $x = {ans}$, so the box holds ${ans}$.")
+    return assemble(vid, i, f"Нүдэнд ямар тоо бичвэл тэнцэтгэл үнэн болох вэ? $${bt}$$",
+                    f"Which number in the box makes this true? $${bt}$$", (M(ans),) * 2, wrongs, steps, hints, expl, checks)
+
+
+def part_B():
+    I = []
+    e1 = Eqn([V(-2), K(5)], [K(11)])
+    I.append(("bare", "direct", 1, lambda vid, i: t_bare(vid, i, e1, O_TS, hint_two(e1))))
+    I.append(("which_value", "compare", 2, lambda vid, i: subst_variant_b(vid, i, Eqn([FR(3, V(2)), K(4)], [K(10)]))))
+    bk = Eqn([FR(5, V(3))], [K(120)])
+    I.append(("frbar", "figure", 2, lambda vid, i: t_story(vid, i, S(
+        "book", var="x", eq=bk, fig=frac_fig(3, 5, "pages read", "уншсан хэсэг"),
+        st=(f"Сарнай нэг номын {M(chr(92) + 'frac{3}{5}')} хэсгийг уншжээ. Зурагт уншсан хэсгийг будсан. "
+            f"Тэр {M(120)} хуудас уншсан бол ном нийт хэдэн хуудастай вэ?",
+            f"Sarnai has read $\\frac{{3}}{{5}}$ of a book; the shaded part of the bar shows it. She has read ${120}$ pages. "
+            f"How many pages does the book have?"),
+        write=(f"Номын хуудсыг {M('x')} гэе. {VW('x', 'x', 'gen')} {M(chr(92) + 'frac{3}{5}')} хэсэг нь {M(chr(92) + 'frac{3x}{5}')}, "
+               f"энэ нь {M(120)} тул {M(bk.tex())}.",
+               "«Хэсэг нь» гэдэг нь бүхлийг бутархайгаар үржүүлнэ гэсэн үг.",
+               f"Let the book have $x$ pages. $\\frac{{3}}{{5}}$ of $x$ is $\\frac{{3x}}{{5}}$, which is ${120}$: ${bk.tex()}$.",
+               "«A fraction of» the whole means the whole times the fraction.",
+               f"Хуудсыг {M('x')} гэвэл {M(bk.tex())}.", f"With $x$ pages: ${bk.tex()}$."),
+        answer=(f"Ном {M(200)} хуудастай.", f"The book has ${200}$ pages."),
+        hint1=("Номын хуудсыг $x$ гэвэл уншсан хэсгийг $x$-ээр яаж бичих вэ? Зурагт хэдэн хэсгийн хэд нь будагдсан бэ?",
+               "If the book has $x$ pages, how do you write the part read? How many of the parts are shaded?"),
+        wrongs=[(72, "$120$-ийн $\\frac{3}{5}$-ийг олсон байна. Гэхдээ $120$ нь бүхэл ном биш, уншсан хэсэг.",
+                 "That is $\\frac{3}{5}$ of $120$, but $120$ is the part read, not the whole book.", "part-whole-swapped"),
+                (40, "$120$-ийг $3$-т хуваавал нэг хэсэг гарна. Ном ийм $5$ хэсэгтэй: $40 \\cdot 5$.",
+                 "$120$ divided by $3$ is one part. The book has $5$ such parts: $40 \\cdot 5$.", "stopped-before-multiplying"),
+                (600, "$3x = 600$ хүртэл зөв. Гэхдээ $600$ нь $3x$: $3$-т хуваана.", "Up to $3x = 600$ is right, but that is $3x$: divide by $3$.",
+                 "stopped-before-dividing")]))))
+    I.append(("box", "direct", 2, lambda vid, i: t_box(vid, i, Eqn([V("0.5"), K("1.5")], [K(4)]), O_FX)))
+    sh = Eqn([V("0.8")], [K(36000)])
+    I.append(("percent", "recall", 3, lambda vid, i: t_story(vid, i, S(
+        "shirt-sale", var="x", eq=sh,
+        st=(f"Дэлгүүрт бүх бараа {M('20' + chr(92) + '%')}-ийн хямдралтай байв. Номин цамцыг {tg(36000)} төлж авсан бол цамцны анхны үнэ хэд вэ?",
+            f"Everything in a shop is ${'20' + chr(92) + '%'}$ off. Nomin paid {tg(36000)} for a shirt. What was its original price?"),
+        write=(f"Анхны үнийг {M('x')} гэе. {M('20' + chr(92) + '%')} хямдарвал анхны үнийн {M('80' + chr(92) + '%')} буюу {M('0.8x')} төлнө. "
+               f"Иймд {M(sh.tex())}.",
+               "Хямдралын хувийг хасаад үлдсэн хувийг аравтын бутархайгаар бичнэ.",
+               f"Let the original price be $x$. With ${'20' + chr(92) + '%'}$ off you pay ${'80' + chr(92) + '%'}$ of it, $0.8x$. So ${sh.tex()}$.",
+               "Take the discount away from $100\\%$ and write what is left as a decimal.",
+               f"Анхны үнийг {M('x')} гэвэл {M(sh.tex())}.", f"With the original price $x$: ${sh.tex()}$."),
+        answer=(f"Анхны үнэ {tg(45000)}.", f"The original price was {tg(45000)}."),
+        hint1=("Хямдралтай үед анхны үнийн хэдэн хувийг төлдөг вэ? Түүнийг аравтын бутархайгаар бичээрэй.",
+               "In the sale, what percent of the original price do you pay? Write it as a decimal."),
+        wrongs=[(43200, "$36\\,000$ дээр түүний $20\\%$-ийг нэмсэн бололтой. Хямдрал анхны үнээс тооцогддог тул $0.8x = 36\\,000$.",
+                 "That adds $20\\%$ of $36\\,000$. The discount is taken from the original price, so $0.8x = 36\\,000$.", "percent-of-wrong-base"),
+                (Eqn([V("0.2")], [K(36000)]), "$0.2x = 36\\,000$ гэж бичсэн бол хямдарсан хэсгийг төлсөн мэт үзжээ. Төлсөн нь үлдсэн $80\\%$.",
+                 "Writing $0.2x = 36\\,000$ treats the discount as what was paid. What was paid is the remaining $80\\%$.", "discount-as-price"),
+                (28800, "$36\\,000$-аас дахин $20\\%$ хассан байна: хямдралтай үнийг дахин хямдруулсан хэрэг.",
+                 "That takes $20\\%$ off $36\\,000$ again: the sale price discounted twice.", "percent-of-wrong-base")]))))
+    e6 = Eqn([FR(2, V(1)), FR(3, V(1))], [K(10)])
+    I.append(("bare", "direct", 3, lambda vid, i: t_bare(vid, i, e6, O_FX, HINT_FR)))
+    rd = Eqn([FR(3, V(2))], [K(140)])
+    I.append(("frbar", "figure", 3, lambda vid, i: t_story(vid, i, S(
+        "darkhan-road", var="x", eq=rd, fig=frac_fig(2, 3, "distance covered", "туулсан зам"),
+        st=(f"Дорж Улаанбаатараас Дархан руу явж байна. Замын {M(chr(92) + 'frac{2}{3}')} хэсгийг туулахад {M(140)} км явсан байв (зургийг хар). "
+            f"Улаанбаатараас Дархан хүртэл хэдэн км вэ?",
+            f"Dorj is travelling from Ulaanbaatar to Darkhan. After covering $\\frac{{2}}{{3}}$ of the way he has gone ${140}$ km (see the bar). "
+            f"How far is it from Ulaanbaatar to Darkhan?"),
+        write=(f"Нийт замыг {M('x')} км гэе. Түүний {M(chr(92) + 'frac{2}{3}')} хэсэг нь {M(chr(92) + 'frac{2x}{3}')} тул {M(rd.tex())}.",
+               "Туулсан хэсэг нь бүх замыг бутархайгаар үржүүлсэнтэй тэнцүү.",
+               f"Let the whole way be $x$ km. $\\frac{{2}}{{3}}$ of it is $\\frac{{2x}}{{3}}$, so ${rd.tex()}$.",
+               "The distance covered is the whole distance times the fraction.",
+               f"Нийт замыг {M('x')} гэвэл {M(rd.tex())}.", f"With the whole way $x$: ${rd.tex()}$."),
+        answer=(f"Улаанбаатараас Дархан хүртэл {M(210)} км.", f"It is ${210}$ km."),
+        hint1=("Бүх замыг $x$ гэвэл туулсан хэсгийг $x$-ээр яаж бичих вэ?", "If the whole way is $x$, how do you write the part covered?"),
+        wrongs=[(Fr(280, 3), "$140$-ийн $\\frac{2}{3}$-ыг олсон байна. $140$ нь туулсан хэсэг, бүх зам биш.",
+                 "That is $\\frac{2}{3}$ of $140$, but $140$ is the part covered, not the whole way.", "part-whole-swapped"),
+                (70, "$70$ бол замын гуравны нэг. Бүх зам гурван ийм хэсэг: $70 \\cdot 3$.",
+                 "$70$ is one third of the way. The whole way is three such parts: $70 \\cdot 3$.", "stopped-before-multiplying"),
+                (420, "$2x = 420$ хүртэл зөв. Гэхдээ энэ нь $2x$: $2$-т хуваана.", "Up to $2x = 420$ is right, but that is $2x$: divide by $2$.",
+                 "stopped-before-dividing")]))))
+    I.append(("whose", "compare", 3, lambda vid, i: t_whose(vid, i, Eqn([V("0.25"), K(-3)], [K("0.5")], "n"),
+                                                           (("Тэмүүлэн", "Temuulen"), "partial"), (("Энхжин", "Enkhjin"), None), O_ALL)))
+    I.append(("box", "direct", 3, lambda vid, i: t_box(vid, i, Eqn([FR(3, V(2)), K(5)], [K(1)]), ["partial"] + O_TS)))
+    I.append(("explain", "explain", 4, lambda vid, i: t_explain(
+        vid, i, ("$\\frac{x}{2} + \\frac{x}{3} = 10$ тэгшитгэлийн хоёр талыг $6$-аар үржүүлэхэд $10$-ыг ч бас үржүүлэх ёстой юу? Аль тайлбар зөв бэ?",
+                 "When both sides of $\\frac{x}{2} + \\frac{x}{3} = 10$ are multiplied by $6$, must the $10$ be multiplied too? Which explanation is right?"),
+        ("Тийм: хоёр тал бүхлээрээ үржигдэх тул гишүүн бүрийг үржүүлнэ, $3x + 2x = 60$",
+         "Yes: each side is multiplied as a whole, so every term is, giving $3x + 2x = 60$"),
+        [("Үгүй: $10$ бутархай биш тул үржүүлэх шаардлагагүй", "No: $10$ is not a fraction, so it stays",
+          "Тэгвэл $3x + 2x = 10$ болж $x = 2$ гарна. $x = 2$ үед $1 + \\frac{2}{3} \\ne 10$: тэнцэтгэл алдагдсан.",
+          "Then $3x + 2x = 10$ gives $x = 2$, and $1 + \\frac{2}{3} \\ne 10$: the balance is lost.", "multiplied-some-terms-only"),
+         ("Үгүй: зөвхөн бутархайтай зүүн талыг үржүүлнэ", "No: only the left side, which has the fractions",
+          "Нэг талыг л үржүүлбэл хоёр тал өөр тоогоор өөрчлөгдөж тэнцэтгэл алдагдана.",
+          "Multiplying one side only changes the sides by different amounts and breaks the balance.", "one-side-only"),
+         ("Тийм, гэхдээ $6$ биш $5$-аар үржүүлнэ", "Yes, but by $5$, not $6$",
+          "$5$ нь хуваариудын нийлбэр: $\\frac{5x}{2}$ бутархай хэвээр үлдэнэ. $2$, $3$ хоёулаа хуваагддаг хамгийн бага тоо нь $6$.",
+          "$5$ is the sum of the denominators: $\\frac{5x}{2}$ is still a fraction. The smallest number both $2$ and $3$ divide is $6$.",
+          "sum-of-denominators")],
+        [dict(mn=dict(do="Хоёр талыг бүхлээр нь үржүүлье: $6 \\cdot (\\frac{x}{2} + \\frac{x}{3}) = 6 \\cdot 10$.",
+                      why="Тэнцүү хоёр зүйлийг ижил тоогоор үржүүлэхэд тэнцүү хэвээр үлдэнэ."),
+              en=dict(do="Multiply each whole side: $6 \\cdot (\\frac{x}{2} + \\frac{x}{3}) = 6 \\cdot 10$.",
+                      why="Equal things multiplied by the same number stay equal.")),
+         dict(mn=dict(do="Хаалтыг нээвэл $3x + 2x = 60$: $10$ ч бас $6$ дахин ихэссэн."),
+              en=dict(do="Opening the bracket: $3x + 2x = 60$. The $10$ was multiplied by $6$ too.")),
+         dict(mn=dict(do="Бодвол $5x = 60$, $x = 12$. Шалгая: $\\frac{12}{2} + \\frac{12}{3} = 6 + 4 = 10$."),
+              en=dict(do="Then $5x = 60$, $x = 12$. Check: $\\frac{12}{2} + \\frac{12}{3} = 6 + 4 = 10$."))],
+        [("Тал бүрийг бүхэлд нь хаалтанд хийгээд $6$-аар үржүүлж үзээрэй.", "Put each whole side in a bracket and multiply it by $6$."),
+         ("$6 \\cdot (\\frac{x}{2} + \\frac{x}{3}) = 6 \\cdot 10$. Баруун тал юу болох вэ?", "$6 \\cdot (\\frac{x}{2} + \\frac{x}{3}) = 6 \\cdot 10$. What does the right side become?")],
+        ("Гишүүн бүрийг үржүүлнэ: $3x + 2x = 60$, эндээс $x = 12$.", "Every term is multiplied: $3x + 2x = 60$, so $x = 12$."),
+        ["Eq(Rational(12,2) + Rational(12,3), 10)", "Eq(6*10, 60)", "Eq(60/5, 12)", "Ne(Rational(2,2) + Rational(2,3), 10)"])))
+    bz = Eqn([V(1), V(1), K("-0.3")], [K("2.7")])
+    I.append(("recipe", "modelling", 4, lambda vid, i: t_story(vid, i, S(
+        "buuz", var="x", eq=bz,
+        st=(f"Номин бууз хийхээр мах, гурил авчээ. Гурил нь махнаас {M('0.3')} кг-аар хөнгөн, хоёулаа нийт {M('2.7')} кг. Хэдэн кг мах авсан бэ?",
+            f"Nomin bought meat and flour to make buuz. The flour weighs ${'0.3'}$ kg less than the meat, and together they weigh "
+            f"${'2.7'}$ kg. How many kg of meat did she buy?"),
+        write=(f"Махны жинг {M('x')} кг гэе. Гурил нь {M('x - 0.3')} кг. Нийт жин {M('2.7')} тул {M(bz.tex())}.",
+               "«Хөнгөн» гэдэг нь махны жингээс хасна гэсэн үг. Хоёр жинг нэмбэл нийт жин гарна.",
+               f"Let the meat weigh $x$ kg. The flour weighs $x - 0.3$ kg. Together: ${bz.tex()}$.",
+               "«Less than» means take it away from the meat's weight; adding both weights gives the total.",
+               f"Махыг {M('x')} гэвэл {M(bz.tex())}.", f"With the meat as $x$: ${bz.tex()}$."),
+        answer=(f"Мах {M('1.5')} кг, гурил {M('1.2')} кг.", f"The meat weighs ${'1.5'}$ kg and the flour ${'1.2'}$ kg."),
+        hint1=("Махны жинг $x$ гэвэл гурлын жинг $x$-ээр яаж бичих вэ?", "If the meat weighs $x$, how do you write the flour's weight?"),
+        wrongs=[(Fr(6, 5), "$1.2$ кг бол гурлын жин. Асуулт махны жинг асууж байна.", "$1.2$ kg is the flour. The question asks for the meat.",
+                 "answered-wrong-quantity"),
+                (Fr(27, 20), "$2.7$-г $2$-т хуваасан бол мах, гурил хоёрыг ижил жинтэй гэж үзжээ. Гурил $0.3$ кг-аар хөнгөн.",
+                 "Halving $2.7$ treats meat and flour as equal. The flour is $0.3$ kg lighter.", "ignored-difference"),
+                (3, "$2x = 3$ хүртэл зөв. Гэхдээ энэ нь $2x$: $2$-т хуваана.", "Up to $2x = 3$ is right, but that is $2x$: divide by $2$.",
+                 "stopped-before-dividing")]))))
+    e12 = Eqn([FR(3, V(2), K(1))], [V(1), K(-2)], "a")
+    I.append(("bare", "direct", 4, lambda vid, i: t_bare(vid, i, e12, O_FX, HINT_FR)))
+    return I
+
+
+def part_C():
+    I = []
+    I.append(("next", "stripped-drill", 1, lambda vid, i: t_next(vid, i, Eqn([V(3), K(7)], [K(19)]), Eqn([V(3), K(7)], [K(19)]), drill=True)))
+    I.append(("lcd", "stripped-drill", 1, lambda vid, i: t_lcd(vid, i, Eqn([FR(4, V(1)), FR(6, V(1), c=-1)], [K(2)]))))
+    I.append(("write", "stripped-drill", 2, lambda vid, i: t_write(vid, i, dict(
+        old_story(0), key=S("notebooks")["key"], tags=STORY0_TAGS, st_write=(
+            f"Бат {M(4)} дэвтэр, нэг үзэг худалдаж аваад нийт {tg(11500)} төлсөн. Үзэг {tg(1500)}. Нэг дэвтрийн үнийг {M('x')} гэвэл "
+            f"аль тэгшитгэл зөв бэ? Бодохгүй.",
+            f"Bat bought ${4}$ notebooks and one pen for {tg(11500)} in total. The pen cost {tg(1500)}. With one notebook costing $x$, "
+            f"which equation is right? Do not solve.")))))
+    I.append(("next", "stripped-drill", 2, lambda vid, i: t_next(vid, i, Eqn([V(3), K(7)], [V(5), K(-9)], "y"), Eqn([V(3), K(7)], [V(5), K(-9)], "y"), drill=True)))
+    I.append(("lcd", "stripped-drill", 2, lambda vid, i: t_lcd(vid, i, Eqn([FR(6, V(1), K(1))], [FR(9, V(1), K(-2))]))))
+    I.append(("correct_line", "stripped-drill", 3, lambda vid, i: t_correct_line(
+        vid, i, Eqn([BR(3, V(1), K(-2)), BR(-2, V(1), K(4))], [K(6)]), O_MS, drill=True)))
+    bb = Eqn([V(2), K(15)], [K(23)])
+    I.append(("write", "stripped-drill", 3, lambda vid, i: t_write(vid, i, S(
+        "basketball", var="x", eq=bb,
+        st_write=(f"Сагсан бөмбөгийн тоглолтод Бат нийт {M(23)} оноо авсан. Үүнээс {M(5)} нь гурван онооны шидэлт, бусад нь хоёр онооны "
+                  f"шидэлт байв. Хоёр онооны шидэлтийн тоог {M('x')} гэвэл аль тэгшитгэл зөв бэ? Бодохгүй.",
+                  f"In a basketball game Bat scored ${23}$ points: ${5}$ three-pointers and the rest two-pointers. With $x$ two-pointers, "
+                  f"which equation is right? Do not solve."),
+        write=(f"Хоёр онооны {M('x')} шидэлт {M('2x')} оноо, гурван онооны {M(5)} шидэлт {M('3 ' + chr(92) + 'cdot 5 = 15')} оноо. "
+               f"Нийлбэр нь {M(23)} тул {M(bb.tex())}.",
+               "Шидэлтийн тоог нэг шидэлтийн оноогоор үржүүлбэл оноо гарна.",
+               f"$x$ two-pointers give $2x$ points; ${5}$ three-pointers give $3 \\cdot 5 = 15$. The total is ${23}$: ${bb.tex()}$.",
+               "Baskets times points per basket gives points.",
+               f"Оноог нэмбэл {M(bb.tex())}.", f"Adding the points: ${bb.tex()}$."),
+        answer=(f"Бат хоёр онооны {M(4)} шидэлт хийсэн.", f"Bat scored ${4}$ two-pointers."),
+        hint1=("Гурван онооны таван шидэлт хэдэн оноо өгөх вэ? Хоёр онооны $x$ шидэлт хэд вэ?",
+               "How many points do five three-pointers give? And $x$ two-pointers?"),
+        wrongs=[(Eqn([V(2), K(5)], [K(23)]), "Шидэлтийн тоог ($5$) оноо мэт нэмжээ. $5$ шидэлт тус бүр $3$ оноо: $15$.",
+                 "This adds the number of baskets ($5$) as if it were points. Each is worth $3$: $15$.", "count-used-as-amount"),
+                (Eqn([V(3), K(10)], [K(23)]), "Хоёр, гурван оноог сольсон байна: $x$ шидэлт хоёр оноотой, $5$ шидэлт гурван оноотой.",
+                 "The point values are swapped: the $x$ baskets are worth two, the $5$ baskets three.", "rate-and-fee-confused"),
+                (Eqn([BR(2, V(1), K(15))], [K(23)]), "$2(x + 15)$ гэвэл гурван онооны шидэлтийн оноог ч хоёроор үржүүлжээ. Тэр оноо нэг удаа нэмэгдэнэ.",
+                 "$2(x + 15)$ doubles the three-point score too. It is added once.", "fee-multiplied-by-count")]))))
+    I.append(("next", "stripped-drill", 3, lambda vid, i: t_next(vid, i, Eqn([BR(5, V(1), K(-2)), K(3)], [K(18)], "n"),
+                                                                Eqn([BR(5, V(1), K(-2)), K(3)], [K(18)], "n"), drill=True)))
+    I.append(("lcd", "stripped-drill", 3, lambda vid, i: t_lcd(vid, i, Eqn([FR(2, V(1)), FR(3, V(1))], [FR(4, V(1)), K(7)]))))
+    sv = Eqn([K(12), V(5)], [K(47)], "n")
+    I.append(("write", "stripped-drill", 4, lambda vid, i: t_write(vid, i, S(
+        "savings-bars", var="n", eq=sv, fig=bars(12, 5, [1, 2, 3, 4], lambda w_: f"{w_}-р долоо хоног", lambda w_: f"Week {w_}",
+                                                ("мянган ₮", "thousand ₮")),
+        st_write=(f"Тэмүүлэн долоо хоног бүр ижил хэмжээний мөнгө хадгалдаг. Графикт эхний дөрвөн долоо хоногийн эцсийн хадгаламжийг "
+                  f"мянган төгрөгөөр үзүүлэв. Хэд дэх долоо хоногийн эцэст {M(47)} мянган төгрөгтэй болохыг олох тэгшитгэл аль нь вэ? "
+                  f"Долоо хоногийн тоог {M('n')} гэе. Бодохгүй.",
+                  f"Temuulen saves the same amount every week. The chart shows his savings, in thousands of tögrög, at the end of the "
+                  f"first four weeks. Which equation finds the week when he reaches ${47}$ thousand? Let $n$ be the number of weeks. "
+                  f"Do not solve."),
+        write=(f"Графикаас: долоо хоног бүр {M('22 - 17 = 5')} мянгаар нэмэгдэж байна. Тэгэхээр эхлэхдээ {M('17 - 5 = 12')} мянгатай байсан. "
+               f"Иймд {M(sv.tex())}.",
+               "Нэг баганаас дараагийнх хүртэлх өсөлт нь долоо хоногийн хадгаламж; эхний мөнгийг нэг алхам буцааж олно.",
+               f"From the chart: the savings grow by $22 - 17 = 5$ thousand a week, so he started with $17 - 5 = 12$ thousand. "
+               f"So ${sv.tex()}$.",
+               "The rise from bar to bar is the weekly saving; step back once to find the start.",
+               f"Графикаас {M(sv.tex())}.", f"From the chart: ${sv.tex()}$."),
+        answer=(f"{M(7)} дахь долоо хоногийн эцэст.", f"At the end of week ${7}$."),
+        hint1=("Багана бүр өмнөхөөсөө хэдээр өндөр вэ? Тэгвэл эхлэхдээ хэдтэй байсан бэ?",
+               "How much taller is each bar than the one before? Then how much did he start with?"),
+        wrongs=[(Eqn([K(17), V(5)], [K(47)], "n"), "Эхний баганын $17$-г эхлэл гэж авсан бололтой. $17$ бол $1$-р долоо хоногийн эцсийнх: эхлэл нь $12$.",
+                 "The first bar's $17$ was taken as the start. It is the end of week $1$; the start is $12$.", "misread-starting-value"),
+                (Eqn([V(5)], [K(47)], "n"), "Эхний мөнгийг тооцоогүй байна: Тэмүүлэн тэгээс эхлээгүй.",
+                 "The starting money is left out: Temuulen did not start from zero.", "missed-starting-amount"),
+                (Eqn([V(12), K(5)], [K(47)], "n"), "Эхний мөнгө, долоо хоногийн хадгаламжийг сольсон байна: долоо хоног бүр $5$ мянгаар нэмэгддэг.",
+                 "The start and the weekly saving are swapped: it grows by $5$ thousand a week.", "rate-and-fee-confused")]))))
+    I.append(("correct_line", "stripped-drill", 4, lambda vid, i: t_correct_line(
+        vid, i, Eqn([K(7), BR(-3, V(1), K(-2))], [BR(2, V(1), K(5))], "y"), O_MS, drill=True)))
+    return I
+
+
+def part_D():
+    I = []
+    e1 = Eqn([V(2), V(5), K(-4)], [K(24)])
+    I.append(("bare", "direct", 1, lambda vid, i: t_bare(vid, i, e1, O_SY, hint_like("x"))))
+    e2 = Eqn([BR(3, V(1), K(-4))], [K(15)])
+    I.append(("bare", "direct", 1, lambda vid, i: t_bare(vid, i, e2, O_BK, HINT_BR)))
+    I.append(("box", "direct", 2, lambda vid, i: t_box(vid, i, Eqn([V(1), V(1), V(1), K(4)], [K(19)]), O_SY)))
+    e4 = Eqn([V(7), V(5)], [K(6000)])
+    I.append(("story", "modelling", 2, lambda vid, i: t_story(vid, i, S(
+        "bus-tickets", var="x", eq=e4,
+        st=(f"Энэ долоо хоногт Бат автобусанд {M(7)} удаа, Номин {M(5)} удаа суусан. Нэг удаагийн тасалбар ижил үнэтэй. "
+            f"Хоёулаа нийт {tg(6000)} төлсөн бол нэг удаагийн тасалбар хэдэн төгрөг вэ?",
+            f"This week Bat took the bus ${7}$ times and Nomin ${5}$ times. Every ride costs the same. Together they paid "
+            f"{tg(6000)}. How much is one ride?"),
+        write=(f"Нэг удаагийн үнийг {M('x')} гэе. Бат {M('7x')}, Номин {M('5x')} төгрөг төлсөн тул {M(e4.tex())}.",
+               "Хоёр хүний зардлыг тус тусад нь бичээд нэмнэ. Хоёулаа ижил үнэтэй тасалбар авсан тул төсөөтэй гишүүд болно.",
+               f"Let one ride cost $x$. Bat paid $7x$ and Nomin $5x$, so ${e4.tex()}$.",
+               "Write each person's cost and add. Both used the same fare, so these are like terms.",
+               f"Нэг удаагийнхыг {M('x')} гэвэл {M(e4.tex())}.", f"With one ride as $x$: ${e4.tex()}$."),
+        answer=(f"Нэг удаагийн тасалбар {tg(500)}.", f"One ride costs {tg(500)}."),
+        hint1=("Нэг удаагийн үнийг $x$ гэвэл Бат, Номин хоёр тус бүр хэдэн төгрөг төлсөн бэ?",
+               "If one ride costs $x$, how much did Bat and Nomin each pay?"),
+        wrongs=[(Eqn([V(7), K(5)], [K(6000)]), "$7x + 5$ гэж бичсэн бол Номины суусан тоог мөнгө мэт нэмжээ. Номин ч мөн $x$ төгрөгөөр $5$ удаа суусан: $5x$.",
+                 "Writing $7x + 5$ adds Nomin's number of rides as if it were money. She also paid $x$ each time: $5x$.", "count-used-as-amount"),
+                (Fr(6000, 7), "Зөвхөн Батын зорчилтыг тоолсон бололтой. Номины $5$ удааг нэмэхэд $12$ удаа болно.",
+                 "Only Bat's rides were counted. With Nomin's $5$ there are $12$ rides.", "missed-part-of-total"),
+                (6000, "$12x = 6\\,000$ хүртэл зөв. Гэхдээ $6\\,000$ нь нийт мөнгө: $12$-т хуваавал нэг удаагийнх гарна.",
+                 "Up to $12x = 6\\,000$ is right, but that is the total: divide by $12$ for one ride.", "stopped-before-dividing")]))))
+    I.append(("friends", "compare", 2, lambda vid, i: t_friends(
+        vid, i, Eqn([BR(4, V(1), K(3))], [K(28)]),
+        dict(name=("Бат", "Bat"), lines=[Eqn([V(1), K(3)], [K(7)]), Eqn([V(1)], [K(4)])],
+             how=(f"эхлээд хоёр талыг {W(4, 'dat')} хуваасан.", "he divided both sides by $4$ first."), err=None),
+        dict(name=("Сарнай", "Sarnai"), lines=[Eqn([V(4), K(12)], [K(28)]), Eqn([V(4)], [K(16)]), Eqn([V(1)], [K(4)])],
+             how=("эхлээд хаалтыг нээсэн.", "she opened the bracket first."), err=None))))
+    e6 = Eqn([BR(-2, V(1), K(5))], [K(8)], "y")
+    I.append(("bare", "direct", 3, lambda vid, i: t_bare(vid, i, e6, O_BK, HINT_BR)))
+    r1 = Eqn([BR(2, V(1), V(1), K(3))], [K(34)])
+    f1 = geo_poly([(0, 0), (5, 0), (5, 3), (0, 3)], ["x + 3", "x", "", ""])
+    I.append(("geo", "figure", 3, lambda vid, i: t_story(vid, i, S(
+        "flowerbed", var="x", eq=r1, fig=f1,
+        st=(f"Сургуулийн цэцгийн мандал тэгш өнцөгт хэлбэртэй. Зурагт талуудын уртыг метрээр үзүүлэв: урт нь {M('x + 3')}, "
+            f"өргөн нь {M('x')}. Мандлын периметр {M(34)} м бол өргөн {M('x')} хэдэн метр вэ?",
+            f"A school flowerbed is a rectangle. The picture gives its sides in metres: length $x + 3$, width $x$. "
+            f"The perimeter is ${34}$ m. What is the width $x$?"),
+        write=(f"Тэгш өнцөгт хоёр урт, хоёр өргөнтэй тул периметр нь {M('2(x + x + 3)')}. Энэ нь {M(34)} тул {M(r1.tex())}.",
+               "Периметр бол бүх талын уртын нийлбэр. Урт, өргөн тус бүр хоёр удаа орно.",
+               f"A rectangle has two lengths and two widths, so the perimeter is $2(x + x + 3)$. It equals ${34}$: ${r1.tex()}$.",
+               "The perimeter is the sum of all four sides; length and width each count twice.",
+               f"Периметрээс {M(r1.tex())} гарна.", f"The perimeter gives ${r1.tex()}$."),
+        answer=(f"Өргөн {M(7)} м, урт {M(10)} м.", f"The width is ${7}$ m and the length ${10}$ m."),
+        hint1=("Тэгш өнцөгт хэдэн талтай вэ? Периметрийг $x$-ээр бичээрэй.", "How many sides does a rectangle have? Write the perimeter using $x$."),
+        wrongs=[(Eqn([V(1), V(1), K(3)], [K(34)]), "$x + x + 3 = 34$ гэж бичсэн бол хоёр талыг л нэмжээ. Тэгш өнцөгт дөрвөн талтай.",
+                 "Writing $x + x + 3 = 34$ adds only two sides. A rectangle has four.", "missed-part-of-total"),
+                (10, "$10$ бол урт. Асуулт өргөнийг асууж байна: $x = 7$.", "$10$ is the length. The question asks for the width: $x = 7$.",
+                 "answered-wrong-quantity"),
+                (Eqn([V(2), V(2), K(3)], [K(34)]), "$2x + 2x + 3 = 34$ гэж бичсэн бол $3$-ыг хоёр удаа авахаа мартжээ: $2(x + 3) = 2x + 6$.",
+                 "Writing $2x + 2x + 3 = 34$ counts the extra $3$ only once: $2(x + 3) = 2x + 6$.", "distribute-first-term-only")]))))
+    I.append(("next", "compare", 3, lambda vid, i: t_next(vid, i, Eqn([BR(-2, V(1), K(4)), V(3)], [K(1)]), Eqn([BR(-2, V(1), K(4)), V(3)], [K(1)]))))
+    I.append(("which_eq", "reverse", 3, lambda vid, i: t_which_eq(vid, i, 4, "x", Eqn([BR(2, V(1), K(3)), V(-1)], [K(10)]),
+                                                                 [("first", 3, 2), ("const", 5, -6), ("nodiv", 3, -2)])))
+    I.append(("box", "direct", 4, lambda vid, i: t_box(vid, i, Eqn([BR(3, V(2), K(-5)), V(4)], [K(25)]), O_BK)))
+    I.append(("friends", "compare", 4, lambda vid, i: t_friends(
+        vid, i, Eqn([K(7), BR(-3, V(1), K(-1))], [K(4)], "m"),
+        dict(name=("Тэмүүлэн", "Temuulen"), lines=[Eqn([K(7), V(-3), K(-3)], [K(4)]), Eqn([K(4), V(-3)], [K(4)]), Eqn([V(1)], [K(0)])],
+             how=("хаалтыг нээгээд нэгтгэсэн.", "he opened the bracket and combined."),
+             err=("$-3(m - 1)$ гэдгийг $-3m - 3$ гэж нээжээ. Хасах тэмдэгтэй тоогоор үржүүлэхэд $-1$ нь $+3$ болно.",
+                  "$-3(m - 1)$ became $-3m - 3$. Multiplying by a negative number turns $-1$ into $+3$.")),
+        dict(name=("Энхжин", "Enkhjin"), lines=[Eqn([K(7), V(-3), K(3)], [K(4)]), Eqn([K(10), V(-3)], [K(4)]), Eqn([V(-3)], [K(-6)]), Eqn([V(1)], [K(2)])],
+             how=("хаалтыг нээгээд нэгтгэсэн.", "she opened the bracket and combined."), err=None))))
+    r2 = Eqn([BR(2, V(2), K(1), V(1))], [K(50)])
+    f2 = geo_poly([(0, 0), (6, 0), (6, 2.5), (0, 2.5)], ["2x + 1", "x", "", ""])
+    I.append(("geo", "figure", 4, lambda vid, i: t_story(vid, i, S(
+        "volleyball", var="x", eq=r2, fig=f2,
+        st=(f"Тэрэлжийн амралтын газарт тэгш өнцөгт волейболын талбай бий. Зурагт талбайн урт {M('2x + 1')} м, өргөн {M('x')} м. "
+            f"Талбайн периметр {M(50)} м бол {M('x')} хэд вэ?",
+            f"A holiday camp at Terelj has a rectangular volleyball court. In the picture its length is $2x + 1$ m and its width $x$ m. "
+            f"The perimeter is ${50}$ m. Find $x$."),
+        write=(f"Периметр нь урт, өргөний нийлбэрийн хоёр дахин: {M('2(2x + 1 + x)')}. Энэ нь {M(50)} тул {M(r2.tex())}.",
+               "Тэгш өнцөгтийн урт хоёр, өргөн хоёр удаа орно.",
+               f"The perimeter is twice length plus width: $2(2x + 1 + x)$. It equals ${50}$: ${r2.tex()}$.",
+               "In a rectangle the length and the width each appear twice.",
+               f"Периметрээс {M(r2.tex())} гарна.", f"The perimeter gives ${r2.tex()}$."),
+        answer=(f"{M('x = 8')}: өргөн {M(8)} м, урт {M(17)} м.", f"$x = 8$: the width is ${8}$ m and the length ${17}$ m."),
+        hint1=("Урт, өргөнийг нэмээд хоёр дахин авбал периметр гарна. Тэгшитгэлээ бичээрэй.",
+               "Add length and width and double it to get the perimeter. Write the equation."),
+        wrongs=[(Eqn([V(2), K(1), V(1)], [K(50)]), "$2x + 1 + x = 50$ гэж бичсэн бол хоёр талыг л нэмжээ. Хоёр дахин авах ёстой.",
+                 "Writing $2x + 1 + x = 50$ adds only two sides; it must be doubled.", "missed-part-of-total"),
+                (17, "$17$ бол талбайн урт. Асуулт $x$-ийг, өөрөөр хэлбэл өргөнийг асууж байна.", "$17$ is the length. The question asks for $x$, the width.",
+                 "answered-wrong-quantity"),
+                (Eqn([BR(2, V(2), K(1)), V(1)], [K(50)]), "$2(2x + 1) + x = 50$ гэж бичсэн бол өргөнийг нэг л удаа авчээ. Өргөн ч хоёр удаа орно.",
+                 "Writing $2(2x + 1) + x = 50$ counts the width once. It appears twice too.", "missed-part-of-total")]))))
+    return I
+
+
+def part_E():
+    I = []
+    e1 = Eqn([V(5), K(-3)], [V(2), K(9)])
+    I.append(("bare", "direct", 1, lambda vid, i: t_bare(vid, i, e1, O_BS, hint_both("x"))))
+    I.append(("box", "direct", 2, lambda vid, i: t_box(vid, i, Eqn([K(7), V(-2)], [V(1), K(1)]), O_BS)))
+    e3 = Eqn([V(3), K(7)], [V(5), K(-9)], "y")
+    I.append(("bare", "direct", 2, lambda vid, i: t_bare(vid, i, e3, O_BS, hint_both("y"))))
+    ph = Eqn([K(4000), V(2000)], [K(8000), V(1000)], "g")
+    I.append(("graph", "figure", 2, lambda vid, i: t_story(vid, i, plan_story(
+        "phone-plans", ph, "g",
+        (f"Номин утасны хоёр багцаас сонгох гэж байна. А багц: сард {tg(4000)}, дээр нь гигабайт тутамд {tg(2000)}. "
+         f"Б багц: сард {tg(8000)}, дээр нь гигабайт тутамд {tg(1000)}. Графикт хоёр багцын төлбөрийг үзүүлэв. "
+         f"Хэдэн гигабайт хэрэглэвэл хоёр багцын төлбөр тэнцүү вэ?",
+         f"Nomin is choosing between two phone plans. Plan A: {tg(4000)} a month plus {tg(2000)} per gigabyte. "
+         f"Plan B: {tg(8000)} a month plus {tg(1000)} per gigabyte. The graph shows both costs. "
+         f"For how many gigabytes do the two plans cost the same?"),
+        (f"Графикийг уншъя: А багцын шулуун {W(4000, 'abl')} эхэлж гигабайт бүрд {W(2000, 'ins')} өсдөг, Б багцынх "
+         f"{W(8000, 'abl')} эхэлж {W(1000, 'ins')} өсдөг. Гигабайтыг {M('g')} гэвэл {M(ph.tex())}.",
+         "Хоёр шулууны огтлолцох цэг нь хоёр төлбөр тэнцэх үе. Тэнцүү гэдгийг тэгшитгэл болгож бичнэ.",
+         f"Read the graph: plan A starts at ${ntex(4000)}$ and rises ${ntex(2000)}$ per gigabyte, plan B starts at "
+         f"${ntex(8000)}$ and rises ${ntex(1000)}$. With $g$ gigabytes: ${ph.tex()}$.",
+         "Where the two lines cross, the costs are equal; writing «equal» gives the equation.",
+         f"Гигабайтыг {M('g')} гэвэл {M(ph.tex())}.", f"With $g$ gigabytes: ${ph.tex()}$."),
+        (f"{M(4)} гигабайтад хоёр багц тэнцүү.", f"At ${4}$ gigabytes the plans cost the same."),
+        ("Багц бүрийн төлбөрийг $g$ гигабайтаар бичээд хоёуланг тэнцүүлээрэй.", "Write each plan's cost for $g$ gigabytes and set them equal."),
+        [(Eqn([K(4000), V(2000)], [K(8000)], "g"), "Б багцын гигабайтын төлбөрийг тооцоогүй бололтой: баруун талд $1\\,000g$ дутуу байна.",
+          "Plan B's per-gigabyte charge was left out: the right side is missing $1\\,000g$.", "missed-part-of-total"),
+         (12, "$4\\,000$-ыг нөгөө тал руу шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй бололтой: $1\\,000g = 8\\,000 + 4\\,000$ гэж бичвэл ийм хариу гарна.",
+          "It looks as if $4\\,000$ crossed without changing sign: $1\\,000g = 8\\,000 + 4\\,000$ leads here.", "sign-not-changed-moving-term"),
+         (Fr(4, 3), "$1\\,000g$-ийг шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй бололтой: тэгвэл зүүн талд $3\\,000g$ гарна. Хоёр талаас $1\\,000g$-ийг хасах ёстой.",
+          "It looks as if $1\\,000g$ crossed without changing sign, giving $3\\,000g$. Subtract $1\\,000g$ from both sides.",
+          "sign-not-changed-moving-term")],
+        lines2(ph, range(7), ("А багц", "Б багц"), ("Plan A", "Plan B"), ("₮", "₮"), ("гигабайт", "gigabytes"))))))
+    I.append(("friends", "compare", 3, lambda vid, i: t_friends(
+        vid, i, Eqn([V(8), K(-3)], [V(5), K(12)], "m"),
+        dict(name=("Бат", "Bat"), lines=[Eqn([V(3), K(-3)], [K(12)]), Eqn([V(3)], [K(15)]), Eqn([V(1)], [K(5)])],
+             how=("$m$-тэй гишүүдийг зүүн талд цуглуулсан.", "he gathered the $m$-terms on the left."), err=None),
+        dict(name=("Сарнай", "Sarnai"), lines=[Eqn([K(-3)], [V(-3), K(12)]), Eqn([K(-15)], [V(-3)]), Eqn([V(1)], [K(5)])],
+             how=("хоёр талаас $8m$-ийг хасаж, $m$-тэй гишүүдийг баруун талд цуглуулсан.",
+                  "she subtracted $8m$ and gathered the $m$-terms on the right."), err=None))))
+    I.append(("next", "compare", 3, lambda vid, i: t_next(vid, i, Eqn([V(-2), K(8)], [V(-5), K(-7)], "y"), Eqn([V(-2), K(8)], [V(-5), K(-7)], "y"))))
+    e7 = Eqn([V(2), K(11)], [V(-3), K(1)], "n")
+    I.append(("bare", "direct", 3, lambda vid, i: t_bare(vid, i, e7, O_BS, hint_both("n"))))
+    tx = Eqn([K(2000), V(1000)], [K(4500), V(500)], "d")
+    I.append(("graph", "figure", 3, lambda vid, i: t_story(vid, i, plan_story(
+        "taxi", tx, "d",
+        (f"Дарханд хоёр такси үйлчилдэг. Эхнийх нь суухад {tg(2000)}, километр тутамд {tg(1000)}. Хоёр дахь нь суухад {tg(4500)}, "
+         f"километр тутамд {tg(500)}. Графикт хоёр таксины үнийг үзүүлэв. Хэдэн км явахад хоёр такси ижил үнэтэй вэ?",
+         f"Two taxi companies work in Darkhan. The first charges {tg(2000)} to get in and {tg(1000)} per km; the second "
+         f"{tg(4500)} to get in and {tg(500)} per km. The graph shows both fares. For how many km do they cost the same?"),
+        (f"Графикаас: эхний такси {W(2000, 'abl')}, хоёр дахь нь {W(4500, 'abl')} эхэлж, км бүрд {W(1000, 'ins')} ба "
+         f"{W(500, 'ins')} нэмэгдэнэ. Км-ийг {M('d')} гэвэл {M(tx.tex())}.",
+         "Суух төлбөр нэг л удаа, км тутмын үнэ км-ийн тоогоор үржигдэнэ.",
+         f"From the graph: the first fare starts at ${ntex(2000)}$, the second at ${ntex(4500)}$, rising ${ntex(1000)}$ and "
+         f"${ntex(500)}$ per km. With $d$ km: ${tx.tex()}$.",
+         "The pick-up charge counts once; the price per km is multiplied by the kilometres.",
+         f"Км-ийг {M('d')} гэвэл {M(tx.tex())}.", f"With $d$ km: ${tx.tex()}$."),
+        (f"{M(5)} км явахад хоёулаа {tg(7000)}.", f"At ${5}$ km both cost {tg(7000)}."),
+        ("Такси бүрийн үнийг $d$ км-ээр бичээд тэнцүүлээрэй.", "Write each fare for $d$ km and set them equal."),
+        [(Eqn([K(2000), V(1000)], [K(4500)], "d"), "Хоёр дахь таксины км тутмын төлбөрийг мартсан бололтой: баруун талд $500d$ дутуу.",
+          "The second taxi's per-km charge is missing: the right side needs $500d$.", "missed-part-of-total"),
+         (13, "$2\\,000$-ыг нөгөө тал руу шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй бололтой: $500d = 4\\,500 + 2\\,000$ гэж бичвэл ийм хариу гарна.",
+          "It looks as if $2\\,000$ crossed without changing sign: $500d = 4\\,500 + 2\\,000$ leads here.", "sign-not-changed-moving-term"),
+         (Eqn([V(1000)], [V(500)], "d"), "Суух төлбөрийг хоёуланд нь тооцоогүй бололтой. Суух төлбөр нь графикийн эхлэх цэг.",
+          "Both pick-up charges were left out; they are where the lines start.", "missed-starting-amount")],
+        lines2(tx, range(8), ("1-р такси", "2-р такси"), ("Taxi 1", "Taxi 2"), ("₮", "₮"), ("км", "km"))))))
+    I.append(("box", "direct", 3, lambda vid, i: t_box(vid, i, Eqn([V(4), K(5)], [V(1), K(6)]), O_BS)))
+    I.append(("param", "reverse", 4, lambda vid, i: t_param(vid, i, ("kx + 4 = 2x + 10", "{k}*{x} + 4 = 2*{x} + 10"), 3,
+                                                           Eqn([V(3), K(4)], [K(16)], "k"), O_TS)))
+    pl = Eqn([K(20000), V(3000)], [V(8000)], "v")
+    I.append(("graph", "figure", 4, lambda vid, i: t_story(vid, i, plan_story(
+        "pool", pl, "v",
+        (f"Улаанбаатарын усан бассейнд хоёр төрлийн тасалбар бий. Гишүүнчлэлтэй бол сард {tg(20000)}, дээр нь орох бүрд {tg(3000)}. "
+         f"Гишүүнчлэлгүй бол орох бүрд {tg(8000)}. Графикт хоёр төрлийн зардлыг үзүүлэв. Сард хэдэн удаа орвол хоёр зардал тэнцүү вэ?",
+         f"A swimming pool in Ulaanbaatar has two kinds of ticket. With a membership: {tg(20000)} a month plus {tg(3000)} a visit. "
+         f"Without: {tg(8000)} a visit. The graph shows both costs. For how many visits a month are they equal?"),
+        (f"Графикаас: гишүүнчлэлтэй зардал {W(20000, 'abl')} эхэлж удаа бүрд {W(3000, 'ins')} өсдөг, гишүүнчлэлгүй нь "
+         f"{W(0, 'abl')} эхэлж {W(8000, 'ins')} өсдөг. Удааг {M('v')} гэвэл {M(pl.tex())}.",
+         "Сарын төлбөр нэг удаа, нэг удаагийн үнэ орсон тоогоор үржигдэнэ.",
+         f"From the graph: with a membership the cost starts at ${ntex(20000)}$ and rises ${ntex(3000)}$ a visit; without, it "
+         f"starts at $0$ and rises ${ntex(8000)}$. With $v$ visits: ${pl.tex()}$.",
+         "The monthly fee counts once; the price per visit is multiplied by the visits.",
+         f"Удааг {M('v')} гэвэл {M(pl.tex())}.", f"With $v$ visits: ${pl.tex()}$."),
+        (f"Сард {M(4)} удаа орвол хоёулаа {tg(32000)}.", f"At ${4}$ visits both cost {tg(32000)}."),
+        ("Хоёр төрлийн зардлыг $v$ удаагаар бичээд тэнцүүлээрэй.", "Write both costs for $v$ visits and set them equal."),
+        [(Eqn([V(3000)], [V(8000)], "v"), "Гишүүнчлэлийн сарын төлбөрийг мартсан бололтой: зүүн талд $20\\,000$ дутуу.",
+          "The monthly membership fee is missing on the left: $20\\,000$.", "missed-starting-amount"),
+         (Eqn([K(20000)], [V(8000)], "v"), "Гишүүнчлэлтэй үед ч орох бүрд $3\\,000$₮ төлдгийг мартжээ: $20\\,000 + 3\\,000v$.",
+          "Members still pay $3\\,000$₮ a visit: $20\\,000 + 3\\,000v$.", "missed-part-of-total"),
+         (Fr(20, 11), "$3\\,000v$-ийг шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй бололтой: тэгвэл $11\\,000v$ гарна. Хоёр талаас $3\\,000v$-ийг хасна.",
+          "It looks as if $3\\,000v$ crossed without changing sign, giving $11\\,000v$. Subtract $3\\,000v$ from both sides.",
+          "sign-not-changed-moving-term")],
+        lines2(pl, range(7), ("Гишүүнчлэлтэй", "Гишүүнчлэлгүй"), ("Member", "No membership"), ("₮", "₮"), ("удаа", "visits"))))))
+    I.append(("param", "reverse", 4, lambda vid, i: t_param(
+        vid, i, ("x - k = 3x + 1", "{x} - {k} = 3*{x} + 1"), -2, Eqn([K(-2), V(-1)], [K(-5)], "k"), O_TS,
+        extra=[(-5, "$x = -2$ утгыг хасах тэмдэггүй, $2$ гэж орлуулсан бололтой: $2 - k = 7$ гарна. Сөрөг тоог хаалтанд хийж орлуулна: $-2 - k = -5$.",
+                "It looks as if $2$ was substituted instead of $-2$, giving $2 - k = 7$. Put the negative value in: $-2 - k = -5$.",
+                "dropped-negative-substituting")])))
+    return I
+
+
+def part_F():
+    I = []
+    pz = Eqn([V(4), K(9)], [K(1)])
+    I.append(("puzzle", "modelling", 1, lambda vid, i: t_story(vid, i, S(
+        "think-of-a-number", var="x", eq=pz,
+        st=(f"Энхжин: «Би нэг тоо бодлоо. Түүнийг {W(4, 'ins')} үржүүлээд {W(9, 'acc')} нэмэхэд {M(1)} гарсан.» Энхжин ямар тоо бодсон бэ?",
+            f"Enkhjin says: «I thought of a number, multiplied it by ${4}$ and added ${9}$. I got ${1}$.» What was her number?"),
+        write=(f"Бодсон тоог {M('x')} гэе. {W(4, 'ins')} үржүүлбэл {M('4x')}, {W(9, 'acc')} нэмбэл {M('4x + 9')}. Энэ нь {M(1)} тул {M(pz.tex())}.",
+               "Өгүүлбэрийн үйлдлүүдийг хэлсэн дарааллаар нь бичнэ: эхлээд үржүүлж, дараа нь нэмнэ.",
+               f"Call the number $x$. Times ${4}$ is $4x$; adding ${9}$ gives $4x + 9$. That is ${1}$: ${pz.tex()}$.",
+               "Write the operations in the order they are said: multiply first, then add.",
+               f"Тоог {M('x')} гэвэл {M(pz.tex())}.", f"With the number as $x$: ${pz.tex()}$."),
+        answer=(f"Энхжин {M(-2)} бодсон.", f"Her number was ${-2}$."),
+        hint1=("Бодсон тоог $x$ гэе. Түүнд юу хийснийг дарааллаар нь бичээрэй.", "Call the number $x$ and write what was done to it, in order."),
+        wrongs=[(Eqn([V(4), K(-9)], [K(1)]), "«Нэмэхэд» гэдгийг хасах гэж ойлгосон бололтой: $4x - 9 = 1$.",
+                 "«Added» was read as «subtracted»: $4x - 9 = 1$.", "added-subtracted-confused"),
+                (Eqn([BR(4, V(1), K(9))], [K(1)]), "$4(x + 9)$ гэж бичвэл эхлээд нэмээд дараа нь үржүүлсэн болно. Энхжин эхлээд үржүүлсэн.",
+                 "$4(x + 9)$ adds first and multiplies after. Enkhjin multiplied first.", "order-of-operations"),
+                (-8, "$4x = -8$ хүртэл зөв. Гэхдээ $-8$ нь $4x$: $4$-т хуваана.", "Up to $4x = -8$ is right, but that is $4x$: divide by $4$.",
+                 "stopped-before-dividing")]))))
+    k8 = Eqn([V(4), V(3)], [K(10500)])
+    I.append(("story", "modelling", 1, lambda vid, i: t_story(vid, i, S(
+        "khuushuur", var="x", eq=k8,
+        st=(f"Наадмаар Дорж {M(4)}, Энхжин {M(3)} хуушуур авав. Хуушуур бүр ижил үнэтэй. Тэд нийлээд {tg(10500)} төлсөн бол нэг хуушуур хэдэн төгрөг вэ?",
+            f"At Naadam Dorj bought ${4}$ khuushuur and Enkhjin ${3}$. They all cost the same, and together they paid {tg(10500)}. "
+            f"How much is one khuushuur?"),
+        write=(f"Нэг хуушуурын үнийг {M('x')} гэе. Дорж {M('4x')}, Энхжин {M('3x')} төлсөн тул {M(k8.tex())}.",
+               "Ижил үнэтэй зүйлсийн зардлыг төсөөтэй гишүүд болгож нэгтгэнэ.",
+               f"Let one khuushuur cost $x$. Dorj paid $4x$ and Enkhjin $3x$, so ${k8.tex()}$.",
+               "Costs of identically priced items are like terms and add together.",
+               f"Нэг хуушуурыг {M('x')} гэвэл {M(k8.tex())}.", f"With one khuushuur as $x$: ${k8.tex()}$."),
+        answer=(f"Нэг хуушуур {tg(1500)}.", f"One khuushuur costs {tg(1500)}."),
+        hint1=("Нэг хуушуурын үнийг $x$ гэвэл хоёулаа нийт хэдэн хуушуур авсан бэ?", "If one khuushuur costs $x$, how many did they buy in all?"),
+        wrongs=[(Fr(10500, 4), "Зөвхөн Доржийн авсныг тоолсон бололтой. Хоёулаа нийлээд $7$ хуушуур авсан.",
+                 "Only Dorj's were counted. Together they bought $7$.", "missed-part-of-total"),
+                (Eqn([V(4), K(3)], [K(10500)]), "$4x + 3$ гэж бичсэн бол Энхжины хуушуурын тоог мөнгө мэт нэмжээ. Түүний төлсөн нь $3x$.",
+                 "Writing $4x + 3$ adds Enkhjin's count as if it were money. She paid $3x$.", "count-used-as-amount"),
+                (10500, "$7x = 10\\,500$ хүртэл зөв. Гэхдээ энэ нь нийт мөнгө: $7$-д хуваана.",
+                 "Up to $7x = 10\\,500$ is right, but that is the total: divide by $7$.", "stopped-before-dividing")]))))
+    I.append(("story", "modelling", 2, lambda vid, i: t_story(vid, i, dict(old_story(4), key=S("cinema")["key"], tags=STORY4_TAGS))))
+    I.append(("table", "figure", 2, lambda vid, i: t_table(
+        vid, i, 2, 3, 19, O_TS, head=(("км", "Төлбөр"), ("km", "Fare")),
+        text=(f"Улаанбаатарт таксины төлбөр явсан км-ээс хамаарна. Хүснэгтэд төлбөрийг мянган төгрөгөөр үзүүлэв. "
+              f"Нийт {M(19)} мянган төгрөг төлсөн бол хэдэн км явсан бэ?",
+              f"In Ulaanbaatar a taxi fare depends on the distance. The table gives fares in thousands of tögrög. "
+              f"A ride cost ${19}$ thousand. How many km was it?"),
+        answer=(f"{M(8)} км явсан.", f"It was ${8}$ km."))))
+    pg = Eqn([K(3), V(2)], [K(25)], "w")
+    I.append(("bars", "figure", 2, lambda vid, i: t_story(vid, i, S(
+        "plant", var="w", eq=pg, fig=bars(3, 2, [1, 2, 3, 4], lambda w_: f"{w_}-р долоо хоног", lambda w_: f"Week {w_}", ("см", "cm")),
+        st=(f"Номин цонхныхоо тавцан дээр ногоо ургуулж байна. Графикт ургамлын өндрийг долоо хоног бүрийн эцэст үзүүлэв. "
+            f"Ургамал ижил хурдаар ургавал хэд дэх долоо хоногийн эцэст {M(25)} см болох вэ?",
+            f"Nomin is growing a plant on her windowsill. The chart shows its height at the end of each week. If it keeps growing "
+            f"at the same rate, at the end of which week will it be ${25}$ cm?"),
+        write=(f"Графикаас: долоо хоног бүр {M('7 - 5 = 2')} см ургадаг, тэгэхээр тарихад {M('5 - 2 = 3')} см байсан. Долоо хоногийг {M('w')} "
+               f"гэвэл {M(pg.tex())}.",
+               "Баганын өсөлт нь долоо хоногийн ургалт; эхлэлийг нэг алхам буцааж олно.",
+               f"From the chart: it grows $7 - 5 = 2$ cm a week, so it was $5 - 2 = 3$ cm at the start. After $w$ weeks: ${pg.tex()}$.",
+               "The rise from bar to bar is the weekly growth; step back once to find the start.",
+               f"Долоо хоногийг {M('w')} гэвэл {M(pg.tex())}.", f"With $w$ weeks: ${pg.tex()}$."),
+        answer=(f"{M(11)} дэх долоо хоногийн эцэст.", f"At the end of week ${11}$."),
+        hint1=("Багана бүр өмнөхөөсөө хэдэн см өндөр вэ? Эхлэхдээ хэдэн см байсан бэ?", "How many cm taller is each bar? How tall was it at the start?"),
+        wrongs=[(Eqn([K(5), V(2)], [K(25)], "w"), "Эхний баганын $5$-ыг эхлэл гэж авсан бололтой. $5$ бол $1$-р долоо хоногийн эцсийнх.",
+                 "The first bar's $5$ was taken as the start; it is the end of week $1$.", "misread-starting-value"),
+                (Fr(25, 2), "Эхний өндрийг тооцоогүй бололтой: $2w = 25$ гэж бичжээ.", "The starting height was left out: $2w = 25$.",
+                 "missed-starting-amount"),
+                (22, "$2w = 22$ хүртэл зөв. Гэхдээ $22$ нь см: $2$-т хуваавал долоо хоног гарна.",
+                 "Up to $2w = 22$ is right, but $22$ is centimetres: divide by $2$ for the weeks.", "stopped-before-dividing")]))))
+    bs = Eqn([K(20), V(60)], [K(380)], "t")
+    I.append(("graph", "figure", 3, lambda vid, i: t_story(vid, i, S(
+        "bus-erdenet", var="t", eq=bs, fig=line1(20, 60, range(5), ("км", "km"), ("цаг", "hours")),
+        st=(f"Автобус Улаанбаатараас Эрдэнэт рүү явж байна. Графикт автобус Улаанбаатараас хэдэн км явсныг цаг тутам үзүүлэв. "
+            f"Эрдэнэт хүртэл {M(380)} км бол хэдэн цагийн дараа хүрэх вэ?",
+            f"A bus is going from Ulaanbaatar to Erdenet. The graph shows how far from Ulaanbaatar it is, hour by hour. "
+            f"Erdenet is ${380}$ km away. After how many hours does the bus arrive?"),
+        write=(f"Графикаас: {M(0)} цагт автобус {M(20)} км-т байсан, цаг тутам {M('80 - 20 = 60')} км явдаг. Цагийг {M('t')} гэвэл "
+               f"{M(bs.tex())}.",
+               "Графикийн эхлэх утга нь анхны зай, цаг бүрийн өсөлт нь хурд.",
+               f"From the graph: at hour $0$ the bus was at $20$ km and it covers $80 - 20 = 60$ km an hour. With $t$ hours: ${bs.tex()}$.",
+               "The graph's starting value is the first distance; the rise each hour is the speed.",
+               f"Цагийг {M('t')} гэвэл {M(bs.tex())}.", f"With $t$ hours: ${bs.tex()}$."),
+        answer=(f"{M(6)} цагийн дараа хүрнэ.", f"It arrives after ${6}$ hours."),
+        hint1=("Графикаас автобусны эхлэх зай болон цагийн хурдыг уншаарай.", "Read the starting distance and the speed per hour off the graph."),
+        wrongs=[(Eqn([V(60)], [K(380)], "t"), "Эхний $20$ км-ийг тооцоогүй бололтой. Автобус $0$ цагт $20$ км-т байсан.",
+                 "The first $20$ km were left out: at hour $0$ the bus was already at $20$ km.", "missed-starting-amount"),
+                (Eqn([V(80)], [K(380)], "t"), "$1$ цагийн дараах $80$ км-ийг хурд гэж авсан байна. Хурд нь цаг бүрийн өсөлт: $60$.",
+                 "The $80$ km after one hour was taken as the speed. The speed is the rise per hour: $60$.", "misread-starting-value"),
+                (360, "$60t = 360$ хүртэл зөв. Гэхдээ $360$ нь км: $60$-д хуваавал цаг гарна.",
+                 "Up to $60t = 360$ is right, but $360$ is kilometres: divide by $60$ for hours.", "stopped-before-dividing")]))))
+    I.append(("write", "modelling", 3, lambda vid, i: t_write(vid, i, dict(old_story(7), key=S("school-trip")["key"], st_write=(
+        f"Сургуулийн {M(150)} сурагч Эрдэнэт рүү аялалд явна. {M(30)} сурагч микроавтобусаар, бусад нь том автобусаар явна. "
+        f"Нэг том автобусанд {M(40)} сурагч сууна. Том автобусны тоог {M('x')} гэвэл аль тэгшитгэл зөв бэ?",
+        f"${150}$ pupils are going to Erdenet. ${30}$ go by minibus and the rest by coach; a coach takes ${40}$. "
+        f"With $x$ coaches, which equation is right?"),
+        wrongs=[(Eqn([V(40)], [K(150)]), "Микроавтобусаар явах $30$ сурагчийг тооцоогүй.", "The $30$ pupils in the minibus are left out.",
+                 "missed-part-of-total"),
+                (Eqn([V(40)], [K(150), K(30)]), "$30$-ыг хасахын оронд нэмсэн: тэд том автобусанд суухгүй.",
+                 "The $30$ are added instead of subtracted: they do not ride in a coach.", "added-subtracted-confused"),
+                (Eqn([V(40), K(-30)], [K(150)]), "Микроавтобусны сурагчдыг хассан байна. Тэд нийт $150$-д ордог тул нэмнэ: $40x + 30 = 150$.",
+                 "This subtracts the minibus pupils; they are part of the $150$, so they are added: $40x + 30 = 150$.",
+                 "added-subtracted-confused")]))))
+    I.append(("story", "modelling", 3, lambda vid, i: t_story(vid, i, dict(
+        old_story(1), key=S("sister-brother")["key"],
+        tags=["answered-wrong-quantity", "missed-part-of-total", "ignored-difference"]))))
+    sb = Eqn([V("0.75")], [K(54000)])
+    I.append(("percent", "recall", 3, lambda vid, i: t_story(vid, i, S(
+        "boots-sale", var="x", eq=sb,
+        st=(f"Өвлийн гутал {M('25' + chr(92) + '%')}-ийн хямдралтай {tg(54000)} болжээ. Гутлын хямдралаас өмнөх үнэ хэд байсан бэ?",
+            f"Winter boots cost {tg(54000)} after a ${'25' + chr(92) + '%'}$ discount. What did they cost before the discount?"),
+        write=(f"Хямдралаас өмнөх үнийг {M('x')} гэе. {M('25' + chr(92) + '%')} хямдарвал {M('75' + chr(92) + '%')} буюу {M('0.75x')} үлдэнэ. "
+               f"Иймд {M(sb.tex())}.",
+               "Хямдралын дараах үнэ нь анхны үнийн үлдсэн хувь.",
+               f"Let the price before be $x$. After ${'25' + chr(92) + '%'}$ off, ${'75' + chr(92) + '%'}$ is left: $0.75x$. So ${sb.tex()}$.",
+               "The sale price is the remaining percent of the original price.",
+               f"Анхны үнийг {M('x')} гэвэл {M(sb.tex())}.", f"With the original price $x$: ${sb.tex()}$."),
+        answer=(f"Хямдралаас өмнө {tg(72000)} байсан.", f"Before the discount they cost {tg(72000)}."),
+        hint1=("Хямдралын дараа анхны үнийн хэдэн хувь үлдэх вэ?", "After the discount, what percent of the original price is left?"),
+        wrongs=[(67500, "$54\\,000$ дээр түүний $25\\%$-ийг нэмсэн бололтой. Хямдрал анхны үнээс тооцогдоно: $0.75x = 54\\,000$.",
+                 "That adds $25\\%$ of $54\\,000$. The discount is taken from the original price: $0.75x = 54\\,000$.", "percent-of-wrong-base"),
+                (Eqn([V("0.25")], [K(54000)]), "$0.25x = 54\\,000$ гэж бичсэн бол хямдарсан хэсгийг төлсөн мэт үзжээ.",
+                 "Writing $0.25x = 54\\,000$ treats the discount as the price paid.", "discount-as-price"),
+                (40500, "$54\\,000$-аас дахин $25\\%$ хассан байна: хямдралтай үнийг дахин хямдруулсан хэрэг.",
+                 "That takes $25\\%$ off $54\\,000$ again: the sale price discounted twice.", "percent-of-wrong-base")]))))
+    I.append(("table", "figure", 3, lambda vid, i: t_table(
+        vid, i, 3, -12, 6, O_TS, head=(("Цаг", "Температур"), ("Hour", "Temperature")),
+        text=(f"Өвлийн өглөө агаар цаг тутам ижил хэмжээгээр дулаарч байна. Хүснэгтэд өглөөний {M(8)} цагаас хойш цаг бүрийн "
+              f"температурыг градусаар үзүүлэв. Хэдэн цагийн дараа {M(6)} градус болох вэ?",
+              f"On a winter morning it warms up by the same amount every hour. The table shows the temperature in degrees each hour "
+              f"from ${8}$ o'clock. After how many hours will it be ${6}$ degrees?"),
+        answer=(f"{M(6)} цагийн дараа.", f"After ${6}$ hours."))))
+    bt = Eqn([K(100), V(-12)], [K(16)], "h")
+    I.append(("graph", "figure", 4, lambda vid, i: t_story(vid, i, S(
+        "battery", var="h", eq=bt, fig=line1(100, -12, range(5), ("%", "%"), ("цаг", "hours")),
+        st=(f"Сарнайн утасны цэнэг цаг тутам ижил хэмжээгээр багасч байна. Графикт цэнэгийг хувиар үзүүлэв. "
+            f"Хэдэн цагийн дараа цэнэг {M('16' + chr(92) + '%')} болох вэ?",
+            f"Sarnai's phone battery drops by the same amount every hour. The graph shows the charge in percent. "
+            f"After how many hours will it be at ${'16' + chr(92) + '%'}$?"),
+        write=(f"Графикаас: цэнэг {M('100' + chr(92) + '%')}-иас эхэлж цаг тутам {M('100 - 88 = 12')} хувиар багасдаг. Цагийг {M('h')} "
+               f"гэвэл {M(bt.tex())}.",
+               "Багасаж байгаа тул цагийн өөрчлөлт хасах тэмдэгтэй.",
+               f"From the graph: the charge starts at $100\\%$ and drops $100 - 88 = 12$ points an hour. With $h$ hours: ${bt.tex()}$.",
+               "It is going down, so the change per hour carries a minus sign.",
+               f"Цагийг {M('h')} гэвэл {M(bt.tex())}.", f"With $h$ hours: ${bt.tex()}$."),
+        answer=(f"{M(7)} цагийн дараа.", f"After ${7}$ hours."),
+        hint1=("Графикаас эхний цэнэг болон цаг тутмын бууралтыг уншаарай.", "Read the starting charge and the drop per hour off the graph."),
+        wrongs=[(-7, "$-12$-т хуваахдаа хасах тэмдгийг алдсан бололтой: хасахыг хасахад хуваавал нэмэх гарна.",
+                 "The minus sign was lost dividing by $-12$: a negative divided by a negative is positive.", "lost-sign-dividing-by-negative"),
+                (Fr(-29, 3), "$100$-г нөгөө тал руу шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй бололтой: $-12h = 16 + 100$.",
+                 "It looks as if $100$ crossed without changing sign: $-12h = 16 + 100$.", "sign-not-changed-moving-term"),
+                (84, "$-12h = -84$ хүртэл зөв. Гэхдээ $84$ нь хувь: $-12$-т хуваавал цаг гарна.",
+                 "Up to $-12h = -84$ is right, but $84$ is percent: divide by $-12$ for hours.", "stopped-before-dividing")]))))
+    I.append(("write", "modelling", 4, lambda vid, i: t_write(vid, i, dict(old_story(8), key=S("father-son")["key"], st_write=(
+        f"Доржийн аав одоо Доржоос {M(3)} дахин ахмад. {M(10)} жилийн дараа аав нь Доржоос яг {M(2)} дахин ахмад болно. "
+        f"Доржийн одоогийн насыг {M('x')} гэвэл аль тэгшитгэл зөв бэ?",
+        f"Dorj's father is now ${3}$ times as old as Dorj. In ${10}$ years he will be exactly ${2}$ times as old. "
+        f"With Dorj's age now as $x$, which equation is right?"),
+        wrongs=[(Eqn([V(3)], [BR(2, V(1), K(10))]), "Аавын насанд $10$ нэмээгүй байна: арван жилийн дараа аав ч мөн ахина.",
+                 "The father's age is missing the added $10$: he gets ten years older too.", "missed-part-of-total"),
+                (Eqn([V(3), K(10)], [V(2), K(10)]), "$2$-оор зөвхөн $x$-ийг үржүүлжээ. Доржийн тэр үеийн нас бүхлээрээ хоёр дахин: $2(x + 10)$.",
+                 "Only the $x$ is doubled. Dorj's whole age then is doubled: $2(x + 10)$.", "distribute-first-term-only"),
+                (Eqn([V(3), K(10)], [V(2)]), "Доржийн насанд $10$ нэмэхээ мартжээ: арван жилийн дараа Дорж $x + 10$ настай.",
+                 "Dorj's age is missing the added $10$: in ten years he is $x + 10$.", "missed-part-of-total")]))))
+    return I
+
+
+def part_G():
+    C = find_error_cases()
+    I = []
+    I.append(("find_error", "find-the-mistake", 2, lambda vid, i: find_error_variant(vid, i, C[5])))
+    I.append(("diagnose", "find-the-mistake", 2, lambda vid, i: t_diagnose(vid, i, C[6], "combine")))
+    I.append(("claim", "compare", 2, lambda vid, i: t_claim(vid, i, "m", subst_cases()[0], ("Номин", "Nomin"))))
+    I.append(("find_error", "find-the-mistake", 3, lambda vid, i: find_error_variant(vid, i, C[0])))
+    I.append(("friends", "find-the-mistake", 3, lambda vid, i: t_friends(
+        vid, i, Eqn([V(5), K(-4)], [V(2), K(11)], "y"),
+        dict(name=("Тэмүүлэн", "Temuulen"), lines=[Eqn([V(3), K(-4)], [K(11)]), Eqn([V(3)], [K(7)]), Eqn([V(1)], [K(Fr(7, 3))])],
+             how=("$y$-тэй гишүүдийг зүүн талд цуглуулсан.", "he gathered the $y$-terms on the left."),
+             err=(f"{W(-4, 'acc')} шилжүүлэхдээ тэмдгийг нь өөрчлөөгүй: $11 - 4$ гэж бодсон. $3y = 11 + 4 = 15$ байх ёстой.",
+                  "the $-4$ crossed without changing sign, giving $11 - 4$. It should be $3y = 11 + 4 = 15$.")),
+        dict(name=("Энхжин", "Enkhjin"), lines=[Eqn([K(-4)], [V(-3), K(11)]), Eqn([K(-15)], [V(-3)]), Eqn([V(1)], [K(5)])],
+             how=("хоёр талаас $5y$-ийг хасаж, $y$-тэй гишүүдийг баруун талд цуглуулсан.",
+                  "she subtracted $5y$ and gathered the $y$-terms on the right."), err=None))))
+    I.append(("correct_line", "find-the-mistake", 3, lambda vid, i: t_correct_line(
+        vid, i, Eqn([BR(4, V(1), K(3)), BR(-1, V(1), K(-6))], [BR(2, V(1), K(7)), K(1)]), O_MS)))
+    I.append(("diagnose", "find-the-mistake", 3, lambda vid, i: t_diagnose(vid, i, C[7], "sign")))
+    I.append(("find_error", "find-the-mistake", 4, lambda vid, i: find_error_variant(vid, i, C[3])))
+    I.append(("friends", "find-the-mistake", 4, lambda vid, i: t_friends(
+        vid, i, Eqn([FR(2, V(1)), K(1)], [FR(3, V(1)), K(2)]),
+        dict(name=("Номин", "Nomin"), lines=[Eqn([V(3), K(6)], [V(2), K(12)]), Eqn([V(1), K(6)], [K(12)]), Eqn([V(1)], [K(6)])],
+             how=(f"хоёр талыг {W(6, 'ins')} үржүүлсэн.", "she multiplied both sides by $6$."), err=None),
+        dict(name=("Дорж", "Dorj"), lines=[Eqn([V(3), K(1)], [V(2), K(2)]), Eqn([V(1), K(1)], [K(2)]), Eqn([V(1)], [K(1)])],
+             how=(f"хоёр талыг {W(6, 'ins')} үржүүлсэн.", "he multiplied both sides by $6$."),
+             err=(f"$1$ ба {W(2, 'acc')} {W(6, 'ins')} үржүүлээгүй. $3x + 6 = 2x + 12$ байх ёстой.",
+                  "the $1$ and the $2$ were not multiplied by $6$. It should be $3x + 6 = 2x + 12$.")))))
+    I.append(("whose", "compare", 4, lambda vid, i: t_whose(vid, i, Eqn([BR(-2, V(1), K(3))], [K(4)], "n"),
+                                                           (("Сарнай", "Sarnai"), "neg_sign"), (("Дорж", "Dorj"), "neg"), O_ALL)))
+    return I
+
+
+def part_H():
+    I = []
+    e1 = Eqn([BR(3, V(2), K(-1)), BR(-2, V(1), K(4))], [BR(5, V(1), K(-3))])
+    I.append(("bare", "multi-step", 3, lambda vid, i: t_bare(vid, i, e1, O_MS, HINT_MS)))
+    I.append(("classify", "explain", 3, lambda vid, i: how_many_variant(vid, i, Eqn([BR(2, V(1), K(-1)), K(4)], [V(2), K(5)]))))
+    e3 = Eqn([FR(5, V(2), K(-1))], [FR(3, V(1), K(4))], "m")
+    I.append(("bare", "multi-step", 3, lambda vid, i: t_bare(vid, i, e3, O_MS, HINT_MS)))
+    cd = Eqn([K(20), V(-2)], [K(16), V(-2)], "t")
+    I.append(("graph", "figure", 3, lambda vid, i: t_story_count(
+        vid, i, cd,
+        (f"Хоёр лааг зэрэг асаав. Эхнийх нь {M(20)} см, хоёр дахь нь {M(16)} см урттай бөгөөд хоёулаа цагт {M(2)} см-ээр богиносно. "
+         f"Графикт тэдгээрийн уртыг цаг тутам үзүүлэв. Хоёр лааны урт хэзээ тэнцэх вэ?",
+         f"Two candles are lit together: one ${20}$ cm long, the other ${16}$ cm, and both burn ${2}$ cm an hour. The graph shows "
+         f"their lengths hour by hour. When are they the same length?"),
+        (f"Цагийг {M('t')} гэвэл эхний лаа {M('20 - 2t')}, хоёр дахь нь {M('16 - 2t')} см. Урт тэнцүү гэдгээс {M(cd.tex())}.",
+         f"After $t$ hours the candles are $20 - 2t$ and $16 - 2t$ cm long. Equal lengths: ${cd.tex()}$."),
+        CATS_TIME,
+        ("$20 = 16$ худал: хоёр лааны зөрүү үргэлж $4$ см хэвээр тул тэд хэзээ ч тэнцэхгүй.",
+         "$20 = 16$ is false: the difference stays $4$ cm, so they are never the same length."),
+        fig=lines2(cd, range(6), ("1-р лаа", "2-р лаа"), ("Candle 1", "Candle 2"), ("см", "cm"), ("цаг", "hours")))))
+    I.append(("make", "reverse", 4, lambda vid, i: t_make(
+        vid, i, "x", lambda k: Eqn([V(3), K(5)], [V(k), K(2)]), ("$3x + 5 = kx + 2$", "$3x + 5 = kx + 2$"), 3, "none",
+        [(-3, "Коэффициентууд эсрэг тэмдэгтэй байх ёстой гэж бодсон бол $k = -3$. Тэгвэл $3x + 5 = -3x + 2$ болж яг нэг шийдтэй.",
+          "Thinking the coefficients must be opposite gives $k = -3$, but then $3x + 5 = -3x + 2$ has exactly one solution.", "opposite-coefficients"),
+         (0, "$k = 0$ бол баруун талд $x$ алга болох ч зүүн талд $3x$ үлдэж, тэгшитгэл нэг шийдтэй.",
+          "$k = 0$ removes $x$ on the right only; $3x$ stays on the left, so there is one solution.", "cancelled-means-no-solution"),
+         (5, "$k$-г зүүн талын тогтмол $5$-тай тэнцүүлсэн бололтой. Харьцуулах ёстой нь $x$-ийн коэффициентууд.",
+          "$k$ was matched to the constant $5$. It is the coefficients of $x$ that must match.", "coefficient-constant-confused")])))
+    tri = Eqn([V(1), V(1), K(4), BR(2, V(1), K(-1))], [K(30)])
+    tf = geo_poly([(0, 0), (6, 0), (2, 3)], ["2(x - 1)", "x + 4", "x"])
+    I.append(("geo", "figure", 4, lambda vid, i: t_story(vid, i, S(
+        "triangle-fence", var="x", eq=tri, fig=tf,
+        st=(f"Хөвсгөлийн аялалын баазад гурвалжин хэлбэртэй хашаа бий. Зурагт талуудыг метрээр үзүүлэв: {M('x')}, {M('x + 4')} ба "
+            f"{M('2(x - 1)')}. Хашааны периметр {M(30)} м бол {M('x')} хэд вэ?",
+            f"A tourist camp at Khövsgöl has a triangular fence. The picture gives the sides in metres: $x$, $x + 4$ and $2(x - 1)$. "
+            f"The perimeter is ${30}$ m. Find $x$."),
+        write=(f"Периметр нь гурван талын нийлбэр: {M(tri.tex())}.", "Периметр бол бүх талын уртын нийлбэр.",
+               f"The perimeter is the sum of the three sides: ${tri.tex()}$.", "The perimeter is the sum of all the sides.",
+               f"Талуудыг нэмбэл {M(tri.tex())}.", f"Adding the sides: ${tri.tex()}$."),
+        answer=(f"{M('x = 7')}: талууд нь {M(7)}, {M(11)} ба {M(12)} м.", f"$x = 7$: the sides are ${7}$, ${11}$ and ${12}$ m."),
+        hint1=("Гурван талын уртыг нэмээд периметртэй тэнцүүлээрэй. Хаалтыг нээхээ мартуузай.",
+               "Add the three sides and set them equal to the perimeter. Remember to open the bracket."),
+        wrongs=[(Eqn([V(1), V(1), K(4), V(2), K(-1)], [K(30)]), "$2(x - 1)$ гэдгийг $2x - 1$ гэж нээжээ. $2$ нь хоёр гишүүнийг хоёуланг нь үржүүлнэ: $2x - 2$.",
+                 "$2(x - 1)$ was opened as $2x - 1$. The $2$ multiplies both terms: $2x - 2$.", "distribute-first-term-only"),
+                (12, "$12$ бол хамгийн урт тал $2(x - 1)$. Асуулт $x$-ийг асууж байна.", "$12$ is the longest side, $2(x - 1)$. The question asks for $x$.",
+                 "answered-wrong-quantity"),
+                (Eqn([V(1), K(4), BR(2, V(1), K(-1))], [K(30)]), "$x$ талыг нэмэхээ мартжээ: гурвалжин гурван талтай.",
+                 "The side $x$ was left out: a triangle has three sides.", "missed-part-of-total")]))))
+    I.append(("classify", "explain", 4, lambda vid, i: how_many_variant(vid, i, Eqn([BR(3, V(1), K(2))], [V(3), K(6)]))))
+    I.append(("explain_self", "explain", 4, lambda vid, i: t_self(
+        vid, i, ("$2x + 5 = 2x + 7$ тэгшитгэл яагаад шийдгүй вэ? Тайлбарлаад, өөрийн хариугаа загвар хариутай харьцуулаарай.",
+                 "Why does $2x + 5 = 2x + 7$ have no solution? Explain, then compare your answer with the model."),
+        ("Хоёр талаас $2x$-ийг хасвал $5 = 7$ үлдэнэ. Энэ нь худал бөгөөд үл мэдэгдэхээс хамаарахгүй тул ямар ч $x$ тохирохгүй",
+         "Subtracting $2x$ from both sides leaves $5 = 7$, which is false whatever $x$ is, so no value works"),
+        [("$x$ хорогдсон тул $x = 0$", "$x$ cancels, so $x = 0$",
+          "$x = 0$ үед зүүн тал $5$, баруун тал $7$: тэнцэхгүй. $x$ хорогдох нь $x = 0$ гэсэн үг биш.",
+          "At $x = 0$ the sides are $5$ and $7$: not equal. «$x$ cancels» does not mean $x = 0$.", "cancelled-means-x-zero"),
+         ("Хоёр талд $2x$ ижил тул төгсгөлгүй олон шийдтэй", "Both sides have $2x$, so there are infinitely many solutions",
+          "Төгсгөлгүй олон шийдтэй байхын тулд хоёр тал бүхэлдээ ижил байх ёстой. Энд тогтмолууд $5$ ба $7$ ялгаатай.",
+          "For infinitely many solutions the whole sides must match. Here the constants $5$ and $7$ differ.", "cancelled-means-infinite"),
+         ("Хоёр талыг $2$-т хуваавал $x + 5 = x + 7$ болж $x = 2$", "Dividing both sides by $2$ gives $x + 5 = x + 7$, so $x = 2$",
+          "Хоёр талыг $2$-т хуваахдаа $5$, $7$-г хуваагаагүй. Мөн $x + 5 = x + 7$-оос ч $5 = 7$ гарна: $x = 2$ гарахгүй.",
+          "Dividing by $2$ must divide the $5$ and the $7$ too, and even $x + 5 = x + 7$ leaves $5 = 7$: it never gives $x = 2$.",
+          "divided-one-term-only")],
+        [dict(mn=dict(do="Хоёр талаас $2x$-ийг хасъя: $5 = 7$.", why="Хоёр талд ижил үйлдэл хийхэд тэнцэтгэл алдагдахгүй."),
+              en=dict(do="Subtract $2x$ from both sides: $5 = 7$.", why="Doing the same to both sides keeps the balance.")),
+         dict(mn=dict(do="$5 = 7$ худал, мөн $x$ үлдээгүй тул ямар ч утга тэнцэтгэлийг үнэн болгохгүй."),
+              en=dict(do="$5 = 7$ is false and no $x$ is left, so no value can make it true.")),
+         dict(mn=dict(do="Шалгая: $x = 0$ үед $5$ ба $7$; $x = 1$ үед $7$ ба $9$. Зөрүү үргэлж $2$."),
+              en=dict(do="Check: at $x = 0$ the sides are $5$ and $7$; at $x = 1$, $7$ and $9$. They always differ by $2$."))],
+        [("Хоёр талаас ижил гишүүн хасвал юу үлдэх вэ?", "What is left if you subtract the same term from both sides?"),
+         ("$2x$-ийг хасвал $5 = 7$ үлдэнэ. Энэ үнэн үү?", "Subtracting $2x$ leaves $5 = 7$. Is that true?")],
+        ("Хоёр талаас $2x$-ийг хасахад $5 = 7$ гэсэн худал тэнцэтгэл үлддэг тул шийдгүй.",
+         "Subtracting $2x$ leaves the false $5 = 7$, so there is no solution."),
+        ["Ne(5, 7)", "Eq(2*0 + 5, 5)", "Eq(2*0 + 7, 7)", "Eq((2*1 + 7) - (2*1 + 5), 2)"])))
+    b2 = Eqn([K(30), V(60)], [V(60)], "t")
+    I.append(("graph", "figure", 4, lambda vid, i: t_story_count(
+        vid, i, b2,
+        (f"Дархан руу хоёр автобус нэгэн зэрэг хөдөлжээ. Эхнийх нь Улаанбаатараас {M(30)} км-ийн зайнаас, хоёр дахь нь Улаанбаатараас гарсан. "
+         f"Хоёулаа цагт {M(60)} км явна. Графикт хоёр автобусны Улаанбаатараас явсан зайг үзүүлэв. Хоёр дахь автобус эхнийхийг хэзээ гүйцэх вэ?",
+         f"Two buses set off for Darkhan at the same moment: the first from ${30}$ km outside Ulaanbaatar, the second from the city. "
+         f"Both travel ${60}$ km an hour. The graph shows their distances from Ulaanbaatar. When does the second bus catch the first?"),
+        (f"Цагийг {M('t')} гэвэл эхний автобус {M('30 + 60t')}, хоёр дахь нь {M('60t')} км-т байна. Гүйцэх үед зай тэнцүү: {M(b2.tex())}.",
+         f"After $t$ hours the buses are at $30 + 60t$ and $60t$ km. Catching up means equal distances: ${b2.tex()}$."),
+        {"one": ("Тодорхой нэг цагт гүйцнэ", "At one particular hour"), "none": ("Хэзээ ч гүйцэхгүй", "Never"),
+         "inf": ("Үргэлж зэрэгцэж явна", "They are always side by side"), "zero": ("Хөдлөх мөчид зэрэгцэнэ", "Only at the start")},
+        ("$30 = 0$ худал: хоёр автобусны зай үргэлж $30$ км хэвээр тул хоёр дахь нь хэзээ ч гүйцэхгүй.",
+         "$30 = 0$ is false: the gap stays $30$ km, so the second bus never catches up."),
+        fig=lines2(b2, range(5), ("1-р автобус", "2-р автобус"), ("Bus 1", "Bus 2"), ("км", "km"), ("цаг", "hours")))))
+    I.append(("make", "reverse", 4, lambda vid, i: t_make(
+        vid, i, "x", lambda k: Eqn([BR(2, V(1), K(4))], [V(2), K(k)]), ("$2(x + 4) = 2x + \\square$", "$2(x + 4) = 2x + \\square$"), 8, "all",
+        [(4, "Хаалтыг нээхдээ зөвхөн $x$-ийг $2$-оор үржүүлсэн бол $2x + 4$ гэж бодно. $2(x + 4) = 2x + 8$.",
+          "Multiplying only the $x$ by $2$ gives $2x + 4$. In fact $2(x + 4) = 2x + 8$.", "distribute-first-term-only"),
+         (6, "$2 + 4 = 6$ гэж нэмсэн бололтой. Хаалтын өмнөх тоо нэмэгддэггүй, үржүүлнэ: $2 \\cdot 4 = 8$.",
+          "That adds $2 + 4$. The number in front multiplies: $2 \\cdot 4 = 8$.", "added-instead-of-multiplied"),
+         (0, "Нүдэнд $0$ бичвэл $2x + 8 = 2x$ болж $8 = 0$ худал: шийдгүй болно.",
+          "With $0$ the equation is $2x + 8 = 2x$, so $8 = 0$: no solution at all.", "cancelled-means-infinite")])))
+    cp = Eqn([BR(2, V(1), K(1), V(Fr(1, 2)))], [K(20)])
+    cf = geo_poly([(0, 0), (6, 0), (6, 2.6), (0, 2.6)], ["x + 1", "x/2", "", ""])
+    I.append(("geo", "figure", 5, lambda vid, i: t_story(vid, i, S(
+        "carpet", var="x", eq=cp, fig=cf,
+        st=(f"Гэрийн шалан дээр тэгш өнцөгт хивс дэвсэв. Зурагт хивсний урт {M('x + 1')} м, өргөн {M(chr(92) + 'frac{x}{2}')} м. "
+            f"Хивсний периметр {M(20)} м бол {M('x')} хэд вэ?",
+            f"A rectangular carpet lies on a ger floor. In the picture its length is $x + 1$ m and its width $\\frac{{x}}{{2}}$ m. "
+            f"The perimeter is ${20}$ m. Find $x$."),
+        write=(f"Периметр нь урт, өргөний нийлбэрийн хоёр дахин тул {M(cp.tex())}.", "Тэгш өнцөгтийн урт, өргөн тус бүр хоёр удаа орно.",
+               f"The perimeter is twice length plus width: ${cp.tex()}$.", "Length and width each appear twice.",
+               f"Периметрээс {M(cp.tex())}.", f"The perimeter gives ${cp.tex()}$."),
+        answer=(f"{M('x = 6')}: урт {M(7)} м, өргөн {M(3)} м.", f"$x = 6$: the length is ${7}$ m and the width ${3}$ m."),
+        hint1=("Урт, өргөнийг нэмээд хоёр дахин авбал периметр. Хаалтыг нээхэд бутархай коэффициент алга болно.",
+               "Length plus width, doubled, is the perimeter. The fraction disappears when you open the bracket."),
+        wrongs=[(Eqn([V(1), K(1), V(Fr(1, 2))], [K(20)]), "Хоёр талыг л нэмжээ: периметрт урт, өргөн тус бүр хоёр удаа орно.",
+                 "Only two sides were added: length and width each appear twice.", "missed-part-of-total"),
+                (7, "$7$ бол хивсний урт. Асуулт $x$-ийг асууж байна.", "$7$ is the length. The question asks for $x$.", "answered-wrong-quantity"),
+                (3, "$3$ бол хивсний өргөн. Асуулт $x$-ийг асууж байна.", "$3$ is the width. The question asks for $x$.", "answered-wrong-quantity")]))))
+    I.append(("friends", "compare", 5, lambda vid, i: t_friends(
+        vid, i, Eqn([FR(2, V(1)), FR(4, V(1), K(-2))], [FR(3, V(1), K(1))], "a"),
+        dict(name=("Номин", "Nomin"), lines=[Eqn([V(6), BR(3, V(1), K(-2))], [BR(4, V(1), K(1))]), Eqn([V(6), V(3), K(-6)], [V(4), K(4)]),
+                                             Eqn([V(5)], [K(10)]), Eqn([V(1)], [K(2)])],
+             how=(f"хоёр талыг {W(12, 'ins')} үржүүлсэн.", "she multiplied both sides by $12$."), err=None),
+        dict(name=("Тэмүүлэн", "Temuulen"), lines=[Eqn([V(12), BR(6, V(1), K(-2))], [BR(8, V(1), K(1))]), Eqn([V(12), V(6), K(-12)], [V(8), K(8)]),
+                                                 Eqn([V(10)], [K(20)]), Eqn([V(1)], [K(2)])],
+             how=(f"хоёр талыг {W(24, 'ins')} үржүүлсэн.", "he multiplied both sides by $24$."), err=None))))
+    return I
+
+
+def part_Ch():
+    I = []
+    I.append(("explain", "explain", 4, lambda vid, i: t_explain(
+        vid, i, ("Сарнай: «$2(x + 3) = 2x + 6$ тэгшитгэлийн шийд нь $x = 0$.» Түүний хэлсэн нь зөв үү?",
+                 "Sarnai says: «The solution of $2(x + 3) = 2x + 6$ is $x = 0$.» Is she right?"),
+        ("Хагас зөв: $x = 0$ шийд мөн, гэвч ямар ч тоо шийд болно", "Partly: $x = 0$ is a solution, but so is every number"),
+        [("Бүрэн зөв: ганц шийд нь $x = 0$", "Completely: the only solution is $x = 0$",
+          "Хаалтыг нээвэл хоёр тал яг ижил $2x + 6$. Тиймээс $x = 0$ ганцаараа биш: жишээ нь $x = 5$ үед ч хоёр тал $16$.",
+          "Opened, both sides are $2x + 6$. So $x = 0$ is not alone: at $x = 5$ both sides are $16$ too.", "cancelled-means-x-zero"),
+         ("Буруу: $x$ хорогдох тул шийдгүй", "No: $x$ cancels, so there is no solution",
+          "$x$ хорогдоход $6 = 6$ үлдэнэ. Энэ үнэн тул шийдгүй биш, харин төгсгөлгүй олон шийдтэй.",
+          "When $x$ cancels, $6 = 6$ is left. That is true, so there are infinitely many solutions, not none.", "cancelled-means-no-solution"),
+         ("Буруу: шийд нь $x = -3$", "No: the solution is $x = -3$",
+          "Хаалтыг тэгтэй тэнцүүлж $x + 3 = 0$ гэж бодсон бололтой. Тэгшитгэлийн баруун тал $0$ биш, $2x + 6$.",
+          "That sets the bracket to zero, $x + 3 = 0$. The right side is $2x + 6$, not $0$.", "set-bracket-to-zero")],
+        [dict(mn=dict(do="Хаалтыг нээе: $2(x + 3) = 2x + 6$. Тэгшитгэл $2x + 6 = 2x + 6$ болно.",
+                      why="Хялбарчилсны дараа хоёр талыг харьцуулахад шийдийн тоо харагдана."),
+              en=dict(do="Open the bracket: $2(x + 3) = 2x + 6$. The equation reads $2x + 6 = 2x + 6$.",
+                      why="Comparing the sides after simplifying shows how many solutions there are.")),
+         dict(mn=dict(do="Хоёр тал яг ижил тул $x$-ийн дурын утга шийд. $x = 0$ нь тэдний нэг."),
+              en=dict(do="The sides are identical, so every value of $x$ is a solution; $x = 0$ is one of them.")),
+         dict(mn=dict(do="Шалгая: $x = 0$ үед $2 \\cdot 3 = 6$ ба $6$; $x = 5$ үед $2 \\cdot 8 = 16$ ба $16$."),
+              en=dict(do="Check: at $x = 0$, $2 \\cdot 3 = 6$ and $6$; at $x = 5$, $2 \\cdot 8 = 16$ and $16$."))],
+        [("Хаалтыг нээгээд хоёр талыг харьцуулаарай.", "Open the bracket and compare the two sides."),
+         ("$x = 0$ өөр өөр утгыг ч орлуулж үзээрэй, жишээ нь $x = 5$.", "Try another value besides $x = 0$, for example $x = 5$.")],
+        ("Хоёр тал ижил тул бүх тоо шийд: $x = 0$ нь ганц шийд биш.", "The sides are identical, so every number is a solution: $x = 0$ is not the only one."),
+        ["Eq(expand(2*(x + 3)), 2*x + 6)", "Eq(2*(0 + 3), 2*0 + 6)", "Eq(2*(5 + 3), 2*5 + 6)", "Ne(2*(-3 + 3), 0) | Eq(2*(-3 + 3), 0)"])))
+    I.append(("make", "reverse", 5, lambda vid, i: t_make(
+        vid, i, "x", lambda k: Eqn([BR(k, V(1), K(2))], [V(3), K(6)]), ("$k(x + 2) = 3x + 6$", "$k(x + 2) = 3x + 6$"), 3, "all",
+        [(6, "$k$-г тогтмол $6$-тай тэнцүүлсэн бололтой. $k = 6$ бол $6x + 12 = 3x + 6$ болж нэг шийдтэй.",
+          "$k$ was matched to the constant $6$; with $k = 6$, $6x + 12 = 3x + 6$ has one solution.", "coefficient-constant-confused"),
+         (-3, "Эсрэг тэмдэгтэй коэффициент сонгосон бол $-3x - 6 = 3x + 6$ болж нэг шийдтэй.",
+          "Choosing the opposite coefficient gives $-3x - 6 = 3x + 6$, which has one solution.", "opposite-coefficients"),
+         (1, "Хаалтыг нээхдээ $k$-г зөвхөн $x$-ээр үржүүлж $kx + 2$ гэвэл $k = 1$... гэхдээ $x + 2 = 3x + 6$ нэг шийдтэй.",
+          "Multiplying only the $x$ by $k$ suggests $kx + 2$, but $k = 1$ gives $x + 2 = 3x + 6$, which has one solution.",
+          "distribute-first-term-only")])))
+    ch = Eqn([FR(4, BR(3, V(1), K(-2))), FR(6, V(1), K(1), c=-1)], [FR(3, V(1)), K(1)])
+    I.append(("bare", "multi-step", 5, lambda vid, i: t_bare(vid, i, ch, O_MS, HINT_MS)))
+    mo = Eqn([K(40), V(-1)], [BR(5, K(10), V(-1))], "t")
+    I.append(("story", "modelling", 5, lambda vid, i: t_story(vid, i, S(
+        "mother-daughter", var="t", eq=mo,
+        st=(f"Ээж нь {M(40)}, охин нь {M(10)} настай. Хэдэн жилийн өмнө ээж нь охиноосоо яг {M(5)} дахин ахмад байсан бэ?",
+            f"A mother is ${40}$ and her daughter ${10}$. How many years ago was the mother exactly ${5}$ times as old as her daughter?"),
+        write=(f"{M('t')} жилийн өмнөх үеийг авъя. Тэр үед ээж {M('40 - t')}, охин {M('10 - t')} настай байсан. Ээж нь {M(5)} дахин ахмад тул "
+               f"{M(mo.tex())}.",
+               "«Өмнө» гэдэг тул хоёулангийнх нь наснаас {t} жилийг хасна; «дахин» гэдэг нь охины тэр үеийн насыг бүхлээр нь үржүүлнэ.".replace("{t}", "$t$"),
+               f"Go back $t$ years. Then the mother was $40 - t$ and the daughter $10 - t$. The mother was ${5}$ times as old: ${mo.tex()}$.",
+               "«Ago» subtracts $t$ from both ages; «times as old» multiplies the daughter's whole age then.",
+               f"{M('t')} жилийн өмнөх үеийг авбал {M(mo.tex())}.", f"Going back $t$ years: ${mo.tex()}$."),
+        answer=(f"{M(chr(92) + 'frac{5}{2}')} жилийн өмнө: ээж {M(chr(92) + 'frac{75}{2}')}, охин {M(chr(92) + 'frac{15}{2}')} настай байсан.",
+                "$\\frac{5}{2}$ years ago: the mother was $\\frac{75}{2}$ and the daughter $\\frac{15}{2}$."),
+        hint1=("$t$ жилийн өмнө хоёулаа хэдэн настай байсан бэ? «Дахин» гэдгийг тэгшитгэл болгоорой.",
+               "How old was each of them $t$ years ago? Turn «times as old» into an equation."),
+        wrongs=[(Eqn([K(40), V(1)], [BR(5, K(10), V(1))], "t"), "Жилийг хасахын оронд нэмсэн байна: энэ нь ирээдүйг асуусан хэрэг. «Өмнө» гэдэг тул хасна.",
+                 "The years were added instead of subtracted: that looks forward in time. «Ago» means subtract.", "time-direction-confused"),
+                (8, "$40$-ийг $5$-д хуваасан бол одоогийн ээжийн насыг охины тэр үеийн нас гэж үзжээ. Ээжийн нас ч бас өөрчлөгдөнө.",
+                 "Dividing $40$ by $5$ keeps the mother's age fixed. Her age changes too.", "missed-part-of-total"),
+                (Eqn([K(40)], [BR(5, K(10), V(-1))], "t"), "Зөвхөн охины наснаас жилийг хасжээ. Ээж ч бас $t$ жилийн өмнө залуу байсан: $40 - t$.",
+                 "Only the daughter's age went back. The mother was younger too: $40 - t$.", "missed-part-of-total")]))))
+    return I
+
+
+PARTS = [
+    dict(part="A", id="g8-two-step-g8", prefix="g8-ts", level=1, build=part_A,
+         title=("One- and two-step equations", "Нэг ба хоёр алхамт тэгшитгэл"),
+         instruction=("Undo what was done to the unknown, in reverse order, and check by substituting.",
+                      "Үл мэдэгдэхэд хийсэн үйлдлийг эсрэг дарааллаар буцааж, орлуулж шалгаарай."),
+         skill=("Undo the number first, then the coefficient.", "Эхлээд үл мэдэгдэхтэй хамт байгаа тоог, дараа нь коэффициентыг арилгана."),
+         method=(["Find the number added to or subtracted from the term with the unknown.",
+                  "Remove it from both sides: subtract what was added, add what was subtracted.",
+                  "Divide both sides by the coefficient (or multiply, if the unknown was divided).",
+                  "Put the answer back into the original equation and check."],
+                 ["Үл мэдэгдэхтэй гишүүн дээр ямар тоо нэмэгдсэн, хасагдсаныг ол.",
+                  "Тэр тоог хоёр талаас арилга: нэмэгдсэн бол хас, хасагдсан бол нэм.",
+                  "Хоёр талыг коэффициентэд хуваа (үл мэдэгдэх хуваагдсан бол үржүүл).",
+                  "Хариугаа анхны тэгшитгэлд орлуулж шалга."])),
+    dict(part="B", id="g8-fractions-decimals", prefix="g8-fx", level=1, build=part_B,
+         title=("Negatives, fractions and decimals", "Сөрөг тоо, бутархай, аравтын бутархайтай"),
+         instruction=("Same moves with messier numbers: clear fractions and decimals by multiplying every term.",
+                      "Ижил аргаар, гэхдээ төвөгтэй тоотой: бутархайгаас гишүүн бүрийг үржүүлж салаарай."),
+         skill=("Multiply every term by one number to clear the fractions, then solve as usual.",
+                "Гишүүн бүрийг нэг тоогоор үржүүлж бутархайгаас салаад, ердийнхөөрөө бодно."),
+         method=(["Find the least common denominator (for decimals take $10$ or $100$).",
+                  "Multiply every term on both sides by it, whole numbers included.",
+                  "Open any brackets that appear.",
+                  "Solve the equation without fractions and check in the original."],
+                 ["Хуваариудын хамгийн бага ерөнхий хуваарийг ол (аравтын бутархай бол $10$ эсвэл $100$-г ав).",
+                  "Хоёр талын гишүүн бүрийг, бүхэл тоог ч мөн, тэр тоогоор үржүүл.",
+                  "Хаалт гарвал нээ.",
+                  "Бутархайгүй болсон тэгшитгэлийг бодоод анхны тэгшитгэлд орлуулж шалга."])),
+    dict(part="C", id="g8-first-move", prefix="g8-fm", level=1, build=part_C,
+         title=("Drill: the first move", "Дасгал: эхний алхам"),
+         instruction=("Choose only the first move, the common denominator or the equation. Do not solve.",
+                      "Зөвхөн эхний алхам, ерөнхий хуваарь эсвэл тэгшитгэлийг сонго. Бодохгүй."),
+         skill=("Decide the first move before doing any arithmetic.", "Тооцоо хийхээсээ өмнө эхний алхмаа шийднэ."),
+         method=(["Look at what stands between you and the unknown.",
+                  "Fractions: find the least common denominator. Brackets: open them. Unknowns on both sides: gather them.",
+                  "Otherwise remove the number that sits with the unknown.",
+                  "For a story, name the unknown and turn each sentence into part of the equation."],
+                 ["Үл мэдэгдэхийг ганцааруулахад юу саад болж байгааг хар.",
+                  "Бутархай бол ерөнхий хуваарь ол, хаалт бол нээ, хоёр талд үл мэдэгдэх бол нэг талд цуглуул.",
+                  "Бусад тохиолдолд үл мэдэгдэхтэй хамт байгаа тоог арилга.",
+                  "Үгэн бодлогод үл мэдэгдэхийг нэрлээд өгүүлбэр бүрийг тэгшитгэлийн хэсэг болго."])),
+    dict(part="D", id="g8-brackets", prefix="g8-bk", level=2, build=part_D,
+         title=("Brackets and like terms", "Хаалт ба төсөөтэй гишүүд"),
+         instruction=("Open brackets with every sign, combine like terms on each side, then solve.",
+                      "Хаалтыг тэмдэгтэй нь нээж, тал бүрт төсөөтэй гишүүдийг нэгтгээд бодоорой."),
+         skill=("The number in front of a bracket multiplies every term inside it; like terms combine first.",
+                "Хаалтын өмнөх тоо доторх гишүүн бүрийг үржүүлнэ; төсөөтэй гишүүдийг эхлээд нэгтгэнэ."),
+         method=(["Open the bracket: multiply every term inside by the number in front.",
+                  "If that number is negative, every sign inside changes.",
+                  "Combine like terms on each side.",
+                  "Solve what is left and check in the original equation."],
+                 ["Хаалтыг нээ: хаалтын өмнөх тоогоор доторх гишүүн бүрийг үржүүл.",
+                  "Тэр тоо сөрөг бол доторх гишүүн бүрийн тэмдэг өөрчлөгдөнө.",
+                  "Тал бүрт төсөөтэй гишүүдийг нэгтгэ.",
+                  "Үлдсэн тэгшитгэлийг бодоод анхны тэгшитгэлд орлуулж шалга."])),
+    dict(part="E", id="g8-both-sides", prefix="g8-bs", level=2, build=part_E,
+         title=("Unknown on both sides", "Хоёр талдаа үл мэдэгдэхтэй"),
+         instruction=("Gather the unknown on one side and the numbers on the other; read two-line graphs as equations.",
+                      "Үл мэдэгдэхийг нэг талд, тоонуудыг нөгөө талд цуглуул; хоёр шулуунтай графикийг тэгшитгэл болгон унш."),
+         skill=("Gather the unknowns on one side and the numbers on the other.",
+                "Үл мэдэгдэхтэй гишүүдийг нэг талд, тоонуудыг нөгөө талд цуглуулна."),
+         method=(["Compare the coefficients of the unknown on the two sides.",
+                  "Remove the smaller one from both sides, so a positive coefficient is left.",
+                  "Move the number to the other side: its sign changes.",
+                  "Divide by the coefficient and check in the original equation."],
+                 ["Хоёр талын үл мэдэгдэхийн коэффициентыг харьцуул.",
+                  "Бага коэффициенттэй гишүүнийг хоёр талаас хас, тэгвэл эерэг коэффициент үлдэнэ.",
+                  "Тоог нөгөө тал руу шилжүүл: тэмдэг нь эсрэгээрээ солигдоно.",
+                  "Коэффициентэд хувааж, анхны тэгшитгэлд орлуулж шалга."])),
+    dict(part="F", id="g8-words-equation", prefix="g8-we", level=2, build=part_F,
+         title=("Word problems", "Үгэн бодлого"),
+         instruction=("Define the unknown, write the equation, solve, and answer in a sentence with units.",
+                      "Үл мэдэгдэхийг тэмдэглээд тэгшитгэл зохиож бодоод, хариуг нэгжтэй нь өгүүлбэрээр бичээрэй."),
+         skill=("Name the unknown, turn each sentence into part of the equation, then solve.",
+                "Үл мэдэгдэхийг нэрлээд өгүүлбэр бүрийг тэгшитгэлийн хэсэг болгож, дараа нь бодно."),
+         method=(["Decide what you are asked for and call it $x$.",
+                  "Write every other quantity using $x$; read starting values and rates off a graph or table.",
+                  "Use words like «total» or «sum» to write the equation.",
+                  "Solve it and answer in a sentence with units."],
+                 ["Юуг олох гэж байгааг тодорхойлж $x$ гэж тэмдэглэ.",
+                  "Бусад хэмжигдэхүүнийг $x$-ээр илэрхийл; график, хүснэгтээс эхлэх утга, өөрчлөлтийг унш.",
+                  "«Нийт», «нийлбэр» гэх мэт үгийг ашиглан тэгшитгэл зохио.",
+                  "Тэгшитгэлээ бодоод хариуг нэгжтэй нь өгүүлбэрээр бич."])),
+    dict(part="G", id="g8-find-error", prefix="g8-fe", level=2, build=part_G,
+         title=("Find the mistake", "Алдааг олох"),
+         instruction=("Name the mistake in a worked solution, then give the correct answer.",
+                      "Бодолтын алдааг нэрлээд зөв хариуг гаргаарай."),
+         skill=("Compare every line with the one before: was the same correct move made on both sides?",
+                "Мөр бүрийг өмнөх мөртэй нь харьцуулж, хоёр талд ижил зөв үйлдэл хийсэн эсэхийг шалгана."),
+         method=(["Say what was done to get each line.",
+                  "Check that the move was made correctly on both sides.",
+                  "Look hardest at opening brackets, moving terms and dividing.",
+                  "Put the final answer into the original equation to confirm."],
+                 ["Мөр бүрийг гаргахад юу хийснийг тодорхойл.",
+                  "Тэр үйлдлийг хоёр талд зөв хийсэн эсэхийг шалга.",
+                  "Хаалт нээх, гишүүн шилжүүлэх, хуваах алхамд онцгой анхаар.",
+                  "Эцсийн хариуг анхны тэгшитгэлд орлуулж батал."])),
+    dict(part="H", id="g8-multi-step", prefix="g8-ms", level=3, build=part_H,
+         title=("Mixed multi-step, and special cases", "Олон алхамт ба онцгой тохиолдол"),
+         instruction=("Combine every move in the unit, and tell one solution from none or infinitely many.",
+                      "Энэ бүлгийн бүх алхмыг хослуулж, нэг шийдтэй, шийдгүй, төгсгөлгүй олон шийдтэйг ялгаарай."),
+         skill=("Clear fractions, open brackets, combine like terms, then solve; compare coefficients to count solutions.",
+                "Бутархай, хаалт, төсөөтэй гишүүдийг цэгцлээд бодно; шийдийн тоог коэффициентоор тогтооно."),
+         method=(["If there are fractions, multiply both sides by the least common denominator.",
+                  "Open every bracket, minding the minus signs, and combine like terms.",
+                  "Different coefficients of the unknown: exactly one solution; solve it.",
+                  "Equal coefficients: no solution if the numbers differ, infinitely many if the sides are identical.",
+                  "Check in the original equation."],
+                 ["Бутархай байвал хоёр талыг хамгийн бага ерөнхий хуваариар үржүүл.",
+                  "Бүх хаалтыг хасах тэмдэгт анхааран нээж, төсөөтэй гишүүдийг нэгтгэ.",
+                  "Үл мэдэгдэхийн коэффициентууд ялгаатай бол яг нэг шийдтэй: бод.",
+                  "Коэффициентууд тэнцүү бол тоонууд ялгаатай үед шийдгүй, хоёр тал ижил үед төгсгөлгүй олон шийдтэй.",
+                  "Анхны тэгшитгэлд орлуулж шалга."])),
+    dict(part="Challenge", id="g8-le-challenge", prefix="g8-ch", level=3, build=part_Ch,
+         title=("Challenge", "Сорил"),
+         instruction=("Stretch: harder problems that use everything in this unit.",
+                      "Сорил: энэ бүлгийн бүх мэдлэгийг шаардсан хүндэвтэр бодлогууд."),
+         skill=("Use every move in the unit, and think about what the answer means.",
+                "Бүлгийн бүх алхмыг хэрэглэж, хариу юу гэсэн үг болохыг бодно."),
+         method=(["Read the whole problem and decide which moves it needs.",
+                  "Do one move at a time and write each line.",
+                  "Check the answer, and ask whether it makes sense in the question."],
+                 ["Бодлогыг бүтнээр уншаад ямар алхам хэрэгтэйг шийд.",
+                  "Нэг удаад нэг алхам хийж, мөр бүрийг бич.",
+                  "Хариугаа шалгаад, асуултад утга учиртай эсэхийг бод."])),
+]
+
+
+def realise_part(spec):
+    items = spec["build"]()
+    en_vs, mn_vs, kinds = [], [], []
+    last = 0
+    for j, (kind, typ, diff, fn) in enumerate(items):
+        assert diff >= last, (spec["part"], j, diff, last)
+        last = diff
+        vid = "%s-v%02d" % (spec["prefix"], j + 1)
+        e, m = fn(vid, j)
+        skills = [SKILL[spec["part"]]]
+        if EXTRA_SKILL.get(kind) and EXTRA_SKILL[kind] not in skills:
+            skills.append(EXTRA_SKILL[kind])
+        e.update(type=typ, difficulty=diff, skills=skills, prerequisites=list(PREREQ[spec["part"]]), examTags=["ЭЕШ"])
         en_vs.append(e)
         mn_vs.append(m)
-    return dict(
-        id="g8-how-many", level=3,
-        title=("One, none, or infinitely many", "Нэг шийдтэй, шийдгүй, төгсгөлгүй олон шийдтэй"),
-        skill=("Simplify first, then compare the coefficients, then the numbers.",
-               "Эхлээд хялбарчилж, дараа нь коэффициентуудыг, тэгээд тогтмолуудыг жишнэ."),
-        method=(["Open the brackets and simplify each side.",
-                 "Different coefficients of the unknown: exactly one solution.",
-                 "Equal coefficients and different numbers: no solution.",
-                 "Both sides identical: infinitely many solutions (an identity)."],
-                ["Хаалтыг нээж, тал бүрийг хялбарчил.",
-                 "Үл мэдэгдэхийн коэффициентууд ялгаатай бол яг нэг шийдтэй.",
-                 "Коэффициентууд тэнцүү, тогтмолууд ялгаатай бол шийдгүй.",
-                 "Хоёр тал яг ижил бол төгсгөлгүй олон шийдтэй (адилтгал)."]),
-        variants=(en_vs, mn_vs))
+        kinds.append(kind)
+    out = dict(spec)
+    out["variants"] = (en_vs, mn_vs)
+    out["kinds"] = kinds
+    return out
 
-
-# ---------------------------------------------------------------------------
-# Form 10 · multi-step
-# ---------------------------------------------------------------------------
-
-def form_multi_step():
-    cases = [
-        Eqn([BR(3, V(2), K(-1)), BR(-2, V(1), K(4))], [BR(5, V(1), K(-3))], "x"),
-        Eqn([FR(3, V(1), K(2)), FR(4, V(1), K(-1), c=-1)], [K(2)], "x"),
-        Eqn([BR(2, V(3), K(5))], [BR(4, V(1), K(-1)), V(3)], "y"),
-        Eqn([BR(-3, V(1), K(-2)), K(4)], [BR(2, V(1), K(8))], "n"),
-        Eqn([FR(5, V(2), K(-1))], [FR(3, V(1), K(4))], "m"),
-        Eqn([BR("0.5", V(4), K(-6))], [BR("0.2", V(5), K(10))], "x"),
-        Eqn([BR(4, V(1), K(3)), BR(-1, V(1), K(-6))], [BR(2, V(1), K(7)), K(1)], "x"),
-        Eqn([FR(2, V(1)), FR(4, V(1), K(-2))], [FR(3, V(1), K(1))], "a"),
-        Eqn([K(5), BR(-2, K(3), V(-1))], [BR(3, V(1), K(-4)), K(1)], "x"),
-        Eqn([FR(2, BR(3, V(1), K(-1)))], [V(1), K(4)], "x"),
-        Eqn([BR(2, V(1), K(-3)), BR(-3, V(1), K(1))], [BR(-2, V(1), K(1))], "y"),
-        Eqn([FR(6, V(1), K(-4)), K(1)], [FR(3, V(1)), FR(2, K(1), c=-1)], "x"),
-    ]
-    order = ["neg_sign", "first_only", "partial", "move_var_sign", "move_const_sign", "no_divide", "neg"]
-    en_vs, mn_vs = [], []
-    for i, eq in enumerate(cases):
-        hint1 = ("Эхлээд бутархайгаас эсвэл хаалтаас салаарай. Дараа нь тал бүрийг хялбарчлаарай.",
-                 "First get rid of the fractions or the brackets. Then simplify each side.")
-        st_mn, st_en = solve_stmt(eq)
-        e, m = numeric_variant("g8-ms-v%02d" % (i + 1), i, eq, st_mn, st_en, order, hint1)
-        en_vs.append(e)
-        mn_vs.append(m)
-    return dict(
-        id="g8-multi-step", level=3,
-        title=("Multi-step equations", "Олон алхамт тэгшитгэл"),
-        skill=("Clear fractions, open brackets, combine like terms, then solve: one move at a time.",
-               "Бутархай, хаалт, төсөөтэй гишүүдийг дарааллаар нь цэгцлээд бодно. Нэг алхамд нэг л үйлдэл хийнэ."),
-        method=(["If there are fractions, multiply both sides by the least common denominator.",
-                 "Open every bracket, minding the minus signs.",
-                 "Combine like terms on each side.",
-                 "Gather the unknowns on one side and the numbers on the other, then divide.",
-                 "Check in the original equation."],
-                ["Бутархай байвал хоёр талыг хамгийн бага ерөнхий хуваариар үржүүл.",
-                 "Бүх хаалтыг нээ, хасах тэмдэгт анхаар.",
-                 "Тал бүрт төсөөтэй гишүүдийг нэгтгэ.",
-                 "Үл мэдэгдэхтэй гишүүдийг нэг талд, тоонуудыг нөгөө талд цуглуулж, коэффициентэд хуваа.",
-                 "Анхны тэгшитгэлд орлуулж шалга."]),
-        variants=(en_vs, mn_vs))
-
-
-# ---------------------------------------------------------------------------
-# build, gate locally, write
-# ---------------------------------------------------------------------------
 
 MATH = re.compile(r"\$\$[^$]+\$\$|\$[^$]+\$")
 
 
-def self_check(forms):
-    ids = set()
-    for f in forms:
+def self_check(parts):
+    ids, n_fig, n_self = set(), 0, 0
+    assert len(STORY_KEYS) == len(set(STORY_KEYS)), [k for k in STORY_KEYS if STORY_KEYS.count(k) > 1]
+    for f in parts:
         en_vs, mn_vs = f["variants"]
-        assert len(en_vs) == 12, f["id"]
+        n = len(en_vs)
+        if f["part"] == "Challenge":
+            assert 4 <= n <= 4, n            # 2–3 per the manual; 4 is the bank gate's floor per form
+        else:
+            assert 8 <= n <= 16, (f["part"], n)
+        # variety (manual §9.6): no template more than ~30% of a part
+        for k in set(f["kinds"]):
+            assert f["kinds"].count(k) <= max(1, round(0.3 * n)), (f["part"], k, f["kinds"].count(k))
+        diffs = [e["difficulty"] for e in en_vs]
+        assert diffs == sorted(diffs), (f["part"], diffs)
         stmts = set()
         for e, m in zip(en_vs, mn_vs):
             assert e["id"] not in ids
             ids.add(e["id"])
             assert e["statement"] not in stmts, e["id"]
             stmts.add(e["statement"])
+            n_fig += "figure" in e
+            n_self += e.get("answerFormat") == "self"
             for s in e["check"]:
                 assert bool(sp.sympify(s)) is True, (e["id"], s)
-            assert sorted(MATH.findall(e["statement"])) == sorted(MATH.findall(m["statement"])), (e["id"], e["statement"], m["statement"])
+            nt = lambda t: [re.sub(r"\\text\{[^{}]*\}", "TEXT", x) for x in MATH.findall(t)]
+            assert sorted(nt(e["statement"])) == sorted(nt(m["statement"])), (e["id"], e["statement"], m["statement"])
             assert set(MATH.findall(e["explanation"])) <= set(MATH.findall(m["explanation"])), e["id"]
             for se, sm in zip(e["steps"], m["steps"]):
                 lost = set(MATH.findall(se["do"])) - set(MATH.findall(sm["do"]))
                 assert not lost, (e["id"], lost, se["do"], sm["do"])
                 assert ("why" in se) == ("why" in sm), e["id"]
             assert len(e["hints"]) == 2 and len(m["hints"]) == 2
-            assert e["whyWrong"][e["correctIndex"]] is None and m["whyWrong"][e["correctIndex"]] is None
-            assert sum(w is None for w in e["whyWrong"]) == 1
+            mc = e["misconceptions"]
+            assert [x is None for x in mc] == [x is None for x in e["whyWrong"]] == [j == e["correctIndex"] for j in range(4)], e["id"]
+            for key in ("type", "difficulty", "skills", "prerequisites", "examTags"):
+                assert e.get(key), (e["id"], key)
             for s in [m["statement"], m["explanation"], *m["options"], *m["hints"], *[w for w in m["whyWrong"] if w],
                       *[x for st in m["steps"] for x in st.values()]]:
                 assert "—" not in s and "гэнэт" not in s, s
                 assert s.replace("\\$", "").count("$") % 2 == 0, s
-        assert len({e["correctIndex"] for e in en_vs}) >= 2, f["id"]
+    assert n_fig >= 15, n_fig
+    assert n_self <= 6, n_self
+    return n_fig, n_self
 
 
 def build():
-    forms = [form_two_step(), form_simplify(), form_is_solution(), form_both_sides(), form_brackets(),
-             form_fractions(), form_words(), form_find_error(), form_how_many(), form_multi_step()]
-    self_check(forms)
-    return forms
+    STORY_KEYS.clear()
+    parts = [realise_part(p) for p in PARTS]
+    stats = self_check(parts)
+    return parts, stats
 
 
 def main():
-    forms = build()
+    parts, (n_fig, n_self) = build()
     bank = json.load(open(BANK, encoding="utf-8"))
     first = next(i for i, f in enumerate(bank["forms"]) if f["unit"] == UNIT)
     keep = [f for f in bank["forms"] if f["unit"] != UNIT]
     other_ids = {v["id"] for f in keep for v in f["variants"]} | {f["id"] for f in keep}
     new_en = []
-    table = {"unit": UNIT_MN, "forms": {}}
-    for f in forms:
+    table = {"unit": dict(UNIT_MN, mastery=UNIT_MASTERY_MN), "forms": {}}
+    for f in parts:
         assert f["id"] not in other_ids, f["id"]
         en_vs, mn_vs = f["variants"]
         for e in en_vs:
             assert e["id"] not in other_ids, e["id"]
-        new_en.append({"id": f["id"], "title": f["title"][0], "level": f["level"], "unit": UNIT,
-                       "skill": f["skill"][0], "method": f["method"][0], "variants": en_vs})
+        new_en.append({"id": f["id"], "title": f["title"][0], "level": f["level"], "unit": UNIT, "part": f["part"],
+                       "instruction": f["instruction"][0], "skill": f["skill"][0], "method": f["method"][0], "variants": en_vs})
         table["forms"][f["id"]] = {
-            "title": f["title"][1], "skill": f["skill"][1], "method": f["method"][1],
+            "title": f["title"][1], "skill": f["skill"][1], "method": f["method"][1], "instruction": f["instruction"][1],
             "variants": {e["id"]: m for e, m in zip(en_vs, mn_vs)}}
     bank["forms"] = keep[:first] + new_en + keep[first:]
     for u in bank["units"]:
         if u["id"] == UNIT:
             u["blurb"] = UNIT_EN["blurb"]
+            u["mastery"] = UNIT_MASTERY_EN
+            u["calculator"] = False
     with open(BANK, "w", encoding="utf-8") as fh:
         json.dump(bank, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
@@ -2559,8 +4513,9 @@ def main():
     with open(MANIFEST, "w", encoding="utf-8") as fh:
         json.dump(man, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
-    nv = sum(len(f["variants"][0]) for f in forms)
-    print(f"{UNIT}: {len(forms)} forms, {nv} variants -> {os.path.relpath(BANK, ROOT)}, {os.path.relpath(TABLE, ROOT)}")
+    nv = sum(len(f["variants"][0]) for f in parts)
+    print(f"{UNIT}: {len(parts)} parts, {nv} problems, {n_fig} with figures, {n_self} self-marked "
+          f"-> {os.path.relpath(BANK, ROOT)}, {os.path.relpath(TABLE, ROOT)}")
 
 
 if __name__ == "__main__":
