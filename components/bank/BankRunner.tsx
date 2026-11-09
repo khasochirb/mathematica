@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Lightbulb, PencilLine, RotateCcw, Repeat2, Layers, Target } from "lucide-react";
 import MathText from "@/components/esh/MathText";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
+import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import { useAuth } from "@/lib/auth-context";
 import { formAnswerMode } from "@/lib/bank-answer";
 import {
@@ -185,6 +186,11 @@ function ProblemView({
       {variant.geoFigure && (
         <div className="mt-4">
           <GeoDiagram spec={variant.geoFigure} />
+        </div>
+      )}
+      {variant.figure && (
+        <div className="mt-4">
+          <RatioFigure figure={variant.figure} />
         </div>
       )}
 

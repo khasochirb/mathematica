@@ -261,6 +261,8 @@ def check_unit(corpus, unit, t=None, quiet=False):
                     left = english_left(s2)
                     if left:
                         warns.append(f"{where}: {k}: English left {left[:4]}")
+            if v.get("figure") and m.get("figure") and m["figure"].get("mode") != v["figure"].get("mode"):
+                errs.append(f"{where}: figure mode differs from the English")
             if v.get("steps"):
                 emath = set(x for st_ in v["steps"] for x in maths(st_.get("do", "")))
                 mmath = set(x for st_ in m.get("steps", []) if isinstance(st_, dict) for x in maths(st_.get("do", "")))
@@ -328,6 +330,10 @@ def cmd_assemble(corpus):
                 for k in ("hints", "steps", "whyWrong"):
                     if v.get(k) is not None:
                         v[k] = m[k]
+                # A figure with words in it (axis names, legends) is given whole
+                # in Mongolian; the gate checks it keeps the English's mode.
+                if v.get("figure") and m.get("figure"):
+                    v["figure"] = m["figure"]
                 if v.get("geoFigure") and m.get("labels"):
                     v["geoFigure"] = apply_labels(v["geoFigure"], m["labels"])
             mn["forms"].append(nf)

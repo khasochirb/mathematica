@@ -20,7 +20,7 @@
 // exact regression this split removed. Client code that needs to iterate
 // the topic LIST uses the ~55 KB manifest in lib/bank-manifest.ts instead.
 
-import type { GeoDiagramSpec } from "@/lib/genmath-interactive";
+import type { FigureSpec, GeoDiagramSpec } from "@/lib/genmath-interactive";
 
 export type BankVariant = {
   id: string;
@@ -33,6 +33,9 @@ export type BankVariant = {
   // absent at runtime — typed optional for exactly that reason.
   check?: string[];
   geoFigure?: GeoDiagramSpec;
+  /** A picture the problem reads from: number line, line or bar graph,
+   *  fraction bar… (the lesson figure modes in lib/genmath-interactive). */
+  figure?: FigureSpec;
   // TUTORING (optional, authored per variant). Together they let a student
   // learn the form without a teacher: hints before answering, a diagnosis of
   // the exact mistake behind a wrong option, and a solution revealed one step
@@ -475,6 +478,7 @@ export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined
                 options: x.options,
                 explanation: x.explanation,
                 geoFigure: x.geoFigure ?? v.geoFigure,
+                figure: x.figure ?? v.figure,
                 hints: x.hints ?? v.hints,
                 steps: x.steps ?? v.steps,
                 whyWrong: x.whyWrong ?? v.whyWrong,

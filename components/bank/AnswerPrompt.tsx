@@ -155,16 +155,18 @@ function NumericPrompt({
         </div>
 
         {!answered ? (
-          <button
-            type="button"
-            onClick={submit}
-            disabled={text.trim() === ""}
-            className="btn btn-primary inline-flex items-center gap-1.5 text-[13px]"
-            style={{ opacity: text.trim() === "" ? 0.45 : 1 }}
-          >
-            {mn ? "Шалгах" : "Check"}
-            <CornerDownLeft className="h-3.5 w-3.5" />
-          </button>
+          // Shown only once there is something to check: an always-on Check
+          // button beside an empty box read as a nag (Khas, Nov 2026).
+          text.trim() !== "" && (
+            <button
+              type="button"
+              onClick={submit}
+              className="btn btn-primary gm-fade inline-flex items-center gap-1.5 text-[13px]"
+            >
+              {mn ? "Шалгах" : "Check"}
+              <CornerDownLeft className="h-3.5 w-3.5" />
+            </button>
+          )
         ) : (
           <Verdict outcome={outcome} mn={mn} />
         )}
@@ -283,18 +285,17 @@ function ChoicePrompt({
       <div className="mt-2.5 flex items-center gap-2 flex-wrap">
         {!answered ? (
           <>
-            <button
-              type="button"
-              onClick={() =>
-                picked !== null &&
-                onCommit({ correct: picked === disp.correctIndex, revealed: false, picked: disp.toOriginal[picked] })
-              }
-              disabled={picked === null}
-              className="btn btn-primary text-[13px]"
-              style={{ opacity: picked === null ? 0.45 : 1 }}
-            >
-              {mn ? "Шалгах" : "Check"}
-            </button>
+            {picked !== null && (
+              <button
+                type="button"
+                onClick={() =>
+                  onCommit({ correct: picked === disp.correctIndex, revealed: false, picked: disp.toOriginal[picked] })
+                }
+                className="btn btn-primary gm-fade text-[13px]"
+              >
+                {mn ? "Шалгах" : "Check"}
+              </button>
+            )}
             <GiveUpButton mn={mn} onGiveUp={() => onCommit({ correct: false, revealed: true })} />
           </>
         ) : (
