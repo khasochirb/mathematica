@@ -4408,7 +4408,7 @@ def realise_part(spec):
         skills = [SKILL[spec["part"]]]
         if EXTRA_SKILL.get(kind) and EXTRA_SKILL[kind] not in skills:
             skills.append(EXTRA_SKILL[kind])
-        e.update(type=typ, difficulty=diff, skills=skills, prerequisites=list(PREREQ[spec["part"]]), examTags=["ЭЕШ"])
+        e.update(type=typ, difficulty=diff, skills=skills, prerequisites=list(PREREQ[spec["part"]]), examTags=["ЭШ"])
         en_vs.append(e)
         mn_vs.append(m)
         kinds.append(kind)
