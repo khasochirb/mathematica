@@ -147,3 +147,104 @@ export function StepSolution({ steps, answer, mn }: { steps: BankStep[]; answer:
     </div>
   );
 }
+
+/** The bank's header: what the skill is, what goes wrong, what mastery looks
+ *  like (problem-bank-authoring §1), so a student knows the target before
+ *  starting. */
+export function MasteryHeader({
+  mastery,
+  calculator,
+  mn,
+}: {
+  mastery?: { skill: string; mistakes: string[]; canDo: string };
+  calculator?: boolean;
+  mn: boolean;
+}) {
+  if (!mastery) return null;
+  return (
+    <div className="mt-4 rounded-xl p-4 space-y-3" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
+      <div>
+        <div className="eyebrow mb-1">{mn ? "Энэ сэдэвт сурах зүйл" : "What you will learn"}</div>
+        <p className="text-[14.5px] leading-relaxed" style={{ color: "var(--fg)" }}><MathText text={mastery.skill} /></p>
+      </div>
+      {mastery.mistakes.length > 0 && (
+        <div>
+          <div className="eyebrow mb-1">{mn ? "Ихэвчлэн гаргадаг алдаа" : "Where students usually slip"}</div>
+          <ul className="space-y-1">
+            {mastery.mistakes.map((m, i) => (
+              <li key={i} className="flex gap-2 text-[13.5px] leading-relaxed" style={{ color: "var(--fg-1)" }}>
+                <span style={{ color: "#c05a49" }}>•</span>
+                <span><MathText text={m} /></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div>
+        <div className="eyebrow mb-1">{mn ? "Эзэмшсэн гэдэг нь" : "You have mastered it when"}</div>
+        <p className="text-[14px] leading-relaxed" style={{ color: "var(--fg-1)" }}><MathText text={mastery.canDo} /></p>
+      </div>
+      {calculator !== undefined && (
+        <p className="text-[12px]" style={{ color: "var(--fg-3)" }}>
+          {calculator ? (mn ? "Тооны машин ашиглаж болно." : "Calculator allowed.") : mn ? "Тооны машингүйгээр бодно." : "No calculator."}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * An open answer ("explain why", "write an equation whose solution is 3"):
+ * the student writes their own, then compares with the model answer and marks
+ * it honestly. Open questions cannot be auto-graded fairly, and leaving them
+ * out would drop the explain/open types the manual requires (§4).
+ */
+export function SelfAnswer({
+  model,
+  outcome,
+  onCommit,
+  mn,
+}: {
+  model: string;
+  outcome: { correct: boolean } | null;
+  onCommit: (o: { correct: boolean; revealed: boolean }) => void;
+  mn: boolean;
+}) {
+  const [text, setText] = useState("");
+  const [shown, setShown] = useState(false);
+  return (
+    <div className="mt-3">
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        disabled={shown}
+        rows={3}
+        placeholder={mn ? "Хариугаа энд бичээрэй" : "Write your answer here"}
+        className="w-full rounded-lg px-3 py-2 text-[15px] outline-none"
+        style={{ background: "var(--bg-2)", border: "1.5px solid var(--line)", color: "var(--fg)" }}
+      />
+      {!shown && text.trim() !== "" && (
+        <button type="button" onClick={() => setShown(true)} className="btn btn-primary gm-fade mt-2 text-[13px]">
+          {mn ? "Загвар хариутай харьцуулах" : "Compare with the model answer"}
+        </button>
+      )}
+      {shown && (
+        <div className="mt-3 rounded-xl p-3.5" style={{ background: "var(--bg-1)", border: "1px solid var(--line)" }}>
+          <div className="eyebrow mb-1">{mn ? "Загвар хариу" : "Model answer"}</div>
+          <p className="text-[14.5px] leading-relaxed" style={{ color: "var(--fg)" }}><MathText text={model} /></p>
+          {!outcome && (
+            <div className="mt-3 flex items-center gap-2 flex-wrap">
+              <span className="text-[13px]" style={{ color: "var(--fg-2)" }}>{mn ? "Таны хариу:" : "Yours was:"}</span>
+              <button type="button" onClick={() => onCommit({ correct: true, revealed: false })} className="btn btn-line text-[13px]">
+                {mn ? "Зөв байсан" : "Right"}
+              </button>
+              <button type="button" onClick={() => onCommit({ correct: false, revealed: false })} className="btn btn-line text-[13px]">
+                {mn ? "Буруу эсвэл дутуу байсан" : "Wrong or incomplete"}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

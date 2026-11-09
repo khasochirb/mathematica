@@ -9,7 +9,7 @@ import MathText from "@/components/esh/MathText";
 import GeoDiagram from "@/components/genmath/interactive/GeoDiagram";
 import RatioFigure from "@/components/genmath/interactive/RatioFigure";
 import { useAuth } from "@/lib/auth-context";
-import { formAnswerMode } from "@/lib/bank-answer";
+import { formAnswerMode, variantAnswerMode } from "@/lib/bank-answer";
 import {
   type BankForm,
   type BankVariant,
@@ -31,9 +31,9 @@ import {
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
 import { type BankChrome, defaultBankChrome, levelLabel } from "./bank-chrome";
-import { Diagnosis, HintPanel, MethodCard, StepSolution } from "./Tutor";
+import { Diagnosis, HintPanel, MethodCard, StepSolution, SelfAnswer, MasteryHeader } from "./Tutor";
 
-type Phase = "setup" | "quiz" | "done";
+type Phase = "setup" | "quiz" | "done" | "part";
 
 // The bank runner, scoped to ONE course unit: pick a level → sweep one
 // problem per exam form in the unit → any miss immediately queues a SIMILAR
@@ -48,6 +48,8 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
   const mn = lang === "mn";
   const { user } = useAuth();
   const [phase, setPhase] = useState<Phase>("setup");
+  // Part mode (problem-bank-authoring §3): the forms to work through, in order.
+  const [partQueue, setPartQueue] = useState<string[] | null>(null);
   const [level, setLevel] = useState<BankLevel>(0);
   const [session, setSession] = useState<BankSession | null>(null);
   const [summary, setSummary] = useState<BankSummary | null>(null);
@@ -98,7 +100,22 @@ export default function BankRunner({ topic: topicEn, topicMn, unit: unitEn, chro
           <div className="eyebrow">{mn && c.eyebrowMn ? c.eyebrowMn : c.eyebrow} · {topic.title} · {mn ? "Дасгалын багц" : "Practice set"}</div>
         </div>
 
-        {phase === "setup" && <Setup unit={unit} forms={scopedForms} onStart={start} mn={mn} />}
+        {phase === "setup" && (
+          <Setup
+            unit={unit}
+            forms={scopedForms}
+            onStart={start}
+            onStartParts={(ids) => {
+              setPartQueue(ids);
+              setPhase("part");
+            }}
+            mn={mn}
+          />
+        )}
+
+        {phase === "part" && partQueue && (
+          <PartRun topic={topic} formIds={partQueue} mn={mn} onExit={() => setPhase("setup")} />
+        )}
 
         {phase === "quiz" && session && item && form && variantData && (
           <div>
@@ -159,7 +176,9 @@ function ProblemView({
       : null;
   // A tutored problem offers one second try after any wrong answer (with its
   // diagnosis when the answer matches a known mistake). Others behave as before.
-  const canRetry = tutored && attempt === 1 && latest !== null && !latest.correct && !latest.revealed;
+  // (Not for a self-marked open answer: the model answer is already shown.)
+  const canRetry =
+    tutored && variant.answerFormat !== "self" && attempt === 1 && latest !== null && !latest.correct && !latest.revealed;
   const finished = latest !== null && (latest.correct || latest.revealed || !canRetry || showSolution);
 
   function commit(o: AnswerOutcome) {
@@ -197,6 +216,9 @@ function ProblemView({
       <MethodCard method={form.method} mn={mn} />
 
       <div className="mt-5">
+        {variant.answerFormat === "self" ? (
+          <SelfAnswer key={`try${attempt}`} model={variant.modelAnswer ?? answer} outcome={latest} onCommit={commit} mn={mn} />
+        ) : (
         <AnswerPrompt
           key={`try${attempt}`}
           variant={variant}
@@ -207,6 +229,7 @@ function ProblemView({
           autoFocus
           hideAnswer={canRetry && !showSolution}
         />
+        )}
       </div>
 
       <HintPanel hints={variant.hints} mn={mn} disabled={finished} />
@@ -292,7 +315,21 @@ function ProblemView({
   );
 }
 
-function Setup({ unit, forms, onStart, mn }: { unit: BankUnit; forms: ReturnType<typeof unitForms>; onStart: (lv: BankLevel) => void; mn: boolean }) {
+function partOrder(p?: string) {
+  if (!p) return 99;
+  return p === "Challenge" ? 50 : p.charCodeAt(0) - 64;
+}
+
+function partLabel(p: string, mn: boolean) {
+  if (p === "Challenge") return mn ? "Сорилт" : "Challenge";
+  return mn ? `${p} хэсэг` : `Part ${p}`;
+}
+
+function Setup({ unit, forms, onStart, onStartParts, mn }: { unit: BankUnit; forms: ReturnType<typeof unitForms>; onStart: (lv: BankLevel) => void; onStartParts: (formIds: string[]) => void; mn: boolean }) {
+  const parts = forms.filter((f) => f.part).sort((a, b) => partOrder(a.part) - partOrder(b.part));
+  if (parts.length > 0) {
+    return <PartSetup unit={unit} parts={parts} onStartParts={onStartParts} mn={mn} />;
+  }
   const counts = [1, 2, 3].map((lv) => forms.filter((f) => f.level === lv).length);
   const total = forms.length;
   const problems = forms.reduce((n, f) => n + f.variants.length, 0);
@@ -477,6 +514,135 @@ function Summary({
           {mn ? "Бүх бүлэг" : "All units"} <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
+    </div>
+  );
+}
+
+// A bank written to the authoring manual is worked PART BY PART, in order:
+// each part is one sub-skill whose problems ramp easiest first, so the order
+// is the teaching (problem-bank-authoring §3).
+function PartSetup({ unit, parts, onStartParts, mn }: { unit: BankUnit; parts: BankForm[]; onStartParts: (ids: string[]) => void; mn: boolean }) {
+  const total = parts.reduce((n, f) => n + f.variants.length, 0);
+  return (
+    <div>
+      <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
+        {unit.title}
+      </h1>
+      <MasteryHeader mastery={unit.mastery} calculator={unit.calculator} mn={mn} />
+      <div className="mt-6 flex items-center justify-between gap-3 flex-wrap">
+        <div className="eyebrow">{mn ? `${parts.length} хэсэг · ${total} бодлого` : `${parts.length} parts · ${total} problems`}</div>
+        <button type="button" onClick={() => onStartParts(parts.map((f) => f.id))} className="btn btn-primary text-[13px]">
+          {mn ? "Эхнээс нь дарааллаар бодох" : "Work through from the start"}
+        </button>
+      </div>
+      <div className="mt-3 space-y-2.5">
+        {parts.map((f) => (
+          <button key={f.id} type="button" onClick={() => onStartParts([f.id])} className="card-edit gm-press w-full p-4 text-left">
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="serif" style={{ fontSize: 17, color: "var(--fg)" }}>
+                <span className="mono text-[12px] mr-2" style={{ color: f.part === "Challenge" ? "var(--warn, #d89620)" : "var(--accent)" }}>
+                  {partLabel(f.part!, mn)}
+                </span>
+                {f.title}
+              </span>
+              <span className="mono text-[12px] flex-shrink-0" style={{ color: "var(--fg-3)" }}>
+                {f.variants.length}
+              </span>
+            </div>
+            {f.instruction && (
+              <p className="mt-1 text-[13px]" style={{ color: "var(--fg-2)" }}>
+                <MathText text={f.instruction} />
+              </p>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PartRun({ topic, formIds, mn, onExit }: { topic: BankTopic; formIds: string[]; mn: boolean; onExit: () => void }) {
+  const items = useMemo(
+    () =>
+      formIds.flatMap((id) => {
+        const f = getForm(topic, id);
+        return f ? f.variants.map((v) => ({ form: f, variant: v })) : [];
+      }),
+    [topic, formIds],
+  );
+  const [pos, setPos] = useState(0);
+  const [results, setResults] = useState<boolean[]>([]);
+  useScrollToTop(String(pos), true);
+  const done = pos >= items.length;
+  const cur = items[Math.min(pos, items.length - 1)];
+
+  if (done) {
+    const right = results.filter(Boolean).length;
+    const byPart = formIds.map((id) => {
+      const idx = items.map((it, i) => (it.form.id === id ? i : -1)).filter((i) => i >= 0);
+      return { form: getForm(topic, id)!, right: idx.filter((i) => results[i]).length, total: idx.length };
+    });
+    return (
+      <div>
+        <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(28px, 5vw, 44px)", letterSpacing: "-0.04em", color: "var(--fg)" }}>
+          {mn ? (
+            <>{items.length} бодлогоос <span style={{ color: "var(--accent)" }}>{right}</span> нь эхний оролдлогоор зөв</>
+          ) : (
+            <><span style={{ color: "var(--accent)" }}>{right}</span> of {items.length} right first time</>
+          )}
+        </h1>
+        <div className="mt-6 space-y-2">
+          {byPart.map((b) => (
+            <div key={b.form.id} className="card-edit p-3.5 flex items-center justify-between gap-3">
+              <span style={{ color: "var(--fg)" }}>
+                <span className="mono text-[12px] mr-2" style={{ color: "var(--accent)" }}>{partLabel(b.form.part ?? "", mn)}</span>
+                {b.form.title}
+              </span>
+              <span className="mono tabular text-[13px]" style={{ color: b.right / b.total < 0.7 ? "#c05a49" : "var(--fg-2)" }}>
+                {b.right}/{b.total}
+              </span>
+            </div>
+          ))}
+        </div>
+        <button type="button" onClick={onExit} className="btn btn-line mt-8">
+          {mn ? "Хэсгүүд рүү буцах" : "Back to the parts"}
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2 text-[12px]" style={{ color: "var(--fg-3)" }}>
+        <span className="mono">
+          {partLabel(cur.form.part ?? "", mn)} · {pos + 1} / {items.length}
+        </span>
+        <button type="button" onClick={onExit} className="mono" style={{ color: "var(--fg-3)", textDecoration: "underline", textUnderlineOffset: 3 }}>
+          {mn ? "Хэсгүүд" : "Parts"}
+        </button>
+      </div>
+      <div className="h-1.5 w-full overflow-hidden rounded-full mb-4" style={{ background: "var(--bg-2)" }}>
+        <div className="h-full rounded-full" style={{ width: `${(pos / items.length) * 100}%`, background: "var(--accent)", transition: "width 0.4s" }} />
+      </div>
+      {cur.form.instruction && (pos === 0 || items[pos - 1].form.id !== cur.form.id) && (
+        <p className="mb-4 rounded-xl p-3 text-[14px]" style={{ background: "var(--accent-wash)", border: "1px solid var(--accent-line)", color: "var(--fg-1)" }}>
+          <b>{partLabel(cur.form.part ?? "", mn)}.</b> <MathText text={cur.form.instruction} />
+        </p>
+      )}
+      <ProblemView
+        key={`${cur.form.id}:${cur.variant.id}`}
+        form={cur.form}
+        variant={cur.variant}
+        mode={variantAnswerMode(cur.variant)}
+        isRetry={false}
+        salt="part"
+        isLast={pos + 1 >= items.length}
+        mn={mn}
+        onNext={(o) => {
+          setResults((r) => [...r, o.correct]);
+          setPos((p) => p + 1);
+        }}
+      />
     </div>
   );
 }

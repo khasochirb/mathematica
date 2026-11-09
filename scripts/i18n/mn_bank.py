@@ -174,12 +174,19 @@ def check_unit(corpus, unit, t=None, quiet=False):
     for k in ("title",):
         if not tu.get(k):
             errs.append(f"unit.{k} missing")
+    src_unit = next((x for x in t["units"] if x["id"] == unit), {})
+    if src_unit.get("mastery"):
+        mm = tu.get("mastery") or {}
+        if not mm.get("skill") or not mm.get("canDo") or len(mm.get("mistakes") or []) != len(src_unit["mastery"]["mistakes"]):
+            errs.append("unit.mastery must have skill, canDo and as many mistakes as the English")
     tf = tab.get("forms", {})
     for f in unit_forms(t, unit):
         mf = tf.get(f["id"])
         if not mf:
             errs.append(f"form {f['id']} missing")
             continue
+        if f.get("instruction") and not mf.get("instruction"):
+            errs.append(f"{f['id']}.instruction missing")
         if f.get("method") and len(mf.get("method") or []) != len(f["method"]):
             errs.append(f"{f['id']}.method needs {len(f['method'])} lines like the English")
         for k in ("title", "skill"):
@@ -261,6 +268,8 @@ def check_unit(corpus, unit, t=None, quiet=False):
                     left = english_left(s2)
                     if left:
                         warns.append(f"{where}: {k}: English left {left[:4]}")
+            if v.get("modelAnswer") and not m.get("modelAnswer"):
+                errs.append(f"{where}: modelAnswer missing")
             if v.get("figure") and m.get("figure") and m["figure"].get("mode") != v["figure"].get("mode"):
                 errs.append(f"{where}: figure mode differs from the English")
             if v.get("steps"):
@@ -318,12 +327,16 @@ def cmd_assemble(corpus):
         u["title"] = tab["unit"]["title"]
         if tab["unit"].get("blurb"):
             u["blurb"] = tab["unit"]["blurb"]
+        if u.get("mastery") and tab["unit"].get("mastery"):
+            u["mastery"] = tab["unit"]["mastery"]
         for f in unit_forms(t, u["id"]):
             mf = tab["forms"][f["id"]]
             nf = copy.deepcopy(f)
             nf["title"], nf["skill"] = mf["title"], mf["skill"]
             if f.get("method"):
                 nf["method"] = mf["method"]
+            if f.get("instruction"):
+                nf["instruction"] = mf["instruction"]
             for v in nf["variants"]:
                 m = mf["variants"][v["id"]]
                 v["statement"], v["explanation"], v["options"] = m["statement"], m["explanation"], m["options"]
@@ -332,6 +345,8 @@ def cmd_assemble(corpus):
                         v[k] = m[k]
                 # A figure with words in it (axis names, legends) is given whole
                 # in Mongolian; the gate checks it keeps the English's mode.
+                if v.get("modelAnswer"):
+                    v["modelAnswer"] = m["modelAnswer"]
                 if v.get("figure") and m.get("figure"):
                     v["figure"] = m["figure"]
                 if v.get("geoFigure") and m.get("labels"):

@@ -46,6 +46,20 @@ export type BankVariant = {
   steps?: BankStep[];
   /** Aligned with options: why that option is wrong (null at correctIndex). */
   whyWrong?: (string | null)[];
+  // METADATA (.claude/skills/problem-bank-authoring §11).
+  /** direct / reverse / multi-step / figure / recall / compare / explain /
+   *  find-the-mistake / modelling / open / stripped-drill */
+  type?: string;
+  /** Seed difficulty 1–5, rising through its part. */
+  difficulty?: number;
+  /** Aligned with options: the misconception tag each wrong option targets. */
+  misconceptions?: (string | null)[];
+  skills?: string[];
+  prerequisites?: string[];
+  examTags?: string[];
+  /** "self": an open answer the student writes, then marks against modelAnswer. */
+  answerFormat?: "self";
+  modelAnswer?: string;
 };
 
 export type BankStep = {
@@ -63,6 +77,10 @@ export type BankForm = {
   unit: string; // unit id in the subject's units[]
   /** How to solve this type, as a short checklist (shown on demand). */
   method?: string[];
+  /** Bank part this form is ("A"…"H", "Challenge"); its variants are in ramp order. */
+  part?: string;
+  /** One-line instruction under the part heading. */
+  instruction?: string;
   variants: BankVariant[];
 };
 
@@ -70,6 +88,9 @@ export type BankUnit = {
   id: string; // matches the course unit slug → /math/<subject>/<unit>
   title: string;
   blurb?: string;
+  /** The bank's header (problem-bank-authoring §1). */
+  mastery?: { skill: string; mistakes: string[]; canDo: string };
+  calculator?: boolean;
 };
 
 export type BankTopic = {
@@ -458,7 +479,7 @@ export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined
     blurb: mn.blurb || topic.blurb,
     units: topic.units.map((u) => {
       const m = mnUnits.get(u.id);
-      return m ? { ...u, title: m.title, blurb: m.blurb ?? u.blurb } : u;
+      return m ? { ...u, title: m.title, blurb: m.blurb ?? u.blurb, mastery: m.mastery ?? u.mastery } : u;
     }),
     forms: topic.forms.map((f) => {
       const m = mnForms.get(formKey(f));
@@ -469,6 +490,7 @@ export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined
         title: m.title,
         skill: m.skill,
         method: m.method ?? f.method,
+        instruction: m.instruction ?? f.instruction,
         variants: f.variants.map((v) => {
           const x = mv.get(v.id);
           return x
@@ -482,6 +504,7 @@ export function localizeTopic(topic: BankTopic, mn: BankTopic | null | undefined
                 hints: x.hints ?? v.hints,
                 steps: x.steps ?? v.steps,
                 whyWrong: x.whyWrong ?? v.whyWrong,
+                modelAnswer: x.modelAnswer ?? v.modelAnswer,
               }
             : v;
         }),
