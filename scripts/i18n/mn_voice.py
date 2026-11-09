@@ -81,6 +81,12 @@ def check(corpus, slug):
         low = t.lower()
         for m in CAPS.findall(t):
             errors.append(f"CAPS {p}: «{m}»")
+        # A variable letter with a case ending outside maths («B-ийн», «N-ээр»)
+        # renders as a plain letter: write «$B$-ийн». Titles and labels render
+        # as plain text and cannot hold maths, so they are exempt.
+        if not re.search(r"/(title|eyebrow|label|name)$", "/" + p):
+            for m in re.finditer(r"(?<![A-Za-z\\])([A-Za-z])-[а-яөүё]+", t):
+                errors.append(f"BARE VARIABLE {p}: «{m.group(0)}» (write ${m.group(1)}$-…)")
         if "—" in t:
             errors.append(f"EM-DASH {p}: {v[:70]!r}")
         for c, why in CALQUES:
