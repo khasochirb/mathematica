@@ -25,6 +25,8 @@ touching any of those; it is not summarised here.
 
 **Landed where:** deployed to production 23 Nov 2026 on Khas's word ("deploy"): `ff32ec3` pushed to main.
 
+**Later 23 Nov:** PDF export deployed on Khas's word ("deploy"): `af2be6e` → `dpl_K5GTXefhXv3R1cHGnBcmEfq2puaj` READY, no runtime errors. Worksheets for bank units, course exams and ЭШ papers via POST /api/pdf + signed /math/print + @sparticuz/chromium; answer key only, solutions stay on the site (docs/pdf-export.md). A real logged-in download on production has not been exercised by Build yet (the session's proxy blocks the live domain).
+
 **Blocked on:** Khas: feedback on the Grade 8 bank sample before the format is rolled out; centre photos; go-ahead for "invite to the centre at key moments" (after test/placement results, after a bank part, home banner).
 
 **Others should know:** `/academy` is a new top-level route. `/tutoring` is online-for-abroad only and keeps its +1 number on purpose. Paywall code paths (subscription status, activation) still exist but nothing gates on them.
