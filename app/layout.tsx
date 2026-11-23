@@ -1,3 +1,4 @@
+import ActivityTracker from "@/components/ActivityTracker";
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -108,6 +109,7 @@ export default function RootLayout({
                 <main>{children}</main>
                 <Footer />
                 <AttemptsSyncIndicator />
+                <ActivityTracker />
               </UpgradeModalProvider>
             </AuthProvider>
           </LangProvider>
