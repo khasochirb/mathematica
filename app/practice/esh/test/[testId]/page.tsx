@@ -32,7 +32,6 @@ import {
 } from "@/lib/esh-section2";
 import type { Section2Item } from "@/lib/esh-section2";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 const TEST_DURATION_MS = 100 * 60 * 1000;
 
@@ -43,8 +42,7 @@ export default function TestRunnerPage() {
   const testKey = (params.testId as string).toUpperCase();
   const sessionId = searchParams.get("session") || "";
 
-  const { isSubscribed, isLoading: authLoading } = useAuth();
-  const upgrade = useUpgradeModal();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const testSession = useTestSession();
   const flaggedHook = useFlaggedQuestions();
   const perf = usePerformance();
@@ -66,11 +64,11 @@ export default function TestRunnerPage() {
 
   const testInfo = getTestInfo(testKey);
   // Every exit from the runner returns to the chooser FILTERED to this
-  // test's own family (premium practice vs previous-year) — the bare
+  // test's own family (practice tests vs previous-year) — the bare
   // /practice/esh/test URL shows the combined list, which reads as a
   // page the student never visited.
   const chooserHref = testInfo
-    ? `/practice/esh/test?type=${testInfo.isPremium ? "premium" : "previous"}`
+    ? `/practice/esh/test?type=${testInfo.isPracticeSet ? "practice" : "previous"}`
     : "/practice/esh/test";
   const questions: Question[] = useMemo(
     () => getTestQuestions(testKey),
@@ -90,19 +88,16 @@ export default function TestRunnerPage() {
     }
   }, [mounted, session, router, chooserHref]);
 
-  // Guard against URL-bypass of the Premium gate.
+  // Guard against URL-bypass of the sign-in wall: the practice tests need an
+  // account (every test is free once signed in — owner decision 2026-11-23).
+  // Anonymous visitors go back to the chooser, where the card routes to
+  // sign-in.
   useEffect(() => {
     if (!mounted || authLoading) return;
-    if (testInfo?.isPremium && !isSubscribed) {
-      upgrade.open({
-        source: "gated_legacy_tests",
-        title: `${testInfo.label} — Premium`,
-        description:
-          "Нэмэлт дадлага тестүүд нь Premium багцад багтсан. Premium эхлэхэд и-мэйлээр мэдэгдэнэ.",
-      });
+    if (testInfo?.isPracticeSet && !isAuthenticated) {
       router.replace(chooserHref);
     }
-  }, [mounted, authLoading, testInfo, isSubscribed, upgrade, router, chooserHref]);
+  }, [mounted, authLoading, testInfo, isAuthenticated, router, chooserHref]);
 
   const totalMcq = questions.length;
 

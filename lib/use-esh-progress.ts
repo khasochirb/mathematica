@@ -6,7 +6,7 @@ import useTestSession, {
 } from "./use-test-session";
 import usePerformance from "./use-performance";
 import useFlaggedQuestions from "./use-flagged-questions";
-import { TOPIC_LABELS, getTestsForUser } from "./esh-questions";
+import { TOPIC_LABELS, getAllTestsCombined, getPreviousYearTests } from "./esh-questions";
 import { useAuth } from "./auth-context";
 import { deriveTestRuns, type TestRun } from "./test-history";
 
@@ -22,7 +22,7 @@ export default function useESHProgress() {
   const testSession = useTestSession();
   const perf = usePerformance();
   const flaggedHook = useFlaggedQuestions();
-  const { isSubscribed } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const completedSessions = testSession.getCompletedSessions();
 
@@ -96,9 +96,9 @@ export default function useESHProgress() {
   const weakTopics = perf.getWeakTopics();
 
   const suggestedNextTest = useMemo((): string | null => {
-    // Only suggest tests the user can actually take. Free users get past papers;
-    // subscribers get the full 34-test pool.
-    const availableTests = getTestsForUser(isSubscribed);
+    // Only suggest tests the user can actually open. Every test is free for a
+    // signed-in user; anonymous visitors can only open the past papers.
+    const availableTests = isAuthenticated ? getAllTestsCombined() : getPreviousYearTests();
     const taken = new Set(completedSessions.map((s) => s.testKey));
     const untaken = availableTests.filter((t) => !taken.has(t.key));
     if (untaken.length > 0) return untaken[0].key;
@@ -112,7 +112,7 @@ export default function useESHProgress() {
       }
     }
     return lowest?.key || null;
-  }, [completedSessions, testSession, isSubscribed]);
+  }, [completedSessions, testSession, isAuthenticated]);
 
   const practiceRecommendation = useMemo((): string => {
     if (totalTestsTaken === 0) {

@@ -24,10 +24,10 @@ export async function POST(req: NextRequest) {
   // THE RESULT IS CHECKED. It used to be discarded — `await admin.from(...)`
   // with nothing destructured — so the route answered `success: true` whether
   // the row landed or not, and the modal showed its confirmation either way.
-  // A Premium purchase request is the most valuable thing this site collects;
-  // it must not be possible for one to disappear while the buyer is told it
-  // arrived. If this insert fails the caller now hears about it and can try
-  // again or phone instead.
+  // A signup must not disappear while the visitor is told it arrived. If this
+  // insert fails the caller now hears about it and can try again. (Since the
+  // site went free on 2026-11-23 the only caller is the coming-soon "notify
+  // me" modal; the table keeps its historical name, schema unchanged.)
   const { error } = await admin
     .from("premium_waitlist")
     .upsert(

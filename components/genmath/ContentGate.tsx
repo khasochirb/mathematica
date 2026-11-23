@@ -2,34 +2,24 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, Lock, Sparkles } from "lucide-react";
+import { ArrowLeft, Lock } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal, type UpgradeSource } from "@/lib/upgrade-modal-context";
 import { useLang } from "@/lib/lang-context";
-import { accessFor, isTopicFree } from "@/lib/course-access";
+import { accessFor } from "@/lib/course-access";
 
 // The gate every course CONTENT route passes through (lessons, practice,
-// tests, placement). Two locks, in order:
+// tests, placement, problem bank). ONE lock: sign-in. Anonymous readers must
+// have an account, so progress and placement have somewhere to live. The
+// site is free (owner decision 2026-11-23), so every signed-in user is
+// entitled to everything — there is no Premium wall any more
+// (policy: lib/course-access.ts).
 //
-//   1. Sign-in — anonymous readers must have an account, so progress and
-//      placement have somewhere to live.
-//   2. Premium — every course opens its FIRST topic free; the rest needs a
-//      subscription (policy: lib/course-access.ts).
-//
-// Pass `courseKey` + `topicSlug` to arm the Premium lock. Omit them (or pass
-// `free`) for content that is free by nature — placement tests, hub pages.
-// A route that forgets them still requires sign-in, so the failure mode is
-// "too open by one tier", never "content leaks to anonymous visitors";
-// lib/course-access.test.ts asserts every content route passes them.
+// `courseKey` / `topicSlug` / `free` are still accepted so routes keep
+// declaring what they open; they no longer change the verdict.
 export default function ContentGate({
   children,
   backHref,
   backLabel,
-  courseKey,
-  topicSlug,
-  free,
-  premiumBody,
-  upgradeSource = "course_content_lock",
 }: {
   children: React.ReactNode;
   backHref: string;
@@ -38,101 +28,61 @@ export default function ContentGate({
   courseKey?: string;
   /** The topic/unit slug being opened. */
   topicSlug?: string;
-  /** Force-free content (placement tests, samplers). Overrides the policy. */
+  /** Content that is free by nature (placement tests, samplers). */
   free?: boolean;
-  /**
-   * Replacement copy for the Premium wall. Surfaces that are not the course
-   * ladder (the problem bank reaches into the SAT and IB hubs) say what the
-   * student would actually unlock instead of talking about "courses".
-   */
-  premiumBody?: { en: string; mn: string };
-  /** Which wall this is, for upgrade analytics. */
-  upgradeSource?: UpgradeSource;
 }) {
-  const { isAuthenticated, isSubscribed, loading } = useAuth();
-  const { open: openUpgrade } = useUpgradeModal();
+  const { isAuthenticated, loading } = useAuth();
   const { lang } = useLang();
   const pathname = usePathname();
   const mn = lang === "mn";
-  const backText = backLabel ? (mn ? mnBackLabel(backLabel) : backLabel) : mn ? "Буцах" : "Back";
+  const backText = backLabel
+    ? mn
+      ? mnBackLabel(backLabel)
+      : backLabel
+    : mn
+      ? "Буцах"
+      : "Back";
 
   // While the session is being restored, hold a quiet placeholder so
   // signed-in users never see the lock flash.
   if (loading) {
     return (
-      <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }} aria-busy="true" />
+      <div
+        className="min-h-screen pt-20"
+        style={{ background: "var(--bg)" }}
+        aria-busy="true"
+      />
     );
   }
 
-  const isFree =
-    free ?? (courseKey && topicSlug ? isTopicFree(courseKey, topicSlug) : true);
-  const verdict = accessFor({ isAuthenticated, isSubscribed, free: isFree });
+  const verdict = accessFor({ isAuthenticated });
 
   if (verdict === "open") return <>{children}</>;
 
   const next = encodeURIComponent(pathname || backHref);
 
-  if (verdict === "sign-in") {
-    return (
-      <GateCard
-        backHref={backHref}
-        backLabel={backText}
-        title={mn ? "Нэвтэрч ороод үзнэ үү" : "Sign in to open this"}
-        body={
-          mn
-            ? "Энэ сэдэв үнэгүй — бүртгэлтэй бол ахиц, түвшингээ нэг дор хадгална."
-            : "This topic is free — signing in keeps your progress and placement in one place."
-        }
-        actions={
-          <>
-            <Link href={`/sign-in?next=${next}`} className="btn btn-primary w-full">
-              {mn ? "Нэвтрэх" : "Sign in"}
-            </Link>
-            <Link href="/sign-up" className="btn btn-line w-full">
-              {mn ? "Үнэгүй бүртгүүлэх" : "Create a free account"}
-            </Link>
-          </>
-        }
-      />
-    );
-  }
-
-  // Premium lock. Anonymous readers get sign-in first (an account is the
-  // cheaper next step, and the upgrade flow needs one anyway).
   return (
     <GateCard
-      premium
       backHref={backHref}
       backLabel={backText}
-      title={mn ? "Энэ хэсэг Премиумд нээлттэй" : "This one is Premium"}
+      title={mn ? "Нэвтэрч ороод үзнэ үү" : "Sign in to open this"}
       body={
-        premiumBody
-          ? mn
-            ? premiumBody.mn
-            : premiumBody.en
-          : mn
-            ? "Хичээл бүрийн эхний сэдэв үнэгүй. Үлдсэн сэдэв, дасгал, шалгалтыг Премиум эрхээр нээнэ."
-            : "The first topic of every course is free. Premium opens the rest — every topic, its practice sets and its tests."
+        mn
+          ? "Энэ сэдэв үнэгүй — бүртгэлтэй бол ахиц, түвшингээ нэг дор хадгална."
+          : "This topic is free — signing in keeps your progress and placement in one place."
       }
       actions={
-        isAuthenticated ? (
-          <button
-            onClick={() => openUpgrade({ source: upgradeSource })}
-            className="btn btn-primary w-full inline-flex items-center justify-center gap-1.5"
+        <>
+          <Link
+            href={`/sign-in?next=${next}`}
+            className="btn btn-primary w-full"
           >
-            <Sparkles className="h-3.5 w-3.5" />
-            {mn ? "Премиум болох" : "Unlock with Premium"}
-          </button>
-        ) : (
-          <>
-            <Link href={`/sign-in?next=${next}`} className="btn btn-primary w-full">
-              {mn ? "Нэвтрэх" : "Sign in"}
-            </Link>
-            <Link href="/sign-up" className="btn btn-line w-full">
-              {mn ? "Үнэгүй бүртгүүлэх" : "Create a free account"}
-            </Link>
-          </>
-        )
+            {mn ? "Нэвтрэх" : "Sign in"}
+          </Link>
+          <Link href="/sign-up" className="btn btn-line w-full">
+            {mn ? "Үнэгүй бүртгүүлэх" : "Create a free account"}
+          </Link>
+        </>
       }
     />
   );
@@ -144,40 +94,46 @@ function GateCard({
   actions,
   backHref,
   backLabel,
-  premium = false,
 }: {
   title: string;
   body: string;
   actions: React.ReactNode;
   backHref: string;
   backLabel: string;
-  premium?: boolean;
 }) {
   return (
     <div
       className="min-h-screen pt-20 flex items-center justify-center px-4"
       style={{ background: "var(--bg)" }}
     >
-      <div className="card-edit p-8 text-center gm-step" style={{ maxWidth: 420 }}>
+      <div
+        className="card-edit p-8 text-center gm-step"
+        style={{ maxWidth: 420 }}
+      >
         <span
           className="mx-auto grid h-12 w-12 place-items-center rounded-full"
           style={{
-            background: premium ? "color-mix(in oklch, var(--warn) 12%, transparent)" : "var(--accent-wash)",
-            border: `1px solid ${premium ? "color-mix(in oklch, var(--warn) 40%, transparent)" : "var(--accent-line)"}`,
+            background: "var(--accent-wash)",
+            border: "1px solid var(--accent-line)",
           }}
         >
-          <Lock
-            className="h-5 w-5"
-            style={{ color: premium ? "var(--warn, #d89620)" : "var(--accent)" }}
-          />
+          <Lock className="h-5 w-5" style={{ color: "var(--accent)" }} />
         </span>
         <h1
           className="serif mt-4"
-          style={{ fontWeight: 400, fontSize: 26, letterSpacing: "-0.02em", color: "var(--fg)" }}
+          style={{
+            fontWeight: 400,
+            fontSize: 26,
+            letterSpacing: "-0.02em",
+            color: "var(--fg)",
+          }}
         >
           {title}
         </h1>
-        <p className="mt-2 text-[14px]" style={{ color: "var(--fg-2)", lineHeight: 1.55 }}>
+        <p
+          className="mt-2 text-[14px]"
+          style={{ color: "var(--fg-2)", lineHeight: 1.55 }}
+        >
           {body}
         </p>
         <div className="mt-5 flex flex-col gap-2">{actions}</div>

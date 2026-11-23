@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { getLesson, validateLesson, resolveWorkedExamples } from "@/lib/esh-lessons";
-import { getFreeQuestions } from "@/lib/esh-questions";
+import { getPreviousYearQuestions } from "@/lib/esh-questions";
 
 describe("getLesson", () => {
   it("loads the algebra lesson with all six content sections", () => {
@@ -41,10 +41,10 @@ describe("resolveWorkedExamples", () => {
     }
   });
 
-  it("only references free-pool questions (no premium leak)", () => {
-    const freeSources = new Set(getFreeQuestions().map((q) => q.source));
+  it("only references past-paper questions", () => {
+    const pastPaperSources = new Set(getPreviousYearQuestions().map((q) => q.source));
     for (const ref of lesson.workedExamples) {
-      expect(freeSources.has(ref.source)).toBe(true);
+      expect(pastPaperSources.has(ref.source)).toBe(true);
     }
   });
 
@@ -68,7 +68,7 @@ describe("dedupeByFamily", () => {
 
 describe("selectTryItQuestions", () => {
   const lesson = getLesson("algebra")!;
-  const pool = getFreeQuestions();
+  const pool = getPreviousYearQuestions();
 
   it("returns distinct families, excludes worked-example sources, caps at inlineCount", () => {
     const worked = new Set(lesson.workedExamples.map((w) => w.source));
@@ -94,12 +94,12 @@ describe("lesson data-integrity gate", () => {
   });
 
   it("try-it has at least 5 distinct inline problems available", () => {
-    const pool = getFreeQuestions();
+    const pool = getPreviousYearQuestions();
     expect(selectTryItQuestions(lesson, pool).length).toBeGreaterThanOrEqual(5);
   });
 
   it("no worked-example source also appears in try-it", () => {
-    const pool = getFreeQuestions();
+    const pool = getPreviousYearQuestions();
     const tryItSources = new Set(selectTryItQuestions(lesson, pool).map((q) => q.source));
     for (const w of lesson.workedExamples) {
       expect(tryItSources.has(w.source)).toBe(false);
@@ -107,7 +107,7 @@ describe("lesson data-integrity gate", () => {
   });
 
   it("no worked-example family appears in try-it", () => {
-    const pool = getFreeQuestions();
+    const pool = getPreviousYearQuestions();
     const picked = selectTryItQuestions(lesson, pool);
     const workedFamilies = new Set(
       lesson.workedExamples

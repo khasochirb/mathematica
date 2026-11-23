@@ -3,14 +3,12 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, LogOut, Menu, Moon, Settings, Sparkles, Sun, User, X } from "lucide-react";
+import { ChevronDown, LogOut, Menu, Moon, Settings, Sun, User, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/lang-context";
 import { chrome } from "@/lib/i18n/chrome";
 import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
-import { useIsNativeShell } from "@/lib/use-native-shell";
 import LogoMark from "@/components/layout/LogoMark";
 import LogoLockup from "@/components/layout/LogoLockup";
 
@@ -273,12 +271,8 @@ function NavLink({
 
 export default function Header() {
   const { lang, setLang } = useLang();
-  const { user, isAuthenticated, isSubscribed, logout } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const { theme, toggle: toggleTheme } = useTheme();
-  const { open: openUpgrade } = useUpgradeModal();
-  // Hide the paid-upgrade CTA inside the native app (Apple forbids non-store
-  // billing surfaces). No-op on web.
-  const isNative = useIsNativeShell();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
@@ -337,7 +331,6 @@ export default function Header() {
     about: lang === "mn" ? "Бидний тухай" : "About",
     login: lang === "mn" ? "Нэвтрэх" : "Log in",
     signup: lang === "mn" ? "Бүртгүүлэх" : "Sign up",
-    upgrade: lang === "mn" ? "Премиум болох" : "Upgrade to Premium",
     settings: lang === "mn" ? "Тохиргоо" : "Settings",
     logout: lang === "mn" ? "Гарах" : "Log out",
   };
@@ -454,22 +447,6 @@ export default function Header() {
               {lang === "en" ? "MN" : "EN"}
             </button>
 
-            {!isSubscribed && !isNative && (
-              <button
-                onClick={() => openUpgrade({ source: "header_button" })}
-                className="flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md transition-all ml-1"
-                style={{
-                  background: "var(--accent)",
-                  color: "var(--accent-ink, white)",
-                  border: "1px solid var(--accent)",
-                }}
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                <span className="hidden xl:inline">{nav.upgrade}</span>
-                <span className="xl:hidden">{lang === "mn" ? "Премиум" : "Upgrade"}</span>
-              </button>
-            )}
-
             {isAuthenticated && user ? (
               <div ref={avatarRef} className="relative ml-1">
                 <button
@@ -504,20 +481,6 @@ export default function Header() {
                       <p className="text-[11px] mt-0.5 truncate" style={{ color: "var(--fg-3)" }}>
                         {user.email}
                       </p>
-                      {isSubscribed && (
-                        <span
-                          className="inline-flex items-center gap-1 mt-1.5 mono text-[9px] uppercase px-1.5 py-[2px] rounded"
-                          style={{
-                            background: "var(--accent-wash)",
-                            border: "1px solid var(--accent-line)",
-                            color: "var(--accent)",
-                            letterSpacing: "0.08em",
-                          }}
-                        >
-                          <Sparkles className="h-[10px] w-[10px]" />
-                          Premium
-                        </span>
-                      )}
                     </div>
                     {/* The dropdown contained exactly one action — Log out —
                         so there was no way to reach account settings from
@@ -710,19 +673,6 @@ export default function Header() {
               >
                 {lang === "en" ? "MN" : "EN"}
               </button>
-              {!isSubscribed && !isNative && (
-                <button
-                  onClick={() => {
-                    setMobileOpen(false);
-                    openUpgrade({ source: "header_button" });
-                  }}
-                  className="btn btn-primary flex-1 text-center flex items-center justify-center gap-1.5"
-                  style={{ minWidth: 0 }}
-                >
-                  <Sparkles className="h-3.5 w-3.5" />
-                  {nav.upgrade}
-                </button>
-              )}
             </div>
 
             <div className="pt-3 mt-2 flex gap-2 px-4" style={{ borderTop: "1px solid var(--line)" }}>

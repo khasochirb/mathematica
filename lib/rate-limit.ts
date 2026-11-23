@@ -35,7 +35,7 @@ const LIMITS: Record<string, number> = {
   "/api/auth/register": 5,
   "/api/auth/resend": 5,
   // AI tutor: per-IP burst guard in front of the per-student daily quota the
-  // route itself enforces (FREE_DAILY_AI_LIMIT). A student never sends 15
+  // route itself enforces (DAILY_AI_LIMIT). A student never sends 15
   // questions in a minute; a script does.
   "/api/tutor": 15,
   // Diagnostic placement: one call per MISS plus one closing report, and a

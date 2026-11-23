@@ -7,9 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { getAuthUser } from "@/lib/server-auth";
 import {
-  FREE_DAILY_AI_LIMIT,
-  PREMIUM_DAILY_AI_LIMIT,
-  isSubscribed,
+  DAILY_AI_LIMIT,
   getDailyCount,
   incrementDailyCount,
 } from "@/lib/subscription";
@@ -58,13 +56,12 @@ export async function POST(req: NextRequest) {
   }
   if (!body) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
 
-  // Quota, tiered by subscription, shared with the tutor. Count failures fail
+  // Quota, one allowance for every student, shared with the tutor. Count failures fail
   // OPEN (a broken counter must not degrade the placement); a successful read
   // over the limit is a hard stop that drops the sitting to the deterministic
   // engine for its remaining questions.
   try {
-    const limit = (await isSubscribed(user.id)) ? PREMIUM_DAILY_AI_LIMIT : FREE_DAILY_AI_LIMIT;
-    if ((await getDailyCount(user.id)) >= limit) return soft("quota", 429);
+    if ((await getDailyCount(user.id)) >= DAILY_AI_LIMIT) return soft("quota", 429);
     await incrementDailyCount(user.id);
   } catch (err) {
     console.warn("[placement] quota check failed, allowing:", (err as Error)?.message);

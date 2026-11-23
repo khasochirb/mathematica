@@ -75,55 +75,53 @@ export interface TestInfo {
   key: string;
   label: string;
   data: Question[];
-  // Whole test is Premium-gated (click from locked state opens upgrade modal).
-  isPremium: boolean;
-  // Solutions for this test's questions require Premium. Default true;
-  // set false for the free sample tests (2024A, 2025A) that ship full solutions.
-  solutionsRequirePremium: boolean;
+  // Which family the test belongs to: the 14 teacher-written practice tests
+  // (1A–7B) or the 20 real past papers. A display grouping only — every test,
+  // and every solution, is free for a signed-in user (owner decision
+  // 2026-11-23; there is no Premium tier).
+  isPracticeSet: boolean;
 }
 
-// 14 legacy practice tests. Gated behind Premium in the new gating matrix.
+// 14 practice tests written by experienced teachers (1A–7B).
 const TESTS: TestInfo[] = [
-  { key: "1A", label: "Тест 1А", data: test1aData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "1B", label: "Тест 1Б", data: test1bData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "2A", label: "Тест 2А", data: test2aData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "2B", label: "Тест 2Б", data: test2bData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "3A", label: "Тест 3А", data: test3aData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "3B", label: "Тест 3Б", data: test3bData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "4A", label: "Тест 4А", data: test4aData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "4B", label: "Тест 4Б", data: test4bData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "5A", label: "Тест 5А", data: test5aData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "5B", label: "Тест 5Б", data: test5bData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "6A", label: "Тест 6А", data: test6aData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "6B", label: "Тест 6Б", data: test6bData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "7A", label: "Тест 7А", data: test7aData as Question[], isPremium: true, solutionsRequirePremium: true },
-  { key: "7B", label: "Тест 7Б", data: test7bData as Question[], isPremium: true, solutionsRequirePremium: true },
+  { key: "1A", label: "Тест 1А", data: test1aData as Question[], isPracticeSet: true },
+  { key: "1B", label: "Тест 1Б", data: test1bData as Question[], isPracticeSet: true },
+  { key: "2A", label: "Тест 2А", data: test2aData as Question[], isPracticeSet: true },
+  { key: "2B", label: "Тест 2Б", data: test2bData as Question[], isPracticeSet: true },
+  { key: "3A", label: "Тест 3А", data: test3aData as Question[], isPracticeSet: true },
+  { key: "3B", label: "Тест 3Б", data: test3bData as Question[], isPracticeSet: true },
+  { key: "4A", label: "Тест 4А", data: test4aData as Question[], isPracticeSet: true },
+  { key: "4B", label: "Тест 4Б", data: test4bData as Question[], isPracticeSet: true },
+  { key: "5A", label: "Тест 5А", data: test5aData as Question[], isPracticeSet: true },
+  { key: "5B", label: "Тест 5Б", data: test5bData as Question[], isPracticeSet: true },
+  { key: "6A", label: "Тест 6А", data: test6aData as Question[], isPracticeSet: true },
+  { key: "6B", label: "Тест 6Б", data: test6bData as Question[], isPracticeSet: true },
+  { key: "7A", label: "Тест 7А", data: test7aData as Question[], isPracticeSet: true },
+  { key: "7B", label: "Тест 7Б", data: test7bData as Question[], isPracticeSet: true },
 ];
 
-// 20 real ЭШ past papers (2021–2025). Free for all users.
-// Full step-by-step solutions free on every 2021–2025 variant (20 tests).
-// Premium-gated solutions remain only on the 14 legacy practice tests (1A–7B).
+// 20 real ЭШ past papers (2021–2025), each with full step-by-step solutions.
 const PREVIOUS_YEAR_TESTS: TestInfo[] = [
-  { key: "2025A", label: "ЭШ 2025 · Хувилбар А", data: test2025aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2025B", label: "ЭШ 2025 · Хувилбар Б", data: test2025bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2025C", label: "ЭШ 2025 · Хувилбар В", data: test2025cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2025D", label: "ЭШ 2025 · Хувилбар Г", data: test2025dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024A", label: "ЭШ 2024 · Хувилбар А", data: test2024aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024B", label: "ЭШ 2024 · Хувилбар Б", data: test2024bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024C", label: "ЭШ 2024 · Хувилбар В", data: test2024cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2024D", label: "ЭШ 2024 · Хувилбар Г", data: test2024dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023A", label: "ЭШ 2023 · Хувилбар А", data: test2023aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023B", label: "ЭШ 2023 · Хувилбар Б", data: test2023bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023C", label: "ЭШ 2023 · Хувилбар В", data: test2023cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2023D", label: "ЭШ 2023 · Хувилбар Г", data: test2023dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022A", label: "ЭШ 2022 · Хувилбар А", data: test2022aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022B", label: "ЭШ 2022 · Хувилбар Б", data: test2022bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022C", label: "ЭШ 2022 · Хувилбар В", data: test2022cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2022D", label: "ЭШ 2022 · Хувилбар Г", data: test2022dData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021A", label: "ЭШ 2021 · Хувилбар А", data: test2021aData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021B", label: "ЭШ 2021 · Хувилбар Б", data: test2021bData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021C", label: "ЭШ 2021 · Хувилбар В", data: test2021cData as Question[], isPremium: false, solutionsRequirePremium: false },
-  { key: "2021D", label: "ЭШ 2021 · Хувилбар Г", data: test2021dData as Question[], isPremium: false, solutionsRequirePremium: false },
+  { key: "2025A", label: "ЭШ 2025 · Хувилбар А", data: test2025aData as Question[], isPracticeSet: false },
+  { key: "2025B", label: "ЭШ 2025 · Хувилбар Б", data: test2025bData as Question[], isPracticeSet: false },
+  { key: "2025C", label: "ЭШ 2025 · Хувилбар В", data: test2025cData as Question[], isPracticeSet: false },
+  { key: "2025D", label: "ЭШ 2025 · Хувилбар Г", data: test2025dData as Question[], isPracticeSet: false },
+  { key: "2024A", label: "ЭШ 2024 · Хувилбар А", data: test2024aData as Question[], isPracticeSet: false },
+  { key: "2024B", label: "ЭШ 2024 · Хувилбар Б", data: test2024bData as Question[], isPracticeSet: false },
+  { key: "2024C", label: "ЭШ 2024 · Хувилбар В", data: test2024cData as Question[], isPracticeSet: false },
+  { key: "2024D", label: "ЭШ 2024 · Хувилбар Г", data: test2024dData as Question[], isPracticeSet: false },
+  { key: "2023A", label: "ЭШ 2023 · Хувилбар А", data: test2023aData as Question[], isPracticeSet: false },
+  { key: "2023B", label: "ЭШ 2023 · Хувилбар Б", data: test2023bData as Question[], isPracticeSet: false },
+  { key: "2023C", label: "ЭШ 2023 · Хувилбар В", data: test2023cData as Question[], isPracticeSet: false },
+  { key: "2023D", label: "ЭШ 2023 · Хувилбар Г", data: test2023dData as Question[], isPracticeSet: false },
+  { key: "2022A", label: "ЭШ 2022 · Хувилбар А", data: test2022aData as Question[], isPracticeSet: false },
+  { key: "2022B", label: "ЭШ 2022 · Хувилбар Б", data: test2022bData as Question[], isPracticeSet: false },
+  { key: "2022C", label: "ЭШ 2022 · Хувилбар В", data: test2022cData as Question[], isPracticeSet: false },
+  { key: "2022D", label: "ЭШ 2022 · Хувилбар Г", data: test2022dData as Question[], isPracticeSet: false },
+  { key: "2021A", label: "ЭШ 2021 · Хувилбар А", data: test2021aData as Question[], isPracticeSet: false },
+  { key: "2021B", label: "ЭШ 2021 · Хувилбар Б", data: test2021bData as Question[], isPracticeSet: false },
+  { key: "2021C", label: "ЭШ 2021 · Хувилбар В", data: test2021cData as Question[], isPracticeSet: false },
+  { key: "2021D", label: "ЭШ 2021 · Хувилбар Г", data: test2021dData as Question[], isPracticeSet: false },
 ];
 
 export const TOPIC_LABELS: Record<string, string> = {
@@ -310,34 +308,21 @@ export function canonicalizeSubtopic(input: string | null | undefined): string |
 const ALL_TESTS_LOOKUP: TestInfo[] = [...TESTS, ...PREVIOUS_YEAR_TESTS];
 
 /**
- * @deprecated Returns only the 14 legacy Premium tests — misleading name.
- *   Use `getTestsForUser(isSubscribed)` for subscription-aware lists,
- *   or `getAllTestsCombined()` for all 34 tests.
- *   Will be removed after Step 2 migrates all consumers.
+ * @deprecated Returns only the 14 practice tests — misleading name.
+ *   Use `getAllTestsCombined()` for all 34 tests.
  */
 export function getAllTests(): TestInfo[] {
   return TESTS;
 }
 
-// The 20 real ЭШ past papers (2021–2025). Free for all users.
+// The 20 real ЭШ past papers (2021–2025).
 export function getPreviousYearTests(): TestInfo[] {
   return PREVIOUS_YEAR_TESTS;
 }
 
-// Free-tier tests only — surfaces past papers for logged-out / non-subscribers
-// when the UI needs a "no locks, no badges" list.
-export function getFreeTests(): TestInfo[] {
-  return ALL_TESTS_LOOKUP.filter((t) => !t.isPremium);
-}
-
-// Every test, both past papers and the 14 legacy Premium tests.
+// Every test, both past papers and the 14 practice tests. All free.
 export function getAllTestsCombined(): TestInfo[] {
   return ALL_TESTS_LOOKUP;
-}
-
-// Subscription-aware: subscribers get every test, free users get past papers only.
-export function getTestsForUser(isSubscribed: boolean): TestInfo[] {
-  return isSubscribed ? ALL_TESTS_LOOKUP : getFreeTests();
 }
 
 export function getTestInfo(testKey: string): TestInfo | undefined {
@@ -348,47 +333,32 @@ export function getTestQuestions(testKey: string): Question[] {
   return getTestInfo(testKey)?.data || [];
 }
 
-// Previously returned the 14 legacy tests only, which silently fed premium
-// content into free-user study-by-topic. Now returns every question across
-// all 34 tests — callers that need the user-aware pool should use
-// getQuestionsForUser() / getQuestionsByTopicForUser() instead.
+// Every question across all 34 tests — the pool for study-by-topic,
+// weak-topic and mixed practice.
 export function getAllQuestions(): Question[] {
   return ALL_TESTS_LOOKUP.flatMap((t) => t.data);
 }
 
-// Only questions from free (past-paper) tests.
-export function getFreeQuestions(): Question[] {
-  return getFreeTests().flatMap((t) => t.data);
-}
-
-// Subscription-aware pool for study-by-topic, weak-topic, and mixed practice.
-export function getQuestionsForUser(isSubscribed: boolean): Question[] {
-  return isSubscribed ? getAllQuestions() : getFreeQuestions();
+// Only questions from the real past papers. Lesson "try it" widgets draw from
+// here because lessons cite past-paper sources.
+export function getPreviousYearQuestions(): Question[] {
+  return PREVIOUS_YEAR_TESTS.flatMap((t) => t.data);
 }
 
 export function getQuestionsByTopic(topic: string): Question[] {
   return getAllQuestions().filter((q) => q.topic === topic);
 }
 
-export function getQuestionsByTopicForUser(
-  topic: string,
-  isSubscribed: boolean,
-): Question[] {
-  return getQuestionsForUser(isSubscribed).filter((q) => q.topic === topic);
-}
-
 export function getQuestionBySource(source: string): Question | undefined {
   return getAllQuestions().find((q) => q.source === source);
 }
 
-// Subscription-aware: free users only score against the past-paper pool so
-// the "try a similar problem" CTA never surfaces locked-test content as bait.
+// Similar problems from every test (all free).
 export function getSimilarQuestions(
   question: Question,
-  isSubscribed: boolean,
   count: number = 5,
 ): Question[] {
-  const pool = getQuestionsForUser(isSubscribed).filter(
+  const pool = getAllQuestions().filter(
     (q) => q.source !== question.source,
   );
 

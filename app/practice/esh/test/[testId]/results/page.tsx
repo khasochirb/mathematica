@@ -28,7 +28,6 @@ import { getSkillStudyTarget, skillLabel } from "@/lib/skill-study-map";
 import { pickAutoTriggerSkill, type GradedResult } from "@/lib/refinement-loop";
 import useRefinementLoop from "@/lib/use-refinement-loop";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 
 function formatDuration(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000);
@@ -48,8 +47,7 @@ export default function TestResultsPage() {
   const sessionId = searchParams.get("session") || "";
 
   const testSession = useTestSession();
-  const { user, isSubscribed } = useAuth();
-  const upgrade = useUpgradeModal();
+  const { user } = useAuth();
   const [mounted, setMounted] = useState(false);
   const [expandedQuestions, setExpandedQuestions] = useState<Set<number>>(new Set());
   const [viewFilter, setViewFilter] = useState<ViewFilter>("all");
@@ -61,7 +59,7 @@ export default function TestResultsPage() {
   // Exits return to the chooser filtered to this test's family — the
   // bare URL shows the combined list (see runner page note).
   const chooserHref = testInfo
-    ? `/practice/esh/test?type=${testInfo.isPremium ? "premium" : "previous"}`
+    ? `/practice/esh/test?type=${testInfo.isPracticeSet ? "practice" : "previous"}`
     : "/practice/esh/test";
   const questions: Question[] = useMemo(() => getTestQuestions(testKey), [testKey]);
 
@@ -88,7 +86,6 @@ export default function TestResultsPage() {
     });
     router.push("/practice/esh/loop");
   };
-  const solutionsLocked = !isSubscribed && !!testInfo?.solutionsRequirePremium;
 
   useEffect(() => {
     if (mounted && (!session || session.status !== "completed")) {
@@ -583,8 +580,6 @@ export default function TestResultsPage() {
                         question={q}
                         selectedAnswer={answer || null}
                         isFlagged={isFlagged}
-                        solutionsLocked={solutionsLocked}
-                        onSolutionUpgrade={upgrade.openSolutionUpgrade}
                       />
                       {!isSkipped && !isCorrect && (
                         <SimilarQuestionsPanel question={q} />

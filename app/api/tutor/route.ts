@@ -6,9 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { getAuthUser } from "@/lib/server-auth";
 import {
-  FREE_DAILY_AI_LIMIT,
-  PREMIUM_DAILY_AI_LIMIT,
-  isSubscribed,
+  DAILY_AI_LIMIT,
   getDailyCount,
   incrementDailyCount,
 } from "@/lib/subscription";
@@ -21,7 +19,7 @@ import { parseTutorBody, buildTutorSystem } from "@/lib/tutor-prompt";
 //      owner adds the key in Vercel; nothing else breaks.
 //   2. 401 without a valid student token.
 //   3. 400 on any malformed body (parseTutorBody).
-//   4. 429 when the student has used FREE_DAILY_AI_LIMIT questions today —
+//   4. 429 when the student has used DAILY_AI_LIMIT questions today —
 //      the quota reserved in lib/subscription since migration 002.
 // Privacy: the model sees ONLY math content + the student's answer choice.
 // No name, email, or id is ever sent to Anthropic, and nothing is logged.
@@ -56,25 +54,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  // Daily quota, tiered by subscription: Premium gets the real allowance,
-  // free gets a taste. Count failures fail OPEN (a broken counter must never
-  // take the tutor down), but a successful read over the limit is a hard stop.
+  // Daily quota — one allowance for every student (the site is free; there
+  // is no Premium tier since 2026-11-23). Count failures fail OPEN (a broken
+  // counter must never take the tutor down), but a successful read over the
+  // limit is a hard stop.
   try {
-    const premium = await isSubscribed(user.id);
-    const limit = premium ? PREMIUM_DAILY_AI_LIMIT : FREE_DAILY_AI_LIMIT;
+    const limit = DAILY_AI_LIMIT;
     const used = await getDailyCount(user.id);
     if (used >= limit) {
       return NextResponse.json(
         {
-          error: premium
-            ? bilingual(
-                `Өнөөдрийн ${limit} асуултын эрх дууслаа. Маргааш дахин ирээрэй!`,
-                `You've used today's ${limit} questions. Come back tomorrow!`,
-              )
-            : bilingual(
-                `Өнөөдрийн үнэгүй ${limit} асуултын эрх дууслаа. Premium эрхээр өдөрт ${PREMIUM_DAILY_AI_LIMIT} асуулт асуугаарай!`,
-                `You've used today's ${limit} free questions. Premium unlocks ${PREMIUM_DAILY_AI_LIMIT} a day!`,
-              ),
+          error: bilingual(
+            `Өнөөдрийн ${limit} асуултын эрх дууслаа. Маргааш дахин ирээрэй!`,
+            `You've used today's ${limit} questions. Come back tomorrow!`,
+          ),
         },
         { status: 429 },
       );
@@ -89,7 +82,7 @@ export async function POST(req: NextRequest) {
 
   // Sonnet 5: chosen for unit economics (owner decision 2026-08-01). Grounded
   // step-by-step school-math tutoring doesn't need the Opus tier, and at
-  // ~1.5¢/question vs ~3¢ it roughly doubles the margin on a Premium seat.
+  // ~1.5¢/question vs ~3¢ it roughly halves the cost per question.
   const stream = anthropic.messages.stream({
     model: "claude-sonnet-5",
     max_tokens: 1500,

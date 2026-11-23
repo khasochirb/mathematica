@@ -15,13 +15,11 @@ import { clearAllLocalPerformanceData } from "./use-performance";
 type AuthUser = User & {
   xpCurrentLevel: number;
   xpNextLevel: number;
-  isSubscribed: boolean;
 };
 
 interface AuthState {
   user: AuthUser | null;
   isAuthenticated: boolean;
-  isSubscribed: boolean;
   isLoading: boolean;
   loading: boolean;
   logout: () => Promise<void>;
@@ -31,7 +29,6 @@ interface AuthState {
 const AuthContext = createContext<AuthState>({
   user: null,
   isAuthenticated: false,
-  isSubscribed: false,
   isLoading: true,
   loading: true,
   logout: async () => {},
@@ -206,7 +203,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         user,
         isAuthenticated: !!user,
-        isSubscribed: !!user?.isSubscribed,
         isLoading: loading,
         loading,
         logout,

@@ -1,3 +1,8 @@
+// DORMANT since 2026-11-23: the site is free for everyone and no surface
+// shows a price or takes a purchase request any more. Kept only as the record
+// the manual activation flow (app/api/subscription/activate) documents; do
+// not import it into UI without an owner decision to reintroduce paid plans.
+//
 // Premium pricing — SINGLE SOURCE OF TRUTH for every price shown anywhere
 // on the site. Change a number here and every surface follows.
 //

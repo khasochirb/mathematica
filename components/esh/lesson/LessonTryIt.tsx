@@ -4,14 +4,14 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import RevealProblemCard from "@/components/lesson/RevealProblemCard";
 import { type Lesson, selectTryItQuestions } from "@/lib/esh-lessons";
-import { getFreeQuestions } from "@/lib/esh-questions";
+import { getPreviousYearQuestions } from "@/lib/esh-questions";
 
 const LABELS = { reveal: "Шийд", hide: "Нуух", revealAria: "Шийд харах", hideAria: "Шийдийг нуух" };
 
-// ЭШ adapter: pulls try-it questions from the free question bank by skill_tag,
+// ЭШ adapter: pulls try-it questions from the past-paper bank by skill_tag,
 // renders each via the shared reveal card, plus the "practice more" deep-link.
 export default function LessonTryIt({ lesson }: { lesson: Lesson }) {
-  const pool = getFreeQuestions();
+  const pool = getPreviousYearQuestions();
   const questions = selectTryItQuestions(lesson, pool);
 
   return (

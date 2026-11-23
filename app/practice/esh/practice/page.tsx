@@ -1,8 +1,5 @@
 "use client";
 
-import { useLang } from "@/lib/lang-context";
-import { chrome } from "@/lib/i18n/chrome";
-
 import { useState, useEffect, useMemo, useCallback } from "react";
 import useScrollToTop from "@/lib/use-scroll-to-top";
 import Link from "next/link";
@@ -33,17 +30,14 @@ import usePerformance from "@/lib/use-performance";
 import { useQuestionTimer } from "@/lib/use-question-timer";
 import useFlaggedQuestions from "@/lib/use-flagged-questions";
 import {
-  getQuestionsForUser,
-  getQuestionsByTopicForUser,
+  getAllQuestions,
+  getPreviousYearQuestions,
   getQuestionBySource,
-  getTestInfo,
   TOPIC_LABELS,
   ESH_DOMAINS,
 } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
-import { Sparkles } from "lucide-react";
 
 type PracticeMode = "weak" | "topic" | "flagged" | "mixed";
 type PracticeState = "setup" | "active" | "results";
@@ -58,7 +52,6 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 export default function PracticePage() {
-  const { lang } = useLang();
   const [mounted, setMounted] = useState(false);
   const [state, setState] = useState<PracticeState>("setup");
   const [mode, setMode] = useState<PracticeMode>("weak");
@@ -84,15 +77,17 @@ export default function PracticePage() {
   // One question on screen at a time; answering ends it.
   const drillTimer = useQuestionTimer(practiceQuestions[currentIndex]?.source ?? null);
   const flaggedHook = useFlaggedQuestions();
-  const { isAuthenticated, isSubscribed } = useAuth();
-  const upgrade = useUpgradeModal();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => setMounted(true), []);
 
   const weakTopics = perf.getWeakTopics();
+  // Every question is free for a signed-in user (owner decision 2026-11-23).
+  // Anonymous visitors keep the pool they had before: the past papers only —
+  // the practice tests sit behind the sign-in wall.
   const allQuestions = useMemo(
-    () => getQuestionsForUser(isSubscribed),
-    [isSubscribed],
+    () => (isAuthenticated ? getAllQuestions() : getPreviousYearQuestions()),
+    [isAuthenticated],
   );
 
   const generateQuestions = useCallback(
@@ -105,7 +100,7 @@ export default function PracticePage() {
           break;
         case "topic":
           pool = selectedTopic
-            ? getQuestionsByTopicForUser(selectedTopic, isSubscribed)
+            ? allQuestions.filter((q) => q.topic === selectedTopic)
             : allQuestions;
           break;
         case "flagged":
@@ -131,7 +126,7 @@ export default function PracticePage() {
 
       return shuffleArray(pool).slice(0, 10);
     },
-    [allQuestions, isSubscribed, weakTopics, flaggedHook.flagged, perf.attempts, perf],
+    [allQuestions, weakTopics, flaggedHook.flagged, perf.attempts, perf],
   );
 
   const handleStart = () => {
@@ -286,10 +281,6 @@ export default function PracticePage() {
                 );
               }
 
-              const testKey = `${q.testNumber}${q.testVariant}`;
-              const solutionsLocked =
-                !isSubscribed && !!getTestInfo(testKey)?.solutionsRequirePremium;
-
               return (
                 <div key={q.source} style={rowStyle}>
                   <button
@@ -315,8 +306,6 @@ export default function PracticePage() {
                         mode="review"
                         question={q}
                         selectedAnswer={r.selected}
-                        solutionsLocked={solutionsLocked}
-                        onSolutionUpgrade={upgrade.openSolutionUpgrade}
                       />
                       <SimilarQuestionsPanel question={q} />
                     </div>
@@ -444,12 +433,6 @@ export default function PracticePage() {
                 mode="instant"
                 question={currentQ}
                 onAnswer={handleAnswer}
-                solutionsLocked={
-                  !isSubscribed &&
-                  !!getTestInfo(`${currentQ.testNumber}${currentQ.testVariant}`)
-                    ?.solutionsRequirePremium
-                }
-                onSolutionUpgrade={upgrade.openSolutionUpgrade}
               />
 
               {missed && <SimilarQuestionsPanel question={currentQ} />}
@@ -607,32 +590,6 @@ export default function PracticePage() {
               {weakTopics.map((t) => TOPIC_LABELS[t] || t).join(" · ")}
             </p>
           </div>
-        )}
-
-        {!isSubscribed && (
-          <button
-            type="button"
-            onClick={() =>
-              upgrade.open({
-                source: "gated_study_pool",
-                title: "Илүү олон бодлого — Premium",
-                description:
-                  "Premium багц нь 14 нэмэлт дадлага тестийн 500+ бодлогыг сэдвээр дадлага хийх санд нэмдэг.",
-              })
-            }
-            className="card-edit w-full flex items-center gap-3 p-4 mb-4 text-left"
-            style={{ background: "var(--accent-wash)", borderColor: "var(--accent-line)" }}
-          >
-            <Sparkles className="w-4 h-4 flex-shrink-0" style={{ color: "var(--accent)" }} />
-            <div className="flex-1">
-              <p className="text-[13px]" style={{ color: "var(--fg)" }}>
-                <strong>{chrome("Premium", lang)}</strong> — 14 нэмэлт тест, 500+ бодлогыг сандаа нэм
-              </p>
-              <p className="mono text-[11px] mt-0.5" style={{ color: "var(--fg-2)", letterSpacing: "0.04em" }}>
-                Мэдэгдэл авах
-              </p>
-            </div>
-          </button>
         )}
 
         <button onClick={handleStart} className="btn btn-primary w-full">

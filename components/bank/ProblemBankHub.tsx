@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Layers, Lock, PencilLine, Repeat2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Layers, PencilLine, Repeat2 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
 import { loadBankProgress } from "@/lib/problem-bank";
@@ -78,38 +78,7 @@ export default function ProblemBankHub({ blurbMn = {} }: { blurbMn?: Record<stri
           ))}
         </div>
 
-        <BankAccessNote mn={mn} />
       </div>
-    </div>
-  );
-}
-
-// The bank is Premium material. Say so here, at the top of the funnel, so
-// nobody works down to a unit before meeting the wall.
-function BankAccessNote({ mn }: { mn: boolean }) {
-  const { isSubscribed } = useAuth();
-  if (isSubscribed) return null;
-  return (
-    <div
-      className="mt-8 rounded-xl px-4 py-3 flex items-start gap-2.5 text-[13px]"
-      style={{
-        background: "color-mix(in oklch, var(--warn) 8%, var(--bg))",
-        border: "1px solid color-mix(in oklch, var(--warn) 30%, transparent)",
-        color: "var(--fg-1)",
-      }}
-    >
-      <Lock className="mt-[3px] h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--warn, #d89620)" }} />
-      {mn ? (
-        <span>
-          Бодлогын сан бол Премиум боломж. Хичээл бүрийн <b>эхний бүлэг үнэгүй</b>{" "}
-          тул туршиж үзэж болно. Премиум үлдсэнийг нь нээнэ.
-        </span>
-      ) : (
-      <span>
-        The Problem Bank is a Premium feature. Every subject opens its{" "}
-        <b>first unit free</b> so you can try it — Premium unlocks the rest.
-      </span>
-      )}
     </div>
   );
 }

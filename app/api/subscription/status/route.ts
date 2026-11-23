@@ -5,8 +5,7 @@ import { getAuthUser } from "@/lib/server-auth";
 import {
   isSubscribed,
   getDailyCount,
-  FREE_DAILY_AI_LIMIT,
-  PREMIUM_DAILY_AI_LIMIT,
+  DAILY_AI_LIMIT,
 } from "@/lib/subscription";
 
 export async function GET(req: NextRequest) {
@@ -20,7 +19,9 @@ export async function GET(req: NextRequest) {
     getDailyCount(user.id),
   ]);
 
-  const limit = subscribed ? PREMIUM_DAILY_AI_LIMIT : FREE_DAILY_AI_LIMIT;
+  // One allowance for everyone since the site went free (2026-11-23);
+  // isSubscribed is reported as the account's recorded state only.
+  const limit = DAILY_AI_LIMIT;
   return NextResponse.json({
     data: {
       isSubscribed: subscribed,

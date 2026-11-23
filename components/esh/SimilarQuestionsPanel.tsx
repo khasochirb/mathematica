@@ -4,12 +4,11 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Sparkles, X, Target } from "lucide-react";
 import QuestionCard from "./QuestionCard";
-import { getSimilarQuestions, getTestInfo } from "@/lib/esh-questions";
+import { getSimilarQuestions } from "@/lib/esh-questions";
 import type { Question } from "@/lib/esh-questions";
 import usePerformance from "@/lib/use-performance";
 import { useLapTimer } from "@/lib/use-question-timer";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
 import useRefinementLoop from "@/lib/use-refinement-loop";
 
 interface SimilarQuestionsPanelProps {
@@ -22,8 +21,7 @@ export default function SimilarQuestionsPanel({
   count = 3,
 }: SimilarQuestionsPanelProps) {
   const [expanded, setExpanded] = useState(false);
-  const { isSubscribed, isAuthenticated } = useAuth();
-  const upgrade = useUpgradeModal();
+  const { isAuthenticated } = useAuth();
   const perf = usePerformance();
   // A panel of similar problems is a worksheet: each answer laps rather than
   // claiming the whole panel's time. Reopening the panel starts a fresh set.
@@ -42,8 +40,8 @@ export default function SimilarQuestionsPanel({
   };
 
   const similars = useMemo(
-    () => getSimilarQuestions(question, isSubscribed, count),
-    [question.source, isSubscribed, count],
+    () => getSimilarQuestions(question, count),
+    [question.source, count],
   );
 
   if (similars.length === 0) return null;
@@ -133,10 +131,6 @@ export default function SimilarQuestionsPanel({
       )}
 
       {similars.map((s) => {
-        const testKey = `${s.testNumber}${s.testVariant}`;
-        const solutionsLocked =
-          !isSubscribed && !!getTestInfo(testKey)?.solutionsRequirePremium;
-
         return (
           <QuestionCard
             key={s.source}
@@ -154,8 +148,6 @@ export default function SimilarQuestionsPanel({
                 timeSpentSeconds: lapTimer.lap(),
               })
             }
-            solutionsLocked={solutionsLocked}
-            onSolutionUpgrade={upgrade.openSolutionUpgrade}
           />
         );
       })}

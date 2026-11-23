@@ -326,7 +326,7 @@ export default function EshStudyReport() {
         </p>
         {progress.suggestedNextTest && (
           <Link
-            href={`/practice/esh/test?type=${getTestInfo(progress.suggestedNextTest)?.isPremium ? "premium" : "previous"}`}
+            href={`/practice/esh/test?type=${getTestInfo(progress.suggestedNextTest)?.isPracticeSet ? "practice" : "previous"}`}
             className="mono text-[11px] uppercase mt-3 inline-flex items-center gap-1"
             style={{ color: "var(--accent)", letterSpacing: "0.06em" }}
           >

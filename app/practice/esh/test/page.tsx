@@ -18,19 +18,19 @@ import {
 import { getAllTestsCombined, type TestInfo } from "@/lib/esh-questions";
 import useTestSession from "@/lib/use-test-session";
 import { useAuth } from "@/lib/auth-context";
-import { useUpgradeModal } from "@/lib/upgrade-modal-context";
-import PremiumBadge from "@/components/PremiumBadge";
 
-type TestFilter = "premium" | "previous" | null;
+type TestFilter = "practice" | "previous" | null;
 
 function readFilter(raw: string | null): TestFilter {
-  if (raw === "premium") return "premium";
+  // "premium" is the pre-2026-11-23 name of the practice-test family; old
+  // links and bookmarks still carry it.
+  if (raw === "practice" || raw === "premium") return "practice";
   if (raw === "previous") return "previous";
   return null;
 }
 
 const HEADER_COPY: Record<
-  "premium" | "previous" | "all",
+  "practice" | "previous" | "all",
   { eyebrow: string; title: string; subtitle: string }
 > = {
   all: {
@@ -38,10 +38,10 @@ const HEADER_COPY: Record<
     title: "Дадлага шалгалт",
     subtitle: "Тест сонгоод шалгалтын горимд бодоорой",
   },
-  premium: {
-    eyebrow: "ЭШ · Premium",
+  practice: {
+    eyebrow: "ЭШ · Дадлага",
     title: "Дадлага тестүүд",
-    subtitle: "Premium · 14 тест",
+    subtitle: "Дадлага · 14 тест",
   },
   previous: {
     eyebrow: "ЭШ · Шалгалт",
@@ -54,8 +54,7 @@ function TestSelectionPageInner() {
   const { lang } = useLang();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { isAuthenticated, isSubscribed } = useAuth();
-  const upgrade = useUpgradeModal();
+  const { isAuthenticated } = useAuth();
   const session = useTestSession();
   const [mounted, setMounted] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState<string | null>(null);
@@ -66,28 +65,24 @@ function TestSelectionPageInner() {
   const filter = readFilter(searchParams.get("type"));
   const headerCopy = HEADER_COPY[filter ?? "all"];
 
-  // No filter: free first, then locked premium (existing fallback ordering).
+  // No filter: past papers first, then the practice tests.
   // Filtered views: keep source order within the filtered set.
   const tests = useMemo<TestInfo[]>(() => {
     const all = getAllTestsCombined();
-    if (filter === "premium") return all.filter((t) => t.isPremium);
-    if (filter === "previous") return all.filter((t) => !t.isPremium);
-    return [...all.filter((t) => !t.isPremium), ...all.filter((t) => t.isPremium)];
+    if (filter === "practice") return all.filter((t) => t.isPracticeSet);
+    if (filter === "previous") return all.filter((t) => !t.isPracticeSet);
+    return [...all.filter((t) => !t.isPracticeSet), ...all.filter((t) => t.isPracticeSet)];
   }, [filter]);
 
   const lookupTest = (key: string) => tests.find((t) => t.key === key);
 
-  // Lock decision per card. Two distinct lock states:
-  //   - Premium-locked: free-tier-or-anon hits a Premium test (existing UI)
-  //   - Anon-previous-locked: anonymous user, ?type=previous, all but the
-  //     first card. Shares the same locked-card visual treatment.
-  // Anonymous interactions on either lock route to /sign-in?next=…; signed-in
-  // free users on Premium still get the Premium upgrade modal (existing flow).
-  function lockStateFor(test: TestInfo, index: number) {
-    const premiumLocked = test.isPremium && !isSubscribed;
-    const anonPreviousLocked =
-      filter === "previous" && !isAuthenticated && index > 0;
-    return { premiumLocked, anonPreviousLocked };
+  // Lock decision per card. Every test is free for a signed-in user (owner
+  // decision 2026-11-23). Anonymous visitors keep the sign-in wall exactly as
+  // before: the practice tests are behind it, and on ?type=previous every
+  // card but the first. Clicking a locked card routes to /sign-in?next=….
+  function isLockedFor(test: TestInfo, index: number) {
+    if (isAuthenticated) return false;
+    return test.isPracticeSet || (filter === "previous" && index > 0);
   }
 
   function gotoSignIn() {
@@ -96,22 +91,7 @@ function TestSelectionPageInner() {
   }
 
   const handleTestClick = (test: TestInfo, index: number) => {
-    const { premiumLocked, anonPreviousLocked } = lockStateFor(test, index);
-    if (premiumLocked) {
-      // Anon → signup gate first; signed-in free → Premium upgrade modal.
-      if (!isAuthenticated) {
-        gotoSignIn();
-        return;
-      }
-      upgrade.open({
-        source: "gated_legacy_tests",
-        title: `${test.label} — Premium`,
-        description:
-          "Нэмэлт дадлага тестүүд нь Premium багцад багтсан. Premium эхлэхэд и-мэйлээр мэдэгдэнэ.",
-      });
-      return;
-    }
-    if (anonPreviousLocked) {
+    if (isLockedFor(test, index)) {
       gotoSignIn();
       return;
     }
@@ -142,9 +122,6 @@ function TestSelectionPageInner() {
 
   const scoreColor = (n: number) =>
     n >= 80 ? "var(--accent)" : n >= 50 ? "var(--warn)" : "var(--danger)";
-
-  const freeCount = tests.filter((t) => !t.isPremium).length;
-  const premiumCount = tests.filter((t) => t.isPremium).length;
 
   return (
     <div className="min-h-screen pt-20" style={{ background: "var(--bg)" }}>
@@ -188,22 +165,13 @@ function TestSelectionPageInner() {
             >
               {tests.length}
             </div>
-            {filter === null && !isSubscribed && premiumCount > 0 && (
-              <div
-                className="mono text-[10px] mt-1 tabular"
-                style={{ color: "var(--fg-3)", letterSpacing: "0.06em" }}
-              >
-                {freeCount} ҮНЭГҮЙ · {premiumCount} PREMIUM
-              </div>
-            )}
           </div>
         </div>
 
         {/* Test grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {tests.map((test, index) => {
-            const { premiumLocked, anonPreviousLocked } = lockStateFor(test, index);
-            const locked = premiumLocked || anonPreviousLocked;
+            const locked = isLockedFor(test, index);
             const best = mounted && !locked ? session.getBestScore(test.key) : null;
             const latest =
               mounted && !locked ? session.getLatestSession(test.key) : undefined;
@@ -230,7 +198,6 @@ function TestSelectionPageInner() {
                       >
                         {test.key}
                       </div>
-                      {premiumLocked && <PremiumBadge variant="inline" />}
                     </div>
                     <h3
                       className="serif"
@@ -269,15 +236,7 @@ function TestSelectionPageInner() {
                   )}
                 </div>
 
-                {premiumLocked && (
-                  <div
-                    className="mt-4 pt-3 text-[12px]"
-                    style={{ borderTop: "1px solid var(--line)", color: "var(--fg-2)" }}
-                  >
-                    Premium эхлэхэд нээгдэнэ
-                  </div>
-                )}
-                {anonPreviousLocked && !premiumLocked && (
+                {locked && (
                   <div
                     className="mt-4 pt-3 text-[12px]"
                     style={{ borderTop: "1px solid var(--line)", color: "var(--fg-2)" }}

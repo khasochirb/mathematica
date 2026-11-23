@@ -134,7 +134,7 @@ export const api = {
         body: JSON.stringify(body),
       }),
     me: () =>
-      apiCall<User & { xpCurrentLevel: number; xpNextLevel: number; isSubscribed: boolean }>(
+      apiCall<User & { xpCurrentLevel: number; xpNextLevel: number }>(
         "/api/auth/me",
       ),
     refresh: () =>

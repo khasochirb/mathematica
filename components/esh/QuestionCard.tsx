@@ -10,7 +10,6 @@ import {
   ChevronDown,
   ChevronUp,
   Flag,
-  Lock,
 } from "lucide-react";
 import type { Question } from "@/lib/esh-questions";
 import { TOPIC_LABELS, eshDomainOf } from "@/lib/esh-questions";
@@ -30,8 +29,6 @@ interface InstantModeProps extends QuestionCardBaseProps {
     correct: string,
     isCorrect: boolean,
   ) => void;
-  solutionsLocked?: boolean;
-  onSolutionUpgrade?: () => void;
 }
 
 interface TestModeProps extends QuestionCardBaseProps {
@@ -47,8 +44,6 @@ interface ReviewModeProps extends QuestionCardBaseProps {
   mode: "review";
   selectedAnswer?: string | null;
   isFlagged?: boolean;
-  solutionsLocked?: boolean;
-  onSolutionUpgrade?: () => void;
 }
 
 type QuestionCardProps = InstantModeProps | TestModeProps | ReviewModeProps;
@@ -146,49 +141,6 @@ function QuestionHeader({
         {rightSlot}
       </div>
     </div>
-  );
-}
-
-function LockedSolutionCTA({ onUpgrade }: { onUpgrade?: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onUpgrade}
-      className="mt-3 w-full text-left rounded-md p-3 flex items-center gap-3 transition-colors"
-      style={{
-        background: "var(--accent-wash)",
-        border: "1px solid var(--accent-line)",
-        color: "var(--accent-ink)",
-      }}
-    >
-      <span
-        className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
-        style={{
-          background: "var(--bg)",
-          border: "1px solid var(--accent-line)",
-          color: "var(--accent)",
-        }}
-      >
-        <Lock className="w-3.5 h-3.5" />
-      </span>
-      <span className="flex-1 min-w-0">
-        <span
-          className="mono text-[10px] uppercase block"
-          style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
-        >
-          Premium · Бодолт
-        </span>
-        <span className="text-[13px]" style={{ color: "var(--fg-1)" }}>
-          Алхам алхмаар бодолт Premium-д нээгдэнэ
-        </span>
-      </span>
-      <span
-        className="mono text-[10px] uppercase shrink-0"
-        style={{ color: "var(--accent)", letterSpacing: "0.08em" }}
-      >
-        Нээх →
-      </span>
-    </button>
   );
 }
 
@@ -331,8 +283,7 @@ export default function QuestionCard(props: QuestionCardProps) {
   }
 
   if (mode === "review") {
-    const { selectedAnswer, isFlagged, solutionsLocked, onSolutionUpgrade } =
-      props as ReviewModeProps;
+    const { selectedAnswer, isFlagged } = props as ReviewModeProps;
     const isCorrect = selectedAnswer === question.answer;
     const wasAnswered = !!selectedAnswer;
 
@@ -449,9 +400,7 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
 
         {question.solution &&
-          (solutionsLocked ? (
-            <LockedSolutionCTA onUpgrade={onSolutionUpgrade} />
-          ) : (
+          (
             <div className="mt-3">
               <button
                 onClick={() => setShowSolution(!showSolution)}
@@ -477,13 +426,13 @@ export default function QuestionCard(props: QuestionCardProps) {
                 </div>
               )}
             </div>
-          ))}
+          )}
       </div>
     );
   }
 
   // Instant mode
-  const { onAnswer, solutionsLocked, onSolutionUpgrade } = props as InstantModeProps;
+  const { onAnswer } = props as InstantModeProps;
   const selected = localSelected;
   const isCorrect = selected === question.answer;
   const hasAnswer = question.answer && question.answer.length > 0;
@@ -618,9 +567,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           </div>
 
           {question.solution &&
-            (solutionsLocked ? (
-              <LockedSolutionCTA onUpgrade={onSolutionUpgrade} />
-            ) : (
+            (
               <div className="mt-3">
                 <button
                   onClick={() => setShowSolution(!showSolution)}
@@ -646,7 +593,7 @@ export default function QuestionCard(props: QuestionCardProps) {
                   </div>
                 )}
               </div>
-            ))}
+            )}
         </div>
       )}
 

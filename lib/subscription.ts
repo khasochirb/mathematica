@@ -1,14 +1,18 @@
 import { createAdminClient } from "./supabase";
 
-// Daily AI-tutor question quotas, enforced by /api/tutor. The free tier is a
-// taste (enough to hit a wall on homework and see the tutor work); Premium is
-// the real allowance. Both are HARD daily caps, so the worst-case Anthropic
-// spend per student per day is bounded: roughly limit × ~₮90 per question at
-// typical usage (see the pricing/cost notes in lib/pricing.ts).
-export const FREE_DAILY_AI_LIMIT = 3;
-export const PREMIUM_DAILY_AI_LIMIT = 30;
+// Daily AI question quota, shared by /api/tutor and the AI placement. The
+// site is free for everyone (owner decision 2026-11-23), so there is ONE
+// allowance for every signed-in student — the one that used to be Premium's.
+// It is a HARD daily cap, so the worst-case Anthropic spend per student per
+// day is bounded: roughly limit × ~₮90 per question at typical usage.
+export const DAILY_AI_LIMIT = 30;
 
-/** Check if user is an active subscriber */
+/**
+ * Whether the profile carries an active subscription record. Nothing gates on
+ * this any more; it stays so /api/subscription/status can still report the
+ * account's recorded state (subscriptions activated before 2026-11-23 remain
+ * in the database untouched).
+ */
 export async function isSubscribed(userId: string): Promise<boolean> {
   const admin = createAdminClient();
   const { data } = await admin

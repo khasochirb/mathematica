@@ -6,8 +6,8 @@ import { ChevronRight } from "lucide-react";
 import ComingSoonBadge from "@/components/ComingSoonBadge";
 import useESHProgress from "@/lib/use-esh-progress";
 import {
-  getTestsForUser,
-  getQuestionsForUser,
+  getAllTestsCombined,
+  getAllQuestions,
 } from "@/lib/esh-questions";
 import { useAuth } from "@/lib/auth-context";
 import {
@@ -29,14 +29,16 @@ import {
 export default function ESHHubPage() {
   const [mounted, setMounted] = useState(false);
   const progress = useESHProgress();
-  const { isAuthenticated, isSubscribed } = useAuth();
+  const { isAuthenticated } = useAuth();
   const upgrade = useUpgradeModal();
   const { lang } = useLang();
 
   useEffect(() => setMounted(true), []);
 
-  const allTests = getTestsForUser(isSubscribed);
-  const totalQuestions = getQuestionsForUser(isSubscribed).length;
+  // Every test is free (owner decision 2026-11-23); the practice tests ask
+  // for an account, which their chooser enforces.
+  const allTests = getAllTestsCombined();
+  const totalQuestions = getAllQuestions().length;
 
   // Anonymous click on the progress banner falls through to sign-in with a
   // next-path back to progress, matching the test-gating pattern.
@@ -44,7 +46,7 @@ export default function ESHHubPage() {
     ? "/analytics"
     : `/sign-in?next=${encodeURIComponent("/analytics")}`;
 
-  // Free first (top-left where eyes land), Premium second.
+  // Past papers first (top-left where eyes land), practice tests second.
   const actionCards: HubActionCardDef[] = [
     {
       href: "/practice/esh/test?type=previous",
@@ -54,11 +56,11 @@ export default function ESHHubPage() {
       badge: { label: "Үнэгүй", tone: "accent" },
     },
     {
-      href: "/practice/esh/test?type=premium",
+      href: "/practice/esh/test?type=practice",
       title: "Дадлага тестүүд",
-      subtitle: "Premium · 14 тест · Түгжээтэй",
+      subtitle: "Дадлага · 14 тест",
       role: "tests",
-      badge: { label: "Түгжээтэй", tone: "muted" },
+      badge: { label: "Үнэгүй", tone: "accent" },
     },
     {
       href: "/practice/esh/practice",

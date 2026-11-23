@@ -7,7 +7,6 @@ import { getCourseExam, getCourseExams } from "@/lib/course-exam";
 import ContentGate from "@/components/genmath/ContentGate";
 import { T } from "@/components/T";
 import { EXAMS_MN } from "@/lib/course-exam-mn";
-import { isExamFree } from "@/lib/course-access";
 
 // Server components for the two exam routes. The runner itself is a client
 // component; these only resolve the exam and render chrome, which keeps the
@@ -70,11 +69,10 @@ export function CourseExamListPage({ course }: { course: string }) {
 export function CourseExamPage({ examId }: { examId: string }) {
   const exam = getCourseExam(examId);
   if (!exam) notFound();
-  // Paper 1 of each course is the free sample; papers 2+ are Premium
-  // (policy: lib/course-access.ts).
+  // Every paper is free for a signed-in user (policy: lib/course-access.ts);
+  // ContentGate keeps the sign-in wall for anonymous visitors.
   return (
     <ContentGate
-      free={isExamFree(examId)}
       backHref={`/math/${exam.meta.course}/exam`}
       backLabel="Back to exams"
     >

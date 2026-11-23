@@ -1,19 +1,16 @@
-// COURSE ACCESS POLICY — the single source of truth for what a non-Premium
-// learner may open in /math.
+// COURSE ACCESS POLICY — the single source of truth for what a learner may
+// open in /math, the problem bank and the course exams.
 //
-// The rule (owner decision, 2026-08-04):
-//   - Every course opens its FIRST topic free: its lessons, its practice set
-//     and its test-yourself. A visitor to any course gets a real taste of
-//     that course, not of some other grade's.
-//   - One full course EXAM is free per course (the first one).
-//   - Every other topic, and exams 2+, require Premium.
-//   - Locked material stays VISIBLE (title, blurb, lesson count) behind a
-//     lock + Premium badge — students see what they would get, and the
-//     catalog stays indexable.
+// The rule (owner decision, 2026-11-23 — replaces the 2026-08-04 paywall):
+//   - The whole site is FREE. There is no Premium tier: every topic, every
+//     course exam and every problem-bank unit opens for any signed-in user.
+//   - An ACCOUNT is still required. Anonymous visitors meet the sign-in wall
+//     on content routes, exactly as before, so progress and placement have
+//     somewhere to live.
 //
-// Freeness is DERIVED from each course's spine (the first entry), never
-// hand-listed, so adding or reordering topics can never silently open or
-// close the gate. lib/course-access.test.ts pins that invariant.
+// The `is*Free` helpers are kept (and now always answer true) so every
+// call site keeps asking one place; if a paid tier ever returns, it returns
+// here and lib/course-access.test.ts says so.
 //
 // This module imports ONLY lib/genmath-spines (pure literals, no corpus), so
 // it is safe to use from client components and adds no bundle weight.
@@ -50,8 +47,9 @@ import {
 export type CourseKey = string;
 
 // Every course keyed by its /math segment, mapped to its spine's slugs in
-// taught order. Grades and named courses share one shape here on purpose:
-// the policy should not care which band a course belongs to.
+// taught order. Nothing is gated on it any more; it stays so the tests can
+// prove every routed course, and every topic in it, opens for a signed-in
+// user.
 const COURSE_TOPIC_ORDER: Record<CourseKey, string[]> = {
   "2": GRADE2_SPINE.map((t) => t.slug),
   "3": GRADE3_SPINE.map((t) => t.slug),
@@ -85,120 +83,40 @@ export function listCourseKeys(): CourseKey[] {
   return Object.keys(COURSE_TOPIC_ORDER);
 }
 
-/**
- * The one free topic of a course — the first entry of its spine, or null for
- * a course this module has never heard of.
- *
- * Grades that go live topic-by-topic use their first LIVE topic, so the free
- * sample is never a "coming soon" card.
- */
-export function freeTopicSlug(courseKey: CourseKey): string | null {
-  const order = COURSE_TOPIC_ORDER[courseKey];
-  if (!order || order.length === 0) return null;
-  const live = liveSlugsFor(courseKey);
-  const firstLive = order.find((slug) => live === null || live.has(slug));
-  return firstLive ?? null;
+/** A course's topic slugs in taught order, or null for an unknown course. */
+export function courseTopicSlugs(courseKey: CourseKey): string[] | null {
+  return COURSE_TOPIC_ORDER[courseKey] ?? null;
 }
 
-// Grade spines carry a `live` flag; named-course spines carry it too. A
-// course whose entries have no flag is treated as all-live.
-function liveSlugsFor(courseKey: CourseKey): Set<string> | null {
-  const spine = SPINE_WITH_LIVE[courseKey];
-  if (!spine) return null;
-  const live = spine.filter((e) => e.live).map((e) => e.slug);
-  return live.length ? new Set(live) : null;
+/** Is this topic readable by a signed-in user? Always — the site is free. */
+export function isTopicFree(_courseKey: CourseKey, _topicSlug: string): boolean {
+  return true;
 }
 
-const SPINE_WITH_LIVE: Record<CourseKey, { slug: string; live: boolean }[]> = {
-  "2": GRADE2_SPINE,
-  "3": GRADE3_SPINE,
-  "4": GRADE4_SPINE,
-  "6": GRADE6_SPINE,
-  "7": GRADE7_SPINE,
-  "8": GRADE8_SPINE,
-  "9": GRADE9_SPINE,
-  "10": GRADE10_SPINE,
-  "11": GRADE11_SPINE,
-  "12": GRADE12_SPINE,
-  "algebra-1": ALG1_SPINE,
-  "algebra-2": ALG2_SPINE,
-  geometry: GEOMETRY_SPINE,
-  trigonometry: TRIG_SPINE,
-  "solid-geometry": SOLIDGEO_SPINE,
-  "prob-stats": PROBSTAT_SPINE,
-  precalculus: PRECALC_SPINE,
-  calculus: CALC_SPINE,
-  "vectors-matrices": VECMAT_SPINE,
-  "integrated-1": IM1_SPINE,
-  "integrated-2": IM2_SPINE,
-  "integrated-3": IM3_SPINE,
-  "ib-sl": IB_SL_SPINE,
-  "ib-hl": IB_HL_SPINE,
-  "ib-ai-sl": IB_AI_SL_SPINE,
-};
-
-/**
- * Is this topic readable without Premium? True only for the course's single
- * free topic. An unknown course fails CLOSED (locked) — a new course added
- * without registering here is never accidentally given away.
- */
-export function isTopicFree(courseKey: CourseKey, topicSlug: string): boolean {
-  const free = freeTopicSlug(courseKey);
-  return free !== null && free === topicSlug;
+/** Is this course exam readable by a signed-in user? Always — the site is free. */
+export function isExamFree(_examId: string): boolean {
+  return true;
 }
 
 /**
- * Is this course exam readable without Premium? The first exam of each
- * course is the free sample; the rest are Premium. Exam ids are of the form
- * "<course-prefix><n>" (im3e1, g12e2, …), so the policy reads the trailing
- * number rather than hard-coding ids.
- */
-export function isExamFree(examId: string): boolean {
-  const m = /(\d+)$/.exec(examId);
-  return m ? Number(m[1]) === 1 : false;
-}
-
-/**
- * Is this problem-bank unit readable without Premium? The bank is Premium
- * material like the rest of the course content, with the same single free
- * sample per subject — otherwise a locked topic's practice would be free
- * through the bank's back door.
- *
- * Two kinds of bank, one rule ("the first unit is the sample"):
- *   - COURSE-LADDER banks ("5", "algebra-1", "ib-sl") mirror a course, so
- *     freeness is read off that course's spine and the bank can never drift
- *     open relative to the course it shadows.
- *   - HUB-OWNED banks ("sat") have no course spine to mirror. Pass the
- *     topic's unit ids as `unitOrder` and the FIRST one is the sample.
- *
- * Omitting `unitOrder` for a hub-owned bank fails CLOSED (everything
- * locked), so a new bank wired up without it can never leak.
+ * Is this problem-bank unit readable by a signed-in user? Always — the site
+ * is free. (Signature kept so the bank gates keep calling one place.)
  */
 export function isBankUnitFree(
-  bankSlug: string,
-  unitId: string,
-  unitOrder?: readonly string[],
+  _bankSlug: string,
+  _unitId: string,
+  _unitOrder?: readonly string[],
 ): boolean {
-  const courseFree = freeTopicSlug(bankSlug);
-  if (courseFree !== null) return courseFree === unitId;
-  if (unitOrder && unitOrder.length > 0) return unitOrder[0] === unitId;
-  return false;
+  return true;
 }
 
 /**
  * The access verdict for a piece of course content.
- *   "open"    — readable now
- *   "sign-in" — free material, but the reader is anonymous
- *   "premium" — Premium material, reader is signed in without a subscription
+ *   "open"    — readable now (any signed-in user)
+ *   "sign-in" — the reader is anonymous
  */
-export type AccessVerdict = "open" | "sign-in" | "premium";
+export type AccessVerdict = "open" | "sign-in";
 
-export function accessFor(opts: {
-  isAuthenticated: boolean;
-  isSubscribed: boolean;
-  free: boolean;
-}): AccessVerdict {
-  if (opts.isSubscribed) return "open";
-  if (!opts.free) return opts.isAuthenticated ? "premium" : "premium";
+export function accessFor(opts: { isAuthenticated: boolean }): AccessVerdict {
   return opts.isAuthenticated ? "open" : "sign-in";
 }
