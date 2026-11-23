@@ -19,6 +19,8 @@ import {
   unitForms, localizeTopic } from "@/lib/problem-bank";
 import AnswerPrompt, { type AnswerOutcome } from "./AnswerPrompt";
 import { type BankChrome, defaultBankChrome, levelLabel } from "./bank-chrome";
+import { buildSlots, spreadIndex } from "@/lib/bank-slots";
+import DownloadPdfButton from "@/components/pdf/DownloadPdfButton";
 
 // The unit's exercise set, textbook style: a numbered list that INTERLEAVES
 // the unit's problem types (round-robin), so consecutive problems are
@@ -62,9 +64,14 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
           </div>
         </div>
 
-        <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
-          {unit.title}
-        </h1>
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="serif" style={{ fontWeight: 400, fontSize: "clamp(30px, 5vw, 48px)", letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--fg)" }}>
+            {unit.title}
+          </h1>
+          <div className="flex-shrink-0 mt-2">
+            <DownloadPdfButton source={{ kind: "bank", bank: topicEn.slug, unit: unit.id }} langs={topicMn ? ["mn", "en"] : ["en"]} />
+          </div>
+        </div>
         <p className="mt-3" style={{ color: "var(--fg-1)", fontSize: 15.5, maxWidth: "58ch" }}>
           {mn ? (
             <>
@@ -147,29 +154,6 @@ export default function BankBrowser({ topic: topicEn, topicMn, unit: unitEn, chr
 // ---------------------------------------------------------------------------
 // The interleaved, numbered exercise list
 // ---------------------------------------------------------------------------
-
-type Slot = { form: BankForm; round: number };
-
-// Deterministic (SSR-safe) but well-spread pick: stride through the variant
-// pool with a step co-prime to its size, so consecutive rounds of the same
-// form land in different parameter neighborhoods instead of v01, v02, v03…
-function spreadIndex(round: number, n: number): number {
-  const stride = n % 13 === 0 ? (n % 11 === 0 ? 7 : 11) : 13;
-  return (round * stride) % n;
-}
-
-function buildSlots(forms: BankForm[], rounds: number): Slot[] {
-  // Round-robin across forms (within the level-sorted order), so problem
-  // n+1 is a different kind than problem n. Each round serves a spread-out
-  // variant as the starting point (reroll can move it later).
-  const slots: Slot[] = [];
-  for (let r = 0; r < rounds; r++) {
-    for (const form of forms) {
-      if (r < form.variants.length) slots.push({ form, round: r });
-    }
-  }
-  return slots;
-}
 
 function ExerciseSet({ topic, forms, userId, mn }: { topic: BankTopic; forms: BankForm[]; userId?: string | null; mn: boolean }) {
   const maxRounds = forms.reduce((m, f) => Math.max(m, f.variants.length), 0);

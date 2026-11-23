@@ -35,7 +35,9 @@ export function landedFromOffSite(path: string): boolean {
   }
 }
 
-const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
+// Exported for the print page (/math/print), which renders one worksheet in
+// a fixed language regardless of the reader's saved choice.
+export const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
   lang: "en",
   setLang: () => {},
 });

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import DownloadPdfButton from "@/components/pdf/DownloadPdfButton";
 import { Clock, Layers, FileText, Check } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { useLang } from "@/lib/lang-context";
@@ -100,6 +101,12 @@ export default function ExamList({
             >
               {inner}
             </Link>
+            <div className="flex justify-end">
+              <DownloadPdfButton
+                source={{ kind: "exam", examId: e.meta.examId }}
+                className="inline-flex items-center gap-1.5 text-[12px] mt-1.5 mr-1"
+              />
+            </div>
           </li>
         );
       })}

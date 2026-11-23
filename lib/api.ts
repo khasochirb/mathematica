@@ -92,7 +92,7 @@ export function decodeJwtExpSeconds(token: string): number | null {
   }
 }
 
-async function fetchWithAuth(path: string, init?: RequestInit): Promise<Response> {
+export async function fetchWithAuth(path: string, init?: RequestInit): Promise<Response> {
   const token = getMpToken();
   const headers: Record<string, string> = {
     "Content-Type": "application/json",

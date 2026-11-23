@@ -1,5 +1,6 @@
 "use client";
 
+import DownloadPdfButton from "@/components/pdf/DownloadPdfButton";
 import { useLang } from "@/lib/lang-context";
 import { chrome } from "@/lib/i18n/chrome";
 
@@ -183,8 +184,8 @@ function TestSelectionPageInner() {
               mounted && !locked ? session.getSessionsByTest(test.key).length : 0;
 
             return (
+              <div key={test.key} className="flex flex-col">
               <button
-                key={test.key}
                 onClick={() => handleTestClick(test, index)}
                 className="card-edit p-5 text-left group relative"
                 style={locked ? { opacity: 0.65 } : undefined}
@@ -286,6 +287,16 @@ function TestSelectionPageInner() {
                   </div>
                 )}
               </button>
+              {!locked && (
+                <div className="flex justify-end">
+                  <DownloadPdfButton
+                    source={{ kind: "esh", testKey: test.key }}
+                    langs={["mn"]}
+                    className="inline-flex items-center gap-1.5 text-[12px] mt-1.5 mr-1"
+                  />
+                </div>
+              )}
+              </div>
             );
           })}
         </div>

@@ -29,6 +29,15 @@ const withSerwist = withSerwistInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    // PDF export (app/api/pdf): the Lambda Chromium and Puppeteer must stay
+    // real node_modules, not bundled, and Chromium's compressed binary is read
+    // from disk at runtime, so it is traced into that one function explicitly.
+    serverComponentsExternalPackages: ["@sparticuz/chromium", "puppeteer-core"],
+    outputFileTracingIncludes: {
+      "/api/pdf": ["./node_modules/@sparticuz/chromium/bin/**"],
+    },
+  },
   images: {
     remotePatterns: [],
   },
