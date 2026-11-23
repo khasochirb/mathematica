@@ -89,7 +89,6 @@ export const STRUCTURE: ChromeEntry[] = [
   { en: "Practice", mn: "Дасгал", src: "SITE", n: 15 },
   { en: "Test yourself", mn: "Өөрийгөө шалга", src: "SITE", n: 15 },
   { en: "Problem bank", mn: "Бодлогын сан", src: "SITE", n: 2 },
-  { en: "Premium", mn: "Премиум", src: "SITE", n: 3 },
   { en: "Contact", mn: "Холбоо барих", src: "SITE", n: 3 },
 ];
 
