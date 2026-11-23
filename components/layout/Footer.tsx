@@ -12,7 +12,7 @@ const links = {
     { label: "ЭШ Study by Topic", href: "/practice/esh/topics" },
     { label: "Courses", href: "/math" },
     { label: "Practice by Topic", href: "/practice/esh/practice" },
-    { label: "1-on-1 Tutoring", href: "/tutoring" },
+    { label: "Online Tutoring", href: "/tutoring" },
   ],
   Company: [
     { label: "About Us", href: "/about" },

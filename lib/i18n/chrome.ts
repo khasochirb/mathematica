@@ -123,7 +123,7 @@ export const NAV: ChromeEntry[] = [
   // those are copied VERBATIM rather than re-worded, because two Mongolian
   // labels for one destination is precisely how a product starts feeling
   // machine-made. The footer had no `lang` at all before this.
-  { en: "1-on-1 Tutoring", mn: "Ганцаарчилсан хичээл", src: "SITE", n: 2, note: "verbatim from Header.tsx nav.tutoring" },
+  { en: "Online Tutoring", mn: "Онлайн хичээл", src: "SITE", n: 2, note: "verbatim from Header.tsx nav.tutoring" },
   { en: "About Us", mn: "Бидний тухай", src: "SITE", n: 2, note: "verbatim from Header.tsx nav.about; app/about uses the same" },
   { en: "Contact Us", mn: "Холбоо барих", src: "SITE", n: 2, note: 'same wording as the existing "Contact" entry — one destination, one label' },
   { en: "Careers", mn: "Ажлын байр", src: "SITE", n: 1, note: 'verbatim from app/about ("02 · Ажлын байр")' },

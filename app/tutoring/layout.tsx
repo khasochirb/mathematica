@@ -5,9 +5,9 @@ import type { Metadata } from "next";
 // /tutoring link is shared. The card image comes from opengraph-image.tsx in
 // this same folder (Next wires it into og:image + twitter:image automatically).
 
-const TITLE = "1-on-1 Online Math Tutoring";
+const TITLE = "Online Math Tutoring for Students Abroad";
 const DESCRIPTION =
-  "Personalized 1-on-1 online math tutoring — any grade, any curriculum, anywhere in the world. A plan built around your child, taught by an experienced mathematician. Real help, real plans, real progress.";
+  "Online math lessons for Mongolian students living abroad. Any grade, any curriculum, scheduled around your time zone, with a plan built around your child by an experienced mathematician.";
 
 export const metadata: Metadata = {
   title: TITLE,

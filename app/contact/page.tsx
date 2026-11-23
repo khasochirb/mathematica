@@ -233,7 +233,7 @@ export default function ContactPage() {
                     style={inputStyle}
                   >
                     <option value="">{t("Select a topic...", "Сэдэв сонгох...")}</option>
-                    <option>{t("1-on-1 Tutoring Inquiry", "1:1 Хичээлийн асуулга")}</option>
+                    <option>{t("Online Tutoring Inquiry (students abroad)", "Онлайн хичээлийн асуулга (гадаадад байгаа сурагч)")}</option>
                     <option>{t("Exam Prep Question", "Шалгалтын бэлтгэлийн асуулт")}</option>
                     <option>{t("Scheduling & Availability", "Хуваарь ба боломжийн асуулт")}</option>
                     <option>{t("Pricing Information", "Үнийн мэдээлэл")}</option>

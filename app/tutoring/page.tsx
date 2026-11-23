@@ -78,9 +78,9 @@ const VALUE_PROPS: { title: Bi; body: Bi }[] = [
     },
   },
   {
-    title: { en: "1-on-1, fully online", mn: "Ганцаарчилсан, бүрэн онлайн" },
+    title: { en: "Fully online, from abroad", mn: "Гадаадаас, бүрэн онлайн" },
     body: {
-      en: "Focused individual attention over video, scheduled around your family. Wherever you are, we meet your child where they are.",
+      en: "Individual lessons over video, scheduled around your family and your time zone, wherever in the world you live.",
       mn: "Ганцаарчилсан онлайн хичээл, хүссэн цагаа товлоод, хүссэн газраасаа авах боломжтой.",
     },
   },
@@ -114,11 +114,15 @@ const STEPS: { n: string; title: Bi; body: Bi }[] = [
 ];
 
 const i18n = {
-  eyebrow: { en: "1-on-1 Online Math Tutoring", mn: "Ганцаарчилсан онлайн математикийн хичээл" },
+  eyebrow: { en: "Online Math Tutoring for Students Abroad", mn: "Гадаадад амьдардаг сурагчдад онлайн математикийн хичээл" },
   heroH: { en: "The best math support your child will have.", mn: "Таны хүүхдэд зориулсан хамгийн сайн математикийн дэмжлэг." },
   heroSub: {
-    en: "Personalized online tutoring for Mongolian students abroad — any grade, any curriculum.",
-    mn: "Дэлхий даяар сурч буй бүх сурагчдад зориулсан ганцаарчилсан онлайн хичээл. Бүх төрлийн ангилал, бүх төрлийн математикийн хөтөлбөр. Бид таны хүүхдийн түвшин болон хэрэгцээнд тохирсон төлөвлөгөө гаргаж, хамтдаа ахиж дэвшинэ.",
+    en: "Online math lessons for students living outside Mongolia. Any grade, any curriculum, scheduled around your time zone.",
+    mn: "Монголоос гадна амьдарч, сурч байгаа хүүхдүүдэд зориулсан онлайн математикийн хичээл. Аль ч анги, аль ч хөтөлбөрөөр хичээллэнэ. Хичээлийн цагийг танай цагийн бүсэд тааруулж товлоно.",
+  },
+  abroadOnly: {
+    en: "Online lessons are only for students who live abroad. In Mongolia? Ask us about in-person classes.",
+    mn: "Онлайн хичээл зөвхөн гадаадад амьдардаг сурагчдад зориулагдсан. Монголд байгаа бол танхимын хичээлийн талаар бидэнтэй холбогдоорой.",
   },
   ctaFb: { en: "Message on Facebook", mn: "Facebook-ээр холбогдох" },
   ctaReach: { en: "See all the ways to reach me", mn: "Холбоо барих бусад арга" },
@@ -205,6 +209,12 @@ export default function TutoringPage() {
           </h1>
           <p className="mt-7 mx-auto" style={{ color: "var(--fg-1)", fontSize: 18, maxWidth: "62ch" }}>
             {L(i18n.heroSub)}
+          </p>
+          <p className="mt-4 mx-auto text-[14px]" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
+            {L(i18n.abroadOnly)}{" "}
+            <a href="/contact" style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: 3 }}>
+              {lang === "mn" ? "Холбогдох" : "Contact us"}
+            </a>
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
             <a

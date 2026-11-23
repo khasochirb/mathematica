@@ -12,7 +12,7 @@ import { ImageResponse } from "next/og";
 // Inter = labels / url.
 
 export const runtime = "nodejs";
-export const alt = "1-on-1 Online Math Tutoring — Mongol Potential";
+export const alt = "Online Math Tutoring for Students Abroad — Mongol Potential";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

@@ -332,7 +332,7 @@ export default function Header() {
     home: lang === "mn" ? "Нүүр" : "Home",
     esh: "ЭШ",
     dashboard: lang === "mn" ? "Хяналтын самбар" : "Dashboard",
-    tutoring: lang === "mn" ? "Ганцаарчилсан хичээл" : "1-on-1 Tutoring",
+    tutoring: lang === "mn" ? "Онлайн хичээл" : "Online Tutoring",
     resources: lang === "mn" ? "Эх сурвалж" : "Resources",
     about: lang === "mn" ? "Бидний тухай" : "About",
     login: lang === "mn" ? "Нэвтрэх" : "Log in",

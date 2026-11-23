@@ -60,7 +60,7 @@ const T = {
   notify: { en: "Notify me", mn: "Надад мэдэгдэх" },
   done: { en: "You're on the list — thank you!", mn: "Жагсаалтад бүртгэгдлээ — баярлалаа!" },
   errorMsg: { en: "Something went wrong. Please try again.", mn: "Алдаа гарлаа. Дахин оролдоно уу." },
-  tutorNow: { en: "Need help now? Get 1-on-1 tutoring", mn: "Одоо тусламж хэрэгтэй юу? Ганцаарчилсан хичээл" },
+  tutorNow: { en: "Live abroad? Take online lessons with a tutor", mn: "Гадаадад амьдардаг уу? Багштай онлайн хичээллээрэй" },
   eshLive: { en: "Explore the ЭШ hub — live now", mn: "ЭШ төвийг үзэх — нээлттэй" },
 } satisfies Record<string, Bi>;
 
