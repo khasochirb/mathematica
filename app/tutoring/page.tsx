@@ -121,8 +121,8 @@ const i18n = {
     mn: "Монголоос гадна амьдарч, сурч байгаа хүүхдүүдэд зориулсан онлайн математикийн хичээл. Аль ч анги, аль ч хөтөлбөрөөр хичээллэнэ. Хичээлийн цагийг танай цагийн бүсэд тааруулж товлоно.",
   },
   abroadOnly: {
-    en: "Online lessons are only for students who live abroad. In Mongolia? Ask us about in-person classes.",
-    mn: "Онлайн хичээл зөвхөн гадаадад амьдардаг сурагчдад зориулагдсан. Монголд байгаа бол танхимын хичээлийн талаар бидэнтэй холбогдоорой.",
+    en: "Online lessons are only for students who live abroad. In Mongolia? Come to our classes in Ulaanbaatar.",
+    mn: "Онлайн хичээл зөвхөн гадаадад амьдардаг сурагчдад зориулагдсан. Монголд байгаа бол Улаанбаатар дахь танхимын хичээлд маань ирээрэй.",
   },
   ctaFb: { en: "Message on Facebook", mn: "Facebook-ээр холбогдох" },
   ctaReach: { en: "See all the ways to reach me", mn: "Холбоо барих бусад арга" },
@@ -212,8 +212,8 @@ export default function TutoringPage() {
           </p>
           <p className="mt-4 mx-auto text-[14px]" style={{ color: "var(--fg-2)", maxWidth: "62ch" }}>
             {L(i18n.abroadOnly)}{" "}
-            <a href="/contact" style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: 3 }}>
-              {lang === "mn" ? "Холбогдох" : "Contact us"}
+            <a href="/academy" style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: 3 }}>
+              {lang === "mn" ? "Танхимын хичээл" : "In-person classes"}
             </a>
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">

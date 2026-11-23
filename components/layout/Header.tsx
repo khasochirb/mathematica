@@ -326,6 +326,7 @@ export default function Header() {
     home: lang === "mn" ? "Нүүр" : "Home",
     esh: "ЭШ",
     dashboard: lang === "mn" ? "Хяналтын самбар" : "Dashboard",
+    academy: lang === "mn" ? "Танхимын хичээл" : "In-Person Classes",
     tutoring: lang === "mn" ? "Онлайн хичээл" : "Online Tutoring",
     resources: lang === "mn" ? "Эх сурвалж" : "Resources",
     about: lang === "mn" ? "Бидний тухай" : "About",
@@ -414,6 +415,12 @@ export default function Header() {
                   {nav.dashboard}
                 </NavLink>
               )}
+              {/* In-person centre first, online (abroad only) second: the
+                  site is free so that it can bring students to the centre
+                  (Khas, 23 Nov 2026). */}
+              <NavLink href="/academy" active={onPath("/academy")}>
+                {nav.academy}
+              </NavLink>
               <NavLink href="/tutoring" active={onPath("/tutoring")}>
                 {nav.tutoring}
               </NavLink>
@@ -565,6 +572,7 @@ export default function Header() {
             {[
               { label: nav.home, href: "/" },
               ...(isAuthenticated ? [{ label: nav.dashboard, href: "/dashboard" }] : []),
+              { label: nav.academy, href: "/academy" },
               { label: nav.tutoring, href: "/tutoring" },
             ].map((item) => {
               const active = onPath(item.href);
