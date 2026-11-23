@@ -14,6 +14,23 @@ touching any of those; it is not summarised here.
 
 ---
 
+## 2026-11-23 — mode: ship
+
+**Did:**
+- **Free site, login kept** (Khas: "Free, but login required"): `lib/course-access.ts` grants every topic, exam and bank unit to any logged-in user; Premium button, badges, locks and plan picker removed; progress routes require login only; AI quota is one limit of 30/day for everyone (Khas may want a different number). Webhook, activation routes, schema untouched.
+- **Activity tracking:** `components/ActivityTracker.tsx` writes `page_view` (deduped 10 min) and 5-minute `heartbeat` events for logged-in users into the existing `events` table; `scripts/sql/activity-report.sql` reports per numbered account, no emails. No migration.
+- **Tutoring split:** "1-on-1 Tutoring" renamed Online Tutoring / «Онлайн хичээл», for students abroad only. New `/academy` page (Khas's explicit request, so a new top-level route by his call) for Mongol Potential Academy, the in-person centre: ЭШ, SAT, olympiad prep from grade 6, group and one-on-one, address, three phones, prices on request. Header, mobile nav, footer, contact form wired.
+- Also shipped from earlier this branch: natural-Mongolian lesson pilot (Algebra 1 linear equations), problem-bank tutoring UI (hints, diagnosis, step solutions, Check only after an answer), Grade 8 linear equations bank rebuilt to the problem-bank-authoring manual (97 problems), voice gate, review export.
+- **Gates at ff32ec3:** tsc clean, vitest 1206/1206, verify-genmath clean, verify-problembank clean, build passes.
+
+**Landed where:** deployed to production 23 Nov 2026 on Khas's word ("deploy"): `ff32ec3` pushed to main.
+
+**Blocked on:** Khas: feedback on the Grade 8 bank sample before the format is rolled out; centre photos; go-ahead for "invite to the centre at key moments" (after test/placement results, after a bank part, home banner).
+
+**Others should know:** `/academy` is a new top-level route. `/tutoring` is online-for-abroad only and keeps its +1 number on purpose. Paywall code paths (subscription status, activation) still exist but nothing gates on them.
+
+---
+
 ## 2026-10-29 — mode: content
 
 **Did:**
